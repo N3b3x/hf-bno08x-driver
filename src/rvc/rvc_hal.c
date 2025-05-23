@@ -23,7 +23,7 @@
 
 #include "stm32f4xx_hal.h"
 
-#include "usart.h"
+#include "../esp32/usart.h"
 
 // -------------------------------------------------------------------------
 // Constants
