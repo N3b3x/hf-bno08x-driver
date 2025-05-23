@@ -53,6 +53,7 @@ classDiagram
     class SensorEvent
     BNO085 --> IBNO085Transport : uses
     BNO085 --> SensorEvent : "produces ➡️"
+```
 The BNO085 class shields your app from the gritty SH-2/SHTP details, while IBNO085Transport shields it from your hardware.
 
 ## Library Structure 🗂️
