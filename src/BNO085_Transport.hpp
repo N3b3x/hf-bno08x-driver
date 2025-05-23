@@ -47,6 +47,14 @@ public:
      * @param ms Delay duration in milliseconds.
      */
     virtual void delay(uint32_t ms) = 0;
+
+    /**
+     * @brief Get current time in microseconds.
+     *
+     * The SH-2 library requires a monotonic time source for timestamping.
+     * The transport implementation must provide this in microseconds.
+     */
+    virtual uint32_t getTimeUs() = 0;
 };
 
 #endif // BNO085_TRANSPORT_HPP
