@@ -216,31 +216,29 @@ and stub firmware images are included.  To enter the bootloader hold the BOOTN
 pin low during reset.  Refer to [`src/dfu/README.md`](src/dfu/README.md) for a
 walk‑through of the process.
 
-Advanced Notes 🔬
-🌟 Tare NOW: imu.tareNow() to zero orientation.
+## Advanced Notes 🔬
 
-🎯 Accuracy: event.accuracy (0–3) shows calib quality – wait for 3 before trusting heading.
+- **Tare NOW**: call `imu.tareNow()` to zero the current orientation.
+- **Accuracy**: `event.accuracy` (0–3) indicates calibration status. Wait for `3` before trusting the heading.
+- **DFU Mode**: hold **BOOTN** low during reset to enter the bootloader for firmware updates.
+- **Power Saving**: disable unused reports to save around 20 mA.
 
-💾 DFU: hold BOOTN low on reset → sensor enters bootloader for firmware update.
+## Contributing 🤝
 
-🔋 Power: disable unused reports to save ~20 mA.
+Pull requests and issues are welcome!
+Please run `clang-format -style=file` before committing and sign off your work (`git commit -s`).
 
-Contributing 🤝
-Pull requests & issues welcome!
-Please run clang-format -style=file before committing and sign off your work (-s flag).
+## License 📄
 
-License 📄
-C++ wrapper code: GNU GPL v3.0
+- C++ wrapper code: [GNU GPL v3.0](LICENSE)
+- CEVA SH-2 backend: Apache 2.0 (included)
 
-CEVA SH-2 backend: Apache 2.0 (included).
+By contributing you agree your code is released under the same GPLv3 license.
 
-By contributing, you agree code is released under the same GPLv3 license.
+## Acknowledgements 🙏
 
-Acknowledgements 🙏
-CEVA Inc. for open-sourcing the SH-2 driver.
-
-SparkFun & Adafruit for inspiring wiring diagrams.
-
-Everyone in the open-source IMU community 💖
+- CEVA Inc. for open-sourcing the SH-2 driver.
+- SparkFun & Adafruit for inspiring wiring diagrams.
+- Everyone in the open-source IMU community 💖
 
 Made with a cup of ☕ and a dash of 🚀
