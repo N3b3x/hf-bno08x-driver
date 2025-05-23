@@ -22,10 +22,12 @@ Hardware Agnostic BNO08x library - as used in the HardFOC-V1 controller
    * [STM32 ⚙️](#stm32-⚙️)
    * [Arduino 🎯](#arduino-🎯)
 6. [Usage Examples 💻](#usage-examples-💻)
-7. [Advanced Notes 🔬](#advanced-notes-🔬)
-8. [Contributing 🤝](#contributing-🤝)
-9. [License 📄](#license-📄)
-10. [Acknowledgements 🙏](#acknowledgements-🙏)
+7. [RVC Mode 🧹](#rvc-mode-🧹)
+8. [Firmware Update (DFU) 📦](#firmware-update-dfu-📦)
+9. [Advanced Notes 🔬](#advanced-notes-🔬)
+10. [Contributing 🤝](#contributing-🤝)
+11. [License 📄](#license-📄)
+12. [Acknowledgements 🙏](#acknowledgements-🙏)
 
 ---
 
@@ -188,6 +190,32 @@ while (true) {
     delay(5);
 }
 ```
+
+## RVC Mode 🧹
+
+Some Hillcrest/CEVA sensors offer a simplified "Robot Vacuum Cleaner" (RVC) mode
+that streams yaw/pitch/roll and linear acceleration over UART without any SH‑2
+commands.  If your application only needs basic orientation data and you want to
+avoid the overhead of the full protocol, this mode can be very handy.  The
+`src/rvc` folder contains a small decoder library and platform HAL examples.
+
+Entering RVC mode is typically done via boot‑time pin strapping or a vendor
+command.  Once enabled the sensor continuously outputs 19‑byte frames at a fixed
+baud rate (usually 115200 bps).  Implement `IRvcHal` to read bytes from the
+serial port, register a callback, and call `rvc_service()` regularly to parse the
+incoming frames.  See [`src/rvc/README.md`](src/rvc/README.md) for full details
+and a code example.
+
+## Firmware Update (DFU) 📦
+
+The library also provides firmware update helpers in `src/dfu`.  These routines
+support both BNO08x IMUs and the FSP200/201 family.  You supply an
+`IDfuTransport` implementation to handle the underlying bus (I²C, SPI, UART,…)
+and call `dfu()` with the sensor in bootloader mode.  Sample transport adapters
+and stub firmware images are included.  To enter the bootloader hold the BOOTN
+pin low during reset.  Refer to [`src/dfu/README.md`](src/dfu/README.md) for a
+walk‑through of the process.
+
 Advanced Notes 🔬
 🌟 Tare NOW: imu.tareNow() to zero orientation.
 
