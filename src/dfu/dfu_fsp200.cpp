@@ -21,13 +21,11 @@
 
 #include "dfu.h"
 
-#include <stdbool.h>
-#include <stdint.h>
-#include <string.h>
+#include <cstdint>
+#include <cstring>
 #include "sh2_err.h"
 #include "shtp.h"
-#include "sh2_hal.h"
-#include "sh2_hal_init.h"
+#include "IDfuTransport.hpp"
 #include "firmware.h"
 
 #define CHAN_BOOTLOADER_CONTROL    (1)
@@ -123,7 +121,7 @@ typedef struct {
 
 // DFU data
 typedef struct {
-    sh2_Hal_t *pHal;
+    IDfuTransport *pHal;
     void *pShtp;
 
     int status;
@@ -160,7 +158,7 @@ static void initState(void)
 
     dfu_.ignoredResponses = 0;
 
-    uint32_t now_us = dfu_.pHal->getTimeUs(dfu_.pHal);
+    uint32_t now_us = dfu_.pHal->getTimeUs();
     dfu_.intervalStart_us = now_us;
     dfu_.state = ST_INIT;
 }
@@ -542,7 +540,7 @@ static void hdlr(void *cookie, uint8_t *payload, uint16_t len, uint32_t timestam
     dfu_.state = tr->msgHdlr(payload, len);
     
     // reset timeout logic
-    uint32_t now_us = dfu_.pHal->getTimeUs(dfu_.pHal);
+    uint32_t now_us = dfu_.pHal->getTimeUs();
     dfu_.intervalStart_us = now_us;
 }
 
@@ -555,20 +553,20 @@ static void timeout()
     dfu_.state = tr->timeoutHdlr();
     
     // reset timeout logic
-    uint32_t now_us = dfu_.pHal->getTimeUs(dfu_.pHal);
+    uint32_t now_us = dfu_.pHal->getTimeUs();
     dfu_.intervalStart_us = now_us;
 }
 
 // ------------------------------------------------------------------------
 // Public API
 
-int dfu(void)
+int dfu(IDfuTransport &transport)
 {
     uint32_t start_us;
     uint32_t now_us;
 
-    // Create the HAL instance used for DFU.
-    dfu_.pHal = dfu_hal_init();
+    // Use the supplied transport
+    dfu_.pHal = &transport;
     
     // Initialize state
     initState();
@@ -581,13 +579,13 @@ int dfu(void)
     }
     
     // Initialize SHTP layer
-    dfu_.pShtp = shtp_open(dfu_.pHal);
+    dfu_.pShtp = shtp_open(dfu_.pHal->nativeHal());
     
     // Register handlers for DFU-oriented channels
     shtp_listenChan(dfu_.pShtp, CHAN_BOOTLOADER_CONTROL, hdlr, &dfu_);
 
     // service SHTP until DFU process completes
-    now_us = dfu_.pHal->getTimeUs(dfu_.pHal);
+    now_us = dfu_.pHal->getTimeUs();
     start_us = now_us;
     while (((now_us - start_us) < DFU_TIMEOUT_US) &&
            (dfu_.state != ST_FINISHED))
@@ -602,7 +600,7 @@ int dfu(void)
         }
         
         shtp_service(dfu_.pShtp);
-        now_us = dfu_.pHal->getTimeUs(dfu_.pHal);
+        now_us = dfu_.pHal->getTimeUs();
     }
     
     if (dfu_.state != ST_FINISHED) {

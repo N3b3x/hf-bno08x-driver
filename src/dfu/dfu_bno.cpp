@@ -19,14 +19,13 @@
  * BNO080 DFU (Download Firmware Update) Implementation.
  */
 
-#include <string.h>
-#include <stdbool.h>
+#include <cstring>
+#include <cstdint>
 
 #include "dfu.h"
 #include "firmware.h"
-#include "sh2_hal.h"
+#include "IDfuTransport.hpp"
 #include "sh2_err.h"
-#include "sh2_hal_init.h"
 
 // --- Private Data Types -------------------------------------------------
 
@@ -38,20 +37,18 @@
 
 // --- Forward Declarations -----------------------------------------------
 
-static int sendAppSize(sh2_Hal_t *pHal, uint32_t appSize);
-static int sendPktSize(sh2_Hal_t *pHal, uint8_t packetLen);
-static int sendPkt(sh2_Hal_t *pHal, uint8_t* pData, uint32_t len);
+static int sendAppSize(IDfuTransport *pHal, uint32_t appSize);
+static int sendPktSize(IDfuTransport *pHal, uint8_t packetLen);
+static int sendPkt(IDfuTransport *pHal, uint8_t* pData, uint32_t len);
 
 // --- Private Data -------------------------------------------------------
 
 uint8_t dfuBuff[MAX_PACKET_LEN + 2];
 uint32_t totalRetries;
 
-sh2_Hal_t *pDfuHal = 0;
-
 // --- Public API ---------------------------------------------------------
 
-int dfu(void)
+int dfu(IDfuTransport &transport)
 {
     int rc;
     int status = SH2_OK;
@@ -59,10 +56,7 @@ int dfu(void)
     uint8_t packetLen = 0;
     uint32_t offset = 0;
     const char * s = 0;
-    sh2_Hal_t *pHal = 0;
-
-    // Create the HAL instance used for DFU.
-    pHal = dfu_hal_init();
+    IDfuTransport *pHal = &transport;
     
     // Open the hcbin object
     rc = firmware.open();
@@ -111,7 +105,7 @@ int dfu(void)
 
     // Initiate DFU process
 
-    status = pHal->open(pHal);
+    status = pHal->open();
     if (status != SH2_OK) {
         goto close_and_return;
     }
@@ -160,16 +154,16 @@ close_and_return:
     // flash writes complete.
     if (status == SH2_OK)
     {
-        uint32_t now = pHal->getTimeUs(pHal);
+        uint32_t now = pHal->getTimeUs();
         uint32_t start = now;
         while ((now - start) < DELAY_POST_DFU_US)
         {
-            now = pHal->getTimeUs(pHal);
+            now = pHal->getTimeUs();
         }
     }
 
     // close device
-    pHal->close(pHal);
+    pHal->close();
     
 end:
     return status;
@@ -214,7 +208,7 @@ static void appendCrc(uint8_t *packet, uint8_t len)
 #define DFU_SEND_TIMEOUT_US (100000)
 
 // I/O Utility functions
-static int dfuSend(sh2_Hal_t *pHal, uint8_t* pData, uint32_t len)
+static int dfuSend(IDfuTransport *pHal, uint8_t* pData, uint32_t len)
 {
     unsigned int retries = 0;
     int status = SH2_OK;
@@ -223,15 +217,15 @@ static int dfuSend(sh2_Hal_t *pHal, uint8_t* pData, uint32_t len)
     uint32_t t;
 
     while (!gotAck && (retries < DFU_MAX_ATTEMPTS)) {
-        uint32_t now = pHal->getTimeUs(pHal);
+        uint32_t now = pHal->getTimeUs();
         uint32_t start = now;
         
         // Do write
         status = 0;
         while ((status == 0) && ((now - start) < DFU_SEND_TIMEOUT_US))
         {
-            status = pHal->write(pHal, pData, len);
-            now = pHal->getTimeUs(pHal);
+            status = pHal->write(pData, len);
+            now = pHal->getTimeUs();
         }
         if (status == 0)
         {
@@ -245,8 +239,8 @@ static int dfuSend(sh2_Hal_t *pHal, uint8_t* pData, uint32_t len)
             status = 0;
             while ((status == 0) && ((now - start) < DFU_SEND_TIMEOUT_US))
             {
-                status = pHal->read(pHal, &ack, 1, &t);
-                now = pHal->getTimeUs(pHal);
+                status = pHal->read(&ack, 1, &t);
+                now = pHal->getTimeUs();
             }
             if (status == 0)
             {
@@ -289,7 +283,7 @@ static int dfuSend(sh2_Hal_t *pHal, uint8_t* pData, uint32_t len)
     return status;
 }
 
-static int sendAppSize(sh2_Hal_t *pHal, uint32_t appSize)
+static int sendAppSize(IDfuTransport *pHal, uint32_t appSize)
 {
     write32be(dfuBuff, appSize);
     appendCrc(dfuBuff, 4);
@@ -297,7 +291,7 @@ static int sendAppSize(sh2_Hal_t *pHal, uint32_t appSize)
     return dfuSend(pHal, dfuBuff, 6);
 }
 
-static int sendPktSize(sh2_Hal_t *pHal, uint8_t packetLen)
+static int sendPktSize(IDfuTransport *pHal, uint8_t packetLen)
 {
     dfuBuff[0] = packetLen;
     appendCrc(dfuBuff, 1);
@@ -305,7 +299,7 @@ static int sendPktSize(sh2_Hal_t *pHal, uint8_t packetLen)
     return dfuSend(pHal, dfuBuff, 3);
 }
 
-static int sendPkt(sh2_Hal_t *pHal, uint8_t* pData, uint32_t len)
+static int sendPkt(IDfuTransport *pHal, uint8_t* pData, uint32_t len)
 {
     memcpy(dfuBuff, pData, len);
     appendCrc(dfuBuff, len);
