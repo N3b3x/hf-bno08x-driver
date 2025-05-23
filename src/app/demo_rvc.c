@@ -28,7 +28,7 @@
 
 #include "demo_app.h"
 
-#include "rvc.h"
+#include "../rvc/rvc.h"
 
 // Uncomment this to produce DSF format data output
 // #define DSF_OUTPUT
