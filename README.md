@@ -1,7 +1,7 @@
-# HF-BNO08x
+#HF - BNO08x
 Hardware Agnostic BNO08x library - as used in the HardFOC-V1 controller
 
-# BNO085 C++ Sensor Library 🚀
+#BNO085 C++ Sensor Library 🚀
 
 > **Full-stack, hardware-agnostic, zero-thread driver for Hillcrest / CEVA BNO08x**  
 
@@ -46,11 +46,7 @@ Hardware Agnostic BNO08x library - as used in the HardFOC-V1 controller
 classDiagram
     direction LR
     class BNO085 {
-        +begin()
-        +enableSensor()
-        +update()
-        +setCallback()
-        +getLatest()
+  +begin() + enableSensor() + update() + setCallback() + getLatest()
     }
     class IBNO085Transport <|.. I2CTransport
     class IBNO085Transport <|.. SPITransport
@@ -59,15 +55,28 @@ classDiagram
     BNO085 --> SensorEvent : "produces ➡️"
 The BNO085 class shields your app from the gritty SH-2/SHTP details, while IBNO085Transport shields it from your hardware.
 
+## Library Structure 🗂️
+
+```
+src/
+ ├── BNO085.hpp / BNO085.cpp  - high level driver
+ ├── BNO085_Transport.hpp     - transport interface to implement
+ ├── sh2/                      - vendor SH-2 library (git submodule)
+ ├── app/, rvc/, dfu/          - reference HAL and DFU utilities
+```
+
+Only the `BNO085.*` files and your chosen transport implementation are required
+for normal use. The other folders provide optional examples and helper code.
+
 Getting Started 🏁
 bash
 Always show details
 
 Copy
-# Clone wherever you keep libs 📂
+#Clone wherever you keep libs 📂
 git clone --depth=1 https://github.com/yourOrg/bno085-cpp.git libs/bno085
 
-# Add the .cpp/.h files plus sh2/* to your project build.
+#Add the.cpp /.h files plus sh2/* to your project build.
 # CMake example ⤵️
 add_subdirectory(libs/bno085)
 target_link_libraries(myApp PRIVATE bno085)
