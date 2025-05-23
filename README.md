@@ -70,41 +70,40 @@ Only the `BNO085.*` files and your chosen transport implementation are required
 for normal use. The other folders provide optional examples and helper code.
 
 Getting Started 🏁
-bash
-Always show details
 
-Copy
-#Clone wherever you keep libs 📂
+```bash
+# Clone wherever you keep libs 📂
 git clone --depth=1 https://github.com/yourOrg/bno085-cpp.git libs/bno085
 
-#Add the.cpp /.h files plus sh2/* to your project build.
+# Add the .cpp/.h files plus sh2/* to your project build.
 # CMake example ⤵️
 add_subdirectory(libs/bno085)
 target_link_libraries(myApp PRIVATE bno085)
+```
+
 Dependencies:
 Only a C/C++ compiler (C++11) and your MCU’s I/O driver – no STL, no RTOS.
 
 Hardware Wiring 🔌
-txt
-Always show details
 
-Copy
+```text
 MCU 3V3  ──── VIN   BNO085
 MCU GND  ──── GND
 MCU SCL  ──── SCL   (w/ 4.7 kΩ pull-up)
 MCU SDA  ──── SDA   (w/ 4.7 kΩ pull-up)
 MCU GPIO ──── INT   (optional, active-low IRQ)
 MCU GPIO ──── NRST  (optional reset)
-PS0 + PS1 → GND ➡️ selects I²C (tie high for SPI) 
+PS0 + PS1 → GND ➡️ selects I²C (tie high for SPI)
 ADR/SA0  → GND ➡️ address 0x4A (0x4B if high)
+```
+
 Tip: Use the INT line to wake your code only when data is ready – saves power & cycles! ⚡️
 
 Porting Guide 🧳
-ESP32 🚀 (ESP-IDF v5.x)
-cpp
-Always show details
 
-Copy
+### ESP32 🚀 (ESP-IDF v5.x)
+
+```cpp
 #include "driver/i2c.h"
 class Esp32I2CTransport : public IBNO085Transport {
   bool open() override {
@@ -115,19 +114,19 @@ class Esp32I2CTransport : public IBNO085Transport {
       i2c_driver_install(I2C_NUM_0, c.mode, 0, 0, 0);
       return true;
   }
-  int read(uint8_t* d,size_t n)  override { 
+  int read(uint8_t* d,size_t n)  override {
       return i2c_master_read_from_device(I2C_NUM_0, 0x4A, d, n, 50)==ESP_OK? n:-1; }
   int write(const uint8_t* d,size_t n) override {
       return i2c_master_write_to_device(I2C_NUM_0, 0x4A, d, n, 50)==ESP_OK? n:-1; }
   uint32_t getTimeUs() override { return esp_timer_get_time(); }
 };
+```
+
 💡 See examples/esp32_idf for a full project, including ISR for the INT pin.
 
-STM32 ⚙️ (HAL / CubeIDE)
-cpp
-Always show details
+### STM32 ⚙️ (HAL / CubeIDE)
 
-Copy
+```cpp
 extern I2C_HandleTypeDef hi2c1;
 class STM32I2CTransport : public IBNO085Transport {
   bool open() override { return HAL_I2C_IsDeviceReady(&hi2c1, 0x4A<<1, 3, 100)==HAL_OK; }
@@ -135,13 +134,13 @@ class STM32I2CTransport : public IBNO085Transport {
   int  write(const uint8_t* b,size_t n) override { return HAL_I2C_Master_Transmit(&hi2c1,0x4A<<1,(uint8_t*)b,n,100)==HAL_OK?n:-1;}
   uint32_t getTimeUs() override { return HAL_GetTick()*1000; }
 };
+```
+
 For SPI: use HAL_SPI_TransmitReceive & toggle CS manually; tie PS0+PS1 high.
 
-Arduino 🎯
-cpp
-Always show details
+### Arduino 🎯
 
-Copy
+```cpp
 #include <Wire.h>
 class ArduinoTransport : public IBNO085Transport {
   bool open() override { Wire.begin(); Wire.setClock(400000); delay(50); return true; }
@@ -149,14 +148,15 @@ class ArduinoTransport : public IBNO085Transport {
   int  write(const uint8_t* b,size_t n) override { Wire.beginTransmission(0x4A); Wire.write(b,n); return Wire.endTransmission()==0?n:-1; }
   uint32_t getTimeUs() override { return micros(); }
 };
+```
+
 Memory ⛔ note: AVR (<2 KB RAM) is tight – stick to a few low-rate sensors.
 
 Usage Examples 💻
-Quick Start
-cpp
-Always show details
 
-Copy
+#### Quick Start
+
+```cpp
 BNO085 imu(new ArduinoTransport());
 if (!imu.begin()) { Serial.println("🚫 IMU not found!"); while(1); }
 
@@ -174,11 +174,11 @@ imu.setCallback([](const SensorEvent& e){
 void loop() {
     imu.update();      // call as often as possible (or when INT fires)
 }
-Polling Loop
-cpp
-Always show details
+```
 
-Copy
+#### Polling Loop
+
+```cpp
 while (true) {
     imu.update();                           // pump packets
     if (imu.hasNewData(BNO085Sensor::TapDetector)) {
@@ -187,6 +187,7 @@ while (true) {
     }
     delay(5);
 }
+```
 Advanced Notes 🔬
 🌟 Tare NOW: imu.tareNow() to zero orientation.
 
