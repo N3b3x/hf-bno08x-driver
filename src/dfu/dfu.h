@@ -2,7 +2,7 @@
  * Copyright 2015-21 CEVA, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License and 
+ * you may not use this file except in compliance with the License and
  * any applicable agreements you may have with CEVA, Inc.
  * You may obtain a copy of the License at
  *
@@ -16,18 +16,20 @@
  */
 
 /*
- * DFU (Download Firmware Update) function
+ * DFU (Download Firmware Update) interface
  */
 
 #ifndef DFU_H
 #define DFU_H
 
-// DFU Interface
+#include "IDfuTransport.hpp"
 
 /**
- * Run DFU Process.
- * @return Err code from sh2_err.h indicating whether DFU process completed successfully
+ * @brief Run DFU process using the provided transport.
+ *
+ * @param transport Hardware transport implementation.
+ * @return Err code from sh2_err.h indicating DFU result.
  */
-int dfu(void);
+int dfu(IDfuTransport &transport);
 
 #endif
