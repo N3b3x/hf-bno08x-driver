@@ -63,6 +63,16 @@ enum class BNO085Sensor : uint8_t {
   ARVRStabilizedGameRV = 0x29,       ///< Stabilized game rotation vector
   GyroIntegratedRV = 0x2A            ///< Gyro integrated rotation vector
 };
+/**
+ * @enum BNO085Interface
+ * @brief Host interface selection via PS pins.
+ */
+enum class BNO085Interface : uint8_t {
+  I2C,     ///< PS1=0, PS0=0
+  UARTRVC, ///< PS1=1, PS0=0
+  UART,    ///< PS1=0, PS0=1
+  SPI      ///< PS1=1, PS0=1
+};
 
 /**
  * @struct Vector3
@@ -159,6 +169,22 @@ public:
 
   /** Retrieve the last error code returned by the SH-2 driver. */
   int getLastError() const { return lastError; }
+
+  /**
+   * @brief Toggle the sensor's hardware reset line if available.
+   *
+   * Drives RSTN low for the specified time then releases it. Platforms not
+   * providing the pin may leave the implementation empty.
+   */
+  void hardwareReset(uint32_t lowMs = 2);
+
+  /** Set the BOOTN pin level (used to enter DFU). */
+  void setBootPin(bool state);
+  /** Control the WAKE pin in SPI mode. */
+  void setWakePin(bool state);
+
+  /** Select the host interface by driving PS pins. */
+  void selectInterface(BNO085Interface iface);
 
 private:
   /**

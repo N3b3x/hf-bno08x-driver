@@ -248,3 +248,49 @@ bool BNO085::configure(BNO085Sensor sensor, uint32_t intervalUs,
   }
   return true;
 }
+
+/** Toggle the hardware reset line if implemented. */
+void BNO085::hardwareReset(uint32_t lowMs) {
+  if (!io)
+    return;
+  io->setReset(false);
+  io->delay(lowMs);
+  io->setReset(true);
+  io->delay(50); // allow sensor to boot
+}
+
+/** Drive the BOOTN pin. */
+void BNO085::setBootPin(bool state) {
+  if (io)
+    io->setBoot(state);
+}
+
+/** Control the WAKE pin. */
+void BNO085::setWakePin(bool state) {
+  if (io)
+    io->setWake(state);
+}
+
+/** Select host interface using PS0/PS1. */
+void BNO085::selectInterface(BNO085Interface iface) {
+  if (!io)
+    return;
+  switch (iface) {
+  case BNO085Interface::I2C:
+    io->setPS1(false);
+    io->setPS0(false);
+    break;
+  case BNO085Interface::UARTRVC:
+    io->setPS1(true);
+    io->setPS0(false);
+    break;
+  case BNO085Interface::UART:
+    io->setPS1(false);
+    io->setPS0(true);
+    break;
+  case BNO085Interface::SPI:
+    io->setPS1(true);
+    io->setPS0(true);
+    break;
+  }
+}
