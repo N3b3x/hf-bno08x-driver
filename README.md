@@ -1,7 +1,7 @@
-# HF - BNO08x
+#HF - BNO08x
 Hardware Agnostic BNO08x library - as used in the HardFOC-V1 controller
 
-# BNO085 C++ Sensor Library 🚀
+#BNO085 C++ Sensor Library 🚀
 
 > **Full-stack, hardware-agnostic, zero-thread driver for Hillcrest / CEVA BNO08x**  
 
@@ -40,6 +40,7 @@ Hardware Agnostic BNO08x library - as used in the HardFOC-V1 controller
 | 🔁 **Auto Re-Sync** | Detects sensor resets & seamlessly re-enables all configured features. |
 | 🧮 **Float-Friendly API** | Returns handy structs (`Vector3`, `Quaternion`, `SensorEvent`) with SI units. |
 | 📚 **GPLv3 & Apache-2.0** | C++ wrapper under GPLv3; CEVA SH-2 backend under Apache 2.0 – both included. |
+| 🔌 **Pin Control API** | Optional helpers let you drive RSTN/BOOTN/WAKE and PS0/PS1 via your transport for resets, DFU or interface swap. |
 
 ---
 
@@ -74,10 +75,10 @@ for normal use. The other folders provide optional examples and helper code.
 Getting Started 🏁
 
 ```bash
-# Clone wherever you keep libs 📂
+#Clone wherever you keep libs 📂
 git clone --depth=1 https://github.com/yourOrg/bno085-cpp.git libs/bno085
 
-# Add the .cpp/.h files plus sh2/* to your project build.
+#Add the.cpp /.h files plus sh2/* to your project build.
 # CMake example ⤵️
 add_subdirectory(libs/bno085)
 target_link_libraries(myApp PRIVATE bno085)
@@ -222,6 +223,7 @@ walk‑through of the process.
 - **Accuracy**: `event.accuracy` (0–3) indicates calibration status. Wait for `3` before trusting the heading.
 - **DFU Mode**: hold **BOOTN** low during reset to enter the bootloader for firmware updates.
 - **Power Saving**: disable unused reports to save around 20 mA.
+- **Pin Helpers**: `hardwareReset()`, `setBootPin()`, `setWakePin()`, `setPS0Pin()` and `setPS1Pin()` expose RSTN/BOOTN/WAKE and PS pins when wired.
 
 ## Contributing 🤝
 
