@@ -160,6 +160,26 @@ public:
   /** Retrieve the last error code returned by the SH-2 driver. */
   int getLastError() const { return lastError; }
 
+  /**
+   * @brief Toggle the sensor's hardware reset line if available.
+   *
+   * Drives RSTN low for the specified time then releases it. Platforms not
+   * providing the pin may leave the implementation empty.
+   */
+  void hardwareReset(uint32_t lowMs = 2);
+
+  /** Set the BOOTN pin level (used to enter DFU). */
+  void setBootPin(bool state);
+
+  /** Control the WAKE pin in SPI mode. */
+  void setWakePin(bool state);
+
+  /** Drive protocol select pin PS0. */
+  void setPS0Pin(bool state);
+
+  /** Drive protocol select pin PS1. */
+  void setPS1Pin(bool state);
+
 private:
   /**
    * @brief Internal wrapper converting ::IBNO085Transport to the SH-2 HAL.

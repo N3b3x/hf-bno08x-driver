@@ -248,3 +248,37 @@ bool BNO085::configure(BNO085Sensor sensor, uint32_t intervalUs,
   }
   return true;
 }
+
+/** Toggle the hardware reset line if implemented. */
+void BNO085::hardwareReset(uint32_t lowMs) {
+  if (!io)
+    return;
+  io->setReset(false);
+  io->delay(lowMs);
+  io->setReset(true);
+  io->delay(50); // allow sensor to boot
+}
+
+/** Drive the BOOTN pin. */
+void BNO085::setBootPin(bool state) {
+  if (io)
+    io->setBoot(state);
+}
+
+/** Drive the WAKE pin. */
+void BNO085::setWakePin(bool state) {
+  if (io)
+    io->setWake(state);
+}
+
+/** Drive PS0. */
+void BNO085::setPS0Pin(bool state) {
+  if (io)
+    io->setPS0(state);
+}
+
+/** Drive PS1. */
+void BNO085::setPS1Pin(bool state) {
+  if (io)
+    io->setPS1(state);
+}
