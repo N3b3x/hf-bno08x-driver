@@ -27,6 +27,7 @@
 #include "shtp.h"
 #include "IDfuTransport.hpp"
 #include "firmware.h"
+#include "HcBin.h"
 
 #define CHAN_BOOTLOADER_CONTROL    (1)
 
@@ -560,7 +561,7 @@ static void timeout()
 // ------------------------------------------------------------------------
 // Public API
 
-int dfu(IDfuTransport &transport)
+int dfu(IDfuTransport &transport, const HcBin_t &fw)
 {
     uint32_t start_us;
     uint32_t now_us;
@@ -572,7 +573,7 @@ int dfu(IDfuTransport &transport)
     initState();
     
     // Open firmware and validate it
-    dfu_.firmware = &firmware;
+    dfu_.firmware = &fw;
     openFirmware();
     if (dfu_.status != SH2_OK) {
         goto fin;
@@ -619,4 +620,6 @@ fin:
     
     return dfu_.status;
 }
+
+int dfu(IDfuTransport &transport) { return dfu(transport, firmware); }
 

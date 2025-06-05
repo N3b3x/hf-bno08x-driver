@@ -1,7 +1,7 @@
-# HF - BNO08x
+#HF - BNO08x
 Hardware Agnostic BNO08x library - as used in the HardFOC-V1 controller
 
-# BNO085 C++ Sensor Library 🚀
+#BNO085 C++ Sensor Library 🚀
 
 > **Full-stack, hardware-agnostic, zero-thread driver for Hillcrest / CEVA BNO08x**  
 
@@ -214,8 +214,15 @@ example. A minimal program is provided in `examples/RVC_Basic.cpp`.
 The library also provides firmware update helpers in `src/dfu`.  These routines
 support both BNO08x IMUs and the FSP200/201 family.  You supply an
 `IDfuTransport` implementation to handle the underlying bus (I²C, SPI, UART,…)
-and call `dfu()` with the sensor in bootloader mode.  Sample transport adapters
-and stub firmware images are included.  To enter the bootloader hold the BOOTN
+and call `dfu()` with the sensor in bootloader mode.  From C++ you can simply
+use `BNO085::dfu()` which wraps this helper for the configured transport and
+accepts any `HcBin_t` firmware object.  Sample transport adapters and stub
+firmware images are included.  The stub files in `src/dfu/firmware-bno.c` and
+`src/dfu/firmware-fsp.c` build a default `HcBin_t firmware` object containing
+the image which `dfu()` reads from flash.  You may also construct a firmware
+object at runtime—for example using the `MemoryFirmware` helper—to stream a
+binary stored elsewhere.
+To enter the bootloader hold the BOOTN
 pin low during reset.  Refer to [`src/dfu/README.md`](src/dfu/README.md) for a
 walk‑through of the process.
 
