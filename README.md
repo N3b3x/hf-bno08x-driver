@@ -1,7 +1,8 @@
-#HF - BNO08x
-Hardware Agnostic BNO08x library - as used in the HardFOC-V1 controller
+# HF-BNO08x
 
-#BNO085 C++ Sensor Library 🚀
+Hardware-agnostic BNO08x library as used in the HardFOC‑V1 controller.
+
+## BNO085 C++ Sensor Library 🚀
 
 > **Full-stack, hardware-agnostic, zero-thread driver for Hillcrest / CEVA BNO08x**  
 
@@ -33,14 +34,14 @@ Hardware Agnostic BNO08x library - as used in the HardFOC-V1 controller
 
 ## Features ✨
 |   | Capability |
-|---|-------------|
+|---|------------|
 | 🎯 **Complete Coverage** | Access every BNO085 SH-2 report: raw & calibrated IMU, rotation vectors, activity, tap/shake, step counter & more. |
-| 🛠️ **Hardware-Agnostic** | Abstract transport interface (`IBNO085Transport`) lets you plug in *any* I²C, SPI or UART implementation. |
-| 💤 **No Internal Threads** | You control timing – call `update()` in your loop, ISR or RTOS task. |
-| 🔁 **Auto Re-Sync** | Detects sensor resets & seamlessly re-enables all configured features. |
-| 🧮 **Float-Friendly API** | Returns handy structs (`Vector3`, `Quaternion`, `SensorEvent`) with SI units. |
-| 📚 **GPLv3 & Apache-2.0** | C++ wrapper under GPLv3; CEVA SH-2 backend under Apache 2.0 – both included. |
-| 🔌 **Pin Control API** | Optional helpers let you drive RSTN/BOOTN/WAKE and switch PS pins to select I²C, UART or SPI. |
+| 🛠️ **Hardware-Agnostic** | Pluggable `IBNO085Transport` interface works with any I²C, SPI or UART implementation. |
+| 💤 **No Internal Threads** | You control timing: call `update()` in your loop, ISR or RTOS task. |
+| 🔁 **Auto Re-Sync** | Detects sensor resets & seamlessly re-enables configured features. |
+| 🧮 **Float-Friendly API** | Handy structs (`Vector3`, `Quaternion`, `SensorEvent`) with SI units. |
+| 📚 **GPLv3 & Apache-2.0** | C++ wrapper under GPLv3; CEVA SH-2 backend under Apache 2.0. |
+| 🔌 **Pin Control API** | Optional helpers to drive RSTN/BOOTN/WAKE and select I²C, UART or SPI via PS pins. |
 
 ---
 
@@ -87,7 +88,7 @@ target_link_libraries(myApp PRIVATE bno085)
 Dependencies:
 Only a C/C++ compiler (C++11) and your MCU’s I/O driver – no STL, no RTOS.
 
-Hardware Wiring 🔌
+## Hardware Wiring 🔌
 
 ```text
 MCU 3V3  ──── VIN   BNO085
@@ -102,7 +103,7 @@ ADR/SA0  → GND ➡️ address 0x4A (0x4B if high)
 
 Tip: Use the INT line to wake your code only when data is ready – saves power & cycles! ⚡️
 
-Porting Guide 🧳
+## Porting Guide 🧳
 
 ### ESP32 🚀 (ESP-IDF v5.x)
 
@@ -155,7 +156,7 @@ class ArduinoTransport : public IBNO085Transport {
 
 Memory ⛔ note: AVR (<2 KB RAM) is tight – stick to a few low-rate sensors.
 
-Usage Examples 💻
+## Usage Examples 💻
 
 #### Quick Start
 
