@@ -29,6 +29,7 @@ Hardware-agnostic BNO08x library as used in the HardFOC‑V1 controller.
 10. [Contributing 🤝](#contributing-🤝)
 11. [License 📄](#license-📄)
 12. [Acknowledgements 🙏](#acknowledgements-🙏)
+13. [Complete Guide 📚](docs/BNO085_Complete_Guide.md)
 
 ---
 
