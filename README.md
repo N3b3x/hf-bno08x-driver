@@ -198,14 +198,16 @@ Some Hillcrest/CEVA sensors offer a simplified "Robot Vacuum Cleaner" (RVC) mode
 that streams yaw/pitch/roll and linear acceleration over UART without any SH‑2
 commands.  If your application only needs basic orientation data and you want to
 avoid the overhead of the full protocol, this mode can be very handy.  The
-`src/rvc` folder contains a small decoder library and platform HAL examples.
+`src/rvc` folder contains a small decoder library, the `IRvcHal` interface and a
+lightweight `Rvc` C++ wrapper to tie everything together.
 
 Entering RVC mode is typically done via boot‑time pin strapping or a vendor
 command.  Once enabled the sensor continuously outputs 19‑byte frames at a fixed
 baud rate (usually 115200 bps).  Implement `IRvcHal` to read bytes from the
-serial port, register a callback, and call `rvc_service()` regularly to parse the
-incoming frames.  See [`src/rvc/README.md`](src/rvc/README.md) for full details
-and a code example.
+serial port, create a `Rvc` instance with your HAL, and register a callback.
+Calling `Rvc::service()` in your main loop will parse incoming frames.
+See [`src/rvc/README.md`](src/rvc/README.md) for full details and a complete
+example. A minimal program is provided in `examples/RVC_Basic.cpp`.
 
 ## Firmware Update (DFU) 📦
 

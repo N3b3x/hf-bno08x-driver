@@ -48,20 +48,24 @@ Use these to interpret how the sensor believes it is moving and any requested
 constraints from the host.
 
 ## Using the library
-1. Implement `IRvcHal` to read bytes from the UART connected to the sensor. An example for the ESP32‑C6 is provided in `RvcHalEsp32C6.hpp`.
-2. Call `rvc_init()` with your HAL instance and register a callback via `rvc_setCallback()`.
-3. After `rvc_open()` the library will parse incoming frames. Call `rvc_service()` regularly to process data.
+1. Implement `IRvcHal` to read bytes from the UART connected to the sensor. An
+   example for the ESP32‑C6 is provided in `RvcHalEsp32C6.hpp`.
+2. Create a `Rvc` object with your HAL and register a callback with
+   `Rvc::setCallback()`.
+3. Call `Rvc::open()` and then periodically `Rvc::service()` to decode frames.
 4. The UART runs 8N1 at 115200 bps on most devices. Adjust your HAL accordingly.
 
 ```c
 rvc_SensorValue_t val;
-void onFrame(void *cookie, rvc_SensorEvent_t *e) {
-    rvc_decode(&val, e);
+void onFrame(void *, rvc_SensorEvent_t *e) {
+    Rvc::decode(&val, e);
     printf("Yaw %.2f\n", val.yaw_deg);
 }
 ```
-See [`src/app/demo_rvc.c`](../app/demo_rvc.c) for a reference application that prints sensor values.
-The top-level [README](../../README.md) also contains a short overview of RVC mode.
+See [`examples/RVC_Basic.cpp`](../../examples/RVC_Basic.cpp) for a minimal
+application and [`src/app/demo_rvc.c`](../app/demo_rvc.c) for a more featureful
+reference.  The top-level [README](../../README.md) also contains a short
+overview of RVC mode.
 
 ## Entering RVC mode
 RVC mode is selected at boot time on the sensor. Consult the device data sheet for the exact pin settings or commands. Once the sensor is in RVC mode it continually streams the frame described above at a fixed rate (typically 115200 bps).
