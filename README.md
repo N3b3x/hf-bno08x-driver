@@ -1,7 +1,7 @@
 # HF - BNO08x
 Hardware Agnostic BNO08x library - as used in the HardFOC-V1 controller
 
-#BNO085 C++ Sensor Library 🚀
+# BNO085 C++ Sensor Library 🚀
 
 > **Full-stack, hardware-agnostic, zero-thread driver for Hillcrest / CEVA BNO08x**  
 
