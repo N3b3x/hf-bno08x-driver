@@ -12,6 +12,7 @@
 #include "BNO085_Transport.hpp"
 #include "dfu/HcBin.h"
 #include "dfu/firmware.h"
+#include "rvc/Rvc.hpp"
 #include <array>
 #include <cstdint>
 #include <functional>
@@ -125,6 +126,9 @@ struct SensorEvent {
 /** Callback type invoked when a new ::SensorEvent is received. */
 using SensorCallback = std::function<void(const SensorEvent &)>;
 
+/** Callback type for decoded RVC frames. */
+using RvcCallback = std::function<void(const rvc_SensorValue_t &)>;
+
 /**
  * @class BNO085
  * @brief High level driver for the BNO08x IMU.
@@ -160,6 +164,16 @@ public:
 
   /** Register a callback invoked for every received event. */
   void setCallback(SensorCallback cb);
+
+  /** Register a callback for decoded RVC frames. */
+  void setRvcCallback(RvcCallback cb);
+
+  /** Begin processing in RVC mode using the given HAL. */
+  bool beginRvc(IRvcHal *hal);
+  /** Poll the UART and dispatch any pending RVC frames. */
+  void serviceRvc();
+  /** Stop RVC processing. */
+  void closeRvc();
 
   /** Check if new data is available for a sensor. */
   bool hasNewData(BNO085Sensor sensor) const;
@@ -224,6 +238,8 @@ private:
   static void sensorC(void *cookie, sh2_SensorEvent_t *event);
   /// C trampoline for async callbacks
   static void asyncC(void *cookie, sh2_AsyncEvent_t *event);
+  /// C trampoline for RVC frames
+  static void rvcC(void *cookie, rvc_SensorEvent_t *event);
 
   void handleSensorEvent(const sh2_SensorEvent_t *event);
   void handleAsyncEvent(const sh2_AsyncEvent_t *event);
@@ -239,4 +255,7 @@ private:
   std::array<bool, 0x2B> newFlag{};
   std::array<uint32_t, 0x2B> lastInterval{};
   std::array<float, 0x2B> lastSensitivity{};
+
+  Rvc rvc{};
+  RvcCallback rvcCb{};
 };
