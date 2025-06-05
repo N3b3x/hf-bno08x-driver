@@ -1,4 +1,4 @@
-#HF - BNO08x
+# HF - BNO08x
 Hardware Agnostic BNO08x library - as used in the HardFOC-V1 controller
 
 #BNO085 C++ Sensor Library 🚀
