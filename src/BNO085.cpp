@@ -93,6 +93,9 @@ bool BNO085::disableSensor(BNO085Sensor sensor) {
 /** Set a callback for incoming sensor events. */
 void BNO085::setCallback(SensorCallback cb) { callback = cb; }
 
+/** Set a callback for decoded RVC frames. */
+void BNO085::setRvcCallback(RvcCallback cb) { rvcCb = cb; }
+
 /** Check if new data is available for a sensor. */
 bool BNO085::hasNewData(BNO085Sensor sensor) const {
   return newFlag[static_cast<uint8_t>(sensor)];
@@ -164,6 +167,20 @@ void BNO085::update() {
     sh2_service();
   }
 }
+
+/** Begin processing RVC frames. */
+bool BNO085::beginRvc(IRvcHal *hal) {
+  rvc.setHal(hal);
+  if (rvc.setCallback(rvcC, this) != RVC_OK)
+    return false;
+  return rvc.open() == RVC_OK;
+}
+
+/** Poll for RVC frames. */
+void BNO085::serviceRvc() { rvc.service(); }
+
+/** Stop RVC frame processing. */
+void BNO085::closeRvc() { rvc.close(); }
 
 /// @private
 int BNO085::halOpen(sh2_Hal_t *self) {
@@ -301,4 +318,14 @@ void BNO085::selectInterface(BNO085Interface iface) {
 int BNO085::dfu(const HcBin_t &fw) {
   HalTransport t(halWrapper.asHal());
   return ::dfu(t, fw);
+}
+
+/// @private
+void BNO085::rvcC(void *cookie, rvc_SensorEvent_t *ev) {
+  auto *self = static_cast<BNO085 *>(cookie);
+  if (!self->rvcCb)
+    return;
+  rvc_SensorValue_t val;
+  Rvc::decode(&val, ev);
+  self->rvcCb(val);
 }
