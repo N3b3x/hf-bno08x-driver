@@ -13,6 +13,8 @@ extern "C" {
 #include "sh2_SensorValue.h"
 #include "sh2_err.h"
 }
+#include "dfu/HalTransport.hpp"
+#include "dfu/dfu.h"
 
 using namespace std;
 
@@ -293,4 +295,10 @@ void BNO085::selectInterface(BNO085Interface iface) {
     io->setPS0(true);
     break;
   }
+}
+
+/** Convenience wrapper to run DFU using this instance's transport. */
+int BNO085::dfu(const HcBin_t &fw) {
+  HalTransport t(halWrapper.asHal());
+  return ::dfu(t, fw);
 }

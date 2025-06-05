@@ -10,6 +10,8 @@
  */
 
 #include "BNO085_Transport.hpp"
+#include "dfu/HcBin.h"
+#include "dfu/firmware.h"
 #include <array>
 #include <cstdint>
 #include <functional>
@@ -185,6 +187,19 @@ public:
 
   /** Select the host interface by driving PS pins. */
   void selectInterface(BNO085Interface iface);
+
+  /**
+   * @brief Perform a firmware update using this object's transport.
+   *
+   * The sensor must already be in bootloader mode (BOOTN held low during
+   * reset). Provide the firmware as an `HcBin_t` object—use the default
+   * `firmware` from `src/dfu` or construct one at runtime with
+   * `MemoryFirmware`.
+   *
+   * @param fw Firmware image to write.
+   * @return SH2 status code from the DFU routine.
+   */
+  int dfu(const HcBin_t &fw = firmware);
 
 private:
   /**

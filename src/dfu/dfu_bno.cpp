@@ -48,7 +48,7 @@ uint32_t totalRetries;
 
 // --- Public API ---------------------------------------------------------
 
-int dfu(IDfuTransport &transport)
+int dfu(IDfuTransport &transport, const HcBin_t &fw)
 {
     int rc;
     int status = SH2_OK;
@@ -59,14 +59,14 @@ int dfu(IDfuTransport &transport)
     IDfuTransport *pHal = &transport;
     
     // Open the hcbin object
-    rc = firmware.open();
+    rc = fw.open();
     if (rc != 0) {
         status = SH2_ERR;
         goto end;
     }
 
     // Validate firmware matches this implementation
-    s = firmware.getMeta("FW-Format");
+    s = fw.getMeta("FW-Format");
     if ((s == 0) || (strcmp(s, "BNO_V1") != 0)) {
         // No format info or Incorrect format
         status = SH2_ERR_BAD_PARAM;
@@ -74,7 +74,7 @@ int dfu(IDfuTransport &transport)
     }
 
     // Validate firmware is for the right part number
-    s = firmware.getMeta("SW-Part-Number");
+    s = fw.getMeta("SW-Part-Number");
     if (s == 0) {
         // No part number info
         status = SH2_ERR_BAD_PARAM;
@@ -90,7 +90,7 @@ int dfu(IDfuTransport &transport)
     }
 
     // Validate firmware length
-    appLen = firmware.getAppLen();
+    appLen = fw.getAppLen();
     if (appLen < 1024) {
         // App data is empty
         status = SH2_ERR_BAD_PARAM;
@@ -98,7 +98,7 @@ int dfu(IDfuTransport &transport)
     }
 
     // Determine packet length to use
-    packetLen = firmware.getPacketLen();
+    packetLen = fw.getPacketLen();
     if ((packetLen == 0) || (packetLen > MAX_PACKET_LEN)) {
         packetLen = MAX_PACKET_LEN;
     }
@@ -131,7 +131,7 @@ int dfu(IDfuTransport &transport)
         }
 
         // Extract this packet's content from hcbin
-        status = firmware.getAppData(dfuBuff, offset, toSend);
+        status = fw.getAppData(dfuBuff, offset, toSend);
         if (status != SH2_OK) {
             goto close_and_return;
         }
@@ -148,7 +148,7 @@ int dfu(IDfuTransport &transport)
 
 close_and_return:
     // close firmware
-    firmware.close();
+    fw.close();
 
     // If update process completed successfully, delay a bit to let
     // flash writes complete.
@@ -168,6 +168,8 @@ close_and_return:
 end:
     return status;
 }
+
+int dfu(IDfuTransport &transport) { return dfu(transport, firmware); }
 
 // --- Private utility functions --------------------------------------------------------------
 
