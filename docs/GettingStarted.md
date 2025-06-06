@@ -17,5 +17,4 @@ Follow these steps to clone the repository and integrate the library in your bui
 See [Hardware Wiring](HardwareWiring.md) before powering up your board.
 
 ---
-
-[⬅️ Back to Documentation Hub](README.md)
+[⬅️ Back to Docs Hub](README.md) | [Next: Hardware Wiring ➡️](HardwareWiring.md)
