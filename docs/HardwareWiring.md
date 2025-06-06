@@ -17,4 +17,4 @@ Use the **INT** line to wake your application only when data is ready.
 
 ---
 
-[Getting Started](GettingStarted.md) | [Porting Guide](PortingGuide.md) | [Back to Documentation Hub](README.md)
+[⬅️ Previous: Getting Started](GettingStarted.md) | [Next: Porting Guide ➡️](PortingGuide.md) | [Docs Hub 📚](README.md)

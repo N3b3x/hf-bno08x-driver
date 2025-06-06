@@ -11,4 +11,4 @@ Timeouts are built in for slow links. See [`../src/dfu/README.md`](../src/dfu/RE
 
 ---
 
-[RVC Mode](RvcMode.md) | [Advanced Notes](AdvancedNotes.md) | [Back to Documentation Hub](README.md)
+[⬅️ Previous: RVC Mode](RvcMode.md) | [Next: Advanced Notes ➡️](AdvancedNotes.md) | [Docs Hub 📚](README.md)

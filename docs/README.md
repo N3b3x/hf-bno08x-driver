@@ -1,16 +1,19 @@
-# Documentation Hub
+# Documentation Hub 📚
 
-This folder contains extended guides for using the HF-BNO08x library. Each document focuses on a particular aspect and walks through the required steps in detail.
+Welcome! The table below links to the individual guides that cover each aspect
+of the HF‑BNO08x library.
 
-- [Getting Started](GettingStarted.md)
-- [Hardware Wiring](HardwareWiring.md)
-- [Porting Guide](PortingGuide.md)
-- [Usage Examples](Examples.md)
-- [RVC Mode](RvcMode.md)
-- [Firmware Update](FirmwareUpdate.md)
-- [Advanced Notes](AdvancedNotes.md)
-- [Contributing](Contributing.md)
+| 📄 Guide | ✨ Description |
+| --- | --- |
+| [Getting Started](GettingStarted.md) | Clone the repo and integrate the library in your build |
+| [Hardware Wiring](HardwareWiring.md) | Connect the IMU to your board |
+| [Porting Guide](PortingGuide.md) | Implement `IBNO085Transport` on your platform |
+| [Usage Examples](Examples.md) | Example code for common tasks |
+| [RVC Mode](RvcMode.md) | Lightweight UART streaming mode |
+| [Firmware Update](FirmwareUpdate.md) | Update sensor firmware via DFU |
+| [Advanced Notes](AdvancedNotes.md) | Tare, power tips and pin helpers |
+| [Contributing](Contributing.md) | How to contribute to this repo |
 
 ---
 
-[Back to main README](../README.md)
+[⬅️ Back to main README](../README.md) | [Next: Getting Started ➡️](GettingStarted.md)

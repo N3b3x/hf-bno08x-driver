@@ -39,4 +39,4 @@ Use `update()` in your loop or task and enable the sensors you need with `enable
 
 ---
 
-[Hardware Wiring](HardwareWiring.md) | [Usage Examples](Examples.md) | [Back to Documentation Hub](README.md)
+[⬅️ Previous: Hardware Wiring](HardwareWiring.md) | [Next: Usage Examples ➡️](Examples.md) | [Docs Hub 📚](README.md)

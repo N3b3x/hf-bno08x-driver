@@ -10,4 +10,4 @@ We welcome pull requests and issues. Please follow these steps:
 
 ---
 
-[Advanced Notes](AdvancedNotes.md) | [Back to Documentation Hub](README.md)
+[⬅️ Previous: Advanced Notes](AdvancedNotes.md) | [Docs Hub 📚](README.md)

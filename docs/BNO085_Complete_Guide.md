@@ -265,3 +265,7 @@ For more information consult the official datasheet and the examples provided
 with this repository. You can also explore firmware updates in the
 [DFU framework guide](../src/dfu/README.md) or learn about the simplified
 [RVC mode](../src/rvc/README.md).
+
+---
+
+[⬅️ Back to Docs Hub](README.md)
