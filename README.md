@@ -1,4 +1,4 @@
-#HF - BNO08x
+# HF - BNO08x
 
 Hardware-agnostic BNO08x library as used in the HardFOC‑V1 controller.
 For detailed step-by-step guides see [docs/](docs/README.md).
