@@ -5,6 +5,10 @@ update (DFU) routines.  Hardware access is abstracted through the
 `IDfuTransport` C++ interface.  Applications must supply an implementation
 of this interface for their platform and pass it to `dfu()`.
 
+If you are new to the sensor start with the
+[BNO085 Complete Guide](../../docs/BNO085_Complete_Guide.md). RVC mode
+is covered separately in the [RVC guide](../rvc/README.md).
+
 `HalTransport` is provided as an adapter for the vendor supplied
 `sh2_Hal_t` structures so existing C HAL implementations can be used
 without modification.
@@ -44,3 +48,4 @@ links. See the source files for details if you need to adjust the timeout.
 This directory only contains minimal stub firmware images. Consult the sensor
 vendor for production firmware files. The [top-level README](../../README.md)
 also summarises DFU usage in the context of the full library.
+Additional guides are listed in the [documentation index](../../docs/index.md).

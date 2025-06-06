@@ -2,6 +2,10 @@
 
 Hardware-agnostic BNO08x library as used in the HardFOC‑V1 controller.
 
+Looking for all of the documentation in one place? Check out the
+[documentation index](docs/index.md) which links to every guide and
+tutorial in this repository.
+
 ## BNO085 C++ Sensor Library 🚀
 
 > **Full-stack, hardware-agnostic, zero-thread driver for Hillcrest / CEVA BNO08x**  
@@ -255,5 +259,7 @@ By contributing you agree your code is released under the same GPLv3 license.
 - CEVA Inc. for open-sourcing the SH-2 driver.
 - SparkFun & Adafruit for inspiring wiring diagrams.
 - Everyone in the open-source IMU community 💖
+
+For more guides see the [documentation index](docs/index.md).
 
 Made with a cup of ☕ and a dash of 🚀

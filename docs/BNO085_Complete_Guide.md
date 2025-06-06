@@ -2,6 +2,10 @@
 
 This document compiles information from the official BNO080/085 datasheet and expands on the existing README. It explains how the sensor works, covers wiring, available modes, and shows example code for both **Arduino** and **ESP32** platforms.
 
+For a quick start see the [main README](../README.md). Additional topics are
+covered in the [RVC mode guide](../src/rvc/README.md) and the
+[DFU framework guide](../src/dfu/README.md).
+
 ## Overview
 
 The **BNO085** is a 9‑axis absolute orientation sensor from Hillcrest Labs/CEVA. It combines a 3‑axis gyroscope, 3‑axis accelerometer and 3‑axis magnetometer with an onboard 32‑bit microcontroller running the **SH‑2** sensor fusion software. The IMU outputs a wide range of sensor data and high level events without requiring heavy computation on the host.
@@ -257,4 +261,7 @@ This example prints the yaw angle at 100 Hz on an Arduino‑compatible board.
 
 ---
 
-For more information consult the official datasheet and the examples provided with this repository.
+For more information consult the official datasheet and the examples provided
+with this repository. You can also explore firmware updates in the
+[DFU framework guide](../src/dfu/README.md) or learn about the simplified
+[RVC mode](../src/rvc/README.md).
