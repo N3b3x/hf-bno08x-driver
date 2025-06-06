@@ -1,5 +1,7 @@
 # Advanced Notes
 
+[⬅️ Previous: Firmware Update](FirmwareUpdate.md) | [Next: Contributing ➡️](Contributing.md) | [Docs Hub 📚](README.md)
+
 - Call `tareNow()` to zero the current orientation.
 - Check `event.accuracy` (0–3) before trusting heading data.
 - Hold **BOOTN** low during reset to enter DFU mode.

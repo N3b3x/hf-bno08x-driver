@@ -1,5 +1,7 @@
 # Usage Examples
 
+[⬅️ Previous: Porting Guide](PortingGuide.md) | [Next: RVC Mode ➡️](RvcMode.md) | [Docs Hub 📚](README.md)
+
 ## Quick Start
 ```cpp
 BNO085 imu(new ArduinoTransport());

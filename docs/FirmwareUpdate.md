@@ -1,5 +1,7 @@
 # Firmware Update
 
+[⬅️ Previous: RVC Mode](RvcMode.md) | [Next: Advanced Notes ➡️](AdvancedNotes.md) | [Docs Hub 📚](README.md)
+
 The library includes DFU helpers to update the sensor firmware.
 
 1. Hold **BOOTN** low and reset the sensor to enter bootloader mode.

@@ -1,5 +1,7 @@
 # Getting Started
 
+[⬅️ Docs Hub](README.md) | [Next: Hardware Wiring ➡️](HardwareWiring.md)
+
 Follow these steps to clone the repository and integrate the library in your build.
 
 1. **Clone the repository with submodules**

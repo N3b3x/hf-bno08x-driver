@@ -1,5 +1,7 @@
 # Documentation Hub 📚
 
+[⬅️ Main README](../README.md) | [Next: Getting Started ➡️](GettingStarted.md)
+
 Welcome! The table below links to the individual guides that cover each aspect
 of the HF‑BNO08x library.
 

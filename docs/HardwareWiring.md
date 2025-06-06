@@ -1,5 +1,7 @@
 # Hardware Wiring
 
+[⬅️ Previous: Getting Started](GettingStarted.md) | [Next: Porting Guide ➡️](PortingGuide.md) | [Docs Hub 📚](README.md)
+
 Connect the sensor to your MCU as shown below.
 
 ```
