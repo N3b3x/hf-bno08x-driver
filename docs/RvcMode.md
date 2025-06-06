@@ -1,5 +1,7 @@
 # RVC Mode
 
+[⬅️ Previous: Usage Examples](Examples.md) | [Next: Firmware Update ➡️](FirmwareUpdate.md) | [Docs Hub 📚](README.md)
+
 Some sensors expose a simplified "Robot Vacuum Cleaner" mode. To use it:
 
 1. Set the appropriate pins or command to boot into RVC mode (see the device data sheet).

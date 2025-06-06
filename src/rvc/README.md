@@ -1,5 +1,7 @@
 # RVC Mode
 
+[⬅️ Docs Index](../../docs/index.md)
+
 This folder contains a small helper library for **RVC mode** on BNO08x / FSP200 series sensors. RVC ("Robot Vacuum Cleaner") mode is a simplified UART protocol that streams orientation and motion data as fixed frames instead of using the SH-2 command interface.
 
 For a full overview of the sensor see the [BNO085 Complete Guide](../../docs/BNO085_Complete_Guide.md). Firmware update instructions are available in the [DFU framework guide](../dfu/README.md).

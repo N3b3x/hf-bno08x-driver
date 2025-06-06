@@ -1,5 +1,7 @@
 # Porting Guide
 
+[⬅️ Previous: Hardware Wiring](HardwareWiring.md) | [Next: Usage Examples ➡️](Examples.md) | [Docs Hub 📚](README.md)
+
 Implement `IBNO085Transport` for your platform. Below are snippets for common targets.
 
 ## ESP32 (ESP-IDF)

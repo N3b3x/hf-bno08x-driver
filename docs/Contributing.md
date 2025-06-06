@@ -1,5 +1,7 @@
 # Contributing
 
+[⬅️ Previous: Advanced Notes](AdvancedNotes.md) | [Docs Hub 📚](README.md)
+
 We welcome pull requests and issues. Please follow these steps:
 
 1. Fork the repository on GitHub and clone your fork.

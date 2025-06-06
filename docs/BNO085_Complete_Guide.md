@@ -1,5 +1,7 @@
 # BNO085 Complete Guide
 
+[⬅️ Docs Hub](README.md) | [Main README](../README.md)
+
 This document compiles information from the official BNO080/085 datasheet and expands on the existing README. It explains how the sensor works, covers wiring, available modes, and shows example code for both **Arduino** and **ESP32** platforms.
 
 For a quick start see the [main README](../README.md). Additional topics are
