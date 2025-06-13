@@ -3,7 +3,7 @@
 #include <cstdint>
 
 extern "C" {
-struct sh2_Hal_t;
+#include "sh2/sh2_hal.h"
 }
 
 /**
