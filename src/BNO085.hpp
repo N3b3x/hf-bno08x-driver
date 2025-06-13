@@ -18,10 +18,8 @@
 #include <functional>
 
 extern "C" {
-struct sh2_SensorValue_t;
-struct sh2_SensorEvent_t;
-struct sh2_AsyncEvent_t;
-struct sh2_Hal_t;
+#include "sh2/sh2.h"
+#include "sh2/sh2_SensorValue.h"
 }
 
 /**
