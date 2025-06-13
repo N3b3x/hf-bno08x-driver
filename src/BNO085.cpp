@@ -52,12 +52,13 @@ bool BNO085::begin(IBNO085Transport *transport) {
   halWrapper.hal.write = halWrite;
   halWrapper.hal.getTimeUs = halGetTimeUs;
 
-  sh2_initialize(asyncC, this);
   int status = sh2_open(halWrapper.asHal(), asyncC, this);
   if (status != SH2_OK) {
     lastError = status;
     return false;
   }
+  // Send initialize command after opening the SH-2 interface
+  sh2_reinitialize();
 
   sh2_setSensorCallback(sensorC, this);
 
@@ -108,6 +109,7 @@ SensorEvent BNO085::getLatest(BNO085Sensor sensor) const {
   auto id = static_cast<uint8_t>(sensor);
   const auto &val = latest[id];
   out.timestamp = val.timestamp;
+  uint8_t accuracy = val.status & 0x03;
   switch (sensor) {
   case BNO085Sensor::Accelerometer:
   case BNO085Sensor::LinearAcceleration:
@@ -115,19 +117,19 @@ SensorEvent BNO085::getLatest(BNO085Sensor sensor) const {
     out.vector.x = val.un.accelerometer.x;
     out.vector.y = val.un.accelerometer.y;
     out.vector.z = val.un.accelerometer.z;
-    out.vector.accuracy = val.un.accelerometer.accuracy;
+    out.vector.accuracy = accuracy;
     break;
   case BNO085Sensor::Gyroscope:
     out.vector.x = val.un.gyroscope.x;
     out.vector.y = val.un.gyroscope.y;
     out.vector.z = val.un.gyroscope.z;
-    out.vector.accuracy = val.un.gyroscope.accuracy;
+    out.vector.accuracy = accuracy;
     break;
   case BNO085Sensor::Magnetometer:
     out.vector.x = val.un.magneticField.x;
     out.vector.y = val.un.magneticField.y;
     out.vector.z = val.un.magneticField.z;
-    out.vector.accuracy = val.un.magneticField.accuracy;
+    out.vector.accuracy = accuracy;
     break;
   case BNO085Sensor::RotationVector:
   case BNO085Sensor::GameRotationVector:
@@ -138,7 +140,7 @@ SensorEvent BNO085::getLatest(BNO085Sensor sensor) const {
     out.rotation.x = val.un.rotationVector.i;
     out.rotation.y = val.un.rotationVector.j;
     out.rotation.z = val.un.rotationVector.k;
-    out.rotation.accuracy = val.un.rotationVector.accuracy;
+    out.rotation.accuracy = accuracy;
     break;
   case BNO085Sensor::GyroIntegratedRV:
     out.rotation.w = val.un.gyroIntegratedRV.real;
@@ -147,13 +149,20 @@ SensorEvent BNO085::getLatest(BNO085Sensor sensor) const {
     out.rotation.z = val.un.gyroIntegratedRV.k;
     break;
   case BNO085Sensor::StepCounter:
-    out.stepCount = val.un.stepCounter.numSteps;
+    out.stepCount = val.un.stepCounter.steps;
     break;
   case BNO085Sensor::TapDetector:
-    out.tap.doubleTap =
-        val.un.tapDetector.tapDetected && val.un.tapDetector.tapCount == 2;
-    out.tap.direction = val.un.tapDetector.tapDirection;
-    out.detected = val.un.tapDetector.tapDetected;
+    out.tap.doubleTap = (val.un.tapDetector.flags & TAPDET_DOUBLE);
+    if (val.un.tapDetector.flags & TAPDET_X) {
+      out.tap.direction = (val.un.tapDetector.flags & TAPDET_X_POS) ? 0 : 1;
+    } else if (val.un.tapDetector.flags & TAPDET_Y) {
+      out.tap.direction = (val.un.tapDetector.flags & TAPDET_Y_POS) ? 2 : 3;
+    } else if (val.un.tapDetector.flags & TAPDET_Z) {
+      out.tap.direction = (val.un.tapDetector.flags & TAPDET_Z_POS) ? 4 : 5;
+    } else {
+      out.tap.direction = 0;
+    }
+    out.detected = val.un.tapDetector.flags & (TAPDET_X | TAPDET_Y | TAPDET_Z);
     break;
   default:
     break;
@@ -255,12 +264,12 @@ void BNO085::handleAsyncEvent(const sh2_AsyncEvent_t *event) {
 bool BNO085::configure(BNO085Sensor sensor, uint32_t intervalUs,
                        float sensitivity, uint32_t batchUs) {
   sh2_SensorConfig_t cfg{};
-  cfg.sensorId = static_cast<uint8_t>(sensor);
   cfg.reportInterval_us = intervalUs;
   cfg.batchInterval_us = batchUs;
   cfg.sensorSpecific = 0;
-  cfg.changeSensitivity = static_cast<uint32_t>(sensitivity);
-  int status = sh2_setSensorConfig(cfg.sensorId, &cfg);
+  cfg.changeSensitivity = static_cast<uint16_t>(sensitivity);
+  cfg.changeSensitivityEnabled = sensitivity > 0;
+  int status = sh2_setSensorConfig(static_cast<sh2_SensorId_t>(sensor), &cfg);
   if (status != SH2_OK) {
     lastError = status;
     return false;
