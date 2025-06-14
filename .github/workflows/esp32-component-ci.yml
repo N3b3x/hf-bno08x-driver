@@ -54,6 +54,8 @@ jobs:
           command: |
             idf.py create-project ${{ env.BUILD_PATH }}
             cp examples/esp32/CMakeLists.txt ${{ env.BUILD_PATH }}/CMakeLists.txt
+            # Adjust component path when building inside CI project
+            sed -i 's|../../components|../components|' ${{ env.BUILD_PATH }}/CMakeLists.txt
             rm -rf ${{ env.BUILD_PATH }}/main
             cp -r examples/esp32/main ${{ env.BUILD_PATH }}/main
             idf.py -C ${{ env.BUILD_PATH }} -DIDF_TARGET=${{ env.IDF_TARGET }} -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} build
