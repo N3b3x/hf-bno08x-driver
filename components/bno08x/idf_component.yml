@@ -3,6 +3,7 @@ maintainers:
   - "HardFOC"
 targets:
   - esp32
+  - esp32c6
 description: Hardware-agnostic BNO08x driver component
 url: https://example.com
 repository: https://example.com/hf-bno08x
