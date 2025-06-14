@@ -1,0 +1,103 @@
+name: CI • Build · Size · Static Analyse
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  IDF_TARGET: esp32c6
+  BUILD_PATH: ci_project
+  ESP_IDF_VERSIONS: '["release-v5.5"]'
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    name: Build ➜ ${{ matrix.idf_version }} · ${{ matrix.build_type }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        idf_version: [release-v5.5]
+        build_type: [Release, Debug]
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install build tools
+        run: sudo apt-get update && sudo apt-get install -y clang-format
+
+      - name: Format check
+        run: clang-format --dry-run --Werror src/*.[ch] src/*.cpp examples/esp32/main/*.cpp
+
+      - name: ESP-IDF build
+        uses: espressif/esp-idf-ci-action@v1
+        with:
+          esp_idf_version: ${{ matrix.idf_version }}
+          target: ${{ env.IDF_TARGET }}
+          path: .
+          command: |
+            idf.py create-project ${{ env.BUILD_PATH }}
+            cp examples/esp32/CMakeLists.txt ${{ env.BUILD_PATH }}/CMakeLists.txt
+            rm -rf ${{ env.BUILD_PATH }}/main
+            cp -r examples/esp32/main ${{ env.BUILD_PATH }}/main
+            idf.py -C ${{ env.BUILD_PATH }} -DIDF_TARGET=${{ env.IDF_TARGET }} -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} build
+            idf.py -C ${{ env.BUILD_PATH }} size-components > ${{ env.BUILD_PATH }}/build/size.txt
+            idf.py -C ${{ env.BUILD_PATH }} size --format json > ${{ env.BUILD_PATH }}/build/size.json
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fw-${{ matrix.idf_version }}-${{ matrix.build_type }}
+          retention-days: 14
+          path: |
+            ${{ env.BUILD_PATH }}/build/*.bin
+            ${{ env.BUILD_PATH }}/build/*.elf
+            ${{ env.BUILD_PATH }}/build/*.map
+            ${{ env.BUILD_PATH }}/build/size.*
+
+  static-analysis:
+    if: github.event_name == 'pull_request'
+    name: Static analyse (cppcheck + clang-tidy)
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - uses: deep5050/cppcheck-action@v3.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          enable: all
+          inconclusive: true
+          std: c99
+          include: main
+
+      - uses: ZedThree/clang-tidy-review@v0.21.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          config_file: .clang-tidy
+
+  workflow-lint:
+    name: actionlint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: rhysd/actionlint@v1.6.25
