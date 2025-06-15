@@ -62,7 +62,7 @@ void printDsf(const rvc_SensorEvent_t * event)
     // Get time as float
     t = value.timestamp_uS / 1000000.0;
 
-    printf(".%d %0.6f,%d,%0.2f,%0.2f,%0.2f,%0.3f,%0.3f,%0.3f,%d,%d\n",
+    printf(".%d %0.6f,%ld,%0.2f,%0.2f,%0.2f,%0.3f,%0.3f,%0.3f,%d,%d\n",
            0,                                 // using sensor id 0
            t,                                 // time
            lastSequence,                      // sequence
