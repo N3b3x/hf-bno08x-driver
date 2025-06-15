@@ -52,8 +52,9 @@ Use these to interpret how the sensor believes it is moving and any requested
 constraints from the host.
 
 ## Using the library
-1. Implement `IRvcHal` to read bytes from the UART connected to the sensor. An
-   example for the ESP32‑C6 is provided in `RvcHalEsp32C6.hpp`.
+1. Implement `IRvcHal` (or populate a `RvcHalC_t` struct) to read bytes from the
+   UART connected to the sensor. An example for the ESP32‑C6 is provided in
+   `RvcHalEsp32C6.hpp`.
 2. Create a `Rvc` object with your HAL and register a callback with
    `Rvc::setCallback()`.
 3. Call `Rvc::open()` and then periodically `Rvc::service()` to decode frames.

@@ -23,6 +23,8 @@
 #ifdef __cplusplus
 class IRvcHal;
 extern "C" {
+#else
+typedef struct IRvcHal IRvcHal; /**< Opaque HAL handle for C code */
 #endif
 
 // return status values
@@ -47,9 +49,6 @@ extern "C" {
 #define MR_URGENT_STATIONARY (4)
 #define MR_TIMER_STATIONARY (5)
 
-// Use integers as references to RVC HAL instances.
-// (Maybe change to a structure later?)
-typedef int RvcHal_t;
 
 typedef struct rvc_SensorEvent_s {
   uint8_t index;
@@ -77,12 +76,22 @@ typedef struct rvc_SensorValue_s {
   uint64_t timestamp_uS;
 } rvc_SensorValue_t;
 
+/** C style HAL using function pointers. */
+typedef struct RvcHalC_s {
+  void *ctx;                                         /**< User supplied context */
+  int (*open)(void *ctx);                            /**< Open the interface */
+  void (*close)(void *ctx);                          /**< Close and cleanup */
+  int (*read)(void *ctx, rvc_SensorEvent_t *event);  /**< Read a frame */
+} RvcHalC_t;
+
 typedef void rvc_Callback_t(void *cookie, rvc_SensorEvent_t *pEvent);
 
 // Public API calls used by demo_rvc.c
 
 // Initialize the RVC sensor hub module with a HAL implementation
 int rvc_init(IRvcHal *hal);
+// Initialize using a C style HAL implementation
+int rvc_init_c(RvcHalC_t *hal);
 
 // Application registers callback function to receive sensor events
 int rvc_setCallback(rvc_Callback_t *callback, void *cookie);

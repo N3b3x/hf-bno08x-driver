@@ -21,7 +21,22 @@
 
 #include "rvc.h"
 
+/// Pointer to the active HAL implementation.
 static IRvcHal *g_hal = nullptr;
+/// Adapter used when a C style HAL is supplied.
+struct CAdapterHal : IRvcHal {
+  RvcHalC_t *c;
+  explicit CAdapterHal(RvcHalC_t *h) : c(h) {}
+  int open() override { return c->open ? c->open(c->ctx) : RVC_ERR; }
+  void close() override {
+    if (c->close)
+      c->close(c->ctx);
+  }
+  int read(rvc_SensorEvent_t *e) override {
+    return c->read ? c->read(c->ctx, e) : RVC_ERR;
+  }
+};
+static CAdapterHal c_adapter(nullptr);
 
 static rvc_Callback_t *pRvcCallback = nullptr;
 void *rvcCookie = nullptr;
@@ -36,6 +51,14 @@ int rvc_init(IRvcHal *hal) {
   rvcCookie = nullptr;
 
   return RVC_OK;
+}
+
+// initialize using a C style HAL
+int rvc_init_c(RvcHalC_t *hal) {
+  c_adapter.c = hal;
+  if (hal)
+    return rvc_init(&c_adapter);
+  return rvc_init(nullptr);
 }
 
 // register a sensor callback function with the RVC subsystem
