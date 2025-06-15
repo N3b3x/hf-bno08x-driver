@@ -2,6 +2,7 @@
 #include <driver/uart.h>
 #include <driver/gpio.h>
 #include "esp_timer.h"
+#include <esp_rom_sys.h>
 #include <string.h>
 
 #define UART_PORT UART_NUM_0
@@ -54,7 +55,7 @@ static int hal_open(void *ctx)
     uart_driver_install(UART_PORT, BUF_SIZE, 0, 0, NULL, 0);
     gpio_set_level(PIN_BOOT, 1);
     gpio_set_level(PIN_RST, 0);
-    ets_delay_us(10000);
+    esp_rom_delay_us(10000);
     gpio_set_level(PIN_RST, 1);
     len = 0;
     ready = false;

@@ -3,6 +3,7 @@
 #include "driver/gpio.h"
 #include "driver/uart.h"
 #include "esp_timer.h"
+#include <esp_rom_sys.h>
 #include <cstring>
 
 /**
@@ -29,7 +30,7 @@ public:
     uart_driver_install(_port, BUF_SIZE, 0, 0, nullptr, 0);
     gpio_set_level(_boot, 1);
     gpio_set_level(_rst, 0);
-    ets_delay_us(10000);
+    esp_rom_delay_us(10000);
     gpio_set_level(_rst, 1);
     _len = 0;
     _ready = false;
