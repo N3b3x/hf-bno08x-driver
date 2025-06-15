@@ -15,8 +15,13 @@ public:
         rvc_init(hal);
     }
 
+    /// Construct with a C style HAL.
+    explicit Rvc(RvcHalC_t *hal) { rvc_init_c(hal); }
+
     /// Change the HAL after construction.
     void setHal(IRvcHal *hal) { rvc_init(hal); }
+    /// Change the HAL using a C style implementation.
+    void setHal(RvcHalC_t *hal) { rvc_init_c(hal); }
 
     /// Register a callback for received frames.
     int setCallback(rvc_Callback_t *cb, void *cookie = nullptr) {
