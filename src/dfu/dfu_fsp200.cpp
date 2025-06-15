@@ -291,6 +291,7 @@ static DfuState_t handleInitStatus(uint8_t *payload, uint16_t len)
     DfuState_t nextState = dfu_.state;
     uint32_t status = getU32(payload, 4);
     uint32_t errCode = getU32(payload, 8);
+    (void)errCode;
 
     // Make sure status says we can proceed.
     if (status & STATUS_LAUNCH_BOOTLOADER) {
@@ -319,6 +320,11 @@ static DfuState_t handleProdId(uint8_t *payload, uint16_t len)
     volatile uint8_t  ver_minor = getU8(payload, 9);
     volatile uint16_t ver_patch = getU16(payload, 10);
     volatile uint32_t build_num = getU32(payload, 12);
+    (void)part_number;
+    (void)ver_major;
+    (void)ver_minor;
+    (void)ver_patch;
+    (void)build_num;
         
     // Issue request to start download
     requestUpgrade();
@@ -416,6 +422,7 @@ static DfuState_t handleWriteResponse(uint8_t *payload, uint16_t len)
     DfuState_t nextState = dfu_.state;
     uint8_t writeStatus = payload[1];
     uint16_t wordOffset = getU16(payload, 2);
+    (void)wordOffset;
 
     if (writeStatus == 0) {
         dfu_.wordOffset += dfu_.writeLen;
