@@ -29,6 +29,9 @@
 #include "demo_app.h"
 
 #include "../rvc/rvc.h"
+#include "rvc_hal.h"
+
+static RvcHalC_t *pHal;
 
 // Uncomment this to produce DSF format data output
 // #define DSF_OUTPUT
@@ -115,7 +118,8 @@ void demo_init(void)
     printf("\n\n");
     printf("CEVA RVC Demo.\n");
 
-    status = rvc_init();
+    pHal = rvc_hal_init();
+    status = rvc_init_c(pHal);
     if (status != RVC_OK) {
         printf("Error, %d, from rvc_init.\n", status);
     }

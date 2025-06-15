@@ -1,6 +1,7 @@
 #include "sh2_hal.h"
 #include "sh2_hal_init.h"
 #include "sh2_err.h"
+#include "esp_timer.h"
 #include <driver/spi_master.h>
 #include <driver/gpio.h>
 #include <string.h>
