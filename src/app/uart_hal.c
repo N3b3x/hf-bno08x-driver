@@ -3,6 +3,7 @@
 #include "sh2_err.h"
 #include <driver/uart.h>
 #include <string.h>
+#include "esp_timer.h"
 
 #define UART_PORT UART_NUM_1
 #define UART_TX 17

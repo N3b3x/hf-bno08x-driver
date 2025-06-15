@@ -142,7 +142,7 @@ static void reportProdIds(void)
 
     // Report the results
     for (int n = 0; n < prodIds.numEntries; n++) {
-        printf("Part %d : Version %d.%d.%d Build %d\n",
+        printf("Part %ld : Version %d.%d.%d Build %ld\n",
                prodIds.entry[n].swPartNumber,
                prodIds.entry[n].swVersionMajor, prodIds.entry[n].swVersionMinor, 
                prodIds.entry[n].swVersionPatch, prodIds.entry[n].swBuildNumber);

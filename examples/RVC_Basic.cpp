@@ -4,7 +4,7 @@
  */
 
 #include "BNO085.hpp"
-#include "rvc/RvcHalEsp32C6.hpp" // Replace with your platform HAL
+#include "RvcHalEsp32C6.hpp" // Replace with your platform HAL
 #include <cstdio>
 
 static void onFrame(const rvc_SensorValue_t &v) {

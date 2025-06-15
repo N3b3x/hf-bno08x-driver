@@ -180,7 +180,7 @@ static void eventHandler(void * cookie, sh2_AsyncEvent_t *pEvent)
         // printf("EventHandler Sensor Config, %d\n", pEvent->sh2SensorConfigResp.sensorId);
     }
     else {
-        printf("EventHandler, unknown event Id: %d\n", pEvent->eventId);
+        printf("EventHandler, unknown event Id: %ld\n", pEvent->eventId);
     }
 }
 
@@ -344,7 +344,7 @@ static void reportProdIds(void)
 
     // Report the results
     for (int n = 0; n < prodIds.numEntries; n++) {
-        printf("Part %d : Version %d.%d.%d Build %d\n",
+        printf("Part %ld : Version %d.%d.%d Build %ld\n",
                prodIds.entry[n].swPartNumber,
                prodIds.entry[n].swVersionMajor, prodIds.entry[n].swVersionMinor, 
                prodIds.entry[n].swVersionPatch, prodIds.entry[n].swBuildNumber);
@@ -375,7 +375,7 @@ static void printEvent(const sh2_SensorEvent_t * event)
     t = value.timestamp / 1000000.0;  // time in seconds.
     switch (value.sensorId) {
         case SH2_RAW_ACCELEROMETER:
-            printf("%8.4f Raw acc: %d %d %d time_us:%d\n",
+            printf("%8.4f Raw acc: %d %d %d time_us:%ld\n",
                    (double)t,
                    value.un.rawAccelerometer.x,
                    value.un.rawAccelerometer.y,
@@ -392,7 +392,7 @@ static void printEvent(const sh2_SensorEvent_t * event)
             break;
             
         case SH2_RAW_GYROSCOPE:
-            printf("%8.4f Raw gyro: x:%d y:%d z:%d temp:%d time_us:%d\n",
+            printf("%8.4f Raw gyro: x:%d y:%d z:%d temp:%d time_us:%ld\n",
                    (double)t,
                    value.un.rawGyroscope.x,
                    value.un.rawGyroscope.y,
