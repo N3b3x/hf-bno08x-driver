@@ -1,6 +1,7 @@
 #include "i2c_hal.h"
 #include "sh2_hal_init.h"
 #include "sh2_err.h"
+#include "esp_timer.h"
 #include <driver/i2c.h>
 #include <string.h>
 #include <sys/param.h>
