@@ -12,8 +12,8 @@
  */
 class MemoryFirmware {
 public:
-  MemoryFirmware(const uint8_t *data, uint32_t len,
-                 const char *format = "BNO_V1", const char *part = "unknown")
+  MemoryFirmware(const uint8_t *data, uint32_t len, const char *format = "BNO_V1",
+                 const char *part = "unknown")
       : data_(data), len_(len), format_(format), part_(part) {}
 
   /** Obtain an HcBin handle for the DFU helpers. */
@@ -52,12 +52,9 @@ inline const char *MemoryFirmware::getMeta(const char *key) {
     return active_->part_;
   return nullptr;
 }
-inline uint32_t MemoryFirmware::getAppLen() {
-  return active_ ? active_->len_ : 0;
-}
+inline uint32_t MemoryFirmware::getAppLen() { return active_ ? active_->len_ : 0; }
 inline uint32_t MemoryFirmware::getPacketLen() { return 0; }
-inline int MemoryFirmware::getAppData(uint8_t *packet, uint32_t offset,
-                                      uint32_t len) {
+inline int MemoryFirmware::getAppData(uint8_t *packet, uint32_t offset, uint32_t len) {
   if (!active_ || offset + len > active_->len_)
     return -1;
   std::memcpy(packet, active_->data_ + offset, len);
@@ -65,7 +62,6 @@ inline int MemoryFirmware::getAppData(uint8_t *packet, uint32_t offset,
 }
 
 inline const HcBin_t MemoryFirmware::impl_ = {
-    MemoryFirmware::open,         MemoryFirmware::close,
-    MemoryFirmware::getMeta,      MemoryFirmware::getAppLen,
-    MemoryFirmware::getPacketLen, MemoryFirmware::getAppData};
+    MemoryFirmware::open,      MemoryFirmware::close,        MemoryFirmware::getMeta,
+    MemoryFirmware::getAppLen, MemoryFirmware::getPacketLen, MemoryFirmware::getAppData};
 inline const MemoryFirmware *MemoryFirmware::active_ = nullptr;

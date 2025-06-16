@@ -15,8 +15,8 @@
 // Example I2C transport implementation (simplified pseudocode).
 class I2CTransport : public IBNO085Transport {
 public:
-  I2CTransport(I2C_HandleTypeDef *bus, uint8_t address,
-               GPIO_TypeDef *intPort = nullptr, uint16_t intPin = 0)
+  I2CTransport(I2C_HandleTypeDef *bus, uint8_t address, GPIO_TypeDef *intPort = nullptr,
+               uint16_t intPin = 0)
       : i2c(bus), addr(address), intPort(intPort), intPin(intPin) {}
 
   bool open() override {
@@ -25,14 +25,11 @@ public:
   }
   void close() override {}
   int write(const uint8_t *data, uint32_t len) override {
-    return HAL_I2C_Master_Transmit(i2c, addr, (uint8_t *)data, len,
-                                   HAL_MAX_DELAY) == HAL_OK
-               ? len
-               : -1;
+    return HAL_I2C_Master_Transmit(i2c, addr, (uint8_t *)data, len, HAL_MAX_DELAY) == HAL_OK ? len
+                                                                                             : -1;
   }
   int read(uint8_t *data, uint32_t len) override {
-    return HAL_I2C_Master_Receive(i2c, addr, data, len, 10) == HAL_OK ? len
-                                                                      : -1;
+    return HAL_I2C_Master_Receive(i2c, addr, data, len, 10) == HAL_OK ? len : -1;
   }
   bool dataAvailable() override {
     if (!intPort)
@@ -58,12 +55,10 @@ BNO085 imu;
 static void handleEvent(const BNO085::SensorEvent &e) {
   switch (e.sensor) {
   case BNO085Sensor::RotationVector:
-    printf("Yaw %.1f pitch %.1f roll %.1f\n", e.rotation.z, e.rotation.y,
-           e.rotation.x);
+    printf("Yaw %.1f pitch %.1f roll %.1f\n", e.rotation.z, e.rotation.y, e.rotation.x);
     break;
   case BNO085Sensor::LinearAcceleration:
-    printf("Linear accel %.2f %.2f %.2f m/s^2\n", e.vector.x, e.vector.y,
-           e.vector.z);
+    printf("Linear accel %.2f %.2f %.2f m/s^2\n", e.vector.x, e.vector.y, e.vector.z);
     break;
   case BNO085Sensor::Gyroscope:
     printf("Gyro %.2f %.2f %.2f rad/s\n", e.vector.x, e.vector.y, e.vector.z);
