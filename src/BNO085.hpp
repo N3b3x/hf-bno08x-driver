@@ -155,8 +155,7 @@ public:
    * @param intervalMs Desired report interval in milliseconds.
    * @param sensitivity Change sensitivity for on-change sensors.
    */
-  bool enableSensor(BNO085Sensor sensor, uint32_t intervalMs,
-                    float sensitivity = 0.0f);
+  bool enableSensor(BNO085Sensor sensor, uint32_t intervalMs, float sensitivity = 0.0f);
   /** Disable reporting for a sensor. */
   bool disableSensor(BNO085Sensor sensor);
 
@@ -241,8 +240,7 @@ private:
 
   void handleSensorEvent(const sh2_SensorEvent_t *event);
   void handleAsyncEvent(const sh2_AsyncEvent_t *event);
-  bool configure(BNO085Sensor sensor, uint32_t intervalUs, float sensitivity,
-                 uint32_t batchUs = 0);
+  bool configure(BNO085Sensor sensor, uint32_t intervalUs, float sensitivity, uint32_t batchUs = 0);
 
   IBNO085Transport *io{nullptr};
   SensorCallback callback{};

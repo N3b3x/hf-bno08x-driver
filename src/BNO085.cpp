@@ -72,8 +72,7 @@ bool BNO085::begin(IBNO085Transport *transport) {
 /**
  * @brief Enable periodic reporting for a sensor.
  */
-bool BNO085::enableSensor(BNO085Sensor sensor, uint32_t intervalMs,
-                          float sensitivity) {
+bool BNO085::enableSensor(BNO085Sensor sensor, uint32_t intervalMs, float sensitivity) {
   if (!initialized)
     return false;
   uint32_t intervalUs = intervalMs * 1000;
@@ -98,9 +97,7 @@ void BNO085::setCallback(SensorCallback cb) { callback = cb; }
 void BNO085::setRvcCallback(RvcCallback cb) { rvcCb = cb; }
 
 /** Check if new data is available for a sensor. */
-bool BNO085::hasNewData(BNO085Sensor sensor) const {
-  return newFlag[static_cast<uint8_t>(sensor)];
-}
+bool BNO085::hasNewData(BNO085Sensor sensor) const { return newFlag[static_cast<uint8_t>(sensor)]; }
 
 /** Retrieve the most recent event for a sensor. */
 SensorEvent BNO085::getLatest(BNO085Sensor sensor) const {
@@ -253,16 +250,15 @@ void BNO085::handleAsyncEvent(const sh2_AsyncEvent_t *event) {
   if (event->eventId == SH2_RESET) {
     for (uint8_t id = 0; id < lastInterval.size(); ++id) {
       if (lastInterval[id]) {
-        configure(static_cast<BNO085Sensor>(id), lastInterval[id],
-                  lastSensitivity[id], 0);
+        configure(static_cast<BNO085Sensor>(id), lastInterval[id], lastSensitivity[id], 0);
       }
     }
   }
 }
 
 /// @private Configure a report in the SH-2 driver
-bool BNO085::configure(BNO085Sensor sensor, uint32_t intervalUs,
-                       float sensitivity, uint32_t batchUs) {
+bool BNO085::configure(BNO085Sensor sensor, uint32_t intervalUs, float sensitivity,
+                       uint32_t batchUs) {
   sh2_SensorConfig_t cfg{};
   cfg.reportInterval_us = intervalUs;
   cfg.batchInterval_us = batchUs;
