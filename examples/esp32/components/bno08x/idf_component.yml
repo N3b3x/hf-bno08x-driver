@@ -9,8 +9,8 @@ url: https://example.com
 repository: https://example.com/hf-bno08x
 issues: https://example.com/hf-bno08x/issues
 include_dirs:
-  - ../../src
-  - ../../src/dfu
-  - ../../src/sh2
-  - ../../src/rvc
+  - ../../../../src
+  - ../../../../src/dfu
+  - ../../../../src/sh2
+  - ../../../../src/rvc
 ## Optional dependencies etc. But not required.
