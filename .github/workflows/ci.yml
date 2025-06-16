@@ -50,16 +50,16 @@ jobs:
         with:
           esp_idf_version: ${{ matrix.idf_version }}
           target: ${{ env.IDF_TARGET }}
-          path: .
+          path: ${{ env.BUILD_PATH }}
           command: |
             idf.py create-project ${{ env.BUILD_PATH }}
             cp examples/esp32/CMakeLists.txt ${{ env.BUILD_PATH }}/CMakeLists.txt
-            # Adjust component path when building inside CI project
-            sed -i "s|../../components|../components|" ${{ env.BUILD_PATH }}/CMakeLists.txt
             rm -rf ${{ env.BUILD_PATH }}/main
             cp -r examples/esp32/main ${{ env.BUILD_PATH }}/main
-            # Copy shared example helpers
+            cp -r examples/esp32/components ${{ env.BUILD_PATH }}/components
             cp -r examples/common ${{ env.BUILD_PATH }}/common
+            sed -i 's|../../../../|../../../|g' ${{ env.BUILD_PATH }}/components/bno08x/CMakeLists.txt
+            sed -i 's|../../../../|../../../|g' ${{ env.BUILD_PATH }}/components/bno08x/idf_component.yml
             idf.py -C ${{ env.BUILD_PATH }} -DIDF_TARGET=${{ env.IDF_TARGET }} -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} build
             idf.py -C ${{ env.BUILD_PATH }} size-components > ${{ env.BUILD_PATH }}/build/size.txt
             idf.py -C ${{ env.BUILD_PATH }} size --format json > ${{ env.BUILD_PATH }}/build/size.json
