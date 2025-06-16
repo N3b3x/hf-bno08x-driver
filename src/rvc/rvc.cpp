@@ -32,9 +32,7 @@ struct CAdapterHal : IRvcHal {
     if (c->close)
       c->close(c->ctx);
   }
-  int read(rvc_SensorEvent_t *e) override {
-    return c->read ? c->read(c->ctx, e) : RVC_ERR;
-  }
+  int read(rvc_SensorEvent_t *e) override { return c->read ? c->read(c->ctx, e) : RVC_ERR; }
 };
 static CAdapterHal c_adapter(nullptr);
 

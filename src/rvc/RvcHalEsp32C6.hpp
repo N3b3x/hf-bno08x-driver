@@ -3,18 +3,16 @@
 #include "driver/gpio.h"
 #include "driver/uart.h"
 #include "esp_timer.h"
-#include <esp_rom_sys.h>
 #include <cstring>
+#include <esp_rom_sys.h>
 
 /**
  * @brief Example HAL implementation for ESP32-C6 using ESP-IDF UART driver.
  */
 class Esp32C6RvcHal : public IRvcHal {
 public:
-  explicit Esp32C6RvcHal(uart_port_t port = UART_NUM_0,
-                         gpio_num_t tx = GPIO_NUM_21,
-                         gpio_num_t rx = GPIO_NUM_20,
-                         gpio_num_t rst = GPIO_NUM_9,
+  explicit Esp32C6RvcHal(uart_port_t port = UART_NUM_0, gpio_num_t tx = GPIO_NUM_21,
+                         gpio_num_t rx = GPIO_NUM_20, gpio_num_t rst = GPIO_NUM_9,
                          gpio_num_t boot = GPIO_NUM_10)
       : _port(port), _tx(tx), _rx(rx), _rst(rst), _boot(boot) {}
 
@@ -76,8 +74,7 @@ private:
     } else {
       _frame[_len++] = c;
     }
-    if (_len == FRAME_LEN && _frame[0] == 0xAA && _frame[1] == 0xAA &&
-        checksum(_frame)) {
+    if (_len == FRAME_LEN && _frame[0] == 0xAA && _frame[1] == 0xAA && checksum(_frame)) {
       _ready = true;
     }
   }
