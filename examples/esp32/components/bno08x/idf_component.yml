@@ -5,12 +5,12 @@ targets:
   - esp32
   - esp32c6
 description: Hardware-agnostic BNO08x driver component
-url: https://example.com
-repository: https://example.com/hf-bno08x
-issues: https://example.com/hf-bno08x/issues
+url: https://www.ceva-ip.com/wp-content/uploads/BNO080_085-Datasheet.pdf
+repository: https://github.com/N3b3x/hf-bno08x-driver
+issues: https://github.com/N3b3x/hf-bno08x-driver/issues
 include_dirs:
-  - ../../../../src
-  - ../../../../src/dfu
-  - ../../../../src/sh2
-  - ../../../../src/rvc
+  - ../../../src
+  - ../../../src/dfu
+  - ../../../src/sh2
+  - ../../../src/rvc
 ## Optional dependencies etc. But not required.

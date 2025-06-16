@@ -1,4 +1,4 @@
-name: CI • Build · Size · Static Analyse
+name: ESP32 Component CI • Build • Size • Static Analysis
 
 on:
   push:
@@ -58,8 +58,6 @@ jobs:
             cp -r examples/esp32/main ${{ env.BUILD_PATH }}/main
             cp -r examples/esp32/components ${{ env.BUILD_PATH }}/components
             cp -r examples/common ${{ env.BUILD_PATH }}/common
-            sed -i 's|../../../../|../../../|g' ${{ env.BUILD_PATH }}/components/bno08x/CMakeLists.txt
-            sed -i 's|../../../../|../../../|g' ${{ env.BUILD_PATH }}/components/bno08x/idf_component.yml
             idf.py -C ${{ env.BUILD_PATH }} -DIDF_TARGET=${{ env.IDF_TARGET }} -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} build
             idf.py -C ${{ env.BUILD_PATH }} size-components > ${{ env.BUILD_PATH }}/build/size.txt
             idf.py -C ${{ env.BUILD_PATH }} size --format json > ${{ env.BUILD_PATH }}/build/size.json
@@ -77,8 +75,8 @@ jobs:
             ${{ env.BUILD_PATH }}/build/size.*
 
   static-analysis:
-    if: github.event_name == 'pull_request'
     name: Static analyse (cppcheck + clang-tidy)
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     needs: build
     steps:
@@ -86,7 +84,8 @@ jobs:
         with:
           submodules: recursive
 
-      - uses: deep5050/cppcheck-action@v3.0
+      - name: Run cppcheck
+        uses: deep5050/cppcheck-action@v3.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           enable: all
@@ -94,7 +93,8 @@ jobs:
           std: c99
           include: main
 
-      - uses: ZedThree/clang-tidy-review@v0.21.0
+      - name: Run clang-tidy
+        uses: ZedThree/clang-tidy-review@v0.21.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           config_file: .clang-tidy
