@@ -1,3 +1,4 @@
+name: hf-bno08x-driver
 version: "1.0.0"
 maintainers:
   - "HardFOC"

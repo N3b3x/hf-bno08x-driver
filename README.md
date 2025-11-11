@@ -1,3 +1,11 @@
+---
+layout: default
+title: "HardFOC BNO08x Driver"
+description: "Hardware-agnostic BNO08x library for Hillcrest / CEVA BNO08x sensors with full-stack, zero-thread driver support"
+nav_order: 1
+permalink: /
+---
+
 # HF - BNO08x
 
 Hardware-agnostic BNO08x library as used in the HardFOC‑V1 controller.
