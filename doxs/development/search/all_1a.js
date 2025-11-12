@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['w_0',['w',['../structsh2__Quaternion.html#ad2a466712cb31050d7a38f4b51c26c65',1,'sh2_Quaternion']]],
+  ['wakeupenabled_1',['wakeupEnabled',['../structsh2__SensorConfig.html#afc2ff2305a32e35ffd205f758fe961b0',1,'sh2_SensorConfig']]],
+  ['wheeldata_2',['wheelData',['../unionsh2__OpData__t.html#aea269d2e7ac62221506150858e51842d',1,'sh2_OpData_t']]],
+  ['wheelencoder_3',['wheelEncoder',['../structsh2__SensorValue.html#ae8cad9ea42bb972b16289680955f9202',1,'sh2_SensorValue']]],
+  ['wheelindex_4',['wheelIndex',['../unionsh2__OpData__t.html#adb1a38e5c7866a126612981c4559e71d',1,'sh2_OpData_t::wheelIndex'],['../structsh2__WheelEncoder.html#abffdc8734a3af6fb2bf97a87af2c5e70',1,'sh2_WheelEncoder::wheelIndex']]],
+  ['wheelrequest_5',['wheelRequest',['../unionsh2__OpData__t.html#a1c033695ef2a0108e5ce575ec9f02f53',1,'sh2_OpData_t']]],
+  ['why_20use_20rvc_20mode_6',['Why use RVC mode?',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/rvc/README.md#autotoc_md69',1,'']]],
+  ['wiring_7',['Hardware Wiring',['../md_docs_2HardwareWiring.html',1,'']]],
+  ['wiring_20🔌_8',['Hardware Wiring 🔌',['../index.html#autotoc_md12',1,'']]],
+  ['wiring_20diagrams_9',['Wiring Diagrams',['../md_docs_2BNO085__Complete__Guide.html#autotoc_md32',1,'']]],
+  ['wordoffset_10',['wordOffset',['../structDfu__t.html#ae598c5241819c543be89c8f2ffb6d999',1,'Dfu_t::wordOffset'],['../sh2_8c.html#aae7bd1b6f2f07c77f7f45cb4c5b36f99',1,'wordOffset:&#160;sh2.c']]],
+  ['wordoffset_5flsb_11',['wordOffset_lsb',['../structWriteRequest__t.html#af08d2aec13bb3becdf685fe23dd69d66',1,'WriteRequest_t']]],
+  ['wordoffset_5fmsb_12',['wordOffset_msb',['../structWriteRequest__t.html#ad4b91d3ff1db061daf03219efe489b8d',1,'WriteRequest_t']]],
+  ['words_13',['words',['../unionsh2__OpData__t.html#a18b7a21fbe651a87ca229e3198dcc148',1,'sh2_OpData_t']]],
+  ['write_14',['write',['../structsh2__Hal__s.html#a87f2bd03d3184f6731e8505591a3d6c2',1,'sh2_Hal_s::write'],['../classHalTransport.html#a70da82cc79646bb5815b7c7329c989fc',1,'HalTransport::write()'],['../classIDfuTransport.html#ad2983641b61b469e587c3f50142f7d25',1,'IDfuTransport::write()']]],
+  ['write16_15',['write16',['../sh2__util_8c.html#a0af9131bd729e0707800e78ef1f63380',1,'write16(uint8_t *p, int16_t value):&#160;sh2_util.c'],['../sh2__util_8h.html#a23033150c61b27a98ecb4ac38f818292',1,'write16(uint8_t *buffer, int16_t value):&#160;sh2_util.c']]],
+  ['write32_16',['write32',['../sh2__util_8c.html#a06111763bd0b14ba72cdcf2fd4fef6f1',1,'write32(uint8_t *p, int32_t value):&#160;sh2_util.c'],['../sh2__util_8h.html#a8e05be03202e51afe907784cde1efa1c',1,'write32(uint8_t *buffer, int32_t value):&#160;sh2_util.c']]],
+  ['write8_17',['write8',['../sh2__util_8c.html#adb80b894a46a6959d1f1a228a33c02a9',1,'write8(uint8_t *p, int8_t value):&#160;sh2_util.c'],['../sh2__util_8h.html#a1d79e42aed40a956d03d7b06cb3f7214',1,'write8(uint8_t *buffer, int8_t value):&#160;sh2_util.c']]],
+  ['writelen_18',['writeLen',['../structDfu__t.html#aeae1aab61c5646f0ee23a546ef86cccc',1,'Dfu_t']]],
+  ['writerequest_5ft_19',['WriteRequest_t',['../structWriteRequest__t.html',1,'']]],
+  ['writeu16_20',['writeu16',['../sh2__util_8c.html#a1b6908e7b324c76a190ff918aeee3e1b',1,'writeu16(uint8_t *p, uint16_t value):&#160;sh2_util.c'],['../sh2__util_8h.html#a4c560bd744bddba45fab55916c02bcbf',1,'writeu16(uint8_t *buffer, uint16_t value):&#160;sh2_util.c']]],
+  ['writeu32_21',['writeu32',['../sh2__util_8c.html#a888134c0e5d90358c9a0fb771a74a509',1,'writeu32(uint8_t *p, uint32_t value):&#160;sh2_util.c'],['../sh2__util_8h.html#aad5d64eaf35b5e34248517c34cd0e577',1,'writeu32(uint8_t *buffer, uint32_t value):&#160;sh2_util.c']]],
+  ['writeu8_22',['writeu8',['../sh2__util_8c.html#a07ec5eaab9589c629bde6726b3590377',1,'writeu8(uint8_t *p, uint8_t value):&#160;sh2_util.c'],['../sh2__util_8h.html#abcdca4fd3c5ca111a028ed6f6f328019',1,'writeu8(uint8_t *buffer, uint8_t value):&#160;sh2_util.c']]]
+];
