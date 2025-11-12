@@ -150,21 +150,21 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">int</span> FRAME_LEN = 19;</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  uart_port_t _port;</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  gpio_num_t _tx, _rx, _rst, _boot;</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  uint8_t _frame[<a class="code hl_define" href="rvc__hal_8c.html#a7d356b7d5a77c1e2fb7e8154f65ebfcf">FRAME_LEN</a>];</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  uint8_t _frame[FRAME_LEN];</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  <span class="keywordtype">size_t</span> _len{0};</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>  <span class="keywordtype">bool</span> _ready{<span class="keyword">false</span>};</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  <span class="keyword">static</span> <span class="keywordtype">bool</span> checksum(<span class="keyword">const</span> uint8_t* f) {</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    uint8_t check = 0;</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 2; i &lt; <a class="code hl_define" href="rvc__hal_8c.html#a7d356b7d5a77c1e2fb7e8154f65ebfcf">FRAME_LEN</a> - 1; ++i)</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 2; i &lt; FRAME_LEN - 1; ++i)</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>      check += f[i];</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordflow">return</span> check == f[<a class="code hl_define" href="rvc__hal_8c.html#a7d356b7d5a77c1e2fb7e8154f65ebfcf">FRAME_LEN</a> - 1];</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordflow">return</span> check == f[FRAME_LEN - 1];</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  }</div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  <span class="keywordtype">void</span> process(uint8_t c) {</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordflow">if</span> (_len == FRAME_LEN) {</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>      memmove(_frame, _frame + 1, FRAME_LEN - 1);</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>      _frame[<a class="code hl_define" href="rvc__hal_8c.html#a7d356b7d5a77c1e2fb7e8154f65ebfcf">FRAME_LEN</a> - 1] = c;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>      _frame[FRAME_LEN - 1] = c;</div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    } <span class="keywordflow">else</span> {</div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>      _frame[_len++] = c;</div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    }</div>
@@ -195,7 +195,6 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aclassEsp32C6RvcHal_html_ab8e8e27ed5ed7e9b1261f3d5edadb0ba"><div class="ttname"><a href="classEsp32C6RvcHal.html#ab8e8e27ed5ed7e9b1261f3d5edadb0ba">Esp32C6RvcHal::read</a></div><div class="ttdeci">int read(rvc_SensorEvent_t *event) override</div><div class="ttdoc">Read a sensor event from the device.</div><div class="ttdef"><b>Definition</b> RvcHalEsp32C6.hpp:42</div></div>
 <div class="ttc" id="aclassIRvcHal_html"><div class="ttname"><a href="classIRvcHal.html">IRvcHal</a></div><div class="ttdoc">Abstract interface for platform specific RVC hardware access.</div><div class="ttdef"><b>Definition</b> RvcHal.hpp:8</div></div>
 <div class="ttc" id="arvc_8h_html_ad6be817a868f925c41787869abf2e63f"><div class="ttname"><a href="rvc_8h.html#ad6be817a868f925c41787869abf2e63f">RVC_OK</a></div><div class="ttdeci">#define RVC_OK</div><div class="ttdef"><b>Definition</b> rvc.h:31</div></div>
-<div class="ttc" id="arvc__hal_8c_html_a7d356b7d5a77c1e2fb7e8154f65ebfcf"><div class="ttname"><a href="rvc__hal_8c.html#a7d356b7d5a77c1e2fb7e8154f65ebfcf">FRAME_LEN</a></div><div class="ttdeci">#define FRAME_LEN</div><div class="ttdef"><b>Definition</b> rvc_hal.c:14</div></div>
 <div class="ttc" id="astructrvc__SensorEvent__s_html"><div class="ttname"><a href="structrvc__SensorEvent__s.html">rvc_SensorEvent_s</a></div><div class="ttdef"><b>Definition</b> rvc.h:52</div></div>
 <div class="ttc" id="astructrvc__SensorEvent__s_html_a157e469d1fb6fd340e5fa5cd397ac86f"><div class="ttname"><a href="structrvc__SensorEvent__s.html#a157e469d1fb6fd340e5fa5cd397ac86f">rvc_SensorEvent_s::timestamp_uS</a></div><div class="ttdeci">uint64_t timestamp_uS</div><div class="ttdef"><b>Definition</b> rvc.h:62</div></div>
 <div class="ttc" id="astructrvc__SensorEvent__s_html_a17257414115c89e15348c9b6c67275ae"><div class="ttname"><a href="structrvc__SensorEvent__s.html#a17257414115c89e15348c9b6c67275ae">rvc_SensorEvent_s::mr</a></div><div class="ttdeci">uint8_t mr</div><div class="ttdef"><b>Definition</b> rvc.h:61</div></div>

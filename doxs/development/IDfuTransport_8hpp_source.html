@@ -89,7 +89,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;cstdint&gt;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="sh2__hal_8h.html">sh2/sh2_hal.h</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;sh2/sh2_hal.h&quot;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>}</div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
 <div class="foldopen" id="foldopen00015" data-start="{" data-end="};">
@@ -103,7 +103,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classIDfuTransport.html#ad2983641b61b469e587c3f50142f7d25">   37</a></span>  <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classIDfuTransport.html#ad2983641b61b469e587c3f50142f7d25">write</a>(<span class="keyword">const</span> uint8_t* data, <span class="keywordtype">unsigned</span> len) = 0;</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classIDfuTransport.html#a05a8dd160d059938e37b3fd075b6365f">   39</a></span>  <span class="keyword">virtual</span> uint32_t <a class="code hl_function" href="classIDfuTransport.html#a05a8dd160d059938e37b3fd075b6365f">getTimeUs</a>() = 0;</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classIDfuTransport.html#a352ed6d9606f2e99e3d0000889b6ad70">   46</a></span>  <span class="keyword">virtual</span> <a class="code hl_struct" href="structsh2__Hal__s.html">sh2_Hal_t</a>* <a class="code hl_function" href="classIDfuTransport.html#a352ed6d9606f2e99e3d0000889b6ad70">nativeHal</a>() = 0;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classIDfuTransport.html#a352ed6d9606f2e99e3d0000889b6ad70">   46</a></span>  <span class="keyword">virtual</span> sh2_Hal_t* <a class="code hl_function" href="classIDfuTransport.html#a352ed6d9606f2e99e3d0000889b6ad70">nativeHal</a>() = 0;</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>};</div>
 </div>
 <div class="ttc" id="aclassIDfuTransport_html"><div class="ttname"><a href="classIDfuTransport.html">IDfuTransport</a></div><div class="ttdoc">Abstract interface for DFU hardware access.</div><div class="ttdef"><b>Definition</b> IDfuTransport.hpp:15</div></div>
@@ -114,8 +114,6 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aclassIDfuTransport_html_ad2983641b61b469e587c3f50142f7d25"><div class="ttname"><a href="classIDfuTransport.html#ad2983641b61b469e587c3f50142f7d25">IDfuTransport::write</a></div><div class="ttdeci">virtual int write(const uint8_t *data, unsigned len)=0</div></div>
 <div class="ttc" id="aclassIDfuTransport_html_add0ad69a9842f584cb0e0ff82898a259"><div class="ttname"><a href="classIDfuTransport.html#add0ad69a9842f584cb0e0ff82898a259">IDfuTransport::read</a></div><div class="ttdeci">virtual int read(uint8_t *data, unsigned len, uint32_t *timestamp)=0</div></div>
 <div class="ttc" id="aclassIDfuTransport_html_ae1582c47c302f0b9a0c6f2037146e244"><div class="ttname"><a href="classIDfuTransport.html#ae1582c47c302f0b9a0c6f2037146e244">IDfuTransport::~IDfuTransport</a></div><div class="ttdeci">virtual ~IDfuTransport()=default</div></div>
-<div class="ttc" id="ash2__hal_8h_html"><div class="ttname"><a href="sh2__hal_8h.html">sh2_hal.h</a></div></div>
-<div class="ttc" id="astructsh2__Hal__s_html"><div class="ttname"><a href="structsh2__Hal__s.html">sh2_Hal_s</a></div><div class="ttdef"><b>Definition</b> sh2_hal.h:50</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
