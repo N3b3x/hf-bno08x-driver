@@ -77,7 +77,7 @@ jobs:
       clang_tidy_config: "_config/.clang-tidy"
       extensions: "c,cpp,cc,cxx,h,hpp"
       ignore: >
-        build|.git|third_party|vendor|src/|inc/|include/|docs/|_config/|_site/|
+        build|.git|third_party|vendor|src/sh2|sh2|inc/|include/|docs/|_config/|_site/|
         examples/esp32/scripts/|examples/esp32/build/
       files_changed_only: false
       step_summary: true

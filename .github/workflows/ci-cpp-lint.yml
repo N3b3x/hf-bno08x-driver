@@ -14,7 +14,7 @@ permissions:
   pull-requests: write
 
 concurrency:
-  group: ci-cpp-lint-${{{{ github.ref }}}}
+  group: ci-cpp-lint-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -26,7 +26,7 @@ jobs:
       clang_format_config: "_config/.clang-format"
       clang_tidy_config: "_config/.clang-tidy"
       extensions: "c,cpp,cc,cxx,h,hpp"
-      ignore: "build|.git|docs|_site|examples"
+      ignore: "build|.git|docs|_site|examples|sh2|src/sh2"
       files_changed_only: false
       lines_changed_only: false
       step_summary: true
