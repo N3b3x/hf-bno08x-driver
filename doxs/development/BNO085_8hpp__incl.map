@@ -1,0 +1,36 @@
+<map id="inc/BNO085.hpp" name="inc/BNO085.hpp">
+<area shape="rect" id="Node000001" title="High level C++ interface for the BNO08x IMU family." alt="" coords="429,5,555,31"/>
+<area shape="rect" id="Node000002" href="$BNO085__Transport_8hpp.html" title="Abstract transport interface for communicating with the BNO085." alt="" coords="5,79,176,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="429,33,169,79,168,74,428,28"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="119,152,185,177"/>
+<area shape="poly" id="edge11_Node000001_Node000003" title=" " alt="" coords="432,33,357,52,278,81,223,113,178,145,175,141,220,108,276,76,355,47,430,28"/>
+<area shape="rect" id="Node000004" href="$HcBin_8h.html" title="API Definition for HcBin objects (Hillcrest Binary Files)." alt="" coords="311,152,409,177"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="429,32,346,52,312,65,292,80,287,96,294,113,309,129,328,143,325,147,306,133,289,116,281,97,287,77,309,61,345,47,428,27"/>
+<area shape="rect" id="Node000006" href="$firmware_8h.html" title=" " alt="" coords="301,79,419,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="472,33,395,74,392,70,470,28"/>
+<area shape="rect" id="Node000007" href="$Rvc_8hpp.html" title=" " alt="" coords="443,79,541,104"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="495,31,495,65,489,65,489,31"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="565,79,621,104"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="510,28,567,68,564,73,507,33"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="646,79,733,104"/>
+<area shape="poly" id="edge12_Node000001_Node000010" title=" " alt="" coords="525,28,645,71,643,76,523,33"/>
+<area shape="rect" id="Node000011" href="$sh2_8h.html" title="API Definition for SH&#45;2 Sensor Hub." alt="" coords="729,152,813,177"/>
+<area shape="poly" id="edge13_Node000001_Node000011" title=" " alt="" coords="556,24,666,44,715,59,747,77,758,90,765,106,772,137,767,139,760,108,753,93,744,81,712,64,664,49,555,30"/>
+<area shape="rect" id="Node000014" href="$sh2__SensorValue_8h.html" title="Support for converting sensor events (messages) into natural data structures." alt="" coords="808,79,979,104"/>
+<area shape="poly" id="edge18_Node000001_Node000014" title=" " alt="" coords="556,28,816,74,815,79,555,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="103,103,135,140,131,143,99,106"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="549,299,619,324"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="375,175,419,209,475,248,549,290,547,295,472,253,416,214,372,179"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="363,104,363,138,357,138,357,104"/>
+<area shape="rect" id="Node000008" href="$rvc_8h.html" title=" " alt="" coords="485,225,539,251"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="496,104,511,211,506,212,491,105"/>
+<area shape="poly" id="edge9_Node000008_Node000005" title=" " alt="" coords="526,249,564,287,561,291,522,253"/>
+<area shape="poly" id="edge14_Node000011_Node000005" title=" " alt="" coords="729,173,668,191,637,206,611,227,595,255,588,286,583,285,590,253,607,224,635,201,666,186,728,168"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="621,225,704,251"/>
+<area shape="poly" id="edge15_Node000011_Node000012" title=" " alt="" coords="755,180,693,220,690,215,752,175"/>
+<area shape="rect" id="Node000013" href="$sh2__hal_8h.html" title=" " alt="" coords="729,225,813,251"/>
+<area shape="poly" id="edge16_Node000011_Node000013" title=" " alt="" coords="773,178,773,212,768,212,768,178"/>
+<area shape="poly" id="edge17_Node000013_Node000005" title=" " alt="" coords="742,253,628,296,626,291,740,248"/>
+<area shape="poly" id="edge19_Node000014_Node000005" title=" " alt="" coords="894,105,889,135,877,175,857,217,827,253,781,282,729,299,678,309,633,313,633,308,677,304,728,294,779,277,824,249,853,214,872,173,884,133,889,104"/>
+<area shape="poly" id="edge20_Node000014_Node000011" title=" " alt="" coords="875,106,804,147,801,143,872,102"/>
+</map>
