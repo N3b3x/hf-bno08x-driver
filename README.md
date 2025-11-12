@@ -9,6 +9,10 @@ permalink: /
 # HF - BNO08x
 
 Hardware-agnostic BNO08x library as used in the HardFOC‑V1 controller.
+
+> **📖 [📚🌐 Live Complete Documentation](https://n3b3x.github.io/hf-bno08x-driver/)** - 
+> Interactive guides, examples, and step-by-step tutorials
+
 For detailed step-by-step guides see [docs/](docs/README.md).
 
 Looking for all of the documentation in one place? Check out the

@@ -13,7 +13,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: ci-docs-linkcheck-${{{{ github.ref }}}}
+  group: ci-docs-linkcheck-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
