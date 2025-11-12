@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['cadapterhal_0',['CAdapterHal',['../structCAdapterHal.html',1,'']]]
+  ['bno085_0',['BNO085',['../classBNO085.html',1,'']]]
 ];

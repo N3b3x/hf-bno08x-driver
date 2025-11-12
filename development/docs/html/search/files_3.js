@@ -7,5 +7,6 @@ var searchData=
   ['demo_5frvc_2ec_4',['demo_rvc.c',['../demo__rvc_8c.html',1,'']]],
   ['dfu_2eh_5',['dfu.h',['../dfu_8h.html',1,'']]],
   ['dfu_5fbno_2ecpp_6',['dfu_bno.cpp',['../dfu__bno_8cpp.html',1,'']]],
-  ['dfu_5ffsp200_2ecpp_7',['dfu_fsp200.cpp',['../dfu__fsp200_8cpp.html',1,'']]]
+  ['dfu_5ffsp200_2ecpp_7',['dfu_fsp200.cpp',['../dfu__fsp200_8cpp.html',1,'']]],
+  ['driverintegrationtest_2ecpp_8',['DriverIntegrationTest.cpp',['../DriverIntegrationTest_8cpp.html',1,'']]]
 ];

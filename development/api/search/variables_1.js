@@ -8,7 +8,7 @@ var searchData=
   ['acc_5fz_5fg_5',['acc_z_g',['../structrvc__SensorValue__s.html#ab27b0b28fcc92b770fb4bcdf95e65fb9',1,'rvc_SensorValue_s']]],
   ['accelerometer_6',['accelerometer',['../structsh2__SensorValue.html#a21ba9fec64aaa5e016faa3e0a1df8908',1,'sh2_SensorValue']]],
   ['accepted_7',['accepted',['../structsh2__Counts.html#aeb104e3f43e550ff8075cfad084b12ed',1,'sh2_Counts']]],
-  ['accuracy_8',['accuracy',['../structsh2__RotationVectorWAcc.html#a8e50d324ba76ed99ae5d990decbcc549',1,'sh2_RotationVectorWAcc']]],
+  ['accuracy_8',['accuracy',['../structsh2__RotationVectorWAcc.html#a8e50d324ba76ed99ae5d990decbcc549',1,'sh2_RotationVectorWAcc::accuracy'],['../structVector3.html#a491cb149e1ee956e6ee5ba53ebd958bd',1,'Vector3::accuracy'],['../structQuaternion.html#a9fb8e41ca4fab802dc16d5fd42188cde',1,'Quaternion::accuracy']]],
   ['alwaysonenabled_9',['alwaysOnEnabled',['../structsh2__SensorConfig.html#aa576c98eb32059877b1b0b8f9f0a94e8',1,'sh2_SensorConfig']]],
   ['ambientlight_10',['ambientLight',['../structsh2__SensorValue.html#ad821dd93595bf5b33408d906d5cb7096',1,'sh2_SensorValue']]],
   ['angvelx_11',['angVelX',['../structsh2__GyroIntegratedRV.html#ac8d22a707f98dfb869659cfba0ff8edf',1,'sh2_GyroIntegratedRV::angVelX'],['../structsh2__DeadReckoningPose.html#a57c6988b22c9d8c8b4883524ae953195',1,'sh2_DeadReckoningPose::angVelX']]],

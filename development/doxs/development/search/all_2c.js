@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['🙏_0',['Acknowledgements 🙏',['../index.html#autotoc_md25',1,'']]]
+  ['🙏_0',['Acknowledgements 🙏',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md#autotoc_md38',1,'']]]
 ];

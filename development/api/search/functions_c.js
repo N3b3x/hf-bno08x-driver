@@ -1,19 +1,10 @@
 var searchData=
 [
-  ['read_0',['read',['../classHalTransport.html#a79a05fe6c074d90658b1a31a64e0b8b7',1,'HalTransport::read()'],['../classIDfuTransport.html#add0ad69a9842f584cb0e0ff82898a259',1,'IDfuTransport::read()'],['../structCAdapterHal.html#a8320ca64bdafb553fbfae620057c56ca',1,'CAdapterHal::read()'],['../classIRvcHal.html#a228d19eb273df523462d2703feda5062',1,'IRvcHal::read()'],['../classEsp32C6RvcHal.html#ab8e8e27ed5ed7e9b1261f3d5edadb0ba',1,'Esp32C6RvcHal::read()']]],
-  ['read16_1',['read16',['../sh2__util_8c.html#a590e6a39923921e981bc578cdf4813bc',1,'read16(const uint8_t *p):&#160;sh2_util.c'],['../sh2__util_8h.html#aa47db759b9465a71a76ef1ec9f3c0a76',1,'read16(const uint8_t *buffer):&#160;sh2_util.c']]],
-  ['read32_2',['read32',['../sh2__util_8c.html#ab5851027b66def3f947b18a9faeadf55',1,'read32(const uint8_t *p):&#160;sh2_util.c'],['../sh2__util_8h.html#acba087cfbf71d6bd00a33d21149c71a6',1,'read32(const uint8_t *buffer):&#160;sh2_util.c']]],
-  ['read8_3',['read8',['../sh2__util_8c.html#aced1c7886b1fe897937e0dba867d0002',1,'read8(const uint8_t *p):&#160;sh2_util.c'],['../sh2__util_8h.html#a784c6bff5f63247c0149bcb4de4603fe',1,'read8(const uint8_t *buffer):&#160;sh2_util.c']]],
-  ['readu16_4',['readu16',['../sh2__util_8c.html#a464ddf942b385c559535fc537dcefb0e',1,'readu16(const uint8_t *p):&#160;sh2_util.c'],['../sh2__util_8h.html#a3ca795587f43fc467f15d361e74f5d75',1,'readu16(const uint8_t *buffer):&#160;sh2_util.c']]],
-  ['readu32_5',['readu32',['../sh2__util_8c.html#a80af9b1e3a3f3be149eb299bed66d5e8',1,'readu32(const uint8_t *p):&#160;sh2_util.c'],['../sh2__util_8h.html#a3e478dc8076a3d854c861c2f04ce9d85',1,'readu32(const uint8_t *buffer):&#160;sh2_util.c']]],
-  ['readu8_6',['readu8',['../sh2__util_8c.html#a2744b671ba2539f5027e1718d01ca454',1,'readu8(const uint8_t *p):&#160;sh2_util.c'],['../sh2__util_8h.html#a8bfb1a53d40b3c60d07806ef74debd29',1,'readu8(const uint8_t *buffer):&#160;sh2_util.c']]],
-  ['rvc_7',['Rvc',['../classRvc.html#ad67acaf84dd75be5cb93a548516816f7',1,'Rvc::Rvc(IRvcHal *hal=nullptr)'],['../classRvc.html#a17b605afb0ada9b62c60b4ec6a307dca',1,'Rvc::Rvc(RvcHalC_t *hal)']]],
-  ['rvc_5fclose_8',['rvc_close',['../rvc_8cpp.html#a5205be5d6b614ad39f200f61f1ce17d0',1,'rvc_close():&#160;rvc.cpp'],['../rvc_8h.html#a5205be5d6b614ad39f200f61f1ce17d0',1,'rvc_close():&#160;rvc.cpp']]],
-  ['rvc_5fdecode_9',['rvc_decode',['../rvc_8cpp.html#a0e95ebfc8d66f037ba59ce2cefb80363',1,'rvc_decode(rvc_SensorValue_t *value, const rvc_SensorEvent_t *event):&#160;rvc.cpp'],['../rvc_8h.html#a0e95ebfc8d66f037ba59ce2cefb80363',1,'rvc_decode(rvc_SensorValue_t *value, const rvc_SensorEvent_t *event):&#160;rvc.cpp']]],
-  ['rvc_5fhal_5finit_10',['rvc_hal_init',['../rvc__hal_8c.html#a0a977028f170df753d8342e7a88b83b7',1,'rvc_hal_init(void):&#160;rvc_hal.c'],['../rvc__hal_8h.html#a0a977028f170df753d8342e7a88b83b7',1,'rvc_hal_init(void):&#160;rvc_hal.c']]],
-  ['rvc_5finit_11',['rvc_init',['../rvc_8cpp.html#a31cf160a494559fac235a2e991757484',1,'rvc_init(IRvcHal *hal):&#160;rvc.cpp'],['../rvc_8h.html#a31cf160a494559fac235a2e991757484',1,'rvc_init(IRvcHal *hal):&#160;rvc.cpp']]],
-  ['rvc_5finit_5fc_12',['rvc_init_c',['../rvc_8cpp.html#a5e669a704543eb6835af24ba6abbdd29',1,'rvc_init_c(RvcHalC_t *hal):&#160;rvc.cpp'],['../rvc_8h.html#a5e669a704543eb6835af24ba6abbdd29',1,'rvc_init_c(RvcHalC_t *hal):&#160;rvc.cpp']]],
-  ['rvc_5fopen_13',['rvc_open',['../rvc_8cpp.html#ada9be22655a5456e14b4def13046d910',1,'rvc_open():&#160;rvc.cpp'],['../rvc_8h.html#ada9be22655a5456e14b4def13046d910',1,'rvc_open():&#160;rvc.cpp']]],
-  ['rvc_5fservice_14',['rvc_service',['../rvc_8cpp.html#ad4e8f80a148c816a2d7da1bcc31efbed',1,'rvc_service():&#160;rvc.cpp'],['../rvc_8h.html#ad4e8f80a148c816a2d7da1bcc31efbed',1,'rvc_service():&#160;rvc.cpp']]],
-  ['rvc_5fsetcallback_15',['rvc_setCallback',['../rvc_8cpp.html#acf9533d6d1cd8318cbe9689a50f09d9a',1,'rvc_setCallback(rvc_Callback_t *pCallback, void *cookie):&#160;rvc.cpp'],['../rvc_8h.html#ac78f5b8bb989832b24e54c47c9923133',1,'rvc_setCallback(rvc_Callback_t *callback, void *cookie):&#160;rvc.cpp']]]
+  ['print_5ftest_5fsection_5ffooter_0',['print_test_section_footer',['../TestFramework_8h.html#a5fe4d7658c49a1f3999cd09c0db952c0',1,'TestFramework.h']]],
+  ['print_5ftest_5fsection_5fheader_1',['print_test_section_header',['../TestFramework_8h.html#a5c46ab8dc59b071f0843bc287145d5f1',1,'TestFramework.h']]],
+  ['print_5ftest_5fsection_5fstatus_2',['print_test_section_status',['../TestFramework_8h.html#a200bb35a3a48c625b9cb8d2511d6bd87',1,'TestFramework.h']]],
+  ['print_5ftest_5fsummary_3',['print_test_summary',['../TestFramework_8h.html#ab7e4c076755ecdf2ad6212cb8f6578ab',1,'TestFramework.h']]],
+  ['printdsf_4',['printDsf',['../demo__rvc_8c.html#a3e7122b141adaba1618e130e5d59ccde',1,'demo_rvc.c']]],
+  ['printdsfheaders_5',['printDsfHeaders',['../demo__rvc_8c.html#a9dead02de4eae14ac51e426a21a66785',1,'demo_rvc.c']]],
+  ['printevent_6',['printEvent',['../demo__rvc_8c.html#aef8bd22611711aa70c6e0fe38311c460',1,'demo_rvc.c']]]
 ];

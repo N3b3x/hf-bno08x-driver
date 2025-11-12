@@ -75,12 +75,12 @@ $(function() {
   <div class="headertitle"><div class="title">RVC Mode</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md63"></a> <a class="el" href="md_docs_2Examples.html">⬅️ Previous: Usage Examples</a> | <a class="el" href="md_docs_2FirmwareUpdate.html">Next: Firmware Update ➡️</a> | <a class="el" href="README_8md.html">Docs Hub 📚</a></p>
+<div class="textblock"><p><a class="anchor" id="autotoc_md76"></a> <a class="el" href="md_docs_2Examples.html">⬅️ Previous: Usage Examples</a> | <a class="el" href="md_docs_2FirmwareUpdate.html">Next: Firmware Update ➡️</a> | <a class="el" href="README_8md.html">Docs Hub 📚</a></p>
 <p>Some sensors expose a simplified "Robot Vacuum Cleaner" mode. To use it:</p>
 <ol type="1">
 <li>Set the appropriate pins or command to boot into RVC mode (see the device data sheet).</li>
 <li>Implement <code><a class="el" href="classIRvcHal.html" title="Abstract interface for platform specific RVC hardware access.">IRvcHal</a></code> to read bytes from the UART at 115200 bps.</li>
-<li>Create a <code><a class="el" href="classRvc.html" title="Convenience C++ wrapper around the C RVC API.">Rvc</a></code> instance or call <code>BNO085::beginRvc()</code>.</li>
+<li>Create a <code><a class="el" href="classRvc.html" title="Convenience C++ wrapper around the C RVC API.">Rvc</a></code> instance or call <code><a class="el" href="classBNO085.html#a45a763de32f6720f7b5c521993caae39">BNO085::beginRvc()</a></code>.</li>
 <li>Register a callback with <code>setRvcCallback()</code>.</li>
 <li>Call <code>serviceRvc()</code> in your loop to decode frames.</li>
 </ol>

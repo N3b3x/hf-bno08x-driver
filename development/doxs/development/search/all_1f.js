@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['⚙️_20hal_20cubeide_0',['STM32 ⚙️ (HAL / CubeIDE)',['../index.html#autotoc_md15',1,'']]]
+  ['⚙️_20hal_20cubeide_0',['STM32 ⚙️ (HAL / CubeIDE)',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md#autotoc_md28',1,'']]]
 ];

@@ -7,5 +7,6 @@ var searchData=
   ['qpoint1_4',['qPoint1',['../structsh2__SensorMetadata.html#a082dbd1397c47d1e81016c7105cce839',1,'sh2_SensorMetadata']]],
   ['qpoint2_5',['qPoint2',['../structsh2__SensorMetadata.html#a0af6614fd3fd51129cc8e8cdd8af182e',1,'sh2_SensorMetadata']]],
   ['qpoint3_6',['qPoint3',['../structsh2__SensorMetadata.html#a10bc02e1ed9bc75b8a5f6a4327ffa0d2',1,'sh2_SensorMetadata']]],
-  ['quick_20start_7',['Quick Start',['../index.html#autotoc_md18',1,'Quick Start'],['../md_docs_2Examples.html#autotoc_md46',1,'Quick Start']]]
+  ['quaternion_7',['Quaternion',['../structQuaternion.html',1,'']]],
+  ['quick_20start_8',['Quick Start',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md#autotoc_md31',1,'Quick Start'],['../md_docs_2Examples.html#autotoc_md59',1,'Quick Start']]]
 ];

@@ -1,5 +1,3 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classIDfuTransport.html" title="Abstract interface for DFU hardware access." alt="" coords="5,5,115,31"/>
-<area shape="rect" id="Node000001" href="$classHalTransport.html" title="Adapter converting an existing sh2_Hal_t implementation to the IDfuTransport interface." alt="" coords="163,5,267,31"/>
-<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="129,15,162,15,162,21,129,21"/>
+<area shape="rect" id="Node000000" href="$structHcbinMetadata.html" title=" " alt="" coords="5,5,127,31"/>
 </map>

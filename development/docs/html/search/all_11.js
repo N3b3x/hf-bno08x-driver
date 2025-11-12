@@ -8,7 +8,7 @@ var searchData=
   ['nextoutseq_5',['nextOutSeq',['../structshtp__Channel__s.html#a19a6bd6f36d95f86ff2442c39ac43ae5',1,'shtp_Channel_s']]],
   ['nominal_5fcalibration_6',['NOMINAL_CALIBRATION',['../sh2_8h.html#accd21d5b5bcf050f44f57fb0233491a3',1,'sh2.h']]],
   ['nominal_5fcalibration_5fsra_7',['NOMINAL_CALIBRATION_SRA',['../sh2_8h.html#a719d209fadfb66845d8348ac58b9bd75',1,'sh2.h']]],
-  ['notes_8',['Notes',['../md_docs_2AdvancedNotes.html',1,'Advanced Notes'],['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/sh2/README.md#autotoc_md76',1,'Release Notes']]],
-  ['notes_20🔬_9',['Advanced Notes 🔬',['../index.html#autotoc_md22',1,'']]],
+  ['notes_8',['Notes',['../md_docs_2AdvancedNotes.html',1,'Advanced Notes'],['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/sh2/README.md#autotoc_md11',1,'Release Notes']]],
+  ['notes_20🔬_9',['Advanced Notes 🔬',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md#autotoc_md35',1,'']]],
   ['numentries_10',['numEntries',['../structsh2__ProductIds__s.html#a18aa29357f61308f4ae64a8c4eb7e68a',1,'sh2_ProductIds_s']]]
 ];

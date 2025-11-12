@@ -8,5 +8,6 @@ var searchData=
   ['rvc_5fhal_2eh_5',['rvc_hal.h',['../rvc__hal_8h.html',1,'']]],
   ['rvchal_2ehpp_6',['RvcHal.hpp',['../RvcHal_8hpp.html',1,'']]],
   ['rvchalesp32c6_2ehpp_7',['RvcHalEsp32C6.hpp',['../RvcHalEsp32C6_8hpp.html',1,'']]],
-  ['rvcmode_2emd_8',['RvcMode.md',['../RvcMode_8md.html',1,'']]]
+  ['rvcmode_2emd_8',['RvcMode.md',['../RvcMode_8md.html',1,'']]],
+  ['rvcmodeexample_2ecpp_9',['RvcModeExample.cpp',['../RvcModeExample_8cpp.html',1,'']]]
 ];

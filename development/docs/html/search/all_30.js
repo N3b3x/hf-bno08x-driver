@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['🧹_0',['RVC Mode 🧹',['../index.html#autotoc_md20',1,'']]]
+  ['🧹_0',['RVC Mode 🧹',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md#autotoc_md33',1,'']]]
 ];

@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['fsp200_5fdfu_5fhal_5finit_0',['fsp200_dfu_hal_init',['../sh2__hal__init_8h.html#a781e406a86e1d6859c44cafc83a3676a',1,'sh2_hal_init.h']]],
-  ['fsp201_5fdfu_5fhal_5finit_1',['fsp201_dfu_hal_init',['../sh2__hal__init_8h.html#ac0a355bb90054b3caec8e1c333e03221',1,'sh2_hal_init.h']]],
-  ['fsp201_5fhal_5finit_2',['fsp201_hal_init',['../sh2__hal__init_8h.html#a52e0eaefe4113ab5bfee665ae852efda',1,'sh2_hal_init.h']]]
+  ['enablesensor_0',['enableSensor',['../classBNO085.html#a8fa67c6dc5b91d7082e77aa4c34020f1',1,'BNO085']]],
+  ['ensure_5fgpio14_5finitialized_1',['ensure_gpio14_initialized',['../TestFramework_8h.html#a57a48f91a141d98e45f82937581e1a97',1,'TestFramework.h']]],
+  ['esp32bno08xbus_2',['Esp32Bno08xBus',['../classEsp32Bno08xBus.html#a6c20edfeb49415cf7f374c3caf2e5bbc',1,'Esp32Bno08xBus::Esp32Bno08xBus()'],['../classEsp32Bno08xBus.html#a89e2583a5d3a2098a00a83ab1a63d365',1,'Esp32Bno08xBus::Esp32Bno08xBus(const I2CConfig &amp;config)']]],
+  ['esp32c6rvchal_3',['Esp32C6RvcHal',['../classEsp32C6RvcHal.html#a5ee18a4decbbbd3e9c25914a7c9c4555',1,'Esp32C6RvcHal']]]
 ];

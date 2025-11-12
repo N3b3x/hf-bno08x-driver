@@ -18,7 +18,8 @@ var searchData=
   ['commandreq_5ft_15',['CommandReq_t',['../sh2_8c.html#a7ad2354ec1a2c06c610a642907430876',1,'sh2.c']]],
   ['commandresp_5ft_16',['CommandResp_t',['../sh2_8c.html#abe66c8c904d3bbd618613d7a47e051d8',1,'sh2.c']]],
   ['commandseq_17',['commandSeq',['../sh2_8c.html#a90198fc527e6856ab3a3ffefc480707f',1,'sh2.c']]],
-  ['confidence_18',['confidence',['../structsh2__PersonalActivityClassifier.html#a74f340aa3f315f1aaa8fd29e7ca7a0b2',1,'sh2_PersonalActivityClassifier']]],
-  ['cookie_19',['cookie',['../structshtp__Channel__s.html#ad06a9b66d9bf521f92f0ee3d18029106',1,'shtp_Channel_s']]],
-  ['ctx_20',['ctx',['../structRvcHalC__s.html#a062ce2030a314977a1c44dc4687a424a',1,'RvcHalC_s']]]
+  ['completion_5fsemaphore_18',['completion_semaphore',['../structTestTaskContext.html#ab82bee11b198be2f2b4d6c908573ddb6',1,'TestTaskContext']]],
+  ['confidence_19',['confidence',['../structsh2__PersonalActivityClassifier.html#a74f340aa3f315f1aaa8fd29e7ca7a0b2',1,'sh2_PersonalActivityClassifier']]],
+  ['cookie_20',['cookie',['../structshtp__Channel__s.html#ad06a9b66d9bf521f92f0ee3d18029106',1,'shtp_Channel_s']]],
+  ['ctx_21',['ctx',['../structRvcHalC__s.html#a062ce2030a314977a1c44dc4687a424a',1,'RvcHalC_s']]]
 ];

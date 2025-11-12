@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['cal_5fdone_0',['CAL_DONE',['../cal__app_8c.html#a6d5ac8f0c05576b428e07f59849cc463a4e36729bb2f302292e127830b0f86a74',1,'cal_app.c']]],
-  ['cal_5fwait_5ffinish_1',['CAL_WAIT_FINISH',['../cal__app_8c.html#a6d5ac8f0c05576b428e07f59849cc463af4bdad2b6438e92882fc5a57d0aa48c9',1,'cal_app.c']]],
-  ['cal_5fwait_5fstart_2',['CAL_WAIT_START',['../cal__app_8c.html#a6d5ac8f0c05576b428e07f59849cc463af9b82d988e2f580e4dc6bab60ad9ddbb',1,'cal_app.c']]]
+  ['accelerometer_0',['Accelerometer',['../BNO085_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62ab043bc6d611582087d8bf1790d863d69',1,'BNO085.hpp']]],
+  ['ambientlight_1',['AmbientLight',['../BNO085_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a9de31d14fe78730b3fd5ce633a2da711',1,'BNO085.hpp']]],
+  ['arvrstabilizedgamerv_2',['ARVRStabilizedGameRV',['../BNO085_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62adda6de7569af6fe8301ee3807a69a988',1,'BNO085.hpp']]],
+  ['arvrstabilizedrv_3',['ARVRStabilizedRV',['../BNO085_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a5f78b93803f5d02a6b414b4b6e1637df',1,'BNO085.hpp']]]
 ];

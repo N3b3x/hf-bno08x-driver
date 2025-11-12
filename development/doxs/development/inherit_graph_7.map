@@ -1,3 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classMemoryFirmware.html" title="HcBin_t implementation for firmware stored in memory." alt="" coords="5,5,143,31"/>
+<area shape="rect" id="Node000000" href="$classIBNO085Transport.html" title="Abstract interface for BNO085 communication transport (I2C, SPI, etc.)." alt="" coords="5,5,144,31"/>
+<area shape="rect" id="Node000001" href="$classEsp32Bno08xBus.html" title="ESP32 I2C transport implementation for BNO08x driver." alt="" coords="192,5,327,31"/>
+<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="158,15,192,15,192,21,158,21"/>
 </map>

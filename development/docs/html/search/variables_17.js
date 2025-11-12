@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['w_0',['w',['../structsh2__Quaternion.html#ad2a466712cb31050d7a38f4b51c26c65',1,'sh2_Quaternion']]],
+  ['w_0',['w',['../structsh2__Quaternion.html#ad2a466712cb31050d7a38f4b51c26c65',1,'sh2_Quaternion::w'],['../structQuaternion.html#aa44a65ab99e36f6ab8771030eed8a7ad',1,'Quaternion::w']]],
   ['wakeupenabled_1',['wakeupEnabled',['../structsh2__SensorConfig.html#afc2ff2305a32e35ffd205f758fe961b0',1,'sh2_SensorConfig']]],
   ['wheeldata_2',['wheelData',['../unionsh2__OpData__t.html#aea269d2e7ac62221506150858e51842d',1,'sh2_OpData_t']]],
   ['wheelencoder_3',['wheelEncoder',['../structsh2__SensorValue.html#ae8cad9ea42bb972b16289680955f9202',1,'sh2_SensorValue']]],
