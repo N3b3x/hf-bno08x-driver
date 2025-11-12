@@ -1,0 +1,37 @@
+<map id="src/BNO085.cpp" name="src/BNO085.cpp">
+<area shape="rect" id="Node000001" title="Implementation of the BNO085 C++ driver." alt="" coords="333,5,458,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,108,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="341,33,122,79,121,74,340,28"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="133,79,218,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="361,33,224,77,223,72,359,28"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="242,79,303,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="377,33,306,74,303,69,374,28"/>
+<area shape="rect" id="Node000005" href="$sh2_8h.html" title="API Definition for SH&#45;2 Sensor Hub." alt="" coords="313,152,371,177"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="391,32,368,80,350,139,345,138,364,78,386,30"/>
+<area shape="rect" id="Node000009" href="$sh2__SensorValue_8h.html" title="Support for converting sensor events (messages) into natural data structures." alt="" coords="378,79,522,104"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="406,29,435,66,431,69,402,33"/>
+<area shape="rect" id="Node000010" href="$sh2__err_8h.html" title="Type definitions for the SH2 API." alt="" coords="832,79,913,104"/>
+<area shape="poly" id="edge12_Node000001_Node000010" title=" " alt="" coords="458,24,618,45,819,76,818,81,617,50,458,29"/>
+<area shape="rect" id="Node000011" href="$HalTransport_8hpp.html" title=" " alt="" coords="546,79,703,104"/>
+<area shape="poly" id="edge13_Node000001_Node000011" title=" " alt="" coords="433,28,575,72,573,77,431,33"/>
+<area shape="rect" id="Node000014" href="$dfu_8h.html" title=" " alt="" coords="727,79,807,104"/>
+<area shape="poly" id="edge17_Node000001_Node000014" title=" " alt="" coords="459,28,714,76,713,81,458,33"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="455,299,525,324"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="327,179,310,194,294,212,286,231,287,240,291,249,305,265,322,277,361,295,403,305,441,308,441,314,402,310,359,300,319,282,302,269,286,252,281,242,281,231,290,209,306,190,324,175"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="301,225,383,251"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="345,178,345,212,339,212,339,178"/>
+<area shape="rect" id="Node000008" href="$sh2__hal_8h.html" title=" " alt="" coords="408,225,492,251"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="361,175,422,215,419,220,358,180"/>
+<area shape="poly" id="edge8_Node000008_Node000006" title=" " alt="" coords="459,250,479,285,474,288,454,252"/>
+<area shape="poly" id="edge11_Node000009_Node000005" title=" " alt="" coords="434,106,373,147,370,142,431,102"/>
+<area shape="poly" id="edge10_Node000009_Node000006" title=" " alt="" coords="459,103,484,154,497,189,507,225,508,257,502,286,496,285,503,256,502,226,492,191,479,157,454,105"/>
+<area shape="rect" id="Node000012" href="$IDfuTransport_8hpp.html" title=" " alt="" coords="568,152,705,177"/>
+<area shape="poly" id="edge14_Node000011_Node000012" title=" " alt="" coords="629,104,635,138,630,139,624,105"/>
+<area shape="poly" id="edge16_Node000012_Node000008" title=" " alt="" coords="608,180,494,223,492,218,606,175"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="603,225,670,251"/>
+<area shape="poly" id="edge15_Node000012_Node000013" title=" " alt="" coords="639,178,639,212,634,212,634,178"/>
+<area shape="poly" id="edge20_Node000014_Node000012" title=" " alt="" coords="748,106,671,148,669,143,745,102"/>
+<area shape="rect" id="Node000015" href="$HcBin_8h.html" title="API Definition for HcBin objects (Hillcrest Binary Files)." alt="" coords="730,152,802,177"/>
+<area shape="poly" id="edge18_Node000014_Node000015" title=" " alt="" coords="770,104,769,139,764,138,764,104"/>
+<area shape="poly" id="edge19_Node000015_Node000006" title=" " alt="" coords="760,179,729,215,707,236,683,253,648,271,610,286,540,304,538,299,608,281,645,266,681,248,704,231,725,212,756,176"/>
+</map>

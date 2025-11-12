@@ -1,0 +1,14 @@
+<map id="src/dfu/dfu.h" name="src/dfu/dfu.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="54,5,157,31"/>
+<area shape="rect" id="Node000002" href="$HcBin_8h.html" title="API Definition for HcBin objects (Hillcrest Binary Files)." alt="" coords="5,79,77,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,33,63,70,59,67,93,29"/>
+<area shape="rect" id="Node000004" href="$IDfuTransport_8hpp.html" title=" " alt="" coords="102,79,239,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="118,29,153,67,149,70,114,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="98,225,169,251"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="45,104,53,138,69,176,86,197,106,215,103,219,82,201,64,179,48,139,40,105"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="79,152,145,177"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="163,106,132,143,128,140,159,103"/>
+<area shape="rect" id="Node000006" href="$sh2__hal_8h.html" title=" " alt="" coords="170,152,281,177"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="182,103,210,140,206,143,178,106"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="212,179,161,219,157,215,209,175"/>
+</map>

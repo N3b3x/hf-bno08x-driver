@@ -1,0 +1,24 @@
+var searchData=
+[
+  ['c_0',['c',['../structCAdapterHal.html#a5233e7bee79b9900ec32c897605a421a',1,'CAdapterHal']]],
+  ['calconfig_1',['calConfig',['../unionsh2__OpData__t.html#a080d5675889e9c3506cca3c01965b680',1,'sh2_OpData_t']]],
+  ['callback_2',['callback',['../structshtp__Channel__s.html#ae7fc04118acfe42d0fb4460fc058e3a1',1,'shtp_Channel_s']]],
+  ['chan_3',['chan',['../structshtp__s.html#aaf3c7e919684c77ed1f0655a39868d7d',1,'shtp_s']]],
+  ['changesensitivity_4',['changeSensitivity',['../structsh2__SensorConfig.html#a0f6dce4a414aa4ef156cff3a64344b3c',1,'sh2_SensorConfig::changeSensitivity'],['../sh2_8c.html#a35d4a80a2f67505d12d716c234718960',1,'changeSensitivity:&#160;sh2.c']]],
+  ['changesensitivityenabled_5',['changeSensitivityEnabled',['../structsh2__SensorConfig.html#a7b835912892eda237d226223d5ea78b0',1,'sh2_SensorConfig']]],
+  ['changesensitivityrelative_6',['changeSensitivityRelative',['../structsh2__SensorConfig.html#aa53b1c0b99de8ec6c4549efa99b07685',1,'sh2_SensorConfig']]],
+  ['circle_7',['circle',['../structsh2__CircleDetector.html#af420f19e2eb12d8390c09363203580cc',1,'sh2_CircleDetector']]],
+  ['circledetector_8',['circleDetector',['../structsh2__SensorValue.html#a2b712677ce3358b4304e81460df8417c',1,'sh2_SensorValue']]],
+  ['classification_9',['classification',['../structsh2__StabilityClassifier.html#aef1297ada52047260fd0ed6f985955b3',1,'sh2_StabilityClassifier']]],
+  ['cleardcdandresetop_10',['clearDcdAndResetOp',['../sh2_8c.html#aed628c4c6174820af17073fcd59ed498',1,'sh2.c']]],
+  ['close_11',['close',['../structHcBin__s.html#a60b807db69b8076b30d83a6f1201834b',1,'HcBin_s::close'],['../structRvcHalC__s.html#aa5b69e8867936b41e2e700fb37646a4c',1,'RvcHalC_s::close'],['../structsh2__Hal__s.html#aa6a173ce9f285706a1e2a11cf8f17323',1,'sh2_Hal_s::close']]],
+  ['cmdseq_12',['cmdSeq',['../structsh2__s.html#aa16ddb8d4369057151a1aae603cdc0cf',1,'sh2_s']]],
+  ['code_13',['code',['../structsh2__ErrorRecord.html#a7fda7d839cff290e6efd5bbe3f277b8d',1,'sh2_ErrorRecord']]],
+  ['command_14',['command',['../sh2_8c.html#a1a5aaa930940857f68f245eeb89506b5',1,'sh2.c']]],
+  ['commandreq_5ft_15',['CommandReq_t',['../sh2_8c.html#a7ad2354ec1a2c06c610a642907430876',1,'sh2.c']]],
+  ['commandresp_5ft_16',['CommandResp_t',['../sh2_8c.html#abe66c8c904d3bbd618613d7a47e051d8',1,'sh2.c']]],
+  ['commandseq_17',['commandSeq',['../sh2_8c.html#a90198fc527e6856ab3a3ffefc480707f',1,'sh2.c']]],
+  ['confidence_18',['confidence',['../structsh2__PersonalActivityClassifier.html#a74f340aa3f315f1aaa8fd29e7ca7a0b2',1,'sh2_PersonalActivityClassifier']]],
+  ['cookie_19',['cookie',['../structshtp__Channel__s.html#ad06a9b66d9bf521f92f0ee3d18029106',1,'shtp_Channel_s']]],
+  ['ctx_20',['ctx',['../structRvcHalC__s.html#a062ce2030a314977a1c44dc4687a424a',1,'RvcHalC_s']]]
+];

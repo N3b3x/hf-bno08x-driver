@@ -1,0 +1,17 @@
+<map id="src/sh2/sh2.h" name="src/sh2/sh2.h">
+<area shape="rect" id="Node000001" title="API Definition for SH&#45;2 Sensor Hub." alt="" coords="253,5,360,31"/>
+<area shape="rect" id="Node000002" href="$BNO085_8cpp.html" title="Implementation of the BNO085 C++ driver." alt="" coords="5,152,131,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="240,27,182,34,122,45,70,61,52,70,40,80,34,97,38,116,60,150,55,153,33,118,28,97,35,77,49,66,68,56,121,40,181,29,239,22"/>
+<area shape="rect" id="Node000003" href="$cal__app_8c.html" title=" " alt="" coords="50,79,185,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="264,38,149,81,147,76,263,33"/>
+<area shape="rect" id="Node000004" href="$demo__app_8c.html" title=" " alt="" coords="461,152,613,177"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="374,24,477,43,521,58,549,77,557,96,557,117,546,152,541,151,552,116,552,97,545,80,518,63,475,48,373,29"/>
+<area shape="rect" id="Node000005" href="$sh2_8c.html" title="API Definition for SH&#45;2 Sensor Hub." alt="" coords="428,79,535,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="348,33,454,76,452,81,346,38"/>
+<area shape="rect" id="Node000006" href="$sh2__SensorValue_8h.html" title="Support for converting sensor events (messages) into natural data structures." alt="" coords="209,79,404,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="309,44,309,79,304,79,304,44"/>
+<area shape="poly" id="edge6_Node000006_Node000002" title=" " alt="" coords="256,110,107,154,106,149,254,105"/>
+<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="358,106,501,149,499,154,356,111"/>
+<area shape="rect" id="Node000007" href="$sh2__SensorValue_8c.html" title=" " alt="" coords="210,152,403,177"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="309,118,309,152,304,152,304,118"/>
+</map>

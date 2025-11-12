@@ -1,0 +1,28 @@
+var searchData=
+[
+  ['featurereportid_0',['featureReportId',['../sh2_8c.html#a80a28041472dae2e07b903985d187fa4',1,'sh2.c']]],
+  ['fifomax_1',['fifoMax',['../structsh2__SensorMetadata.html#a738ed2f6e01ab037facfb09df210d434',1,'sh2_SensorMetadata']]],
+  ['fiforeserved_2',['fifoReserved',['../structsh2__SensorMetadata.html#a4416f0e1fa7c8e437dec2631c8d67756',1,'sh2_SensorMetadata']]],
+  ['finishcal_3',['finishCal',['../unionsh2__OpData__t.html#a3e19e71adc75e50d17e4ec4e97ddb9a4',1,'sh2_OpData_t']]],
+  ['finishcalop_4',['finishCalOp',['../sh2_8c.html#a33ee15396c8297a0ca2dd603f217414c',1,'sh2.c']]],
+  ['firmware_5',['firmware',['../structDfu__t.html#a05ce00a5a170c7318f153c4caf16cbba',1,'Dfu_t::firmware'],['../firmware-bno_8c.html#a169e52b3509b7e23c9a7f630e9156c11',1,'firmware:&#160;firmware-bno.c'],['../firmware-fsp_8c.html#a169e52b3509b7e23c9a7f630e9156c11',1,'firmware:&#160;firmware-fsp.c'],['../firmware_8h.html#a169e52b3509b7e23c9a7f630e9156c11',1,'firmware:&#160;firmware-bno.c']]],
+  ['firmwareopened_6',['firmwareOpened',['../structDfu__t.html#a2f19ccbbd8d16ba29cd5ee6e73c9cb4d',1,'Dfu_t']]],
+  ['flags_7',['flags',['../structsh2__TapDetector.html#ab58afa6bc6062180c2e8cebaa9903694',1,'sh2_TapDetector::flags'],['../sh2_8c.html#aa2585d779da0ab21273a8d92de9a0ebe',1,'flags:&#160;sh2.c']]],
+  ['flip_8',['flip',['../structsh2__FlipDetector.html#a5d4d4383060941246b0119c9399bf685',1,'sh2_FlipDetector']]],
+  ['flipdetector_9',['flipDetector',['../structsh2__SensorValue.html#ad42bf53cb78100e6b6f44ac8dfe76990',1,'sh2_SensorValue']]],
+  ['forceflush_10',['forceFlush',['../unionsh2__OpData__t.html#ab97deede72c1ae1e8f7fbfcf0d390892',1,'sh2_OpData_t']]],
+  ['forceflushop_11',['forceFlushOp',['../sh2_8c.html#a277f0c1b9ae8fac27e6120120e3d142b',1,'sh2.c']]],
+  ['forceflushreq_5ft_12',['ForceFlushReq_t',['../sh2_8c.html#a20dbf5eece45d6cac3ed24651dccb72a',1,'sh2.c']]],
+  ['forceflushresp_5ft_13',['ForceFlushResp_t',['../sh2_8c.html#a79269d0d614f595e8d4de6d0abec958f',1,'sh2.c']]],
+  ['frameavg_14',['frameAvg',['../structsh2__RawOptFlow.html#a739aa2ea13d1adef7473e1317c05ba75',1,'sh2_RawOptFlow']]],
+  ['framemax_15',['frameMax',['../structsh2__RawOptFlow.html#a179787a14e219cb9273563b9f9aa2d5c',1,'sh2_RawOptFlow']]],
+  ['framemin_16',['frameMin',['../structsh2__RawOptFlow.html#a341ef70c134c60fdb835d0bb6c40a5db',1,'sh2_RawOptFlow']]],
+  ['frsdata_17',['frsData',['../structsh2__s.html#aa1b8d0dd27464a9b7812e6e6a52026ed',1,'sh2_s']]],
+  ['frsdatalen_18',['frsDataLen',['../structsh2__s.html#ac6f0150e221f8e5fca94d51ed38995f1',1,'sh2_s']]],
+  ['frsreadreq_5ft_19',['FrsReadReq_t',['../sh2_8c.html#a78ced907af2369361cc74e7d7467d2d7',1,'sh2.c']]],
+  ['frsreadresp_5ft_20',['FrsReadResp_t',['../sh2_8c.html#a393982c92cf5d5e6bddef24ca1f63441',1,'sh2.c']]],
+  ['frstype_21',['frsType',['../unionsh2__OpData__t.html#a6337a63bcbd26235f96a4e4b82e582a1',1,'sh2_OpData_t::frsType'],['../sh2_8c.html#aa3811a392c4db6bedcc7ee75fbdc9939',1,'frsType:&#160;sh2.c']]],
+  ['frswritedatareq_5ft_22',['FrsWriteDataReq_t',['../sh2_8c.html#a7b5d0f00cccd407c526495d38cd22b9a',1,'sh2.c']]],
+  ['frswritereq_5ft_23',['FrsWriteReq_t',['../sh2_8c.html#ac753a216e01dab2f7dadd7d60c65d288',1,'sh2.c']]],
+  ['frswriteresp_5ft_24',['FrsWriteResp_t',['../sh2_8c.html#a474b8400f49253f73303b21c3654c29e',1,'sh2.c']]]
+];
