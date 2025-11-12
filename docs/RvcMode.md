@@ -10,7 +10,7 @@ Some sensors expose a simplified "Robot Vacuum Cleaner" mode. To use it:
 4. Register a callback with `setRvcCallback()`.
 5. Call `serviceRvc()` in your loop to decode frames.
 
-See [`src/rvc/README.md`](../src/rvc/README.md) and [`../examples/RVC_Basic.cpp`](../examples/RVC_Basic.cpp) for more information.
+See [`src/rvc/README.md`](../src/rvc/README.md) and the [ESP32 examples](../examples/esp32/main/) for more information.
 
 ---
 

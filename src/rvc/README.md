@@ -67,7 +67,7 @@ void onFrame(void *, rvc_SensorEvent_t *e) {
     printf("Yaw %.2f\n", val.yaw_deg);
 }
 ```
-See [`examples/RVC_Basic.cpp`](../../examples/RVC_Basic.cpp) for a minimal
+See the [ESP32 RVC example](../../examples/esp32/main/RvcModeExample.cpp) for a minimal
 application and [`src/app/demo_rvc.c`](../app/demo_rvc.c) for a more featureful
 reference.  The top-level [README](../../README.md) also contains a short
 overview of RVC mode.

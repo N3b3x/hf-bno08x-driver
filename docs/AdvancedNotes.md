@@ -1,6 +1,6 @@
 # Advanced Notes
 
-[⬅️ Previous: Firmware Update](FirmwareUpdate.md) | [Next: Contributing ➡️](Contributing.md) | [Docs Hub 📚](README.md)
+[⬅️ Previous: Firmware Update](FirmwareUpdate.md) | [Docs Hub 📚](README.md)
 
 - Call `tareNow()` to zero the current orientation.
 - Check `event.accuracy` (0–3) before trusting heading data.
@@ -10,4 +10,4 @@
 
 ---
 
-[⬅️ Previous: Firmware Update](FirmwareUpdate.md) | [Next: Contributing ➡️](Contributing.md) | [Docs Hub 📚](README.md)
+[⬅️ Previous: Firmware Update](FirmwareUpdate.md) | [Docs Hub 📚](README.md)

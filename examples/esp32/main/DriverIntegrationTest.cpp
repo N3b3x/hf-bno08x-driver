@@ -51,6 +51,7 @@ static constexpr bool ENABLE_ERROR_HANDLING_TESTS = true;
 
 static std::unique_ptr<Esp32Bno08xBus> g_transport;
 static std::unique_ptr<BNO085> g_imu;
+static TestResults g_test_results;  // Required by TestFramework.h
 
 //=============================================================================
 // TEST HELPER FUNCTIONS
@@ -208,7 +209,7 @@ static bool test_polling_rotation_vector() noexcept {
   for (int i = 0; i < 50; ++i) {
     g_imu->update();
     if (g_imu->hasNewData(BNO085Sensor::RotationVector)) {
-      auto rot = g_imu->getLatestData(BNO085Sensor::RotationVector);
+      auto rot = g_imu->getLatest(BNO085Sensor::RotationVector);
       ESP_LOGI(TAG, "Rotation Vector: w=%.3f, x=%.3f, y=%.3f, z=%.3f, accuracy=%u", rot.rotation.w,
                rot.rotation.x, rot.rotation.y, rot.rotation.z, rot.rotation.accuracy);
       data_received = true;
@@ -242,7 +243,7 @@ static bool test_polling_linear_acceleration() noexcept {
   for (int i = 0; i < 50; ++i) {
     g_imu->update();
     if (g_imu->hasNewData(BNO085Sensor::LinearAcceleration)) {
-      auto accel = g_imu->getLatestData(BNO085Sensor::LinearAcceleration);
+      auto accel = g_imu->getLatest(BNO085Sensor::LinearAcceleration);
       ESP_LOGI(TAG, "Linear Acceleration: x=%.3f, y=%.3f, z=%.3f m/s^2, accuracy=%u",
                accel.vector.x, accel.vector.y, accel.vector.z, accel.vector.accuracy);
       data_received = true;
@@ -266,7 +267,7 @@ static bool test_polling_linear_acceleration() noexcept {
 static bool callback_test_passed = false;
 static BNO085Sensor callback_sensor_received = BNO085Sensor::Accelerometer;
 
-static void test_callback(const BNO085::SensorEvent& event) {
+static void test_callback(const SensorEvent& event) {
   ESP_LOGI(TAG, "Callback received for sensor: %d", static_cast<int>(event.sensor));
   callback_sensor_received = event.sensor;
   callback_test_passed = true;
@@ -327,19 +328,19 @@ static bool test_sensor_data_reading() noexcept {
     g_imu->update();
 
     if (g_imu->hasNewData(BNO085Sensor::RotationVector)) {
-      auto rot = g_imu->getLatestData(BNO085Sensor::RotationVector);
+      auto rot = g_imu->getLatest(BNO085Sensor::RotationVector);
       ESP_LOGI(TAG, "Rotation Vector: w=%.3f, x=%.3f, y=%.3f, z=%.3f", rot.rotation.w,
                rot.rotation.x, rot.rotation.y, rot.rotation.z);
     }
 
     if (g_imu->hasNewData(BNO085Sensor::Gyroscope)) {
-      auto gyro = g_imu->getLatestData(BNO085Sensor::Gyroscope);
+      auto gyro = g_imu->getLatest(BNO085Sensor::Gyroscope);
       ESP_LOGI(TAG, "Gyroscope: x=%.3f, y=%.3f, z=%.3f rad/s", gyro.vector.x, gyro.vector.y,
                gyro.vector.z);
     }
 
     if (g_imu->hasNewData(BNO085Sensor::Gravity)) {
-      auto grav = g_imu->getLatestData(BNO085Sensor::Gravity);
+      auto grav = g_imu->getLatest(BNO085Sensor::Gravity);
       ESP_LOGI(TAG, "Gravity: x=%.3f, y=%.3f, z=%.3f m/s^2", grav.vector.x, grav.vector.y,
                grav.vector.z);
     }
@@ -385,7 +386,7 @@ static bool test_error_handling() noexcept {
 
   // Test getting latest data from disabled sensor
   // This should handle gracefully
-  g_imu->getLatestData(BNO085Sensor::TapDetector);
+  g_imu->getLatest(BNO085Sensor::TapDetector);
 
   ESP_LOGI(TAG, "Error handling test passed");
   return true;

@@ -14,7 +14,7 @@ of the HF‑BNO08x library.
 | [RVC Mode](RvcMode.md) | Lightweight UART streaming mode |
 | [Firmware Update](FirmwareUpdate.md) | Update sensor firmware via DFU |
 | [Advanced Notes](AdvancedNotes.md) | Tare, power tips and pin helpers |
-| [Contributing](Contributing.md) | How to contribute to this repo |
+| [Contributing](../README.md#contributing-🤝) | How to contribute to this repo |
 
 ---
 

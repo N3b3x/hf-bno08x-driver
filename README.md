@@ -64,19 +64,59 @@ tutorial in this repository.
 ---
 
 ## Architecture 📐
-```mermaid
-classDiagram
-    direction LR
-    class BNO085 {
-  +begin() + enableSensor() + update() + setCallback() + getLatest()
-    }
-    IBNO085Transport <|-- I2CTransport
-    IBNO085Transport <|-- SPITransport
-    class SensorEvent
-    BNO085 --> IBNO085Transport : uses
-    BNO085 --> SensorEvent : "produces ➡️"
+
 ```
-The BNO085 class shields your app from the gritty SH-2/SHTP details, while IBNO085Transport shields it from your hardware.
+┌─────────────────────────────────────────────────────────────────────────┐
+│                          Your Application                               │
+└───────────────────────────────┬─────────────────────────────────────────┘
+                                │
+                                │ uses
+                                ▼
+                    ┌───────────────────────┐
+                    │      BNO085           │
+                    │  ─────────────────    │
+                    │  • begin()            │
+                    │  • enableSensor()     │
+                    │  • update()           │
+                    │  • setCallback()      │
+                    │  • getLatest()        │
+                    └───────────┬───────────┘
+                                │
+                ┌───────────────┼───────────────┐
+                │               │               │
+                │ uses          │ produces      │
+                ▼               ▼               │
+    ┌───────────────────────┐  ┌───────────────────────┐
+    │ IBNO085Transport      │  │   SensorEvent         │
+    │  (Interface)          │  │  ─────────────────    │
+    │  ─────────────────    │  │  • sensor             │
+    │  • open()             │  │  • timestamp          │
+    │  • read()             │  │  • data (union)       │
+    │  • write()            │  │  • toEuler()          │
+    │  • getTimeUs()        │  └───────────────────────┘
+    └───────────┬───────────┘
+                │
+                │ YOU MUST IMPLEMENT ⚠️
+                │ (plug in your hardware)
+                │
+    ┌───────────┴───────────┐
+    │                       │
+    ▼                       ▼
+┌─────────────────────┐  ┌─────────────────────┐
+│  Your I2C Transport │  │  Your SPI Transport │
+│  (You implement)    │  │  (You implement)    │
+│  ─────────────────  │  │  ─────────────────  │
+│  • open()           │  │  • open()           │
+│  • read()           │  │  • read()           │
+│  • write()          │  │  • write()          │
+│  • getTimeUs()      │  │  • getTimeUs()      │
+│                     │  │                     │
+│  Uses your MCU's    │  │  Uses your MCU's    │
+│  I²C driver         │  │  SPI driver         │
+└─────────────────────┘  └─────────────────────┘
+```
+
+The BNO085 class shields your app from the gritty SH-2/SHTP details, while IBNO085Transport shields it from your hardware. **You must implement your own transport class** (I2C, SPI, or UART) that inherits from `IBNO085Transport` and plugs into the BNO085 driver.
 
 ## Library Structure 🗂️
 
@@ -229,7 +269,7 @@ struct from C) to read bytes from the serial port and either create a dedicated
 `setRvcCallback()` and call `serviceRvc()` in your loop to parse incoming
 frames.
 See [`src/rvc/README.md`](src/rvc/README.md) for full details and a complete
-example. A minimal program is provided in `examples/RVC_Basic.cpp`.
+example. ESP32 examples are provided in [`examples/esp32/main/`](examples/esp32/main/).
 
 ## Firmware Update (DFU) 📦
 
