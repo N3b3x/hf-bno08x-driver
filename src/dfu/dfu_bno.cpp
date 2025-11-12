@@ -37,9 +37,9 @@
 
 // --- Forward Declarations -----------------------------------------------
 
-static int sendAppSize(IDfuTransport *pHal, uint32_t appSize);
-static int sendPktSize(IDfuTransport *pHal, uint8_t packetLen);
-static int sendPkt(IDfuTransport *pHal, uint8_t *pData, uint32_t len);
+static int sendAppSize(IDfuTransport* pHal, uint32_t appSize);
+static int sendPktSize(IDfuTransport* pHal, uint8_t packetLen);
+static int sendPkt(IDfuTransport* pHal, uint8_t* pData, uint32_t len);
 
 // --- Private Data -------------------------------------------------------
 
@@ -48,14 +48,14 @@ uint32_t totalRetries;
 
 // --- Public API ---------------------------------------------------------
 
-int dfu(IDfuTransport &transport, const HcBin_t &fw) {
+int dfu(IDfuTransport& transport, const HcBin_t& fw) {
   int rc;
   int status = SH2_OK;
   uint32_t appLen = 0;
   uint8_t packetLen = 0;
   uint32_t offset = 0;
-  const char *s = 0;
-  IDfuTransport *pHal = &transport;
+  const char* s = 0;
+  IDfuTransport* pHal = &transport;
 
   // Open the hcbin object
   rc = fw.open();
@@ -164,18 +164,20 @@ end:
   return status;
 }
 
-int dfu(IDfuTransport &transport) { return dfu(transport, firmware); }
+int dfu(IDfuTransport& transport) {
+  return dfu(transport, firmware);
+}
 
 // --- Private utility functions --------------------------------------------------------------
 
-static void write32be(uint8_t *buf, uint32_t value) {
+static void write32be(uint8_t* buf, uint32_t value) {
   *buf++ = (value >> 24) & 0xFF;
   *buf++ = (value >> 16) & 0xFF;
   *buf++ = (value >> 8) & 0xFF;
   *buf++ = (value >> 0) & 0xFF;
 }
 
-static void appendCrc(uint8_t *packet, uint8_t len) {
+static void appendCrc(uint8_t* packet, uint8_t len) {
   uint16_t crc;
   uint16_t x;
 
@@ -201,7 +203,7 @@ static void appendCrc(uint8_t *packet, uint8_t len) {
 #define DFU_SEND_TIMEOUT_US (100000)
 
 // I/O Utility functions
-static int dfuSend(IDfuTransport *pHal, uint8_t *pData, uint32_t len) {
+static int dfuSend(IDfuTransport* pHal, uint8_t* pData, uint32_t len) {
   unsigned int retries = 0;
   int status = SH2_OK;
   uint8_t ack = 0;
@@ -263,21 +265,21 @@ static int dfuSend(IDfuTransport *pHal, uint8_t *pData, uint32_t len) {
   return status;
 }
 
-static int sendAppSize(IDfuTransport *pHal, uint32_t appSize) {
+static int sendAppSize(IDfuTransport* pHal, uint32_t appSize) {
   write32be(dfuBuff, appSize);
   appendCrc(dfuBuff, 4);
 
   return dfuSend(pHal, dfuBuff, 6);
 }
 
-static int sendPktSize(IDfuTransport *pHal, uint8_t packetLen) {
+static int sendPktSize(IDfuTransport* pHal, uint8_t packetLen) {
   dfuBuff[0] = packetLen;
   appendCrc(dfuBuff, 1);
 
   return dfuSend(pHal, dfuBuff, 3);
 }
 
-static int sendPkt(IDfuTransport *pHal, uint8_t *pData, uint32_t len) {
+static int sendPkt(IDfuTransport* pHal, uint8_t* pData, uint32_t len) {
   memcpy(dfuBuff, pData, len);
   appendCrc(dfuBuff, len);
 

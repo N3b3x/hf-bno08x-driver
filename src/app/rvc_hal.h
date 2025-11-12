@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-RvcHalC_t *rvc_hal_init(void);
+RvcHalC_t* rvc_hal_init(void);
 
 #ifdef __cplusplus
 }

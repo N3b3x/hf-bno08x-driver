@@ -25,5 +25,5 @@ public:
    * event was read, 0 when no event is available yet and a negative
    * value on error.
    */
-  virtual int read(rvc_SensorEvent_t *event) = 0;
+  virtual int read(rvc_SensorEvent_t* event) = 0;
 };

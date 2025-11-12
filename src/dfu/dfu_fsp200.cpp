@@ -107,7 +107,7 @@ typedef enum {
 } DfuState_t;
 
 // DFU State machine message handler typedef
-typedef DfuState_t (*DfuMsgHdlr_t)(uint8_t *payload, uint16_t len);
+typedef DfuState_t (*DfuMsgHdlr_t)(uint8_t* payload, uint16_t len);
 
 // DFU State machine timeout handler typedef
 typedef DfuState_t (*DfuTimeoutHdlr_t)(void);
@@ -121,12 +121,12 @@ typedef struct {
 
 // DFU data
 typedef struct {
-  IDfuTransport *pHal;
-  void *pShtp;
+  IDfuTransport* pHal;
+  void* pShtp;
 
   int status;
   bool firmwareOpened;
-  const HcBin_t *firmware;
+  const HcBin_t* firmware;
   uint32_t appLen;
 
   uint16_t wordOffset; // offset of next 32-bit word to write
@@ -214,7 +214,7 @@ static void openFirmware() {
   }
 }
 
-static uint32_t getU32(uint8_t *payload, unsigned offset) {
+static uint32_t getU32(uint8_t* payload, unsigned offset) {
   uint32_t value = 0;
 
   value = (payload[offset]) + (payload[offset + 1] << 8) + (payload[offset + 2] << 16) +
@@ -223,7 +223,7 @@ static uint32_t getU32(uint8_t *payload, unsigned offset) {
   return value;
 }
 
-static uint16_t getU16(uint8_t *payload, unsigned offset) {
+static uint16_t getU16(uint8_t* payload, unsigned offset) {
   uint16_t value = 0;
 
   value = (payload[offset]) + (payload[offset + 1] << 8);
@@ -231,7 +231,7 @@ static uint16_t getU16(uint8_t *payload, unsigned offset) {
   return value;
 }
 
-static uint8_t getU8(uint8_t *payload, unsigned offset) {
+static uint8_t getU8(uint8_t* payload, unsigned offset) {
   uint16_t value = 0;
 
   value = payload[offset];
@@ -255,7 +255,7 @@ static void requestUpgrade(void) {
   req.reportId = ID_OPMODE_REQ;
   req.opMode = OPMODE_UPGRADE;
 
-  shtp_send(dfu_.pShtp, CHAN_BOOTLOADER_CONTROL, (uint8_t *)&req, sizeof(req));
+  shtp_send(dfu_.pShtp, CHAN_BOOTLOADER_CONTROL, (uint8_t*)&req, sizeof(req));
 }
 
 static void requestProdId(void) {
@@ -264,10 +264,10 @@ static void requestProdId(void) {
   req.reportId = ID_PRODID_REQ;
   req.reserved1 = 0;
 
-  shtp_send(dfu_.pShtp, CHAN_BOOTLOADER_CONTROL, (uint8_t *)&req, sizeof(req));
+  shtp_send(dfu_.pShtp, CHAN_BOOTLOADER_CONTROL, (uint8_t*)&req, sizeof(req));
 }
 
-static DfuState_t handleInitStatus(uint8_t *payload, uint16_t len) {
+static DfuState_t handleInitStatus(uint8_t* payload, uint16_t len) {
   // Only process ID_STATUS_RESP
   uint8_t reportId = payload[0];
   if (reportId != ID_STATUS_RESP)
@@ -292,7 +292,7 @@ static DfuState_t handleInitStatus(uint8_t *payload, uint16_t len) {
   return nextState;
 }
 
-static DfuState_t handleProdId(uint8_t *payload, uint16_t len) {
+static DfuState_t handleProdId(uint8_t* payload, uint16_t len) {
   // Only process ID_STATUS_RESP
   uint8_t reportId = payload[0];
   if (reportId != ID_PRODID_RESP)
@@ -341,10 +341,10 @@ static void requestWrite(void) {
   dfu_.firmware->getAppData(req.data, dfu_.wordOffset * 4, dfu_.writeLen * 4);
 
   int writeLen = dfu_.writeLen * 4 + 4;
-  shtp_send(dfu_.pShtp, CHAN_BOOTLOADER_CONTROL, (uint8_t *)&req, writeLen);
+  shtp_send(dfu_.pShtp, CHAN_BOOTLOADER_CONTROL, (uint8_t*)&req, writeLen);
 }
 
-static DfuState_t handleModeResponse(uint8_t *payload, uint16_t len) {
+static DfuState_t handleModeResponse(uint8_t* payload, uint16_t len) {
   // Only process mode reponse
   uint8_t reportId = payload[0];
   if (reportId != ID_OPMODE_RESP)
@@ -366,7 +366,7 @@ static DfuState_t handleModeResponse(uint8_t *payload, uint16_t len) {
   return nextState;
 }
 
-static DfuState_t handleUpgradeStatusResponse(uint8_t *payload, uint16_t len) {
+static DfuState_t handleUpgradeStatusResponse(uint8_t* payload, uint16_t len) {
   // Only process status reponse
   uint8_t reportId = payload[0];
   if (reportId != ID_STATUS_RESP)
@@ -392,7 +392,7 @@ static DfuState_t handleUpgradeStatusResponse(uint8_t *payload, uint16_t len) {
   return nextState;
 }
 
-static DfuState_t handleWriteResponse(uint8_t *payload, uint16_t len) {
+static DfuState_t handleWriteResponse(uint8_t* payload, uint16_t len) {
   // Only process mode reponse
   uint8_t reportId = payload[0];
   if (reportId != ID_WRITE_RESP)
@@ -428,10 +428,10 @@ static void requestLaunch(void) {
   req.reportId = ID_OPMODE_REQ;
   req.opMode = OPMODE_APPLICATION;
 
-  shtp_send(dfu_.pShtp, CHAN_BOOTLOADER_CONTROL, (uint8_t *)&req, sizeof(req));
+  shtp_send(dfu_.pShtp, CHAN_BOOTLOADER_CONTROL, (uint8_t*)&req, sizeof(req));
 }
 
-static DfuState_t handleFinalStatus(uint8_t *payload, uint16_t len) {
+static DfuState_t handleFinalStatus(uint8_t* payload, uint16_t len) {
   // Only process mode reponse
   uint8_t reportId = payload[0];
   if (reportId != ID_STATUS_RESP)
@@ -454,7 +454,7 @@ static DfuState_t handleFinalStatus(uint8_t *payload, uint16_t len) {
   return nextState;
 }
 
-static DfuState_t handleLaunchResp(uint8_t *payload, uint16_t len) {
+static DfuState_t handleLaunchResp(uint8_t* payload, uint16_t len) {
   // Only process mode reponse
   uint8_t reportId = payload[0];
   if (reportId != ID_OPMODE_RESP)
@@ -485,7 +485,7 @@ static DfuState_t handleLaunchTimeout() {
   return ST_FINISHED;
 }
 
-static DfuState_t handleFinishedResp(uint8_t *payload, uint16_t len) {
+static DfuState_t handleFinishedResp(uint8_t* payload, uint16_t len) {
   // Does nothing, ignores messages.
   return dfu_.state;
 }
@@ -507,9 +507,9 @@ DfuTransition_t dfuStates[] = {
     {handleFinishedResp, handleGeneralTimeout, 0}               // ST_FINISHED
 };
 
-static void hdlr(void *cookie, uint8_t *payload, uint16_t len, uint32_t timestamp) {
+static void hdlr(void* cookie, uint8_t* payload, uint16_t len, uint32_t timestamp) {
   // Find entry for the current state.
-  DfuTransition_t *tr = &dfuStates[dfu_.state];
+  DfuTransition_t* tr = &dfuStates[dfu_.state];
 
   // Pass this message through state-specific handler
   dfu_.state = tr->msgHdlr(payload, len);
@@ -521,7 +521,7 @@ static void hdlr(void *cookie, uint8_t *payload, uint16_t len, uint32_t timestam
 
 static void timeout() {
   // Find entry for the current state.
-  DfuTransition_t *tr = &dfuStates[dfu_.state];
+  DfuTransition_t* tr = &dfuStates[dfu_.state];
 
   // Pass this message through state-specific handler
   dfu_.state = tr->timeoutHdlr();
@@ -534,7 +534,7 @@ static void timeout() {
 // ------------------------------------------------------------------------
 // Public API
 
-int dfu(IDfuTransport &transport, const HcBin_t &fw) {
+int dfu(IDfuTransport& transport, const HcBin_t& fw) {
   uint32_t start_us;
   uint32_t now_us;
 
@@ -590,4 +590,6 @@ fin:
   return dfu_.status;
 }
 
-int dfu(IDfuTransport &transport) { return dfu(transport, firmware); }
+int dfu(IDfuTransport& transport) {
+  return dfu(transport, firmware);
+}

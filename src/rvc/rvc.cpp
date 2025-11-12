@@ -22,27 +22,31 @@
 #include "rvc.h"
 
 /// Pointer to the active HAL implementation.
-static IRvcHal *g_hal = nullptr;
+static IRvcHal* g_hal = nullptr;
 /// Adapter used when a C style HAL is supplied.
 struct CAdapterHal : IRvcHal {
-  RvcHalC_t *c;
-  explicit CAdapterHal(RvcHalC_t *h) : c(h) {}
-  int open() override { return c->open ? c->open(c->ctx) : RVC_ERR; }
+  RvcHalC_t* c;
+  explicit CAdapterHal(RvcHalC_t* h) : c(h) {}
+  int open() override {
+    return c->open ? c->open(c->ctx) : RVC_ERR;
+  }
   void close() override {
     if (c->close)
       c->close(c->ctx);
   }
-  int read(rvc_SensorEvent_t *e) override { return c->read ? c->read(c->ctx, e) : RVC_ERR; }
+  int read(rvc_SensorEvent_t* e) override {
+    return c->read ? c->read(c->ctx, e) : RVC_ERR;
+  }
 };
 static CAdapterHal c_adapter(nullptr);
 
-static rvc_Callback_t *pRvcCallback = nullptr;
-void *rvcCookie = nullptr;
+static rvc_Callback_t* pRvcCallback = nullptr;
+void* rvcCookie = nullptr;
 
 rvc_SensorEvent_t sensorEvent;
 
 // initialize RVC subsystem
-int rvc_init(IRvcHal *hal) {
+int rvc_init(IRvcHal* hal) {
   g_hal = hal;
   // Clear callback registration
   pRvcCallback = nullptr;
@@ -52,7 +56,7 @@ int rvc_init(IRvcHal *hal) {
 }
 
 // initialize using a C style HAL
-int rvc_init_c(RvcHalC_t *hal) {
+int rvc_init_c(RvcHalC_t* hal) {
   c_adapter.c = hal;
   if (hal)
     return rvc_init(&c_adapter);
@@ -60,7 +64,7 @@ int rvc_init_c(RvcHalC_t *hal) {
 }
 
 // register a sensor callback function with the RVC subsystem
-int rvc_setCallback(rvc_Callback_t *pCallback, void *cookie) {
+int rvc_setCallback(rvc_Callback_t* pCallback, void* cookie) {
   pRvcCallback = pCallback;
   rvcCookie = cookie;
 
@@ -108,7 +112,7 @@ void rvc_service() {
 
 // Convert from SensorEvent (integer, fixed-point representation)
 // to SensorValue (float, degrees and g's)
-void rvc_decode(rvc_SensorValue_t *value, const rvc_SensorEvent_t *event) {
+void rvc_decode(rvc_SensorValue_t* value, const rvc_SensorEvent_t* event) {
   value->index = event->index;
   value->yaw_deg = 0.01 * event->yaw;
   value->pitch_deg = 0.01 * event->pitch;

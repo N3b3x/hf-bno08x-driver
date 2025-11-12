@@ -21,7 +21,7 @@ using namespace std;
 /**
  * @brief Construct the driver with an optional transport.
  */
-BNO085::BNO085(IBNO085Transport *transport) : io(transport) {}
+BNO085::BNO085(IBNO085Transport* transport) : io(transport) {}
 
 /**
  * @brief Initialise using the transport passed to the constructor.
@@ -35,7 +35,7 @@ bool BNO085::begin() {
 /**
  * @brief Initialise using the given transport instance.
  */
-bool BNO085::begin(IBNO085Transport *transport) {
+bool BNO085::begin(IBNO085Transport* transport) {
   io = transport;
   if (!io)
     return false;
@@ -91,20 +91,26 @@ bool BNO085::disableSensor(BNO085Sensor sensor) {
 }
 
 /** Set a callback for incoming sensor events. */
-void BNO085::setCallback(SensorCallback cb) { callback = cb; }
+void BNO085::setCallback(SensorCallback cb) {
+  callback = cb;
+}
 
 /** Set a callback for decoded RVC frames. */
-void BNO085::setRvcCallback(RvcCallback cb) { rvcCb = cb; }
+void BNO085::setRvcCallback(RvcCallback cb) {
+  rvcCb = cb;
+}
 
 /** Check if new data is available for a sensor. */
-bool BNO085::hasNewData(BNO085Sensor sensor) const { return newFlag[static_cast<uint8_t>(sensor)]; }
+bool BNO085::hasNewData(BNO085Sensor sensor) const {
+  return newFlag[static_cast<uint8_t>(sensor)];
+}
 
 /** Retrieve the most recent event for a sensor. */
 SensorEvent BNO085::getLatest(BNO085Sensor sensor) const {
   SensorEvent out{};
   out.sensor = sensor;
   auto id = static_cast<uint8_t>(sensor);
-  const auto &val = latest[id];
+  const auto& val = latest[id];
   out.timestamp = val.timestamp;
   uint8_t accuracy = val.status & 0x03;
   switch (sensor) {
@@ -175,7 +181,7 @@ void BNO085::update() {
 }
 
 /** Begin processing RVC frames. */
-bool BNO085::beginRvc(IRvcHal *hal) {
+bool BNO085::beginRvc(IRvcHal* hal) {
   rvc.setHal(hal);
   if (rvc.setCallback(rvcC, this) != RVC_OK)
     return false;
@@ -183,55 +189,59 @@ bool BNO085::beginRvc(IRvcHal *hal) {
 }
 
 /** Poll for RVC frames. */
-void BNO085::serviceRvc() { rvc.service(); }
+void BNO085::serviceRvc() {
+  rvc.service();
+}
 
 /** Stop RVC frame processing. */
-void BNO085::closeRvc() { rvc.close(); }
+void BNO085::closeRvc() {
+  rvc.close();
+}
 
 /// @private
-int BNO085::halOpen(sh2_Hal_t *self) {
-  auto *t = reinterpret_cast<TransportHal *>(self);
+int BNO085::halOpen(sh2_Hal_t* self) {
+  auto* t = reinterpret_cast<TransportHal*>(self);
   return t->transport->open() ? SH2_OK : SH2_ERR;
 }
 
 /// @private
-void BNO085::halClose(sh2_Hal_t *self) {
-  auto *t = reinterpret_cast<TransportHal *>(self);
+void BNO085::halClose(sh2_Hal_t* self) {
+  auto* t = reinterpret_cast<TransportHal*>(self);
   t->transport->close();
 }
 
 /// @private
-int BNO085::halRead(sh2_Hal_t *self, uint8_t *buf, unsigned len, uint32_t *t) {
-  auto *th = reinterpret_cast<TransportHal *>(self);
+int BNO085::halRead(sh2_Hal_t* self, uint8_t* buf, unsigned len, uint32_t* t) {
+  auto* th = reinterpret_cast<TransportHal*>(self);
   int ret = th->transport->read(buf, len);
   *t = th->transport->getTimeUs();
   return ret;
 }
 
 /// @private
-int BNO085::halWrite(sh2_Hal_t *self, uint8_t *buf, unsigned len) {
-  auto *th = reinterpret_cast<TransportHal *>(self);
+int BNO085::halWrite(sh2_Hal_t* self, uint8_t* buf, unsigned len) {
+  auto* th = reinterpret_cast<TransportHal*>(self);
   return th->transport->write(buf, len);
 }
 
 /// @private
-uint32_t BNO085::halGetTimeUs(sh2_Hal_t *self) {
-  auto *th = reinterpret_cast<TransportHal *>(self);
+uint32_t BNO085::halGetTimeUs(sh2_Hal_t* self) {
+  auto* th = reinterpret_cast<TransportHal*>(self);
   return th->transport->getTimeUs();
 }
 
 /// @private
-void BNO085::sensorC(void *cookie, sh2_SensorEvent_t *event) {
-  static_cast<BNO085 *>(cookie)->handleSensorEvent(event);
+void BNO085::sensorC(void* cookie, sh2_SensorEvent_t* event) {
+  static_cast<BNO085*>(cookie)->handleSensorEvent(event);
 }
 
 /// @private
-void BNO085::asyncC(void *cookie, sh2_AsyncEvent_t *event) {
-  static_cast<BNO085 *>(cookie)->handleAsyncEvent(event);
+void BNO085::asyncC(void* cookie, sh2_AsyncEvent_t* event) {
+  static_cast<BNO085*>(cookie)->handleAsyncEvent(event);
 }
 
 /** Internal handler for decoded sensor events. */
-void BNO085::handleSensorEvent(const sh2_SensorEvent_t *event) {
+void BNO085::handleSensorEvent(const sh2_SensorEvent_t* event) {
   sh2_SensorValue_t value;
   sh2_decodeSensorEvent(&value, event);
   uint8_t id = value.sensorId;
@@ -246,7 +256,7 @@ void BNO085::handleSensorEvent(const sh2_SensorEvent_t *event) {
 }
 
 /** React to asynchronous sensor events (e.g. reset). */
-void BNO085::handleAsyncEvent(const sh2_AsyncEvent_t *event) {
+void BNO085::handleAsyncEvent(const sh2_AsyncEvent_t* event) {
   if (event->eventId == SH2_RESET) {
     for (uint8_t id = 0; id < lastInterval.size(); ++id) {
       if (lastInterval[id]) {
@@ -320,14 +330,14 @@ void BNO085::selectInterface(BNO085Interface iface) {
 }
 
 /** Convenience wrapper to run DFU using this instance's transport. */
-int BNO085::dfu(const HcBin_t &fw) {
+int BNO085::dfu(const HcBin_t& fw) {
   HalTransport t(halWrapper.asHal());
   return ::dfu(t, fw);
 }
 
 /// @private
-void BNO085::rvcC(void *cookie, rvc_SensorEvent_t *ev) {
-  auto *self = static_cast<BNO085 *>(cookie);
+void BNO085::rvcC(void* cookie, rvc_SensorEvent_t* ev) {
+  auto* self = static_cast<BNO085*>(cookie);
   if (!self->rvcCb)
     return;
   rvc_SensorValue_t val;

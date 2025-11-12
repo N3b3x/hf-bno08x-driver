@@ -49,7 +49,6 @@ typedef struct IRvcHal IRvcHal; /**< Opaque HAL handle for C code */
 #define MR_URGENT_STATIONARY (4)
 #define MR_TIMER_STATIONARY (5)
 
-
 typedef struct rvc_SensorEvent_s {
   uint8_t index;
   int16_t yaw;
@@ -78,23 +77,23 @@ typedef struct rvc_SensorValue_s {
 
 /** C style HAL using function pointers. */
 typedef struct RvcHalC_s {
-  void *ctx;                                         /**< User supplied context */
-  int (*open)(void *ctx);                            /**< Open the interface */
-  void (*close)(void *ctx);                          /**< Close and cleanup */
-  int (*read)(void *ctx, rvc_SensorEvent_t *event);  /**< Read a frame */
+  void* ctx;                                        /**< User supplied context */
+  int (*open)(void* ctx);                           /**< Open the interface */
+  void (*close)(void* ctx);                         /**< Close and cleanup */
+  int (*read)(void* ctx, rvc_SensorEvent_t* event); /**< Read a frame */
 } RvcHalC_t;
 
-typedef void rvc_Callback_t(void *cookie, rvc_SensorEvent_t *pEvent);
+typedef void rvc_Callback_t(void* cookie, rvc_SensorEvent_t* pEvent);
 
 // Public API calls used by demo_rvc.c
 
 // Initialize the RVC sensor hub module with a HAL implementation
-int rvc_init(IRvcHal *hal);
+int rvc_init(IRvcHal* hal);
 // Initialize using a C style HAL implementation
-int rvc_init_c(RvcHalC_t *hal);
+int rvc_init_c(RvcHalC_t* hal);
 
 // Application registers callback function to receive sensor events
-int rvc_setCallback(rvc_Callback_t *callback, void *cookie);
+int rvc_setCallback(rvc_Callback_t* callback, void* cookie);
 
 // Open starts the flow of sensor events from the sensor hub.
 int rvc_open();
@@ -108,7 +107,7 @@ void rvc_close();
 void rvc_service();
 
 // Convert data from integers, fixed point to floating point, natural units.
-void rvc_decode(rvc_SensorValue_t *value, const rvc_SensorEvent_t *event);
+void rvc_decode(rvc_SensorValue_t* value, const rvc_SensorEvent_t* event);
 
 #ifdef __cplusplus
 }

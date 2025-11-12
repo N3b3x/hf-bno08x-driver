@@ -2,7 +2,7 @@
  * Copyright 2017-2021 CEVA, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License and 
+ * you may not use this file except in compliance with the License and
  * any applicable agreements you may have with CEVA, Inc.
  * You may obtain a copy of the License at
  *
@@ -25,10 +25,10 @@
 #include "sh2_hal.h"
 
 // Initialize the SHTP HAL and return a reference to it.
-sh2_Hal_t *sh2_hal_init(void);
-sh2_Hal_t *dfu_hal_init(void);
-sh2_Hal_t *fsp200_dfu_hal_init(void);
-sh2_Hal_t *fsp201_hal_init(void);
-sh2_Hal_t *fsp201_dfu_hal_init(void);
+sh2_Hal_t* sh2_hal_init(void);
+sh2_Hal_t* dfu_hal_init(void);
+sh2_Hal_t* fsp200_dfu_hal_init(void);
+sh2_Hal_t* fsp201_hal_init(void);
+sh2_Hal_t* fsp201_dfu_hal_init(void);
 
 #endif

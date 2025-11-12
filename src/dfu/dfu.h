@@ -31,7 +31,7 @@
  * @param transport Hardware transport implementation.
  * @return Err code from sh2_err.h indicating DFU result.
  */
-int dfu(IDfuTransport &transport, const HcBin_t &firmware);
-int dfu(IDfuTransport &transport);
+int dfu(IDfuTransport& transport, const HcBin_t& firmware);
+int dfu(IDfuTransport& transport);
 
 #endif

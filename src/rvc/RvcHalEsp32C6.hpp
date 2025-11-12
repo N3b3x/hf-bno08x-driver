@@ -35,9 +35,11 @@ public:
     return RVC_OK;
   }
 
-  void close() override { uart_driver_delete(_port); }
+  void close() override {
+    uart_driver_delete(_port);
+  }
 
-  int read(rvc_SensorEvent_t *event) override {
+  int read(rvc_SensorEvent_t* event) override {
     uint8_t c;
     while (uart_read_bytes(_port, &c, 1, 0) == 1) {
       process(c);
@@ -60,7 +62,7 @@ private:
   size_t _len{0};
   bool _ready{false};
 
-  static bool checksum(const uint8_t *f) {
+  static bool checksum(const uint8_t* f) {
     uint8_t check = 0;
     for (int i = 2; i < FRAME_LEN - 1; ++i)
       check += f[i];
@@ -79,7 +81,7 @@ private:
     }
   }
 
-  void fillEvent(rvc_SensorEvent_t *e) {
+  void fillEvent(rvc_SensorEvent_t* e) {
     e->timestamp_uS = esp_timer_get_time();
     e->index = _frame[2];
     e->yaw = (int16_t)((_frame[4] << 8) | _frame[3]);

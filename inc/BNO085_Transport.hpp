@@ -37,19 +37,21 @@ public:
    * @param length Number of bytes to write.
    * @return Number of bytes written, or negative on error.
    */
-  virtual int write(const uint8_t *data, uint32_t length) = 0;
+  virtual int write(const uint8_t* data, uint32_t length) = 0;
   /**
    * @brief Reads data from the sensor.
    * @param data Pointer to buffer to receive data.
    * @param length Number of bytes to read.
    * @return Number of bytes read, 0 if no data, or negative on error.
    */
-  virtual int read(uint8_t *data, uint32_t length) = 0;
+  virtual int read(uint8_t* data, uint32_t length) = 0;
   /**
    * @brief Checks if new data is available.
    * @return true if data is available or if not implemented, always true.
    */
-  virtual bool dataAvailable() { return true; }
+  virtual bool dataAvailable() {
+    return true;
+  }
   /**
    * @brief Delays execution for a specified time.
    * @param ms Delay duration in milliseconds.

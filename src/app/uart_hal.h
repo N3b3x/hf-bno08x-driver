@@ -2,7 +2,7 @@
  * Copyright 2022 CEVA, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License and 
+ * you may not use this file except in compliance with the License and
  * any applicable agreements you may have with CEVA, Inc.
  * You may obtain a copy of the License at
  *
@@ -26,12 +26,12 @@
 #include <stdbool.h>
 
 typedef struct uart_hal_s {
-    sh2_Hal_t sh2_hal;       // Must be first so we can cast (sh2_hal_t *) to (uart_hal_t *)
-    bool dfu;
+  sh2_Hal_t sh2_hal; // Must be first so we can cast (sh2_hal_t *) to (uart_hal_t *)
+  bool dfu;
 } uart_hal_t;
 
-sh2_Hal_t *shtp_uart_hal_init(uart_hal_t *pHal, bool dfu);
+sh2_Hal_t* shtp_uart_hal_init(uart_hal_t* pHal, bool dfu);
 
-sh2_Hal_t *bno_dfu_uart_hal_init(uart_hal_t *pHal, bool dfu);
+sh2_Hal_t* bno_dfu_uart_hal_init(uart_hal_t* pHal, bool dfu);
 
 #endif

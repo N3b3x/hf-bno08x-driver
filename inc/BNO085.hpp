@@ -122,10 +122,10 @@ struct SensorEvent {
 };
 
 /** Callback type invoked when a new ::SensorEvent is received. */
-using SensorCallback = std::function<void(const SensorEvent &)>;
+using SensorCallback = std::function<void(const SensorEvent&)>;
 
 /** Callback type for decoded RVC frames. */
-using RvcCallback = std::function<void(const rvc_SensorValue_t &)>;
+using RvcCallback = std::function<void(const rvc_SensorValue_t&)>;
 
 /**
  * @class BNO085
@@ -142,12 +142,12 @@ public:
    * @param transport Transport used for communication. May be nullptr and
    *        supplied later to begin().
    */
-  explicit BNO085(IBNO085Transport *transport = nullptr);
+  explicit BNO085(IBNO085Transport* transport = nullptr);
 
   /** Initialize the sensor using the transport passed in the constructor. */
   bool begin();
   /** Initialize the sensor with the specified transport. */
-  bool begin(IBNO085Transport *transport);
+  bool begin(IBNO085Transport* transport);
 
   /**
    * @brief Enable periodic reporting for a sensor.
@@ -166,7 +166,7 @@ public:
   void setRvcCallback(RvcCallback cb);
 
   /** Begin processing in RVC mode using the given HAL. */
-  bool beginRvc(IRvcHal *hal);
+  bool beginRvc(IRvcHal* hal);
   /** Poll the UART and dispatch any pending RVC frames. */
   void serviceRvc();
   /** Stop RVC processing. */
@@ -181,7 +181,9 @@ public:
   void update();
 
   /** Retrieve the last error code returned by the SH-2 driver. */
-  int getLastError() const { return lastError; }
+  int getLastError() const {
+    return lastError;
+  }
 
   /**
    * @brief Toggle the sensor's hardware reset line if available.
@@ -210,39 +212,41 @@ public:
    * @param fw Firmware image to write.
    * @return SH2 status code from the DFU routine.
    */
-  int dfu(const HcBin_t &fw = firmware);
+  int dfu(const HcBin_t& fw = firmware);
 
 private:
   /**
    * @brief Internal wrapper converting ::IBNO085Transport to the SH-2 HAL.
    */
   struct TransportHal {
-    sh2_Hal_t *asHal() { return &hal; }
+    sh2_Hal_t* asHal() {
+      return &hal;
+    }
     sh2_Hal_t hal;                        ///< SH-2 HAL structure
-    IBNO085Transport *transport{nullptr}; ///< User provided transport
+    IBNO085Transport* transport{nullptr}; ///< User provided transport
   } halWrapper{};
 
   /// @name SH-2 HAL callbacks
   /// @{
-  static int halOpen(sh2_Hal_t *self);
-  static void halClose(sh2_Hal_t *self);
-  static int halRead(sh2_Hal_t *self, uint8_t *buf, unsigned len, uint32_t *t);
-  static int halWrite(sh2_Hal_t *self, uint8_t *buf, unsigned len);
-  static uint32_t halGetTimeUs(sh2_Hal_t *self);
+  static int halOpen(sh2_Hal_t* self);
+  static void halClose(sh2_Hal_t* self);
+  static int halRead(sh2_Hal_t* self, uint8_t* buf, unsigned len, uint32_t* t);
+  static int halWrite(sh2_Hal_t* self, uint8_t* buf, unsigned len);
+  static uint32_t halGetTimeUs(sh2_Hal_t* self);
   /// @}
 
   /// C trampoline for sensor callbacks
-  static void sensorC(void *cookie, sh2_SensorEvent_t *event);
+  static void sensorC(void* cookie, sh2_SensorEvent_t* event);
   /// C trampoline for async callbacks
-  static void asyncC(void *cookie, sh2_AsyncEvent_t *event);
+  static void asyncC(void* cookie, sh2_AsyncEvent_t* event);
   /// C trampoline for RVC frames
-  static void rvcC(void *cookie, rvc_SensorEvent_t *event);
+  static void rvcC(void* cookie, rvc_SensorEvent_t* event);
 
-  void handleSensorEvent(const sh2_SensorEvent_t *event);
-  void handleAsyncEvent(const sh2_AsyncEvent_t *event);
+  void handleSensorEvent(const sh2_SensorEvent_t* event);
+  void handleAsyncEvent(const sh2_AsyncEvent_t* event);
   bool configure(BNO085Sensor sensor, uint32_t intervalUs, float sensitivity, uint32_t batchUs = 0);
 
-  IBNO085Transport *io{nullptr};
+  IBNO085Transport* io{nullptr};
   SensorCallback callback{};
   int lastError{0};
   bool initialized{false};
