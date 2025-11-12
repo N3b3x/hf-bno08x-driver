@@ -16,8 +16,8 @@ var searchData=
   ['opmoderequest_5ft_13',['OpModeRequest_t',['../structOpModeRequest__t.html',1,'']]],
   ['opprodidrequest_5ft_14',['OpProdIdRequest_t',['../structOpProdIdRequest__t.html',1,'']]],
   ['opstatus_15',['opStatus',['../structsh2__s.html#aee69e8527c7d857504c21146527def2f',1,'sh2_s']]],
-  ['orientation_20viewer_16',['Example Application: Orientation Viewer',['../md_docs_2BNO085__Complete__Guide.html#autotoc_md55',1,'']]],
+  ['orientation_20viewer_16',['Example Application: Orientation Viewer',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/docs/BNO085_Complete_Guide.md#autotoc_md59',1,'']]],
   ['output_5fsection_5findicator_17',['output_section_indicator',['../TestFramework_8h.html#a0b263a245b65a247ab95a28992b8cc4c',1,'TestFramework.h']]],
   ['outtransfer_18',['outTransfer',['../structshtp__s.html#ab132225015f06b27dda4693bef3df3f8',1,'shtp_s']]],
-  ['overview_19',['Overview',['../md_docs_2BNO085__Complete__Guide.html#autotoc_md42',1,'']]]
+  ['overview_19',['Overview',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/docs/BNO085_Complete_Guide.md#autotoc_md46',1,'']]]
 ];
