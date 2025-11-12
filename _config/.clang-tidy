@@ -92,7 +92,7 @@ Checks: |
   
   # Disable cognitive complexity check (can be too strict for some codebases)
   -readability-function-cognitive-complexity
-  
+
   # Disable diagnostic errors for missing headers (expected in CI without full ESP-IDF environment)
   # These errors occur because clang-tidy can't find ESP-IDF headers without compile_commands.json
   -clang-diagnostic-error

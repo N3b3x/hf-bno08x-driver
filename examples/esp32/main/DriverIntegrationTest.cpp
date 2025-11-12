@@ -51,7 +51,7 @@ static constexpr bool ENABLE_ERROR_HANDLING_TESTS = true;
 
 static std::unique_ptr<Esp32Bno08xBus> g_transport;
 static std::unique_ptr<BNO085> g_imu;
-static TestResults g_test_results;  // Required by TestFramework.h
+static TestResults g_test_results; // Required by TestFramework.h
 
 //=============================================================================
 // TEST HELPER FUNCTIONS
