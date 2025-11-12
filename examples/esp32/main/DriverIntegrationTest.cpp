@@ -442,14 +442,18 @@ extern "C" void app_main(void) {
     );
 
     // Print test summary
-    g_test_results.print_summary(TAG);
+    print_test_summary(g_test_results, "BNO08x", TAG);
+
+    // Blink GPIO14 to indicate completion
+    output_section_indicator(5);
 
     // Cleanup
     cleanup_test_progress_indicator();
 
     ESP_LOGI(TAG, "Test suite completed");
-    ESP_LOGI(TAG, "Restarting in 5 seconds...");
-    vTaskDelay(pdMS_TO_TICKS(5000));
-    esp_restart();
+
+    while (true) {
+        vTaskDelay(pdMS_TO_TICKS(10000));
+    }
 }
 
