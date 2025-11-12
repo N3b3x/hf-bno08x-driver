@@ -36,6 +36,7 @@ jobs:
       # Doxygen Configuration
       # =============================================================================
       doxygen_config: "_config/Doxyfile"
+      doxygen_working_directory: "."
 
       # =============================================================================
       # Jekyll Configuration
