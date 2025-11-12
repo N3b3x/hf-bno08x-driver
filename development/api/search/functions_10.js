@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['test_5ftask_5ftrampoline_0',['test_task_trampoline',['../TestFramework_8h.html#ae0c6ad85cd439fc16572fe4b495e5479',1,'TestFramework.h']]]
+  ['update_0',['update',['../classBNO085.html#a4c6c7130f0965a343113fbf2d84eceee',1,'BNO085']]]
 ];

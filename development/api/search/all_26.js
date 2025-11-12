@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['📘_0',['HF-BNO08x Documentation 📘',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/docs/index.md#autotoc_md82',1,'']]]
+  ['🙏_0',['Acknowledgements 🙏',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md#autotoc_md35',1,'']]]
 ];

@@ -1,12 +1,10 @@
 var searchData=
 [
-  ['badtxchan_0',['badTxChan',['../structshtp__s.html#ace528fbe999845a41d827784a2197907',1,'shtp_s']]],
-  ['basetimestampref_5ft_1',['BaseTimestampRef_t',['../sh2_8c.html#a3ef0cfa8cd5c905571bd55d59d6f8c51',1,'sh2.c']]],
-  ['batchbufferbytes_2',['batchBufferBytes',['../structsh2__SensorMetadata.html#aa1293a54cfd9fa291848fa223182ab64',1,'sh2_SensorMetadata']]],
-  ['batchinterval_5fus_3',['batchInterval_us',['../structsh2__SensorConfig.html#a0dcc308ef363ca84d6849566d0fda882',1,'sh2_SensorConfig']]],
-  ['batchinterval_5fus_4',['batchInterval_uS',['../sh2_8c.html#a6f1573aa18bca2faf4f4bc6917cca639',1,'sh2.c']]],
-  ['biasx_5',['biasX',['../structsh2__GyroscopeUncalibrated.html#a3d1632eef762991783ae04f0da832bda',1,'sh2_GyroscopeUncalibrated::biasX'],['../structsh2__MagneticFieldUncalibrated.html#a646bc3e832596aef337df4ea2764c052',1,'sh2_MagneticFieldUncalibrated::biasX']]],
-  ['biasy_6',['biasY',['../structsh2__GyroscopeUncalibrated.html#ac48b0be794fc92656b09418a09d452fb',1,'sh2_GyroscopeUncalibrated::biasY'],['../structsh2__MagneticFieldUncalibrated.html#a49c21770c2ad380fef63fd7ff8d7d1cb',1,'sh2_MagneticFieldUncalibrated::biasY']]],
-  ['biasz_7',['biasZ',['../structsh2__GyroscopeUncalibrated.html#acefdc37092168a89cea6aa4cd5e0b084',1,'sh2_GyroscopeUncalibrated::biasZ'],['../structsh2__MagneticFieldUncalibrated.html#a643d5f594bb8a078990b83292687fd41',1,'sh2_MagneticFieldUncalibrated::biasZ']]],
-  ['blocksize_8',['blockSize',['../sh2_8c.html#a9f86aef0c314d97ac673fdec5c7affbf',1,'sh2.c']]]
+  ['data_0',['data',['../structWriteRequest__t.html#ae200921c87668f69aa10e6a21f90a07d',1,'WriteRequest_t']]],
+  ['detected_1',['detected',['../structSensorEvent.html#a3092021165f76aee6ff1ad92324236a2',1,'SensorEvent']]],
+  ['device_5faddress_2',['device_address',['../structEsp32Bno08xBus_1_1I2CConfig.html#af8ccd9438a8e1f3fbe8808c4d96d2d85',1,'Esp32Bno08xBus::I2CConfig']]],
+  ['dfubuff_3',['dfuBuff',['../dfu__bno_8cpp.html#ae8fa60448aee32a0e3b249e523cac465',1,'dfu_bno.cpp']]],
+  ['dfustates_4',['dfuStates',['../dfu__fsp200_8cpp.html#aa33d380fb8eef197045f9b27431e910d',1,'dfu_fsp200.cpp']]],
+  ['direction_5',['direction',['../structTapEvent.html#a2253a59536df9b7389266d6393f87780',1,'TapEvent']]],
+  ['doubletap_6',['doubleTap',['../structTapEvent.html#a38a4f4ad0a4a97f9fba3d7f2175a486e',1,'TapEvent']]]
 ];

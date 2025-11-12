@@ -1,12 +1,7 @@
 var searchData=
 [
-  ['v5_20x_0',['ESP32 🚀 (ESP-IDF v5.x)',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md#autotoc_md27',1,'']]],
-  ['value_1',['value',['../structHcbinMetadata.html#a766849b533b8fc5a88a39deffbea8e1d',1,'HcbinMetadata::value'],['../structsh2__Pressure.html#a9b23994138543adde56f8f71c26086b2',1,'sh2_Pressure::value'],['../structsh2__AmbientLight.html#a61f19f16e534be0ce2bfe3dd101d0100',1,'sh2_AmbientLight::value'],['../structsh2__Humidity.html#aadb8e57302538e7ab3f76970037cdc7b',1,'sh2_Humidity::value'],['../structsh2__Proximity.html#afa0667b1b24dc472f7c5010913a8ed54',1,'sh2_Proximity::value'],['../structsh2__Temperature.html#a376b021f2d0182b29692c980e4905e0a',1,'sh2_Temperature::value']]],
-  ['vector_2',['vector',['../structSensorEvent.html#a8c2354749dcfa8711c7aa27386e3fd1e',1,'SensorEvent']]],
-  ['vector3_3',['Vector3',['../structVector3.html',1,'']]],
-  ['vendorid_4',['vendorId',['../structsh2__SensorMetadata.html#a0ec3f293cc766c63ea9a7266fe0c78b0',1,'sh2_SensorMetadata']]],
-  ['vendoridlen_5',['vendorIdLen',['../structsh2__SensorMetadata.html#a6171d226bd70404baa912c70d1d86969',1,'sh2_SensorMetadata']]],
-  ['version_6',['version',['../structsh2__s.html#a8f623038023fd17dba5cf95cc7af1a65',1,'sh2_s']]],
-  ['version_201_204_200_7',['Version 1.4.0',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/sh2/README.md#autotoc_md12',1,'']]],
-  ['viewer_8',['Example Application: Orientation Viewer',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/docs/BNO085_Complete_Guide.md#autotoc_md59',1,'']]]
+  ['_7eesp32bno08xbus_0',['~Esp32Bno08xBus',['../classEsp32Bno08xBus.html#a0ca47b0b23e78650eb2e101b7b54a2d1',1,'Esp32Bno08xBus']]],
+  ['_7eibno085transport_1',['~IBNO085Transport',['../classIBNO085Transport.html#af2009ec894923ff1cefcf28307cf1089',1,'IBNO085Transport']]],
+  ['_7eidfutransport_2',['~IDfuTransport',['../classIDfuTransport.html#ae1582c47c302f0b9a0c6f2037146e244',1,'IDfuTransport']]],
+  ['_7eirvchal_3',['~IRvcHal',['../classIRvcHal.html#aa654faedf0427d16a802b5bfdb6656fb',1,'IRvcHal']]]
 ];

@@ -1,32 +1,27 @@
 <map id="src/dfu/dfu_fsp200.cpp" name="src/dfu/dfu_fsp200.cpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="330,5,499,31"/>
-<area shape="rect" id="Node000002" href="$dfu_8h.html" title=" " alt="" coords="355,79,410,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="412,32,396,67,391,65,407,30"/>
-<area shape="rect" id="Node000003" href="$HcBin_8h.html" title="API Definition for HcBin objects (Hillcrest Binary Files)." alt="" coords="397,152,469,177"/>
-<area shape="poly" id="edge8_Node000001_Node000003" title=" " alt="" coords="419,30,425,78,433,138,428,139,420,79,414,31"/>
-<area shape="rect" id="Node000005" href="$IDfuTransport_8hpp.html" title=" " alt="" coords="157,152,294,177"/>
-<area shape="poly" id="edge9_Node000001_Node000005" title=" " alt="" coords="386,33,344,53,300,81,268,111,243,142,239,139,264,108,297,77,341,49,384,28"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="299,225,365,251"/>
-<area shape="poly" id="edge17_Node000001_Node000006" title=" " alt="" coords="394,33,367,52,345,80,333,114,328,149,331,212,325,212,323,149,328,112,340,77,364,49,391,29"/>
-<area shape="rect" id="Node000008" href="$firmware_8h.html" title=" " alt="" coords="486,79,578,104"/>
-<area shape="poly" id="edge10_Node000001_Node000008" title=" " alt="" coords="435,28,502,69,500,74,432,33"/>
-<area shape="rect" id="Node000009" href="$sh2__err_8h.html" title="Type definitions for the SH2 API." alt="" coords="602,79,683,104"/>
-<area shape="poly" id="edge12_Node000001_Node000009" title=" " alt="" coords="452,28,593,72,592,77,451,33"/>
-<area shape="rect" id="Node000010" href="$shtp_8h.html" title=" " alt="" coords="70,152,133,177"/>
-<area shape="poly" id="edge13_Node000001_Node000010" title=" " alt="" coords="385,33,268,81,136,148,133,143,266,76,383,28"/>
-<area shape="rect" id="Node000012" title=" " alt="" coords="708,79,775,104"/>
-<area shape="poly" id="edge18_Node000001_Node000012" title=" " alt="" coords="472,28,695,76,694,81,471,33"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="393,103,419,139,415,142,389,106"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="358,106,264,149,262,144,356,102"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="183,299,254,324"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="431,179,412,215,397,235,379,253,353,270,324,284,269,303,267,298,322,279,350,266,376,249,393,232,407,212,426,176"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="244,175,305,215,302,220,241,180"/>
-<area shape="rect" id="Node000007" href="$sh2__hal_8h.html" title=" " alt="" coords="163,225,274,251"/>
-<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="227,178,224,212,218,212,222,177"/>
-<area shape="poly" id="edge7_Node000007_Node000004" title=" " alt="" coords="221,251,221,285,216,285,216,251"/>
-<area shape="poly" id="edge11_Node000008_Node000003" title=" " alt="" coords="518,106,462,146,459,142,515,102"/>
-<area shape="poly" id="edge14_Node000010_Node000004" title=" " alt="" coords="109,176,127,210,153,249,194,288,190,292,149,252,122,213,104,179"/>
-<area shape="poly" id="edge16_Node000010_Node000007" title=" " alt="" coords="122,175,189,216,186,220,119,180"/>
-<area shape="rect" id="Node000011" title=" " alt="" coords="5,225,88,251"/>
-<area shape="poly" id="edge15_Node000010_Node000011" title=" " alt="" coords="94,179,66,216,62,213,90,176"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="174,5,343,31"/>
+<area shape="rect" id="Node000002" href="$dfu_8h.html" title=" " alt="" coords="140,79,195,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="246,33,195,72,192,68,242,29"/>
+<area shape="rect" id="Node000003" href="$HcBin_8h.html" title="API Definition for HcBin objects (Hillcrest Binary Files)." alt="" coords="12,152,84,177"/>
+<area shape="poly" id="edge7_Node000001_Node000003" title=" " alt="" coords="174,31,77,50,38,64,14,80,8,94,11,110,29,140,25,143,6,111,3,94,10,77,35,59,76,45,173,26"/>
+<area shape="rect" id="Node000005" href="$IDfuTransport_8hpp.html" title=" " alt="" coords="108,152,246,177"/>
+<area shape="poly" id="edge8_Node000001_Node000005" title=" " alt="" coords="254,32,193,141,188,139,249,30"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="250,225,317,251"/>
+<area shape="poly" id="edge13_Node000001_Node000006" title=" " alt="" coords="262,31,283,211,278,211,257,31"/>
+<area shape="rect" id="Node000008" href="$firmware_8h.html" title=" " alt="" coords="24,79,116,104"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="229,33,115,76,113,71,227,28"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="322,79,403,104"/>
+<area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="277,28,335,68,332,73,274,33"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="427,79,490,104"/>
+<area shape="poly" id="edge12_Node000001_Node000010" title=" " alt="" coords="291,28,415,72,413,77,290,33"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="514,79,581,104"/>
+<area shape="poly" id="edge14_Node000001_Node000011" title=" " alt="" coords="306,28,502,76,500,81,305,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="150,106,81,147,78,142,147,102"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="172,104,176,138,171,139,167,105"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="12,225,83,251"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="50,178,50,212,45,212,45,178"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="196,175,257,215,254,220,193,180"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="115,225,226,251"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="179,178,175,212,170,212,173,177"/>
+<area shape="poly" id="edge10_Node000008_Node000003" title=" " alt="" coords="69,105,58,140,53,138,64,104"/>
 </map>

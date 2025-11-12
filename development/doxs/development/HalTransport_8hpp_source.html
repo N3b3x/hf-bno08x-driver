@@ -90,42 +90,42 @@ $(function() { codefold.init(0); });
 <div class="foldopen" id="foldopen00008" data-start="{" data-end="};">
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="classHalTransport.html">    8</a></span><span class="keyword">class </span><a class="code hl_class" href="classHalTransport.html">HalTransport</a> : <span class="keyword">public</span> <a class="code hl_class" href="classIDfuTransport.html">IDfuTransport</a> {</div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="classHalTransport.html#a140ca7179a8154d1a236b1774b130693">   10</a></span>  <span class="keyword">explicit</span> <a class="code hl_function" href="classHalTransport.html#a140ca7179a8154d1a236b1774b130693">HalTransport</a>(<a class="code hl_struct" href="structsh2__Hal__s.html">sh2_Hal_t</a>* hal) : hal_(hal) {}</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="classHalTransport.html#a140ca7179a8154d1a236b1774b130693">   10</a></span>  <span class="keyword">explicit</span> <a class="code hl_function" href="classHalTransport.html#a140ca7179a8154d1a236b1774b130693">HalTransport</a>(sh2_Hal_t* hal) : hal_(hal) {}</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
 <div class="foldopen" id="foldopen00012" data-start="{" data-end="}">
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="classHalTransport.html#addbf3fd564d482cadcdca41ce0087866">   12</a></span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classHalTransport.html#addbf3fd564d482cadcdca41ce0087866">open</a>()<span class="keyword"> override </span>{</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keywordflow">return</span> hal_-&gt;<a class="code hl_variable" href="structsh2__Hal__s.html#af04e4c6ac3660022a04a7798499ed501">open</a>(hal_);</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keywordflow">return</span> hal_-&gt;open(hal_);</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>  }</div>
 </div>
 <div class="foldopen" id="foldopen00015" data-start="{" data-end="}">
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classHalTransport.html#a5ebf54eb93a51e6786da21e35e7547f0">   15</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classHalTransport.html#a5ebf54eb93a51e6786da21e35e7547f0">close</a>()<span class="keyword"> override </span>{</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    hal_-&gt;<a class="code hl_variable" href="structsh2__Hal__s.html#aa6a173ce9f285706a1e2a11cf8f17323">close</a>(hal_);</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    hal_-&gt;close(hal_);</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  }</div>
 </div>
 <div class="foldopen" id="foldopen00018" data-start="{" data-end="}">
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classHalTransport.html#a79a05fe6c074d90658b1a31a64e0b8b7">   18</a></span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classHalTransport.html#a79a05fe6c074d90658b1a31a64e0b8b7">read</a>(uint8_t* data, <span class="keywordtype">unsigned</span> len, uint32_t* timestamp)<span class="keyword"> override </span>{</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keywordflow">return</span> hal_-&gt;<a class="code hl_variable" href="structsh2__Hal__s.html#a2bd60dfd2d5b515e513ee0668b88a150">read</a>(hal_, data, len, timestamp);</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keywordflow">return</span> hal_-&gt;read(hal_, data, len, timestamp);</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  }</div>
 </div>
 <div class="foldopen" id="foldopen00021" data-start="{" data-end="}">
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="classHalTransport.html#a70da82cc79646bb5815b7c7329c989fc">   21</a></span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classHalTransport.html#a70da82cc79646bb5815b7c7329c989fc">write</a>(<span class="keyword">const</span> uint8_t* data, <span class="keywordtype">unsigned</span> len)<span class="keyword"> override </span>{</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="comment">// sh2 HAL uses non-const pointer</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordflow">return</span> hal_-&gt;<a class="code hl_variable" href="structsh2__Hal__s.html#a87f2bd03d3184f6731e8505591a3d6c2">write</a>(hal_, <span class="keyword">const_cast&lt;</span>uint8_t*<span class="keyword">&gt;</span>(data), len);</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordflow">return</span> hal_-&gt;write(hal_, <span class="keyword">const_cast&lt;</span>uint8_t*<span class="keyword">&gt;</span>(data), len);</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  }</div>
 </div>
 <div class="foldopen" id="foldopen00025" data-start="{" data-end="}">
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classHalTransport.html#aef35514a651f508acd3e9c7f11d90149">   25</a></span>  uint32_t <a class="code hl_function" href="classHalTransport.html#aef35514a651f508acd3e9c7f11d90149">getTimeUs</a>()<span class="keyword"> override </span>{</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordflow">return</span> hal_-&gt;<a class="code hl_variable" href="structsh2__Hal__s.html#a6cf5330620ce23aa7a4c9a73bbdfeee9">getTimeUs</a>(hal_);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordflow">return</span> hal_-&gt;getTimeUs(hal_);</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  }</div>
 </div>
 <div class="foldopen" id="foldopen00028" data-start="{" data-end="}">
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classHalTransport.html#a6f0e5fe70d6d791bd6295a00968989e0">   28</a></span>  <a class="code hl_struct" href="structsh2__Hal__s.html">sh2_Hal_t</a>* <a class="code hl_function" href="classHalTransport.html#a6f0e5fe70d6d791bd6295a00968989e0">nativeHal</a>()<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classHalTransport.html#a6f0e5fe70d6d791bd6295a00968989e0">   28</a></span>  sh2_Hal_t* <a class="code hl_function" href="classHalTransport.html#a6f0e5fe70d6d791bd6295a00968989e0">nativeHal</a>()<span class="keyword"> override </span>{</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordflow">return</span> hal_;</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  }</div>
 </div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  <a class="code hl_struct" href="structsh2__Hal__s.html">sh2_Hal_t</a>* hal_;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  sh2_Hal_t* hal_;</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>};</div>
 </div>
 <div class="ttc" id="aIDfuTransport_8hpp_html"><div class="ttname"><a href="IDfuTransport_8hpp.html">IDfuTransport.hpp</a></div></div>
@@ -138,12 +138,6 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aclassHalTransport_html_addbf3fd564d482cadcdca41ce0087866"><div class="ttname"><a href="classHalTransport.html#addbf3fd564d482cadcdca41ce0087866">HalTransport::open</a></div><div class="ttdeci">int open() override</div><div class="ttdef"><b>Definition</b> HalTransport.hpp:12</div></div>
 <div class="ttc" id="aclassHalTransport_html_aef35514a651f508acd3e9c7f11d90149"><div class="ttname"><a href="classHalTransport.html#aef35514a651f508acd3e9c7f11d90149">HalTransport::getTimeUs</a></div><div class="ttdeci">uint32_t getTimeUs() override</div><div class="ttdef"><b>Definition</b> HalTransport.hpp:25</div></div>
 <div class="ttc" id="aclassIDfuTransport_html"><div class="ttname"><a href="classIDfuTransport.html">IDfuTransport</a></div><div class="ttdoc">Abstract interface for DFU hardware access.</div><div class="ttdef"><b>Definition</b> IDfuTransport.hpp:15</div></div>
-<div class="ttc" id="astructsh2__Hal__s_html"><div class="ttname"><a href="structsh2__Hal__s.html">sh2_Hal_s</a></div><div class="ttdef"><b>Definition</b> sh2_hal.h:50</div></div>
-<div class="ttc" id="astructsh2__Hal__s_html_a2bd60dfd2d5b515e513ee0668b88a150"><div class="ttname"><a href="structsh2__Hal__s.html#a2bd60dfd2d5b515e513ee0668b88a150">sh2_Hal_s::read</a></div><div class="ttdeci">int(* read)(sh2_Hal_t *self, uint8_t *pBuffer, unsigned len, uint32_t *t_us)</div><div class="ttdef"><b>Definition</b> sh2_hal.h:78</div></div>
-<div class="ttc" id="astructsh2__Hal__s_html_a6cf5330620ce23aa7a4c9a73bbdfeee9"><div class="ttname"><a href="structsh2__Hal__s.html#a6cf5330620ce23aa7a4c9a73bbdfeee9">sh2_Hal_s::getTimeUs</a></div><div class="ttdeci">uint32_t(* getTimeUs)(sh2_Hal_t *self)</div><div class="ttdef"><b>Definition</b> sh2_hal.h:96</div></div>
-<div class="ttc" id="astructsh2__Hal__s_html_a87f2bd03d3184f6731e8505591a3d6c2"><div class="ttname"><a href="structsh2__Hal__s.html#a87f2bd03d3184f6731e8505591a3d6c2">sh2_Hal_s::write</a></div><div class="ttdeci">int(* write)(sh2_Hal_t *self, uint8_t *pBuffer, unsigned len)</div><div class="ttdef"><b>Definition</b> sh2_hal.h:91</div></div>
-<div class="ttc" id="astructsh2__Hal__s_html_aa6a173ce9f285706a1e2a11cf8f17323"><div class="ttname"><a href="structsh2__Hal__s.html#aa6a173ce9f285706a1e2a11cf8f17323">sh2_Hal_s::close</a></div><div class="ttdeci">void(* close)(sh2_Hal_t *self)</div><div class="ttdef"><b>Definition</b> sh2_hal.h:61</div></div>
-<div class="ttc" id="astructsh2__Hal__s_html_af04e4c6ac3660022a04a7798499ed501"><div class="ttname"><a href="structsh2__Hal__s.html#af04e4c6ac3660022a04a7798499ed501">sh2_Hal_s::open</a></div><div class="ttdeci">int(* open)(sh2_Hal_t *self)</div><div class="ttdef"><b>Definition</b> sh2_hal.h:56</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

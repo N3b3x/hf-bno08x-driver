@@ -1,21 +1,7 @@
 var searchData=
 [
-  ['acc_5fx_0',['acc_x',['../structrvc__SensorEvent__s.html#a3b15b7e0ec5f582cf314f7768de90500',1,'rvc_SensorEvent_s']]],
-  ['acc_5fx_5fg_1',['acc_x_g',['../structrvc__SensorValue__s.html#ad64ab52b9baeb7acc456ccd18d94d890',1,'rvc_SensorValue_s']]],
-  ['acc_5fy_2',['acc_y',['../structrvc__SensorEvent__s.html#a3909dea0c943f986a31c460e86b39f54',1,'rvc_SensorEvent_s']]],
-  ['acc_5fy_5fg_3',['acc_y_g',['../structrvc__SensorValue__s.html#a3748a9dc142a9a66a20c5ec2a5c6322a',1,'rvc_SensorValue_s']]],
-  ['acc_5fz_4',['acc_z',['../structrvc__SensorEvent__s.html#a383aa1137e2eee42e7d7b0ca3accf07b',1,'rvc_SensorEvent_s']]],
-  ['acc_5fz_5fg_5',['acc_z_g',['../structrvc__SensorValue__s.html#ab27b0b28fcc92b770fb4bcdf95e65fb9',1,'rvc_SensorValue_s']]],
-  ['accelerometer_6',['accelerometer',['../structsh2__SensorValue.html#a21ba9fec64aaa5e016faa3e0a1df8908',1,'sh2_SensorValue']]],
-  ['accepted_7',['accepted',['../structsh2__Counts.html#aeb104e3f43e550ff8075cfad084b12ed',1,'sh2_Counts']]],
-  ['accuracy_8',['accuracy',['../structsh2__RotationVectorWAcc.html#a8e50d324ba76ed99ae5d990decbcc549',1,'sh2_RotationVectorWAcc::accuracy'],['../structVector3.html#a491cb149e1ee956e6ee5ba53ebd958bd',1,'Vector3::accuracy'],['../structQuaternion.html#a9fb8e41ca4fab802dc16d5fd42188cde',1,'Quaternion::accuracy']]],
-  ['alwaysonenabled_9',['alwaysOnEnabled',['../structsh2__SensorConfig.html#aa576c98eb32059877b1b0b8f9f0a94e8',1,'sh2_SensorConfig']]],
-  ['ambientlight_10',['ambientLight',['../structsh2__SensorValue.html#ad821dd93595bf5b33408d906d5cb7096',1,'sh2_SensorValue']]],
-  ['angvelx_11',['angVelX',['../structsh2__GyroIntegratedRV.html#ac8d22a707f98dfb869659cfba0ff8edf',1,'sh2_GyroIntegratedRV::angVelX'],['../structsh2__DeadReckoningPose.html#a57c6988b22c9d8c8b4883524ae953195',1,'sh2_DeadReckoningPose::angVelX']]],
-  ['angvely_12',['angVelY',['../structsh2__GyroIntegratedRV.html#ade263b7b1d67beb5aca5b1c57c8732ea',1,'sh2_GyroIntegratedRV::angVelY'],['../structsh2__DeadReckoningPose.html#a8e2f4c075ec5ea012015e71e38402cc8',1,'sh2_DeadReckoningPose::angVelY']]],
-  ['angvelz_13',['angVelZ',['../structsh2__GyroIntegratedRV.html#a26de8322dae907a8fd6a9ddb7f651a39',1,'sh2_GyroIntegratedRV::angVelZ'],['../structsh2__DeadReckoningPose.html#a6a27e4c0f88a29300842ffeef85eeb52',1,'sh2_DeadReckoningPose::angVelZ']]],
-  ['applen_14',['appLen',['../structDfu__t.html#aaf8bbab3e92e68867e25387acd0e18a2',1,'Dfu_t']]],
-  ['arvrstabilizedgrv_15',['arvrStabilizedGRV',['../structsh2__SensorValue.html#a9882c78e71def4ad179edb2ab09619c5',1,'sh2_SensorValue']]],
-  ['arvrstabilizedrv_16',['arvrStabilizedRV',['../structsh2__SensorValue.html#a14c3bcc006c9970ad55fa9581a3d4cb8',1,'sh2_SensorValue']]],
-  ['attempted_17',['attempted',['../structsh2__Counts.html#a2bc3860f71dfff6b127d985235906266',1,'sh2_Counts']]]
+  ['c_0',['c',['../structCAdapterHal.html#a5233e7bee79b9900ec32c897605a421a',1,'CAdapterHal']]],
+  ['close_1',['close',['../structHcBin__s.html#a60b807db69b8076b30d83a6f1201834b',1,'HcBin_s::close'],['../structRvcHalC__s.html#aa5b69e8867936b41e2e700fb37646a4c',1,'RvcHalC_s::close']]],
+  ['completion_5fsemaphore_2',['completion_semaphore',['../structTestTaskContext.html#ab82bee11b198be2f2b4d6c908573ddb6',1,'TestTaskContext']]],
+  ['ctx_3',['ctx',['../structRvcHalC__s.html#a062ce2030a314977a1c44dc4687a424a',1,'RvcHalC_s']]]
 ];
