@@ -11,7 +11,7 @@ var searchData=
   ['getlatest_8',['getLatest',['../classBNO085.html#ac2e1c2c498fa206dab33bb79aba202f1',1,'BNO085']]],
   ['getmeta_9',['getMeta',['../structHcBin__s.html#a10b509899819239a4655cd9a5902dc6d',1,'HcBin_s']]],
   ['getpacketlen_10',['getPacketLen',['../structHcBin__s.html#a264c696f65faec8bb3eb994734d55527',1,'HcBin_s']]],
-  ['gettimeus_11',['getTimeUs',['../classIBNO085Transport.html#a4d0b7203288151803dc1c449b024e889',1,'IBNO085Transport::getTimeUs()'],['../classHalTransport.html#aef35514a651f508acd3e9c7f11d90149',1,'HalTransport::getTimeUs()'],['../classIDfuTransport.html#a05a8dd160d059938e37b3fd075b6365f',1,'IDfuTransport::getTimeUs()'],['../classEsp32Bno08xBus.html#a55dc594ebda45c0636268a99bb3ff2dc',1,'Esp32Bno08xBus::getTimeUs()']]],
+  ['gettimeus_11',['getTimeUs',['../classHalTransport.html#aef35514a651f508acd3e9c7f11d90149',1,'HalTransport::getTimeUs()'],['../classIDfuTransport.html#a05a8dd160d059938e37b3fd075b6365f',1,'IDfuTransport::getTimeUs()'],['../classIBNO085Transport.html#a4d0b7203288151803dc1c449b024e889',1,'IBNO085Transport::getTimeUs()'],['../classEsp32Bno08xBus.html#a55dc594ebda45c0636268a99bb3ff2dc',1,'Esp32Bno08xBus::getTimeUs()']]],
   ['getting_20started_20🏁_12',['Getting Started 🏁',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md#autotoc_md21',1,'']]],
   ['gravity_13',['Gravity',['../BNO085_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a8a88c39cef668fb55f188af09665bd40',1,'BNO085.hpp']]],
   ['guide_20🧳_14',['Porting Guide 🧳',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md#autotoc_md23',1,'']]],
