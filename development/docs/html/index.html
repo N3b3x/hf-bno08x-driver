@@ -75,9 +75,9 @@ $(function() {
   <div class="headertitle"><div class="title">DFU Framework </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_src_2dfu_2README"></a> <a class="el" href="md_docs_2index.html">⬅️ Docs Index</a></p>
+<div class="textblock"><p><a class="anchor" id="md_src_2dfu_2README"></a> <a class="el" href="index_8md.html">⬅️ Docs Index</a></p>
 <p>This folder contains a hardware agnostic implementation of the firmware update (DFU) routines. Hardware access is abstracted through the <code><a class="el" href="classIDfuTransport.html" title="Abstract interface for DFU hardware access.">IDfuTransport</a></code> C++ interface. Applications must supply an implementation of this interface for their platform and pass it to <code><a class="el" href="dfu_8h.html#a6f6ae81afbf7b6b9b446bbc9ae31e49d" title="Run DFU process using the provided transport.">dfu()</a></code>.</p>
-<p>If you are new to the sensor start with the <a class="el" href="md_docs_2BNO085__Complete__Guide.html">BNO085 Complete Guide</a>. RVC mode is covered separately in the <a class="el" href="/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/rvc/README.md#md_src_2rvc_2README">RVC guide</a>.</p>
+<p>If you are new to the sensor start with the <a class="el" href="BNO085__Complete__Guide_8md.html">BNO085 Complete Guide</a>. RVC mode is covered separately in the <a class="el" href="/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/rvc/README.md#md_src_2rvc_2README">RVC guide</a>.</p>
 <p><code><a class="el" href="classHalTransport.html" title="Adapter converting an existing sh2_Hal_t implementation to the IDfuTransport interface.">HalTransport</a></code> is provided as an adapter for the vendor supplied <code>sh2_Hal_t</code> structures so existing C HAL implementations can be used without modification.</p>
 <p>The files <code><a class="el" href="dfu__bno_8cpp.html">dfu_bno.cpp</a></code> and <code><a class="el" href="dfu__fsp200_8cpp.html">dfu_fsp200.cpp</a></code> contain the DFU logic for the supported firmware formats. Both now operate solely through the <code><a class="el" href="classIDfuTransport.html" title="Abstract interface for DFU hardware access.">IDfuTransport</a></code> interface making them independent of the underlying bus (I²C, SPI, UART, ...).</p>
 <h1><a class="anchor" id="autotoc_md1"></a>
@@ -98,7 +98,7 @@ Performing an update</h1>
 </div><!-- fragment --><p>Both DFU implementations time out after several minutes to cover slow serial links. See the source files for details if you need to adjust the timeout.</p>
 <h1><a class="anchor" id="autotoc_md2"></a>
 More information</h1>
-<p>This directory only contains minimal stub firmware images. Consult the sensor vendor for production firmware files. The <a class="el" href="README_8md.html">top-level README</a> also summarises DFU usage in the context of the full library. Additional guides are listed in the <a class="el" href="md_docs_2index.html">documentation index</a>. </p>
+<p>This directory only contains minimal stub firmware images. Consult the sensor vendor for production firmware files. The <a class="el" href="README_8md.html">top-level README</a> also summarises DFU usage in the context of the full library. Additional guides are listed in the <a class="el" href="index_8md.html">documentation index</a>. </p>
 </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"/>
 </div><!-- contents -->

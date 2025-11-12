@@ -8,5 +8,5 @@ var searchData=
   ['vendoridlen_5',['vendorIdLen',['../structsh2__SensorMetadata.html#a6171d226bd70404baa912c70d1d86969',1,'sh2_SensorMetadata']]],
   ['version_6',['version',['../structsh2__s.html#a8f623038023fd17dba5cf95cc7af1a65',1,'sh2_s']]],
   ['version_201_204_200_7',['Version 1.4.0',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/sh2/README.md#autotoc_md12',1,'']]],
-  ['viewer_8',['Example Application: Orientation Viewer',['../md_docs_2BNO085__Complete__Guide.html#autotoc_md55',1,'']]]
+  ['viewer_8',['Example Application: Orientation Viewer',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/docs/BNO085_Complete_Guide.md#autotoc_md59',1,'']]]
 ];

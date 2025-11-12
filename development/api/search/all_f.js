@@ -7,7 +7,7 @@ var searchData=
   ['len_4',['len',['../structsh2__ReportLen__s.html#ac9e02fee64321a83b8bb7db950e99013',1,'sh2_ReportLen_s::len'],['../structsh2__SensorEvent.html#a2ba0263b45b68eba8e9fbd4a32c91ea0',1,'sh2_SensorEvent::len']]],
   ['len_5fstatus_5',['len_status',['../sh2_8c.html#a6be2a2a255eae95ea245135f7a61c180',1,'sh2.c']]],
   ['length_6',['length',['../structWriteRequest__t.html#ac5d8a018d91f8e9f1bc2620cb70aa331',1,'WriteRequest_t::length'],['../sh2_8c.html#a1892eba2086d12ac2b09005aeb09ea3b',1,'length:&#160;sh2.c']]],
-  ['library_7',['Library',['../md_docs_2BNO085__Complete__Guide.html#autotoc_md48',1,'Building the Library'],['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/rvc/README.md#autotoc_md7',1,'Using the library']]],
+  ['library_7',['Library',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/docs/BNO085_Complete_Guide.md#autotoc_md52',1,'Building the Library'],['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/rvc/README.md#autotoc_md7',1,'Using the library']]],
   ['library_20🚀_8',['BNO085 C++ Sensor Library 🚀',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md#autotoc_md16',1,'']]],
   ['library_20structure_20🗂️_9',['Library Structure 🗂️',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md#autotoc_md23',1,'']]],
   ['license_20📄_10',['License 📄',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md#autotoc_md37',1,'']]],
@@ -19,5 +19,5 @@ var searchData=
   ['linvelx_16',['linVelX',['../structsh2__DeadReckoningPose.html#a8ec46fe8d2a980ccb130a11b18e5117f',1,'sh2_DeadReckoningPose']]],
   ['linvely_17',['linVelY',['../structsh2__DeadReckoningPose.html#a3a90025a851a0794af6afb9728edbf7b',1,'sh2_DeadReckoningPose']]],
   ['linvelz_18',['linVelZ',['../structsh2__DeadReckoningPose.html#ac410a1e4c95b30a83420362d9242e982',1,'sh2_DeadReckoningPose']]],
-  ['loop_19',['Loop',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md#autotoc_md32',1,'Polling Loop'],['../md_docs_2Examples.html#autotoc_md60',1,'Polling Loop']]]
+  ['loop_19',['Loop',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md#autotoc_md32',1,'Polling Loop'],['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/docs/Examples.md#autotoc_md66',1,'Polling Loop']]]
 ];

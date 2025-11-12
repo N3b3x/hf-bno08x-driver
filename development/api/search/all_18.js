@@ -13,14 +13,14 @@ var searchData=
   ['uartrvc_10',['UARTRVC',['../BNO085_8hpp.html#a1e8d3cde9f9e6ea515f5db028614f03ba0199b53c4dd041296fde19fca9713e7d',1,'BNO085.hpp']]],
   ['un_11',['un',['../structsh2__SensorValue.html#ad2c9ce19d5542221956ddde3c68e6918',1,'sh2_SensorValue']]],
   ['unknownreportids_12',['unknownReportIds',['../structsh2__s.html#a08ac26e36707d7a594987d3a71a9e8d7',1,'sh2_s']]],
-  ['update_13',['Update',['../md_docs_2FirmwareUpdate.html',1,'Firmware Update'],['../index.html#autotoc_md1',1,'Performing an update']]],
+  ['update_13',['Update',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/docs/FirmwareUpdate.md#autotoc_md70',1,'Firmware Update'],['../index.html#autotoc_md1',1,'Performing an update'],['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/docs/FirmwareUpdate.md#autotoc_md69',1,'permalink: /docs/firmware-update/']]],
   ['update_14',['update',['../classBNO085.html#a4c6c7130f0965a343113fbf2d84eceee',1,'BNO085']]],
   ['update_20dfu_20📦_15',['Firmware Update (DFU) 📦',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md#autotoc_md34',1,'']]],
-  ['usage_20examples_16',['Usage Examples',['../md_docs_2Examples.html',1,'']]],
+  ['usage_20examples_16',['Usage Examples',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/docs/Examples.md#autotoc_md64',1,'']]],
   ['usage_20examples_20💻_17',['Usage Examples 💻',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md#autotoc_md30',1,'']]],
   ['usart_2eh_18',['usart.h',['../usart_8h.html',1,'']]],
   ['use_20rvc_20mode_19',['Why use RVC mode?',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/rvc/README.md#autotoc_md4',1,'']]],
   ['user_5frecord_20',['USER_RECORD',['../sh2_8h.html#a0af9dcbca5997095f86c8fc8f1a93548',1,'sh2.h']]],
-  ['using_20cmake_21',['Using CMake',['../md_docs_2BNO085__Complete__Guide.html#autotoc_md49',1,'']]],
+  ['using_20cmake_21',['Using CMake',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/docs/BNO085_Complete_Guide.md#autotoc_md53',1,'']]],
   ['using_20the_20library_22',['Using the library',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/rvc/README.md#autotoc_md7',1,'']]]
 ];

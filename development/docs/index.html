@@ -14,9 +14,10 @@
   <style id="jtd-nav-activation">
   
 
+    .site-nav > ul.nav-list:first-child > li > a,
     
-    .site-nav > ul.nav-list:first-child > li:not(:nth-child(7)) > a,
-    .site-nav > ul.nav-list:first-child > li > ul > li a {
+    .site-nav > ul.nav-list:first-child > li > ul > li:not(:nth-child(1)) > a,
+    .site-nav > ul.nav-list:first-child > li > ul > li > ul > li a {
       background-image: none;
     }
 
@@ -25,12 +26,14 @@
       background-image: none;
     }
 
-    .site-nav > ul.nav-list:first-child > li:nth-child(7) > a {
+    .site-nav > ul.nav-list:first-child > li:nth-child(1) > ul > li:nth-child(1) > a {
       font-weight: 600;
       text-decoration: none;
-    }.site-nav > ul.nav-list:first-child > li:nth-child(7) > button svg {
+    }.site-nav > ul.nav-list:first-child > li:nth-child(1) > button svg,
+    .site-nav > ul.nav-list:first-child > li:nth-child(1) > ul > li:nth-child(1) > button svg {
       transform: rotate(-90deg);
-    }.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(7) > ul.nav-list {
+    }.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(1) > ul.nav-list,
+    .site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(1) > ul.nav-list > li.nav-list-item:nth-child(1) > ul.nav-list {
       display: block;
     }
   </style>
@@ -50,21 +53,21 @@
 
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>HF-BNO08x Documentation 📘 | HardFOC BNO08x Driver - development</title>
+<title>Documentation Hub | HardFOC BNO08x Driver - development</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="HF-BNO08x Documentation 📘" />
+<meta property="og:title" content="Documentation Hub" />
 <meta name="author" content="N3b3x" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="Hardware-agnostic BNO08x library for Hillcrest / CEVA BNO08x sensors with full-stack, zero-thread driver support" />
-<meta property="og:description" content="Hardware-agnostic BNO08x library for Hillcrest / CEVA BNO08x sensors with full-stack, zero-thread driver support" />
+<meta name="description" content="Complete guide to the HF-BNO08x driver library with step-by-step tutorials" />
+<meta property="og:description" content="Complete guide to the HF-BNO08x driver library with step-by-step tutorials" />
 <link rel="canonical" href="https://n3b3x.github.io/hf-bno08x-driver/development/docs/" />
 <meta property="og:url" content="https://n3b3x.github.io/hf-bno08x-driver/development/docs/" />
 <meta property="og:site_name" content="HardFOC BNO08x Driver - development" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="HF-BNO08x Documentation 📘" />
+<meta property="twitter:title" content="Documentation Hub" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"N3b3x","url":"https://github.com/n3b3x"},"description":"Hardware-agnostic BNO08x library for Hillcrest / CEVA BNO08x sensors with full-stack, zero-thread driver support","headline":"HF-BNO08x Documentation 📘","url":"https://n3b3x.github.io/hf-bno08x-driver/development/docs/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"N3b3x","url":"https://github.com/n3b3x"},"description":"Complete guide to the HF-BNO08x driver library with step-by-step tutorials","headline":"Documentation Hub","url":"https://n3b3x.github.io/hf-bno08x-driver/development/docs/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -166,7 +169,11 @@
   <nav aria-label="Main" id="site-nav" class="site-nav">
   
   
-    <ul class="nav-list"><li class="nav-list-item"><a href="/hf-bno08x-driver/development/" class="nav-list-link">HardFOC BNO08x Driver</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/AdvancedNotes.html" class="nav-list-link">Advanced Notes</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/BNO085_Complete_Guide.html" class="nav-list-link">BNO085 Complete Guide</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/examples/esp32/" class="nav-list-link">BNO08x ESP32-C6 Examples</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/FirmwareUpdate.html" class="nav-list-link">Firmware Update</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/GettingStarted.html" class="nav-list-link">Getting Started</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/" class="nav-list-link">HF-BNO08x Documentation 📘</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/HardwareWiring.html" class="nav-list-link">Hardware Wiring</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/PortingGuide.html" class="nav-list-link">Porting Guide</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/RvcMode.html" class="nav-list-link">RVC Mode</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/Examples.html" class="nav-list-link">Usage Examples</a></li></ul>
+    <ul class="nav-list"><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in HardFOC BNO08x Driver category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/hf-bno08x-driver/development/" class="nav-list-link">HardFOC BNO08x Driver</a><ul class="nav-list"><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in Documentation Hub category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/hf-bno08x-driver/development/docs/" class="nav-list-link">Documentation Hub</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/getting-started/" class="nav-list-link">Getting Started</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/hardware-wiring/" class="nav-list-link">Hardware Wiring</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/porting-guide/" class="nav-list-link">Porting Guide</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/examples/" class="nav-list-link">Usage Examples</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/rvc-mode/" class="nav-list-link">RVC Mode</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/firmware-update/" class="nav-list-link">Firmware Update (DFU)</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/advanced-notes/" class="nav-list-link">Advanced Notes</a></li></ul></li></ul></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/complete-guide/" class="nav-list-link">BNO085 Complete Guide</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/index/" class="nav-list-link">Documentation Index</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/examples/esp32/" class="nav-list-link">BNO08x ESP32-C6 Examples</a></li></ul>
   
 </nav>
 
@@ -240,60 +247,127 @@
 </div>
 
     <div class="main-content-wrap">
-      
+      <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+  <ol class="breadcrumb-nav-list">
+    <li class="breadcrumb-nav-list-item"><a href="/hf-bno08x-driver/development/">HardFOC BNO08x Driver</a></li>
+    <li class="breadcrumb-nav-list-item"><span>Documentation Hub</span></li>
+  </ol>
+</nav>
+
+
       <div id="main-content" class="main-content">
         <main>
           
-            <h1 id="hf-bno08x-documentation-">
+            <h1 id="documentation-hub-">
   
   
-    <a href="#hf-bno08x-documentation-" class="anchor-heading" aria-labelledby="hf-bno08x-documentation-"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> HF-BNO08x Documentation 📘
+    <a href="#documentation-hub-" class="anchor-heading" aria-labelledby="documentation-hub-"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Documentation Hub 📚
   
   
 </h1>
     
 
-<p>This page collects the main guides and tutorials available in the repository.</p>
+<div class="table-wrapper"><table>
+  <tbody>
+    <tr>
+      <td><a href="/hf-bno08x-driver/development/">⬅️ Main README</a></td>
+      <td><a href="/hf-bno08x-driver/development/docs/getting-started/">Next: Getting Started ➡️</a></td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p>Welcome! The table below links to the individual guides that cover each aspect
+of the HF‑BNO08x library.</p>
 
 <div class="table-wrapper"><table>
   <thead>
     <tr>
-      <th>📑 Guide</th>
+      <th>📄 Guide</th>
       <th>✨ Description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><a href="/hf-bno08x-driver/development/">Main README</a></td>
-      <td>Quick start instructions and library overview</td>
+      <td><a href="/hf-bno08x-driver/development/docs/getting-started/">Getting Started</a></td>
+      <td>Clone the repo and integrate the library in your build</td>
     </tr>
     <tr>
-      <td><a href="/hf-bno08x-driver/development/docs/BNO085_Complete_Guide.html">BNO085 Complete Guide</a></td>
-      <td>In depth details on the sensor and library usage</td>
+      <td><a href="/hf-bno08x-driver/development/docs/hardware-wiring/">Hardware Wiring</a></td>
+      <td>Connect the IMU to your board</td>
     </tr>
     <tr>
-      <td><a href="../src/rvc/README.md">RVC Mode Guide</a></td>
-      <td>Explains the lightweight Robot Vacuum Cleaner UART protocol</td>
+      <td><a href="/hf-bno08x-driver/development/docs/porting-guide/">Porting Guide</a></td>
+      <td>Implement <code class="language-plaintext highlighter-rouge">IBNO085Transport</code> on your platform</td>
     </tr>
     <tr>
-      <td><a href="../src/dfu/README.md">DFU Framework Guide</a></td>
-      <td>How to update sensor firmware using the provided DFU helpers</td>
+      <td><a href="/hf-bno08x-driver/development/docs/examples/">Usage Examples</a></td>
+      <td>Example code for common tasks</td>
     </tr>
     <tr>
-      <td><a href="/hf-bno08x-driver/development/docs/README.md">Docs Hub</a></td>
-      <td>Additional how-to guides</td>
+      <td><a href="/hf-bno08x-driver/development/docs/rvc-mode/">RVC Mode</a></td>
+      <td>Lightweight UART streaming mode</td>
+    </tr>
+    <tr>
+      <td><a href="/hf-bno08x-driver/development/docs/firmware-update/">Firmware Update</a></td>
+      <td>Update sensor firmware via DFU</td>
+    </tr>
+    <tr>
+      <td><a href="/hf-bno08x-driver/development/docs/advanced-notes/">Advanced Notes</a></td>
+      <td>Tare, power tips and pin helpers</td>
+    </tr>
+    <tr>
+      <td><a href="/hf-bno08x-driver/development/#contributing-🤝">Contributing</a></td>
+      <td>How to contribute to this repo</td>
+    </tr>
+  </tbody>
+</table></div><hr />
+
+<div class="table-wrapper"><table>
+  <tbody>
+    <tr>
+      <td><a href="/hf-bno08x-driver/development/">⬅️ Back to main README</a></td>
+      <td><a href="/hf-bno08x-driver/development/docs/getting-started/">Next: Getting Started ➡️</a></td>
     </tr>
   </tbody>
 </table></div>
 
-<p>The PDF data sheet is also available in the <a href="/hf-bno08x-driver/development/datasheet/BNO080_085-Datasheet.pdf">datasheet folder</a>.</p><hr />
-
-<p><a href="/hf-bno08x-driver/development/">⬅️ Back to repository root</a></p>
-
           
 
           
-            
+            <hr>
+<h2 class="text-delta">Table of contents</h2>
+
+<ul>
+  
+  <li>
+    <a href="/hf-bno08x-driver/development/docs/getting-started/">Getting Started</a>
+  </li>
+  
+  <li>
+    <a href="/hf-bno08x-driver/development/docs/hardware-wiring/">Hardware Wiring</a>
+  </li>
+  
+  <li>
+    <a href="/hf-bno08x-driver/development/docs/porting-guide/">Porting Guide</a>
+  </li>
+  
+  <li>
+    <a href="/hf-bno08x-driver/development/docs/examples/">Usage Examples</a>
+  </li>
+  
+  <li>
+    <a href="/hf-bno08x-driver/development/docs/rvc-mode/">RVC Mode</a>
+  </li>
+  
+  <li>
+    <a href="/hf-bno08x-driver/development/docs/firmware-update/">Firmware Update (DFU)</a>
+  </li>
+  
+  <li>
+    <a href="/hf-bno08x-driver/development/docs/advanced-notes/">Advanced Notes</a>
+  </li>
+  
+</ul>
           
         </main>
         
