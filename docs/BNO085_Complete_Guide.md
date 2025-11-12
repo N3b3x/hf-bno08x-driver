@@ -1,3 +1,12 @@
+---
+layout: default
+title: "BNO085 Complete Guide"
+description: "Comprehensive guide covering sensor details, wiring, modes, and example code"
+nav_order: 3
+has_toc: true
+permalink: /docs/complete-guide/
+---
+
 # BNO085 Complete Guide
 
 [⬅️ Docs Hub](README.md) | [Main README](../README.md)

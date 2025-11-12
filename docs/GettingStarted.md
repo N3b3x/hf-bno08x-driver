@@ -1,3 +1,13 @@
+---
+layout: default
+title: "Getting Started"
+description: "Clone the repository and integrate the library in your build"
+nav_order: 1
+parent: "Documentation Hub"
+has_toc: true
+permalink: /docs/getting-started/
+---
+
 # Getting Started
 
 [⬅️ Docs Hub](README.md) | [Next: Hardware Wiring ➡️](HardwareWiring.md)

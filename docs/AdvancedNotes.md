@@ -1,3 +1,13 @@
+---
+layout: default
+title: "Advanced Notes"
+description: "Tare, power tips, pin helpers, and advanced usage patterns"
+nav_order: 7
+parent: "Documentation Hub"
+has_toc: true
+permalink: /docs/advanced-notes/
+---
+
 # Advanced Notes
 
 [⬅️ Previous: Firmware Update](FirmwareUpdate.md) | [Docs Hub 📚](README.md)

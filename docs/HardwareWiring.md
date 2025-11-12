@@ -1,3 +1,13 @@
+---
+layout: default
+title: "Hardware Wiring"
+description: "Connect the BNO08x sensor to your MCU board"
+nav_order: 2
+parent: "Documentation Hub"
+has_toc: true
+permalink: /docs/hardware-wiring/
+---
+
 # Hardware Wiring
 
 [⬅️ Previous: Getting Started](GettingStarted.md) | [Next: Porting Guide ➡️](PortingGuide.md) | [Docs Hub 📚](README.md)

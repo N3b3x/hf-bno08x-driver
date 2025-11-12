@@ -1,3 +1,13 @@
+---
+layout: default
+title: "Firmware Update (DFU)"
+description: "Update sensor firmware via Device Firmware Update (DFU) protocol"
+nav_order: 6
+parent: "Documentation Hub"
+has_toc: true
+permalink: /docs/firmware-update/
+---
+
 # Firmware Update
 
 [⬅️ Previous: RVC Mode](RvcMode.md) | [Next: Advanced Notes ➡️](AdvancedNotes.md) | [Docs Hub 📚](README.md)

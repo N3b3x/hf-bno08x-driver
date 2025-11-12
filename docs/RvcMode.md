@@ -1,3 +1,13 @@
+---
+layout: default
+title: "RVC Mode"
+description: "Lightweight UART streaming mode for Robot Vacuum Cleaner applications"
+nav_order: 5
+parent: "Documentation Hub"
+has_toc: true
+permalink: /docs/rvc-mode/
+---
+
 # RVC Mode
 
 [⬅️ Previous: Usage Examples](Examples.md) | [Next: Firmware Update ➡️](FirmwareUpdate.md) | [Docs Hub 📚](README.md)

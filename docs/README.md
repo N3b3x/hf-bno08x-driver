@@ -1,3 +1,14 @@
+---
+layout: default
+title: "Documentation Hub"
+description: "Complete guide to the HF-BNO08x driver library with step-by-step tutorials"
+nav_order: 2
+parent: "HardFOC BNO08x Driver"
+has_children: true
+has_toc: true
+permalink: /docs/
+---
+
 # Documentation Hub 📚
 
 [⬅️ Main README](../README.md) | [Next: Getting Started ➡️](GettingStarted.md)

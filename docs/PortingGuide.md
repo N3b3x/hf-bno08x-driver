@@ -1,3 +1,13 @@
+---
+layout: default
+title: "Porting Guide"
+description: "Implement IBNO085Transport for your platform (ESP32, STM32, Arduino)"
+nav_order: 3
+parent: "Documentation Hub"
+has_toc: true
+permalink: /docs/porting-guide/
+---
+
 # Porting Guide
 
 [⬅️ Previous: Hardware Wiring](HardwareWiring.md) | [Next: Usage Examples ➡️](Examples.md) | [Docs Hub 📚](README.md)

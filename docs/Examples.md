@@ -1,3 +1,13 @@
+---
+layout: default
+title: "Usage Examples"
+description: "Example code for common tasks with the BNO08x driver"
+nav_order: 4
+parent: "Documentation Hub"
+has_toc: true
+permalink: /docs/examples/
+---
+
 # Usage Examples
 
 [⬅️ Previous: Porting Guide](PortingGuide.md) | [Next: RVC Mode ➡️](RvcMode.md) | [Docs Hub 📚](README.md)

@@ -1,3 +1,12 @@
+---
+layout: default
+title: "Documentation Index"
+description: "Complete index of all documentation guides and resources"
+nav_order: 4
+has_toc: true
+permalink: /docs/index/
+---
+
 # HF-BNO08x Documentation 📘
 
 This page collects the main guides and tutorials available in the repository.
