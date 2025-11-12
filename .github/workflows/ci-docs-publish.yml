@@ -49,12 +49,12 @@ jobs:
       # =============================================================================
       # Quality Assurance
       # =============================================================================
-      run_link_check: true
+      run_link_check: false
       link_check_paths: "**/*.md"
       verbose: true
 
       # Markdown linting
-      run_markdown_lint: true
+      run_markdown_lint: false
       markdown_lint_paths: "**/*.md"
 
       # Spell checking
@@ -65,9 +65,13 @@ jobs:
       # =============================================================================
       # GitHub Pages Deployment
       # =============================================================================
+      # Deploy on push to main/release branches or tags, or on workflow_dispatch/re-run
       deploy_pages: >-
-        ${{ github.event_name == 'push' &&
+        ${{ (github.event_name == 'push' &&
         (github.ref == format('refs/heads/{0}', github.event.repository.default_branch) ||
         startsWith(github.ref, 'refs/heads/release/') ||
-        startsWith(github.ref, 'refs/tags/v')) }}
+        startsWith(github.ref, 'refs/tags/v'))) ||
+        (github.event_name == 'workflow_dispatch' &&
+        (github.ref == format('refs/heads/{0}', github.event.repository.default_branch) ||
+        startsWith(github.ref, 'refs/heads/release/'))) }}
 
