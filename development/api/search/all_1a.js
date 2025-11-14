@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['✨_0',['Features ✨',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md#autotoc_md11',1,'']]]
+  ['✨_20features_0',['✨ Features',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md#autotoc_md12',1,'']]]
 ];

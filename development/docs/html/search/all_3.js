@@ -45,6 +45,7 @@ var searchData=
   ['dfutransition_5ft_42',['DfuTransition_t',['../structDfuTransition__t.html',1,'']]],
   ['direction_43',['direction',['../structTapEvent.html#a2253a59536df9b7389266d6393f87780',1,'TapEvent']]],
   ['disablesensor_44',['DisableSensor',['../classBNO085.html#aeca2d6e5b8f954797cec2b962828a229',1,'BNO085']]],
-  ['doubletap_45',['doubleTap',['../structTapEvent.html#a38a4f4ad0a4a97f9fba3d7f2175a486e',1,'TapEvent']]],
-  ['driver_5fintegration_5ftest_2ecpp_46',['driver_integration_test.cpp',['../driver__integration__test_8cpp.html',1,'']]]
+  ['documentation_45',['📚 Documentation',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md#autotoc_md17',1,'']]],
+  ['doubletap_46',['doubleTap',['../structTapEvent.html#a38a4f4ad0a4a97f9fba3d7f2175a486e',1,'TapEvent']]],
+  ['driver_5fintegration_5ftest_2ecpp_47',['driver_integration_test.cpp',['../driver__integration__test_8cpp.html',1,'']]]
 ];

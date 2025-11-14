@@ -1,17 +1,55 @@
-# HF-BNO08x Documentation 📘
+# HF-BNO08x Documentation
 
-This page collects the main guides and tutorials available in the repository.
+Welcome! This directory contains step-by-step guides for installing, building, and using the **HF-BNO08x** library.
 
-| 📑 Guide | ✨ Description |
-| --- | --- |
-| [Main README](../README.md) | Quick start instructions and library overview |
-| [BNO085 Complete Guide](BNO085_Complete_Guide.md) | In depth details on the sensor and library usage |
-| [RVC Mode Guide](../src/rvc/README.md) | Explains the lightweight Robot Vacuum Cleaner UART protocol |
-| [DFU Framework Guide](../src/dfu/README.md) | How to update sensor firmware using the provided DFU helpers |
-| [Docs Hub](README.md) | Additional how-to guides |
+## 📚 Documentation Structure
 
-The PDF data sheet is also available in the [datasheet folder](../datasheet/BNO080_085-Datasheet.pdf).
+### **Getting Started**
+
+1. **[🛠️ Installation](installation.md)** – Prerequisites and how to obtain the source
+2. **[⚡ Quick Start](quickstart.md)** – Minimal working example to get you running
+3. **[🔌 Hardware Setup](hardware_setup.md)** – Wiring diagrams and pin connections
+
+### **Integration**
+
+4. **[🔧 Platform Integration](platform_integration.md)** – Implement the CRTP communication interface for your platform
+5. **[⚙️ Configuration](configuration.md)** – Configuration options and settings
+
+### **Reference**
+
+6. **[📖 API Reference](api_reference.md)** – Complete API documentation
+7. **[💡 Examples](examples.md)** – Detailed example walkthroughs
+
+### **Advanced Features**
+
+8. **[🧹 RVC Mode](special_feature_rvc.md)** – Robot Vacuum Cleaner mode for simplified UART streaming
+9. **[📦 DFU (Firmware Update)](special_feature_dfu.md)** – Device Firmware Update guide
+
+### **Troubleshooting**
+
+10. **[🐛 Troubleshooting](troubleshooting.md)** – Common issues and solutions
 
 ---
 
-[⬅️ Back to repository root](../README.md)
+## 🚀 Quick Start Path
+
+**New to BNO08x?** Follow this recommended path:
+
+1. Start with **[Installation](installation.md)** to prepare your environment
+2. Follow **[Hardware Setup](hardware_setup.md)** to wire your hardware
+3. Read **[Quick Start](quickstart.md)** for a minimal working example
+4. Check **[Platform Integration](platform_integration.md)** to implement the communication interface
+5. Explore **[Examples](examples.md)** for more advanced usage
+
+---
+
+## 💡 Need Help?
+
+- **🐛 Found a bug?** Check the [Troubleshooting](troubleshooting.md) guide
+- **❓ Have questions?** Review the [API Reference](api_reference.md)
+- **📝 Want to contribute?** See the contributing guidelines in the main README
+
+---
+
+**Navigation**
+➡️ [Installation](installation.md)
