@@ -1,5 +1,5 @@
 /**
- * @file EventDrivenCallbackExample.cpp
+ * @file event_driven_callback_example.cpp
  * @brief Event-driven callback example with step counter and tap detector
  *
  * This example demonstrates:
@@ -18,8 +18,8 @@
 #include <memory>
 #include <stdio.h>
 
-#include "../../../inc/BNO085.hpp"
-#include "Esp32Bno08xBus.hpp"
+#include "../../../inc/bno08x.hpp"
+#include "esp32_bno08x_bus.hpp"
 
 static const char* TAG = "BNO08x_EventCallback";
 
@@ -67,16 +67,16 @@ extern "C" void app_main(void) {
 
   auto transport = std::make_unique<Esp32Bno08xBus>(config);
 
-  if (!transport->open()) {
+  if (!transport->Open()) {
     ESP_LOGE(TAG, "Failed to open I2C transport");
     return;
   }
 
   // Create IMU instance
-  BNO085 imu(transport.get());
+  BNO085<Esp32Bno08xBus> imu(*transport);
 
   // Initialize IMU
-  if (!imu.begin()) {
+  if (!imu.Begin()) {
     ESP_LOGE(TAG, "Failed to initialize BNO085");
     return;
   }
@@ -84,25 +84,25 @@ extern "C" void app_main(void) {
   ESP_LOGI(TAG, "BNO085 initialized successfully");
 
   // Register callback for all events
-  imu.setCallback(sensor_callback);
+  imu.SetCallback(sensor_callback);
 
   // Enable step counter (on-change events)
-  imu.enableSensor(BNO085Sensor::StepCounter, 0);
+  imu.EnableSensor(BNO085Sensor::StepCounter, 0);
 
   // Enable tap detector (event-driven)
-  imu.enableSensor(BNO085Sensor::TapDetector, 0);
+  imu.EnableSensor(BNO085Sensor::TapDetector, 0);
 
   // Enable step detector (event-driven)
-  imu.enableSensor(BNO085Sensor::StepDetector, 0);
+  imu.EnableSensor(BNO085Sensor::StepDetector, 0);
 
   // Enable shake detector (event-driven)
-  imu.enableSensor(BNO085Sensor::ShakeDetector, 0);
+  imu.EnableSensor(BNO085Sensor::ShakeDetector, 0);
 
   ESP_LOGI(TAG, "Event-driven sensors enabled. Waiting for events...");
 
   // Main loop - call update() to process events
   while (true) {
-    imu.update();                  // Process incoming events and call callbacks
+    imu.Update();                  // Process incoming events and call callbacks
     vTaskDelay(pdMS_TO_TICKS(10)); // 10ms delay
   }
 }

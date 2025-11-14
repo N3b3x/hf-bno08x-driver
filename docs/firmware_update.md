@@ -10,7 +10,7 @@ permalink: /docs/firmware-update/
 
 # Firmware Update
 
-[⬅️ Previous: RVC Mode](RvcMode.md) | [Next: Advanced Notes ➡️](AdvancedNotes.md) | [Docs Hub 📚](README.md)
+[⬅️ Previous: RVC Mode](RvcMode.md) | [Next: Advanced Notes ➡️](advanced_notes.md) | [Docs Hub 📚](README.md)
 
 The library includes DFU helpers to update the sensor firmware.
 
@@ -23,4 +23,4 @@ Timeouts are built in for slow links. See [`../src/dfu/README.md`](../src/dfu/RE
 
 ---
 
-[⬅️ Previous: RVC Mode](RvcMode.md) | [Next: Advanced Notes ➡️](AdvancedNotes.md) | [Docs Hub 📚](README.md)
+[⬅️ Previous: RVC Mode](RvcMode.md) | [Next: Advanced Notes ➡️](advanced_notes.md) | [Docs Hub 📚](README.md)

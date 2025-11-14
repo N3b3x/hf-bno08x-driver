@@ -1,19 +1,19 @@
 /**
- * @file Esp32Bno08xBus.cpp
- * @brief ESP32 I2C transport implementation for BNO08x driver
+ * @file esp32_bno08x_bus.cpp
+ * @brief ESP32 I2C communication interface implementation for BNO08x driver
  */
 
-#include "Esp32Bno08xBus.hpp"
+#include "esp32_bno08x_bus.hpp"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
 Esp32Bno08xBus::Esp32Bno08xBus(const I2CConfig& config) : config_(config) {}
 
 Esp32Bno08xBus::~Esp32Bno08xBus() {
-  close();
+  Close();
 }
 
-bool Esp32Bno08xBus::open() {
+bool Esp32Bno08xBus::Open() noexcept {
   if (initialized_) {
     ESP_LOGW(TAG, "I2C bus already initialized");
     return true;
@@ -34,7 +34,7 @@ bool Esp32Bno08xBus::open() {
   return true;
 }
 
-void Esp32Bno08xBus::close() {
+void Esp32Bno08xBus::Close() noexcept {
   if (!initialized_) {
     return;
   }
@@ -57,7 +57,7 @@ void Esp32Bno08xBus::close() {
   ESP_LOGI(TAG, "I2C bus closed");
 }
 
-int Esp32Bno08xBus::write(const uint8_t* data, uint32_t length) {
+int Esp32Bno08xBus::Write(const uint8_t* data, uint32_t length) noexcept {
   if (!initialized_) {
     ESP_LOGE(TAG, "I2C bus not initialized");
     return -1;
@@ -75,7 +75,7 @@ int Esp32Bno08xBus::write(const uint8_t* data, uint32_t length) {
   return static_cast<int>(length);
 }
 
-int Esp32Bno08xBus::read(uint8_t* data, uint32_t length) {
+int Esp32Bno08xBus::Read(uint8_t* data, uint32_t length) noexcept {
   if (!initialized_) {
     ESP_LOGE(TAG, "I2C bus not initialized");
     return -1;
@@ -93,7 +93,7 @@ int Esp32Bno08xBus::read(uint8_t* data, uint32_t length) {
   return static_cast<int>(length);
 }
 
-bool Esp32Bno08xBus::dataAvailable() {
+bool Esp32Bno08xBus::DataAvailable() noexcept {
   if (config_.int_pin == GPIO_NUM_NC) {
     // No interrupt pin configured, always return true
     return true;
@@ -104,15 +104,15 @@ bool Esp32Bno08xBus::dataAvailable() {
   return (level == 0);
 }
 
-void Esp32Bno08xBus::delay(uint32_t ms) {
+void Esp32Bno08xBus::Delay(uint32_t ms) noexcept {
   vTaskDelay(pdMS_TO_TICKS(ms));
 }
 
-uint32_t Esp32Bno08xBus::getTimeUs() {
+uint32_t Esp32Bno08xBus::GetTimeUs() noexcept {
   return static_cast<uint32_t>(esp_timer_get_time());
 }
 
-void Esp32Bno08xBus::setReset(bool state) {
+void Esp32Bno08xBus::SetReset(bool state) noexcept {
   if (config_.rst_pin == GPIO_NUM_NC) {
     return; // Reset pin not configured
   }

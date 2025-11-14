@@ -1,5 +1,5 @@
 /**
- * @file RvcModeExample.cpp
+ * @file rvc_mode_example.cpp
  * @brief RVC (Reduced Vector Computation) mode example
  *
  * This example demonstrates:
@@ -19,8 +19,9 @@
 #include <memory>
 #include <stdio.h>
 
-#include "../../../inc/BNO085.hpp"
+#include "../../../inc/bno08x.hpp"
 #include "../../../src/rvc/RvcHalEsp32C6.hpp"
+#include "esp32_bno08x_bus.hpp"
 
 static const char* TAG = "BNO08x_RvcMode";
 
@@ -38,14 +39,26 @@ extern "C" void app_main(void) {
   // Note: Configure pins/port as needed for your hardware
   Esp32C6RvcHal hal;
 
-  // Create IMU instance
-  BNO085 imu;
+  // Create transport (required for BNO085 constructor, even if not used for RVC)
+  Esp32Bno08xBus::I2CConfig config;
+  config.sda_pin = GPIO_NUM_21;
+  config.scl_pin = GPIO_NUM_22;
+  config.frequency = 400000;
+  config.device_address = 0x4A;
+  auto transport = std::make_unique<Esp32Bno08xBus>(config);
+  if (!transport->Open()) {
+    ESP_LOGE(TAG, "Failed to open transport");
+    return;
+  }
+
+  // Create IMU instance (transport required by constructor, but RVC mode uses different HAL)
+  BNO085<Esp32Bno08xBus> imu(*transport);
 
   // Set RVC callback
-  imu.setRvcCallback(on_rvc_frame);
+  imu.SetRvcCallback(on_rvc_frame);
 
   // Initialize in RVC mode
-  if (!imu.beginRvc(&hal)) {
+  if (!imu.BeginRvc(&hal)) {
     ESP_LOGE(TAG, "Failed to initialize BNO085 in RVC mode");
     return;
   }
@@ -55,7 +68,7 @@ extern "C" void app_main(void) {
 
   // Main RVC service loop
   while (true) {
-    imu.serviceRvc();              // Service RVC mode
+    imu.ServiceRvc();              // Service RVC mode
     vTaskDelay(pdMS_TO_TICKS(10)); // Small delay
   }
 }

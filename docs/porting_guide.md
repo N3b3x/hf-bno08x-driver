@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Porting Guide"
-description: "Implement IBNO085Transport for your platform (ESP32, STM32, Arduino)"
+description: "Implement CommInterface for your platform (ESP32, STM32, Arduino)"
 nav_order: 3
 parent: "Documentation Hub"
 has_toc: true
@@ -10,14 +10,14 @@ permalink: /docs/porting-guide/
 
 # Porting Guide
 
-[⬅️ Previous: Hardware Wiring](HardwareWiring.md) | [Next: Usage Examples ➡️](Examples.md) | [Docs Hub 📚](README.md)
+[⬅️ Previous: Hardware Wiring](hardware_wiring.md) | [Next: Usage Examples ➡️](examples.md) | [Docs Hub 📚](README.md)
 
-Implement `IBNO085Transport` for your platform. Below are snippets for common targets.
+Implement `bno08x::CommInterface` for your platform. Below are snippets for common targets.
 
 ## ESP32 (ESP-IDF)
 ```cpp
 #include "driver/i2c.h"
-class Esp32I2CTransport : public IBNO085Transport {
+class Esp32I2CComm : public bno08x::CommInterface<Esp32I2CComm> {
   // Provide open(), read(), write() and getTimeUs()
 };
 ```
@@ -25,7 +25,7 @@ class Esp32I2CTransport : public IBNO085Transport {
 ## Arduino
 ```cpp
 #include <Wire.h>
-class ArduinoTransport : public IBNO085Transport {
+class ArduinoComm : public bno08x::CommInterface<ArduinoComm> {
   bool open() override {
     Wire.begin();
     Wire.setClock(400000);
@@ -51,4 +51,4 @@ Use `update()` in your loop or task and enable the sensors you need with `enable
 
 ---
 
-[⬅️ Previous: Hardware Wiring](HardwareWiring.md) | [Next: Usage Examples ➡️](Examples.md) | [Docs Hub 📚](README.md)
+[⬅️ Previous: Hardware Wiring](hardware_wiring.md) | [Next: Usage Examples ➡️](examples.md) | [Docs Hub 📚](README.md)

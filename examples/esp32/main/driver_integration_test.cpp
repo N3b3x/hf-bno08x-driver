@@ -1,5 +1,5 @@
 /**
- * @file DriverIntegrationTest.cpp
+ * @file driver_integration_test.cpp
  * @brief Comprehensive Integration Test Suite for BNO08x Driver
  *
  * This is a complete integration test suite that tests all functionality
@@ -26,8 +26,8 @@
 #include <memory>
 #include <stdio.h>
 
-#include "../../../inc/BNO085.hpp"
-#include "Esp32Bno08xBus.hpp"
+#include "../../../inc/bno08x.hpp"
+#include "esp32_bno08x_bus.hpp"
 #include "TestFramework.h"
 
 static const char* TAG = "BNO08x_Test";
@@ -50,7 +50,7 @@ static constexpr bool ENABLE_ERROR_HANDLING_TESTS = true;
 //=============================================================================
 
 static std::unique_ptr<Esp32Bno08xBus> g_transport;
-static std::unique_ptr<BNO085> g_imu;
+static std::unique_ptr<BNO085<Esp32Bno08xBus>> g_imu;
 static TestResults g_test_results; // Required by TestFramework.h
 
 //=============================================================================
@@ -71,7 +71,7 @@ static bool create_test_transport() noexcept {
 
   g_transport = std::make_unique<Esp32Bno08xBus>(config);
 
-  if (!g_transport->open()) {
+  if (!g_transport->Open()) {
     ESP_LOGE(TAG, "Failed to open I2C transport");
     return false;
   }
@@ -88,9 +88,9 @@ static bool create_test_imu() noexcept {
     return false;
   }
 
-  g_imu = std::make_unique<BNO085>(g_transport.get());
+  g_imu = std::make_unique<BNO085<Esp32Bno08xBus>>(*g_transport);
 
-  if (!g_imu->begin()) {
+  if (!g_imu->Begin()) {
     ESP_LOGE(TAG, "Failed to initialize BNO085");
     return false;
   }
@@ -123,12 +123,9 @@ static bool test_initialization() noexcept {
 static bool test_initialization_failure() noexcept {
   ESP_LOGI(TAG, "Testing initialization failure handling...");
 
-  // Test with invalid transport (nullptr)
-  BNO085 test_imu(nullptr);
-  if (test_imu.begin()) {
-    ESP_LOGE(TAG, "Should have failed with nullptr transport");
-    return false;
-  }
+  // Note: With CRTP, we can't test with nullptr - transport must be valid
+  // This test is no longer applicable with CRTP design
+  ESP_LOGI(TAG, "Skipping nullptr test (not applicable with CRTP)");
 
   ESP_LOGI(TAG, "Initialization failure test passed");
   return true;
@@ -147,7 +144,7 @@ static bool test_enable_sensor() noexcept {
   }
 
   // Enable rotation vector at 50 Hz
-  g_imu->enableSensor(BNO085Sensor::RotationVector, 20);
+  g_imu->EnableSensor(BNO085Sensor::RotationVector, 20);
   vTaskDelay(pdMS_TO_TICKS(100)); // Wait for sensor to enable
 
   ESP_LOGI(TAG, "Sensor enable test passed");
@@ -163,7 +160,7 @@ static bool test_disable_sensor() noexcept {
   }
 
   // Disable rotation vector
-  g_imu->disableSensor(BNO085Sensor::RotationVector);
+  g_imu->DisableSensor(BNO085Sensor::RotationVector);
   vTaskDelay(pdMS_TO_TICKS(100)); // Wait for sensor to disable
 
   ESP_LOGI(TAG, "Sensor disable test passed");
@@ -179,9 +176,9 @@ static bool test_enable_multiple_sensors() noexcept {
   }
 
   // Enable multiple sensors
-  g_imu->enableSensor(BNO085Sensor::RotationVector, 20);
-  g_imu->enableSensor(BNO085Sensor::LinearAcceleration, 20);
-  g_imu->enableSensor(BNO085Sensor::Gyroscope, 20);
+  g_imu->EnableSensor(BNO085Sensor::RotationVector, 20);
+  g_imu->EnableSensor(BNO085Sensor::LinearAcceleration, 20);
+  g_imu->EnableSensor(BNO085Sensor::Gyroscope, 20);
   vTaskDelay(pdMS_TO_TICKS(200)); // Wait for sensors to enable
 
   ESP_LOGI(TAG, "Multiple sensor enable test passed");
@@ -201,15 +198,15 @@ static bool test_polling_rotation_vector() noexcept {
   }
 
   // Enable rotation vector
-  g_imu->enableSensor(BNO085Sensor::RotationVector, 20);
+  g_imu->EnableSensor(BNO085Sensor::RotationVector, 20);
   vTaskDelay(pdMS_TO_TICKS(200));
 
   // Poll for data
   bool data_received = false;
   for (int i = 0; i < 50; ++i) {
-    g_imu->update();
-    if (g_imu->hasNewData(BNO085Sensor::RotationVector)) {
-      auto rot = g_imu->getLatest(BNO085Sensor::RotationVector);
+    g_imu->Update();
+    if (g_imu->HasNewData(BNO085Sensor::RotationVector)) {
+      auto rot = g_imu->GetLatest(BNO085Sensor::RotationVector);
       ESP_LOGI(TAG, "Rotation Vector: w=%.3f, x=%.3f, y=%.3f, z=%.3f, accuracy=%u", rot.rotation.w,
                rot.rotation.x, rot.rotation.y, rot.rotation.z, rot.rotation.accuracy);
       data_received = true;
@@ -235,15 +232,15 @@ static bool test_polling_linear_acceleration() noexcept {
   }
 
   // Enable linear acceleration
-  g_imu->enableSensor(BNO085Sensor::LinearAcceleration, 20);
+  g_imu->EnableSensor(BNO085Sensor::LinearAcceleration, 20);
   vTaskDelay(pdMS_TO_TICKS(200));
 
   // Poll for data
   bool data_received = false;
   for (int i = 0; i < 50; ++i) {
-    g_imu->update();
-    if (g_imu->hasNewData(BNO085Sensor::LinearAcceleration)) {
-      auto accel = g_imu->getLatest(BNO085Sensor::LinearAcceleration);
+    g_imu->Update();
+    if (g_imu->HasNewData(BNO085Sensor::LinearAcceleration)) {
+      auto accel = g_imu->GetLatest(BNO085Sensor::LinearAcceleration);
       ESP_LOGI(TAG, "Linear Acceleration: x=%.3f, y=%.3f, z=%.3f m/s^2, accuracy=%u",
                accel.vector.x, accel.vector.y, accel.vector.z, accel.vector.accuracy);
       data_received = true;
@@ -284,15 +281,15 @@ static bool test_callback_mode() noexcept {
   callback_test_passed = false;
 
   // Set callback
-  g_imu->setCallback(test_callback);
+  g_imu->SetCallback(test_callback);
 
   // Enable step counter (event-driven)
-  g_imu->enableSensor(BNO085Sensor::StepCounter, 0);
+  g_imu->EnableSensor(BNO085Sensor::StepCounter, 0);
   vTaskDelay(pdMS_TO_TICKS(200));
 
   // Poll for events
   for (int i = 0; i < 50; ++i) {
-    g_imu->update();
+    g_imu->Update();
     if (callback_test_passed) {
       ESP_LOGI(TAG, "Callback test passed");
       return true;
@@ -318,29 +315,29 @@ static bool test_sensor_data_reading() noexcept {
   }
 
   // Enable multiple sensors
-  g_imu->enableSensor(BNO085Sensor::RotationVector, 20);
-  g_imu->enableSensor(BNO085Sensor::Gyroscope, 20);
-  g_imu->enableSensor(BNO085Sensor::Gravity, 20);
+  g_imu->EnableSensor(BNO085Sensor::RotationVector, 20);
+  g_imu->EnableSensor(BNO085Sensor::Gyroscope, 20);
+  g_imu->EnableSensor(BNO085Sensor::Gravity, 20);
   vTaskDelay(pdMS_TO_TICKS(200));
 
   // Poll and read data
   for (int i = 0; i < 10; ++i) {
-    g_imu->update();
+    g_imu->Update();
 
-    if (g_imu->hasNewData(BNO085Sensor::RotationVector)) {
-      auto rot = g_imu->getLatest(BNO085Sensor::RotationVector);
+    if (g_imu->HasNewData(BNO085Sensor::RotationVector)) {
+      auto rot = g_imu->GetLatest(BNO085Sensor::RotationVector);
       ESP_LOGI(TAG, "Rotation Vector: w=%.3f, x=%.3f, y=%.3f, z=%.3f", rot.rotation.w,
                rot.rotation.x, rot.rotation.y, rot.rotation.z);
     }
 
-    if (g_imu->hasNewData(BNO085Sensor::Gyroscope)) {
-      auto gyro = g_imu->getLatest(BNO085Sensor::Gyroscope);
+    if (g_imu->HasNewData(BNO085Sensor::Gyroscope)) {
+      auto gyro = g_imu->GetLatest(BNO085Sensor::Gyroscope);
       ESP_LOGI(TAG, "Gyroscope: x=%.3f, y=%.3f, z=%.3f rad/s", gyro.vector.x, gyro.vector.y,
                gyro.vector.z);
     }
 
-    if (g_imu->hasNewData(BNO085Sensor::Gravity)) {
-      auto grav = g_imu->getLatest(BNO085Sensor::Gravity);
+    if (g_imu->HasNewData(BNO085Sensor::Gravity)) {
+      auto grav = g_imu->GetLatest(BNO085Sensor::Gravity);
       ESP_LOGI(TAG, "Gravity: x=%.3f, y=%.3f, z=%.3f m/s^2", grav.vector.x, grav.vector.y,
                grav.vector.z);
     }
@@ -380,13 +377,13 @@ static bool test_error_handling() noexcept {
   }
 
   // Test reading from disabled sensor
-  if (g_imu->hasNewData(BNO085Sensor::TapDetector)) {
+  if (g_imu->HasNewData(BNO085Sensor::TapDetector)) {
     ESP_LOGW(TAG, "Unexpected data from disabled sensor");
   }
 
   // Test getting latest data from disabled sensor
   // This should handle gracefully
-  g_imu->getLatest(BNO085Sensor::TapDetector);
+  g_imu->GetLatest(BNO085Sensor::TapDetector);
 
   ESP_LOGI(TAG, "Error handling test passed");
   return true;

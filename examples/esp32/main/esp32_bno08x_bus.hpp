@@ -1,8 +1,8 @@
 /**
- * @file Esp32Bno08xBus.hpp
- * @brief ESP32 I2C transport implementation for BNO08x driver
+ * @file esp32_bno08x_bus.hpp
+ * @brief ESP32 I2C communication interface implementation for BNO08x driver
  *
- * This file provides the ESP32-specific implementation of the IBNO085Transport
+ * This file provides the ESP32-specific implementation of the CommInterface
  * interface for communicating with BNO08x IMU sensors over I2C.
  *
  * @author N3b3x
@@ -12,7 +12,7 @@
 
 #pragma once
 
-#include "../../../inc/BNO085_Transport.hpp"
+#include "../../../inc/bno08x_comm_interface.hpp"
 #include "driver/gpio.h"
 #include "driver/i2c.h"
 #include "esp_log.h"
@@ -21,12 +21,12 @@
 
 /**
  * @class Esp32Bno08xBus
- * @brief ESP32 I2C transport implementation for BNO08x driver
+ * @brief ESP32 I2C communication interface implementation for BNO08x driver
  *
- * This class implements the IBNO085Transport interface using ESP-IDF's I2C driver.
- * It supports configurable I2C pins, address, and interrupt pin.
+ * This class implements the bno08x::CommInterface interface using ESP-IDF's I2C driver
+ * with CRTP pattern. It supports configurable I2C pins, address, and interrupt pin.
  */
-class Esp32Bno08xBus : public IBNO085Transport {
+class Esp32Bno08xBus : public bno08x::CommInterface<Esp32Bno08xBus> {
 public:
   /**
    * @brief I2C configuration structure
@@ -55,18 +55,18 @@ public:
   /**
    * @brief Destructor - cleans up I2C resources
    */
-  ~Esp32Bno08xBus() override;
+  ~Esp32Bno08xBus();
 
   /**
    * @brief Open the I2C bus and initialize communication
    * @return true if successful, false otherwise
    */
-  bool open() override;
+  bool Open() noexcept;
 
   /**
    * @brief Close the I2C bus and deinitialize
    */
-  void close() override;
+  void Close() noexcept;
 
   /**
    * @brief Write data to the BNO08x sensor
@@ -74,7 +74,7 @@ public:
    * @param length Number of bytes to write
    * @return Number of bytes written, or negative on error
    */
-  int write(const uint8_t* data, uint32_t length) override;
+  int Write(const uint8_t* data, uint32_t length) noexcept;
 
   /**
    * @brief Read data from the BNO08x sensor
@@ -82,31 +82,31 @@ public:
    * @param length Number of bytes to read
    * @return Number of bytes read, 0 if no data, or negative on error
    */
-  int read(uint8_t* data, uint32_t length) override;
+  int Read(uint8_t* data, uint32_t length) noexcept;
 
   /**
    * @brief Check if new data is available
    * @return true if data is available (via interrupt pin or always true)
    */
-  bool dataAvailable() override;
+  bool DataAvailable() noexcept;
 
   /**
    * @brief Delay execution for specified time
    * @param ms Delay duration in milliseconds
    */
-  void delay(uint32_t ms) override;
+  void Delay(uint32_t ms) noexcept;
 
   /**
    * @brief Get current time in microseconds
    * @return Current time in microseconds
    */
-  uint32_t getTimeUs() override;
+  uint32_t GetTimeUs() noexcept;
 
   /**
    * @brief Control the hardware reset (RSTN) pin
    * @param state true to assert reset (low), false to release (high)
    */
-  void setReset(bool state) override;
+  void SetReset(bool state) noexcept;
 
   /**
    * @brief Get the current I2C configuration

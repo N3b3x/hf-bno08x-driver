@@ -218,10 +218,10 @@ config.rst_pin = GPIO_NUM_NC;      // Reset pin (optional)
 For more detailed documentation, see:
 
 - [Main Driver README](../../README.md)
-- [Hardware Wiring Guide](../../docs/HardwareWiring.md)
-- [Porting Guide](../../docs/PortingGuide.md)
-- [Examples Guide](../../docs/Examples.md)
-- [BNO085 Complete Guide](../../docs/BNO085_Complete_Guide.md)
+- [Hardware Wiring Guide](../../docs/hardware_wiring.md)
+- [Porting Guide](../../docs/porting_guide.md)
+- [Examples Guide](../../docs/examples.md)
+- [BNO085 Complete Guide](../../docs/bno085_complete_guide.md)
 
 ## 🐛 Troubleshooting
 

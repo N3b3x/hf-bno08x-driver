@@ -10,7 +10,7 @@ permalink: /docs/examples/
 
 # Usage Examples
 
-[⬅️ Previous: Porting Guide](PortingGuide.md) | [Next: RVC Mode ➡️](RvcMode.md) | [Docs Hub 📚](README.md)
+[⬅️ Previous: Porting Guide](porting_guide.md) | [Next: RVC Mode ➡️](RvcMode.md) | [Docs Hub 📚](README.md)
 
 ## Quick Start
 ```cpp
@@ -43,4 +43,4 @@ while (true) {
 
 ---
 
-[⬅️ Previous: Porting Guide](PortingGuide.md) | [Next: RVC Mode ➡️](RvcMode.md) | [Docs Hub 📚](README.md)
+[⬅️ Previous: Porting Guide](porting_guide.md) | [Next: RVC Mode ➡️](RvcMode.md) | [Docs Hub 📚](README.md)

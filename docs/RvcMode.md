@@ -10,7 +10,7 @@ permalink: /docs/rvc-mode/
 
 # RVC Mode
 
-[⬅️ Previous: Usage Examples](Examples.md) | [Next: Firmware Update ➡️](FirmwareUpdate.md) | [Docs Hub 📚](README.md)
+[⬅️ Previous: Usage Examples](examples.md) | [Next: Firmware Update ➡️](firmware_update.md) | [Docs Hub 📚](README.md)
 
 Some sensors expose a simplified "Robot Vacuum Cleaner" mode. To use it:
 
@@ -24,4 +24,4 @@ See [`src/rvc/README.md`](../src/rvc/README.md) and the [ESP32 examples](../exam
 
 ---
 
-[⬅️ Previous: Usage Examples](Examples.md) | [Next: Firmware Update ➡️](FirmwareUpdate.md) | [Docs Hub 📚](README.md)
+[⬅️ Previous: Usage Examples](examples.md) | [Next: Firmware Update ➡️](firmware_update.md) | [Docs Hub 📚](README.md)

@@ -88,7 +88,7 @@ The INT line can be polled or used as an interrupt. Using it allows very low‑p
 
 ## Building the Library
 
-The library requires a C++11 compiler and an implementation of `IBNO085Transport` for your hardware platform. The `src` directory contains the platform‑agnostic driver while `examples` show how to implement the transport.
+The library requires a C++11 compiler and an implementation of `bno08x::CommInterface` for your hardware platform. The `src` directory contains the platform‑agnostic driver while `examples` show how to implement the communication interface.
 
 ### Using CMake
 
@@ -103,13 +103,13 @@ target_link_libraries(myApp PRIVATE bno085)
 
 ### Arduino Sketch
 
-Copy the `src` folder into an Arduino library or use it with PlatformIO. Implement the transport with `Wire` as shown below.
+Copy the `src` folder into an Arduino library or use it with PlatformIO. Implement the communication interface with `Wire` as shown below.
 
 ```cpp
 #include <Wire.h>
 #include "BNO085.hpp"
 
-class ArduinoTransport : public IBNO085Transport {
+class ArduinoComm : public bno08x::CommInterface<ArduinoComm> {
 public:
   bool open() override { Wire.begin(); Wire.setClock(400000); delay(10); return true; }
   void close() override {}
@@ -136,7 +136,7 @@ public:
 #include "driver/i2c.h"
 #include "BNO085.hpp"
 
-class Esp32I2CTransport : public IBNO085Transport {
+class Esp32I2CComm : public bno08x::CommInterface<Esp32I2CComm> {
 public:
   bool open() override {
     i2c_config_t cfg{};
@@ -160,7 +160,7 @@ public:
 };
 ```
 
-These snippets show minimal transports; the full examples in the `examples` folder include polling loops and callbacks.
+These snippets show minimal communication interfaces; the full examples in the `examples` folder include polling loops and callbacks.
 
 ## Sensor Reports and Modes
 
@@ -233,7 +233,7 @@ if (imu.beginRvc(&hal)) {
 
 - **Calibration** – Move the sensor in a figure‑eight pattern after power‑up to achieve accuracy level 3.
 - **Tare** – Call `imu.tareNow()` to zero the orientation when the device is in your desired reference pose.
-- **DFU** – Hold **BOOTN** low during reset and use `BNO085::dfu()` along with a transport implementing `IDfuTransport` to update firmware.
+- **DFU** – Hold **BOOTN** low during reset and use `BNO085::dfu()` along with a communication interface implementing `IDfuTransport` to update firmware.
 - **Power Saving** – Disable unused reports and use the INT pin to wake the host only when needed.
 - **Host Timing** – Call `imu.update()` as often as possible. In an RTOS environment, poll when INT triggers to minimize latency.
 
@@ -243,8 +243,8 @@ if (imu.beginRvc(&hal)) {
 #include "ArduinoTransport.h" // from above example
 #include "BNO085.hpp"
 
-ArduinoTransport transport;
-BNO085 imu(&transport);
+ArduinoComm comm;
+BNO085 imu(&comm);
 
 void setup() {
   Serial.begin(115200);

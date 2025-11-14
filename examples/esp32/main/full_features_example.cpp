@@ -1,5 +1,5 @@
 /**
- * @file FullFeaturesExample.cpp
+ * @file full_features_example.cpp
  * @brief Comprehensive example demonstrating all BNO08x features
  *
  * This example demonstrates:
@@ -18,8 +18,8 @@
 #include <memory>
 #include <stdio.h>
 
-#include "../../../inc/BNO085.hpp"
-#include "Esp32Bno08xBus.hpp"
+#include "../../../inc/bno08x.hpp"
+#include "esp32_bno08x_bus.hpp"
 
 static const char* TAG = "BNO08x_FullFeatures";
 
@@ -68,16 +68,16 @@ extern "C" void app_main(void) {
 
   auto transport = std::make_unique<Esp32Bno08xBus>(config);
 
-  if (!transport->open()) {
+  if (!transport->Open()) {
     ESP_LOGE(TAG, "Failed to open I2C transport");
     return;
   }
 
   // Create IMU instance
-  BNO085 imu(transport.get());
+  BNO085<Esp32Bno08xBus> imu(*transport);
 
   // Initialize IMU
-  if (!imu.begin()) {
+  if (!imu.Begin()) {
     ESP_LOGE(TAG, "Failed to initialize BNO085");
     return;
   }
@@ -85,24 +85,24 @@ extern "C" void app_main(void) {
   ESP_LOGI(TAG, "BNO085 initialized successfully");
 
   // Register callback for event-driven sensors
-  imu.setCallback(event_callback);
+  imu.SetCallback(event_callback);
 
   // Enable a broad set of sensors
-  imu.enableSensor(BNO085Sensor::RotationVector, 10);     // 100 Hz
-  imu.enableSensor(BNO085Sensor::LinearAcceleration, 20); // 50 Hz
-  imu.enableSensor(BNO085Sensor::Gyroscope, 20);          // 50 Hz
-  imu.enableSensor(BNO085Sensor::Gravity, 50);            // 20 Hz
-  imu.enableSensor(BNO085Sensor::StepCounter, 0);         // on change
-  imu.enableSensor(BNO085Sensor::TapDetector, 0);         // gesture events
+  imu.EnableSensor(BNO085Sensor::RotationVector, 10);     // 100 Hz
+  imu.EnableSensor(BNO085Sensor::LinearAcceleration, 20); // 50 Hz
+  imu.EnableSensor(BNO085Sensor::Gyroscope, 20);          // 50 Hz
+  imu.EnableSensor(BNO085Sensor::Gravity, 50);            // 20 Hz
+  imu.EnableSensor(BNO085Sensor::StepCounter, 0);         // on change
+  imu.EnableSensor(BNO085Sensor::TapDetector, 0);         // gesture events
 
   ESP_LOGI(TAG, "All sensors enabled. Starting main loop...");
 
   // Main loop - mixes callback and polling usage
   while (true) {
-    imu.update(); // Process events and update sensor data
+    imu.Update(); // Process events and update sensor data
 
     // Example of polling for data without callback
-    if (imu.hasNewData(BNO085Sensor::Gravity)) {
+    if (imu.HasNewData(BNO085Sensor::Gravity)) {
       auto g = imu.getLatestData(BNO085Sensor::Gravity);
       ESP_LOGI(TAG, "Gravity %.2f %.2f %.2f m/s^2", g.vector.x, g.vector.y, g.vector.z);
     }

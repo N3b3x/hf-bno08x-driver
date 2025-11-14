@@ -8,7 +8,7 @@ update (DFU) routines.  Hardware access is abstracted through the
 of this interface for their platform and pass it to `dfu()`.
 
 If you are new to the sensor start with the
-[BNO085 Complete Guide](../../docs/BNO085_Complete_Guide.md). RVC mode
+[BNO085 Complete Guide](../../docs/bno085_complete_guide.md). RVC mode
 is covered separately in the [RVC guide](../rvc/README.md).
 
 `HalTransport` is provided as an adapter for the vendor supplied

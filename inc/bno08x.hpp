@@ -1,7 +1,7 @@
 #pragma once
 
 /**
- * @file BNO085.hpp
+ * @file bno08x.hpp
  * @brief High level C++ interface for the BNO08x IMU family.
  *
  * This header declares the ::BNO085 class which wraps the vendor supplied
@@ -9,7 +9,7 @@
  * sensor values in a user friendly form.
  */
 
-#include "BNO085_Transport.hpp"
+#include "bno08x_comm_interface.hpp"
 #include "dfu/HcBin.h"
 #include "dfu/firmware.h"
 #include "rvc/Rvc.hpp"
@@ -132,22 +132,25 @@ using RvcCallback = std::function<void(const rvc_SensorValue_t&)>;
  * @brief High level driver for the BNO08x IMU.
  *
  * The driver wraps the vendor SH-2 C API and exposes a simple C++ interface.
- * A platform specific transport implementing ::IBNO085Transport must be
+ * A platform specific communication interface implementing bno08x::CommInterface<Derived> must be
  * supplied to actually read and write bytes on the bus.
+ *
+ * @tparam CommType The communication interface type (must inherit from bno08x::CommInterface<CommType>)
+ *
+ * @note The driver uses CRTP-based communication interface for zero virtual call overhead.
+ *       Communication interface implementations should inherit from bno08x::CommInterface<DerivedType>.
  */
+template <typename CommType>
 class BNO085 {
 public:
   /**
-   * @brief Construct the driver with an optional transport instance.
-   * @param transport Transport used for communication. May be nullptr and
-   *        supplied later to begin().
+   * @brief Construct the driver with a communication interface instance.
+   * @param comm Communication interface used for communication (must outlive this object).
    */
-  explicit BNO085(IBNO085Transport* transport = nullptr);
+  explicit BNO085(CommType& comm) noexcept : io_(comm) {}
 
-  /** Initialize the sensor using the transport passed in the constructor. */
-  bool begin();
-  /** Initialize the sensor with the specified transport. */
-  bool begin(IBNO085Transport* transport);
+  /** Initialize the sensor using the communication interface passed in the constructor. */
+  bool Begin() noexcept;
 
   /**
    * @brief Enable periodic reporting for a sensor.
@@ -155,34 +158,34 @@ public:
    * @param intervalMs Desired report interval in milliseconds.
    * @param sensitivity Change sensitivity for on-change sensors.
    */
-  bool enableSensor(BNO085Sensor sensor, uint32_t intervalMs, float sensitivity = 0.0f);
+  bool EnableSensor(BNO085Sensor sensor, uint32_t intervalMs, float sensitivity = 0.0f);
   /** Disable reporting for a sensor. */
-  bool disableSensor(BNO085Sensor sensor);
+  bool DisableSensor(BNO085Sensor sensor);
 
   /** Register a callback invoked for every received event. */
-  void setCallback(SensorCallback cb);
+  void SetCallback(SensorCallback cb);
 
   /** Register a callback for decoded RVC frames. */
-  void setRvcCallback(RvcCallback cb);
+  void SetRvcCallback(RvcCallback cb);
 
   /** Begin processing in RVC mode using the given HAL. */
-  bool beginRvc(IRvcHal* hal);
+  bool BeginRvc(IRvcHal* hal);
   /** Poll the UART and dispatch any pending RVC frames. */
-  void serviceRvc();
+  void ServiceRvc();
   /** Stop RVC processing. */
-  void closeRvc();
+  void CloseRvc();
 
   /** Check if new data is available for a sensor. */
-  bool hasNewData(BNO085Sensor sensor) const;
+  bool HasNewData(BNO085Sensor sensor) const;
   /** Return the most recent event for a sensor. */
-  SensorEvent getLatest(BNO085Sensor sensor) const;
+  SensorEvent GetLatest(BNO085Sensor sensor) const;
 
   /** Pump the SH-2 service loop. Call this as often as possible. */
-  void update();
+  void Update();
 
   /** Retrieve the last error code returned by the SH-2 driver. */
-  int getLastError() const {
-    return lastError;
+  int GetLastError() const {
+    return last_error_;
   }
 
   /**
@@ -191,18 +194,18 @@ public:
    * Drives RSTN low for the specified time then releases it. Platforms not
    * providing the pin may leave the implementation empty.
    */
-  void hardwareReset(uint32_t lowMs = 2);
+  void HardwareReset(uint32_t lowMs = 2);
 
   /** Set the BOOTN pin level (used to enter DFU). */
-  void setBootPin(bool state);
+  void SetBootPin(bool state);
   /** Control the WAKE pin in SPI mode. */
-  void setWakePin(bool state);
+  void SetWakePin(bool state);
 
   /** Select the host interface by driving PS pins. */
-  void selectInterface(BNO085Interface iface);
+  void SelectInterface(BNO085Interface iface);
 
   /**
-   * @brief Perform a firmware update using this object's transport.
+   * @brief Perform a firmware update using this object's communication interface.
    *
    * The sensor must already be in bootloader mode (BOOTN held low during
    * reset). Provide the firmware as an `HcBin_t` object—use the default
@@ -212,18 +215,18 @@ public:
    * @param fw Firmware image to write.
    * @return SH2 status code from the DFU routine.
    */
-  int dfu(const HcBin_t& fw = firmware);
+  int Dfu(const HcBin_t& fw = firmware);
 
 private:
   /**
-   * @brief Internal wrapper converting ::IBNO085Transport to the SH-2 HAL.
+   * @brief Internal wrapper converting CommInterface to the SH-2 HAL.
    */
-  struct TransportHal {
+  struct CommHal {
     sh2_Hal_t* asHal() {
       return &hal;
     }
-    sh2_Hal_t hal;                        ///< SH-2 HAL structure
-    IBNO085Transport* transport{nullptr}; ///< User provided transport
+    sh2_Hal_t hal;                    ///< SH-2 HAL structure
+    CommType* comm{nullptr}; ///< User provided communication interface (pointer for C callbacks) - note: this is a struct member, not a class member, so no underscore needed
   } halWrapper{};
 
   /// @name SH-2 HAL callbacks
@@ -246,16 +249,21 @@ private:
   void handleAsyncEvent(const sh2_AsyncEvent_t* event);
   bool configure(BNO085Sensor sensor, uint32_t intervalUs, float sensitivity, uint32_t batchUs = 0);
 
-  IBNO085Transport* io{nullptr};
-  SensorCallback callback{};
-  int lastError{0};
-  bool initialized{false};
+  CommType& io_; ///< Communication interface reference (must outlive this object)
+  SensorCallback callback_{};
+  int last_error_{0};
+  bool initialized_{false};
 
-  std::array<sh2_SensorValue_t, 0x2B> latest{};
-  std::array<bool, 0x2B> newFlag{};
-  std::array<uint32_t, 0x2B> lastInterval{};
-  std::array<float, 0x2B> lastSensitivity{};
+  std::array<sh2_SensorValue_t, 0x2B> latest_{};
+  std::array<bool, 0x2B> new_flag_{};
+  std::array<uint32_t, 0x2B> last_interval_{};
+  std::array<float, 0x2B> last_sensitivity_{};
 
-  Rvc rvc{};
-  RvcCallback rvcCb{};
+  Rvc rvc_{};
+  RvcCallback rvc_cb_{};
 };
+
+// Include template implementation
+#define BNO085_HEADER_INCLUDED
+#include "../src/bno08x.cpp"
+#undef BNO085_HEADER_INCLUDED

@@ -10,7 +10,7 @@ permalink: /docs/advanced-notes/
 
 # Advanced Notes
 
-[⬅️ Previous: Firmware Update](FirmwareUpdate.md) | [Docs Hub 📚](README.md)
+[⬅️ Previous: Firmware Update](firmware_update.md) | [Docs Hub 📚](README.md)
 
 - Call `tareNow()` to zero the current orientation.
 - Check `event.accuracy` (0–3) before trusting heading data.
@@ -20,4 +20,4 @@ permalink: /docs/advanced-notes/
 
 ---
 
-[⬅️ Previous: Firmware Update](FirmwareUpdate.md) | [Docs Hub 📚](README.md)
+[⬅️ Previous: Firmware Update](firmware_update.md) | [Docs Hub 📚](README.md)

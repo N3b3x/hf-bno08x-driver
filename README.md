@@ -46,7 +46,7 @@ tutorial in this repository.
 10. [Contributing 🤝](#contributing-🤝)
 11. [License 📄](#license-📄)
 12. [Acknowledgements 🙏](#acknowledgements-🙏)
-13. [Complete Guide 📚](docs/BNO085_Complete_Guide.md)
+13. [Complete Guide 📚](docs/bno085_complete_guide.md)
 
 ---
 
@@ -54,7 +54,7 @@ tutorial in this repository.
 |   | Capability |
 |---|------------|
 | 🎯 **Complete Coverage** | Access every BNO085 SH-2 report: raw & calibrated IMU, rotation vectors, activity, tap/shake, step counter & more. |
-| 🛠️ **Hardware-Agnostic** | Pluggable `IBNO085Transport` interface works with any I²C, SPI or UART implementation. |
+| 🛠️ **Hardware-Agnostic** | Pluggable `CommInterface` interface works with any I²C, SPI or UART implementation. |
 | 💤 **No Internal Threads** | You control timing: call `update()` in your loop, ISR or RTOS task. |
 | 🔁 **Auto Re-Sync** | Detects sensor resets & seamlessly re-enables configured features. |
 | 🧮 **Float-Friendly API** | Handy structs (`Vector3`, `Quaternion`, `SensorEvent`) with SI units. |
@@ -87,7 +87,7 @@ tutorial in this repository.
                 │ uses          │ produces      │
                 ▼               ▼               │
     ┌───────────────────────┐  ┌───────────────────────┐
-    │ IBNO085Transport      │  │   SensorEvent         │
+    │ CommInterface         │  │   SensorEvent         │
     │  (Interface)          │  │  ─────────────────    │
     │  ─────────────────    │  │  • sensor             │
     │  • open()             │  │  • timestamp          │
@@ -103,7 +103,7 @@ tutorial in this repository.
     │                       │
     ▼                       ▼
 ┌─────────────────────┐  ┌─────────────────────┐
-│  Your I2C Transport │  │  Your SPI Transport │
+│  Your I2C Comm      │  │  Your SPI Comm      │
 │  (You implement)    │  │  (You implement)    │
 │  ─────────────────  │  │  ─────────────────  │
 │  • open()           │  │  • open()           │
@@ -116,19 +116,19 @@ tutorial in this repository.
 └─────────────────────┘  └─────────────────────┘
 ```
 
-The BNO085 class shields your app from the gritty SH-2/SHTP details, while IBNO085Transport shields it from your hardware. **You must implement your own transport class** (I2C, SPI, or UART) that inherits from `IBNO085Transport` and plugs into the BNO085 driver.
+The BNO085 class shields your app from the gritty SH-2/SHTP details, while CommInterface shields it from your hardware. **You must implement your own communication interface class** (I2C, SPI, or UART) that inherits from `bno08x::CommInterface<YourComm>` and plugs into the BNO085 driver.
 
 ## Library Structure 🗂️
 
 ```
 src/
  ├── BNO085.hpp / BNO085.cpp  - high level driver
- ├── BNO085_Transport.hpp     - transport interface to implement
+ ├── BNO085_CommInterface.hpp - communication interface to implement
  ├── sh2/                      - vendor SH-2 library (git submodule)
  ├── app/, rvc/, dfu/          - reference HAL and DFU utilities
 ```
 
-Only the `BNO085.*` files and your chosen transport implementation are required
+Only the `BNO085.*` files and your chosen communication interface implementation are required
 for normal use. The other folders provide optional examples and helper code.
 
 ## Getting Started 🏁
@@ -167,7 +167,7 @@ Tip: Use the INT line to wake your code only when data is ready – saves power 
 
 ```cpp
 #include "driver/i2c.h"
-class Esp32I2CTransport : public IBNO085Transport {
+class Esp32I2CComm : public bno08x::CommInterface<Esp32I2CComm> {
   bool open() override {
       i2c_config_t c = { .mode = I2C_MODE_MASTER,
                          .sda_io_num = 21, .scl_io_num = 22,
@@ -190,7 +190,7 @@ class Esp32I2CTransport : public IBNO085Transport {
 
 ```cpp
 extern I2C_HandleTypeDef hi2c1;
-class STM32I2CTransport : public IBNO085Transport {
+class STM32I2CComm : public bno08x::CommInterface<STM32I2CComm> {
   bool open() override { return HAL_I2C_IsDeviceReady(&hi2c1, 0x4A<<1, 3, 100)==HAL_OK; }
   int  read(uint8_t* b,size_t n) override { return HAL_I2C_Master_Receive(&hi2c1, 0x4A<<1, b,n,100)==HAL_OK?n:-1;}
   int  write(const uint8_t* b,size_t n) override { return HAL_I2C_Master_Transmit(&hi2c1,0x4A<<1,(uint8_t*)b,n,100)==HAL_OK?n:-1;}
@@ -204,7 +204,7 @@ For SPI: use HAL_SPI_TransmitReceive & toggle CS manually; tie PS0+PS1 high.
 
 ```cpp
 #include <Wire.h>
-class ArduinoTransport : public IBNO085Transport {
+class ArduinoComm : public bno08x::CommInterface<ArduinoComm> {
   bool open() override { Wire.begin(); Wire.setClock(400000); delay(50); return true; }
   int  read(uint8_t* b,size_t n) override { Wire.requestFrom(0x4A,n); size_t c=0; while(Wire.available()) b[c++]=Wire.read(); return c;}
   int  write(const uint8_t* b,size_t n) override { Wire.beginTransmission(0x4A); Wire.write(b,n); return Wire.endTransmission()==0?n:-1; }
@@ -219,7 +219,7 @@ Memory ⛔ note: AVR (<2 KB RAM) is tight – stick to a few low-rate sensors.
 #### Quick Start
 
 ```cpp
-BNO085 imu(new ArduinoTransport());
+BNO085 imu(new ArduinoComm());
 if (!imu.begin()) { Serial.println("🚫 IMU not found!"); while(1); }
 
 imu.enableSensor(BNO085Sensor::RotationVector, 10);   // 100 Hz

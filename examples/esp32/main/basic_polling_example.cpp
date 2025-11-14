@@ -1,5 +1,5 @@
 /**
- * @file BasicPollingExample.cpp
+ * @file basic_polling_example.cpp
  * @brief Basic polling mode example with orientation and linear acceleration
  *
  * This example demonstrates:
@@ -19,8 +19,8 @@
 #include <memory>
 #include <stdio.h>
 
-#include "../../../inc/BNO085.hpp"
-#include "Esp32Bno08xBus.hpp"
+#include "../../../inc/bno08x.hpp"
+#include "esp32_bno08x_bus.hpp"
 
 static const char* TAG = "BNO08x_BasicPolling";
 
@@ -37,16 +37,16 @@ extern "C" void app_main(void) {
 
   auto transport = std::make_unique<Esp32Bno08xBus>(config);
 
-  if (!transport->open()) {
+  if (!transport->Open()) {
     ESP_LOGE(TAG, "Failed to open I2C transport");
     return;
   }
 
   // Create IMU instance
-  BNO085 imu(transport.get());
+  BNO085<Esp32Bno08xBus> imu(*transport);
 
   // Initialize IMU
-  if (!imu.begin()) {
+  if (!imu.Begin()) {
     ESP_LOGE(TAG, "Failed to initialize BNO085");
     return;
   }
@@ -54,20 +54,20 @@ extern "C" void app_main(void) {
   ESP_LOGI(TAG, "BNO085 initialized successfully");
 
   // Enable Rotation Vector at 50 Hz (20ms period)
-  imu.enableSensor(BNO085Sensor::RotationVector, 20);
+  imu.EnableSensor(BNO085Sensor::RotationVector, 20);
 
   // Enable Linear Acceleration at 50 Hz
-  imu.enableSensor(BNO085Sensor::LinearAcceleration, 20);
+  imu.EnableSensor(BNO085Sensor::LinearAcceleration, 20);
 
   ESP_LOGI(TAG, "Sensors enabled. Starting polling loop...");
 
   // Main polling loop
   while (true) {
-    imu.update(); // Poll for new sensor data
+    imu.Update(); // Poll for new sensor data
 
     // Check for rotation vector data
-    if (imu.hasNewData(BNO085Sensor::RotationVector)) {
-      auto rot = imu.getLatestData(BNO085Sensor::RotationVector);
+    if (imu.HasNewData(BNO085Sensor::RotationVector)) {
+      auto rot = imu.GetLatest(BNO085Sensor::RotationVector);
 
       // Calculate Euler angles from quaternion
       float qw = rot.rotation.w, qx = rot.rotation.x;
@@ -93,8 +93,8 @@ extern "C" void app_main(void) {
     }
 
     // Check for linear acceleration data
-    if (imu.hasNewData(BNO085Sensor::LinearAcceleration)) {
-      auto lin = imu.getLatestData(BNO085Sensor::LinearAcceleration);
+    if (imu.HasNewData(BNO085Sensor::LinearAcceleration)) {
+      auto lin = imu.GetLatest(BNO085Sensor::LinearAcceleration);
       ESP_LOGI(TAG, "Linear Accel (m/s^2): X=%.2f, Y=%.2f, Z=%.2f", lin.vector.x, lin.vector.y,
                lin.vector.z);
     }

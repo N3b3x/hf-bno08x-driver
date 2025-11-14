@@ -21,36 +21,36 @@ public:
   }
 
   /// Change the HAL after construction.
-  void setHal(IRvcHal* hal) {
+  void SetHal(IRvcHal* hal) {
     rvc_init(hal);
   }
   /// Change the HAL using a C style implementation.
-  void setHal(RvcHalC_t* hal) {
+  void SetHal(RvcHalC_t* hal) {
     rvc_init_c(hal);
   }
 
   /// Register a callback for received frames.
-  int setCallback(rvc_Callback_t* cb, void* cookie = nullptr) {
+  int SetCallback(rvc_Callback_t* cb, void* cookie = nullptr) {
     return rvc_setCallback(cb, cookie);
   }
 
   /// Begin reading frames using the HAL.
-  int open() {
+  int Open() {
     return rvc_open();
   }
 
   /// Stop reading frames.
-  void close() {
+  void Close() {
     rvc_close();
   }
 
   /// Poll the UART and dispatch any available frames.
-  void service() {
+  void Service() {
     rvc_service();
   }
 
   /// Helper to decode a raw event to floating point values.
-  static void decode(rvc_SensorValue_t* val, const rvc_SensorEvent_t* ev) {
+  static void Decode(rvc_SensorValue_t* val, const rvc_SensorEvent_t* ev) {
     rvc_decode(val, ev);
   }
 };

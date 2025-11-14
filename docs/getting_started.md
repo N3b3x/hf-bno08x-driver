@@ -10,7 +10,7 @@ permalink: /docs/getting-started/
 
 # Getting Started
 
-[⬅️ Docs Hub](README.md) | [Next: Hardware Wiring ➡️](HardwareWiring.md)
+[⬅️ Docs Hub](README.md) | [Next: Hardware Wiring ➡️](hardware_wiring.md)
 
 Follow these steps to clone the repository and integrate the library in your build.
 
@@ -26,7 +26,7 @@ Follow these steps to clone the repository and integrate the library in your bui
      ```
 3. **Compile your project** with a C++11 compatible compiler.
 
-See [Hardware Wiring](HardwareWiring.md) before powering up your board.
+See [Hardware Wiring](hardware_wiring.md) before powering up your board.
 
 ---
-[⬅️ Back to Docs Hub](README.md) | [Next: Hardware Wiring ➡️](HardwareWiring.md)
+[⬅️ Back to Docs Hub](README.md) | [Next: Hardware Wiring ➡️](hardware_wiring.md)

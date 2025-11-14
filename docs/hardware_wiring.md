@@ -10,7 +10,7 @@ permalink: /docs/hardware-wiring/
 
 # Hardware Wiring
 
-[⬅️ Previous: Getting Started](GettingStarted.md) | [Next: Porting Guide ➡️](PortingGuide.md) | [Docs Hub 📚](README.md)
+[⬅️ Previous: Getting Started](getting_started.md) | [Next: Porting Guide ➡️](porting_guide.md) | [Docs Hub 📚](README.md)
 
 Connect the sensor to your MCU as shown below.
 
@@ -29,4 +29,4 @@ Use the **INT** line to wake your application only when data is ready.
 
 ---
 
-[⬅️ Previous: Getting Started](GettingStarted.md) | [Next: Porting Guide ➡️](PortingGuide.md) | [Docs Hub 📚](README.md)
+[⬅️ Previous: Getting Started](getting_started.md) | [Next: Porting Guide ➡️](porting_guide.md) | [Docs Hub 📚](README.md)
