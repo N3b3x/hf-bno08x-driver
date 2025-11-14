@@ -16,9 +16,10 @@ var searchData=
   ['index_13',['index',['../structrvc__SensorEvent__s.html#acf3a64a2f0772daeb676075f9450d679',1,'rvc_SensorEvent_s::index'],['../structrvc__SensorValue__s.html#a70240d7e3ab344c24b83d3587f46877e',1,'rvc_SensorValue_s::index']]],
   ['information_14',['More information',['../index.html#autotoc_md2',1,'']]],
   ['init_5ftest_5fprogress_5findicator_15',['init_test_progress_indicator',['../TestFramework_8h.html#a3967179ac699a5b02ef9787b549409fe',1,'TestFramework.h']]],
-  ['int_5fpin_16',['int_pin',['../structEsp32Bno08xBus_1_1I2CConfig.html#a121a36fe188c184ec141f1b52eb9169e',1,'Esp32Bno08xBus::I2CConfig']]],
-  ['intent_20and_20motion_20request_17',['Motion Intent and Motion Request',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/rvc/README.md#autotoc_md6',1,'']]],
-  ['intervalstart_5fus_18',['intervalStart_us',['../structDfu__t.html#a14f5c419537182cee42b909715b816f7',1,'Dfu_t']]],
-  ['irvchal_19',['IRvcHal',['../classIRvcHal.html',1,'IRvcHal'],['../rvc_8h.html#ab7b55315f3c1b9d133607d4302d30d48',1,'IRvcHal:&#160;rvc.h']]],
-  ['isinitialized_20',['isInitialized',['../classEsp32Bno08xBus.html#af3995ff6b63253be85376374b8e34c5b',1,'Esp32Bno08xBus']]]
+  ['installation_16',['🔧 Installation',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md#autotoc_md14',1,'']]],
+  ['int_5fpin_17',['int_pin',['../structEsp32Bno08xBus_1_1I2CConfig.html#a121a36fe188c184ec141f1b52eb9169e',1,'Esp32Bno08xBus::I2CConfig']]],
+  ['intent_20and_20motion_20request_18',['Motion Intent and Motion Request',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/rvc/README.md#autotoc_md6',1,'']]],
+  ['intervalstart_5fus_19',['intervalStart_us',['../structDfu__t.html#a14f5c419537182cee42b909715b816f7',1,'Dfu_t']]],
+  ['irvchal_20',['IRvcHal',['../classIRvcHal.html',1,'IRvcHal'],['../rvc_8h.html#ab7b55315f3c1b9d133607d4302d30d48',1,'IRvcHal:&#160;rvc.h']]],
+  ['isinitialized_21',['isInitialized',['../classEsp32Bno08xBus.html#af3995ff6b63253be85376374b8e34c5b',1,'Esp32Bno08xBus']]]
 ];

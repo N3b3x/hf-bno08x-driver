@@ -1,7 +1,7 @@
 var searchData=
 [
   ['failed_5ftests_0',['failed_tests',['../structTestResults.html#a0acef46f38f27f0fbb8fa822bb218b3a',1,'TestResults']]],
-  ['features_20✨_1',['Features ✨',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md#autotoc_md11',1,'']]],
+  ['features_1',['Features',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md#autotoc_md12',1,'✨ Features'],['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md#autotoc_md18',1,'Special Features']]],
   ['firmware_2',['firmware',['../structDfu__t.html#a05ce00a5a170c7318f153c4caf16cbba',1,'Dfu_t::firmware'],['../firmware-bno_8c.html#a169e52b3509b7e23c9a7f630e9156c11',1,'firmware:&#160;firmware-bno.c'],['../firmware-fsp_8c.html#a169e52b3509b7e23c9a7f630e9156c11',1,'firmware:&#160;firmware-fsp.c'],['../firmware_8h.html#a169e52b3509b7e23c9a7f630e9156c11',1,'firmware:&#160;firmware-bno.c']]],
   ['firmware_2dbno_2ec_3',['firmware-bno.c',['../firmware-bno_8c.html',1,'']]],
   ['firmware_2dfsp_2ec_4',['firmware-fsp.c',['../firmware-fsp_8c.html',1,'']]],
