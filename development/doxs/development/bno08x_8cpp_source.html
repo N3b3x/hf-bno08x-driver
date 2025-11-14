@@ -1,0 +1,550 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>HF-BNO08x: src/bno08x.cpp Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/jothepro/doxygen-awesome-css" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">HF-BNO08x
+   &#160;<span id="projectnumber">0.1.0-dev</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+<div id="theme-selection">
+ <label for="theme-select">Theme:</label>
+ <select id="theme-select">
+  <option value="theme-default">Default</option>
+  <option value="theme-round">Round</option>
+  <option value="theme-robot">Robot</option>
+ </select>
+</div>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('bno08x_8cpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">bno08x.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="bno08x_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef BNO085_HEADER_INCLUDED</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;<a class="code" href="bno08x_8hpp.html">bno08x.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;algorithm&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;cstdio&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &quot;sh2.h&quot;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &quot;sh2_SensorValue.h&quot;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &quot;sh2_err.h&quot;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>}</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &quot;<a class="code" href="HalTransport_8hpp.html">dfu/HalTransport.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;<a class="code" href="dfu_8h.html">dfu/dfu.h</a>&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">using namespace </span>std;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> CommType&gt;</div>
+<div class="foldopen" id="foldopen00030" data-start="{" data-end="}">
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classBNO085.html#a9fc79a6ee018d3214897efaf254ebab3">   30</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classBNO085.html#a9fc79a6ee018d3214897efaf254ebab3">BNO085&lt;CommType&gt;::Begin</a>() noexcept {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  last_error_ = 0;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <span class="keywordflow">if</span> (!io_.Open()) {</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    last_error_ = -1;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  }</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  halWrapper.comm = &amp;io_;  <span class="comment">// Store pointer for C callbacks</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  halWrapper.hal.open = halOpen;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  halWrapper.hal.close = halClose;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  halWrapper.hal.read = halRead;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  halWrapper.hal.write = halWrite;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  halWrapper.hal.getTimeUs = halGetTimeUs;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <span class="keywordtype">int</span> status = sh2_open(halWrapper.asHal(), asyncC, <span class="keyword">this</span>);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  <span class="keywordflow">if</span> (status != SH2_OK) {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    last_error_ = status;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  }</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="comment">// Send initialize command after opening the SH-2 interface</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  sh2_reinitialize();</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  sh2_setSensorCallback(sensorC, <span class="keyword">this</span>);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  new_flag_.fill(<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  last_interval_.fill(0);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  last_sensitivity_.fill(0);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  initialized_ = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>}</div>
+</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> CommType&gt;</div>
+<div class="foldopen" id="foldopen00065" data-start="{" data-end="}">
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classBNO085.html#a7a31027691ce329a007f3428066c9900">   65</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classBNO085.html#a7a31027691ce329a007f3428066c9900">BNO085&lt;CommType&gt;::EnableSensor</a>(<a class="code hl_enumeration" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a> sensor, uint32_t intervalMs, <span class="keywordtype">float</span> sensitivity) {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  <span class="keywordflow">if</span> (!initialized_)</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  uint32_t interval_us = intervalMs * 1000;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  <span class="keywordflow">if</span> (!configure(sensor, interval_us, sensitivity, 0))</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  last_interval_[<span class="keyword">static_cast&lt;</span>uint8_t<span class="keyword">&gt;</span>(sensor)] = interval_us;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  last_sensitivity_[<span class="keyword">static_cast&lt;</span>uint8_t<span class="keyword">&gt;</span>(sensor)] = sensitivity;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>}</div>
+</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> CommType&gt;</div>
+<div class="foldopen" id="foldopen00078" data-start="{" data-end="}">
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="classBNO085.html#aeca2d6e5b8f954797cec2b962828a229">   78</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classBNO085.html#aeca2d6e5b8f954797cec2b962828a229">BNO085&lt;CommType&gt;::DisableSensor</a>(<a class="code hl_enumeration" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a> sensor) {</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  <span class="keywordflow">if</span> (!initialized_)</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>  <span class="keywordflow">return</span> configure(sensor, 0, 0, 0);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>}</div>
+</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> CommType&gt;</div>
+<div class="foldopen" id="foldopen00086" data-start="{" data-end="}">
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="classBNO085.html#a07efc3c2553e28a047bca66a0e3ac21a">   86</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classBNO085.html#a07efc3c2553e28a047bca66a0e3ac21a">BNO085&lt;CommType&gt;::SetCallback</a>(<a class="code hl_typedef" href="bno08x_8hpp.html#ae10cac53e8962550a2efb17043c5355e">SensorCallback</a> cb) {</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  callback_ = cb;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>}</div>
+</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> CommType&gt;</div>
+<div class="foldopen" id="foldopen00092" data-start="{" data-end="}">
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="classBNO085.html#a44540163d0909d3044e62d7b4107fed5">   92</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classBNO085.html#a44540163d0909d3044e62d7b4107fed5">BNO085&lt;CommType&gt;::SetRvcCallback</a>(<a class="code hl_typedef" href="bno08x_8hpp.html#aa57bd22f61b6b51eb9f2585fae4e2d61">RvcCallback</a> cb) {</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>  rvc_cb_ = cb;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>}</div>
+</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> CommType&gt;</div>
+<div class="foldopen" id="foldopen00098" data-start="{" data-end="}">
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="classBNO085.html#a0bb31740132d2f60e8baa8f3801c3e28">   98</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classBNO085.html#a0bb31740132d2f60e8baa8f3801c3e28">BNO085&lt;CommType&gt;::HasNewData</a>(<a class="code hl_enumeration" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a> sensor)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>  <span class="keywordflow">return</span> new_flag_[<span class="keyword">static_cast&lt;</span>uint8_t<span class="keyword">&gt;</span>(sensor)];</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>}</div>
+</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> CommType&gt;</div>
+<div class="foldopen" id="foldopen00104" data-start="{" data-end="}">
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="classBNO085.html#ad808f56174f2db0303525e566d328007">  104</a></span><a class="code hl_struct" href="structSensorEvent.html">SensorEvent</a> <a class="code hl_function" href="classBNO085.html#ad808f56174f2db0303525e566d328007">BNO085&lt;CommType&gt;::GetLatest</a>(<a class="code hl_enumeration" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a> sensor)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>  <a class="code hl_struct" href="structSensorEvent.html">SensorEvent</a> out{};</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>  out.<a class="code hl_variable" href="structSensorEvent.html#a2a6ead14a1676d5412cf9ec6b4986d62">sensor</a> = sensor;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>  <span class="keyword">auto</span> <span class="keywordtype">id</span> = <span class="keyword">static_cast&lt;</span>uint8_t<span class="keyword">&gt;</span>(sensor);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>  <span class="keyword">const</span> <span class="keyword">auto</span>&amp; val = latest_[id];</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>  out.timestamp = val.timestamp;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>  uint8_t accuracy = val.status &amp; 0x03;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  <span class="keywordflow">switch</span> (sensor) {</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>  <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62ab043bc6d611582087d8bf1790d863d69">BNO085Sensor::Accelerometer</a>:</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>  <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62aba31d10f1d09d6cf847178cb2d7350d6">BNO085Sensor::LinearAcceleration</a>:</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>  <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a8a88c39cef668fb55f188af09665bd40">BNO085Sensor::Gravity</a>:</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    out.vector.x = val.un.accelerometer.x;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    out.vector.y = val.un.accelerometer.y;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    out.vector.z = val.un.accelerometer.z;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    out.vector.accuracy = accuracy;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>  <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62abed99e5db57749f375e738c1c0258047">BNO085Sensor::Gyroscope</a>:</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    out.vector.x = val.un.gyroscope.x;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    out.vector.y = val.un.gyroscope.y;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    out.vector.z = val.un.gyroscope.z;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    out.vector.accuracy = accuracy;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>  <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a9e9fa52e0aa4a2b519f8287760d7c3ac">BNO085Sensor::Magnetometer</a>:</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    out.vector.x = val.un.magneticField.x;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    out.vector.y = val.un.magneticField.y;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    out.vector.z = val.un.magneticField.z;</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    out.vector.accuracy = accuracy;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>  <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a93885b92407df28cbbeae6691819875a">BNO085Sensor::RotationVector</a>:</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>  <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62aca24a6438653bfeb8c3dc5380a3513ec">BNO085Sensor::GameRotationVector</a>:</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>  <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a7ced3a0bfca67cdc57bd3c16fc06284e">BNO085Sensor::GeomagneticRotationVector</a>:</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>  <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a5f78b93803f5d02a6b414b4b6e1637df">BNO085Sensor::ARVRStabilizedRV</a>:</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>  <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62adda6de7569af6fe8301ee3807a69a988">BNO085Sensor::ARVRStabilizedGameRV</a>:</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    out.rotation.w = val.un.rotationVector.real;</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    out.rotation.x = val.un.rotationVector.i;</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    out.rotation.y = val.un.rotationVector.j;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    out.rotation.z = val.un.rotationVector.k;</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    out.rotation.accuracy = accuracy;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>  <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62ac8b04cbadc40345b299a6b531f25d05c">BNO085Sensor::GyroIntegratedRV</a>:</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    out.rotation.w = val.un.gyroIntegratedRV.real;</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    out.rotation.x = val.un.gyroIntegratedRV.i;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    out.rotation.y = val.un.gyroIntegratedRV.j;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    out.rotation.z = val.un.gyroIntegratedRV.k;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>  <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a813bf9f9ff76be55d85361ae7f5da7de">BNO085Sensor::StepCounter</a>:</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    out.stepCount = val.un.stepCounter.steps;</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>  <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62aa4481d296202d542e1d64326d139b105">BNO085Sensor::TapDetector</a>:</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    out.tap.doubleTap = (val.un.tapDetector.flags &amp; TAPDET_DOUBLE);</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="keywordflow">if</span> (val.un.tapDetector.flags &amp; TAPDET_X) {</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>      out.tap.direction = (val.un.tapDetector.flags &amp; TAPDET_X_POS) ? 0 : 1;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (val.un.tapDetector.flags &amp; TAPDET_Y) {</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>      out.tap.direction = (val.un.tapDetector.flags &amp; TAPDET_Y_POS) ? 2 : 3;</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (val.un.tapDetector.flags &amp; TAPDET_Z) {</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>      out.tap.direction = (val.un.tapDetector.flags &amp; TAPDET_Z_POS) ? 4 : 5;</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>      out.tap.direction = 0;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    }</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    out.detected = val.un.tapDetector.flags &amp; (TAPDET_X | TAPDET_Y | TAPDET_Z);</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>  <span class="keywordflow">default</span>:</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>  }</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>  <span class="keywordflow">return</span> out;</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>}</div>
+</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> CommType&gt;</div>
+<div class="foldopen" id="foldopen00173" data-start="{" data-end="}">
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno"><a class="line" href="classBNO085.html#acba0b29af5962daf5701502f504c8838">  173</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classBNO085.html#acba0b29af5962daf5701502f504c8838">BNO085&lt;CommType&gt;::Update</a>() {</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>  <span class="keywordflow">if</span> (initialized_) {</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    sh2_service();</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>  }</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>}</div>
+</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> CommType&gt;</div>
+<div class="foldopen" id="foldopen00181" data-start="{" data-end="}">
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno"><a class="line" href="classBNO085.html#ac4d7c31a7cd81f0bdbeece4cd143682d">  181</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classBNO085.html#ac4d7c31a7cd81f0bdbeece4cd143682d">BNO085&lt;CommType&gt;::BeginRvc</a>(<a class="code hl_class" href="classIRvcHal.html">IRvcHal</a>* hal) {</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>  rvc_.SetHal(hal);</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>  <span class="keywordflow">if</span> (rvc_.SetCallback(rvcC, <span class="keyword">this</span>) != <a class="code hl_define" href="rvc_8h.html#ad6be817a868f925c41787869abf2e63f">RVC_OK</a>)</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>  <span class="keywordflow">return</span> rvc_.Open() == <a class="code hl_define" href="rvc_8h.html#ad6be817a868f925c41787869abf2e63f">RVC_OK</a>;</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>}</div>
+</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> CommType&gt;</div>
+<div class="foldopen" id="foldopen00190" data-start="{" data-end="}">
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno"><a class="line" href="classBNO085.html#a8c455e7f7ee3e9630f89200c871ca2bc">  190</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classBNO085.html#a8c455e7f7ee3e9630f89200c871ca2bc">BNO085&lt;CommType&gt;::ServiceRvc</a>() {</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>  rvc_.Service();</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>}</div>
+</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span> </div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> CommType&gt;</div>
+<div class="foldopen" id="foldopen00196" data-start="{" data-end="}">
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno"><a class="line" href="classBNO085.html#a083a3c90eb88a84a68cc185f7f66fea4">  196</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classBNO085.html#a083a3c90eb88a84a68cc185f7f66fea4">BNO085&lt;CommType&gt;::CloseRvc</a>() {</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>  rvc_.Close();</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>}</div>
+</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span> </div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> CommType&gt;</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span><span class="keywordtype">int</span> <a class="code hl_class" href="classBNO085.html">BNO085&lt;CommType&gt;::halOpen</a>(sh2_Hal_t* self) {</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>  <span class="keyword">auto</span>* t = <span class="keyword">reinterpret_cast&lt;</span>CommHal*<span class="keyword">&gt;</span>(self);</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>  <span class="keywordflow">return</span> t-&gt;comm-&gt;Open() ? SH2_OK : SH2_ERR;</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>}</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> CommType&gt;</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span><span class="keywordtype">void</span> <a class="code hl_class" href="classBNO085.html">BNO085&lt;CommType&gt;::halClose</a>(sh2_Hal_t* self) {</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>  <span class="keyword">auto</span>* t = <span class="keyword">reinterpret_cast&lt;</span>CommHal*<span class="keyword">&gt;</span>(self);</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>  t-&gt;comm-&gt;Close();</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>}</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span> </div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> CommType&gt;</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span><span class="keywordtype">int</span> <a class="code hl_class" href="classBNO085.html">BNO085&lt;CommType&gt;::halRead</a>(sh2_Hal_t* self, uint8_t* buf, <span class="keywordtype">unsigned</span> len, uint32_t* t) {</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>  <span class="keyword">auto</span>* th = <span class="keyword">reinterpret_cast&lt;</span>CommHal*<span class="keyword">&gt;</span>(self);</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>  <span class="keywordtype">int</span> ret = th-&gt;comm-&gt;Read(buf, len);</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>  *t = th-&gt;comm-&gt;GetTimeUs();</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>  <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>}</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span> </div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> CommType&gt;</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span><span class="keywordtype">int</span> <a class="code hl_class" href="classBNO085.html">BNO085&lt;CommType&gt;::halWrite</a>(sh2_Hal_t* self, uint8_t* buf, <span class="keywordtype">unsigned</span> len) {</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>  <span class="keyword">auto</span>* th = <span class="keyword">reinterpret_cast&lt;</span>CommHal*<span class="keyword">&gt;</span>(self);</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>  <span class="keywordflow">return</span> th-&gt;comm-&gt;Write(buf, len);</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>}</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span> </div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> CommType&gt;</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>uint32_t <a class="code hl_class" href="classBNO085.html">BNO085&lt;CommType&gt;::halGetTimeUs</a>(sh2_Hal_t* self) {</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>  <span class="keyword">auto</span>* th = <span class="keyword">reinterpret_cast&lt;</span>CommHal*<span class="keyword">&gt;</span>(self);</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>  <span class="keywordflow">return</span> th-&gt;comm-&gt;GetTimeUs();</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>}</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> </div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> CommType&gt;</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span><span class="keywordtype">void</span> <a class="code hl_class" href="classBNO085.html">BNO085&lt;CommType&gt;::sensorC</a>(<span class="keywordtype">void</span>* cookie, sh2_SensorEvent_t* event) {</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>  <span class="keyword">static_cast&lt;</span><a class="code hl_class" href="classBNO085.html">BNO085&lt;CommType&gt;</a>*<span class="keyword">&gt;</span>(cookie)-&gt;handleSensorEvent(event);</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>}</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span> </div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> CommType&gt;</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span><span class="keywordtype">void</span> <a class="code hl_class" href="classBNO085.html">BNO085&lt;CommType&gt;::asyncC</a>(<span class="keywordtype">void</span>* cookie, sh2_AsyncEvent_t* event) {</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>  <span class="keyword">static_cast&lt;</span><a class="code hl_class" href="classBNO085.html">BNO085&lt;CommType&gt;</a>*<span class="keyword">&gt;</span>(cookie)-&gt;handleAsyncEvent(event);</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>}</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span> </div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> CommType&gt;</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span><span class="keywordtype">void</span> <a class="code hl_class" href="classBNO085.html">BNO085&lt;CommType&gt;::handleSensorEvent</a>(<span class="keyword">const</span> sh2_SensorEvent_t* event) {</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>  sh2_SensorValue_t value;</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>  sh2_decodeSensorEvent(&amp;value, event);</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>  uint8_t <span class="keywordtype">id</span> = value.sensorId;</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>  <span class="keywordflow">if</span> (<span class="keywordtype">id</span> &gt;= latest_.size())</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>  latest_[id] = value;</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>  new_flag_[id] = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>  <span class="keywordflow">if</span> (callback_) {</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    callback_(GetLatest(<span class="keyword">static_cast&lt;</span><a class="code hl_enumeration" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a><span class="keyword">&gt;</span>(<span class="keywordtype">id</span>)));</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    new_flag_[id] = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>  }</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>}</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span> </div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> CommType&gt;</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span><span class="keywordtype">void</span> <a class="code hl_class" href="classBNO085.html">BNO085&lt;CommType&gt;::handleAsyncEvent</a>(<span class="keyword">const</span> sh2_AsyncEvent_t* event) {</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>  <span class="keywordflow">if</span> (event-&gt;eventId == SH2_RESET) {</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    <span class="keywordflow">for</span> (uint8_t <span class="keywordtype">id</span> = 0; <span class="keywordtype">id</span> &lt; last_interval_.size(); ++id) {</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>      <span class="keywordflow">if</span> (last_interval_[<span class="keywordtype">id</span>]) {</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>        configure(<span class="keyword">static_cast&lt;</span><a class="code hl_enumeration" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a><span class="keyword">&gt;</span>(<span class="keywordtype">id</span>), last_interval_[<span class="keywordtype">id</span>], last_sensitivity_[<span class="keywordtype">id</span>], 0);</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>      }</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    }</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>  }</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>}</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span> </div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> CommType&gt;</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span><span class="keywordtype">bool</span> <a class="code hl_class" href="classBNO085.html">BNO085&lt;CommType&gt;::configure</a>(<a class="code hl_enumeration" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a> sensor, uint32_t intervalUs, <span class="keywordtype">float</span> sensitivity,</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>                       uint32_t batchUs) {</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>  sh2_SensorConfig_t cfg{};</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>  cfg.reportInterval_us = intervalUs;</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>  cfg.batchInterval_us = batchUs;</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>  cfg.sensorSpecific = 0;</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>  cfg.changeSensitivity = <span class="keyword">static_cast&lt;</span>uint16_t<span class="keyword">&gt;</span>(sensitivity);</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>  cfg.changeSensitivityEnabled = sensitivity &gt; 0;</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>  <span class="keywordtype">int</span> status = sh2_setSensorConfig(<span class="keyword">static_cast&lt;</span>sh2_SensorId_t<span class="keyword">&gt;</span>(sensor), &amp;cfg);</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>  <span class="keywordflow">if</span> (status != SH2_OK) {</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>    last_error_ = status;</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>  }</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>}</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span> </div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> CommType&gt;</div>
+<div class="foldopen" id="foldopen00297" data-start="{" data-end="}">
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno"><a class="line" href="classBNO085.html#a8a95df88bf31c0f959f34c36ab16e632">  297</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classBNO085.html#a8a95df88bf31c0f959f34c36ab16e632">BNO085&lt;CommType&gt;::HardwareReset</a>(uint32_t lowMs) {</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>  io_.SetReset(<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>  io_.Delay(lowMs);</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>  io_.SetReset(<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>  io_.Delay(50); <span class="comment">// allow sensor to boot</span></div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>}</div>
+</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span> </div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> CommType&gt;</div>
+<div class="foldopen" id="foldopen00306" data-start="{" data-end="}">
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno"><a class="line" href="classBNO085.html#a08175def0fb34e49d5b1b53035dd0451">  306</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classBNO085.html#a08175def0fb34e49d5b1b53035dd0451">BNO085&lt;CommType&gt;::SetBootPin</a>(<span class="keywordtype">bool</span> state) {</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>  io_.SetBoot(state);</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>}</div>
+</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span> </div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> CommType&gt;</div>
+<div class="foldopen" id="foldopen00312" data-start="{" data-end="}">
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno"><a class="line" href="classBNO085.html#a9daaf9e6fab1f9ac8f6bc6747f42e4db">  312</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classBNO085.html#a9daaf9e6fab1f9ac8f6bc6747f42e4db">BNO085&lt;CommType&gt;::SetWakePin</a>(<span class="keywordtype">bool</span> state) {</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>  io_.SetWake(state);</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>}</div>
+</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span> </div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> CommType&gt;</div>
+<div class="foldopen" id="foldopen00318" data-start="{" data-end="}">
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno"><a class="line" href="classBNO085.html#a0d7ef9ab5064170e10d8f987765429eb">  318</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classBNO085.html#a0d7ef9ab5064170e10d8f987765429eb">BNO085&lt;CommType&gt;::SelectInterface</a>(<a class="code hl_enumeration" href="bno08x_8hpp.html#a1e8d3cde9f9e6ea515f5db028614f03b">BNO085Interface</a> iface) {</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>  <span class="keywordflow">switch</span> (iface) {</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>  <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="bno08x_8hpp.html#a1e8d3cde9f9e6ea515f5db028614f03bafb87bf1fc88386ca21395991f90fff95">BNO085Interface::I2C</a>:</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>    io_.SetPS1(<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>    io_.SetPS0(<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>    <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>  <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="bno08x_8hpp.html#a1e8d3cde9f9e6ea515f5db028614f03ba0199b53c4dd041296fde19fca9713e7d">BNO085Interface::UARTRVC</a>:</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>    io_.SetPS1(<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>    io_.SetPS0(<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>    <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>  <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="bno08x_8hpp.html#a1e8d3cde9f9e6ea515f5db028614f03bacec5769b01fb096efaf0d6186823c78f">BNO085Interface::UART</a>:</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>    io_.SetPS1(<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>    io_.SetPS0(<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>    <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>  <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="bno08x_8hpp.html#a1e8d3cde9f9e6ea515f5db028614f03ba33dc5312b091968f5a120c2484d40df8">BNO085Interface::SPI</a>:</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>    io_.SetPS1(<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>    io_.SetPS0(<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>    <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>  }</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>}</div>
+</div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span> </div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> CommType&gt;</div>
+<div class="foldopen" id="foldopen00341" data-start="{" data-end="}">
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno"><a class="line" href="classBNO085.html#a33dcc3d35dd871b92693bc6ef5f3b2d8">  341</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="classBNO085.html#a33dcc3d35dd871b92693bc6ef5f3b2d8">BNO085&lt;CommType&gt;::Dfu</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structHcBin__s.html">HcBin_t</a>&amp; fw) {</div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>  <a class="code hl_class" href="classHalTransport.html">HalTransport</a> t(halWrapper.asHal());</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>  return ::dfu(t, fw);</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>}</div>
+</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span> </div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> CommType&gt;</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span><span class="keywordtype">void</span> <a class="code hl_class" href="classBNO085.html">BNO085&lt;CommType&gt;::rvcC</a>(<span class="keywordtype">void</span>* cookie, <a class="code hl_struct" href="structrvc__SensorEvent__s.html">rvc_SensorEvent_t</a>* ev) {</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>  <span class="keyword">auto</span>* self = <span class="keyword">static_cast&lt;</span><a class="code hl_class" href="classBNO085.html">BNO085&lt;CommType&gt;</a>*<span class="keyword">&gt;</span>(cookie);</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>  <span class="keywordflow">if</span> (!self-&gt;rvc_cb_)</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>    <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>  <a class="code hl_struct" href="structrvc__SensorValue__s.html">rvc_SensorValue_t</a> val;</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>  <a class="code hl_function" href="classRvc.html#aae56f37e4059e2c63b6f0040a7b82bb7">Rvc::Decode</a>(&amp;val, ev);</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>  self-&gt;rvc_cb_(val);</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>}</div>
+<div class="ttc" id="aHalTransport_8hpp_html"><div class="ttname"><a href="HalTransport_8hpp.html">HalTransport.hpp</a></div></div>
+<div class="ttc" id="abno08x_8hpp_html"><div class="ttname"><a href="bno08x_8hpp.html">bno08x.hpp</a></div><div class="ttdoc">High level C++ interface for the BNO08x IMU family.</div></div>
+<div class="ttc" id="abno08x_8hpp_html_a1e8d3cde9f9e6ea515f5db028614f03b"><div class="ttname"><a href="bno08x_8hpp.html#a1e8d3cde9f9e6ea515f5db028614f03b">BNO085Interface</a></div><div class="ttdeci">BNO085Interface</div><div class="ttdoc">Host interface selection via PS pins.</div><div class="ttdef"><b>Definition</b> bno08x.hpp:71</div></div>
+<div class="ttc" id="abno08x_8hpp_html_a1e8d3cde9f9e6ea515f5db028614f03ba0199b53c4dd041296fde19fca9713e7d"><div class="ttname"><a href="bno08x_8hpp.html#a1e8d3cde9f9e6ea515f5db028614f03ba0199b53c4dd041296fde19fca9713e7d">BNO085Interface::UARTRVC</a></div><div class="ttdeci">@ UARTRVC</div><div class="ttdoc">PS1=1, PS0=0.</div></div>
+<div class="ttc" id="abno08x_8hpp_html_a1e8d3cde9f9e6ea515f5db028614f03ba33dc5312b091968f5a120c2484d40df8"><div class="ttname"><a href="bno08x_8hpp.html#a1e8d3cde9f9e6ea515f5db028614f03ba33dc5312b091968f5a120c2484d40df8">BNO085Interface::SPI</a></div><div class="ttdeci">@ SPI</div><div class="ttdoc">PS1=1, PS0=1.</div></div>
+<div class="ttc" id="abno08x_8hpp_html_a1e8d3cde9f9e6ea515f5db028614f03bacec5769b01fb096efaf0d6186823c78f"><div class="ttname"><a href="bno08x_8hpp.html#a1e8d3cde9f9e6ea515f5db028614f03bacec5769b01fb096efaf0d6186823c78f">BNO085Interface::UART</a></div><div class="ttdeci">@ UART</div><div class="ttdoc">PS1=0, PS0=1.</div></div>
+<div class="ttc" id="abno08x_8hpp_html_a1e8d3cde9f9e6ea515f5db028614f03bafb87bf1fc88386ca21395991f90fff95"><div class="ttname"><a href="bno08x_8hpp.html#a1e8d3cde9f9e6ea515f5db028614f03bafb87bf1fc88386ca21395991f90fff95">BNO085Interface::I2C</a></div><div class="ttdeci">@ I2C</div><div class="ttdoc">PS1=0, PS0=0.</div></div>
+<div class="ttc" id="abno08x_8hpp_html_a6f9f2bf1fa157ce63dacb450d5df6c62"><div class="ttname"><a href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a></div><div class="ttdeci">BNO085Sensor</div><div class="ttdoc">Identifiers for all sensor reports supported by the BNO08x.</div><div class="ttdef"><b>Definition</b> bno08x.hpp:29</div></div>
+<div class="ttc" id="abno08x_8hpp_html_a6f9f2bf1fa157ce63dacb450d5df6c62a5f78b93803f5d02a6b414b4b6e1637df"><div class="ttname"><a href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a5f78b93803f5d02a6b414b4b6e1637df">BNO085Sensor::ARVRStabilizedRV</a></div><div class="ttdeci">@ ARVRStabilizedRV</div><div class="ttdoc">Stabilized rotation vector.</div></div>
+<div class="ttc" id="abno08x_8hpp_html_a6f9f2bf1fa157ce63dacb450d5df6c62a7ced3a0bfca67cdc57bd3c16fc06284e"><div class="ttname"><a href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a7ced3a0bfca67cdc57bd3c16fc06284e">BNO085Sensor::GeomagneticRotationVector</a></div><div class="ttdeci">@ GeomagneticRotationVector</div><div class="ttdoc">Fused orientation using magnetometer.</div></div>
+<div class="ttc" id="abno08x_8hpp_html_a6f9f2bf1fa157ce63dacb450d5df6c62a813bf9f9ff76be55d85361ae7f5da7de"><div class="ttname"><a href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a813bf9f9ff76be55d85361ae7f5da7de">BNO085Sensor::StepCounter</a></div><div class="ttdeci">@ StepCounter</div><div class="ttdoc">Step counter.</div></div>
+<div class="ttc" id="abno08x_8hpp_html_a6f9f2bf1fa157ce63dacb450d5df6c62a8a88c39cef668fb55f188af09665bd40"><div class="ttname"><a href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a8a88c39cef668fb55f188af09665bd40">BNO085Sensor::Gravity</a></div><div class="ttdeci">@ Gravity</div><div class="ttdoc">Gravity vector.</div></div>
+<div class="ttc" id="abno08x_8hpp_html_a6f9f2bf1fa157ce63dacb450d5df6c62a93885b92407df28cbbeae6691819875a"><div class="ttname"><a href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a93885b92407df28cbbeae6691819875a">BNO085Sensor::RotationVector</a></div><div class="ttdeci">@ RotationVector</div><div class="ttdoc">Fused orientation quaternion.</div></div>
+<div class="ttc" id="abno08x_8hpp_html_a6f9f2bf1fa157ce63dacb450d5df6c62a9e9fa52e0aa4a2b519f8287760d7c3ac"><div class="ttname"><a href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a9e9fa52e0aa4a2b519f8287760d7c3ac">BNO085Sensor::Magnetometer</a></div><div class="ttdeci">@ Magnetometer</div><div class="ttdoc">Calibrated magnetic field.</div></div>
+<div class="ttc" id="abno08x_8hpp_html_a6f9f2bf1fa157ce63dacb450d5df6c62aa4481d296202d542e1d64326d139b105"><div class="ttname"><a href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62aa4481d296202d542e1d64326d139b105">BNO085Sensor::TapDetector</a></div><div class="ttdeci">@ TapDetector</div><div class="ttdoc">Single or double tap event.</div></div>
+<div class="ttc" id="abno08x_8hpp_html_a6f9f2bf1fa157ce63dacb450d5df6c62ab043bc6d611582087d8bf1790d863d69"><div class="ttname"><a href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62ab043bc6d611582087d8bf1790d863d69">BNO085Sensor::Accelerometer</a></div><div class="ttdeci">@ Accelerometer</div><div class="ttdoc">Calibrated acceleration vector.</div></div>
+<div class="ttc" id="abno08x_8hpp_html_a6f9f2bf1fa157ce63dacb450d5df6c62aba31d10f1d09d6cf847178cb2d7350d6"><div class="ttname"><a href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62aba31d10f1d09d6cf847178cb2d7350d6">BNO085Sensor::LinearAcceleration</a></div><div class="ttdeci">@ LinearAcceleration</div><div class="ttdoc">Acceleration minus gravity.</div></div>
+<div class="ttc" id="abno08x_8hpp_html_a6f9f2bf1fa157ce63dacb450d5df6c62abed99e5db57749f375e738c1c0258047"><div class="ttname"><a href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62abed99e5db57749f375e738c1c0258047">BNO085Sensor::Gyroscope</a></div><div class="ttdeci">@ Gyroscope</div><div class="ttdoc">Calibrated angular velocity.</div></div>
+<div class="ttc" id="abno08x_8hpp_html_a6f9f2bf1fa157ce63dacb450d5df6c62ac8b04cbadc40345b299a6b531f25d05c"><div class="ttname"><a href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62ac8b04cbadc40345b299a6b531f25d05c">BNO085Sensor::GyroIntegratedRV</a></div><div class="ttdeci">@ GyroIntegratedRV</div><div class="ttdoc">Gyro integrated rotation vector.</div></div>
+<div class="ttc" id="abno08x_8hpp_html_a6f9f2bf1fa157ce63dacb450d5df6c62aca24a6438653bfeb8c3dc5380a3513ec"><div class="ttname"><a href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62aca24a6438653bfeb8c3dc5380a3513ec">BNO085Sensor::GameRotationVector</a></div><div class="ttdeci">@ GameRotationVector</div><div class="ttdoc">Orientation without heading.</div></div>
+<div class="ttc" id="abno08x_8hpp_html_a6f9f2bf1fa157ce63dacb450d5df6c62adda6de7569af6fe8301ee3807a69a988"><div class="ttname"><a href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62adda6de7569af6fe8301ee3807a69a988">BNO085Sensor::ARVRStabilizedGameRV</a></div><div class="ttdeci">@ ARVRStabilizedGameRV</div><div class="ttdoc">Stabilized game rotation vector.</div></div>
+<div class="ttc" id="abno08x_8hpp_html_aa57bd22f61b6b51eb9f2585fae4e2d61"><div class="ttname"><a href="bno08x_8hpp.html#aa57bd22f61b6b51eb9f2585fae4e2d61">RvcCallback</a></div><div class="ttdeci">std::function&lt; void(const rvc_SensorValue_t &amp;)&gt; RvcCallback</div><div class="ttdef"><b>Definition</b> bno08x.hpp:128</div></div>
+<div class="ttc" id="abno08x_8hpp_html_ae10cac53e8962550a2efb17043c5355e"><div class="ttname"><a href="bno08x_8hpp.html#ae10cac53e8962550a2efb17043c5355e">SensorCallback</a></div><div class="ttdeci">std::function&lt; void(const SensorEvent &amp;)&gt; SensorCallback</div><div class="ttdef"><b>Definition</b> bno08x.hpp:125</div></div>
+<div class="ttc" id="aclassBNO085_html"><div class="ttname"><a href="classBNO085.html">BNO085</a></div><div class="ttdoc">High level driver for the BNO08x IMU.</div><div class="ttdef"><b>Definition</b> bno08x.hpp:144</div></div>
+<div class="ttc" id="aclassBNO085_html_a07efc3c2553e28a047bca66a0e3ac21a"><div class="ttname"><a href="classBNO085.html#a07efc3c2553e28a047bca66a0e3ac21a">BNO085::SetCallback</a></div><div class="ttdeci">void SetCallback(SensorCallback cb)</div><div class="ttdef"><b>Definition</b> bno08x.cpp:86</div></div>
+<div class="ttc" id="aclassBNO085_html_a08175def0fb34e49d5b1b53035dd0451"><div class="ttname"><a href="classBNO085.html#a08175def0fb34e49d5b1b53035dd0451">BNO085::SetBootPin</a></div><div class="ttdeci">void SetBootPin(bool state)</div><div class="ttdef"><b>Definition</b> bno08x.cpp:306</div></div>
+<div class="ttc" id="aclassBNO085_html_a083a3c90eb88a84a68cc185f7f66fea4"><div class="ttname"><a href="classBNO085.html#a083a3c90eb88a84a68cc185f7f66fea4">BNO085::CloseRvc</a></div><div class="ttdeci">void CloseRvc()</div><div class="ttdef"><b>Definition</b> bno08x.cpp:196</div></div>
+<div class="ttc" id="aclassBNO085_html_a0bb31740132d2f60e8baa8f3801c3e28"><div class="ttname"><a href="classBNO085.html#a0bb31740132d2f60e8baa8f3801c3e28">BNO085::HasNewData</a></div><div class="ttdeci">bool HasNewData(BNO085Sensor sensor) const</div><div class="ttdef"><b>Definition</b> bno08x.cpp:98</div></div>
+<div class="ttc" id="aclassBNO085_html_a0d7ef9ab5064170e10d8f987765429eb"><div class="ttname"><a href="classBNO085.html#a0d7ef9ab5064170e10d8f987765429eb">BNO085::SelectInterface</a></div><div class="ttdeci">void SelectInterface(BNO085Interface iface)</div><div class="ttdef"><b>Definition</b> bno08x.cpp:318</div></div>
+<div class="ttc" id="aclassBNO085_html_a33dcc3d35dd871b92693bc6ef5f3b2d8"><div class="ttname"><a href="classBNO085.html#a33dcc3d35dd871b92693bc6ef5f3b2d8">BNO085::Dfu</a></div><div class="ttdeci">int Dfu(const HcBin_t &amp;fw=firmware)</div><div class="ttdoc">Perform a firmware update using this object's communication interface.</div><div class="ttdef"><b>Definition</b> bno08x.cpp:341</div></div>
+<div class="ttc" id="aclassBNO085_html_a44540163d0909d3044e62d7b4107fed5"><div class="ttname"><a href="classBNO085.html#a44540163d0909d3044e62d7b4107fed5">BNO085::SetRvcCallback</a></div><div class="ttdeci">void SetRvcCallback(RvcCallback cb)</div><div class="ttdef"><b>Definition</b> bno08x.cpp:92</div></div>
+<div class="ttc" id="aclassBNO085_html_a7a31027691ce329a007f3428066c9900"><div class="ttname"><a href="classBNO085.html#a7a31027691ce329a007f3428066c9900">BNO085::EnableSensor</a></div><div class="ttdeci">bool EnableSensor(BNO085Sensor sensor, uint32_t intervalMs, float sensitivity=0.0f)</div><div class="ttdoc">Enable periodic reporting for a sensor.</div><div class="ttdef"><b>Definition</b> bno08x.cpp:65</div></div>
+<div class="ttc" id="aclassBNO085_html_a8a95df88bf31c0f959f34c36ab16e632"><div class="ttname"><a href="classBNO085.html#a8a95df88bf31c0f959f34c36ab16e632">BNO085::HardwareReset</a></div><div class="ttdeci">void HardwareReset(uint32_t lowMs=2)</div><div class="ttdoc">Toggle the sensor's hardware reset line if available.</div><div class="ttdef"><b>Definition</b> bno08x.cpp:297</div></div>
+<div class="ttc" id="aclassBNO085_html_a8c455e7f7ee3e9630f89200c871ca2bc"><div class="ttname"><a href="classBNO085.html#a8c455e7f7ee3e9630f89200c871ca2bc">BNO085::ServiceRvc</a></div><div class="ttdeci">void ServiceRvc()</div><div class="ttdef"><b>Definition</b> bno08x.cpp:190</div></div>
+<div class="ttc" id="aclassBNO085_html_a9daaf9e6fab1f9ac8f6bc6747f42e4db"><div class="ttname"><a href="classBNO085.html#a9daaf9e6fab1f9ac8f6bc6747f42e4db">BNO085::SetWakePin</a></div><div class="ttdeci">void SetWakePin(bool state)</div><div class="ttdef"><b>Definition</b> bno08x.cpp:312</div></div>
+<div class="ttc" id="aclassBNO085_html_a9fc79a6ee018d3214897efaf254ebab3"><div class="ttname"><a href="classBNO085.html#a9fc79a6ee018d3214897efaf254ebab3">BNO085::Begin</a></div><div class="ttdeci">bool Begin() noexcept</div><div class="ttdoc">Initialise using the communication interface passed to the constructor.</div><div class="ttdef"><b>Definition</b> bno08x.cpp:30</div></div>
+<div class="ttc" id="aclassBNO085_html_ac4d7c31a7cd81f0bdbeece4cd143682d"><div class="ttname"><a href="classBNO085.html#ac4d7c31a7cd81f0bdbeece4cd143682d">BNO085::BeginRvc</a></div><div class="ttdeci">bool BeginRvc(IRvcHal *hal)</div><div class="ttdef"><b>Definition</b> bno08x.cpp:181</div></div>
+<div class="ttc" id="aclassBNO085_html_acba0b29af5962daf5701502f504c8838"><div class="ttname"><a href="classBNO085.html#acba0b29af5962daf5701502f504c8838">BNO085::Update</a></div><div class="ttdeci">void Update()</div><div class="ttdef"><b>Definition</b> bno08x.cpp:173</div></div>
+<div class="ttc" id="aclassBNO085_html_ad808f56174f2db0303525e566d328007"><div class="ttname"><a href="classBNO085.html#ad808f56174f2db0303525e566d328007">BNO085::GetLatest</a></div><div class="ttdeci">SensorEvent GetLatest(BNO085Sensor sensor) const</div><div class="ttdef"><b>Definition</b> bno08x.cpp:104</div></div>
+<div class="ttc" id="aclassBNO085_html_aeca2d6e5b8f954797cec2b962828a229"><div class="ttname"><a href="classBNO085.html#aeca2d6e5b8f954797cec2b962828a229">BNO085::DisableSensor</a></div><div class="ttdeci">bool DisableSensor(BNO085Sensor sensor)</div><div class="ttdef"><b>Definition</b> bno08x.cpp:78</div></div>
+<div class="ttc" id="aclassHalTransport_html"><div class="ttname"><a href="classHalTransport.html">HalTransport</a></div><div class="ttdoc">Adapter converting an existing sh2_Hal_t implementation to the IDfuTransport interface.</div><div class="ttdef"><b>Definition</b> HalTransport.hpp:8</div></div>
+<div class="ttc" id="aclassIRvcHal_html"><div class="ttname"><a href="classIRvcHal.html">IRvcHal</a></div><div class="ttdoc">Abstract interface for platform specific RVC hardware access.</div><div class="ttdef"><b>Definition</b> RvcHal.hpp:8</div></div>
+<div class="ttc" id="aclassRvc_html_aae56f37e4059e2c63b6f0040a7b82bb7"><div class="ttname"><a href="classRvc.html#aae56f37e4059e2c63b6f0040a7b82bb7">Rvc::Decode</a></div><div class="ttdeci">static void Decode(rvc_SensorValue_t *val, const rvc_SensorEvent_t *ev)</div><div class="ttdoc">Helper to decode a raw event to floating point values.</div><div class="ttdef"><b>Definition</b> Rvc.hpp:53</div></div>
+<div class="ttc" id="adfu_8h_html"><div class="ttname"><a href="dfu_8h.html">dfu.h</a></div></div>
+<div class="ttc" id="arvc_8h_html_ad6be817a868f925c41787869abf2e63f"><div class="ttname"><a href="rvc_8h.html#ad6be817a868f925c41787869abf2e63f">RVC_OK</a></div><div class="ttdeci">#define RVC_OK</div><div class="ttdef"><b>Definition</b> rvc.h:31</div></div>
+<div class="ttc" id="astructHcBin__s_html"><div class="ttname"><a href="structHcBin__s.html">HcBin_s</a></div><div class="ttdef"><b>Definition</b> HcBin.h:47</div></div>
+<div class="ttc" id="astructSensorEvent_html"><div class="ttname"><a href="structSensorEvent.html">SensorEvent</a></div><div class="ttdoc">Container for a single sensor report.</div><div class="ttdef"><b>Definition</b> bno08x.hpp:114</div></div>
+<div class="ttc" id="astructSensorEvent_html_a2a6ead14a1676d5412cf9ec6b4986d62"><div class="ttname"><a href="structSensorEvent.html#a2a6ead14a1676d5412cf9ec6b4986d62">SensorEvent::sensor</a></div><div class="ttdeci">BNO085Sensor sensor</div><div class="ttdoc">Source sensor ID.</div><div class="ttdef"><b>Definition</b> bno08x.hpp:115</div></div>
+<div class="ttc" id="astructrvc__SensorEvent__s_html"><div class="ttname"><a href="structrvc__SensorEvent__s.html">rvc_SensorEvent_s</a></div><div class="ttdef"><b>Definition</b> rvc.h:52</div></div>
+<div class="ttc" id="astructrvc__SensorValue__s_html"><div class="ttname"><a href="structrvc__SensorValue__s.html">rvc_SensorValue_s</a></div><div class="ttdef"><b>Definition</b> rvc.h:65</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="bno08x_8cpp.html">bno08x.cpp</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
+</body>
+</html>

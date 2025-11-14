@@ -20,8 +20,9 @@ message(STATUS "Source Root: ${SRC_ROOT}")
 # Source File Discovery and Validation
 # =============================================================================
 # List all potential driver source files
+# Note: bno08x.cpp is excluded - it's a template implementation included from bno08x.hpp
 set(DRIVER_SRCS
-    "${SRC_ROOT}/BNO085.cpp"
+    # "${SRC_ROOT}/bno08x.cpp"  # Template implementation - included from header
     "${SRC_ROOT}/dfu/dfu_bno.cpp"
     "${SRC_ROOT}/dfu/dfu_fsp200.cpp"
     "${SRC_ROOT}/rvc/rvc.cpp"

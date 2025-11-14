@@ -415,7 +415,7 @@ PS0 = 1, PS1 = 1 ➜ SPI mode
 </h2>
     
 
-<p>The library requires a C++11 compiler and an implementation of <code class="language-plaintext highlighter-rouge">IBNO085Transport</code> for your hardware platform. The <code class="language-plaintext highlighter-rouge">src</code> directory contains the platform‑agnostic driver while <code class="language-plaintext highlighter-rouge">examples</code> show how to implement the transport.</p>
+<p>The library requires a C++11 compiler and an implementation of <code class="language-plaintext highlighter-rouge">bno08x::CommInterface</code> for your hardware platform. The <code class="language-plaintext highlighter-rouge">src</code> directory contains the platform‑agnostic driver while <code class="language-plaintext highlighter-rouge">examples</code> show how to implement the communication interface.</p>
 <h3 id="using-cmake">
   
   
@@ -447,7 +447,7 @@ target_link_libraries(myApp PRIVATE bno085)
 </h3>
     
 
-<p>Copy the <code class="language-plaintext highlighter-rouge">src</code> folder into an Arduino library or use it with PlatformIO. Implement the transport with <code class="language-plaintext highlighter-rouge">Wire</code> as shown below.</p>
+<p>Copy the <code class="language-plaintext highlighter-rouge">src</code> folder into an Arduino library or use it with PlatformIO. Implement the communication interface with <code class="language-plaintext highlighter-rouge">Wire</code> as shown below.</p>
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -474,7 +474,7 @@ target_link_libraries(myApp PRIVATE bno085)
 </pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">&lt;Wire.h&gt;</span><span class="cp">
 #include</span> <span class="cpf">"BNO085.hpp"</span><span class="cp">
 </span>
-<span class="k">class</span> <span class="nc">ArduinoTransport</span> <span class="o">:</span> <span class="k">public</span> <span class="n">IBNO085Transport</span> <span class="p">{</span>
+<span class="k">class</span> <span class="nc">ArduinoComm</span> <span class="o">:</span> <span class="k">public</span> <span class="n">bno08x</span><span class="o">::</span><span class="n">CommInterface</span><span class="o">&lt;</span><span class="n">ArduinoComm</span><span class="o">&gt;</span> <span class="p">{</span>
 <span class="nl">public:</span>
   <span class="kt">bool</span> <span class="n">open</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span> <span class="n">Wire</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="n">Wire</span><span class="p">.</span><span class="n">setClock</span><span class="p">(</span><span class="mi">400000</span><span class="p">);</span> <span class="n">delay</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span> <span class="p">}</span>
   <span class="kt">void</span> <span class="n">close</span><span class="p">()</span> <span class="k">override</span> <span class="p">{}</span>
@@ -531,7 +531,7 @@ target_link_libraries(myApp PRIVATE bno085)
 </pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">"driver/i2c.h"</span><span class="cp">
 #include</span> <span class="cpf">"BNO085.hpp"</span><span class="cp">
 </span>
-<span class="k">class</span> <span class="nc">Esp32I2CTransport</span> <span class="o">:</span> <span class="k">public</span> <span class="n">IBNO085Transport</span> <span class="p">{</span>
+<span class="k">class</span> <span class="nc">Esp32I2CComm</span> <span class="o">:</span> <span class="k">public</span> <span class="n">bno08x</span><span class="o">::</span><span class="n">CommInterface</span><span class="o">&lt;</span><span class="n">Esp32I2CComm</span><span class="o">&gt;</span> <span class="p">{</span>
 <span class="nl">public:</span>
   <span class="kt">bool</span> <span class="n">open</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span>
     <span class="n">i2c_config_t</span> <span class="n">cfg</span><span class="p">{};</span>
@@ -555,7 +555,7 @@ target_link_libraries(myApp PRIVATE bno085)
 <span class="p">};</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 
-<p>These snippets show minimal transports; the full examples in the <code class="language-plaintext highlighter-rouge">examples</code> folder include polling loops and callbacks.</p>
+<p>These snippets show minimal communication interfaces; the full examples in the <code class="language-plaintext highlighter-rouge">examples</code> folder include polling loops and callbacks.</p>
 <h2 id="sensor-reports-and-modes">
   
   
@@ -692,7 +692,7 @@ GyroIntegratedRV
 <ul>
   <li><strong>Calibration</strong> – Move the sensor in a figure‑eight pattern after power‑up to achieve accuracy level 3.</li>
   <li><strong>Tare</strong> – Call <code class="language-plaintext highlighter-rouge">imu.tareNow()</code> to zero the orientation when the device is in your desired reference pose.</li>
-  <li><strong>DFU</strong> – Hold <strong>BOOTN</strong> low during reset and use <code class="language-plaintext highlighter-rouge">BNO085::dfu()</code> along with a transport implementing <code class="language-plaintext highlighter-rouge">IDfuTransport</code> to update firmware.</li>
+  <li><strong>DFU</strong> – Hold <strong>BOOTN</strong> low during reset and use <code class="language-plaintext highlighter-rouge">BNO085::dfu()</code> along with a communication interface implementing <code class="language-plaintext highlighter-rouge">IDfuTransport</code> to update firmware.</li>
   <li><strong>Power Saving</strong> – Disable unused reports and use the INT pin to wake the host only when needed.</li>
   <li><strong>Host Timing</strong> – Call <code class="language-plaintext highlighter-rouge">imu.update()</code> as often as possible. In an RTOS environment, poll when INT triggers to minimize latency.</li>
 </ul>
@@ -734,8 +734,8 @@ GyroIntegratedRV
 </pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">"ArduinoTransport.h"</span><span class="c1"> // from above example</span><span class="cp">
 #include</span> <span class="cpf">"BNO085.hpp"</span><span class="cp">
 </span>
-<span class="n">ArduinoTransport</span> <span class="n">transport</span><span class="p">;</span>
-<span class="n">BNO085</span> <span class="nf">imu</span><span class="p">(</span><span class="o">&amp;</span><span class="n">transport</span><span class="p">);</span>
+<span class="n">ArduinoComm</span> <span class="n">comm</span><span class="p">;</span>
+<span class="n">BNO085</span> <span class="nf">imu</span><span class="p">(</span><span class="o">&amp;</span><span class="n">comm</span><span class="p">);</span>
 
 <span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
   <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>

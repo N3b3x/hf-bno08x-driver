@@ -1,0 +1,16 @@
+<map id="src/bno08x.cpp" name="src/bno08x.cpp">
+<area shape="rect" id="Node000001" title="Template implementation of the BNO08x C++ driver." alt="" coords="449,5,569,31"/>
+<area shape="rect" id="Node000002" href="$bno08x_8hpp.html" title="High level C++ interface for the BNO08x IMU family." alt="" coords="449,79,570,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="503,44,505,78,500,79,498,45"/>
+<area shape="poly" id="edge7_Node000002_Node000001" title=" " alt="" coords="515,65,514,31,519,31,521,65"/>
+<area shape="rect" id="Node000003" href="$basic__polling__example_8cpp.html" title="Basic polling mode example with orientation and linear acceleration." alt="" coords="5,159,208,199"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="439,109,221,155,188,162,187,157,219,149,438,104"/>
+<area shape="rect" id="Node000004" href="$driver__integration__test_8cpp.html" title="Comprehensive Integration Test Suite for BNO08x Driver." alt="" coords="233,152,399,207"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="472,112,376,154,374,150,470,107"/>
+<area shape="rect" id="Node000005" href="$event__driven__callback__example_8cpp.html" title="Event&#45;driven callback example with step counter and tap detector." alt="" coords="423,152,595,207"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="512,118,512,152,507,152,507,118"/>
+<area shape="rect" id="Node000006" href="$full__features__example_8cpp.html" title="Comprehensive example demonstrating all BNO08x features." alt="" coords="619,159,818,199"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="551,107,674,157,671,162,549,112"/>
+<area shape="rect" id="Node000007" href="$rvc__mode__example_8cpp.html" title="RVC (Reduced Vector Computation) mode example." alt="" coords="843,159,1024,199"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="585,102,831,149,862,157,861,162,830,155,584,108"/>
+</map>

@@ -1,14 +1,18 @@
 var searchData=
 [
-  ['skip_5fcount_0',['SKIP_COUNT',['../rvc_8cpp.html#ab2f738ef25b48ba2ce3d9f3a68289e5f',1,'rvc.cpp']]],
-  ['status_5fapp_5finvalid_1',['STATUS_APP_INVALID',['../dfu__fsp200_8cpp.html#a5935872b35cc0930e1029b33cf83cef1',1,'dfu_fsp200.cpp']]],
-  ['status_5fapp_5fvalid_2',['STATUS_APP_VALID',['../dfu__fsp200_8cpp.html#ac7216015c12918aa906cc2fa3b4df2e7',1,'dfu_fsp200.cpp']]],
-  ['status_5fdfu_5fimage_5finvalid_3',['STATUS_DFU_IMAGE_INVALID',['../dfu__fsp200_8cpp.html#a1bc8474f9cd206cdac698584fdcd625d',1,'dfu_fsp200.cpp']]],
-  ['status_5fdfu_5fimage_5fvalid_4',['STATUS_DFU_IMAGE_VALID',['../dfu__fsp200_8cpp.html#aaf3a645a9ea56069c583c4959a2726e9',1,'dfu_fsp200.cpp']]],
-  ['status_5ferror_5',['STATUS_ERROR',['../dfu__fsp200_8cpp.html#ae4a97f0d170bc8dc771aac6c4f38ad1d',1,'dfu_fsp200.cpp']]],
-  ['status_5flaunch_5fapplication_6',['STATUS_LAUNCH_APPLICATION',['../dfu__fsp200_8cpp.html#a42aff06e75ba65e263defebf492e4c22',1,'dfu_fsp200.cpp']]],
-  ['status_5flaunch_5fbootloader_7',['STATUS_LAUNCH_BOOTLOADER',['../dfu__fsp200_8cpp.html#addd4274db8cd2ae81ec778dd6d331f72',1,'dfu_fsp200.cpp']]],
-  ['status_5fsource_8',['STATUS_SOURCE',['../dfu__fsp200_8cpp.html#ae375575db59e834d0c66325b1202d9cd',1,'dfu_fsp200.cpp']]],
-  ['status_5fupgrade_5fstarted_9',['STATUS_UPGRADE_STARTED',['../dfu__fsp200_8cpp.html#a947a327495cac58544655ffb4c9e56c6',1,'dfu_fsp200.cpp']]],
-  ['status_5fvalidate_5fstarted_10',['STATUS_VALIDATE_STARTED',['../dfu__fsp200_8cpp.html#a08abf2c7098d00d5b433c91db9668123',1,'dfu_fsp200.cpp']]]
+  ['run_5fsingle_5ftest_5fif_5fenabled_0',['RUN_SINGLE_TEST_IF_ENABLED',['../TestFramework_8h.html#a7bc8e45ec7ef683e0b1692c05328b784',1,'TestFramework.h']]],
+  ['run_5ftest_1',['RUN_TEST',['../TestFramework_8h.html#a36936b10eceab520bb9d3d95534a00db',1,'TestFramework.h']]],
+  ['run_5ftest_5fgroup_5fif_5fenabled_2',['RUN_TEST_GROUP_IF_ENABLED',['../TestFramework_8h.html#a069d023efb0dd03f8c2304a56b4a9564',1,'TestFramework.h']]],
+  ['run_5ftest_5fin_5ftask_3',['RUN_TEST_IN_TASK',['../TestFramework_8h.html#a214e38e25939e45e31ae73a073fca47f',1,'TestFramework.h']]],
+  ['run_5ftest_5fsection_5fif_5fenabled_4',['RUN_TEST_SECTION_IF_ENABLED',['../TestFramework_8h.html#a742c0e25111e9ee95def05464cab957b',1,'TestFramework.h']]],
+  ['run_5ftest_5fsection_5fif_5fenabled_5fauto_5fprogress_5',['RUN_TEST_SECTION_IF_ENABLED_AUTO_PROGRESS',['../TestFramework_8h.html#a42013656a31f033788afe39c84e96bec',1,'TestFramework.h']]],
+  ['run_5ftest_5fsection_5fif_5fenabled_5fwith_5fpattern_6',['RUN_TEST_SECTION_IF_ENABLED_WITH_PATTERN',['../TestFramework_8h.html#ab72cc2ae0fb724218e81479185ab38c6',1,'TestFramework.h']]],
+  ['run_5ftest_5fsection_5fif_5fenabled_5fwith_5fprogress_7',['RUN_TEST_SECTION_IF_ENABLED_WITH_PROGRESS',['../TestFramework_8h.html#a75c45174f9dde97eb43339fcd0ac79c8',1,'TestFramework.h']]],
+  ['rvc_5ferr_8',['RVC_ERR',['../rvc_8h.html#a52110cc23632bcfda6771eb9303d5d0b',1,'rvc.h']]],
+  ['rvc_5ferr_5fbad_5fparam_9',['RVC_ERR_BAD_PARAM',['../rvc_8h.html#af738f629f53c4f9f5dd7e2eae5c49cd2',1,'rvc.h']]],
+  ['rvc_5ferr_5fhub_10',['RVC_ERR_HUB',['../rvc_8h.html#aa38f5ca6dd7fd383ce29b764c2834d80',1,'rvc.h']]],
+  ['rvc_5ferr_5fio_11',['RVC_ERR_IO',['../rvc_8h.html#a9929d22cb1678741e6c466272b43f20a',1,'rvc.h']]],
+  ['rvc_5ferr_5fop_5fin_5fprogress_12',['RVC_ERR_OP_IN_PROGRESS',['../rvc_8h.html#a77eec1bab94211a014f2f46586ce1ac6',1,'rvc.h']]],
+  ['rvc_5ferr_5ftimeout_13',['RVC_ERR_TIMEOUT',['../rvc_8h.html#ae5f12dfc5bf8f4100c18367d97db9fc1',1,'rvc.h']]],
+  ['rvc_5fok_14',['RVC_OK',['../rvc_8h.html#ad6be817a868f925c41787869abf2e63f',1,'rvc.h']]]
 ];

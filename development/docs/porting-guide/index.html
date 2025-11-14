@@ -61,8 +61,8 @@
 <meta property="og:title" content="Porting Guide" />
 <meta name="author" content="N3b3x" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="Implement IBNO085Transport for your platform (ESP32, STM32, Arduino)" />
-<meta property="og:description" content="Implement IBNO085Transport for your platform (ESP32, STM32, Arduino)" />
+<meta name="description" content="Implement CommInterface for your platform (ESP32, STM32, Arduino)" />
+<meta property="og:description" content="Implement CommInterface for your platform (ESP32, STM32, Arduino)" />
 <link rel="canonical" href="https://n3b3x.github.io/hf-bno08x-driver/development/docs/porting-guide/" />
 <meta property="og:url" content="https://n3b3x.github.io/hf-bno08x-driver/development/docs/porting-guide/" />
 <meta property="og:site_name" content="HardFOC BNO08x Driver - development" />
@@ -70,7 +70,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Porting Guide" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"N3b3x","url":"https://github.com/n3b3x"},"description":"Implement IBNO085Transport for your platform (ESP32, STM32, Arduino)","headline":"Porting Guide","url":"https://n3b3x.github.io/hf-bno08x-driver/development/docs/porting-guide/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"N3b3x","url":"https://github.com/n3b3x"},"description":"Implement CommInterface for your platform (ESP32, STM32, Arduino)","headline":"Porting Guide","url":"https://n3b3x.github.io/hf-bno08x-driver/development/docs/porting-guide/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -275,13 +275,13 @@
   <tbody>
     <tr>
       <td><a href="/hf-bno08x-driver/development/docs/hardware-wiring/">⬅️ Previous: Hardware Wiring</a></td>
-      <td><a href="/hf-bno08x-driver/development/docs/examples/">Next: Usage Examples ➡️</a></td>
+      <td><a href="examples.md">Next: Usage Examples ➡️</a></td>
       <td><a href="/hf-bno08x-driver/development/docs/">Docs Hub 📚</a></td>
     </tr>
   </tbody>
 </table></div>
 
-<p>Implement <code class="language-plaintext highlighter-rouge">IBNO085Transport</code> for your platform. Below are snippets for common targets.</p>
+<p>Implement <code class="language-plaintext highlighter-rouge">bno08x::CommInterface</code> for your platform. Below are snippets for common targets.</p>
 <h2 id="esp32-esp-idf">
   
   
@@ -295,7 +295,7 @@
 3
 4
 </pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">"driver/i2c.h"</span><span class="cp">
-</span><span class="k">class</span> <span class="nc">Esp32I2CTransport</span> <span class="o">:</span> <span class="k">public</span> <span class="n">IBNO085Transport</span> <span class="p">{</span>
+</span><span class="k">class</span> <span class="nc">Esp32I2CComm</span> <span class="o">:</span> <span class="k">public</span> <span class="n">bno08x</span><span class="o">::</span><span class="n">CommInterface</span><span class="o">&lt;</span><span class="n">Esp32I2CComm</span><span class="o">&gt;</span> <span class="p">{</span>
   <span class="c1">// Provide open(), read(), write() and getTimeUs()</span>
 <span class="p">};</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
@@ -329,7 +329,7 @@
 20
 21
 </pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">&lt;Wire.h&gt;</span><span class="cp">
-</span><span class="k">class</span> <span class="nc">ArduinoTransport</span> <span class="o">:</span> <span class="k">public</span> <span class="n">IBNO085Transport</span> <span class="p">{</span>
+</span><span class="k">class</span> <span class="nc">ArduinoComm</span> <span class="o">:</span> <span class="k">public</span> <span class="n">bno08x</span><span class="o">::</span><span class="n">CommInterface</span><span class="o">&lt;</span><span class="n">ArduinoComm</span><span class="o">&gt;</span> <span class="p">{</span>
   <span class="kt">bool</span> <span class="n">open</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span>
     <span class="n">Wire</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
     <span class="n">Wire</span><span class="p">.</span><span class="n">setClock</span><span class="p">(</span><span class="mi">400000</span><span class="p">);</span>
@@ -357,7 +357,7 @@
   <tbody>
     <tr>
       <td><a href="/hf-bno08x-driver/development/docs/hardware-wiring/">⬅️ Previous: Hardware Wiring</a></td>
-      <td><a href="/hf-bno08x-driver/development/docs/examples/">Next: Usage Examples ➡️</a></td>
+      <td><a href="examples.md">Next: Usage Examples ➡️</a></td>
       <td><a href="/hf-bno08x-driver/development/docs/">Docs Hub 📚</a></td>
     </tr>
   </tbody>

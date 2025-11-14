@@ -8,10 +8,10 @@ var searchData=
   ['firmware_2eh_5',['firmware.h',['../firmware_8h.html',1,'']]],
   ['firmwareopened_6',['firmwareOpened',['../structDfu__t.html#a2f19ccbbd8d16ba29cd5ee6e73c9cb4d',1,'Dfu_t']]],
   ['flip_5ftest_5fprogress_5findicator_7',['flip_test_progress_indicator',['../TestFramework_8h.html#a7bb80345e5681c19686df292fa897daf',1,'TestFramework.h']]],
-  ['flipdetector_8',['FlipDetector',['../BNO085_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a7e88095cab76d9236896e968bc5bb12f',1,'BNO085.hpp']]],
+  ['flipdetector_8',['FlipDetector',['../bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a7e88095cab76d9236896e968bc5bb12f',1,'bno08x.hpp']]],
   ['format_9',['Frame format',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/rvc/README.md#autotoc_md5',1,'']]],
   ['frame_20format_10',['Frame format',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/rvc/README.md#autotoc_md5',1,'']]],
   ['framework_11',['DFU Framework',['../index.html',1,'']]],
   ['frequency_12',['frequency',['../structEsp32Bno08xBus_1_1I2CConfig.html#a710c95b47a645dacc0d40a01ac56d982',1,'Esp32Bno08xBus::I2CConfig']]],
-  ['fullfeaturesexample_2ecpp_13',['FullFeaturesExample.cpp',['../FullFeaturesExample_8cpp.html',1,'']]]
+  ['full_5ffeatures_5fexample_2ecpp_13',['full_features_example.cpp',['../full__features__example_8cpp.html',1,'']]]
 ];

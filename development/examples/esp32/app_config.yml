@@ -22,13 +22,13 @@ apps:
   # --------------------------------------------------------------------------
   driver_integration_test:
     description: "Comprehensive driver integration test suite (no hardware required)"
-    source_file: "DriverIntegrationTest.cpp"
+    source_file: "driver_integration_test.cpp"
     category: "test"
     idf_versions: ["release/v5.5"]
     build_types: ["Debug", "Release"]
     ci_enabled: true
     featured: true
-    documentation: "docs/README_DRIVER_INTEGRATION_TEST.md"
+    documentation: "docs/readme_driver_integration_test.md"
     test_sections:
       - "INITIALIZATION_TESTS"
       - "SENSOR_ENABLE_TESTS"
@@ -54,7 +54,7 @@ apps:
   # --------------------------------------------------------------------------
   basic_polling:
     description: "Basic polling mode example with orientation and linear acceleration"
-    source_file: "BasicPollingExample.cpp"
+    source_file: "basic_polling_example.cpp"
     category: "example"
     idf_versions: ["release/v5.5"]
     build_types: ["Debug", "Release"]
@@ -72,7 +72,7 @@ apps:
   # --------------------------------------------------------------------------
   event_driven_callback:
     description: "Event-driven callback example with step counter and tap detector"
-    source_file: "EventDrivenCallbackExample.cpp"
+    source_file: "event_driven_callback_example.cpp"
     category: "example"
     idf_versions: ["release/v5.5"]
     build_types: ["Debug", "Release"]
@@ -90,7 +90,7 @@ apps:
   # --------------------------------------------------------------------------
   full_features:
     description: "Comprehensive example demonstrating all BNO08x features"
-    source_file: "FullFeaturesExample.cpp"
+    source_file: "full_features_example.cpp"
     category: "example"
     idf_versions: ["release/v5.5"]
     build_types: ["Debug", "Release"]
@@ -109,7 +109,7 @@ apps:
   # --------------------------------------------------------------------------
   rvc_mode:
     description: "RVC (Reduced Vector Computation) mode example"
-    source_file: "RvcModeExample.cpp"
+    source_file: "rvc_mode_example.cpp"
     category: "example"
     idf_versions: ["release/v5.5"]
     build_types: ["Debug", "Release"]

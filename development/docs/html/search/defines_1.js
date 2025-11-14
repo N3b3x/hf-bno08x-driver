@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['chan_5fbootloader_5fcontrol_0',['CHAN_BOOTLOADER_CONTROL',['../dfu__fsp200_8cpp.html#ab8810880b3cbfd30f892897c7eba6d2b',1,'dfu_fsp200.cpp']]]
+  ['bno085_5fheader_5fincluded_0',['BNO085_HEADER_INCLUDED',['../bno08x_8hpp.html#a960dacf85103d71ad3fb2dc7cde80617',1,'bno08x.hpp']]]
 ];

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['begin_0',['begin',['../classBNO085.html#a1e79ad62ccdb9c282536d04e28d4edc8',1,'BNO085::begin()'],['../classBNO085.html#a6e33ea7ab3b8a876c9087a77225b0053',1,'BNO085::begin(IBNO085Transport *transport)']]],
-  ['beginrvc_1',['beginRvc',['../classBNO085.html#a45a763de32f6720f7b5c521993caae39',1,'BNO085']]],
-  ['bno085_2',['BNO085',['../classBNO085.html#a7be519fd6c9f4472bd5ab05d0cd25ba1',1,'BNO085']]]
+  ['begin_0',['Begin',['../classBNO085.html#a9fc79a6ee018d3214897efaf254ebab3',1,'BNO085']]],
+  ['beginrvc_1',['BeginRvc',['../classBNO085.html#ac4d7c31a7cd81f0bdbeece4cd143682d',1,'BNO085']]],
+  ['bno085_2',['BNO085',['../classBNO085.html#a66f2abe8f7fcf9005a37aed5cf17b104',1,'BNO085']]]
 ];

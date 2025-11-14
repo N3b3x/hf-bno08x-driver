@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="Doxygen Awesome" />
 <meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
 <!-- END twitter metadata -->
-<title>HF-BNO08x: BNO085 Class Reference</title>
+<title>HF-BNO08x: BNO085&lt; CommType &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -134,94 +134,100 @@ $(function(){initNavTree('classBNO085.html',''); initResizable(); });
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classBNO085-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">BNO085 Class Reference</div></div>
+  <div class="headertitle"><div class="title">BNO085&lt; CommType &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
 <p>High level driver for the BNO08x IMU.  
  <a href="#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="BNO085_8hpp_source.html">BNO085.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="bno08x_8hpp_source.html">bno08x.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7be519fd6c9f4472bd5ab05d0cd25ba1" id="r_a7be519fd6c9f4472bd5ab05d0cd25ba1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7be519fd6c9f4472bd5ab05d0cd25ba1">BNO085</a> (<a class="el" href="classIBNO085Transport.html">IBNO085Transport</a> *transport=nullptr)</td></tr>
-<tr class="memdesc:a7be519fd6c9f4472bd5ab05d0cd25ba1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct the driver with an optional transport instance.  <br /></td></tr>
-<tr class="separator:a7be519fd6c9f4472bd5ab05d0cd25ba1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e79ad62ccdb9c282536d04e28d4edc8" id="r_a1e79ad62ccdb9c282536d04e28d4edc8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1e79ad62ccdb9c282536d04e28d4edc8">begin</a> ()</td></tr>
-<tr class="memdesc:a1e79ad62ccdb9c282536d04e28d4edc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise using the transport passed to the constructor.  <br /></td></tr>
-<tr class="separator:a1e79ad62ccdb9c282536d04e28d4edc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e33ea7ab3b8a876c9087a77225b0053" id="r_a6e33ea7ab3b8a876c9087a77225b0053"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6e33ea7ab3b8a876c9087a77225b0053">begin</a> (<a class="el" href="classIBNO085Transport.html">IBNO085Transport</a> *transport)</td></tr>
-<tr class="memdesc:a6e33ea7ab3b8a876c9087a77225b0053"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise using the given transport instance.  <br /></td></tr>
-<tr class="separator:a6e33ea7ab3b8a876c9087a77225b0053"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8fa67c6dc5b91d7082e77aa4c34020f1" id="r_a8fa67c6dc5b91d7082e77aa4c34020f1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8fa67c6dc5b91d7082e77aa4c34020f1">enableSensor</a> (<a class="el" href="BNO085_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a> sensor, uint32_t intervalMs, float sensitivity=0.0f)</td></tr>
-<tr class="memdesc:a8fa67c6dc5b91d7082e77aa4c34020f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable periodic reporting for a sensor.  <br /></td></tr>
-<tr class="separator:a8fa67c6dc5b91d7082e77aa4c34020f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6fb5b06c6ce5df760da5920a2e83b87f" id="r_a6fb5b06c6ce5df760da5920a2e83b87f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6fb5b06c6ce5df760da5920a2e83b87f">disableSensor</a> (<a class="el" href="BNO085_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a> sensor)</td></tr>
-<tr class="separator:a6fb5b06c6ce5df760da5920a2e83b87f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a96c54d50e4ee31f072f8da22f3e70478" id="r_a96c54d50e4ee31f072f8da22f3e70478"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a96c54d50e4ee31f072f8da22f3e70478">setCallback</a> (<a class="el" href="BNO085_8hpp.html#ae10cac53e8962550a2efb17043c5355e">SensorCallback</a> cb)</td></tr>
-<tr class="separator:a96c54d50e4ee31f072f8da22f3e70478"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60a1cc63919db82a3eac678ed48db75a" id="r_a60a1cc63919db82a3eac678ed48db75a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a60a1cc63919db82a3eac678ed48db75a">setRvcCallback</a> (<a class="el" href="BNO085_8hpp.html#aa57bd22f61b6b51eb9f2585fae4e2d61">RvcCallback</a> cb)</td></tr>
-<tr class="separator:a60a1cc63919db82a3eac678ed48db75a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45a763de32f6720f7b5c521993caae39" id="r_a45a763de32f6720f7b5c521993caae39"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a45a763de32f6720f7b5c521993caae39">beginRvc</a> (<a class="el" href="classIRvcHal.html">IRvcHal</a> *hal)</td></tr>
-<tr class="separator:a45a763de32f6720f7b5c521993caae39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ed2c69b25418210c8a904024b9249fd" id="r_a7ed2c69b25418210c8a904024b9249fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7ed2c69b25418210c8a904024b9249fd">serviceRvc</a> ()</td></tr>
-<tr class="separator:a7ed2c69b25418210c8a904024b9249fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a670f1479068c47993220d0fd08a4e443" id="r_a670f1479068c47993220d0fd08a4e443"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a670f1479068c47993220d0fd08a4e443">closeRvc</a> ()</td></tr>
-<tr class="separator:a670f1479068c47993220d0fd08a4e443"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a646ab8d440e19fdb361dab78df01a9b0" id="r_a646ab8d440e19fdb361dab78df01a9b0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a646ab8d440e19fdb361dab78df01a9b0">hasNewData</a> (<a class="el" href="BNO085_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a> sensor) const</td></tr>
-<tr class="separator:a646ab8d440e19fdb361dab78df01a9b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac2e1c2c498fa206dab33bb79aba202f1" id="r_ac2e1c2c498fa206dab33bb79aba202f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structSensorEvent.html">SensorEvent</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac2e1c2c498fa206dab33bb79aba202f1">getLatest</a> (<a class="el" href="BNO085_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a> sensor) const</td></tr>
-<tr class="separator:ac2e1c2c498fa206dab33bb79aba202f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c6c7130f0965a343113fbf2d84eceee" id="r_a4c6c7130f0965a343113fbf2d84eceee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4c6c7130f0965a343113fbf2d84eceee">update</a> ()</td></tr>
-<tr class="separator:a4c6c7130f0965a343113fbf2d84eceee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30a3ef182c50f6c2a0eb48acc766839f" id="r_a30a3ef182c50f6c2a0eb48acc766839f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a30a3ef182c50f6c2a0eb48acc766839f">getLastError</a> () const</td></tr>
-<tr class="separator:a30a3ef182c50f6c2a0eb48acc766839f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d987b76d785c3c103a6a92cb8e5d8f5" id="r_a4d987b76d785c3c103a6a92cb8e5d8f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4d987b76d785c3c103a6a92cb8e5d8f5">hardwareReset</a> (uint32_t lowMs=2)</td></tr>
-<tr class="memdesc:a4d987b76d785c3c103a6a92cb8e5d8f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toggle the sensor's hardware reset line if available.  <br /></td></tr>
-<tr class="separator:a4d987b76d785c3c103a6a92cb8e5d8f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0dc52bd052ddf8be7cfe8b065a00b74" id="r_ae0dc52bd052ddf8be7cfe8b065a00b74"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae0dc52bd052ddf8be7cfe8b065a00b74">setBootPin</a> (bool state)</td></tr>
-<tr class="separator:ae0dc52bd052ddf8be7cfe8b065a00b74"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac143524d2296fc1ecd7379e45bddde48" id="r_ac143524d2296fc1ecd7379e45bddde48"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac143524d2296fc1ecd7379e45bddde48">setWakePin</a> (bool state)</td></tr>
-<tr class="separator:ac143524d2296fc1ecd7379e45bddde48"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb4c75c94d3e8d0995cf95f83da13ae9" id="r_abb4c75c94d3e8d0995cf95f83da13ae9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abb4c75c94d3e8d0995cf95f83da13ae9">selectInterface</a> (<a class="el" href="BNO085_8hpp.html#a1e8d3cde9f9e6ea515f5db028614f03b">BNO085Interface</a> iface)</td></tr>
-<tr class="separator:abb4c75c94d3e8d0995cf95f83da13ae9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4257fa470d41b62551701813256b9b25" id="r_a4257fa470d41b62551701813256b9b25"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4257fa470d41b62551701813256b9b25">dfu</a> (const <a class="el" href="HcBin_8h.html#a8b8c363f76941613f85a73d23a2a1455">HcBin_t</a> &amp;fw=<a class="el" href="firmware-bno_8c.html#a169e52b3509b7e23c9a7f630e9156c11">firmware</a>)</td></tr>
-<tr class="memdesc:a4257fa470d41b62551701813256b9b25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a firmware update using this object's transport.  <br /></td></tr>
-<tr class="separator:a4257fa470d41b62551701813256b9b25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66f2abe8f7fcf9005a37aed5cf17b104" id="r_a66f2abe8f7fcf9005a37aed5cf17b104"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a66f2abe8f7fcf9005a37aed5cf17b104">BNO085</a> (CommType &amp;comm) noexcept</td></tr>
+<tr class="memdesc:a66f2abe8f7fcf9005a37aed5cf17b104"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct the driver with a communication interface instance.  <br /></td></tr>
+<tr class="separator:a66f2abe8f7fcf9005a37aed5cf17b104"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fc79a6ee018d3214897efaf254ebab3" id="r_a9fc79a6ee018d3214897efaf254ebab3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9fc79a6ee018d3214897efaf254ebab3">Begin</a> () noexcept</td></tr>
+<tr class="memdesc:a9fc79a6ee018d3214897efaf254ebab3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise using the communication interface passed to the constructor.  <br /></td></tr>
+<tr class="separator:a9fc79a6ee018d3214897efaf254ebab3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a31027691ce329a007f3428066c9900" id="r_a7a31027691ce329a007f3428066c9900"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7a31027691ce329a007f3428066c9900">EnableSensor</a> (<a class="el" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a> sensor, uint32_t intervalMs, float sensitivity=0.0f)</td></tr>
+<tr class="memdesc:a7a31027691ce329a007f3428066c9900"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable periodic reporting for a sensor.  <br /></td></tr>
+<tr class="separator:a7a31027691ce329a007f3428066c9900"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeca2d6e5b8f954797cec2b962828a229" id="r_aeca2d6e5b8f954797cec2b962828a229"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeca2d6e5b8f954797cec2b962828a229">DisableSensor</a> (<a class="el" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a> sensor)</td></tr>
+<tr class="separator:aeca2d6e5b8f954797cec2b962828a229"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07efc3c2553e28a047bca66a0e3ac21a" id="r_a07efc3c2553e28a047bca66a0e3ac21a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a07efc3c2553e28a047bca66a0e3ac21a">SetCallback</a> (<a class="el" href="bno08x_8hpp.html#ae10cac53e8962550a2efb17043c5355e">SensorCallback</a> cb)</td></tr>
+<tr class="separator:a07efc3c2553e28a047bca66a0e3ac21a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44540163d0909d3044e62d7b4107fed5" id="r_a44540163d0909d3044e62d7b4107fed5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a44540163d0909d3044e62d7b4107fed5">SetRvcCallback</a> (<a class="el" href="bno08x_8hpp.html#aa57bd22f61b6b51eb9f2585fae4e2d61">RvcCallback</a> cb)</td></tr>
+<tr class="separator:a44540163d0909d3044e62d7b4107fed5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4d7c31a7cd81f0bdbeece4cd143682d" id="r_ac4d7c31a7cd81f0bdbeece4cd143682d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac4d7c31a7cd81f0bdbeece4cd143682d">BeginRvc</a> (<a class="el" href="classIRvcHal.html">IRvcHal</a> *hal)</td></tr>
+<tr class="separator:ac4d7c31a7cd81f0bdbeece4cd143682d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c455e7f7ee3e9630f89200c871ca2bc" id="r_a8c455e7f7ee3e9630f89200c871ca2bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c455e7f7ee3e9630f89200c871ca2bc">ServiceRvc</a> ()</td></tr>
+<tr class="separator:a8c455e7f7ee3e9630f89200c871ca2bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a083a3c90eb88a84a68cc185f7f66fea4" id="r_a083a3c90eb88a84a68cc185f7f66fea4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a083a3c90eb88a84a68cc185f7f66fea4">CloseRvc</a> ()</td></tr>
+<tr class="separator:a083a3c90eb88a84a68cc185f7f66fea4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bb31740132d2f60e8baa8f3801c3e28" id="r_a0bb31740132d2f60e8baa8f3801c3e28"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0bb31740132d2f60e8baa8f3801c3e28">HasNewData</a> (<a class="el" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a> sensor) const</td></tr>
+<tr class="separator:a0bb31740132d2f60e8baa8f3801c3e28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad808f56174f2db0303525e566d328007" id="r_ad808f56174f2db0303525e566d328007"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structSensorEvent.html">SensorEvent</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad808f56174f2db0303525e566d328007">GetLatest</a> (<a class="el" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a> sensor) const</td></tr>
+<tr class="separator:ad808f56174f2db0303525e566d328007"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acba0b29af5962daf5701502f504c8838" id="r_acba0b29af5962daf5701502f504c8838"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acba0b29af5962daf5701502f504c8838">Update</a> ()</td></tr>
+<tr class="separator:acba0b29af5962daf5701502f504c8838"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6058135b615cc9e260d3de12f8e7edcf" id="r_a6058135b615cc9e260d3de12f8e7edcf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6058135b615cc9e260d3de12f8e7edcf">GetLastError</a> () const</td></tr>
+<tr class="separator:a6058135b615cc9e260d3de12f8e7edcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a95df88bf31c0f959f34c36ab16e632" id="r_a8a95df88bf31c0f959f34c36ab16e632"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8a95df88bf31c0f959f34c36ab16e632">HardwareReset</a> (uint32_t lowMs=2)</td></tr>
+<tr class="memdesc:a8a95df88bf31c0f959f34c36ab16e632"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toggle the sensor's hardware reset line if available.  <br /></td></tr>
+<tr class="separator:a8a95df88bf31c0f959f34c36ab16e632"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08175def0fb34e49d5b1b53035dd0451" id="r_a08175def0fb34e49d5b1b53035dd0451"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a08175def0fb34e49d5b1b53035dd0451">SetBootPin</a> (bool state)</td></tr>
+<tr class="separator:a08175def0fb34e49d5b1b53035dd0451"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9daaf9e6fab1f9ac8f6bc6747f42e4db" id="r_a9daaf9e6fab1f9ac8f6bc6747f42e4db"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9daaf9e6fab1f9ac8f6bc6747f42e4db">SetWakePin</a> (bool state)</td></tr>
+<tr class="separator:a9daaf9e6fab1f9ac8f6bc6747f42e4db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d7ef9ab5064170e10d8f987765429eb" id="r_a0d7ef9ab5064170e10d8f987765429eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0d7ef9ab5064170e10d8f987765429eb">SelectInterface</a> (<a class="el" href="bno08x_8hpp.html#a1e8d3cde9f9e6ea515f5db028614f03b">BNO085Interface</a> iface)</td></tr>
+<tr class="separator:a0d7ef9ab5064170e10d8f987765429eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33dcc3d35dd871b92693bc6ef5f3b2d8" id="r_a33dcc3d35dd871b92693bc6ef5f3b2d8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a33dcc3d35dd871b92693bc6ef5f3b2d8">Dfu</a> (const <a class="el" href="HcBin_8h.html#a8b8c363f76941613f85a73d23a2a1455">HcBin_t</a> &amp;fw=<a class="el" href="firmware-bno_8c.html#a169e52b3509b7e23c9a7f630e9156c11">firmware</a>)</td></tr>
+<tr class="memdesc:a33dcc3d35dd871b92693bc6ef5f3b2d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a firmware update using this object's communication interface.  <br /></td></tr>
+<tr class="separator:a33dcc3d35dd871b92693bc6ef5f3b2d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>High level driver for the BNO08x IMU. </p>
-<p>The driver wraps the vendor SH-2 C API and exposes a simple C++ interface. A platform specific transport implementing <a class="el" href="classIBNO085Transport.html" title="Abstract interface for BNO085 communication transport (I2C, SPI, etc.).">IBNO085Transport</a> must be supplied to actually read and write bytes on the bus. </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename CommType&gt;<br />
+class BNO085&lt; CommType &gt;</div><p>High level driver for the BNO08x IMU. </p>
+<p>The driver wraps the vendor SH-2 C API and exposes a simple C++ interface. A platform specific communication interface implementing bno08x::CommInterface&lt;Derived&gt; must be supplied to actually read and write bytes on the bus.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">CommType</td><td>The communication interface type (must inherit from bno08x::CommInterface&lt;CommType&gt;)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>The driver uses CRTP-based communication interface for zero virtual call overhead. Communication interface implementations should inherit from bno08x::CommInterface&lt;DerivedType&gt;. </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a7be519fd6c9f4472bd5ab05d0cd25ba1" name="a7be519fd6c9f4472bd5ab05d0cd25ba1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7be519fd6c9f4472bd5ab05d0cd25ba1">&#9670;&#160;</a></span>BNO085()</h2>
+<a id="a66f2abe8f7fcf9005a37aed5cf17b104" name="a66f2abe8f7fcf9005a37aed5cf17b104"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66f2abe8f7fcf9005a37aed5cf17b104">&#9670;&#160;</a></span>BNO085()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename CommType &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">BNO085::BNO085 </td>
+          <td class="memname"><a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;<a class="el" href="classBNO085.html">::BNO085</a> </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classIBNO085Transport.html">IBNO085Transport</a> *</td>          <td class="paramname"><span class="paramname"><em>transport</em><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span></span></td><td>)</td>
+          <td class="paramtype">CommType &amp;</td>          <td class="paramname"><span class="paramname"><em>comm</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Construct the driver with an optional transport instance. </p>
-<p>Construct the driver with an optional transport.</p>
+<p>Construct the driver with a communication interface instance. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">transport</td><td>Transport used for communication. May be nullptr and supplied later to <a class="el" href="#a1e79ad62ccdb9c282536d04e28d4edc8" title="Initialise using the transport passed to the constructor.">begin()</a>. </td></tr>
+    <tr><td class="paramname">comm</td><td>Communication interface used for communication (must outlive this object). </td></tr>
   </table>
   </dd>
 </dl>
@@ -229,54 +235,46 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a1e79ad62ccdb9c282536d04e28d4edc8" name="a1e79ad62ccdb9c282536d04e28d4edc8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1e79ad62ccdb9c282536d04e28d4edc8">&#9670;&#160;</a></span>begin() <span class="overload">[1/2]</span></h2>
+<a id="a9fc79a6ee018d3214897efaf254ebab3" name="a9fc79a6ee018d3214897efaf254ebab3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fc79a6ee018d3214897efaf254ebab3">&#9670;&#160;</a></span>Begin()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename CommType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool BNO085::begin </td>
+          <td class="memname">bool <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::Begin </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Initialise using the transport passed to the constructor. </p>
-<p>Initialize the sensor using the transport passed in the constructor. </p>
+<p>Initialise using the communication interface passed to the constructor. </p>
+<p>Initialize the sensor using the communication interface passed in the constructor. </p>
 
 </div>
 </div>
-<a id="a6e33ea7ab3b8a876c9087a77225b0053" name="a6e33ea7ab3b8a876c9087a77225b0053"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6e33ea7ab3b8a876c9087a77225b0053">&#9670;&#160;</a></span>begin() <span class="overload">[2/2]</span></h2>
+<a id="ac4d7c31a7cd81f0bdbeece4cd143682d" name="ac4d7c31a7cd81f0bdbeece4cd143682d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4d7c31a7cd81f0bdbeece4cd143682d">&#9670;&#160;</a></span>BeginRvc()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename CommType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">bool BNO085::begin </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classIBNO085Transport.html">IBNO085Transport</a> *</td>          <td class="paramname"><span class="paramname"><em>transport</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Initialise using the given transport instance. </p>
-<p>Initialize the sensor with the specified transport. </p>
-
-</div>
-</div>
-<a id="a45a763de32f6720f7b5c521993caae39" name="a45a763de32f6720f7b5c521993caae39"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a45a763de32f6720f7b5c521993caae39">&#9670;&#160;</a></span>beginRvc()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool BNO085::beginRvc </td>
+          <td class="memname">bool <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::BeginRvc </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classIRvcHal.html">IRvcHal</a> *</td>          <td class="paramname"><span class="paramname"><em>hal</em></span></td><td>)</td>
           <td></td>
@@ -288,14 +286,16 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a670f1479068c47993220d0fd08a4e443" name="a670f1479068c47993220d0fd08a4e443"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a670f1479068c47993220d0fd08a4e443">&#9670;&#160;</a></span>closeRvc()</h2>
+<a id="a083a3c90eb88a84a68cc185f7f66fea4" name="a083a3c90eb88a84a68cc185f7f66fea4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a083a3c90eb88a84a68cc185f7f66fea4">&#9670;&#160;</a></span>CloseRvc()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename CommType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void BNO085::closeRvc </td>
+          <td class="memname">void <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::CloseRvc </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
@@ -307,14 +307,16 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a4257fa470d41b62551701813256b9b25" name="a4257fa470d41b62551701813256b9b25"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4257fa470d41b62551701813256b9b25">&#9670;&#160;</a></span>dfu()</h2>
+<a id="a33dcc3d35dd871b92693bc6ef5f3b2d8" name="a33dcc3d35dd871b92693bc6ef5f3b2d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33dcc3d35dd871b92693bc6ef5f3b2d8">&#9670;&#160;</a></span>Dfu()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename CommType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">int BNO085::dfu </td>
+          <td class="memname">int <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::Dfu </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="HcBin_8h.html#a8b8c363f76941613f85a73d23a2a1455">HcBin_t</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>fw</em><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="firmware-bno_8c.html#a169e52b3509b7e23c9a7f630e9156c11">firmware</a></span></span></td><td>)</td>
           <td></td>
@@ -322,7 +324,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Perform a firmware update using this object's transport. </p>
+<p>Perform a firmware update using this object's communication interface. </p>
 <p>The sensor must already be in bootloader mode (BOOTN held low during reset). Provide the firmware as an <code>HcBin_t</code> object—use the default <code>firmware</code> from <code>src/dfu</code> or construct one at runtime with <code><a class="el" href="classMemoryFirmware.html" title="HcBin_t implementation for firmware stored in memory.">MemoryFirmware</a></code>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -331,20 +333,22 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>SH2 status code from the DFU routine.</dd></dl>
-<p>Convenience wrapper to run DFU using this instance's transport. </p>
+<p>Convenience wrapper to run DFU using this instance's communication interface. </p>
 
 </div>
 </div>
-<a id="a6fb5b06c6ce5df760da5920a2e83b87f" name="a6fb5b06c6ce5df760da5920a2e83b87f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6fb5b06c6ce5df760da5920a2e83b87f">&#9670;&#160;</a></span>disableSensor()</h2>
+<a id="aeca2d6e5b8f954797cec2b962828a229" name="aeca2d6e5b8f954797cec2b962828a229"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeca2d6e5b8f954797cec2b962828a229">&#9670;&#160;</a></span>DisableSensor()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename CommType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">bool BNO085::disableSensor </td>
+          <td class="memname">bool <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::DisableSensor </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="BNO085_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a></td>          <td class="paramname"><span class="paramname"><em>sensor</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a></td>          <td class="paramname"><span class="paramname"><em>sensor</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -353,16 +357,18 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a8fa67c6dc5b91d7082e77aa4c34020f1" name="a8fa67c6dc5b91d7082e77aa4c34020f1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8fa67c6dc5b91d7082e77aa4c34020f1">&#9670;&#160;</a></span>enableSensor()</h2>
+<a id="a7a31027691ce329a007f3428066c9900" name="a7a31027691ce329a007f3428066c9900"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a31027691ce329a007f3428066c9900">&#9670;&#160;</a></span>EnableSensor()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename CommType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">bool BNO085::enableSensor </td>
+          <td class="memname">bool <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::EnableSensor </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="BNO085_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a></td>          <td class="paramname"><span class="paramname"><em>sensor</em>, </span></td>
+          <td class="paramtype"><a class="el" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a></td>          <td class="paramname"><span class="paramname"><em>sensor</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -389,17 +395,19 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a30a3ef182c50f6c2a0eb48acc766839f" name="a30a3ef182c50f6c2a0eb48acc766839f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a30a3ef182c50f6c2a0eb48acc766839f">&#9670;&#160;</a></span>getLastError()</h2>
+<a id="a6058135b615cc9e260d3de12f8e7edcf" name="a6058135b615cc9e260d3de12f8e7edcf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6058135b615cc9e260d3de12f8e7edcf">&#9670;&#160;</a></span>GetLastError()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename CommType &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int BNO085::getLastError </td>
+          <td class="memname">int <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::GetLastError </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td> const</td>
@@ -415,16 +423,18 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ac2e1c2c498fa206dab33bb79aba202f1" name="ac2e1c2c498fa206dab33bb79aba202f1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac2e1c2c498fa206dab33bb79aba202f1">&#9670;&#160;</a></span>getLatest()</h2>
+<a id="ad808f56174f2db0303525e566d328007" name="ad808f56174f2db0303525e566d328007"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad808f56174f2db0303525e566d328007">&#9670;&#160;</a></span>GetLatest()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename CommType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structSensorEvent.html">SensorEvent</a> BNO085::getLatest </td>
+          <td class="memname"><a class="el" href="structSensorEvent.html">SensorEvent</a> <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::GetLatest </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="BNO085_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a></td>          <td class="paramname"><span class="paramname"><em>sensor</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a></td>          <td class="paramname"><span class="paramname"><em>sensor</em></span></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
@@ -434,14 +444,16 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a4d987b76d785c3c103a6a92cb8e5d8f5" name="a4d987b76d785c3c103a6a92cb8e5d8f5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4d987b76d785c3c103a6a92cb8e5d8f5">&#9670;&#160;</a></span>hardwareReset()</h2>
+<a id="a8a95df88bf31c0f959f34c36ab16e632" name="a8a95df88bf31c0f959f34c36ab16e632"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a95df88bf31c0f959f34c36ab16e632">&#9670;&#160;</a></span>HardwareReset()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename CommType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void BNO085::hardwareReset </td>
+          <td class="memname">void <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::HardwareReset </td>
           <td>(</td>
           <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>lowMs</em><span class="paramdefsep"> = </span><span class="paramdefval">2</span></span></td><td>)</td>
           <td></td>
@@ -455,16 +467,18 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a646ab8d440e19fdb361dab78df01a9b0" name="a646ab8d440e19fdb361dab78df01a9b0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a646ab8d440e19fdb361dab78df01a9b0">&#9670;&#160;</a></span>hasNewData()</h2>
+<a id="a0bb31740132d2f60e8baa8f3801c3e28" name="a0bb31740132d2f60e8baa8f3801c3e28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0bb31740132d2f60e8baa8f3801c3e28">&#9670;&#160;</a></span>HasNewData()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename CommType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">bool BNO085::hasNewData </td>
+          <td class="memname">bool <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::HasNewData </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="BNO085_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a></td>          <td class="paramname"><span class="paramname"><em>sensor</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a></td>          <td class="paramname"><span class="paramname"><em>sensor</em></span></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
@@ -473,16 +487,18 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="abb4c75c94d3e8d0995cf95f83da13ae9" name="abb4c75c94d3e8d0995cf95f83da13ae9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abb4c75c94d3e8d0995cf95f83da13ae9">&#9670;&#160;</a></span>selectInterface()</h2>
+<a id="a0d7ef9ab5064170e10d8f987765429eb" name="a0d7ef9ab5064170e10d8f987765429eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d7ef9ab5064170e10d8f987765429eb">&#9670;&#160;</a></span>SelectInterface()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename CommType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void BNO085::selectInterface </td>
+          <td class="memname">void <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::SelectInterface </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="BNO085_8hpp.html#a1e8d3cde9f9e6ea515f5db028614f03b">BNO085Interface</a></td>          <td class="paramname"><span class="paramname"><em>iface</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="bno08x_8hpp.html#a1e8d3cde9f9e6ea515f5db028614f03b">BNO085Interface</a></td>          <td class="paramname"><span class="paramname"><em>iface</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -492,14 +508,16 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a7ed2c69b25418210c8a904024b9249fd" name="a7ed2c69b25418210c8a904024b9249fd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7ed2c69b25418210c8a904024b9249fd">&#9670;&#160;</a></span>serviceRvc()</h2>
+<a id="a8c455e7f7ee3e9630f89200c871ca2bc" name="a8c455e7f7ee3e9630f89200c871ca2bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c455e7f7ee3e9630f89200c871ca2bc">&#9670;&#160;</a></span>ServiceRvc()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename CommType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void BNO085::serviceRvc </td>
+          <td class="memname">void <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::ServiceRvc </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
@@ -511,14 +529,16 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ae0dc52bd052ddf8be7cfe8b065a00b74" name="ae0dc52bd052ddf8be7cfe8b065a00b74"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae0dc52bd052ddf8be7cfe8b065a00b74">&#9670;&#160;</a></span>setBootPin()</h2>
+<a id="a08175def0fb34e49d5b1b53035dd0451" name="a08175def0fb34e49d5b1b53035dd0451"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08175def0fb34e49d5b1b53035dd0451">&#9670;&#160;</a></span>SetBootPin()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename CommType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void BNO085::setBootPin </td>
+          <td class="memname">void <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::SetBootPin </td>
           <td>(</td>
           <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>state</em></span></td><td>)</td>
           <td></td>
@@ -530,16 +550,18 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a96c54d50e4ee31f072f8da22f3e70478" name="a96c54d50e4ee31f072f8da22f3e70478"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a96c54d50e4ee31f072f8da22f3e70478">&#9670;&#160;</a></span>setCallback()</h2>
+<a id="a07efc3c2553e28a047bca66a0e3ac21a" name="a07efc3c2553e28a047bca66a0e3ac21a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07efc3c2553e28a047bca66a0e3ac21a">&#9670;&#160;</a></span>SetCallback()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename CommType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void BNO085::setCallback </td>
+          <td class="memname">void <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::SetCallback </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="BNO085_8hpp.html#ae10cac53e8962550a2efb17043c5355e">SensorCallback</a></td>          <td class="paramname"><span class="paramname"><em>cb</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="bno08x_8hpp.html#ae10cac53e8962550a2efb17043c5355e">SensorCallback</a></td>          <td class="paramname"><span class="paramname"><em>cb</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -549,16 +571,18 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a60a1cc63919db82a3eac678ed48db75a" name="a60a1cc63919db82a3eac678ed48db75a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a60a1cc63919db82a3eac678ed48db75a">&#9670;&#160;</a></span>setRvcCallback()</h2>
+<a id="a44540163d0909d3044e62d7b4107fed5" name="a44540163d0909d3044e62d7b4107fed5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44540163d0909d3044e62d7b4107fed5">&#9670;&#160;</a></span>SetRvcCallback()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename CommType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void BNO085::setRvcCallback </td>
+          <td class="memname">void <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::SetRvcCallback </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="BNO085_8hpp.html#aa57bd22f61b6b51eb9f2585fae4e2d61">RvcCallback</a></td>          <td class="paramname"><span class="paramname"><em>cb</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="bno08x_8hpp.html#aa57bd22f61b6b51eb9f2585fae4e2d61">RvcCallback</a></td>          <td class="paramname"><span class="paramname"><em>cb</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -568,14 +592,16 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ac143524d2296fc1ecd7379e45bddde48" name="ac143524d2296fc1ecd7379e45bddde48"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac143524d2296fc1ecd7379e45bddde48">&#9670;&#160;</a></span>setWakePin()</h2>
+<a id="a9daaf9e6fab1f9ac8f6bc6747f42e4db" name="a9daaf9e6fab1f9ac8f6bc6747f42e4db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9daaf9e6fab1f9ac8f6bc6747f42e4db">&#9670;&#160;</a></span>SetWakePin()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename CommType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void BNO085::setWakePin </td>
+          <td class="memname">void <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::SetWakePin </td>
           <td>(</td>
           <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>state</em></span></td><td>)</td>
           <td></td>
@@ -587,14 +613,16 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a4c6c7130f0965a343113fbf2d84eceee" name="a4c6c7130f0965a343113fbf2d84eceee"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4c6c7130f0965a343113fbf2d84eceee">&#9670;&#160;</a></span>update()</h2>
+<a id="acba0b29af5962daf5701502f504c8838" name="acba0b29af5962daf5701502f504c8838"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acba0b29af5962daf5701502f504c8838">&#9670;&#160;</a></span>Update()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename CommType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void BNO085::update </td>
+          <td class="memname">void <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::Update </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
@@ -607,8 +635,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>inc/<a class="el" href="BNO085_8hpp_source.html">BNO085.hpp</a></li>
-<li>src/<a class="el" href="BNO085_8cpp.html">BNO085.cpp</a></li>
+<li>inc/<a class="el" href="bno08x_8hpp_source.html">bno08x.hpp</a></li>
+<li>src/<a class="el" href="bno08x_8cpp_source.html">bno08x.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

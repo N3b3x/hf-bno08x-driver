@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['basicpollingexample_2ecpp_0',['BasicPollingExample.cpp',['../BasicPollingExample_8cpp.html',1,'']]],
-  ['bno085_2ecpp_1',['BNO085.cpp',['../BNO085_8cpp.html',1,'']]],
-  ['bno085_2ehpp_2',['BNO085.hpp',['../BNO085_8hpp.html',1,'']]],
-  ['bno085_5ftransport_2ehpp_3',['BNO085_Transport.hpp',['../BNO085__Transport_8hpp.html',1,'']]]
+  ['basic_5fpolling_5fexample_2ecpp_0',['basic_polling_example.cpp',['../basic__polling__example_8cpp.html',1,'']]],
+  ['bno08x_2ecpp_1',['bno08x.cpp',['../bno08x_8cpp.html',1,'']]],
+  ['bno08x_2ehpp_2',['bno08x.hpp',['../bno08x_8hpp.html',1,'']]],
+  ['bno08x_5fcomm_5finterface_2ehpp_3',['bno08x_comm_interface.hpp',['../bno08x__comm__interface_8hpp.html',1,'']]]
 ];

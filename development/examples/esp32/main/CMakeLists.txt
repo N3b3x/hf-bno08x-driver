@@ -106,7 +106,7 @@ endif()
 # endif()
 
 idf_component_register(
-    SRCS "${MAIN_SOURCE}" "Esp32Bno08xBus.cpp"
+    SRCS "${MAIN_SOURCE}" "esp32_bno08x_bus.cpp"
     INCLUDE_DIRS "." "${SRC_BASE_PATH}" "${SRC_BASE_PATH}/dfu" "${SRC_BASE_PATH}/sh2" "${SRC_BASE_PATH}/rvc"
     REQUIRES ${COMPONENT_REQUIRES_LIST}
 )

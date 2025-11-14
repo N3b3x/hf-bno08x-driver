@@ -56,10 +56,10 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="RvcModeExample_8cpp.html" target="_top" xlink:title="RVC (Reduced Vector Computation) mode example.">
-<polygon fill="white" stroke="#666666" points="138.5,-30 10.5,-30 10.5,0 138.5,0 138.5,-30"/>
-<text text-anchor="start" x="18.5" y="-18" font-family="Helvetica,sans-Serif" font-size="10.00">examples/esp32/main</text>
-<text text-anchor="middle" x="74.5" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">/RvcModeExample.cpp</text>
+<g id="a_Node000003"><a xlink:href="rvc__mode__example_8cpp.html" target="_top" xlink:title="RVC (Reduced Vector Computation) mode example.">
+<polygon fill="white" stroke="#666666" points="142.5,-30 6.5,-30 6.5,0 142.5,0 142.5,-30"/>
+<text text-anchor="start" x="14.5" y="-18" font-family="Helvetica,sans-Serif" font-size="10.00">examples/esp32/main</text>
+<text text-anchor="middle" x="74.5" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">/rvc_mode_example.cpp</text>
 </a>
 </g>
 </g>

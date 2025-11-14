@@ -139,19 +139,19 @@ $(function(){initNavTree('classEsp32Bno08xBus.html',''); initResizable(); });
 </div><!--header-->
 <div class="contents">
 
-<p>ESP32 I2C transport implementation for BNO08x driver.  
+<p>ESP32 I2C communication interface implementation for BNO08x driver.  
  <a href="#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="Esp32Bno08xBus_8hpp_source.html">Esp32Bno08xBus.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="esp32__bno08x__bus_8hpp_source.html">esp32_bno08x_bus.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Esp32Bno08xBus:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classEsp32Bno08xBus__inherit__graph.svg" width="150" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classEsp32Bno08xBus__inherit__graph.svg" width="190" height="124"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for Esp32Bno08xBus:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classEsp32Bno08xBus__coll__graph.svg" width="150" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classEsp32Bno08xBus__coll__graph.svg" width="190" height="124"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
@@ -168,59 +168,98 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a89e2583a5d3a2098a00a83ab1a63d365" id="r_a89e2583a5d3a2098a00a83ab1a63d365"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a89e2583a5d3a2098a00a83ab1a63d365">Esp32Bno08xBus</a> (const <a class="el" href="structEsp32Bno08xBus_1_1I2CConfig.html">I2CConfig</a> &amp;config)</td></tr>
 <tr class="memdesc:a89e2583a5d3a2098a00a83ab1a63d365"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor with custom I2C configuration.  <br /></td></tr>
 <tr class="separator:a89e2583a5d3a2098a00a83ab1a63d365"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ca47b0b23e78650eb2e101b7b54a2d1" id="r_a0ca47b0b23e78650eb2e101b7b54a2d1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ca47b0b23e78650eb2e101b7b54a2d1">~Esp32Bno08xBus</a> () override</td></tr>
-<tr class="memdesc:a0ca47b0b23e78650eb2e101b7b54a2d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor - cleans up I2C resources.  <br /></td></tr>
-<tr class="separator:a0ca47b0b23e78650eb2e101b7b54a2d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88492c1542702dafa09d428663c6b8d9" id="r_a88492c1542702dafa09d428663c6b8d9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a88492c1542702dafa09d428663c6b8d9">open</a> () override</td></tr>
-<tr class="memdesc:a88492c1542702dafa09d428663c6b8d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Open the I2C bus and initialize communication.  <br /></td></tr>
-<tr class="separator:a88492c1542702dafa09d428663c6b8d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb2445de4c76ed393c5611b59d58a8fd" id="r_afb2445de4c76ed393c5611b59d58a8fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afb2445de4c76ed393c5611b59d58a8fd">close</a> () override</td></tr>
-<tr class="memdesc:afb2445de4c76ed393c5611b59d58a8fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Close the I2C bus and deinitialize.  <br /></td></tr>
-<tr class="separator:afb2445de4c76ed393c5611b59d58a8fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e44b2337e9f74dc2daa71e55ac7f6de" id="r_a2e44b2337e9f74dc2daa71e55ac7f6de"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2e44b2337e9f74dc2daa71e55ac7f6de">write</a> (const uint8_t *data, uint32_t length) override</td></tr>
-<tr class="memdesc:a2e44b2337e9f74dc2daa71e55ac7f6de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write data to the BNO08x sensor.  <br /></td></tr>
-<tr class="separator:a2e44b2337e9f74dc2daa71e55ac7f6de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b2445811760111cb55feb83fddda44e" id="r_a8b2445811760111cb55feb83fddda44e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8b2445811760111cb55feb83fddda44e">read</a> (uint8_t *data, uint32_t length) override</td></tr>
-<tr class="memdesc:a8b2445811760111cb55feb83fddda44e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read data from the BNO08x sensor.  <br /></td></tr>
-<tr class="separator:a8b2445811760111cb55feb83fddda44e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a514029316253e0f5911cdbdfbe58d93c" id="r_a514029316253e0f5911cdbdfbe58d93c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a514029316253e0f5911cdbdfbe58d93c">dataAvailable</a> () override</td></tr>
-<tr class="memdesc:a514029316253e0f5911cdbdfbe58d93c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if new data is available.  <br /></td></tr>
-<tr class="separator:a514029316253e0f5911cdbdfbe58d93c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd11413beb090d43c9e23e161fc8f6b1" id="r_acd11413beb090d43c9e23e161fc8f6b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acd11413beb090d43c9e23e161fc8f6b1">delay</a> (uint32_t ms) override</td></tr>
-<tr class="memdesc:acd11413beb090d43c9e23e161fc8f6b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delay execution for specified time.  <br /></td></tr>
-<tr class="separator:acd11413beb090d43c9e23e161fc8f6b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55dc594ebda45c0636268a99bb3ff2dc" id="r_a55dc594ebda45c0636268a99bb3ff2dc"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a55dc594ebda45c0636268a99bb3ff2dc">getTimeUs</a> () override</td></tr>
-<tr class="memdesc:a55dc594ebda45c0636268a99bb3ff2dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current time in microseconds.  <br /></td></tr>
-<tr class="separator:a55dc594ebda45c0636268a99bb3ff2dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aceaea11e68ba17cb30d52f8d55daf093" id="r_aceaea11e68ba17cb30d52f8d55daf093"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aceaea11e68ba17cb30d52f8d55daf093">setReset</a> (bool state) override</td></tr>
-<tr class="memdesc:aceaea11e68ba17cb30d52f8d55daf093"><td class="mdescLeft">&#160;</td><td class="mdescRight">Control the hardware reset (RSTN) pin.  <br /></td></tr>
-<tr class="separator:aceaea11e68ba17cb30d52f8d55daf093"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68e07bd098def563ad64820dff62f15b" id="r_a68e07bd098def563ad64820dff62f15b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a68e07bd098def563ad64820dff62f15b">~Esp32Bno08xBus</a> ()</td></tr>
+<tr class="memdesc:a68e07bd098def563ad64820dff62f15b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor - cleans up I2C resources.  <br /></td></tr>
+<tr class="separator:a68e07bd098def563ad64820dff62f15b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4da26931c53d09f1b4d589431e2c50c" id="r_ad4da26931c53d09f1b4d589431e2c50c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad4da26931c53d09f1b4d589431e2c50c">Open</a> () noexcept</td></tr>
+<tr class="memdesc:ad4da26931c53d09f1b4d589431e2c50c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Open the I2C bus and initialize communication.  <br /></td></tr>
+<tr class="separator:ad4da26931c53d09f1b4d589431e2c50c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c440b3b6697b5a8ccd5c9009f984546" id="r_a0c440b3b6697b5a8ccd5c9009f984546"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c440b3b6697b5a8ccd5c9009f984546">Close</a> () noexcept</td></tr>
+<tr class="memdesc:a0c440b3b6697b5a8ccd5c9009f984546"><td class="mdescLeft">&#160;</td><td class="mdescRight">Close the I2C bus and deinitialize.  <br /></td></tr>
+<tr class="separator:a0c440b3b6697b5a8ccd5c9009f984546"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67246a15e3c61607cfdb16a66947ee47" id="r_a67246a15e3c61607cfdb16a66947ee47"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a67246a15e3c61607cfdb16a66947ee47">Write</a> (const uint8_t *data, uint32_t length) noexcept</td></tr>
+<tr class="memdesc:a67246a15e3c61607cfdb16a66947ee47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write data to the BNO08x sensor.  <br /></td></tr>
+<tr class="separator:a67246a15e3c61607cfdb16a66947ee47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b321a06780a328b8e3b6a688e799fe0" id="r_a6b321a06780a328b8e3b6a688e799fe0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6b321a06780a328b8e3b6a688e799fe0">Read</a> (uint8_t *data, uint32_t length) noexcept</td></tr>
+<tr class="memdesc:a6b321a06780a328b8e3b6a688e799fe0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read data from the BNO08x sensor.  <br /></td></tr>
+<tr class="separator:a6b321a06780a328b8e3b6a688e799fe0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50aa4b999f5e2b36b5355fd9de464fb5" id="r_a50aa4b999f5e2b36b5355fd9de464fb5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a50aa4b999f5e2b36b5355fd9de464fb5">DataAvailable</a> () noexcept</td></tr>
+<tr class="memdesc:a50aa4b999f5e2b36b5355fd9de464fb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if new data is available.  <br /></td></tr>
+<tr class="separator:a50aa4b999f5e2b36b5355fd9de464fb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9470e0615b4e44151073ab490eef89c" id="r_ab9470e0615b4e44151073ab490eef89c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab9470e0615b4e44151073ab490eef89c">Delay</a> (uint32_t ms) noexcept</td></tr>
+<tr class="memdesc:ab9470e0615b4e44151073ab490eef89c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delay execution for specified time.  <br /></td></tr>
+<tr class="separator:ab9470e0615b4e44151073ab490eef89c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9bcbae6a7b658760cf42ae2ef830777" id="r_ad9bcbae6a7b658760cf42ae2ef830777"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad9bcbae6a7b658760cf42ae2ef830777">GetTimeUs</a> () noexcept</td></tr>
+<tr class="memdesc:ad9bcbae6a7b658760cf42ae2ef830777"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current time in microseconds.  <br /></td></tr>
+<tr class="separator:ad9bcbae6a7b658760cf42ae2ef830777"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d565cdc3ee13c72ebec1d3f2d69f314" id="r_a0d565cdc3ee13c72ebec1d3f2d69f314"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0d565cdc3ee13c72ebec1d3f2d69f314">SetReset</a> (bool state) noexcept</td></tr>
+<tr class="memdesc:a0d565cdc3ee13c72ebec1d3f2d69f314"><td class="mdescLeft">&#160;</td><td class="mdescRight">Control the hardware reset (RSTN) pin.  <br /></td></tr>
+<tr class="separator:a0d565cdc3ee13c72ebec1d3f2d69f314"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85e1603d6eff23ff172f2a800a6afa4d" id="r_a85e1603d6eff23ff172f2a800a6afa4d"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structEsp32Bno08xBus_1_1I2CConfig.html">I2CConfig</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a85e1603d6eff23ff172f2a800a6afa4d">getConfig</a> () const noexcept</td></tr>
 <tr class="memdesc:a85e1603d6eff23ff172f2a800a6afa4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current I2C configuration.  <br /></td></tr>
 <tr class="separator:a85e1603d6eff23ff172f2a800a6afa4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3995ff6b63253be85376374b8e34c5b" id="r_af3995ff6b63253be85376374b8e34c5b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af3995ff6b63253be85376374b8e34c5b">isInitialized</a> () const noexcept</td></tr>
 <tr class="memdesc:af3995ff6b63253be85376374b8e34c5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if I2C bus is initialized.  <br /></td></tr>
 <tr class="separator:af3995ff6b63253be85376374b8e34c5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_classIBNO085Transport"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classIBNO085Transport')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classIBNO085Transport.html">IBNO085Transport</a></td></tr>
-<tr class="memitem:af2009ec894923ff1cefcf28307cf1089 inherit pub_methods_classIBNO085Transport" id="r_af2009ec894923ff1cefcf28307cf1089"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIBNO085Transport.html#af2009ec894923ff1cefcf28307cf1089">~IBNO085Transport</a> ()=default</td></tr>
-<tr class="memdesc:af2009ec894923ff1cefcf28307cf1089 inherit pub_methods_classIBNO085Transport"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual destructor.  <br /></td></tr>
-<tr class="separator:af2009ec894923ff1cefcf28307cf1089 inherit pub_methods_classIBNO085Transport"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0f0d2956ee0b8a7487afd955117d612 inherit pub_methods_classIBNO085Transport" id="r_af0f0d2956ee0b8a7487afd955117d612"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIBNO085Transport.html#af0f0d2956ee0b8a7487afd955117d612">setBoot</a> (bool state)</td></tr>
-<tr class="memdesc:af0f0d2956ee0b8a7487afd955117d612 inherit pub_methods_classIBNO085Transport"><td class="mdescLeft">&#160;</td><td class="mdescRight">Control the BOOTN pin used to enter DFU mode.  <br /></td></tr>
-<tr class="separator:af0f0d2956ee0b8a7487afd955117d612 inherit pub_methods_classIBNO085Transport"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2cfd62f7f4f526d6e18ef3d8d85c5d05 inherit pub_methods_classIBNO085Transport" id="r_a2cfd62f7f4f526d6e18ef3d8d85c5d05"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIBNO085Transport.html#a2cfd62f7f4f526d6e18ef3d8d85c5d05">setWake</a> (bool state)</td></tr>
-<tr class="memdesc:a2cfd62f7f4f526d6e18ef3d8d85c5d05 inherit pub_methods_classIBNO085Transport"><td class="mdescLeft">&#160;</td><td class="mdescRight">Control the WAKE pin (SPI mode only).  <br /></td></tr>
-<tr class="separator:a2cfd62f7f4f526d6e18ef3d8d85c5d05 inherit pub_methods_classIBNO085Transport"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ddd032d84cbe7a5124b5fc19a21efee inherit pub_methods_classIBNO085Transport" id="r_a0ddd032d84cbe7a5124b5fc19a21efee"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIBNO085Transport.html#a0ddd032d84cbe7a5124b5fc19a21efee">setPS0</a> (bool state)</td></tr>
-<tr class="memdesc:a0ddd032d84cbe7a5124b5fc19a21efee inherit pub_methods_classIBNO085Transport"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drive protocol-select pin PS0.  <br /></td></tr>
-<tr class="separator:a0ddd032d84cbe7a5124b5fc19a21efee inherit pub_methods_classIBNO085Transport"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ad51728e11dc07219489684c1f08440 inherit pub_methods_classIBNO085Transport" id="r_a1ad51728e11dc07219489684c1f08440"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIBNO085Transport.html#a1ad51728e11dc07219489684c1f08440">setPS1</a> (bool state)</td></tr>
-<tr class="memdesc:a1ad51728e11dc07219489684c1f08440 inherit pub_methods_classIBNO085Transport"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drive protocol-select pin PS1.  <br /></td></tr>
-<tr class="separator:a1ad51728e11dc07219489684c1f08440 inherit pub_methods_classIBNO085Transport"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classbno08x_1_1CommInterface"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classbno08x_1_1CommInterface')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classbno08x_1_1CommInterface.html">bno08x::CommInterface&lt; Esp32Bno08xBus &gt;</a></td></tr>
+<tr class="memitem:ac93e80de5c3505600aa5be3a76371d34 inherit pub_methods_classbno08x_1_1CommInterface" id="r_ac93e80de5c3505600aa5be3a76371d34"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbno08x_1_1CommInterface.html#ac93e80de5c3505600aa5be3a76371d34">Open</a> () noexcept</td></tr>
+<tr class="memdesc:ac93e80de5c3505600aa5be3a76371d34 inherit pub_methods_classbno08x_1_1CommInterface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens the communication bus.  <br /></td></tr>
+<tr class="separator:ac93e80de5c3505600aa5be3a76371d34 inherit pub_methods_classbno08x_1_1CommInterface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ea64f832392b40084a9ff9db864fd5e inherit pub_methods_classbno08x_1_1CommInterface" id="r_a3ea64f832392b40084a9ff9db864fd5e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbno08x_1_1CommInterface.html#a3ea64f832392b40084a9ff9db864fd5e">Close</a> () noexcept</td></tr>
+<tr class="memdesc:a3ea64f832392b40084a9ff9db864fd5e inherit pub_methods_classbno08x_1_1CommInterface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Closes the communication bus.  <br /></td></tr>
+<tr class="separator:a3ea64f832392b40084a9ff9db864fd5e inherit pub_methods_classbno08x_1_1CommInterface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8c745260b628f2d1d837c37705eb005 inherit pub_methods_classbno08x_1_1CommInterface" id="r_ac8c745260b628f2d1d837c37705eb005"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbno08x_1_1CommInterface.html#ac8c745260b628f2d1d837c37705eb005">Write</a> (const uint8_t *data, uint32_t length) noexcept</td></tr>
+<tr class="memdesc:ac8c745260b628f2d1d837c37705eb005 inherit pub_methods_classbno08x_1_1CommInterface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes data to the sensor.  <br /></td></tr>
+<tr class="separator:ac8c745260b628f2d1d837c37705eb005 inherit pub_methods_classbno08x_1_1CommInterface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4d287ce9229169faee30b42b0144d73 inherit pub_methods_classbno08x_1_1CommInterface" id="r_af4d287ce9229169faee30b42b0144d73"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbno08x_1_1CommInterface.html#af4d287ce9229169faee30b42b0144d73">Read</a> (uint8_t *data, uint32_t length) noexcept</td></tr>
+<tr class="memdesc:af4d287ce9229169faee30b42b0144d73 inherit pub_methods_classbno08x_1_1CommInterface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads data from the sensor.  <br /></td></tr>
+<tr class="separator:af4d287ce9229169faee30b42b0144d73 inherit pub_methods_classbno08x_1_1CommInterface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f43f60a7145d33bb9ee523c27e39a55 inherit pub_methods_classbno08x_1_1CommInterface" id="r_a1f43f60a7145d33bb9ee523c27e39a55"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbno08x_1_1CommInterface.html#a1f43f60a7145d33bb9ee523c27e39a55">DataAvailable</a> () noexcept</td></tr>
+<tr class="memdesc:a1f43f60a7145d33bb9ee523c27e39a55 inherit pub_methods_classbno08x_1_1CommInterface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if new data is available.  <br /></td></tr>
+<tr class="separator:a1f43f60a7145d33bb9ee523c27e39a55 inherit pub_methods_classbno08x_1_1CommInterface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6731e48bba6e83c97e870d52258cbd6 inherit pub_methods_classbno08x_1_1CommInterface" id="r_ae6731e48bba6e83c97e870d52258cbd6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbno08x_1_1CommInterface.html#ae6731e48bba6e83c97e870d52258cbd6">Delay</a> (uint32_t ms) noexcept</td></tr>
+<tr class="memdesc:ae6731e48bba6e83c97e870d52258cbd6 inherit pub_methods_classbno08x_1_1CommInterface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delays execution for a specified time.  <br /></td></tr>
+<tr class="separator:ae6731e48bba6e83c97e870d52258cbd6 inherit pub_methods_classbno08x_1_1CommInterface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b3129c235d04972f6f51563d5ca35f3 inherit pub_methods_classbno08x_1_1CommInterface" id="r_a4b3129c235d04972f6f51563d5ca35f3"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbno08x_1_1CommInterface.html#a4b3129c235d04972f6f51563d5ca35f3">GetTimeUs</a> () noexcept</td></tr>
+<tr class="memdesc:a4b3129c235d04972f6f51563d5ca35f3 inherit pub_methods_classbno08x_1_1CommInterface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current time in microseconds.  <br /></td></tr>
+<tr class="separator:a4b3129c235d04972f6f51563d5ca35f3 inherit pub_methods_classbno08x_1_1CommInterface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72dad2f59aa4fc17ba583d8526b1d5b7 inherit pub_methods_classbno08x_1_1CommInterface" id="r_a72dad2f59aa4fc17ba583d8526b1d5b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbno08x_1_1CommInterface.html#a72dad2f59aa4fc17ba583d8526b1d5b7">SetReset</a> (bool state) noexcept</td></tr>
+<tr class="memdesc:a72dad2f59aa4fc17ba583d8526b1d5b7 inherit pub_methods_classbno08x_1_1CommInterface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Control the hardware reset (RSTN) pin.  <br /></td></tr>
+<tr class="separator:a72dad2f59aa4fc17ba583d8526b1d5b7 inherit pub_methods_classbno08x_1_1CommInterface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6974b490b35d44852d618a43b9e309d inherit pub_methods_classbno08x_1_1CommInterface" id="r_af6974b490b35d44852d618a43b9e309d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbno08x_1_1CommInterface.html#af6974b490b35d44852d618a43b9e309d">SetBoot</a> (bool state) noexcept</td></tr>
+<tr class="memdesc:af6974b490b35d44852d618a43b9e309d inherit pub_methods_classbno08x_1_1CommInterface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Control the BOOTN pin used to enter DFU mode.  <br /></td></tr>
+<tr class="separator:af6974b490b35d44852d618a43b9e309d inherit pub_methods_classbno08x_1_1CommInterface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae99fdc9fbce3f49f03bb5227b1b6e3fd inherit pub_methods_classbno08x_1_1CommInterface" id="r_ae99fdc9fbce3f49f03bb5227b1b6e3fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbno08x_1_1CommInterface.html#ae99fdc9fbce3f49f03bb5227b1b6e3fd">SetWake</a> (bool state) noexcept</td></tr>
+<tr class="memdesc:ae99fdc9fbce3f49f03bb5227b1b6e3fd inherit pub_methods_classbno08x_1_1CommInterface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Control the WAKE pin (SPI mode only).  <br /></td></tr>
+<tr class="separator:ae99fdc9fbce3f49f03bb5227b1b6e3fd inherit pub_methods_classbno08x_1_1CommInterface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c4025ff6f0a05d32a7ddf1a2f0ea7cd inherit pub_methods_classbno08x_1_1CommInterface" id="r_a1c4025ff6f0a05d32a7ddf1a2f0ea7cd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbno08x_1_1CommInterface.html#a1c4025ff6f0a05d32a7ddf1a2f0ea7cd">SetPS0</a> (bool state) noexcept</td></tr>
+<tr class="memdesc:a1c4025ff6f0a05d32a7ddf1a2f0ea7cd inherit pub_methods_classbno08x_1_1CommInterface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drive protocol-select pin PS0.  <br /></td></tr>
+<tr class="separator:a1c4025ff6f0a05d32a7ddf1a2f0ea7cd inherit pub_methods_classbno08x_1_1CommInterface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e2f6dd0d307d76823883cae4e590736 inherit pub_methods_classbno08x_1_1CommInterface" id="r_a0e2f6dd0d307d76823883cae4e590736"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbno08x_1_1CommInterface.html#a0e2f6dd0d307d76823883cae4e590736">SetPS1</a> (bool state) noexcept</td></tr>
+<tr class="memdesc:a0e2f6dd0d307d76823883cae4e590736 inherit pub_methods_classbno08x_1_1CommInterface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drive protocol-select pin PS1.  <br /></td></tr>
+<tr class="separator:a0e2f6dd0d307d76823883cae4e590736 inherit pub_methods_classbno08x_1_1CommInterface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_methods_classbno08x_1_1CommInterface"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_classbno08x_1_1CommInterface')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classbno08x_1_1CommInterface.html">bno08x::CommInterface&lt; Esp32Bno08xBus &gt;</a></td></tr>
+<tr class="memitem:a0843c4a7c89432dd0af263edde5c2b7c inherit pro_methods_classbno08x_1_1CommInterface" id="r_a0843c4a7c89432dd0af263edde5c2b7c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbno08x_1_1CommInterface.html#a0843c4a7c89432dd0af263edde5c2b7c">CommInterface</a> ()=default</td></tr>
+<tr class="memdesc:a0843c4a7c89432dd0af263edde5c2b7c inherit pro_methods_classbno08x_1_1CommInterface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Protected constructor to prevent direct instantiation.  <br /></td></tr>
+<tr class="separator:a0843c4a7c89432dd0af263edde5c2b7c inherit pro_methods_classbno08x_1_1CommInterface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a7da1b78bf56ed77ccca290df816f73 inherit pro_methods_classbno08x_1_1CommInterface" id="r_a4a7da1b78bf56ed77ccca290df816f73"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbno08x_1_1CommInterface.html#a4a7da1b78bf56ed77ccca290df816f73">CommInterface</a> (const <a class="el" href="classbno08x_1_1CommInterface.html">CommInterface</a> &amp;)=delete</td></tr>
+<tr class="separator:a4a7da1b78bf56ed77ccca290df816f73 inherit pro_methods_classbno08x_1_1CommInterface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2550d1dcf3796a503db1b1c1891484f4 inherit pro_methods_classbno08x_1_1CommInterface" id="r_a2550d1dcf3796a503db1b1c1891484f4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbno08x_1_1CommInterface.html#a2550d1dcf3796a503db1b1c1891484f4">CommInterface</a> (<a class="el" href="classbno08x_1_1CommInterface.html">CommInterface</a> &amp;&amp;) noexcept=default</td></tr>
+<tr class="separator:a2550d1dcf3796a503db1b1c1891484f4 inherit pro_methods_classbno08x_1_1CommInterface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2647f91b7243a22d34fc83c2678abb1e inherit pro_methods_classbno08x_1_1CommInterface" id="r_a2647f91b7243a22d34fc83c2678abb1e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classbno08x_1_1CommInterface.html">CommInterface</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbno08x_1_1CommInterface.html#a2647f91b7243a22d34fc83c2678abb1e">operator=</a> (const <a class="el" href="classbno08x_1_1CommInterface.html">CommInterface</a> &amp;)=delete</td></tr>
+<tr class="separator:a2647f91b7243a22d34fc83c2678abb1e inherit pro_methods_classbno08x_1_1CommInterface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4047ec04e24673879f3245cc7c30612b inherit pro_methods_classbno08x_1_1CommInterface" id="r_a4047ec04e24673879f3245cc7c30612b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classbno08x_1_1CommInterface.html">CommInterface</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbno08x_1_1CommInterface.html#a4047ec04e24673879f3245cc7c30612b">operator=</a> (<a class="el" href="classbno08x_1_1CommInterface.html">CommInterface</a> &amp;&amp;) noexcept=default</td></tr>
+<tr class="separator:a4047ec04e24673879f3245cc7c30612b inherit pro_methods_classbno08x_1_1CommInterface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfbfa9d7fa6983a048f683db10a65746 inherit pro_methods_classbno08x_1_1CommInterface" id="r_adfbfa9d7fa6983a048f683db10a65746"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbno08x_1_1CommInterface.html#adfbfa9d7fa6983a048f683db10a65746">~CommInterface</a> ()=default</td></tr>
+<tr class="memdesc:adfbfa9d7fa6983a048f683db10a65746 inherit pro_methods_classbno08x_1_1CommInterface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Protected destructor.  <br /></td></tr>
+<tr class="separator:adfbfa9d7fa6983a048f683db10a65746 inherit pro_methods_classbno08x_1_1CommInterface"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>ESP32 I2C transport implementation for BNO08x driver. </p>
-<p>This class implements the <a class="el" href="classIBNO085Transport.html" title="Abstract interface for BNO085 communication transport (I2C, SPI, etc.).">IBNO085Transport</a> interface using ESP-IDF's I2C driver. It supports configurable I2C pins, address, and interrupt pin. </p>
+<div class="textblock"><p>ESP32 I2C communication interface implementation for BNO08x driver. </p>
+<p>This class implements the <a class="el" href="classbno08x_1_1CommInterface.html" title="CRTP-based template interface for BNO085 communication.">bno08x::CommInterface</a> interface using ESP-IDF's I2C driver with CRTP pattern. It supports configurable I2C pins, address, and interrupt pin. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a6c20edfeb49415cf7f374c3caf2e5bbc" name="a6c20edfeb49415cf7f374c3caf2e5bbc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6c20edfeb49415cf7f374c3caf2e5bbc">&#9670;&#160;</a></span>Esp32Bno08xBus() <span class="overload">[1/2]</span></h2>
@@ -282,14 +321,11 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a0ca47b0b23e78650eb2e101b7b54a2d1" name="a0ca47b0b23e78650eb2e101b7b54a2d1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0ca47b0b23e78650eb2e101b7b54a2d1">&#9670;&#160;</a></span>~Esp32Bno08xBus()</h2>
+<a id="a68e07bd098def563ad64820dff62f15b" name="a68e07bd098def563ad64820dff62f15b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68e07bd098def563ad64820dff62f15b">&#9670;&#160;</a></span>~Esp32Bno08xBus()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">Esp32Bno08xBus::~Esp32Bno08xBus </td>
@@ -298,11 +334,6 @@ Public Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Destructor - cleans up I2C resources. </p>
@@ -310,8 +341,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="afb2445de4c76ed393c5611b59d58a8fd" name="afb2445de4c76ed393c5611b59d58a8fd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afb2445de4c76ed393c5611b59d58a8fd">&#9670;&#160;</a></span>close()</h2>
+<a id="a0c440b3b6697b5a8ccd5c9009f984546" name="a0c440b3b6697b5a8ccd5c9009f984546"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c440b3b6697b5a8ccd5c9009f984546">&#9670;&#160;</a></span>Close()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -320,7 +351,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Esp32Bno08xBus::close </td>
+          <td class="memname">void Esp32Bno08xBus::Close </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
@@ -328,19 +359,17 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p>Close the I2C bus and deinitialize. </p>
 
-<p>Implements <a class="el" href="classIBNO085Transport.html#a5c2e2e568eaedf4e406fc81f1aa2bcfb">IBNO085Transport</a>.</p>
-
 </div>
 </div>
-<a id="a514029316253e0f5911cdbdfbe58d93c" name="a514029316253e0f5911cdbdfbe58d93c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a514029316253e0f5911cdbdfbe58d93c">&#9670;&#160;</a></span>dataAvailable()</h2>
+<a id="a50aa4b999f5e2b36b5355fd9de464fb5" name="a50aa4b999f5e2b36b5355fd9de464fb5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50aa4b999f5e2b36b5355fd9de464fb5">&#9670;&#160;</a></span>DataAvailable()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -349,7 +378,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Esp32Bno08xBus::dataAvailable </td>
+          <td class="memname">bool Esp32Bno08xBus::DataAvailable </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
@@ -357,7 +386,7 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -365,12 +394,10 @@ Public Member Functions</h2></td></tr>
 <p>Check if new data is available. </p>
 <dl class="section return"><dt>Returns</dt><dd>true if data is available (via interrupt pin or always true) </dd></dl>
 
-<p>Reimplemented from <a class="el" href="classIBNO085Transport.html#a02270a3156f6a2f69b749f8fb5a0bcb1">IBNO085Transport</a>.</p>
-
 </div>
 </div>
-<a id="acd11413beb090d43c9e23e161fc8f6b1" name="acd11413beb090d43c9e23e161fc8f6b1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acd11413beb090d43c9e23e161fc8f6b1">&#9670;&#160;</a></span>delay()</h2>
+<a id="ab9470e0615b4e44151073ab490eef89c" name="ab9470e0615b4e44151073ab490eef89c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9470e0615b4e44151073ab490eef89c">&#9670;&#160;</a></span>Delay()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -379,7 +406,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Esp32Bno08xBus::delay </td>
+          <td class="memname">void Esp32Bno08xBus::Delay </td>
           <td>(</td>
           <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>ms</em></span></td><td>)</td>
           <td></td>
@@ -387,7 +414,7 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -399,8 +426,6 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-
-<p>Implements <a class="el" href="classIBNO085Transport.html#aaac7a58344c051143b8deeca8b99c57b">IBNO085Transport</a>.</p>
 
 </div>
 </div>
@@ -432,8 +457,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a55dc594ebda45c0636268a99bb3ff2dc" name="a55dc594ebda45c0636268a99bb3ff2dc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a55dc594ebda45c0636268a99bb3ff2dc">&#9670;&#160;</a></span>getTimeUs()</h2>
+<a id="ad9bcbae6a7b658760cf42ae2ef830777" name="ad9bcbae6a7b658760cf42ae2ef830777"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9bcbae6a7b658760cf42ae2ef830777">&#9670;&#160;</a></span>GetTimeUs()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -442,7 +467,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">uint32_t Esp32Bno08xBus::getTimeUs </td>
+          <td class="memname">uint32_t Esp32Bno08xBus::GetTimeUs </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
@@ -450,15 +475,13 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p>Get current time in microseconds. </p>
 <dl class="section return"><dt>Returns</dt><dd>Current time in microseconds </dd></dl>
-
-<p>Implements <a class="el" href="classIBNO085Transport.html#a4d0b7203288151803dc1c449b024e889">IBNO085Transport</a>.</p>
 
 </div>
 </div>
@@ -490,8 +513,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a88492c1542702dafa09d428663c6b8d9" name="a88492c1542702dafa09d428663c6b8d9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a88492c1542702dafa09d428663c6b8d9">&#9670;&#160;</a></span>open()</h2>
+<a id="ad4da26931c53d09f1b4d589431e2c50c" name="ad4da26931c53d09f1b4d589431e2c50c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4da26931c53d09f1b4d589431e2c50c">&#9670;&#160;</a></span>Open()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -500,7 +523,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Esp32Bno08xBus::open </td>
+          <td class="memname">bool Esp32Bno08xBus::Open </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
@@ -508,7 +531,7 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -516,12 +539,10 @@ Public Member Functions</h2></td></tr>
 <p>Open the I2C bus and initialize communication. </p>
 <dl class="section return"><dt>Returns</dt><dd>true if successful, false otherwise </dd></dl>
 
-<p>Implements <a class="el" href="classIBNO085Transport.html#af8627b7a12d569d433c0f2e2d396ed40">IBNO085Transport</a>.</p>
-
 </div>
 </div>
-<a id="a8b2445811760111cb55feb83fddda44e" name="a8b2445811760111cb55feb83fddda44e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8b2445811760111cb55feb83fddda44e">&#9670;&#160;</a></span>read()</h2>
+<a id="a6b321a06780a328b8e3b6a688e799fe0" name="a6b321a06780a328b8e3b6a688e799fe0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b321a06780a328b8e3b6a688e799fe0">&#9670;&#160;</a></span>Read()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -530,7 +551,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int Esp32Bno08xBus::read </td>
+          <td class="memname">int Esp32Bno08xBus::Read </td>
           <td>(</td>
           <td class="paramtype">uint8_t *</td>          <td class="paramname"><span class="paramname"><em>data</em>, </span></td>
         </tr>
@@ -542,7 +563,7 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -557,12 +578,10 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Number of bytes read, 0 if no data, or negative on error </dd></dl>
 
-<p>Implements <a class="el" href="classIBNO085Transport.html#a235106ffa5ac81e0d08365ca9e3e0270">IBNO085Transport</a>.</p>
-
 </div>
 </div>
-<a id="aceaea11e68ba17cb30d52f8d55daf093" name="aceaea11e68ba17cb30d52f8d55daf093"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aceaea11e68ba17cb30d52f8d55daf093">&#9670;&#160;</a></span>setReset()</h2>
+<a id="a0d565cdc3ee13c72ebec1d3f2d69f314" name="a0d565cdc3ee13c72ebec1d3f2d69f314"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d565cdc3ee13c72ebec1d3f2d69f314">&#9670;&#160;</a></span>SetReset()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -571,7 +590,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Esp32Bno08xBus::setReset </td>
+          <td class="memname">void Esp32Bno08xBus::SetReset </td>
           <td>(</td>
           <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>state</em></span></td><td>)</td>
           <td></td>
@@ -579,7 +598,7 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -592,12 +611,10 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Reimplemented from <a class="el" href="classIBNO085Transport.html#a0d324813a865bcadd596906d13eb0679">IBNO085Transport</a>.</p>
-
 </div>
 </div>
-<a id="a2e44b2337e9f74dc2daa71e55ac7f6de" name="a2e44b2337e9f74dc2daa71e55ac7f6de"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2e44b2337e9f74dc2daa71e55ac7f6de">&#9670;&#160;</a></span>write()</h2>
+<a id="a67246a15e3c61607cfdb16a66947ee47" name="a67246a15e3c61607cfdb16a66947ee47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67246a15e3c61607cfdb16a66947ee47">&#9670;&#160;</a></span>Write()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -606,7 +623,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int Esp32Bno08xBus::write </td>
+          <td class="memname">int Esp32Bno08xBus::Write </td>
           <td>(</td>
           <td class="paramtype">const uint8_t *</td>          <td class="paramname"><span class="paramname"><em>data</em>, </span></td>
         </tr>
@@ -618,7 +635,7 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -633,13 +650,11 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Number of bytes written, or negative on error </dd></dl>
 
-<p>Implements <a class="el" href="classIBNO085Transport.html#a2112ba39812827c7e1a81fe3629a04c8">IBNO085Transport</a>.</p>
-
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>examples/esp32/main/<a class="el" href="Esp32Bno08xBus_8hpp_source.html">Esp32Bno08xBus.hpp</a></li>
-<li>examples/esp32/main/<a class="el" href="Esp32Bno08xBus_8cpp.html">Esp32Bno08xBus.cpp</a></li>
+<li>examples/esp32/main/<a class="el" href="esp32__bno08x__bus_8hpp_source.html">esp32_bno08x_bus.hpp</a></li>
+<li>examples/esp32/main/<a class="el" href="esp32__bno08x__bus_8cpp.html">esp32_bno08x_bus.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

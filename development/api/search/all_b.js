@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['magneticfielduncalibrated_0',['MagneticFieldUncalibrated',['../BNO085_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a0ce1faa0e7e87ad1d7355564753812c7',1,'BNO085.hpp']]],
-  ['magnetometer_1',['Magnetometer',['../BNO085_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a9e9fa52e0aa4a2b519f8287760d7c3ac',1,'BNO085.hpp']]],
+  ['magneticfielduncalibrated_0',['MagneticFieldUncalibrated',['../bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a0ce1faa0e7e87ad1d7355564753812c7',1,'bno08x.hpp']]],
+  ['magnetometer_1',['Magnetometer',['../bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a9e9fa52e0aa4a2b519f8287760d7c3ac',1,'bno08x.hpp']]],
   ['max_5fpacket_5flen_2',['MAX_PACKET_LEN',['../dfu__bno_8cpp.html#a65f2af54195a74dd91a96ddb0254dbf8',1,'dfu_bno.cpp']]],
   ['maxtime_5fus_3',['maxTime_us',['../structDfuTransition__t.html#ad8cd35c0042c83a5b9cc8fbe0015cea6',1,'DfuTransition_t']]],
   ['memoryfirmware_4',['MemoryFirmware',['../classMemoryFirmware.html',1,'MemoryFirmware'],['../classMemoryFirmware.html#ac23c462523772bc8f794e2623f7cbba9',1,'MemoryFirmware::MemoryFirmware()']]],

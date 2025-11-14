@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['shakedetector_0',['ShakeDetector',['../BNO085_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a4cb8f643cb530cbfba0cf2a488ab6bc4',1,'BNO085.hpp']]],
-  ['significantmotion_1',['SignificantMotion',['../BNO085_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a975bf8c0c5278ae9474fec58ba3700e2',1,'BNO085.hpp']]],
-  ['sleepdetector_2',['SleepDetector',['../BNO085_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a8c80d5cca9a487fc82a7375cfe802b28',1,'BNO085.hpp']]],
-  ['spi_3',['SPI',['../BNO085_8hpp.html#a1e8d3cde9f9e6ea515f5db028614f03ba33dc5312b091968f5a120c2484d40df8',1,'BNO085.hpp']]],
+  ['shakedetector_0',['ShakeDetector',['../bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a4cb8f643cb530cbfba0cf2a488ab6bc4',1,'bno08x.hpp']]],
+  ['significantmotion_1',['SignificantMotion',['../bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a975bf8c0c5278ae9474fec58ba3700e2',1,'bno08x.hpp']]],
+  ['sleepdetector_2',['SleepDetector',['../bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a8c80d5cca9a487fc82a7375cfe802b28',1,'bno08x.hpp']]],
+  ['spi_3',['SPI',['../bno08x_8hpp.html#a1e8d3cde9f9e6ea515f5db028614f03ba33dc5312b091968f5a120c2484d40df8',1,'bno08x.hpp']]],
   ['st_5ffinished_4',['ST_FINISHED',['../dfu__fsp200_8cpp.html#a34af9bf768d178ac30984f2006a1555faefa205fef3e8373c16e852b061034ef0',1,'dfu_fsp200.cpp']]],
   ['st_5fgetting_5fver_5',['ST_GETTING_VER',['../dfu__fsp200_8cpp.html#a34af9bf768d178ac30984f2006a1555fa135956a6c2e2708bbb1c167b305006d9',1,'dfu_fsp200.cpp']]],
   ['st_5finit_6',['ST_INIT',['../dfu__fsp200_8cpp.html#a34af9bf768d178ac30984f2006a1555fad7fd527e9b09b1822fbee87683a69937',1,'dfu_fsp200.cpp']]],
@@ -12,8 +12,8 @@ var searchData=
   ['st_5fsetting_5fmode_9',['ST_SETTING_MODE',['../dfu__fsp200_8cpp.html#a34af9bf768d178ac30984f2006a1555fa2705b601ad9adc8a8cdcf4726a796c7c',1,'dfu_fsp200.cpp']]],
   ['st_5fwait_5fcompletion_10',['ST_WAIT_COMPLETION',['../dfu__fsp200_8cpp.html#a34af9bf768d178ac30984f2006a1555fa90f24bd2c34b02547d8040d12a006a03',1,'dfu_fsp200.cpp']]],
   ['st_5fwait_5fstatus_11',['ST_WAIT_STATUS',['../dfu__fsp200_8cpp.html#a34af9bf768d178ac30984f2006a1555fa524e15ed24cf01d312bfcaeabbe88765',1,'dfu_fsp200.cpp']]],
-  ['stabilityclassifier_12',['StabilityClassifier',['../BNO085_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62aad8009bd69ab44ea8de9567ea92adcf8',1,'BNO085.hpp']]],
-  ['stabilitydetector_13',['StabilityDetector',['../BNO085_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62ac049919dd5791fb90ebe0667030c6b58',1,'BNO085.hpp']]],
-  ['stepcounter_14',['StepCounter',['../BNO085_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a813bf9f9ff76be55d85361ae7f5da7de',1,'BNO085.hpp']]],
-  ['stepdetector_15',['StepDetector',['../BNO085_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a2f52ce382545c872c8a270c2c81e02f8',1,'BNO085.hpp']]]
+  ['stabilityclassifier_12',['StabilityClassifier',['../bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62aad8009bd69ab44ea8de9567ea92adcf8',1,'bno08x.hpp']]],
+  ['stabilitydetector_13',['StabilityDetector',['../bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62ac049919dd5791fb90ebe0667030c6b58',1,'bno08x.hpp']]],
+  ['stepcounter_14',['StepCounter',['../bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a813bf9f9ff76be55d85361ae7f5da7de',1,'bno08x.hpp']]],
+  ['stepdetector_15',['StepDetector',['../bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a2f52ce382545c872c8a270c2c81e02f8',1,'bno08x.hpp']]]
 ];

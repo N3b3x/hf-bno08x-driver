@@ -1,5 +1,8 @@
 var annotated_dup =
 [
+    [ "bno08x", "namespacebno08x.html", [
+      [ "CommInterface", "classbno08x_1_1CommInterface.html", "classbno08x_1_1CommInterface" ]
+    ] ],
     [ "BNO085", "classBNO085.html", "classBNO085" ],
     [ "CAdapterHal", "structCAdapterHal.html", "structCAdapterHal" ],
     [ "Dfu_t", "structDfu__t.html", "structDfu__t" ],
@@ -9,7 +12,6 @@ var annotated_dup =
     [ "HalTransport", "classHalTransport.html", "classHalTransport" ],
     [ "HcBin_s", "structHcBin__s.html", "structHcBin__s" ],
     [ "HcbinMetadata", "structHcbinMetadata.html", "structHcbinMetadata" ],
-    [ "IBNO085Transport", "classIBNO085Transport.html", "classIBNO085Transport" ],
     [ "IDfuTransport", "classIDfuTransport.html", "classIDfuTransport" ],
     [ "IRvcHal", "classIRvcHal.html", "classIRvcHal" ],
     [ "MemoryFirmware", "classMemoryFirmware.html", "classMemoryFirmware" ],
