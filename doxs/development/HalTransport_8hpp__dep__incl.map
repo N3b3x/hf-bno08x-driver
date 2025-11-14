@@ -1,5 +1,18 @@
 <map id="src/dfu/HalTransport.hpp" name="src/dfu/HalTransport.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,185,31"/>
-<area shape="rect" id="Node000002" href="$BNO085_8cpp.html" title="Implementation of the BNO085 C++ driver." alt="" coords="33,79,158,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="98,44,98,79,93,79,93,44"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="419,5,599,31"/>
+<area shape="rect" id="Node000002" href="$bno08x_8cpp.html" title="Template implementation of the BNO08x C++ driver." alt="" coords="449,79,569,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="512,44,512,79,507,79,507,44"/>
+<area shape="rect" id="Node000003" href="$bno08x_8hpp.html" title="High level C++ interface for the BNO08x IMU family." alt="" coords="449,152,570,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="503,118,505,152,500,152,498,118"/>
+<area shape="poly" id="edge8_Node000003_Node000002" title=" " alt="" coords="515,139,514,104,519,104,521,138"/>
+<area shape="rect" id="Node000004" href="$basic__polling__example_8cpp.html" title="Basic polling mode example with orientation and linear acceleration." alt="" coords="5,233,208,273"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="439,183,221,228,188,235,187,230,219,223,438,177"/>
+<area shape="rect" id="Node000005" href="$driver__integration__test_8cpp.html" title="Comprehensive Integration Test Suite for BNO08x Driver." alt="" coords="233,225,399,280"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="472,185,376,228,374,223,470,180"/>
+<area shape="rect" id="Node000006" href="$event__driven__callback__example_8cpp.html" title="Event&#45;driven callback example with step counter and tap detector." alt="" coords="423,225,595,280"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="512,191,512,225,507,225,507,191"/>
+<area shape="rect" id="Node000007" href="$full__features__example_8cpp.html" title="Comprehensive example demonstrating all BNO08x features." alt="" coords="619,233,818,273"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="551,180,674,230,671,235,549,185"/>
+<area shape="rect" id="Node000008" href="$rvc__mode__example_8cpp.html" title="RVC (Reduced Vector Computation) mode example." alt="" coords="843,233,1024,273"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="585,176,831,223,862,230,861,235,830,228,584,181"/>
 </map>

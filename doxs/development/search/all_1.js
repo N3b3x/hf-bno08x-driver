@@ -1,13 +1,15 @@
 var searchData=
 [
-  ['basicpollingexample_2ecpp_0',['BasicPollingExample.cpp',['../BasicPollingExample_8cpp.html',1,'']]],
-  ['begin_1',['begin',['../classBNO085.html#a1e79ad62ccdb9c282536d04e28d4edc8',1,'BNO085::begin()'],['../classBNO085.html#a6e33ea7ab3b8a876c9087a77225b0053',1,'BNO085::begin(IBNO085Transport *transport)']]],
-  ['beginrvc_2',['beginRvc',['../classBNO085.html#a45a763de32f6720f7b5c521993caae39',1,'BNO085']]],
-  ['bno085_3',['BNO085',['../classBNO085.html',1,'BNO085'],['../classBNO085.html#a7be519fd6c9f4472bd5ab05d0cd25ba1',1,'BNO085::BNO085()']]],
+  ['basic_5fpolling_5fexample_2ecpp_0',['basic_polling_example.cpp',['../basic__polling__example_8cpp.html',1,'']]],
+  ['begin_1',['Begin',['../classBNO085.html#a9fc79a6ee018d3214897efaf254ebab3',1,'BNO085']]],
+  ['beginrvc_2',['BeginRvc',['../classBNO085.html#ac4d7c31a7cd81f0bdbeece4cd143682d',1,'BNO085']]],
+  ['bno085_3',['BNO085',['../classBNO085.html',1,'BNO085&lt; CommType &gt;'],['../classBNO085.html#a66f2abe8f7fcf9005a37aed5cf17b104',1,'BNO085::BNO085()']]],
   ['bno085_20c_20sensor_20library_20🚀_4',['BNO085 C++ Sensor Library 🚀',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md#autotoc_md10',1,'']]],
-  ['bno085_2ecpp_5',['BNO085.cpp',['../BNO085_8cpp.html',1,'']]],
-  ['bno085_2ehpp_6',['BNO085.hpp',['../BNO085_8hpp.html',1,'']]],
-  ['bno085_5ftransport_2ehpp_7',['BNO085_Transport.hpp',['../BNO085__Transport_8hpp.html',1,'']]],
-  ['bno085interface_8',['BNO085Interface',['../BNO085_8hpp.html#a1e8d3cde9f9e6ea515f5db028614f03b',1,'BNO085.hpp']]],
-  ['bno085sensor_9',['BNO085Sensor',['../BNO085_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62',1,'BNO085.hpp']]]
+  ['bno085_5fheader_5fincluded_5',['BNO085_HEADER_INCLUDED',['../bno08x_8hpp.html#a960dacf85103d71ad3fb2dc7cde80617',1,'bno08x.hpp']]],
+  ['bno085interface_6',['BNO085Interface',['../bno08x_8hpp.html#a1e8d3cde9f9e6ea515f5db028614f03b',1,'bno08x.hpp']]],
+  ['bno085sensor_7',['BNO085Sensor',['../bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62',1,'bno08x.hpp']]],
+  ['bno08x_8',['bno08x',['../namespacebno08x.html',1,'']]],
+  ['bno08x_2ecpp_9',['bno08x.cpp',['../bno08x_8cpp.html',1,'']]],
+  ['bno08x_2ehpp_10',['bno08x.hpp',['../bno08x_8hpp.html',1,'']]],
+  ['bno08x_5fcomm_5finterface_2ehpp_11',['bno08x_comm_interface.hpp',['../bno08x__comm__interface_8hpp.html',1,'']]]
 ];
