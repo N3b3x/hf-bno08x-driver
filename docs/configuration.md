@@ -1,3 +1,12 @@
+---
+layout: default
+title: "⚙️ Configuration"
+description: "Configuration options for the BNO08x driver"
+nav_order: 5
+parent: "📚 Documentation"
+permalink: /docs/configuration/
+---
+
 # Configuration
 
 This guide covers all configuration options available for the BNO08x driver.

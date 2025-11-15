@@ -1,3 +1,13 @@
+---
+layout: default
+title: "📚 Documentation"
+description: "Complete documentation for the HardFOC BNO08x Driver"
+nav_order: 2
+parent: "HardFOC BNO08x Driver"
+permalink: /docs/
+has_children: true
+---
+
 # HF-BNO08x Documentation
 
 Welcome! This directory contains step-by-step guides for installing, building, and using the **HF-BNO08x** library.

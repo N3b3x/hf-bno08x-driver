@@ -1,3 +1,12 @@
+---
+layout: default
+title: "🛠️ Installation"
+description: "Installation and integration instructions for the BNO08x driver"
+nav_order: 1
+parent: "📚 Documentation"
+permalink: /docs/installation/
+---
+
 # Installation
 
 This guide covers how to obtain and integrate the BNO08x driver library into your project.
