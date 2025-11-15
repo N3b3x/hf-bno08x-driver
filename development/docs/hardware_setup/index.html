@@ -15,9 +15,10 @@
   
 
     .site-nav > ul.nav-list:first-child > li > a,
+    .site-nav > ul.nav-list:first-child > li > ul > li > a,
     
-    .site-nav > ul.nav-list:first-child > li > ul > li:not(:nth-child(1)) > a,
-    .site-nav > ul.nav-list:first-child > li > ul > li > ul > li a {
+    .site-nav > ul.nav-list:first-child > li > ul > li > ul > li:not(:nth-child(3)) > a,
+    .site-nav > ul.nav-list:first-child > li > ul > li > ul > li > ul > li a {
       background-image: none;
     }
 
@@ -26,14 +27,16 @@
       background-image: none;
     }
 
-    .site-nav > ul.nav-list:first-child > li:nth-child(1) > ul > li:nth-child(1) > a {
+    .site-nav > ul.nav-list:first-child > li:nth-child(1) > ul > li:nth-child(1) > ul > li:nth-child(3) > a {
       font-weight: 600;
       text-decoration: none;
     }.site-nav > ul.nav-list:first-child > li:nth-child(1) > button svg,
-    .site-nav > ul.nav-list:first-child > li:nth-child(1) > ul > li:nth-child(1) > button svg {
+    .site-nav > ul.nav-list:first-child > li:nth-child(1) > ul > li:nth-child(1) > button svg,
+    .site-nav > ul.nav-list:first-child > li:nth-child(1) > ul > li:nth-child(1) > ul > li:nth-child(3) > button svg {
       transform: rotate(-90deg);
     }.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(1) > ul.nav-list,
-    .site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(1) > ul.nav-list > li.nav-list-item:nth-child(1) > ul.nav-list {
+    .site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(1) > ul.nav-list > li.nav-list-item:nth-child(1) > ul.nav-list,
+    .site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(1) > ul.nav-list > li.nav-list-item:nth-child(1) > ul.nav-list > li.nav-list-item:nth-child(3) > ul.nav-list {
       display: block;
     }
   </style>
@@ -53,21 +56,21 @@
 
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>📚 Documentation | HardFOC BNO08x Driver - development</title>
+<title>🔌 Hardware Setup | HardFOC BNO08x Driver - development</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="📚 Documentation" />
+<meta property="og:title" content="🔌 Hardware Setup" />
 <meta name="author" content="N3b3x" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="Complete documentation for the HardFOC BNO08x Driver" />
-<meta property="og:description" content="Complete documentation for the HardFOC BNO08x Driver" />
-<link rel="canonical" href="https://n3b3x.github.io/hf-bno08x-driver/development/docs/" />
-<meta property="og:url" content="https://n3b3x.github.io/hf-bno08x-driver/development/docs/" />
+<meta name="description" content="Hardware wiring and connection guide for BNO08x sensor" />
+<meta property="og:description" content="Hardware wiring and connection guide for BNO08x sensor" />
+<link rel="canonical" href="https://n3b3x.github.io/hf-bno08x-driver/development/docs/hardware_setup/" />
+<meta property="og:url" content="https://n3b3x.github.io/hf-bno08x-driver/development/docs/hardware_setup/" />
 <meta property="og:site_name" content="HardFOC BNO08x Driver - development" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="📚 Documentation" />
+<meta property="twitter:title" content="🔌 Hardware Setup" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"N3b3x","url":"https://github.com/n3b3x"},"description":"Complete documentation for the HardFOC BNO08x Driver","headline":"📚 Documentation","url":"https://n3b3x.github.io/hf-bno08x-driver/development/docs/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"N3b3x","url":"https://github.com/n3b3x"},"description":"Hardware wiring and connection guide for BNO08x sensor","headline":"🔌 Hardware Setup","url":"https://n3b3x.github.io/hf-bno08x-driver/development/docs/hardware_setup/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -250,7 +253,8 @@
       <nav aria-label="Breadcrumb" class="breadcrumb-nav">
   <ol class="breadcrumb-nav-list">
     <li class="breadcrumb-nav-list-item"><a href="/hf-bno08x-driver/development/">HardFOC BNO08x Driver</a></li>
-    <li class="breadcrumb-nav-list-item"><span>📚 Documentation</span></li>
+    <li class="breadcrumb-nav-list-item"><a href="/hf-bno08x-driver/development/docs/">📚 Documentation</a></li>
+    <li class="breadcrumb-nav-list-item"><span>🔌 Hardware Setup</span></li>
   </ol>
 </nav>
 
@@ -258,174 +262,334 @@
       <div id="main-content" class="main-content">
         <main>
           
-            <h1 id="hf-bno08x-documentation">
+            <h1 id="hardware-setup">
   
   
-    <a href="#hf-bno08x-documentation" class="anchor-heading" aria-labelledby="hf-bno08x-documentation"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> HF-BNO08x Documentation
+    <a href="#hardware-setup" class="anchor-heading" aria-labelledby="hardware-setup"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Hardware Setup
   
   
 </h1>
     
 
-<p>Welcome! This directory contains step-by-step guides for installing, building, and using the <strong>HF-BNO08x</strong> library.</p>
-<h2 id="-documentation-structure">
+<p>This guide covers the physical connections and hardware requirements for the BNO08x sensor.</p>
+<h2 id="pin-connections">
   
   
-    <a href="#-documentation-structure" class="anchor-heading" aria-labelledby="-documentation-structure"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 📚 Documentation Structure
-  
-  
-</h2>
-    
-<h3 id="getting-started">
-  
-  
-    <a href="#getting-started" class="anchor-heading" aria-labelledby="getting-started"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <strong>Getting Started</strong>
-  
-  
-</h3>
-    
-
-<ol>
-  <li><strong><a href="/hf-bno08x-driver/development/docs/installation/">🛠️ Installation</a></strong> – Prerequisites and how to obtain the source</li>
-  <li><strong><a href="/hf-bno08x-driver/development/docs/quickstart/">⚡ Quick Start</a></strong> – Minimal working example to get you running</li>
-  <li><strong><a href="/hf-bno08x-driver/development/docs/hardware_setup/">🔌 Hardware Setup</a></strong> – Wiring diagrams and pin connections</li>
-</ol>
-<h3 id="integration">
-  
-  
-    <a href="#integration" class="anchor-heading" aria-labelledby="integration"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <strong>Integration</strong>
-  
-  
-</h3>
-    
-
-<ol>
-  <li><strong><a href="/hf-bno08x-driver/development/docs/platform_integration/">🔧 Platform Integration</a></strong> – Implement the CRTP communication interface for your platform</li>
-  <li><strong><a href="/hf-bno08x-driver/development/docs/configuration/">⚙️ Configuration</a></strong> – Configuration options and settings</li>
-</ol>
-<h3 id="reference">
-  
-  
-    <a href="#reference" class="anchor-heading" aria-labelledby="reference"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <strong>Reference</strong>
-  
-  
-</h3>
-    
-
-<ol>
-  <li><strong><a href="/hf-bno08x-driver/development/docs/api_reference/">📖 API Reference</a></strong> – Complete API documentation</li>
-  <li><strong><a href="/hf-bno08x-driver/development/docs/examples/">💡 Examples</a></strong> – Detailed example walkthroughs</li>
-</ol>
-<h3 id="advanced-features">
-  
-  
-    <a href="#advanced-features" class="anchor-heading" aria-labelledby="advanced-features"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <strong>Advanced Features</strong>
-  
-  
-</h3>
-    
-
-<ol>
-  <li><strong><a href="/hf-bno08x-driver/development/docs/special_feature_rvc/">🧹 RVC Mode</a></strong> – Robot Vacuum Cleaner mode for simplified UART streaming</li>
-  <li><strong><a href="/hf-bno08x-driver/development/docs/special_feature_dfu/">📦 DFU (Firmware Update)</a></strong> – Device Firmware Update guide</li>
-</ol>
-<h3 id="troubleshooting">
-  
-  
-    <a href="#troubleshooting" class="anchor-heading" aria-labelledby="troubleshooting"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <strong>Troubleshooting</strong>
-  
-  
-</h3>
-    
-
-<ol>
-  <li><strong><a href="/hf-bno08x-driver/development/docs/troubleshooting/">🐛 Troubleshooting</a></strong> – Common issues and solutions</li>
-</ol><hr />
-<h2 id="-quick-start-path">
-  
-  
-    <a href="#-quick-start-path" class="anchor-heading" aria-labelledby="-quick-start-path"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 🚀 Quick Start Path
+    <a href="#pin-connections" class="anchor-heading" aria-labelledby="pin-connections"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Pin Connections
   
   
 </h2>
     
-
-<p><strong>New to BNO08x?</strong> Follow this recommended path:</p>
-
-<ol>
-  <li>Start with <strong><a href="/hf-bno08x-driver/development/docs/installation/">Installation</a></strong> to prepare your environment</li>
-  <li>Follow <strong><a href="/hf-bno08x-driver/development/docs/hardware_setup/">Hardware Setup</a></strong> to wire your hardware</li>
-  <li>Read <strong><a href="/hf-bno08x-driver/development/docs/quickstart/">Quick Start</a></strong> for a minimal working example</li>
-  <li>Check <strong><a href="/hf-bno08x-driver/development/docs/platform_integration/">Platform Integration</a></strong> to implement the communication interface</li>
-  <li>Explore <strong><a href="/hf-bno08x-driver/development/docs/examples/">Examples</a></strong> for more advanced usage</li>
-</ol><hr />
-<h2 id="-need-help">
+<h3 id="ic-interface-recommended">
   
   
-    <a href="#-need-help" class="anchor-heading" aria-labelledby="-need-help"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 💡 Need Help?
+    <a href="#ic-interface-recommended" class="anchor-heading" aria-labelledby="ic-interface-recommended"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> I²C Interface (Recommended)
+  
+  
+</h3>
+    
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre>MCU              BNO08x
+─────────────────────────
+3.3V      ────── VIN
+GND       ────── GND
+SCL       ────── SCL   (with 4.7 kΩ pull-up)
+SDA       ────── SDA   (with 4.7 kΩ pull-up)
+GPIO      ────── INT   (optional, active-low interrupt)
+GPIO      ────── NRST  (optional, active-low reset)
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+
+<p><strong>Interface Selection</strong>: PS0=GND, PS1=GND selects I²C mode</p>
+
+<p><strong>I²C Address</strong>:</p>
+<ul>
+  <li>ADR/SA0 = GND → 0x4A</li>
+  <li>ADR/SA0 = VIN → 0x4B</li>
+</ul>
+<h3 id="spi-interface">
+  
+  
+    <a href="#spi-interface" class="anchor-heading" aria-labelledby="spi-interface"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> SPI Interface
+  
+  
+</h3>
+    
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="rouge-code"><pre>MCU              BNO08x
+─────────────────────────
+3.3V      ────── VIN
+GND       ────── GND
+SCK       ────── SCL
+MOSI      ────── SDA
+MISO      ────── MISO
+CS        ────── CS
+GPIO      ────── INT   (optional)
+GPIO      ────── NRST  (optional)
+GPIO      ────── WAKE  (optional, SPI mode only)
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+
+<p><strong>Interface Selection</strong>: PS0=VIN, PS1=VIN selects SPI mode</p>
+<h3 id="uart-interface-rvc-mode">
+  
+  
+    <a href="#uart-interface-rvc-mode" class="anchor-heading" aria-labelledby="uart-interface-rvc-mode"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> UART Interface (RVC Mode)
+  
+  
+</h3>
+    
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre>MCU              BNO08x
+─────────────────────────
+3.3V      ────── VIN
+GND       ────── GND
+TX        ────── SDA
+RX        ────── SCL
+GPIO      ────── INT   (optional)
+GPIO      ────── NRST  (optional)
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+
+<p><strong>Interface Selection</strong>: PS0=GND, PS1=VIN selects UART mode</p>
+
+<p><strong>Baud Rate</strong>: 115200 bps (8N1)</p>
+<h2 id="pin-descriptions">
+  
+  
+    <a href="#pin-descriptions" class="anchor-heading" aria-labelledby="pin-descriptions"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Pin Descriptions
+  
+  
+</h2>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Pin</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>VIN</td>
+      <td>Power</td>
+      <td>3.3V power supply</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>GND</td>
+      <td>Ground</td>
+      <td>Ground reference</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>SCL</td>
+      <td>Clock</td>
+      <td>I²C clock (SCL) or SPI clock (SCK) or UART TX</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>SDA</td>
+      <td>Data</td>
+      <td>I²C data (SDA) or SPI data (SDA/MOSI) or UART RX</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>INT</td>
+      <td>Interrupt</td>
+      <td>Active-low interrupt output</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>NRST</td>
+      <td>Reset</td>
+      <td>Active-low reset input</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>WAKE</td>
+      <td>Wake</td>
+      <td>SPI mode wake control (active low)</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>PS0</td>
+      <td>Protocol Select</td>
+      <td>Interface selection bit 0</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>PS1</td>
+      <td>Protocol Select</td>
+      <td>Interface selection bit 1</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>ADR/SA0</td>
+      <td>Address</td>
+      <td>I²C address selection</td>
+      <td>No</td>
+    </tr>
+  </tbody>
+</table></div>
+<h2 id="power-requirements">
+  
+  
+    <a href="#power-requirements" class="anchor-heading" aria-labelledby="power-requirements"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Power Requirements
   
   
 </h2>
     
 
 <ul>
-  <li><strong>🐛 Found a bug?</strong> Check the <a href="/hf-bno08x-driver/development/docs/troubleshooting/">Troubleshooting</a> guide</li>
-  <li><strong>❓ Have questions?</strong> Review the <a href="/hf-bno08x-driver/development/docs/api_reference/">API Reference</a></li>
-  <li><strong>📝 Want to contribute?</strong> See the contributing guidelines in the main README</li>
+  <li><strong>Supply Voltage</strong>: 3.3V (2.4V - 3.6V typical)</li>
+  <li><strong>Current Consumption</strong>: ~20-30 mA (depends on enabled sensors)</li>
+  <li><strong>Power Supply</strong>: Clean 3.3V supply with decoupling capacitors (100nF ceramic + 10µF tantalum recommended)</li>
+</ul>
+<h2 id="interface-selection">
+  
+  
+    <a href="#interface-selection" class="anchor-heading" aria-labelledby="interface-selection"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Interface Selection
+  
+  
+</h2>
+    
+
+<p>The BNO08x supports multiple interfaces selected via PS0 and PS1 pins:</p>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>PS1</th>
+      <th>PS0</th>
+      <th>Interface</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>GND</td>
+      <td>GND</td>
+      <td>I²C</td>
+    </tr>
+    <tr>
+      <td>GND</td>
+      <td>VIN</td>
+      <td>UART</td>
+    </tr>
+    <tr>
+      <td>VIN</td>
+      <td>GND</td>
+      <td>UART (RVC mode)</td>
+    </tr>
+    <tr>
+      <td>VIN</td>
+      <td>VIN</td>
+      <td>SPI</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p><strong>Note</strong>: Interface selection is sampled at reset. Change pins before resetting the device.</p>
+<h2 id="physical-layout-recommendations">
+  
+  
+    <a href="#physical-layout-recommendations" class="anchor-heading" aria-labelledby="physical-layout-recommendations"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Physical Layout Recommendations
+  
+  
+</h2>
+    
+
+<ul>
+  <li>Keep I²C/SPI traces short (&lt; 10cm recommended)</li>
+  <li>Use ground plane for noise reduction</li>
+  <li>Place decoupling capacitors (100nF ceramic + 10µF tantalum) close to VIN pin</li>
+  <li>Route clock and data lines away from noise sources</li>
+  <li>Use appropriate pull-up resistors for I²C (4.7 kΩ typical)</li>
+  <li>Keep sensor away from strong magnetic fields</li>
+</ul>
+<h2 id="example-wiring-diagram-ic">
+  
+  
+    <a href="#example-wiring-diagram-ic" class="anchor-heading" aria-labelledby="example-wiring-diagram-ic"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Example Wiring Diagram (I²C)
+  
+  
+</h2>
+    
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="rouge-code"><pre>                    BNO08x
+                    ┌─────────┐
+        3.3V ───────┤ VIN     │
+        GND  ───────┤ GND     │
+        SCL  ───────┤ SCL     │───[4.7kΩ]─── 3.3V
+        SDA  ───────┤ SDA     │───[4.7kΩ]─── 3.3V
+        INT  ───────┤ INT     │
+        NRST ───────┤ NRST    │
+        GND  ───────┤ PS0     │
+        GND  ───────┤ PS1     │
+        GND  ───────┤ ADR     │
+                    └─────────┘
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+<h2 id="next-steps">
+  
+  
+    <a href="#next-steps" class="anchor-heading" aria-labelledby="next-steps"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Next Steps
+  
+  
+</h2>
+    
+
+<ul>
+  <li>Verify connections with a multimeter</li>
+  <li>Proceed to <a href="/hf-bno08x-driver/development/docs/quickstart/">Quick Start</a> to test the connection</li>
+  <li>Review <a href="/hf-bno08x-driver/development/docs/platform_integration/">Platform Integration</a> for software setup</li>
 </ul><hr />
 
 <p><strong>Navigation</strong>
-➡️ <a href="/hf-bno08x-driver/development/docs/installation/">Installation</a></p>
+⬅️ <a href="/hf-bno08x-driver/development/docs/quickstart/">Quick Start</a> | <a href="/hf-bno08x-driver/development/docs/platform_integration/">Next: Platform Integration ➡️</a> | <a href="/hf-bno08x-driver/development/docs/">Back to Index</a></p>
 
           
 
           
-            <hr>
-<h2 class="text-delta">Table of contents</h2>
-
-<ul>
-  
-  <li>
-    <a href="/hf-bno08x-driver/development/docs/installation/">🛠️ Installation</a>
-  </li>
-  
-  <li>
-    <a href="/hf-bno08x-driver/development/docs/quickstart/">⚡ Quick Start</a>
-  </li>
-  
-  <li>
-    <a href="/hf-bno08x-driver/development/docs/hardware_setup/">🔌 Hardware Setup</a>
-  </li>
-  
-  <li>
-    <a href="/hf-bno08x-driver/development/docs/platform_integration/">🔧 Platform Integration</a>
-  </li>
-  
-  <li>
-    <a href="/hf-bno08x-driver/development/docs/configuration/">⚙️ Configuration</a>
-  </li>
-  
-  <li>
-    <a href="/hf-bno08x-driver/development/docs/api_reference/">📖 API Reference</a>
-  </li>
-  
-  <li>
-    <a href="/hf-bno08x-driver/development/docs/examples/">💡 Examples</a>
-  </li>
-  
-  <li>
-    <a href="/hf-bno08x-driver/development/docs/special_feature_rvc/">🧹 RVC Mode</a>
-  </li>
-  
-  <li>
-    <a href="/hf-bno08x-driver/development/docs/special_feature_dfu/">📦 DFU</a>
-  </li>
-  
-  <li>
-    <a href="/hf-bno08x-driver/development/docs/troubleshooting/">🐛 Troubleshooting</a>
-  </li>
-  
-</ul>
+            
           
         </main>
         

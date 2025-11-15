@@ -13,10 +13,32 @@
 
   <style id="jtd-nav-activation">
   
-    .site-nav ul li a {
+
+    .site-nav > ul.nav-list:first-child > li > a,
+    .site-nav > ul.nav-list:first-child > li > ul > li > a,
+    
+    .site-nav > ul.nav-list:first-child > li > ul > li > ul > li:not(:nth-child(7)) > a,
+    .site-nav > ul.nav-list:first-child > li > ul > li > ul > li > ul > li a {
       background-image: none;
     }
 
+    .site-nav > ul.nav-list:not(:first-child) a,
+    .site-nav li.external a {
+      background-image: none;
+    }
+
+    .site-nav > ul.nav-list:first-child > li:nth-child(1) > ul > li:nth-child(1) > ul > li:nth-child(7) > a {
+      font-weight: 600;
+      text-decoration: none;
+    }.site-nav > ul.nav-list:first-child > li:nth-child(1) > button svg,
+    .site-nav > ul.nav-list:first-child > li:nth-child(1) > ul > li:nth-child(1) > button svg,
+    .site-nav > ul.nav-list:first-child > li:nth-child(1) > ul > li:nth-child(1) > ul > li:nth-child(7) > button svg {
+      transform: rotate(-90deg);
+    }.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(1) > ul.nav-list,
+    .site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(1) > ul.nav-list > li.nav-list-item:nth-child(1) > ul.nav-list,
+    .site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(1) > ul.nav-list > li.nav-list-item:nth-child(1) > ul.nav-list > li.nav-list-item:nth-child(7) > ul.nav-list {
+      display: block;
+    }
   </style>
 
   
@@ -150,7 +172,11 @@
   <nav aria-label="Main" id="site-nav" class="site-nav">
   
   
-    <ul class="nav-list"><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/api_reference.html" class="nav-list-link">API Reference</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/examples/esp32/" class="nav-list-link">BNO08x ESP32-C6 Examples</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/configuration.html" class="nav-list-link">Configuration</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/special_feature_dfu.html" class="nav-list-link">DFU (Device Firmware Update)</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/" class="nav-list-link">HF-BNO08x Documentation</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/" class="nav-list-link">HF-BNO08x Driver</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/hardware_setup.html" class="nav-list-link">Hardware Setup</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/installation.html" class="nav-list-link">Installation</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/platform_integration.html" class="nav-list-link">Platform Integration Guide</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/quickstart.html" class="nav-list-link">Quick Start</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/special_feature_rvc.html" class="nav-list-link">RVC Mode (Robot Vacuum Cleaner Mode)</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/troubleshooting.html" class="nav-list-link">Troubleshooting</a></li></ul>
+    <ul class="nav-list"><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in HardFOC BNO08x Driver category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/hf-bno08x-driver/development/" class="nav-list-link">HardFOC BNO08x Driver</a><ul class="nav-list"><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 📚 Documentation category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/hf-bno08x-driver/development/docs/" class="nav-list-link">📚 Documentation</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/installation/" class="nav-list-link">🛠️ Installation</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/quickstart/" class="nav-list-link">⚡ Quick Start</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/hardware_setup/" class="nav-list-link">🔌 Hardware Setup</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/platform_integration/" class="nav-list-link">🔧 Platform Integration</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/configuration/" class="nav-list-link">⚙️ Configuration</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/api_reference/" class="nav-list-link">📖 API Reference</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/examples/" class="nav-list-link">💡 Examples</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/special_feature_rvc/" class="nav-list-link">🧹 RVC Mode</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/special_feature_dfu/" class="nav-list-link">📦 DFU</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/troubleshooting/" class="nav-list-link">🐛 Troubleshooting</a></li></ul></li></ul></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/examples/esp32/" class="nav-list-link">BNO08x ESP32-C6 Examples</a></li></ul>
   
 </nav>
 
@@ -226,6 +252,8 @@
     <div class="main-content-wrap">
       <nav aria-label="Breadcrumb" class="breadcrumb-nav">
   <ol class="breadcrumb-nav-list">
+    <li class="breadcrumb-nav-list-item"><a href="/hf-bno08x-driver/development/">HardFOC BNO08x Driver</a></li>
+    <li class="breadcrumb-nav-list-item"><a href="/hf-bno08x-driver/development/docs/">📚 Documentation</a></li>
     <li class="breadcrumb-nav-list-item"><span>💡 Examples</span></li>
   </ol>
 </nav>
@@ -885,7 +913,7 @@ idf.py build flash monitor
 </h3>
     
 
-<p>For other platforms, implement the <code class="language-plaintext highlighter-rouge">CommInterface</code> for your platform (see <a href="/hf-bno08x-driver/development/docs/platform_integration.html">Platform Integration</a>) and compile with C++11 or newer:</p>
+<p>For other platforms, implement the <code class="language-plaintext highlighter-rouge">CommInterface</code> for your platform (see <a href="/hf-bno08x-driver/development/docs/platform_integration/">Platform Integration</a>) and compile with C++11 or newer:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 </pre></td><td class="rouge-code"><pre>g++ <span class="nt">-std</span><span class="o">=</span>c++11 <span class="nt">-I</span> inc/ your_code.cpp src/bno08x.cpp <span class="nt">-o</span> <span class="nb">test</span>
@@ -900,15 +928,15 @@ idf.py build flash monitor
     
 
 <ul>
-  <li>Review the <a href="/hf-bno08x-driver/development/docs/api_reference.html">API Reference</a> for method details</li>
-  <li>Check <a href="/hf-bno08x-driver/development/docs/troubleshooting.html">Troubleshooting</a> if you encounter issues</li>
+  <li>Review the <a href="/hf-bno08x-driver/development/docs/api_reference/">API Reference</a> for method details</li>
+  <li>Check <a href="/hf-bno08x-driver/development/docs/troubleshooting/">Troubleshooting</a> if you encounter issues</li>
   <li>Explore the <a href="../examples/">examples directory</a> for more examples</li>
-  <li>Learn about <a href="/hf-bno08x-driver/development/docs/special_feature_rvc.html">RVC Mode</a> for simplified UART streaming</li>
-  <li>Check <a href="/hf-bno08x-driver/development/docs/special_feature_dfu.html">DFU</a> for firmware update capabilities</li>
+  <li>Learn about <a href="/hf-bno08x-driver/development/docs/special_feature_rvc/">RVC Mode</a> for simplified UART streaming</li>
+  <li>Check <a href="/hf-bno08x-driver/development/docs/special_feature_dfu/">DFU</a> for firmware update capabilities</li>
 </ul><hr />
 
 <p><strong>Navigation</strong>
-⬅️ <a href="/hf-bno08x-driver/development/docs/api_reference.html">API Reference</a> | <a href="/hf-bno08x-driver/development/docs/special_feature_rvc.html">Next: RVC Mode ➡️</a> | <a href="/hf-bno08x-driver/development/docs/">Back to Index</a></p>
+⬅️ <a href="/hf-bno08x-driver/development/docs/api_reference/">API Reference</a> | <a href="/hf-bno08x-driver/development/docs/special_feature_rvc/">Next: RVC Mode ➡️</a> | <a href="/hf-bno08x-driver/development/docs/">Back to Index</a></p>
 
           
 
