@@ -58,4 +58,10 @@ exclude = [
   # General patterns for GNU license URLs (broader matching)
   '^https?://(www\.)?gnu\.org/licenses/.*',
   '^https?://img\.shields\.io/badge/License-.*',
+  
+  # GitHub Actions badge URLs (may not exist yet)
+  '^https://github\.com/N3b3x/hf-bno08x-driver/actions/workflows/.*',
+  
+  # Documentation site URLs (may not be published yet)
+  '^https://n3b3x\.github\.io/hf-bno08x-driver/.*',
 ]
