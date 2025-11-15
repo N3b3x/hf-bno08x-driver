@@ -1,7 +1,7 @@
 {"0": {
     "doc": "Usage Examples",
     "title": "Usage Examples",
-    "content": "| ⬅️ Previous: Porting Guide | Next: RVC Mode ➡️ | Docs Hub 📚 | . ",
+    "content": "| ⬅️ Previous: API Reference | Next: RVC Mode ➡️ | Back to Index | . ",
     "url": "/hf-bno08x-driver/development/docs/examples/",
     
     "relUrl": "/docs/examples/"
@@ -15,7 +15,7 @@
   },"2": {
     "doc": "Usage Examples",
     "title": "Polling Loop",
-    "content": "| 1 2 3 4 5 6 7 8 . | while (true) { imu.update(); if (imu.hasNewData(BNO085Sensor::TapDetector)) { auto tap = imu.getLatestData(BNO085Sensor::TapDetector); Serial.println(tap.doubleTap ? \"Double Tap\" : \"Tap\"); } delay(5); } . | . | ⬅️ Previous: Porting Guide | Next: RVC Mode ➡️ | Docs Hub 📚 | . ",
+    "content": "| 1 2 3 4 5 6 7 8 . | while (true) { imu.update(); if (imu.hasNewData(BNO085Sensor::TapDetector)) { auto tap = imu.getLatestData(BNO085Sensor::TapDetector); Serial.println(tap.doubleTap ? \"Double Tap\" : \"Tap\"); } delay(5); } . | . | ⬅️ Previous: API Reference | Next: RVC Mode ➡️ | Back to Index | . ",
     "url": "/hf-bno08x-driver/development/docs/examples/#polling-loop",
     
     "relUrl": "/docs/examples/#polling-loop"
