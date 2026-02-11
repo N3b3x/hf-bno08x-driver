@@ -1,4 +1,4 @@
 var RvcHal_8hpp =
 [
-    [ "IRvcHal", "classIRvcHal.html", "classIRvcHal" ]
+    [ "RvcHalInterface< Derived >", "classRvcHalInterface.html", "classRvcHalInterface" ]
 ];

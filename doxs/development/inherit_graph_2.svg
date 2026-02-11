@@ -21,7 +21,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:href="classEsp32Bno08xBus.html" target="_top" xlink:title="ESP32 I2C communication interface implementation for BNO08x driver.">
+<g id="a_Node000001"><a xlink:href="classEsp32Bno08xBus.html" target="_top" xlink:title="ESP32 implementation of bno08x::CommInterface using ESP&#45;IDF I2C master driver.">
 <polygon fill="white" stroke="#666666" points="271,-24.5 170,-24.5 170,-5.5 271,-5.5 271,-24.5"/>
 <text text-anchor="middle" x="220.5" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">Esp32Bno08xBus</text>
 </a>

@@ -157,7 +157,7 @@ $(function(){initNavTree('dfu_8h_source.html',''); initResizable(); });
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment"> */</span></div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">/*</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment"> * DFU (Download Firmware Update) interface</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment"> * DFU (Download Firmware Update) interface - CRTP template version</span></div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment"> */</span></div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#ifndef DFU_H</span></div>
@@ -166,15 +166,22 @@ $(function(){initNavTree('dfu_8h_source.html',''); initResizable(); });
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;<a class="code" href="HcBin_8h.html">HcBin.h</a>&quot;</span></div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;<a class="code" href="IDfuTransport_8hpp.html">IDfuTransport.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keywordtype">int</span> <a class="code hl_function" href="dfu_8h.html#a6f6ae81afbf7b6b9b446bbc9ae31e49d">dfu</a>(<a class="code hl_class" href="classIDfuTransport.html">IDfuTransport</a>&amp; transport, <span class="keyword">const</span> <a class="code hl_struct" href="structHcBin__s.html">HcBin_t</a>&amp; <a class="code hl_variable" href="firmware-bno_8c.html#a169e52b3509b7e23c9a7f630e9156c11">firmware</a>);</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keywordtype">int</span> <a class="code hl_function" href="dfu_8h.html#a6f6ae81afbf7b6b9b446bbc9ae31e49d">dfu</a>(<a class="code hl_class" href="classIDfuTransport.html">IDfuTransport</a>&amp; transport);</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> TransportType&gt;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keywordtype">int</span> <a class="code hl_function" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">dfu</a>(<a class="code hl_function" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">TransportType</a>&amp; <a class="code hl_function" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">transport</a>, <span class="keyword">const</span> <a class="code hl_struct" href="structHcBin__s.html">HcBin_t</a>&amp; <a class="code hl_function" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">fw</a>);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> TransportType&gt;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keywordtype">int</span> <a class="code hl_function" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">dfu</a>(<a class="code hl_function" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">TransportType</a>&amp; <a class="code hl_function" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">transport</a>);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="comment">// Include template implementation</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="dfu_8h.html#a00c5e7b6b4bda8a7f6385e09bb4ced38">   50</a></span><span class="preprocessor">#define DFU_BNO_HEADER_INCLUDED</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor">#include &quot;<a class="code" href="dfu__bno_8cpp.html">dfu_bno.cpp</a>&quot;</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">#undef DFU_BNO_HEADER_INCLUDED</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aHcBin_8h_html"><div class="ttname"><a href="HcBin_8h.html">HcBin.h</a></div><div class="ttdoc">API Definition for HcBin objects (Hillcrest Binary Files).</div></div>
-<div class="ttc" id="aIDfuTransport_8hpp_html"><div class="ttname"><a href="IDfuTransport_8hpp.html">IDfuTransport.hpp</a></div></div>
-<div class="ttc" id="aclassIDfuTransport_html"><div class="ttname"><a href="classIDfuTransport.html">IDfuTransport</a></div><div class="ttdoc">Abstract interface for DFU hardware access.</div><div class="ttdef"><b>Definition</b> IDfuTransport.hpp:15</div></div>
-<div class="ttc" id="adfu_8h_html_a6f6ae81afbf7b6b9b446bbc9ae31e49d"><div class="ttname"><a href="dfu_8h.html#a6f6ae81afbf7b6b9b446bbc9ae31e49d">dfu</a></div><div class="ttdeci">int dfu(IDfuTransport &amp;transport, const HcBin_t &amp;firmware)</div><div class="ttdoc">Run DFU process using the provided transport.</div><div class="ttdef"><b>Definition</b> dfu_bno.cpp:51</div></div>
-<div class="ttc" id="afirmware-bno_8c_html_a169e52b3509b7e23c9a7f630e9156c11"><div class="ttname"><a href="firmware-bno_8c.html#a169e52b3509b7e23c9a7f630e9156c11">firmware</a></div><div class="ttdeci">const HcBin_t firmware</div><div class="ttdef"><b>Definition</b> firmware-bno.c:35</div></div>
+<div class="ttc" id="aIDfuTransport_8hpp_html"><div class="ttname"><a href="IDfuTransport_8hpp.html">IDfuTransport.hpp</a></div><div class="ttdoc">CRTP-based hardware abstraction interface for DFU transport.</div></div>
+<div class="ttc" id="adfu_8h_html_ae9d4ee928e783a2424a0c8d7cfbde399"><div class="ttname"><a href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">dfu</a></div><div class="ttdeci">int dfu(TransportType &amp;transport, const HcBin_t &amp;fw)</div><div class="ttdoc">Run DFU process using the provided CRTP transport.</div><div class="ttdef"><b>Definition</b> dfu_bno.cpp:162</div></div>
+<div class="ttc" id="adfu__bno_8cpp_html"><div class="ttname"><a href="dfu__bno_8cpp.html">dfu_bno.cpp</a></div></div>
 <div class="ttc" id="astructHcBin__s_html"><div class="ttname"><a href="structHcBin__s.html">HcBin_s</a></div><div class="ttdef"><b>Definition</b> HcBin.h:47</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

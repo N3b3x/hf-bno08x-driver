@@ -1,5 +1,5 @@
 var structHcbinMetadata =
 [
-    [ "key", "structHcbinMetadata.html#a095aeaab8f07d55eae968ecf55a75d16", null ],
-    [ "value", "structHcbinMetadata.html#a766849b533b8fc5a88a39deffbea8e1d", null ]
+    [ "key", "structHcbinMetadata.html#a90b21ffb6cf39c6a66904213c26b3a44", null ],
+    [ "value", "structHcbinMetadata.html#add1363f7f996f55a9f0ba6e1da0e41a8", null ]
 ];
