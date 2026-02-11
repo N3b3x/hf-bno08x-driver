@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['acc_5fx_0',['acc_x',['../structrvc__SensorEvent__s.html#a3b15b7e0ec5f582cf314f7768de90500',1,'rvc_SensorEvent_s']]],
-  ['acc_5fx_5fg_1',['acc_x_g',['../structrvc__SensorValue__s.html#ad64ab52b9baeb7acc456ccd18d94d890',1,'rvc_SensorValue_s']]],
-  ['acc_5fy_2',['acc_y',['../structrvc__SensorEvent__s.html#a3909dea0c943f986a31c460e86b39f54',1,'rvc_SensorEvent_s']]],
-  ['acc_5fy_5fg_3',['acc_y_g',['../structrvc__SensorValue__s.html#a3748a9dc142a9a66a20c5ec2a5c6322a',1,'rvc_SensorValue_s']]],
-  ['acc_5fz_4',['acc_z',['../structrvc__SensorEvent__s.html#a383aa1137e2eee42e7d7b0ca3accf07b',1,'rvc_SensorEvent_s']]],
-  ['acc_5fz_5fg_5',['acc_z_g',['../structrvc__SensorValue__s.html#ab27b0b28fcc92b770fb4bcdf95e65fb9',1,'rvc_SensorValue_s']]],
+  ['acc_5fx_0',['acc_x',['../structRvcSensorEvent.html#a7caf34fab0ddbd5c33fff60badc59e7f',1,'RvcSensorEvent']]],
+  ['acc_5fx_5fg_1',['acc_x_g',['../structRvcSensorValue.html#a3f215a6b99ace3f59fbd359d4f3ea116',1,'RvcSensorValue']]],
+  ['acc_5fy_2',['acc_y',['../structRvcSensorEvent.html#a16d8edc7f66d26cb124e830826d90634',1,'RvcSensorEvent']]],
+  ['acc_5fy_5fg_3',['acc_y_g',['../structRvcSensorValue.html#a716e56e9a2b12b3d7a2b418c2bb3a0a8',1,'RvcSensorValue']]],
+  ['acc_5fz_4',['acc_z',['../structRvcSensorEvent.html#ad9ea0b1e5223c97b39be80a6d5eca77e',1,'RvcSensorEvent']]],
+  ['acc_5fz_5fg_5',['acc_z_g',['../structRvcSensorValue.html#a96be56fed5bb32fa5ed5d9519e0337c7',1,'RvcSensorValue']]],
   ['accuracy_6',['accuracy',['../structVector3.html#a491cb149e1ee956e6ee5ba53ebd958bd',1,'Vector3::accuracy'],['../structQuaternion.html#a9fb8e41ca4fab802dc16d5fd42188cde',1,'Quaternion::accuracy']]]
 ];

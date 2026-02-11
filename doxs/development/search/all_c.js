@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['nativehal_0',['NativeHal',['../classHalTransport.html#a97927e93254bd0cf757a5ca949355ea1',1,'HalTransport::NativeHal()'],['../classDfuTransportInterface.html#af0cc95cc32be98d60a99bf497af642a8',1,'DfuTransportInterface::NativeHal()']]]
+  ['license_0',['📄 License',['../index.html#autotoc_md16',1,'']]],
+  ['linearacceleration_1',['LinearAcceleration',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62aba31d10f1d09d6cf847178cb2d7350d6',1,'bno08x.hpp']]]
 ];

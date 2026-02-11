@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['framework_0',['DFU Framework',['../index.html',1,'']]]
+  ['driver_0',['HF-BNO08x Driver',['../index.html',1,'']]]
 ];

@@ -3,7 +3,8 @@ var searchData=
   ['get_5fsuccess_5fpercentage_0',['get_success_percentage',['../structTestResults.html#ab98f9ad5f994aa31bd7c0cd8ae551fb8',1,'TestResults']]],
   ['get_5ftotal_5ftime_5fms_1',['get_total_time_ms',['../structTestResults.html#a6d2e718d81a8b4a4dcca515ee858de57',1,'TestResults']]],
   ['getconfig_2',['getConfig',['../classEsp32Bno08xBus.html#a85e1603d6eff23ff172f2a800a6afa4d',1,'Esp32Bno08xBus']]],
-  ['getlasterror_3',['GetLastError',['../classBNO085.html#a6058135b615cc9e260d3de12f8e7edcf',1,'BNO085']]],
-  ['getlatest_4',['GetLatest',['../classBNO085.html#ad808f56174f2db0303525e566d328007',1,'BNO085']]],
-  ['gettimeus_5',['GetTimeUs',['../classHalTransport.html#ac0561b9cd97f8d3fe93421777750c11d',1,'HalTransport::GetTimeUs()'],['../classDfuTransportInterface.html#a62d7fe945610eb9bc4b9743a5c2e55e3',1,'DfuTransportInterface::GetTimeUs()'],['../classbno08x_1_1CommInterface.html#a4b3129c235d04972f6f51563d5ca35f3',1,'bno08x::CommInterface::GetTimeUs()'],['../classEsp32Bno08xBus.html#ad9bcbae6a7b658760cf42ae2ef830777',1,'Esp32Bno08xBus::GetTimeUs()']]]
+  ['getinterfacetype_3',['GetInterfaceType',['../classbno08x_1_1CommInterface.html#aff6d3c95e497ca8ecfa39083669c8d47',1,'bno08x::CommInterface::GetInterfaceType()'],['../classEsp32Bno08xBus.html#a93e0de20a5b96a000dde91bd780fd55f',1,'Esp32Bno08xBus::GetInterfaceType()'],['../classEsp32UartRvcBus.html#a02f0d03d1cbe629f12c99a7a903aa914',1,'Esp32UartRvcBus::GetInterfaceType()']]],
+  ['getlasterror_4',['GetLastError',['../classBNO085.html#a6058135b615cc9e260d3de12f8e7edcf',1,'BNO085']]],
+  ['getlatest_5',['GetLatest',['../classBNO085.html#ad808f56174f2db0303525e566d328007',1,'BNO085']]],
+  ['gettimeus_6',['GetTimeUs',['../classbno08x_1_1CommInterface.html#a4b3129c235d04972f6f51563d5ca35f3',1,'bno08x::CommInterface::GetTimeUs()'],['../classEsp32Bno08xBus.html#ad9bcbae6a7b658760cf42ae2ef830777',1,'Esp32Bno08xBus::GetTimeUs()'],['../classEsp32UartRvcBus.html#a3adc7b1fc8d59a12b1de0b3dbc83673e',1,'Esp32UartRvcBus::GetTimeUs()']]]
 ];

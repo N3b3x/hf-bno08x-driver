@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="High level C++ interface for the BNO08x IMU family.">
+<g id="a_Node000001"><a xlink:title="High&#45;level C++ driver for the BNO08x 9&#45;axis IMU family.">
 <polygon fill="#999999" stroke="#666666" points="644.5,-96 553.5,-96 553.5,-77 644.5,-77 644.5,-96"/>
 <text text-anchor="middle" x="599" y="-84" font-family="Helvetica,sans-Serif" font-size="10.00">inc/bno08x.hpp</text>
 </a>
@@ -117,7 +117,7 @@
 <!-- Node7 -->
 <g id="Node000007" class="node">
 <title>Node7</title>
-<g id="a_Node000007"><a xlink:href="rvc__mode__example_8cpp.html" target="_top" xlink:title="RVC (Reduced Vector Computation) mode example.">
+<g id="a_Node000007"><a xlink:href="rvc__mode__example_8cpp.html" target="_top" xlink:title="RVC (Rotation Vector Computation) mode example.">
 <polygon fill="white" stroke="#666666" points="907,-35.5 771,-35.5 771,-5.5 907,-5.5 907,-35.5"/>
 <text text-anchor="start" x="779" y="-23.5" font-family="Helvetica,sans-Serif" font-size="10.00">examples/esp32/main</text>
 <text text-anchor="middle" x="839" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">/rvc_mode_example.cpp</text>
@@ -136,7 +136,7 @@
 <!-- Node8 -->
 <g id="Node000008" class="node">
 <title>Node8</title>
-<g id="a_Node000008"><a xlink:href="bno08x_8cpp.html" target="_top" xlink:title="Template implementation of the BNO08x C++ driver.">
+<g id="a_Node000008"><a xlink:href="bno08x_8cpp.html" target="_top" xlink:title="Template method implementations for the BNO085 driver class.">
 <polygon fill="white" stroke="#666666" points="1015,-30 925,-30 925,-11 1015,-11 1015,-30"/>
 <text text-anchor="middle" x="970" y="-18" font-family="Helvetica,sans-Serif" font-size="10.00">src/bno08x.cpp</text>
 </a>

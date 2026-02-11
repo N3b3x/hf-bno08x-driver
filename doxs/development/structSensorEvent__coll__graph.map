@@ -1,9 +1,9 @@
 <map id="SensorEvent" name="SensorEvent">
-<area shape="rect" id="Node000001" title="Container for a single sensor report." alt="" coords="96,93,199,119"/>
-<area shape="rect" id="Node000002" href="$structVector3.html" title="Simple 3‑axis vector with accuracy flag." alt="" coords="5,5,76,31"/>
+<area shape="rect" id="Node000001" title="Container for a single decoded SH&#45;2 sensor report." alt="" coords="96,93,199,119"/>
+<area shape="rect" id="Node000002" href="$structVector3.html" title="Three&#45;axis vector with sensor accuracy indicator." alt="" coords="5,5,76,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="64,38,98,67,131,91,128,95,95,71,61,42"/>
-<area shape="rect" id="Node000003" href="$structQuaternion.html" title="Quaternion orientation with accuracy flag." alt="" coords="100,5,195,31"/>
+<area shape="rect" id="Node000003" href="$structQuaternion.html" title="Unit quaternion with sensor accuracy indicator." alt="" coords="100,5,195,31"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="150,45,150,93,145,93,145,45"/>
-<area shape="rect" id="Node000004" href="$structTapEvent.html" title="Information for tap detector events." alt="" coords="219,5,300,31"/>
+<area shape="rect" id="Node000004" href="$structTapEvent.html" title="Tap detector event details." alt="" coords="219,5,300,31"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="242,43,210,71,172,95,169,91,207,67,238,39"/>
 </map>
