@@ -17,13 +17,13 @@ This guide covers all configuration options available for the BNO08x driver.
 
 ```cpp
 // Enable Rotation Vector at 100 Hz (10ms interval)
-imu.EnableSensor(bno08x::BNO085Sensor::RotationVector, 10);
+imu.EnableSensor(BNO085Sensor::RotationVector, 10);
 
 // Enable Step Counter (on-change, interval = 0)
-imu.EnableSensor(bno08x::BNO085Sensor::StepCounter, 0);
+imu.EnableSensor(BNO085Sensor::StepCounter, 0);
 
 // Enable Accelerometer at 50 Hz with sensitivity threshold
-imu.EnableSensor(bno08x::BNO085Sensor::Accelerometer, 20, 0.1f);
+imu.EnableSensor(BNO085Sensor::Accelerometer, 20, 0.1f);
 ```
 
 **Interval**: Report interval in milliseconds (0 = on-change only)
@@ -49,7 +49,7 @@ imu.EnableSensor(bno08x::BNO085Sensor::Accelerometer, 20, 0.1f);
 ### Disabling Sensors
 
 ```cpp
-imu.DisableSensor(bno08x::BNO085Sensor::RotationVector);
+imu.DisableSensor(BNO085Sensor::RotationVector);
 ```
 
 ## Callback Configuration
@@ -57,10 +57,10 @@ imu.DisableSensor(bno08x::BNO085Sensor::RotationVector);
 ### Sensor Event Callback
 
 ```cpp
-imu.SetCallback([](const bno08x::SensorEvent& e) {
-    if (e.sensor == bno08x::BNO085Sensor::RotationVector) {
-        auto euler = e.toEuler();
-        printf("Yaw: %.1f°\n", euler.yaw);
+imu.SetCallback([](const SensorEvent& e) {
+    if (e.sensor == BNO085Sensor::RotationVector) {
+        printf("Quat: w=%.3f x=%.3f y=%.3f z=%.3f\n",
+               e.rotation.w, e.rotation.x, e.rotation.y, e.rotation.z);
     }
 });
 ```
@@ -79,17 +79,17 @@ imu.SetRvcCallback([](const rvc_SensorValue_t& val) {
 ### Selecting Communication Interface
 
 ```cpp
-// Select I²C interface (PS0=0, PS1=0)
-imu.SelectInterface(bno08x::BNO085Interface::I2C);
+// Select I²C interface (PS1=0, PS0=0)
+imu.SelectInterface(BNO085Interface::I2C);
 
-// Select SPI interface (PS0=1, PS1=1)
-imu.SelectInterface(bno08x::BNO085Interface::SPI);
+// Select SPI interface (PS1=1, PS0=1)
+imu.SelectInterface(BNO085Interface::SPI);
 
-// Select UART interface (PS0=0, PS1=1)
-imu.SelectInterface(bno08x::BNO085Interface::UART);
+// Select UART interface (PS1=0, PS0=1)
+imu.SelectInterface(BNO085Interface::UART);
 
-// Select UART RVC mode (PS0=1, PS1=0)
-imu.SelectInterface(bno08x::BNO085Interface::UARTRVC);
+// Select UART RVC mode (PS1=1, PS0=0)
+imu.SelectInterface(BNO085Interface::UARTRVC);
 ```
 
 **Note**: Interface selection is typically done via hardware pins (PS0/PS1) at boot time. This method is only useful if your hardware allows dynamic control of these pins.
@@ -123,7 +123,7 @@ imu.SetWakePin(true);   // Active low
 ### Callback Mode (Recommended)
 
 ```cpp
-imu.SetCallback([](const bno08x::SensorEvent& e) {
+imu.SetCallback([](const SensorEvent& e) {
     // Process event immediately
 });
 imu.Update();  // Call frequently
@@ -134,8 +134,8 @@ imu.Update();  // Call frequently
 ```cpp
 imu.Update();  // Must be called frequently
 
-if (imu.HasNewData(bno08x::BNO085Sensor::RotationVector)) {
-    auto event = imu.GetLatest(bno08x::BNO085Sensor::RotationVector);
+if (imu.HasNewData(BNO085Sensor::RotationVector)) {
+    auto event = imu.GetLatest(BNO085Sensor::RotationVector);
     // Process event
 }
 ```
@@ -159,7 +159,7 @@ To save power, disable sensors you don't need:
 
 ```cpp
 // Only enable what you need
-imu.EnableSensor(bno08x::BNO085Sensor::RotationVector, 10);
+imu.EnableSensor(BNO085Sensor::RotationVector, 10);
 // Don't enable other sensors if not needed
 ```
 

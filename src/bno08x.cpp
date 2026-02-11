@@ -11,7 +11,6 @@
  */
 
 #include <algorithm>
-#include <cstdio>
 
 extern "C" {
 #include "sh2.h"
@@ -20,8 +19,6 @@ extern "C" {
 }
 #include "dfu/HalTransport.hpp"
 #include "dfu/dfu.h"
-
-using namespace std;
 
 /**
  * @brief Initialise using the communication interface passed to the constructor.
@@ -62,7 +59,7 @@ bool BNO085<CommType>::Begin() noexcept {
  * @brief Enable periodic reporting for a sensor.
  */
 template <typename CommType>
-bool BNO085<CommType>::EnableSensor(BNO085Sensor sensor, uint32_t intervalMs, float sensitivity) {
+bool BNO085<CommType>::EnableSensor(BNO085Sensor sensor, uint32_t intervalMs, float sensitivity) noexcept {
   if (!initialized_)
     return false;
   uint32_t interval_us = intervalMs * 1000;
@@ -75,7 +72,7 @@ bool BNO085<CommType>::EnableSensor(BNO085Sensor sensor, uint32_t intervalMs, fl
 
 /** Disable reporting for a sensor. */
 template <typename CommType>
-bool BNO085<CommType>::DisableSensor(BNO085Sensor sensor) {
+bool BNO085<CommType>::DisableSensor(BNO085Sensor sensor) noexcept {
   if (!initialized_)
     return false;
   return configure(sensor, 0, 0, 0);
@@ -83,13 +80,13 @@ bool BNO085<CommType>::DisableSensor(BNO085Sensor sensor) {
 
 /** Set a callback for incoming sensor events. */
 template <typename CommType>
-void BNO085<CommType>::SetCallback(SensorCallback cb) {
+void BNO085<CommType>::SetCallback(SensorCallback cb) noexcept {
   callback_ = cb;
 }
 
 /** Set a callback for decoded RVC frames. */
 template <typename CommType>
-void BNO085<CommType>::SetRvcCallback(RvcCallback cb) {
+void BNO085<CommType>::SetRvcCallback(RvcCallback cb) noexcept {
   rvc_cb_ = cb;
 }
 
@@ -170,16 +167,31 @@ SensorEvent BNO085<CommType>::GetLatest(BNO085Sensor sensor) const {
 
 /** Service the SH-2 library. Call as often as possible. */
 template <typename CommType>
-void BNO085<CommType>::Update() {
+void BNO085<CommType>::Update() noexcept {
   if (initialized_) {
     sh2_service();
   }
 }
 
-/** Begin processing RVC frames. */
+/** Begin processing RVC frames using a CRTP-based HAL. */
 template <typename CommType>
-bool BNO085<CommType>::BeginRvc(IRvcHal* hal) {
-  rvc_.SetHal(hal);
+template <typename RvcHalType>
+bool BNO085<CommType>::BeginRvc(RvcHalType& hal) noexcept {
+  // Store the HAL pointer in the RvcHalC_t adapter context
+  rvc_hal_adapter_.ctx = &hal;
+
+  // Set up C function-pointer trampolines that call through to the CRTP HAL
+  rvc_hal_adapter_.open = [](void* ctx) -> int {
+    return static_cast<RvcHalType*>(ctx)->Open();
+  };
+  rvc_hal_adapter_.close = [](void* ctx) {
+    static_cast<RvcHalType*>(ctx)->Close();
+  };
+  rvc_hal_adapter_.read = [](void* ctx, rvc_SensorEvent_t* event) -> int {
+    return static_cast<RvcHalType*>(ctx)->Read(event);
+  };
+
+  rvc_.SetHal(&rvc_hal_adapter_);
   if (rvc_.SetCallback(rvcC, this) != RVC_OK)
     return false;
   return rvc_.Open() == RVC_OK;
@@ -187,13 +199,13 @@ bool BNO085<CommType>::BeginRvc(IRvcHal* hal) {
 
 /** Poll for RVC frames. */
 template <typename CommType>
-void BNO085<CommType>::ServiceRvc() {
+void BNO085<CommType>::ServiceRvc() noexcept {
   rvc_.Service();
 }
 
 /** Stop RVC frame processing. */
 template <typename CommType>
-void BNO085<CommType>::CloseRvc() {
+void BNO085<CommType>::CloseRvc() noexcept {
   rvc_.Close();
 }
 
@@ -248,7 +260,7 @@ void BNO085<CommType>::asyncC(void* cookie, sh2_AsyncEvent_t* event) {
 
 /** Internal handler for decoded sensor events. */
 template <typename CommType>
-void BNO085<CommType>::handleSensorEvent(const sh2_SensorEvent_t* event) {
+void BNO085<CommType>::handleSensorEvent(const sh2_SensorEvent_t* event) noexcept {
   sh2_SensorValue_t value;
   sh2_decodeSensorEvent(&value, event);
   uint8_t id = value.sensorId;
@@ -264,7 +276,7 @@ void BNO085<CommType>::handleSensorEvent(const sh2_SensorEvent_t* event) {
 
 /** React to asynchronous sensor events (e.g. reset). */
 template <typename CommType>
-void BNO085<CommType>::handleAsyncEvent(const sh2_AsyncEvent_t* event) {
+void BNO085<CommType>::handleAsyncEvent(const sh2_AsyncEvent_t* event) noexcept {
   if (event->eventId == SH2_RESET) {
     for (uint8_t id = 0; id < last_interval_.size(); ++id) {
       if (last_interval_[id]) {
@@ -277,7 +289,7 @@ void BNO085<CommType>::handleAsyncEvent(const sh2_AsyncEvent_t* event) {
 /// @private Configure a report in the SH-2 driver
 template <typename CommType>
 bool BNO085<CommType>::configure(BNO085Sensor sensor, uint32_t intervalUs, float sensitivity,
-                       uint32_t batchUs) {
+                       uint32_t batchUs) noexcept {
   sh2_SensorConfig_t cfg{};
   cfg.reportInterval_us = intervalUs;
   cfg.batchInterval_us = batchUs;
@@ -294,28 +306,28 @@ bool BNO085<CommType>::configure(BNO085Sensor sensor, uint32_t intervalUs, float
 
 /** Toggle the hardware reset line if implemented. */
 template <typename CommType>
-void BNO085<CommType>::HardwareReset(uint32_t lowMs) {
-  io_.SetReset(false);
+void BNO085<CommType>::HardwareReset(uint32_t lowMs) noexcept {
+  io_.SetReset(true);   // Assert reset (drive RSTN low)
   io_.Delay(lowMs);
-  io_.SetReset(true);
+  io_.SetReset(false);  // Release reset (drive RSTN high)
   io_.Delay(50); // allow sensor to boot
 }
 
 /** Drive the BOOTN pin. */
 template <typename CommType>
-void BNO085<CommType>::SetBootPin(bool state) {
+void BNO085<CommType>::SetBootPin(bool state) noexcept {
   io_.SetBoot(state);
 }
 
 /** Control the WAKE pin. */
 template <typename CommType>
-void BNO085<CommType>::SetWakePin(bool state) {
+void BNO085<CommType>::SetWakePin(bool state) noexcept {
   io_.SetWake(state);
 }
 
 /** Select host interface using PS0/PS1. */
 template <typename CommType>
-void BNO085<CommType>::SelectInterface(BNO085Interface iface) {
+void BNO085<CommType>::SelectInterface(BNO085Interface iface) noexcept {
   switch (iface) {
   case BNO085Interface::I2C:
     io_.SetPS1(false);
@@ -338,9 +350,9 @@ void BNO085<CommType>::SelectInterface(BNO085Interface iface) {
 
 /** Convenience wrapper to run DFU using this instance's communication interface. */
 template <typename CommType>
-int BNO085<CommType>::Dfu(const HcBin_t& fw) {
+int BNO085<CommType>::Dfu(const HcBin_t& fw) noexcept {
   HalTransport t(halWrapper.asHal());
-  return ::dfu(t, fw);
+  return ::dfu<HalTransport>(t, fw);
 }
 
 /// @private

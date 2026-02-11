@@ -170,8 +170,8 @@ public:
     bool Open() {
         i2c_config_t conf = {};
         conf.mode = I2C_MODE_MASTER;
-        conf.sda_io_num = GPIO_NUM_21;
-        conf.scl_io_num = GPIO_NUM_22;
+        conf.sda_io_num = GPIO_NUM_4;
+        conf.scl_io_num = GPIO_NUM_5;
         conf.master.clk_speed = 400000;
         i2c_param_config(i2c_port_, &conf);
         i2c_driver_install(i2c_port_, conf.mode, 0, 0, 0);

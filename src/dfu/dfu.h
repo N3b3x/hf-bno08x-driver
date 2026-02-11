@@ -16,7 +16,7 @@
  */
 
 /*
- * DFU (Download Firmware Update) interface
+ * DFU (Download Firmware Update) interface - CRTP template version
  */
 
 #ifndef DFU_H
@@ -26,12 +26,29 @@
 #include "IDfuTransport.hpp"
 
 /**
- * @brief Run DFU process using the provided transport.
+ * @brief Run DFU process using the provided CRTP transport.
  *
+ * @tparam TransportType DfuTransportInterface-derived type.
+ * @param transport Hardware transport implementation.
+ * @param fw        Firmware image to write.
+ * @return Err code from sh2_err.h indicating DFU result.
+ */
+template <typename TransportType>
+int dfu(TransportType& transport, const HcBin_t& fw);
+
+/**
+ * @brief Run DFU using the default compiled-in firmware image.
+ *
+ * @tparam TransportType DfuTransportInterface-derived type.
  * @param transport Hardware transport implementation.
  * @return Err code from sh2_err.h indicating DFU result.
  */
-int dfu(IDfuTransport& transport, const HcBin_t& firmware);
-int dfu(IDfuTransport& transport);
+template <typename TransportType>
+int dfu(TransportType& transport);
+
+// Include template implementation
+#define DFU_BNO_HEADER_INCLUDED
+#include "dfu_bno.cpp"
+#undef DFU_BNO_HEADER_INCLUDED
 
 #endif

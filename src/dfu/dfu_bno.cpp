@@ -17,13 +17,16 @@
 
 /*
  * BNO080 DFU (Download Firmware Update) Implementation.
+ * Template version -- included from dfu.h when DFU_BNO_HEADER_INCLUDED is defined.
  */
+
+#ifndef DFU_BNO_HEADER_INCLUDED
+#include "dfu.h"
+#endif
 
 #include <cstdint>
 #include <cstring>
 
-#include "IDfuTransport.hpp"
-#include "dfu.h"
 #include "firmware.h"
 #include "sh2_err.h"
 
@@ -34,28 +37,137 @@
 #define MAX_PACKET_LEN (64)
 #define DFU_MAX_ATTEMPTS (5)
 #define DELAY_POST_DFU_US (10000) // 10ms pause after DFU process completes
+#define DFU_SEND_TIMEOUT_US (100000)
 
-// --- Forward Declarations -----------------------------------------------
+// --- Private utility functions (non-template, inline to avoid ODR issues) ---
 
-static int sendAppSize(IDfuTransport* pHal, uint32_t appSize);
-static int sendPktSize(IDfuTransport* pHal, uint8_t packetLen);
-static int sendPkt(IDfuTransport* pHal, uint8_t* pData, uint32_t len);
+static inline void dfu_write32be(uint8_t* buf, uint32_t value) {
+  *buf++ = (value >> 24) & 0xFF;
+  *buf++ = (value >> 16) & 0xFF;
+  *buf++ = (value >> 8) & 0xFF;
+  *buf++ = (value >> 0) & 0xFF;
+}
 
-// --- Private Data -------------------------------------------------------
+static inline void dfu_appendCrc(uint8_t* packet, uint8_t len) {
+  uint16_t crc;
+  uint16_t x;
 
-uint8_t dfuBuff[MAX_PACKET_LEN + 2];
-uint32_t totalRetries;
+  // compute CRC of packet
+  crc = 0xFFFF;
+  for (int n = 0; n < len; n++) {
+    x = (uint16_t)(packet[n]) << 8;
+    for (int i = 0; i < 8; i++) {
+      if ((crc ^ x) & 0x8000) {
+        crc = (crc << 1) ^ 0x1021;
+      } else {
+        crc = crc << 1;
+      }
+      x <<= 1;
+    }
+  }
+
+  // Append the CRC to packet
+  packet[len] = (crc >> 8) & 0xFF;
+  packet[len + 1] = crc & 0xFF;
+}
+
+// --- Template I/O helpers -----------------------------------------------
+
+template <typename TransportType>
+static int dfuSend(TransportType* pHal, uint8_t* dfuBuff, uint8_t* pData, uint32_t len) {
+  unsigned int retries = 0;
+  int status = SH2_OK;
+  uint8_t ack = 0;
+  bool gotAck = false;
+  uint32_t t;
+
+  while (!gotAck && (retries < DFU_MAX_ATTEMPTS)) {
+    uint32_t now = pHal->GetTimeUs();
+    uint32_t start = now;
+
+    // Do write
+    status = 0;
+    while ((status == 0) && ((now - start) < DFU_SEND_TIMEOUT_US)) {
+      status = pHal->Write(pData, len);
+      now = pHal->GetTimeUs();
+    }
+    if (status == 0) {
+      // recognize timeout as an error.
+      status = SH2_ERR_TIMEOUT;
+    }
+
+    // If write succeeded, read ack
+    if (status > 0) {
+      status = 0;
+      while ((status == 0) && ((now - start) < DFU_SEND_TIMEOUT_US)) {
+        status = pHal->Read(&ack, 1, &t);
+        now = pHal->GetTimeUs();
+      }
+      if (status == 0) {
+        // Recognize timeout as an error
+        status = SH2_ERR_TIMEOUT;
+      }
+    }
+
+    // If read succeeded, check for ACK
+    if (status > 0) {
+      if (ack == ACK) {
+        // We got a good ack
+        gotAck = true;
+        status = SH2_OK;
+      } else {
+        // We got NAK
+        gotAck = false;
+        status = SH2_ERR_HUB;
+      }
+    }
+
+    if (!gotAck) {
+      // Problem: try again.
+      retries++;
+    }
+  }
+
+  if (status >= 0) {
+    status = SH2_OK;
+  }
+
+  return status;
+}
+
+template <typename TransportType>
+static int dfu_sendAppSize(TransportType* pHal, uint8_t* dfuBuff, uint32_t appSize) {
+  dfu_write32be(dfuBuff, appSize);
+  dfu_appendCrc(dfuBuff, 4);
+  return dfuSend(pHal, dfuBuff, dfuBuff, 6);
+}
+
+template <typename TransportType>
+static int dfu_sendPktSize(TransportType* pHal, uint8_t* dfuBuff, uint8_t packetLen) {
+  dfuBuff[0] = packetLen;
+  dfu_appendCrc(dfuBuff, 1);
+  return dfuSend(pHal, dfuBuff, dfuBuff, 3);
+}
+
+template <typename TransportType>
+static int dfu_sendPkt(TransportType* pHal, uint8_t* dfuBuff, uint8_t* pData, uint32_t len) {
+  memcpy(dfuBuff, pData, len);
+  dfu_appendCrc(dfuBuff, len);
+  return dfuSend(pHal, dfuBuff, dfuBuff, len + 2); // plus 2 for CRC
+}
 
 // --- Public API ---------------------------------------------------------
 
-int dfu(IDfuTransport& transport, const HcBin_t& fw) {
+template <typename TransportType>
+int dfu(TransportType& transport, const HcBin_t& fw) {
   int rc;
   int status = SH2_OK;
   uint32_t appLen = 0;
   uint8_t packetLen = 0;
   uint32_t offset = 0;
   const char* s = 0;
-  IDfuTransport* pHal = &transport;
+  TransportType* pHal = &transport;
+  uint8_t dfuBuff[MAX_PACKET_LEN + 2];
 
   // Open the hcbin object
   rc = fw.open();
@@ -102,19 +214,19 @@ int dfu(IDfuTransport& transport, const HcBin_t& fw) {
 
   // Initiate DFU process
 
-  status = pHal->open();
+  status = pHal->Open();
   if (status != SH2_OK) {
     goto close_and_return;
   }
 
   // Send app size
-  status = sendAppSize(pHal, appLen);
+  status = dfu_sendAppSize(pHal, dfuBuff, appLen);
   if (status != SH2_OK) {
     goto close_and_return;
   }
 
   // Send packet size
-  status = sendPktSize(pHal, packetLen);
+  status = dfu_sendPktSize(pHal, dfuBuff, packetLen);
   if (status != SH2_OK) {
     goto close_and_return;
   }
@@ -134,7 +246,7 @@ int dfu(IDfuTransport& transport, const HcBin_t& fw) {
     }
 
     // Send this packet's contents
-    status = sendPkt(pHal, dfuBuff, toSend);
+    status = dfu_sendPkt(pHal, dfuBuff, dfuBuff, toSend);
     if (status != SH2_OK) {
       goto close_and_return;
     }
@@ -150,138 +262,21 @@ close_and_return:
   // If update process completed successfully, delay a bit to let
   // flash writes complete.
   if (status == SH2_OK) {
-    uint32_t now = pHal->getTimeUs();
+    uint32_t now = pHal->GetTimeUs();
     uint32_t start = now;
     while ((now - start) < DELAY_POST_DFU_US) {
-      now = pHal->getTimeUs();
+      now = pHal->GetTimeUs();
     }
   }
 
   // close device
-  pHal->close();
+  pHal->Close();
 
 end:
   return status;
 }
 
-int dfu(IDfuTransport& transport) {
+template <typename TransportType>
+int dfu(TransportType& transport) {
   return dfu(transport, firmware);
-}
-
-// --- Private utility functions --------------------------------------------------------------
-
-static void write32be(uint8_t* buf, uint32_t value) {
-  *buf++ = (value >> 24) & 0xFF;
-  *buf++ = (value >> 16) & 0xFF;
-  *buf++ = (value >> 8) & 0xFF;
-  *buf++ = (value >> 0) & 0xFF;
-}
-
-static void appendCrc(uint8_t* packet, uint8_t len) {
-  uint16_t crc;
-  uint16_t x;
-
-  // compute CRC of packet
-  crc = 0xFFFF;
-  for (int n = 0; n < len; n++) {
-    x = (uint16_t)(packet[n]) << 8;
-    for (int i = 0; i < 8; i++) {
-      if ((crc ^ x) & 0x8000) {
-        crc = (crc << 1) ^ 0x1021;
-      } else {
-        crc = crc << 1;
-      }
-      x <<= 1;
-    }
-  }
-
-  // Append the CRC to packet
-  packet[len] = (crc >> 8) & 0xFF;
-  packet[len + 1] = crc & 0xFF;
-}
-
-#define DFU_SEND_TIMEOUT_US (100000)
-
-// I/O Utility functions
-static int dfuSend(IDfuTransport* pHal, uint8_t* pData, uint32_t len) {
-  unsigned int retries = 0;
-  int status = SH2_OK;
-  uint8_t ack = 0;
-  bool gotAck = false;
-  uint32_t t;
-
-  while (!gotAck && (retries < DFU_MAX_ATTEMPTS)) {
-    uint32_t now = pHal->getTimeUs();
-    uint32_t start = now;
-
-    // Do write
-    status = 0;
-    while ((status == 0) && ((now - start) < DFU_SEND_TIMEOUT_US)) {
-      status = pHal->write(pData, len);
-      now = pHal->getTimeUs();
-    }
-    if (status == 0) {
-      // recognize timeout as an error.
-      status = SH2_ERR_TIMEOUT;
-    }
-
-    // If write succeeded, read ack
-    if (status > 0) {
-      status = 0;
-      while ((status == 0) && ((now - start) < DFU_SEND_TIMEOUT_US)) {
-        status = pHal->read(&ack, 1, &t);
-        now = pHal->getTimeUs();
-      }
-      if (status == 0) {
-        // Recognize timeout as an error
-        status = SH2_ERR_TIMEOUT;
-      }
-    }
-
-    // If read succeeded, check for ACK
-    if (status > 0) {
-      if (ack == ACK) {
-        // We got a good ack
-        gotAck = true;
-        status = SH2_OK;
-      } else {
-        // We got NAK
-        gotAck = false;
-        status = SH2_ERR_HUB;
-      }
-    }
-
-    if (!gotAck) {
-      // Problem: try again.
-      retries++;
-      totalRetries++;
-    }
-  }
-
-  if (status >= 0) {
-    status = SH2_OK;
-  }
-
-  return status;
-}
-
-static int sendAppSize(IDfuTransport* pHal, uint32_t appSize) {
-  write32be(dfuBuff, appSize);
-  appendCrc(dfuBuff, 4);
-
-  return dfuSend(pHal, dfuBuff, 6);
-}
-
-static int sendPktSize(IDfuTransport* pHal, uint8_t packetLen) {
-  dfuBuff[0] = packetLen;
-  appendCrc(dfuBuff, 1);
-
-  return dfuSend(pHal, dfuBuff, 3);
-}
-
-static int sendPkt(IDfuTransport* pHal, uint8_t* pData, uint32_t len) {
-  memcpy(dfuBuff, pData, len);
-  appendCrc(dfuBuff, len);
-
-  return dfuSend(pHal, dfuBuff, len + 2); // plus 2 for CRC
 }

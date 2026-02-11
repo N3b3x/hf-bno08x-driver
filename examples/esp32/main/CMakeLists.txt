@@ -15,11 +15,16 @@ message(STATUS "APP_TYPE: ${APP_TYPE}")
 message(STATUS "==========================================")
 
 # Get source file from centralized configuration
+# Use CMAKE_CURRENT_LIST_DIR to get the directory containing this CMakeLists.txt
+# Project root is one level up from main/
+get_filename_component(PROJECT_ROOT "${CMAKE_CURRENT_LIST_DIR}/.." ABSOLUTE)
+
 execute_process(
-    COMMAND python3 "${CMAKE_CURRENT_SOURCE_DIR}/../scripts/get_app_info.py" validate "${APP_TYPE}"
+    COMMAND python3 "${PROJECT_ROOT}/scripts/get_app_info.py" validate "${APP_TYPE}" --project-path "${PROJECT_ROOT}"
     RESULT_VARIABLE VALIDATE_RESULT
     OUTPUT_QUIET
     ERROR_QUIET
+    WORKING_DIRECTORY "${PROJECT_ROOT}"
 )
 
 if(NOT VALIDATE_RESULT EQUAL 0)
@@ -27,10 +32,11 @@ if(NOT VALIDATE_RESULT EQUAL 0)
 endif()
 
 execute_process(
-    COMMAND python3 "${CMAKE_CURRENT_SOURCE_DIR}/../scripts/get_app_info.py" source_file "${APP_TYPE}"
+    COMMAND python3 "${PROJECT_ROOT}/scripts/get_app_info.py" source_file "${APP_TYPE}" --project-path "${PROJECT_ROOT}"
     OUTPUT_VARIABLE MAIN_SOURCE
     OUTPUT_STRIP_TRAILING_WHITESPACE
     RESULT_VARIABLE SOURCE_RESULT
+    WORKING_DIRECTORY "${PROJECT_ROOT}"
 )
 
 if(NOT SOURCE_RESULT EQUAL 0)
@@ -67,18 +73,28 @@ endif()
 message(STATUS "Using source file: ${SOURCE_FILE_PATH}")
 
 # Determine include paths based on environment
+# Use CMAKE_CURRENT_LIST_DIR (where this CMakeLists.txt is) or CMAKE_SOURCE_DIR (project root)
 # In CI, src is copied to ../src, in development it's at ../../src or ../../../src
-if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../src")
+if(EXISTS "${CMAKE_CURRENT_LIST_DIR}/../src")
     # CI environment - src is at project level
-    set(SRC_BASE_PATH "../src")
-elseif(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../../src")
+    set(SRC_BASE_PATH "${CMAKE_CURRENT_LIST_DIR}/../src")
+elseif(EXISTS "${CMAKE_CURRENT_LIST_DIR}/../../src")
     # Development environment - src is at examples level
-    set(SRC_BASE_PATH "../../src")
-elseif(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../../../src")
+    set(SRC_BASE_PATH "${CMAKE_CURRENT_LIST_DIR}/../../src")
+elseif(EXISTS "${CMAKE_CURRENT_LIST_DIR}/../../../src")
     # Development environment - src is at driver root
-    set(SRC_BASE_PATH "../../../src")
+    set(SRC_BASE_PATH "${CMAKE_CURRENT_LIST_DIR}/../../../src")
+elseif(EXISTS "${CMAKE_SOURCE_DIR}/src")
+    # Try project root
+    set(SRC_BASE_PATH "${CMAKE_SOURCE_DIR}/src")
 else()
-    message(FATAL_ERROR "Cannot find src directory. Checked ../src, ../../src, and ../../../src")
+    message(FATAL_ERROR "Cannot find src directory. Checked:")
+    message(FATAL_ERROR "  ${CMAKE_CURRENT_LIST_DIR}/../src")
+    message(FATAL_ERROR "  ${CMAKE_CURRENT_LIST_DIR}/../../src")
+    message(FATAL_ERROR "  ${CMAKE_CURRENT_LIST_DIR}/../../../src")
+    message(FATAL_ERROR "  ${CMAKE_SOURCE_DIR}/src")
+    message(FATAL_ERROR "CMAKE_CURRENT_LIST_DIR: ${CMAKE_CURRENT_LIST_DIR}")
+    message(FATAL_ERROR "CMAKE_SOURCE_DIR: ${CMAKE_SOURCE_DIR}")
 endif()
 
 message(STATUS "Using source base path: ${SRC_BASE_PATH}")
@@ -105,8 +121,9 @@ endif()
 #     list(APPEND COMPONENT_REQUIRES_LIST spi_flash)
 # endif()
 
+# Bus implementation is header-only (esp32_bno08x_bus.hpp), no separate .cpp needed
 idf_component_register(
-    SRCS "${MAIN_SOURCE}" "esp32_bno08x_bus.cpp"
+    SRCS "${MAIN_SOURCE}"
     INCLUDE_DIRS "." "${SRC_BASE_PATH}" "${SRC_BASE_PATH}/dfu" "${SRC_BASE_PATH}/sh2" "${SRC_BASE_PATH}/rvc"
     REQUIRES ${COMPONENT_REQUIRES_LIST}
 )
@@ -140,10 +157,10 @@ endif()
 # Add compile definitions for each example type
 target_compile_definitions(${COMPONENT_LIB} PRIVATE 
     "EXAMPLE_TYPE_${APP_TYPE}=1"
-    "BNO08X_ESP32_C6=1"
+    "BNO08X_ESP32_S3=1"
 )
 
-# ESP32-C6 specific optimizations
+# ESP32-S3 specific optimizations
 target_compile_definitions(${COMPONENT_LIB} PRIVATE
-    "CONFIG_IDF_TARGET_ESP32C6=1"
+    "CONFIG_IDF_TARGET_ESP32S3=1"
 )

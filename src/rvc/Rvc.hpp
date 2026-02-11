@@ -4,27 +4,20 @@
 /**
  * @brief Convenience C++ wrapper around the C RVC API.
  *
- * Construct with an IRvcHal implementation and then call open(), service(),
- * and close() as needed. The class simply forwards to the underlying
- * rvc_* functions.
+ * The C API uses RvcHalC_t function pointers internally. The CRTP-based
+ * RvcHalInterface bridge is handled at the BNO085 class level, which
+ * creates a RvcHalC_t adapter from the user's CRTP-derived HAL type.
  */
 class Rvc {
 public:
-  /// Construct the wrapper and optionally initialize with a HAL.
-  explicit Rvc(IRvcHal* hal = nullptr) {
-    rvc_init(hal);
-  }
+  Rvc() = default;
 
-  /// Construct with a C style HAL.
+  /// Initialize with a C style HAL.
   explicit Rvc(RvcHalC_t* hal) {
     rvc_init_c(hal);
   }
 
-  /// Change the HAL after construction.
-  void SetHal(IRvcHal* hal) {
-    rvc_init(hal);
-  }
-  /// Change the HAL using a C style implementation.
+  /// Set or change the HAL using a C style implementation.
   void SetHal(RvcHalC_t* hal) {
     rvc_init_c(hal);
   }

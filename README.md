@@ -39,7 +39,7 @@ The driver uses a CRTP-based communication interface design, allowing it to run 
 
 - ✅ **Complete SH-2 Coverage**: Access every BNO085 SH-2 report (raw & calibrated IMU, rotation vectors, activity, tap/shake, step counter, etc.)
 - ✅ **Hardware Agnostic**: CRTP-based `CommInterface` works with any I²C, SPI, or UART implementation
-- ✅ **Zero Internal Threads**: You control timing - call `update()` in your loop, ISR, or RTOS task
+- ✅ **Zero Internal Threads**: You control timing - call `Update()` in your loop, ISR, or RTOS task
 - ✅ **Auto Re-Sync**: Detects sensor resets and seamlessly re-enables configured features
 - ✅ **Float-Friendly API**: Handy structs (`Vector3`, `Quaternion`, `SensorEvent`) with SI units
 - ✅ **RVC Mode Support**: Simplified UART streaming mode for basic orientation data
@@ -58,7 +58,7 @@ class MyComm : public bno08x::CommInterface<MyComm> {
 
 // 2. Create driver instance
 MyComm comm;
-bno08x::BNO085 imu(comm);
+BNO085<MyComm> imu(comm);
 
 // 3. Initialize
 if (!imu.Begin()) {
@@ -67,14 +67,14 @@ if (!imu.Begin()) {
 }
 
 // 4. Enable sensors
-imu.EnableSensor(bno08x::BNO085Sensor::RotationVector, 10);  // 100 Hz
-imu.EnableSensor(bno08x::BNO085Sensor::StepCounter, 0);     // on-change
+imu.EnableSensor(BNO085Sensor::RotationVector, 10);  // 100 Hz
+imu.EnableSensor(BNO085Sensor::StepCounter, 0);     // on-change
 
 // 5. Set callback
-imu.SetCallback([](const bno08x::SensorEvent& e) {
-    if (e.sensor == bno08x::BNO085Sensor::RotationVector) {
-        auto euler = e.toEuler();
-        printf("Yaw: %.1f°\n", euler.yaw);
+imu.SetCallback([](const SensorEvent& e) {
+    if (e.sensor == BNO085Sensor::RotationVector) {
+        printf("Quat: w=%.3f x=%.3f y=%.3f z=%.3f\n",
+               e.rotation.w, e.rotation.x, e.rotation.y, e.rotation.z);
     }
 });
 

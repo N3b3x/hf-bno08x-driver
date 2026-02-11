@@ -27,35 +27,35 @@ Here's a complete working example:
 // 1. Implement the communication interface
 class MyComm : public bno08x::CommInterface<MyComm> {
 public:
-    bool Open() override {
+    bool Open() {
         // Your I²C/SPI/UART initialization
         return true;
     }
     
-    void Close() override {
+    void Close() {
         // Your cleanup code
     }
     
-    int Write(const uint8_t* data, uint32_t length) override {
+    int Write(const uint8_t* data, uint32_t length) {
         // Your write implementation
         return length;
     }
     
-    int Read(uint8_t* data, uint32_t length) override {
+    int Read(uint8_t* data, uint32_t length) {
         // Your read implementation
         return length;
     }
     
-    bool DataAvailable() override {
+    bool DataAvailable() {
         // Check if data is available
         return true;
     }
     
-    void Delay(uint32_t ms) override {
+    void Delay(uint32_t ms) {
         // Your delay implementation
     }
     
-    uint32_t GetTimeUs() override {
+    uint32_t GetTimeUs() {
         // Return current time in microseconds
         return 0;
     }
@@ -63,7 +63,7 @@ public:
 
 // 2. Create instances
 MyComm comm;
-bno08x::BNO085 imu(comm);
+BNO085<MyComm> imu(comm);
 
 // 3. Initialize
 if (!imu.Begin()) {
@@ -72,15 +72,14 @@ if (!imu.Begin()) {
 }
 
 // 4. Enable sensors
-imu.EnableSensor(bno08x::BNO085Sensor::RotationVector, 10);  // 100 Hz
-imu.EnableSensor(bno08x::BNO085Sensor::Accelerometer, 50); // 20 Hz
+imu.EnableSensor(BNO085Sensor::RotationVector, 10);  // 100 Hz
+imu.EnableSensor(BNO085Sensor::Accelerometer, 50); // 20 Hz
 
 // 5. Set callback
-imu.SetCallback([](const bno08x::SensorEvent& e) {
-    if (e.sensor == bno08x::BNO085Sensor::RotationVector) {
-        auto euler = e.toEuler();
-        printf("Yaw: %.1f°, Pitch: %.1f°, Roll: %.1f°\n", 
-               euler.yaw, euler.pitch, euler.roll);
+imu.SetCallback([](const SensorEvent& e) {
+    if (e.sensor == BNO085Sensor::RotationVector) {
+        printf("Quat: w=%.3f x=%.3f y=%.3f z=%.3f\n",
+               e.rotation.w, e.rotation.x, e.rotation.y, e.rotation.z);
     }
 });
 
@@ -115,7 +114,7 @@ class MyComm : public bno08x::CommInterface<MyComm> {
 
 ```cpp
 MyComm comm;
-bno08x::BNO085 imu(comm);
+BNO085<MyComm> imu(comm);
 ```
 
 The constructor takes a reference to your communication interface implementation.
@@ -132,7 +131,7 @@ if (!imu.Begin()) {
 ### Step 5: Enable Sensors
 
 ```cpp
-imu.EnableSensor(bno08x::BNO085Sensor::RotationVector, 10);  // 100 Hz
+imu.EnableSensor(BNO085Sensor::RotationVector, 10);  // 100 Hz
 ```
 
 The interval is in milliseconds. Use `0` for on-change sensors.
@@ -140,7 +139,7 @@ The interval is in milliseconds. Use `0` for on-change sensors.
 ### Step 6: Set Callback
 
 ```cpp
-imu.SetCallback([](const bno08x::SensorEvent& e) {
+imu.SetCallback([](const SensorEvent& e) {
     // Handle sensor events
 });
 ```
@@ -165,7 +164,7 @@ class MyComm : public bno08x::CommInterface<MyComm> {
 
 void app_main() {
     MyComm comm;
-    bno08x::BNO085 imu(comm);
+    BNO085<MyComm> imu(comm);
     
     // Initialize
     if (!imu.Begin()) {
@@ -174,16 +173,16 @@ void app_main() {
     }
     
     // Enable sensors
-    if (!imu.EnableSensor(bno08x::BNO085Sensor::RotationVector, 10)) {
+    if (!imu.EnableSensor(BNO085Sensor::RotationVector, 10)) {
         printf("Failed to enable rotation vector\n");
         return;
     }
     
     // Set callback
-    imu.SetCallback([](const bno08x::SensorEvent& e) {
-        if (e.sensor == bno08x::BNO085Sensor::RotationVector) {
-            auto euler = e.toEuler();
-            printf("Yaw: %.1f°\n", euler.yaw);
+    imu.SetCallback([](const SensorEvent& e) {
+        if (e.sensor == BNO085Sensor::RotationVector) {
+            printf("Quat: w=%.3f x=%.3f y=%.3f z=%.3f\n",
+                   e.rotation.w, e.rotation.x, e.rotation.y, e.rotation.z);
         }
     });
     

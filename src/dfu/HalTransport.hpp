@@ -3,29 +3,29 @@
 
 /**
  * @brief Adapter converting an existing sh2_Hal_t implementation to
- *        the IDfuTransport interface.
+ *        the DfuTransportInterface using CRTP.
  */
-class HalTransport : public IDfuTransport {
+class HalTransport : public DfuTransportInterface<HalTransport> {
 public:
-  explicit HalTransport(sh2_Hal_t* hal) : hal_(hal) {}
+  explicit HalTransport(sh2_Hal_t* hal) noexcept : hal_(hal) {}
 
-  int open() override {
+  int Open() noexcept {
     return hal_->open(hal_);
   }
-  void close() override {
+  void Close() noexcept {
     hal_->close(hal_);
   }
-  int read(uint8_t* data, unsigned len, uint32_t* timestamp) override {
+  int Read(uint8_t* data, unsigned len, uint32_t* timestamp) noexcept {
     return hal_->read(hal_, data, len, timestamp);
   }
-  int write(const uint8_t* data, unsigned len) override {
+  int Write(const uint8_t* data, unsigned len) noexcept {
     // sh2 HAL uses non-const pointer
     return hal_->write(hal_, const_cast<uint8_t*>(data), len);
   }
-  uint32_t getTimeUs() override {
+  uint32_t GetTimeUs() noexcept {
     return hal_->getTimeUs(hal_);
   }
-  sh2_Hal_t* nativeHal() override {
+  sh2_Hal_t* NativeHal() noexcept {
     return hal_;
   }
 

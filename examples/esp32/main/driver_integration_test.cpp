@@ -14,9 +14,14 @@
  * - RVC Mode Tests
  * - Error Handling Tests
  *
- * @author N3b3x
+ * @note This test runs independently on an I2C bus that only communicates
+ *       with the BNO08x device. The I2C bus setup (GPIO4 SDA, GPIO5 SCL)
+ *       mirrors the pcal95555/pca9685 examples for pin consistency.
+ *
+ * @author Nebiyu Tadesse
  * @date 2025
  * @version 1.0.0
+ * @copyright HardFOC
  */
 
 #include "esp_log.h"
@@ -58,25 +63,50 @@ static TestResults g_test_results; // Required by TestFramework.h
 //=============================================================================
 
 /**
- * @brief Create and initialize test transport
+ * @brief Create and initialize test transport via factory function
+ * Tries both I2C addresses (0x4B first, then 0x4A) automatically
  */
 static bool create_test_transport() noexcept {
   Esp32Bno08xBus::I2CConfig config;
   config.sda_pin = GPIO_NUM_4;  // Same as pcal95555/pca9685
   config.scl_pin = GPIO_NUM_5;
   config.frequency = 400000;
-  config.device_address = 0x4A;
-  config.int_pin = GPIO_NUM_NC; // Optional interrupt pin
-  config.rst_pin = GPIO_NUM_NC; // Optional reset pin
+  config.rst_pin = GPIO_NUM_16;  // Reset pin (RSTN) on GPIO16
+  config.int_pin = GPIO_NUM_17;  // Interrupt pin (INT) on GPIO17
 
-  g_transport = std::make_unique<Esp32Bno08xBus>(config);
+  // BNO08x uses 7-bit I2C addresses: 0x4A (SA0=LOW) or 0x4B (SA0=HIGH)
+  // Try both addresses automatically - try 0x4B first (SA0=HIGH) as it's the default on this board
+  const uint8_t addresses[] = {0x4B, 0x4A};
 
-  if (!g_transport->Open()) {
-    ESP_LOGE(TAG, "Failed to open I2C transport");
-    return false;
+  for (size_t i = 0; i < sizeof(addresses) / sizeof(addresses[0]); i++) {
+    config.device_address = addresses[i];
+    ESP_LOGI(TAG, "Trying BNO08x at I2C address 0x%02X (SA0=%s)...", 
+             config.device_address, (i == 0) ? "HIGH" : "LOW");
+
+    g_transport = CreateEsp32Bno08xBus(config);
+    if (!g_transport) {
+      ESP_LOGW(TAG, "Failed to create I2C transport for address 0x%02X", config.device_address);
+      continue;
+    }
+
+    // Perform hardware reset BEFORE probing (BNO08x needs reset before communication)
+    ESP_LOGI(TAG, "Performing hardware reset before probing...");
+    g_transport->HardwareReset(2, 200);  // 2ms reset pulse, 200ms boot delay
+
+    // Probe I2C device to verify it's responding
+    ESP_LOGI(TAG, "Probing I2C device at address 0x%02X...", config.device_address);
+    if (!g_transport->Probe()) {
+      ESP_LOGW(TAG, "I2C probe failed at address 0x%02X (device not responding)", config.device_address);
+      g_transport.reset();
+      continue;
+    }
+    ESP_LOGI(TAG, "I2C probe successful at address 0x%02X", config.device_address);
+    return true;
   }
 
-  return true;
+  ESP_LOGE(TAG, "Failed to create I2C transport at any address");
+  ESP_LOGE(TAG, "Tried addresses: 0x4B (SA0=HIGH) and 0x4A (SA0=LOW)");
+  return false;
 }
 
 /**
@@ -91,7 +121,15 @@ static bool create_test_imu() noexcept {
   g_imu = std::make_unique<BNO085<Esp32Bno08xBus>>(*g_transport);
 
   if (!g_imu->Begin()) {
-    ESP_LOGE(TAG, "Failed to initialize BNO085");
+    ESP_LOGE(TAG, "Failed to initialize BNO085 (error: %d)", g_imu->GetLastError());
+    return false;
+  }
+
+  // Verify initialization by checking if we can communicate
+  vTaskDelay(pdMS_TO_TICKS(50));  // Give sensor time to send reset notification
+  
+  if (!g_transport->Probe()) {
+    ESP_LOGE(TAG, "Begin() returned success but device not responding");
     return false;
   }
 
@@ -408,34 +446,34 @@ extern "C" void app_main(void) {
   // Run test sections
   RUN_TEST_SECTION_IF_ENABLED(
       ENABLE_INITIALIZATION_TESTS, "INITIALIZATION TESTS",
-      RUN_TEST_IN_TASK("test_initialization", test_initialization, 8192, 5);
-      RUN_TEST_IN_TASK("test_initialization_failure", test_initialization_failure, 8192, 5););
+      RUN_TEST_IN_TASK("test_initialization", test_initialization, 16384, 5);
+      RUN_TEST_IN_TASK("test_initialization_failure", test_initialization_failure, 16384, 5););
 
   RUN_TEST_SECTION_IF_ENABLED(
       ENABLE_SENSOR_ENABLE_TESTS, "SENSOR ENABLE/DISABLE TESTS",
-      RUN_TEST_IN_TASK("test_enable_sensor", test_enable_sensor, 8192, 5);
-      RUN_TEST_IN_TASK("test_disable_sensor", test_disable_sensor, 8192, 5);
-      RUN_TEST_IN_TASK("test_enable_multiple_sensors", test_enable_multiple_sensors, 8192, 5););
+      RUN_TEST_IN_TASK("test_enable_sensor", test_enable_sensor, 16384, 5);
+      RUN_TEST_IN_TASK("test_disable_sensor", test_disable_sensor, 16384, 5);
+      RUN_TEST_IN_TASK("test_enable_multiple_sensors", test_enable_multiple_sensors, 16384, 5););
 
   RUN_TEST_SECTION_IF_ENABLED(
       ENABLE_POLLING_MODE_TESTS, "POLLING MODE TESTS",
-      RUN_TEST_IN_TASK("test_polling_rotation_vector", test_polling_rotation_vector, 8192, 5);
-      RUN_TEST_IN_TASK("test_polling_linear_acceleration", test_polling_linear_acceleration, 8192,
+      RUN_TEST_IN_TASK("test_polling_rotation_vector", test_polling_rotation_vector, 16384, 5);
+      RUN_TEST_IN_TASK("test_polling_linear_acceleration", test_polling_linear_acceleration, 16384,
                        5););
 
   RUN_TEST_SECTION_IF_ENABLED(ENABLE_CALLBACK_MODE_TESTS, "CALLBACK MODE TESTS",
-                              RUN_TEST_IN_TASK("test_callback_mode", test_callback_mode, 8192, 5););
+                              RUN_TEST_IN_TASK("test_callback_mode", test_callback_mode, 16384, 5););
 
   RUN_TEST_SECTION_IF_ENABLED(
       ENABLE_SENSOR_DATA_TESTS, "SENSOR DATA TESTS",
-      RUN_TEST_IN_TASK("test_sensor_data_reading", test_sensor_data_reading, 8192, 5););
+      RUN_TEST_IN_TASK("test_sensor_data_reading", test_sensor_data_reading, 16384, 5););
 
   RUN_TEST_SECTION_IF_ENABLED(ENABLE_RVC_MODE_TESTS, "RVC MODE TESTS",
-                              RUN_TEST_IN_TASK("test_rvc_mode", test_rvc_mode, 8192, 5););
+                              RUN_TEST_IN_TASK("test_rvc_mode", test_rvc_mode, 16384, 5););
 
   RUN_TEST_SECTION_IF_ENABLED(
       ENABLE_ERROR_HANDLING_TESTS, "ERROR HANDLING TESTS",
-      RUN_TEST_IN_TASK("test_error_handling", test_error_handling, 8192, 5););
+      RUN_TEST_IN_TASK("test_error_handling", test_error_handling, 16384, 5););
 
   // Print test summary
   print_test_summary(g_test_results, "BNO08x", TAG);

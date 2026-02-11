@@ -12,7 +12,7 @@ version: "1.0"
 metadata:
   project: "ESP32 BNO08x Driver Examples"
   default_app: "driver_integration_test"
-  target: "esp32c6"
+  target: "esp32s3"
   idf_versions: ["release/v5.5", "release/v5.4"]
   build_types: [["Debug", "Release"], ["Debug"]]
 
@@ -102,6 +102,25 @@ apps:
       - "Both callback and polling methods"
       - "Orientation, acceleration, gyroscope, gravity"
       - "Step counter, tap detector, gesture events"
+      - "Real hardware testing"
+
+  # --------------------------------------------------------------------------
+  # DFU (Device Firmware Update) Example
+  # --------------------------------------------------------------------------
+  dfu_update:
+    description: "Device Firmware Update (DFU) example demonstrating BNO08x firmware update API"
+    source_file: "dfu_example.cpp"
+    category: "example"
+    idf_versions: ["release/v5.5"]
+    build_types: ["Debug", "Release"]
+    ci_enabled: false
+    featured: true
+    hardware_required: true
+    features:
+      - "DFU bootloader entry via BOOTN pin"
+      - "Firmware transfer using BNO085::Dfu() API"
+      - "MemoryFirmware for runtime firmware images"
+      - "Post-DFU re-initialization and verification"
       - "Real hardware testing"
 
   # --------------------------------------------------------------------------

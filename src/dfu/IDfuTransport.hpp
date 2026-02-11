@@ -1,5 +1,27 @@
 #pragma once
 
+/**
+ * @file IDfuTransport.hpp
+ * @brief CRTP-based hardware abstraction interface for DFU transport.
+ *
+ * Platform-specific implementations should inherit from this template
+ * with themselves as the template parameter, providing compile-time
+ * polymorphism with zero virtual call overhead.
+ *
+ * Example:
+ * @code
+ * class MyDfuTransport : public DfuTransportInterface<MyDfuTransport> {
+ * public:
+ *   int Open() noexcept { ... }
+ *   void Close() noexcept { ... }
+ *   int Read(uint8_t* data, unsigned len, uint32_t* timestamp) noexcept { ... }
+ *   int Write(const uint8_t* data, unsigned len) noexcept { ... }
+ *   uint32_t GetTimeUs() noexcept { ... }
+ *   sh2_Hal_t* NativeHal() noexcept { ... }
+ * };
+ * @endcode
+ */
+
 #include <cstdint>
 
 extern "C" {
@@ -7,19 +29,23 @@ extern "C" {
 }
 
 /**
- * @brief Abstract interface for DFU hardware access.
+ * @brief CRTP-based template interface for DFU hardware transport.
  *
- * Users must derive from this class and implement the virtual
- * methods to adapt the DFU routines to a specific platform.
+ * @tparam Derived The derived class type (CRTP pattern).
  */
-class IDfuTransport {
+template <typename Derived>
+class DfuTransportInterface {
 public:
-  virtual ~IDfuTransport() = default;
-
   /** Open the transport interface. */
-  virtual int open() = 0;
+  int Open() noexcept {
+    return static_cast<Derived*>(this)->Open();
+  }
+
   /** Close the transport interface. */
-  virtual void close() = 0;
+  void Close() noexcept {
+    static_cast<Derived*>(this)->Close();
+  }
+
   /**
    * Read bytes from the device.
    * @param data Buffer to fill
@@ -27,21 +53,43 @@ public:
    * @param timestamp Optional timestamp from the transport
    * @return Number of bytes read or negative error code
    */
-  virtual int read(uint8_t* data, unsigned len, uint32_t* timestamp) = 0;
+  int Read(uint8_t* data, unsigned len, uint32_t* timestamp) noexcept {
+    return static_cast<Derived*>(this)->Read(data, len, timestamp);
+  }
+
   /**
    * Write bytes to the device.
    * @param data Buffer of data to send
    * @param len  Number of bytes to send
    * @return Number of bytes written or negative error code
    */
-  virtual int write(const uint8_t* data, unsigned len) = 0;
+  int Write(const uint8_t* data, unsigned len) noexcept {
+    return static_cast<Derived*>(this)->Write(data, len);
+  }
+
   /** Return current time in microseconds. */
-  virtual uint32_t getTimeUs() = 0;
+  uint32_t GetTimeUs() noexcept {
+    return static_cast<Derived*>(this)->GetTimeUs();
+  }
 
   /**
    * Retrieve the underlying C HAL pointer used by the vendor
    * SH-2 library. Implementations should return a pointer to
    * a sh2_Hal_t structure that dispatches to this object.
    */
-  virtual sh2_Hal_t* nativeHal() = 0;
+  sh2_Hal_t* NativeHal() noexcept {
+    return static_cast<Derived*>(this)->NativeHal();
+  }
+
+protected:
+  DfuTransportInterface() = default;
+  ~DfuTransportInterface() = default;
+
+  // Prevent copying
+  DfuTransportInterface(const DfuTransportInterface&) = delete;
+  DfuTransportInterface& operator=(const DfuTransportInterface&) = delete;
+
+  // Allow moving
+  DfuTransportInterface(DfuTransportInterface&&) noexcept = default;
+  DfuTransportInterface& operator=(DfuTransportInterface&&) noexcept = default;
 };

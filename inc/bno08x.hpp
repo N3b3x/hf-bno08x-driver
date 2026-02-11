@@ -158,22 +158,32 @@ public:
    * @param intervalMs Desired report interval in milliseconds.
    * @param sensitivity Change sensitivity for on-change sensors.
    */
-  bool EnableSensor(BNO085Sensor sensor, uint32_t intervalMs, float sensitivity = 0.0f);
+  bool EnableSensor(BNO085Sensor sensor, uint32_t intervalMs, float sensitivity = 0.0f) noexcept;
   /** Disable reporting for a sensor. */
-  bool DisableSensor(BNO085Sensor sensor);
+  bool DisableSensor(BNO085Sensor sensor) noexcept;
 
   /** Register a callback invoked for every received event. */
-  void SetCallback(SensorCallback cb);
+  void SetCallback(SensorCallback cb) noexcept;
 
   /** Register a callback for decoded RVC frames. */
-  void SetRvcCallback(RvcCallback cb);
+  void SetRvcCallback(RvcCallback cb) noexcept;
 
-  /** Begin processing in RVC mode using the given HAL. */
-  bool BeginRvc(IRvcHal* hal);
+  /**
+   * @brief Begin processing in RVC mode using a CRTP-based HAL.
+   *
+   * The HAL type must inherit from RvcHalInterface<RvcHalType>. The driver
+   * internally bridges the CRTP calls into the C function-pointer API that
+   * the RVC subsystem expects, following the same pattern used for CommInterface.
+   *
+   * @tparam RvcHalType The CRTP-derived RVC HAL type.
+   * @param hal Reference to the RVC HAL instance (must outlive this object).
+   */
+  template <typename RvcHalType>
+  bool BeginRvc(RvcHalType& hal) noexcept;
   /** Poll the UART and dispatch any pending RVC frames. */
-  void ServiceRvc();
+  void ServiceRvc() noexcept;
   /** Stop RVC processing. */
-  void CloseRvc();
+  void CloseRvc() noexcept;
 
   /** Check if new data is available for a sensor. */
   bool HasNewData(BNO085Sensor sensor) const;
@@ -181,7 +191,7 @@ public:
   SensorEvent GetLatest(BNO085Sensor sensor) const;
 
   /** Pump the SH-2 service loop. Call this as often as possible. */
-  void Update();
+  void Update() noexcept;
 
   /** Retrieve the last error code returned by the SH-2 driver. */
   int GetLastError() const {
@@ -194,15 +204,15 @@ public:
    * Drives RSTN low for the specified time then releases it. Platforms not
    * providing the pin may leave the implementation empty.
    */
-  void HardwareReset(uint32_t lowMs = 2);
+  void HardwareReset(uint32_t lowMs = 2) noexcept;
 
   /** Set the BOOTN pin level (used to enter DFU). */
-  void SetBootPin(bool state);
+  void SetBootPin(bool state) noexcept;
   /** Control the WAKE pin in SPI mode. */
-  void SetWakePin(bool state);
+  void SetWakePin(bool state) noexcept;
 
   /** Select the host interface by driving PS pins. */
-  void SelectInterface(BNO085Interface iface);
+  void SelectInterface(BNO085Interface iface) noexcept;
 
   /**
    * @brief Perform a firmware update using this object's communication interface.
@@ -215,7 +225,7 @@ public:
    * @param fw Firmware image to write.
    * @return SH2 status code from the DFU routine.
    */
-  int Dfu(const HcBin_t& fw = firmware);
+  int Dfu(const HcBin_t& fw = firmware) noexcept;
 
 private:
   /**
@@ -245,9 +255,9 @@ private:
   /// C trampoline for RVC frames
   static void rvcC(void* cookie, rvc_SensorEvent_t* event);
 
-  void handleSensorEvent(const sh2_SensorEvent_t* event);
-  void handleAsyncEvent(const sh2_AsyncEvent_t* event);
-  bool configure(BNO085Sensor sensor, uint32_t intervalUs, float sensitivity, uint32_t batchUs = 0);
+  void handleSensorEvent(const sh2_SensorEvent_t* event) noexcept;
+  void handleAsyncEvent(const sh2_AsyncEvent_t* event) noexcept;
+  bool configure(BNO085Sensor sensor, uint32_t intervalUs, float sensitivity, uint32_t batchUs = 0) noexcept;
 
   CommType& io_; ///< Communication interface reference (must outlive this object)
   SensorCallback callback_{};
@@ -261,6 +271,7 @@ private:
 
   Rvc rvc_{};
   RvcCallback rvc_cb_{};
+  RvcHalC_t rvc_hal_adapter_{}; ///< C function-pointer adapter bridging CRTP RVC HAL to C API
 };
 
 // Include template implementation

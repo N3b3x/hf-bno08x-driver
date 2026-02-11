@@ -29,7 +29,7 @@ static int hcbin_close(void);
 static const char* hcbin_getMeta(const char* key);
 static uint32_t hcbin_getAppLen(void);
 static uint32_t hcbin_getPacketLen(void);
-static int hcbin_getAppData(uint8_t* packet, uint32_t offet, uint32_t len);
+static int hcbin_getAppData(uint8_t* packet, uint32_t offset, uint32_t len);
 
 /* hcbin object to be used by DFU code */
 const HcBin_t firmware = {hcbin_open,      hcbin_close,        hcbin_getMeta,

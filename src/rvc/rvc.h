@@ -21,10 +21,7 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
-class IRvcHal;
 extern "C" {
-#else
-typedef struct IRvcHal IRvcHal; /**< Opaque HAL handle for C code */
 #endif
 
 // return status values
@@ -85,10 +82,6 @@ typedef struct RvcHalC_s {
 
 typedef void rvc_Callback_t(void* cookie, rvc_SensorEvent_t* pEvent);
 
-// Public API calls used by demo_rvc.c
-
-// Initialize the RVC sensor hub module with a HAL implementation
-int rvc_init(IRvcHal* hal);
 // Initialize using a C style HAL implementation
 int rvc_init_c(RvcHalC_t* hal);
 
@@ -102,8 +95,6 @@ int rvc_open();
 void rvc_close();
 
 // Service performs periodic servicing of the sensor hub interface.
-// This reads the UART data and should be called frequently to keep
-// communications flowing.
 void rvc_service();
 
 // Convert data from integers, fixed point to floating point, natural units.

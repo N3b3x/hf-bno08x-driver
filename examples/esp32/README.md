@@ -1,12 +1,12 @@
-# BNO08x ESP32-C6 Examples
+# BNO08x ESP32-S3 Examples
 
-This directory contains comprehensive examples demonstrating the BNO08x driver on ESP32-C6 platform.
+This directory contains comprehensive examples demonstrating the BNO08x driver on ESP32-S3 platform.
 
 ## 🎯 Overview
 
-The ESP32-C6 examples showcase real-world usage of the BNO08x IMU sensor with:
+The ESP32-S3 examples showcase real-world usage of the BNO08x IMU sensor with:
 
-- **Hardware-specific HAL** implementation for ESP32-C6
+- **Hardware-specific HAL** implementation for ESP32-S3
 - **Multiple example applications** covering different use cases
 - **Automated build system** with configurable app types
 - **Comprehensive documentation** for each example
@@ -14,22 +14,22 @@ The ESP32-C6 examples showcase real-world usage of the BNO08x IMU sensor with:
 
 ## 🔧 Hardware Requirements
 
-### ESP32-C6 Development Board
-- ESP32-C6-DevKitC-1 or compatible
+### ESP32-S3 Development Board
+- ESP32-S3-DevKitC-1 or compatible
 - USB-C cable for programming and power
 
 ### BNO08x Connections
 
-| BNO08x Pin | ESP32-C6 GPIO | Function |
+| BNO08x Pin | ESP32-S3 GPIO | Function |
 |------------|---------------|----------|
-| SDA | GPIO21 | I2C Data |
-| SCL | GPIO22 | I2C Clock |
+| SDA | GPIO4 | I2C Data |
+| SCL | GPIO5 | I2C Clock |
 | VDD | 3.3V | Logic Supply |
 | GND | GND | Ground |
-| INT (optional) | GPIO_NC | Interrupt (optional) |
-| RST (optional) | GPIO_NC | Reset (optional) |
+| INT | GPIO17 | Interrupt (active-low, data ready) |
+| RST | GPIO16 | Reset (active-low) |
 
-**Note:** The default I2C address is 0x4A. If ADR/SA0 is tied high, use address 0x4B.
+**Note:** The default I2C address is 0x4B (SA0=HIGH). If ADR/SA0 is tied low, use address 0x4A. The examples automatically probe both addresses.
 
 ## 🚀 Quick Start
 
@@ -61,7 +61,7 @@ cd hf-bno08x-driver/examples/esp32
 # Build driver integration test (default)
 ./scripts/build_app.sh driver_integration_test Release
 
-# Flash to ESP32-C6
+# Flash to ESP32-S3
 ./scripts/flash_app.sh driver_integration_test Release
 
 # Monitor output
@@ -195,22 +195,22 @@ The default I2C configuration can be modified in the example files:
 
 ```cpp
 Esp32Bno08xBus::I2CConfig config;
-config.sda_pin = GPIO_NUM_21;      // SDA pin
-config.scl_pin = GPIO_NUM_22;      // SCL pin
+config.sda_pin = GPIO_NUM_4;       // SDA pin
+config.scl_pin = GPIO_NUM_5;       // SCL pin
 config.frequency = 400000;         // I2C frequency (400kHz)
-config.device_address = 0x4A;      // I2C address (0x4A or 0x4B)
-config.int_pin = GPIO_NUM_NC;      // Interrupt pin (optional)
-config.rst_pin = GPIO_NUM_NC;      // Reset pin (optional)
+config.device_address = 0x4B;      // I2C address (0x4B default, SA0=HIGH; 0x4A if SA0=LOW)
+config.int_pin = GPIO_NUM_17;      // Interrupt pin (active-low, data ready)
+config.rst_pin = GPIO_NUM_16;      // Reset pin (active-low)
 ```
 
 ### Pin Configuration
 
 | Function | Default GPIO | Notes |
 |----------|--------------|-------|
-| I2C SDA | GPIO21 | Can be changed in code |
-| I2C SCL | GPIO22 | Can be changed in code |
-| Interrupt | GPIO_NC | Optional, for data ready |
-| Reset | GPIO_NC | Optional, for hardware reset |
+| I2C SDA | GPIO4 | Can be changed in code |
+| I2C SCL | GPIO5 | Can be changed in code |
+| Interrupt | GPIO17 | Active-low, for data ready |
+| Reset | GPIO16 | Active-low, for hardware reset |
 | Test Progress | GPIO14 | Used by test framework |
 
 ## 📚 Documentation
@@ -218,10 +218,10 @@ config.rst_pin = GPIO_NUM_NC;      // Reset pin (optional)
 For more detailed documentation, see:
 
 - [Main Driver README](../../README.md)
-- [Hardware Wiring Guide](../../docs/hardware_wiring.md)
-- [Porting Guide](../../docs/porting_guide.md)
+- [Hardware Setup Guide](../../docs/hardware_setup.md)
+- [Platform Integration Guide](../../docs/platform_integration.md)
 - [Examples Guide](../../docs/examples.md)
-- [BNO085 Complete Guide](../../docs/bno085_complete_guide.md)
+- [API Reference](../../docs/api_reference.md)
 
 ## 🐛 Troubleshooting
 
@@ -244,8 +244,8 @@ For more detailed documentation, see:
 - Verify I2C frequency (400kHz default)
 
 **No Sensor Data**
-- Ensure sensors are enabled: `imu.enableSensor(...)`
-- Call `imu.update()` regularly in your loop
+- Ensure sensors are enabled: `imu.EnableSensor(...)`
+- Call `imu.Update()` regularly in your loop
 - Check interrupt pin if using data ready signal
 - Verify sensor is powered and connected
 
