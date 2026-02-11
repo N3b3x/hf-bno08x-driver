@@ -322,7 +322,7 @@
 </h3>
     
 
-<p>Copy the following files into your project:</p>
+<p>Copy the following layout into your project:</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -331,16 +331,16 @@
 5
 6
 7
-8
 </pre></td><td class="rouge-code"><pre>inc/
   ├── bno08x.hpp
   └── bno08x_comm_interface.hpp
 src/
-  ├── bno08x.cpp
-  ├── sh2/          (CEVA SH-2 library - required)
-  ├── rvc/          (RVC mode support - optional)
-  └── dfu/          (DFU support - optional)
+  ├── bno08x.cpp              (driver implementation; includes RVC and DFU logic)
+  ├── sh2/                    (CEVA SH-2 library submodule — required)
+  └── dfu/                    (firmware stubs and MemoryFirmware.hpp for DFU)
 </pre></td></tr></tbody></table></div></code></pre></div></div>
+
+<p>RVC and DFU are built into the driver; no separate RVC or DFU modules are required.</p>
 <h2 id="integration-methods">
   
   

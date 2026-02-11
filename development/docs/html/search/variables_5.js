@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['index_0',['index',['../structrvc__SensorEvent__s.html#acf3a64a2f0772daeb676075f9450d679',1,'rvc_SensorEvent_s::index'],['../structrvc__SensorValue__s.html#a70240d7e3ab344c24b83d3587f46877e',1,'rvc_SensorValue_s::index']]],
-  ['int_5fpin_1',['int_pin',['../structEsp32Bno08xBus_1_1I2CConfig.html#a121a36fe188c184ec141f1b52eb9169e',1,'Esp32Bno08xBus::I2CConfig']]]
+  ['getappdata_0',['getAppData',['../structHcBin__s.html#ad45c43f9f25b11d2677e30540d97a536',1,'HcBin_s']]],
+  ['getapplen_1',['getAppLen',['../structHcBin__s.html#a439feec7d3cbea2a83c0f79a6063df1c',1,'HcBin_s']]],
+  ['getmeta_2',['getMeta',['../structHcBin__s.html#a10b509899819239a4655cd9a5902dc6d',1,'HcBin_s']]],
+  ['getpacketlen_3',['getPacketLen',['../structHcBin__s.html#a264c696f65faec8bb3eb994734d55527',1,'HcBin_s']]]
 ];

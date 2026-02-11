@@ -343,64 +343,22 @@
 43
 44
 45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
 </pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">"bno08x.hpp"</span><span class="cp">
 </span>
-<span class="c1">// 1. Implement the communication interface</span>
+<span class="c1">// 1. Implement the communication interface (must include GetInterfaceType — see platform_integration.md)</span>
 <span class="k">class</span> <span class="nc">MyComm</span> <span class="o">:</span> <span class="k">public</span> <span class="n">bno08x</span><span class="o">::</span><span class="n">CommInterface</span><span class="o">&lt;</span><span class="n">MyComm</span><span class="o">&gt;</span> <span class="p">{</span>
 <span class="nl">public:</span>
+    <span class="n">BNO085Interface</span> <span class="n">GetInterfaceType</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">BNO085Interface</span><span class="o">::</span><span class="n">I2C</span><span class="p">;</span> <span class="p">}</span>  <span class="c1">// or SPI, UART, UARTRVC</span>
     <span class="kt">bool</span> <span class="n">Open</span><span class="p">()</span> <span class="p">{</span>
         <span class="c1">// Your I²C/SPI/UART initialization</span>
         <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
     <span class="p">}</span>
-    
-    <span class="kt">void</span> <span class="n">Close</span><span class="p">()</span> <span class="p">{</span>
-        <span class="c1">// Your cleanup code</span>
-    <span class="p">}</span>
-    
-    <span class="kt">int</span> <span class="n">Write</span><span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">length</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// Your write implementation</span>
-        <span class="k">return</span> <span class="n">length</span><span class="p">;</span>
-    <span class="p">}</span>
-    
-    <span class="kt">int</span> <span class="n">Read</span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">length</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// Your read implementation</span>
-        <span class="k">return</span> <span class="n">length</span><span class="p">;</span>
-    <span class="p">}</span>
-    
-    <span class="kt">bool</span> <span class="n">DataAvailable</span><span class="p">()</span> <span class="p">{</span>
-        <span class="c1">// Check if data is available</span>
-        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-    <span class="p">}</span>
-    
-    <span class="kt">void</span> <span class="n">Delay</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">ms</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// Your delay implementation</span>
-    <span class="p">}</span>
-    
-    <span class="kt">uint32_t</span> <span class="n">GetTimeUs</span><span class="p">()</span> <span class="p">{</span>
-        <span class="c1">// Return current time in microseconds</span>
-        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">Close</span><span class="p">()</span> <span class="p">{</span> <span class="cm">/* cleanup */</span> <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">Write</span><span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">length</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">length</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">Read</span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">length</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">length</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kt">bool</span> <span class="n">DataAvailable</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">Delay</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">ms</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/* delay */</span> <span class="p">}</span>
+    <span class="kt">uint32_t</span> <span class="n">GetTimeUs</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
 <span class="p">};</span>
 
 <span class="c1">// 2. Create instances</span>
@@ -417,11 +375,11 @@
 <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>  <span class="c1">// 100 Hz</span>
 <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">Accelerometer</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span> <span class="c1">// 20 Hz</span>
 
-<span class="c1">// 5. Set callback</span>
+<span class="c1">// 5. Set callback (use event.rotation.accuracy for calibration status 0–3)</span>
 <span class="n">imu</span><span class="p">.</span><span class="n">SetCallback</span><span class="p">([](</span><span class="k">const</span> <span class="n">SensorEvent</span><span class="o">&amp;</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">sensor</span> <span class="o">==</span> <span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">printf</span><span class="p">(</span><span class="s">"Quat: w=%.3f x=%.3f y=%.3f z=%.3f</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span>
-               <span class="n">e</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">w</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Quat: w=%.3f x=%.3f y=%.3f z=%.3f (accuracy=%d)</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span>
+               <span class="n">e</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">w</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">z</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">accuracy</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">});</span>
 
@@ -644,14 +602,12 @@
 </h2>
     
 
-<p>When running this example, you should see:</p>
+<p>When running this example, you should see quaternion and optionally accuracy (0–3, 3 = fully calibrated):</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
-3
-</pre></td><td class="rouge-code"><pre>Yaw: 45.2°
-Yaw: 45.3°
-Yaw: 45.5°
+</pre></td><td class="rouge-code"><pre>Quat: w=0.924 x=0.012 y=-0.018 z=0.382 (accuracy=3)
+Quat: w=0.924 x=0.012 y=-0.018 z=0.383 (accuracy=3)
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 <h2 id="troubleshooting">
   

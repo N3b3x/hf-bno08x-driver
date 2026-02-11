@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['memoryfirmware_0',['MemoryFirmware',['../classMemoryFirmware.html',1,'']]]
+  ['quaternion_0',['Quaternion',['../structQuaternion.html',1,'']]]
 ];

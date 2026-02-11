@@ -2,7 +2,7 @@ var classBNO085 =
 [
     [ "BNO085", "classBNO085.html#a66f2abe8f7fcf9005a37aed5cf17b104", null ],
     [ "Begin", "classBNO085.html#a9fc79a6ee018d3214897efaf254ebab3", null ],
-    [ "BeginRvc", "classBNO085.html#a0f985daf2bd310476d0c5dd4c353de73", null ],
+    [ "BeginRvc", "classBNO085.html#a05397a0a78389c87c3dc02b984cf1bea", null ],
     [ "CloseRvc", "classBNO085.html#a406609e88789d9e20a7333123f3f6b62", null ],
     [ "Dfu", "classBNO085.html#a959705775b384e62764aa9f76aaa4dc4", null ],
     [ "DisableSensor", "classBNO085.html#a02883eb26087462e58c95707f29a63b8", null ],

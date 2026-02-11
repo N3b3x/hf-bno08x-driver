@@ -282,12 +282,13 @@
 </h2>
     
 
-<p>DFU mode allows you to:</p>
+<p>DFU is built into the BNO085 driver: use the same <strong>CommInterface</strong> (I²C, SPI, or UART SH-2) and call <code class="language-plaintext highlighter-rouge">imu.Dfu(firmware)</code>. The sensor must be in bootloader mode (BOOTN held low during reset). <strong>DFU is not available when the transport reports <code class="language-plaintext highlighter-rouge">UARTRVC</code></strong> — use I²C, SPI, or UART SH-2.</p>
+
+<p>DFU allows you to:</p>
 <ul>
   <li>Update sensor firmware in the field</li>
   <li>Fix firmware bugs without hardware replacement</li>
   <li>Upgrade to newer firmware versions</li>
-  <li>Support multiple firmware formats (BNO08x and FSP200/201)</li>
 </ul>
 <h2 id="entering-bootloader-mode">
   
@@ -333,14 +334,13 @@
 </h2>
     
 
-<p>Firmware must be provided as an <code class="language-plaintext highlighter-rouge">HcBin_t</code> object. The driver includes stub firmware files:</p>
+<p>Firmware must be provided as an <code class="language-plaintext highlighter-rouge">HcBin_t</code> object. The driver includes a compile-time stub:</p>
 
 <ul>
-  <li><strong><code class="language-plaintext highlighter-rouge">src/dfu/firmware-bno.c</code></strong>: Stub firmware for BNO08x (compile-time image)</li>
-  <li><strong><code class="language-plaintext highlighter-rouge">src/dfu/firmware-fsp.c</code></strong>: Stub firmware for FSP200/201 (compile-time image)</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">src/dfu/firmware-bno.c</code></strong> / <strong><code class="language-plaintext highlighter-rouge">src/dfu/firmware.h</code></strong>: Stub firmware for BNO08x (symbol <code class="language-plaintext highlighter-rouge">firmware</code>). For production, obtain firmware from the sensor vendor.</li>
 </ul>
 
-<p><strong>Note</strong>: These are minimal stub images. For production, obtain firmware from the sensor vendor.</p>
+<p>For firmware loaded at runtime (e.g. from flash or network), use <strong><code class="language-plaintext highlighter-rouge">MemoryFirmware</code></strong> (see <a href="#firmware-sources">Firmware Sources</a> below).</p>
 <h2 id="implementation">
   
   
@@ -349,10 +349,22 @@
   
 </h2>
     
-<h3 id="step-1-implement-idfutransport-interface">
+
+<p>Use your existing <strong>CommInterface</strong> (I²C, SPI, or UART — not UARTRVC). Enter bootloader mode, then call <code class="language-plaintext highlighter-rouge">imu.Dfu(fw)</code>.</p>
+<h3 id="step-1-enter-bootloader-mode">
   
   
-    <a href="#step-1-implement-idfutransport-interface" class="anchor-heading" aria-labelledby="step-1-implement-idfutransport-interface"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Step 1: Implement IDfuTransport Interface
+    <a href="#step-1-enter-bootloader-mode" class="anchor-heading" aria-labelledby="step-1-enter-bootloader-mode"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Step 1: Enter bootloader mode
+  
+  
+</h3>
+    
+
+<p>Hold BOOTN low, reset the sensor, then release BOOTN. If your transport implements <code class="language-plaintext highlighter-rouge">SetBoot()</code> and <code class="language-plaintext highlighter-rouge">SetReset()</code>, the driver’s <code class="language-plaintext highlighter-rouge">SetBootPin()</code> and <code class="language-plaintext highlighter-rouge">HardwareReset()</code> will use them.</p>
+<h3 id="step-2-perform-firmware-update">
+  
+  
+    <a href="#step-2-perform-firmware-update" class="anchor-heading" aria-labelledby="step-2-perform-firmware-update"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Step 2: Perform firmware update
   
   
 </h3>
@@ -373,130 +385,32 @@
 13
 14
 15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-</pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">"src/dfu/IDfuTransport.hpp"</span><span class="cp">
-</span>
-<span class="k">class</span> <span class="nc">MyDfuTransport</span> <span class="o">:</span> <span class="k">public</span> <span class="n">IDfuTransport</span> <span class="p">{</span>
-<span class="nl">public:</span>
-    <span class="kt">bool</span> <span class="n">open</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span>
-        <span class="c1">// Initialize communication interface for bootloader</span>
-        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-    <span class="p">}</span>
-    
-    <span class="kt">void</span> <span class="n">close</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span>
-        <span class="c1">// Close communication interface</span>
-    <span class="p">}</span>
-    
-    <span class="kt">int</span> <span class="n">write</span><span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">length</span><span class="p">)</span> <span class="k">override</span> <span class="p">{</span>
-        <span class="c1">// Write data to sensor</span>
-        <span class="k">return</span> <span class="cm">/* your write implementation */</span><span class="p">;</span>
-    <span class="p">}</span>
-    
-    <span class="kt">int</span> <span class="n">read</span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">length</span><span class="p">)</span> <span class="k">override</span> <span class="p">{</span>
-        <span class="c1">// Read data from sensor</span>
-        <span class="k">return</span> <span class="cm">/* your read implementation */</span><span class="p">;</span>
-    <span class="p">}</span>
-    
-    <span class="kt">uint32_t</span> <span class="n">getTimeUs</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span>
-        <span class="c1">// Return current time in microseconds</span>
-        <span class="k">return</span> <span class="cm">/* your time implementation */</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-</pre></td></tr></tbody></table></div></code></pre></div></div>
-<h3 id="step-2-use-haltransport-adapter-alternative">
-  
-  
-    <a href="#step-2-use-haltransport-adapter-alternative" class="anchor-heading" aria-labelledby="step-2-use-haltransport-adapter-alternative"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Step 2: Use HalTransport Adapter (Alternative)
-  
-  
-</h3>
-    
-
-<p>If you already have an <code class="language-plaintext highlighter-rouge">sh2_Hal_t</code> implementation, you can use the adapter:</p>
-
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-</pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">"src/dfu/HalTransport.hpp"</span><span class="cp">
-</span>
-<span class="k">extern</span> <span class="n">sh2_Hal_t</span> <span class="n">my_hal</span><span class="p">;</span>
-<span class="n">HalTransport</span> <span class="nf">transport</span><span class="p">(</span><span class="o">&amp;</span><span class="n">my_hal</span><span class="p">);</span>
-
-<span class="c1">// Use transport with dfu()</span>
-</pre></td></tr></tbody></table></div></code></pre></div></div>
-<h3 id="step-3-perform-firmware-update">
-  
-  
-    <a href="#step-3-perform-firmware-update" class="anchor-heading" aria-labelledby="step-3-perform-firmware-update"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Step 3: Perform Firmware Update
-  
-  
-</h3>
-    
-
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
 </pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">"bno08x.hpp"</span><span class="cp">
-#include</span> <span class="cpf">"src/dfu/firmware.h"</span><span class="c1">  // Provides 'firmware' HcBin_t object</span><span class="cp">
+#include</span> <span class="cpf">"src/dfu/firmware.h"</span><span class="c1">   // Provides default 'firmware' HcBin_t</span><span class="cp">
 </span>
-<span class="n">MyComm</span> <span class="n">comm</span><span class="p">;</span>
-<span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085</span><span class="o">&lt;</span><span class="n">MyComm</span><span class="o">&gt;</span> <span class="n">imu</span><span class="p">(</span><span class="n">comm</span><span class="p">);</span>
+<span class="c1">// Use your normal transport (e.g. Esp32Bno08xBus)</span>
+<span class="n">BNO085</span><span class="o">&lt;</span><span class="n">Esp32Bno08xBus</span><span class="o">&gt;</span> <span class="n">imu</span><span class="p">(</span><span class="o">*</span><span class="n">transport</span><span class="p">);</span>
 
-<span class="c1">// Enter bootloader mode first (see above)</span>
+<span class="c1">// Enter bootloader first: SetBootPin(true), HardwareReset(10), SetBootPin(false)</span>
+<span class="c1">// Then close/reopen transport if required by your platform.</span>
 
-<span class="c1">// Method 1: Using BNO085::Dfu() convenience method</span>
-<span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">imu</span><span class="p">.</span><span class="n">Dfu</span><span class="p">(</span><span class="n">firmware</span><span class="p">);</span>
+<span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">imu</span><span class="p">.</span><span class="n">Dfu</span><span class="p">(</span><span class="n">firmware</span><span class="p">);</span>   <span class="c1">// or imu.Dfu(*custom_fw.getBin())</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">==</span> <span class="n">SH2_OK</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">printf</span><span class="p">(</span><span class="s">"Firmware update successful!</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
     <span class="n">printf</span><span class="p">(</span><span class="s">"Firmware update failed: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">result</span><span class="p">);</span>
 <span class="p">}</span>
-
-<span class="c1">// Method 2: Using dfu() function directly</span>
-<span class="n">MyDfuTransport</span> <span class="n">transport</span><span class="p">;</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">dfu</span><span class="p">(</span><span class="n">transport</span><span class="p">,</span> <span class="n">firmware</span><span class="p">);</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
-<h3 id="step-4-using-custom-firmware-source">
+<h3 id="step-3-runtime-firmware-memoryfirmware">
   
   
-    <a href="#step-4-using-custom-firmware-source" class="anchor-heading" aria-labelledby="step-4-using-custom-firmware-source"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Step 4: Using Custom Firmware Source
+    <a href="#step-3-runtime-firmware-memoryfirmware" class="anchor-heading" aria-labelledby="step-3-runtime-firmware-memoryfirmware"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Step 3: Runtime firmware (MemoryFirmware)
   
   
 </h3>
     
 
-<p>If firmware is stored elsewhere (e.g., flash, network), use <code class="language-plaintext highlighter-rouge">MemoryFirmware</code>:</p>
+<p>If the image is in memory or flash, use <code class="language-plaintext highlighter-rouge">MemoryFirmware</code>:</p>
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -505,28 +419,24 @@
 5
 6
 7
-8
-9
-10
 </pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">"src/dfu/MemoryFirmware.hpp"</span><span class="cp">
 </span>
-<span class="c1">// Firmware stored in memory/flash</span>
-<span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">firmware_data</span> <span class="o">=</span> <span class="cm">/* your firmware data */</span><span class="p">;</span>
-<span class="kt">size_t</span> <span class="n">firmware_size</span> <span class="o">=</span> <span class="cm">/* firmware size */</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">fw_data</span> <span class="o">=</span> <span class="cm">/* pointer to firmware bytes */</span><span class="p">;</span>
+<span class="kt">size_t</span> <span class="n">fw_size</span> <span class="o">=</span> <span class="cm">/* size in bytes */</span><span class="p">;</span>
+<span class="n">MemoryFirmware</span> <span class="nf">custom_fw</span><span class="p">(</span><span class="n">fw_data</span><span class="p">,</span> <span class="n">fw_size</span><span class="p">);</span>
 
-<span class="n">MemoryFirmware</span> <span class="nf">custom_fw</span><span class="p">(</span><span class="n">firmware_data</span><span class="p">,</span> <span class="n">firmware_size</span><span class="p">);</span>
-<span class="n">HcBin_t</span><span class="o">*</span> <span class="n">fw_bin</span> <span class="o">=</span> <span class="n">custom_fw</span><span class="p">.</span><span class="n">getBin</span><span class="p">();</span>
-
-<span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">imu</span><span class="p">.</span><span class="n">Dfu</span><span class="p">(</span><span class="o">*</span><span class="n">fw_bin</span><span class="p">);</span>
+<span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">imu</span><span class="p">.</span><span class="n">Dfu</span><span class="p">(</span><span class="o">*</span><span class="n">custom_fw</span><span class="p">.</span><span class="n">getBin</span><span class="p">());</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
-<h2 id="complete-example">
+<h2 id="complete-example-esp32">
   
   
-    <a href="#complete-example" class="anchor-heading" aria-labelledby="complete-example"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Complete Example
+    <a href="#complete-example-esp32" class="anchor-heading" aria-labelledby="complete-example-esp32"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Complete example (ESP32)
   
   
 </h2>
     
+
+<p>See <code class="language-plaintext highlighter-rouge">examples/esp32/main/dfu_example.cpp</code> for a full flow. Summary:</p>
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -552,74 +462,30 @@
 22
 23
 24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-</pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">"bno08x.hpp"</span><span class="cp">
-#include</span> <span class="cpf">"src/dfu/firmware.h"</span><span class="cp">
-#include</span> <span class="cpf">"src/dfu/HalTransport.hpp"</span><span class="cp">
-</span>
-<span class="kt">void</span> <span class="nf">update_firmware</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">Esp32Bno08xBus</span> <span class="n">comm</span><span class="p">(</span><span class="cm">/* config */</span><span class="p">);</span>
-    <span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085</span><span class="o">&lt;</span><span class="n">Esp32Bno08xBus</span><span class="o">&gt;</span> <span class="n">imu</span><span class="p">(</span><span class="n">comm</span><span class="p">);</span>
-    
-    <span class="c1">// 1. Enter bootloader mode</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">"Entering bootloader mode...</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
-    <span class="n">imu</span><span class="p">.</span><span class="n">SetBootPin</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>   <span class="c1">// BOOTN low</span>
-    <span class="n">vTaskDelay</span><span class="p">(</span><span class="n">pdMS_TO_TICKS</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
-    <span class="n">imu</span><span class="p">.</span><span class="n">HardwareReset</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>  <span class="c1">// Reset</span>
-    <span class="n">vTaskDelay</span><span class="p">(</span><span class="n">pdMS_TO_TICKS</span><span class="p">(</span><span class="mi">100</span><span class="p">));</span>
-    <span class="n">imu</span><span class="p">.</span><span class="n">SetBootPin</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>  <span class="c1">// Release BOOTN</span>
-    
-    <span class="c1">// 2. Reinitialize communication for bootloader</span>
-    <span class="n">comm</span><span class="o">-&gt;</span><span class="n">Close</span><span class="p">();</span>
-    <span class="n">vTaskDelay</span><span class="p">(</span><span class="n">pdMS_TO_TICKS</span><span class="p">(</span><span class="mi">100</span><span class="p">));</span>
-    <span class="n">comm</span><span class="o">-&gt;</span><span class="n">Open</span><span class="p">();</span>
-    
-    <span class="c1">// 3. Perform firmware update</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">"Starting firmware update...</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
-    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">imu</span><span class="p">.</span><span class="n">Dfu</span><span class="p">(</span><span class="n">firmware</span><span class="p">);</span>
-    
-    <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">==</span> <span class="n">SH2_OK</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">printf</span><span class="p">(</span><span class="s">"Firmware update successful!</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="n">printf</span><span class="p">(</span><span class="s">"Firmware update failed: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">result</span><span class="p">);</span>
-        <span class="k">return</span><span class="p">;</span>
-    <span class="p">}</span>
-    
-    <span class="c1">// 4. Reset sensor to normal mode</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">"Resetting sensor to normal mode...</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
-    <span class="n">imu</span><span class="p">.</span><span class="n">HardwareReset</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
-    <span class="n">vTaskDelay</span><span class="p">(</span><span class="n">pdMS_TO_TICKS</span><span class="p">(</span><span class="mi">100</span><span class="p">));</span>
-    
-    <span class="c1">// 5. Reinitialize for normal operation</span>
-    <span class="n">comm</span><span class="o">-&gt;</span><span class="n">Close</span><span class="p">();</span>
-    <span class="n">vTaskDelay</span><span class="p">(</span><span class="n">pdMS_TO_TICKS</span><span class="p">(</span><span class="mi">100</span><span class="p">));</span>
-    <span class="n">comm</span><span class="o">-&gt;</span><span class="n">Open</span><span class="p">();</span>
-    
-    <span class="k">if</span> <span class="p">(</span><span class="n">imu</span><span class="p">.</span><span class="n">Begin</span><span class="p">())</span> <span class="p">{</span>
-        <span class="n">printf</span><span class="p">(</span><span class="s">"Sensor reinitialized successfully</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+</pre></td><td class="rouge-code"><pre><span class="k">auto</span> <span class="n">transport</span> <span class="o">=</span> <span class="n">CreateEsp32Bno08xBus</span><span class="p">(</span><span class="n">config</span><span class="p">);</span>
+<span class="n">BNO085</span><span class="o">&lt;</span><span class="n">Esp32Bno08xBus</span><span class="o">&gt;</span> <span class="n">imu</span><span class="p">(</span><span class="o">*</span><span class="n">transport</span><span class="p">);</span>
+
+<span class="c1">// 1. Enter bootloader</span>
+<span class="n">imu</span><span class="p">.</span><span class="n">SetBootPin</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+<span class="n">vTaskDelay</span><span class="p">(</span><span class="n">pdMS_TO_TICKS</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
+<span class="n">imu</span><span class="p">.</span><span class="n">HardwareReset</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="n">vTaskDelay</span><span class="p">(</span><span class="n">pdMS_TO_TICKS</span><span class="p">(</span><span class="mi">100</span><span class="p">));</span>
+<span class="n">imu</span><span class="p">.</span><span class="n">SetBootPin</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+
+<span class="c1">// 2. Reopen transport for bootloader communication</span>
+<span class="n">transport</span><span class="o">-&gt;</span><span class="n">Close</span><span class="p">();</span>
+<span class="n">vTaskDelay</span><span class="p">(</span><span class="n">pdMS_TO_TICKS</span><span class="p">(</span><span class="mi">100</span><span class="p">));</span>
+<span class="n">transport</span><span class="o">-&gt;</span><span class="n">Open</span><span class="p">();</span>
+
+<span class="c1">// 3. Run DFU</span>
+<span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">imu</span><span class="p">.</span><span class="n">Dfu</span><span class="p">(</span><span class="n">firmware</span><span class="p">);</span>   <span class="c1">// or Dfu(*memory_fw.getBin())</span>
+
+<span class="c1">// 4. Reset and reinit for normal operation</span>
+<span class="n">imu</span><span class="p">.</span><span class="n">HardwareReset</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">transport</span><span class="o">-&gt;</span><span class="n">Close</span><span class="p">();</span>
+<span class="n">vTaskDelay</span><span class="p">(</span><span class="n">pdMS_TO_TICKS</span><span class="p">(</span><span class="mi">100</span><span class="p">));</span>
+<span class="n">transport</span><span class="o">-&gt;</span><span class="n">Open</span><span class="p">();</span>
+<span class="n">imu</span><span class="p">.</span><span class="n">Begin</span><span class="p">();</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 <h2 id="timeout-handling">
   

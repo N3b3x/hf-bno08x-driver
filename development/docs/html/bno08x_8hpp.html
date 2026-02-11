@@ -135,27 +135,28 @@ $(function(){initNavTree('bno08x_8hpp.html',''); initResizable(); });
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#define-members">Macros</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
-<a href="#enum-members">Enumerations</a>  </div>
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">bno08x.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>High level C++ interface for the BNO08x IMU family.  
+<p>High-level C++ driver for the BNO08x 9-axis IMU family.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="bno08x__comm__interface_8hpp_source.html">bno08x_comm_interface.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="HcBin_8h_source.html">dfu/HcBin.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="firmware_8h_source.html">dfu/firmware.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="Rvc_8hpp_source.html">rvc/Rvc.hpp</a>&quot;</code><br />
 <code>#include &lt;array&gt;</code><br />
 <code>#include &lt;cstdint&gt;</code><br />
+<code>#include &lt;cstring&gt;</code><br />
 <code>#include &lt;functional&gt;</code><br />
 <code>#include &quot;sh2/sh2.h&quot;</code><br />
 <code>#include &quot;sh2/sh2_SensorValue.h&quot;</code><br />
+<code>#include &quot;sh2/sh2_err.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="bno08x_8cpp_source.html">../src/bno08x.cpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for bno08x.hpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="bno08x_8hpp__incl.svg" width="1432" height="476"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="bno08x_8hpp__incl.svg" width="1270" height="183"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
@@ -168,95 +169,135 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVector3.html">Vector3</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple 3‑axis vector with accuracy flag.  <a href="structVector3.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Three-axis vector with sensor accuracy indicator.  <a href="structVector3.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQuaternion.html">Quaternion</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structQuaternion.html" title="Quaternion orientation with accuracy flag.">Quaternion</a> orientation with accuracy flag.  <a href="structQuaternion.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unit quaternion with sensor accuracy indicator.  <a href="structQuaternion.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTapEvent.html">TapEvent</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Information for tap detector events.  <a href="structTapEvent.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tap detector event details.  <a href="structTapEvent.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSensorEvent.html">SensorEvent</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for a single sensor report.  <a href="structSensorEvent.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for a single decoded SH-2 sensor report.  <a href="structSensorEvent.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRvcSensorEvent.html">RvcSensorEvent</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Raw RVC frame data in integer fixed-point format.  <a href="structRvcSensorEvent.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRvcSensorValue.html">RvcSensorValue</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decoded RVC frame data in floating-point natural units.  <a href="structRvcSensorValue.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBNO085.html">BNO085&lt; CommType &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">High level driver for the BNO08x IMU.  <a href="classBNO085.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unified driver for the BNO08x IMU &ndash; SH-2 mode, RVC mode, and DFU.  <a href="classBNO085.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a960dacf85103d71ad3fb2dc7cde80617" id="r_a960dacf85103d71ad3fb2dc7cde80617"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a960dacf85103d71ad3fb2dc7cde80617">BNO085_HEADER_INCLUDED</a></td></tr>
+<tr class="memitem:a960dacf85103d71ad3fb2dc7cde80617" id="r_a960dacf85103d71ad3fb2dc7cde80617"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a960dacf85103d71ad3fb2dc7cde80617">BNO085_HEADER_INCLUDED</a></td></tr>
 <tr class="separator:a960dacf85103d71ad3fb2dc7cde80617"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:ae10cac53e8962550a2efb17043c5355e" id="r_ae10cac53e8962550a2efb17043c5355e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">using</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae10cac53e8962550a2efb17043c5355e">SensorCallback</a> = <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">std::function</a>&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">void</a>(<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">const</a> <a class="el" href="structSensorEvent.html">SensorEvent</a>&amp;)&gt;</td></tr>
-<tr class="separator:ae10cac53e8962550a2efb17043c5355e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa57bd22f61b6b51eb9f2585fae4e2d61" id="r_aa57bd22f61b6b51eb9f2585fae4e2d61"><td class="memItemLeft" align="right" valign="top"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">using</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa57bd22f61b6b51eb9f2585fae4e2d61">RvcCallback</a> = <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">std::function</a>&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">void</a>(<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">const</a> <a class="el" href="rvc_8h.html#a12562344c050d5105e83a29522841266">rvc_SensorValue_t</a>&amp;)&gt;</td></tr>
-<tr class="separator:aa57bd22f61b6b51eb9f2585fae4e2d61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae10cac53e8962550a2efb17043c5355e" id="r_gae10cac53e8962550a2efb17043c5355e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SensorTypes.html#gae10cac53e8962550a2efb17043c5355e">SensorCallback</a> = std::function&lt;void(const <a class="el" href="structSensorEvent.html">SensorEvent</a>&amp;)&gt;</td></tr>
+<tr class="memdesc:gae10cac53e8962550a2efb17043c5355e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback invoked when a new SH-2 sensor event is received.  <br /></td></tr>
+<tr class="separator:gae10cac53e8962550a2efb17043c5355e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga42c65948fe45a5845ecaf27c7ee70975" id="r_ga42c65948fe45a5845ecaf27c7ee70975"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SensorTypes.html#ga42c65948fe45a5845ecaf27c7ee70975">RvcCallback</a> = std::function&lt;void(const <a class="el" href="structRvcSensorValue.html">RvcSensorValue</a>&amp;)&gt;</td></tr>
+<tr class="memdesc:ga42c65948fe45a5845ecaf27c7ee70975"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback invoked when a decoded RVC frame is available.  <br /></td></tr>
+<tr class="separator:ga42c65948fe45a5845ecaf27c7ee70975"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a6f9f2bf1fa157ce63dacb450d5df6c62" id="r_a6f9f2bf1fa157ce63dacb450d5df6c62"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a> : uint8_t { <br />
-&#160;&#160;<a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62ab043bc6d611582087d8bf1790d863d69">Accelerometer</a> = 0x01
-, <a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62abed99e5db57749f375e738c1c0258047">Gyroscope</a> = 0x02
-, <a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62a9e9fa52e0aa4a2b519f8287760d7c3ac">Magnetometer</a> = 0x03
-, <a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62aba31d10f1d09d6cf847178cb2d7350d6">LinearAcceleration</a> = 0x04
+<tr class="memitem:ga6f9f2bf1fa157ce63dacb450d5df6c62" id="r_ga6f9f2bf1fa157ce63dacb450d5df6c62"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SensorTypes.html#ga6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a> : uint8_t { <br />
+&#160;&#160;<a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62ab043bc6d611582087d8bf1790d863d69">BNO085Sensor::Accelerometer</a> = 0x01
+, <a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62abed99e5db57749f375e738c1c0258047">BNO085Sensor::Gyroscope</a> = 0x02
+, <a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a9e9fa52e0aa4a2b519f8287760d7c3ac">BNO085Sensor::Magnetometer</a> = 0x03
+, <a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62aba31d10f1d09d6cf847178cb2d7350d6">BNO085Sensor::LinearAcceleration</a> = 0x04
 , <br />
-&#160;&#160;<a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62a93885b92407df28cbbeae6691819875a">RotationVector</a> = 0x05
-, <a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62a8a88c39cef668fb55f188af09665bd40">Gravity</a> = 0x06
-, <a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62a21dfaf4e5263130288d52ac111a7d405">GyroUncalibrated</a> = 0x07
-, <a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62aca24a6438653bfeb8c3dc5380a3513ec">GameRotationVector</a> = 0x08
+&#160;&#160;<a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a93885b92407df28cbbeae6691819875a">BNO085Sensor::RotationVector</a> = 0x05
+, <a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a8a88c39cef668fb55f188af09665bd40">BNO085Sensor::Gravity</a> = 0x06
+, <a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a21dfaf4e5263130288d52ac111a7d405">BNO085Sensor::GyroUncalibrated</a> = 0x07
+, <a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62aca24a6438653bfeb8c3dc5380a3513ec">BNO085Sensor::GameRotationVector</a> = 0x08
 , <br />
-&#160;&#160;<a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62a7ced3a0bfca67cdc57bd3c16fc06284e">GeomagneticRotationVector</a> = 0x09
-, <a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62aa78578c428179b490a0461e76ba5f319">Pressure</a> = 0x0A
-, <a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62a9de31d14fe78730b3fd5ce633a2da711">AmbientLight</a> = 0x0B
-, <a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62addab800b54d009aa0408ebb9a4ee418d">Humidity</a> = 0x0C
+&#160;&#160;<a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a7ced3a0bfca67cdc57bd3c16fc06284e">BNO085Sensor::GeomagneticRotationVector</a> = 0x09
+, <a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62aa78578c428179b490a0461e76ba5f319">BNO085Sensor::Pressure</a> = 0x0A
+, <a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a9de31d14fe78730b3fd5ce633a2da711">BNO085Sensor::AmbientLight</a> = 0x0B
+, <a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62addab800b54d009aa0408ebb9a4ee418d">BNO085Sensor::Humidity</a> = 0x0C
 , <br />
-&#160;&#160;<a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62af8dfb524e6ddea9129cc2f955d55db19">Proximity</a> = 0x0D
-, <a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62aee7a8e262285ed49ea1b4e4ae11525bd">Temperature</a> = 0x0E
-, <a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62a0ce1faa0e7e87ad1d7355564753812c7">MagneticFieldUncalibrated</a> = 0x0F
-, <a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62aa4481d296202d542e1d64326d139b105">TapDetector</a> = 0x10
+&#160;&#160;<a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62af8dfb524e6ddea9129cc2f955d55db19">BNO085Sensor::Proximity</a> = 0x0D
+, <a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62aee7a8e262285ed49ea1b4e4ae11525bd">BNO085Sensor::Temperature</a> = 0x0E
+, <a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a0ce1faa0e7e87ad1d7355564753812c7">BNO085Sensor::MagneticFieldUncalibrated</a> = 0x0F
+, <a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62aa4481d296202d542e1d64326d139b105">BNO085Sensor::TapDetector</a> = 0x10
 , <br />
-&#160;&#160;<a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62a813bf9f9ff76be55d85361ae7f5da7de">StepCounter</a> = 0x11
-, <a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62a975bf8c0c5278ae9474fec58ba3700e2">SignificantMotion</a> = 0x12
-, <a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62aad8009bd69ab44ea8de9567ea92adcf8">StabilityClassifier</a> = 0x13
-, <a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62add5c9344d03c3cc78b972ecda597492a">RawAccelerometer</a> = 0x14
+&#160;&#160;<a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a813bf9f9ff76be55d85361ae7f5da7de">BNO085Sensor::StepCounter</a> = 0x11
+, <a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a975bf8c0c5278ae9474fec58ba3700e2">BNO085Sensor::SignificantMotion</a> = 0x12
+, <a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62aad8009bd69ab44ea8de9567ea92adcf8">BNO085Sensor::StabilityClassifier</a> = 0x13
+, <a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62add5c9344d03c3cc78b972ecda597492a">BNO085Sensor::RawAccelerometer</a> = 0x14
 , <br />
-&#160;&#160;<a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62af452cd954e81a69ff37635830efcfba7">RawGyroscope</a> = 0x15
-, <a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62aa2b148a97534cb95774ba27dd0599e3a">RawMagnetometer</a> = 0x16
-, <a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62a2f52ce382545c872c8a270c2c81e02f8">StepDetector</a> = 0x18
-, <a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62a4cb8f643cb530cbfba0cf2a488ab6bc4">ShakeDetector</a> = 0x19
+&#160;&#160;<a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62af452cd954e81a69ff37635830efcfba7">BNO085Sensor::RawGyroscope</a> = 0x15
+, <a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62aa2b148a97534cb95774ba27dd0599e3a">BNO085Sensor::RawMagnetometer</a> = 0x16
+, <a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a2f52ce382545c872c8a270c2c81e02f8">BNO085Sensor::StepDetector</a> = 0x18
+, <a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a4cb8f643cb530cbfba0cf2a488ab6bc4">BNO085Sensor::ShakeDetector</a> = 0x19
 , <br />
-&#160;&#160;<a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62a7e88095cab76d9236896e968bc5bb12f">FlipDetector</a> = 0x1A
-, <a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62a5821887f8c70cb00c9b729a1382e0542">PickupDetector</a> = 0x1B
-, <a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62ac049919dd5791fb90ebe0667030c6b58">StabilityDetector</a> = 0x1C
-, <a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62a2b4e0d3abe04221e7194c853e48ec82b">PersonalActivityClassifier</a> = 0x1E
+&#160;&#160;<a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a7e88095cab76d9236896e968bc5bb12f">BNO085Sensor::FlipDetector</a> = 0x1A
+, <a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a5821887f8c70cb00c9b729a1382e0542">BNO085Sensor::PickupDetector</a> = 0x1B
+, <a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62ac049919dd5791fb90ebe0667030c6b58">BNO085Sensor::StabilityDetector</a> = 0x1C
+, <a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a2b4e0d3abe04221e7194c853e48ec82b">BNO085Sensor::PersonalActivityClassifier</a> = 0x1E
 , <br />
-&#160;&#160;<a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62a8c80d5cca9a487fc82a7375cfe802b28">SleepDetector</a> = 0x1F
-, <a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62aa05b37781bf6d88e0c9d772fe469b014">TiltDetector</a> = 0x20
-, <a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62afe8d9948c1edf85a18f8ad4aba5baad4">PocketDetector</a> = 0x21
-, <a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62a6069a5e8bc2cdb88048a7ef10abfdf9d">CircleDetector</a> = 0x22
+&#160;&#160;<a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a8c80d5cca9a487fc82a7375cfe802b28">BNO085Sensor::SleepDetector</a> = 0x1F
+, <a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62aa05b37781bf6d88e0c9d772fe469b014">BNO085Sensor::TiltDetector</a> = 0x20
+, <a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62afe8d9948c1edf85a18f8ad4aba5baad4">BNO085Sensor::PocketDetector</a> = 0x21
+, <a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a6069a5e8bc2cdb88048a7ef10abfdf9d">BNO085Sensor::CircleDetector</a> = 0x22
 , <br />
-&#160;&#160;<a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62a0978ef43fad0c80bfa0629706f37bc7b">HeartRateMonitor</a> = 0x23
-, <a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62a5f78b93803f5d02a6b414b4b6e1637df">ARVRStabilizedRV</a> = 0x28
-, <a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62adda6de7569af6fe8301ee3807a69a988">ARVRStabilizedGameRV</a> = 0x29
-, <a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62ac8b04cbadc40345b299a6b531f25d05c">GyroIntegratedRV</a> = 0x2A
+&#160;&#160;<a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a0978ef43fad0c80bfa0629706f37bc7b">BNO085Sensor::HeartRateMonitor</a> = 0x23
+, <a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a5f78b93803f5d02a6b414b4b6e1637df">BNO085Sensor::ARVRStabilizedRV</a> = 0x28
+, <a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62adda6de7569af6fe8301ee3807a69a988">BNO085Sensor::ARVRStabilizedGameRV</a> = 0x29
+, <a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62ac8b04cbadc40345b299a6b531f25d05c">BNO085Sensor::GyroIntegratedRV</a> = 0x2A
 <br />
  }</td></tr>
-<tr class="memdesc:a6f9f2bf1fa157ce63dacb450d5df6c62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifiers for all sensor reports supported by the BNO08x.  <a href="#a6f9f2bf1fa157ce63dacb450d5df6c62">More...</a><br /></td></tr>
-<tr class="separator:a6f9f2bf1fa157ce63dacb450d5df6c62"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e8d3cde9f9e6ea515f5db028614f03b" id="r_a1e8d3cde9f9e6ea515f5db028614f03b"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1e8d3cde9f9e6ea515f5db028614f03b">BNO085Interface</a> : uint8_t { <a class="el" href="#a1e8d3cde9f9e6ea515f5db028614f03bafb87bf1fc88386ca21395991f90fff95">I2C</a>
-, <a class="el" href="#a1e8d3cde9f9e6ea515f5db028614f03ba0199b53c4dd041296fde19fca9713e7d">UARTRVC</a>
-, <a class="el" href="#a1e8d3cde9f9e6ea515f5db028614f03bacec5769b01fb096efaf0d6186823c78f">UART</a>
-, <a class="el" href="#a1e8d3cde9f9e6ea515f5db028614f03ba33dc5312b091968f5a120c2484d40df8">SPI</a>
- }</td></tr>
-<tr class="memdesc:a1e8d3cde9f9e6ea515f5db028614f03b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Host interface selection via PS pins.  <a href="#a1e8d3cde9f9e6ea515f5db028614f03b">More...</a><br /></td></tr>
-<tr class="separator:a1e8d3cde9f9e6ea515f5db028614f03b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ga6f9f2bf1fa157ce63dacb450d5df6c62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifiers for all SH-2 sensor reports supported by the BNO08x.  <a href="group__SensorTypes.html#ga6f9f2bf1fa157ce63dacb450d5df6c62">More...</a><br /></td></tr>
+<tr class="separator:ga6f9f2bf1fa157ce63dacb450d5df6c62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a169e52b3509b7e23c9a7f630e9156c11" id="r_a169e52b3509b7e23c9a7f630e9156c11"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="HcBin_8h.html#a8b8c363f76941613f85a73d23a2a1455">HcBin_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a169e52b3509b7e23c9a7f630e9156c11">firmware</a></td></tr>
+<tr class="memdesc:a169e52b3509b7e23c9a7f630e9156c11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default compiled-in firmware image for DFU.  <br /></td></tr>
+<tr class="separator:a169e52b3509b7e23c9a7f630e9156c11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>High level C++ interface for the BNO08x IMU family. </p>
-<p>This header declares the <a class="el" href="classBNO085.html" title="High level driver for the BNO08x IMU.">BNO085</a> class which wraps the vendor supplied SH-2 driver. It also defines small helper structures used to represent sensor values in a user friendly form. </p>
+<div class="textblock"><p>High-level C++ driver for the BNO08x 9-axis IMU family. </p>
+<p>This header declares the <a class="el" href="classBNO085.html" title="Unified driver for the BNO08x IMU – SH-2 mode, RVC mode, and DFU.">BNO085</a> template class &ndash; a complete, self-contained driver for the Hillcrest/CEVA BNO080, <a class="el" href="classBNO085.html" title="Unified driver for the BNO08x IMU – SH-2 mode, RVC mode, and DFU.">BNO085</a>, and BNO086 sensors. It wraps the vendor-supplied SH-2 (Sensor Hub 2) C library and adds:</p>
+<ul>
+<li><b>SH-2 Mode</b> &ndash; Full access to all 30+ sensor reports (rotation vectors, accelerometer, gyroscope, magnetometer, step counter, gestures, etc.) via I2C, SPI, or UART.</li>
+<li><b>RVC Mode</b> &ndash; Simplified orientation data (yaw/pitch/roll + acceleration) via UART at 115200 baud. The driver reads raw bytes and parses the 19-byte RVC frames internally.</li>
+<li><b>DFU</b> &ndash; Device Firmware Update support with CRC-16, ACK/NAK retry, and firmware validation.</li>
+</ul>
+<p>The transport is provided via a CRTP-based CommInterface template parameter. Each transport reports its type via <code>GetInterfaceType()</code>, and the driver guards mode-specific operations accordingly.</p>
+<h3><a class="anchor" id="autotoc_md1"></a>
+Quick Start (SH-2 Mode)</h3>
+<div class="fragment"><div class="line"><a class="code hl_class" href="classEsp32Bno08xBus.html">Esp32Bno08xBus</a> bus(config);</div>
+<div class="line"><a class="code hl_class" href="classBNO085.html">BNO085&lt;Esp32Bno08xBus&gt;</a> imu(bus);</div>
+<div class="line">imu.Begin();</div>
+<div class="line">imu.EnableSensor(<a class="code hl_enumvalue" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a93885b92407df28cbbeae6691819875a">BNO085Sensor::RotationVector</a>, 10);</div>
+<div class="line">imu.SetCallback([](<span class="keyword">const</span> <a class="code hl_struct" href="structSensorEvent.html">SensorEvent</a>&amp; e) { ... });</div>
+<div class="line"><span class="keywordflow">while</span> (<span class="keyword">true</span>) { imu.Update(); }</div>
+<div class="ttc" id="aclassBNO085_html"><div class="ttname"><a href="classBNO085.html">BNO085</a></div><div class="ttdoc">Unified driver for the BNO08x IMU – SH-2 mode, RVC mode, and DFU.</div><div class="ttdef"><b>Definition</b> bno08x.hpp:266</div></div>
+<div class="ttc" id="aclassEsp32Bno08xBus_html"><div class="ttname"><a href="classEsp32Bno08xBus.html">Esp32Bno08xBus</a></div><div class="ttdoc">ESP32 implementation of bno08x::CommInterface using ESP-IDF I2C master driver.</div><div class="ttdef"><b>Definition</b> esp32_bno08x_bus.hpp:63</div></div>
+<div class="ttc" id="agroup__SensorTypes_html_gga6f9f2bf1fa157ce63dacb450d5df6c62a93885b92407df28cbbeae6691819875a"><div class="ttname"><a href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a93885b92407df28cbbeae6691819875a">BNO085Sensor::RotationVector</a></div><div class="ttdeci">@ RotationVector</div><div class="ttdoc">Fused absolute orientation quaternion.</div></div>
+<div class="ttc" id="astructSensorEvent_html"><div class="ttname"><a href="structSensorEvent.html">SensorEvent</a></div><div class="ttdoc">Container for a single decoded SH-2 sensor report.</div><div class="ttdef"><b>Definition</b> bno08x.hpp:172</div></div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md2"></a>
+Quick Start (RVC Mode)</h3>
+<div class="fragment"><div class="line"><a class="code hl_class" href="classEsp32UartRvcBus.html">Esp32UartRvcBus</a> uart(config);</div>
+<div class="line"><a class="code hl_class" href="classBNO085.html">BNO085&lt;Esp32UartRvcBus&gt;</a> imu(uart);</div>
+<div class="line">imu.SetRvcCallback([](<span class="keyword">const</span> <a class="code hl_struct" href="structRvcSensorValue.html">RvcSensorValue</a>&amp; v) { ... });</div>
+<div class="line">imu.BeginRvc();</div>
+<div class="line"><span class="keywordflow">while</span> (<span class="keyword">true</span>) { imu.ServiceRvc(); }</div>
+<div class="ttc" id="aclassEsp32UartRvcBus_html"><div class="ttname"><a href="classEsp32UartRvcBus.html">Esp32UartRvcBus</a></div><div class="ttdoc">ESP32 UART CommInterface for BNO08x RVC mode.</div><div class="ttdef"><b>Definition</b> esp32_uart_rvc_bus.hpp:50</div></div>
+<div class="ttc" id="astructRvcSensorValue_html"><div class="ttname"><a href="structRvcSensorValue.html">RvcSensorValue</a></div><div class="ttdoc">Decoded RVC frame data in floating-point natural units.</div><div class="ttdef"><b>Definition</b> bno08x.hpp:211</div></div>
+</div><!-- fragment --><dl class="section author"><dt>Author</dt><dd>Nebiyu Tadesse </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2025 </dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>HardFOC &ndash; GNU GPL v3.0 (C++ wrapper); CEVA Apache 2.0 (SH-2 backend)</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="bno08x__comm__interface_8hpp.html" title="CRTP-based communication interface for the BNO08x IMU family.">bno08x_comm_interface.hpp</a> CommInterface CRTP base class. </dd>
+<dd>
+<a class="el" href="MemoryFirmware_8hpp.html">dfu/MemoryFirmware.hpp</a> Runtime <a class="el" href="#a169e52b3509b7e23c9a7f630e9156c11" title="Default compiled-in firmware image for DFU.">firmware</a> image for DFU. </dd></dl>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a960dacf85103d71ad3fb2dc7cde80617" name="a960dacf85103d71ad3fb2dc7cde80617"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a960dacf85103d71ad3fb2dc7cde80617">&#9670;&#160;</a></span>BNO085_HEADER_INCLUDED</h2>
@@ -265,47 +306,16 @@ Enumerations</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">define</a> BNO085_HEADER_INCLUDED</td>
+          <td class="memname">#define BNO085_HEADER_INCLUDED</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<h2 class="groupheader">Typedef Documentation</h2>
-<a id="aa57bd22f61b6b51eb9f2585fae4e2d61" name="aa57bd22f61b6b51eb9f2585fae4e2d61"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa57bd22f61b6b51eb9f2585fae4e2d61">&#9670;&#160;</a></span>RvcCallback</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">using</a> <a class="el" href="#aa57bd22f61b6b51eb9f2585fae4e2d61">RvcCallback</a> = <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">std::function</a>&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">void</a>(<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">const</a> <a class="el" href="rvc_8h.html#a12562344c050d5105e83a29522841266">rvc_SensorValue_t</a>&amp;)&gt;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Callback type for decoded RVC frames. </p>
-
-</div>
-</div>
-<a id="ae10cac53e8962550a2efb17043c5355e" name="ae10cac53e8962550a2efb17043c5355e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae10cac53e8962550a2efb17043c5355e">&#9670;&#160;</a></span>SensorCallback</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">using</a> <a class="el" href="#ae10cac53e8962550a2efb17043c5355e">SensorCallback</a> = <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">std::function</a>&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">void</a>(<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">const</a> <a class="el" href="structSensorEvent.html">SensorEvent</a>&amp;)&gt;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Callback type invoked when a new <a class="el" href="structSensorEvent.html" title="Container for a single sensor report.">SensorEvent</a> is received. </p>
-
-</div>
-</div>
-<h2 class="groupheader">Enumeration Type Documentation</h2>
-<a id="a1e8d3cde9f9e6ea515f5db028614f03b" name="a1e8d3cde9f9e6ea515f5db028614f03b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1e8d3cde9f9e6ea515f5db028614f03b">&#9670;&#160;</a></span>BNO085Interface</h2>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a169e52b3509b7e23c9a7f630e9156c11" name="a169e52b3509b7e23c9a7f630e9156c11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a169e52b3509b7e23c9a7f630e9156c11">&#9670;&#160;</a></span>firmware</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -314,125 +324,18 @@ Enumerations</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">enum</a> <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">class</a> <a class="el" href="#a1e8d3cde9f9e6ea515f5db028614f03b">BNO085Interface</a> : <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">uint8_t</a></td>
+          <td class="memname">const <a class="el" href="HcBin_8h.html#a8b8c363f76941613f85a73d23a2a1455">HcBin_t</a> firmware</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Host interface selection via PS pins. </p>
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a1e8d3cde9f9e6ea515f5db028614f03bafb87bf1fc88386ca21395991f90fff95" name="a1e8d3cde9f9e6ea515f5db028614f03bafb87bf1fc88386ca21395991f90fff95"></a>I2C&#160;</td><td class="fielddoc"><p>PS1=0, PS0=0. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a1e8d3cde9f9e6ea515f5db028614f03ba0199b53c4dd041296fde19fca9713e7d" name="a1e8d3cde9f9e6ea515f5db028614f03ba0199b53c4dd041296fde19fca9713e7d"></a>UARTRVC&#160;</td><td class="fielddoc"><p>PS1=1, PS0=0. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a1e8d3cde9f9e6ea515f5db028614f03bacec5769b01fb096efaf0d6186823c78f" name="a1e8d3cde9f9e6ea515f5db028614f03bacec5769b01fb096efaf0d6186823c78f"></a>UART&#160;</td><td class="fielddoc"><p>PS1=0, PS0=1. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a1e8d3cde9f9e6ea515f5db028614f03ba33dc5312b091968f5a120c2484d40df8" name="a1e8d3cde9f9e6ea515f5db028614f03ba33dc5312b091968f5a120c2484d40df8"></a>SPI&#160;</td><td class="fielddoc"><p>PS1=1, PS0=1. </p>
-</td></tr>
-</table>
-
-</div>
-</div>
-<a id="a6f9f2bf1fa157ce63dacb450d5df6c62" name="a6f9f2bf1fa157ce63dacb450d5df6c62"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6f9f2bf1fa157ce63dacb450d5df6c62">&#9670;&#160;</a></span>BNO085Sensor</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">enum</a> <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">class</a> <a class="el" href="#a6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a> : <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">uint8_t</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Identifiers for all sensor reports supported by the BNO08x. </p>
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a6f9f2bf1fa157ce63dacb450d5df6c62ab043bc6d611582087d8bf1790d863d69" name="a6f9f2bf1fa157ce63dacb450d5df6c62ab043bc6d611582087d8bf1790d863d69"></a>Accelerometer&#160;</td><td class="fielddoc"><p>Calibrated acceleration vector. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6f9f2bf1fa157ce63dacb450d5df6c62abed99e5db57749f375e738c1c0258047" name="a6f9f2bf1fa157ce63dacb450d5df6c62abed99e5db57749f375e738c1c0258047"></a>Gyroscope&#160;</td><td class="fielddoc"><p>Calibrated angular velocity. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6f9f2bf1fa157ce63dacb450d5df6c62a9e9fa52e0aa4a2b519f8287760d7c3ac" name="a6f9f2bf1fa157ce63dacb450d5df6c62a9e9fa52e0aa4a2b519f8287760d7c3ac"></a>Magnetometer&#160;</td><td class="fielddoc"><p>Calibrated magnetic field. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6f9f2bf1fa157ce63dacb450d5df6c62aba31d10f1d09d6cf847178cb2d7350d6" name="a6f9f2bf1fa157ce63dacb450d5df6c62aba31d10f1d09d6cf847178cb2d7350d6"></a>LinearAcceleration&#160;</td><td class="fielddoc"><p>Acceleration minus gravity. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6f9f2bf1fa157ce63dacb450d5df6c62a93885b92407df28cbbeae6691819875a" name="a6f9f2bf1fa157ce63dacb450d5df6c62a93885b92407df28cbbeae6691819875a"></a>RotationVector&#160;</td><td class="fielddoc"><p>Fused orientation quaternion. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6f9f2bf1fa157ce63dacb450d5df6c62a8a88c39cef668fb55f188af09665bd40" name="a6f9f2bf1fa157ce63dacb450d5df6c62a8a88c39cef668fb55f188af09665bd40"></a>Gravity&#160;</td><td class="fielddoc"><p>Gravity vector. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6f9f2bf1fa157ce63dacb450d5df6c62a21dfaf4e5263130288d52ac111a7d405" name="a6f9f2bf1fa157ce63dacb450d5df6c62a21dfaf4e5263130288d52ac111a7d405"></a>GyroUncalibrated&#160;</td><td class="fielddoc"><p>Raw angular velocity. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6f9f2bf1fa157ce63dacb450d5df6c62aca24a6438653bfeb8c3dc5380a3513ec" name="a6f9f2bf1fa157ce63dacb450d5df6c62aca24a6438653bfeb8c3dc5380a3513ec"></a>GameRotationVector&#160;</td><td class="fielddoc"><p>Orientation without heading. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6f9f2bf1fa157ce63dacb450d5df6c62a7ced3a0bfca67cdc57bd3c16fc06284e" name="a6f9f2bf1fa157ce63dacb450d5df6c62a7ced3a0bfca67cdc57bd3c16fc06284e"></a>GeomagneticRotationVector&#160;</td><td class="fielddoc"><p>Fused orientation using magnetometer. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6f9f2bf1fa157ce63dacb450d5df6c62aa78578c428179b490a0461e76ba5f319" name="a6f9f2bf1fa157ce63dacb450d5df6c62aa78578c428179b490a0461e76ba5f319"></a>Pressure&#160;</td><td class="fielddoc"><p>Barometric pressure. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6f9f2bf1fa157ce63dacb450d5df6c62a9de31d14fe78730b3fd5ce633a2da711" name="a6f9f2bf1fa157ce63dacb450d5df6c62a9de31d14fe78730b3fd5ce633a2da711"></a>AmbientLight&#160;</td><td class="fielddoc"><p>Ambient light level. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6f9f2bf1fa157ce63dacb450d5df6c62addab800b54d009aa0408ebb9a4ee418d" name="a6f9f2bf1fa157ce63dacb450d5df6c62addab800b54d009aa0408ebb9a4ee418d"></a>Humidity&#160;</td><td class="fielddoc"><p>Relative humidity. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6f9f2bf1fa157ce63dacb450d5df6c62af8dfb524e6ddea9129cc2f955d55db19" name="a6f9f2bf1fa157ce63dacb450d5df6c62af8dfb524e6ddea9129cc2f955d55db19"></a>Proximity&#160;</td><td class="fielddoc"><p>Proximity detector. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6f9f2bf1fa157ce63dacb450d5df6c62aee7a8e262285ed49ea1b4e4ae11525bd" name="a6f9f2bf1fa157ce63dacb450d5df6c62aee7a8e262285ed49ea1b4e4ae11525bd"></a>Temperature&#160;</td><td class="fielddoc"><p>Temperature sensor. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6f9f2bf1fa157ce63dacb450d5df6c62a0ce1faa0e7e87ad1d7355564753812c7" name="a6f9f2bf1fa157ce63dacb450d5df6c62a0ce1faa0e7e87ad1d7355564753812c7"></a>MagneticFieldUncalibrated&#160;</td><td class="fielddoc"><p>Raw magnetic field. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6f9f2bf1fa157ce63dacb450d5df6c62aa4481d296202d542e1d64326d139b105" name="a6f9f2bf1fa157ce63dacb450d5df6c62aa4481d296202d542e1d64326d139b105"></a>TapDetector&#160;</td><td class="fielddoc"><p>Single or double tap event. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6f9f2bf1fa157ce63dacb450d5df6c62a813bf9f9ff76be55d85361ae7f5da7de" name="a6f9f2bf1fa157ce63dacb450d5df6c62a813bf9f9ff76be55d85361ae7f5da7de"></a>StepCounter&#160;</td><td class="fielddoc"><p>Step counter. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6f9f2bf1fa157ce63dacb450d5df6c62a975bf8c0c5278ae9474fec58ba3700e2" name="a6f9f2bf1fa157ce63dacb450d5df6c62a975bf8c0c5278ae9474fec58ba3700e2"></a>SignificantMotion&#160;</td><td class="fielddoc"><p>Significant motion event. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6f9f2bf1fa157ce63dacb450d5df6c62aad8009bd69ab44ea8de9567ea92adcf8" name="a6f9f2bf1fa157ce63dacb450d5df6c62aad8009bd69ab44ea8de9567ea92adcf8"></a>StabilityClassifier&#160;</td><td class="fielddoc"><p>Device stability state. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6f9f2bf1fa157ce63dacb450d5df6c62add5c9344d03c3cc78b972ecda597492a" name="a6f9f2bf1fa157ce63dacb450d5df6c62add5c9344d03c3cc78b972ecda597492a"></a>RawAccelerometer&#160;</td><td class="fielddoc"><p>Raw accelerometer data. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6f9f2bf1fa157ce63dacb450d5df6c62af452cd954e81a69ff37635830efcfba7" name="a6f9f2bf1fa157ce63dacb450d5df6c62af452cd954e81a69ff37635830efcfba7"></a>RawGyroscope&#160;</td><td class="fielddoc"><p>Raw gyroscope data. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6f9f2bf1fa157ce63dacb450d5df6c62aa2b148a97534cb95774ba27dd0599e3a" name="a6f9f2bf1fa157ce63dacb450d5df6c62aa2b148a97534cb95774ba27dd0599e3a"></a>RawMagnetometer&#160;</td><td class="fielddoc"><p>Raw magnetometer data. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6f9f2bf1fa157ce63dacb450d5df6c62a2f52ce382545c872c8a270c2c81e02f8" name="a6f9f2bf1fa157ce63dacb450d5df6c62a2f52ce382545c872c8a270c2c81e02f8"></a>StepDetector&#160;</td><td class="fielddoc"><p>Step detected event. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6f9f2bf1fa157ce63dacb450d5df6c62a4cb8f643cb530cbfba0cf2a488ab6bc4" name="a6f9f2bf1fa157ce63dacb450d5df6c62a4cb8f643cb530cbfba0cf2a488ab6bc4"></a>ShakeDetector&#160;</td><td class="fielddoc"><p>Shake gesture event. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6f9f2bf1fa157ce63dacb450d5df6c62a7e88095cab76d9236896e968bc5bb12f" name="a6f9f2bf1fa157ce63dacb450d5df6c62a7e88095cab76d9236896e968bc5bb12f"></a>FlipDetector&#160;</td><td class="fielddoc"><p>Flip gesture event. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6f9f2bf1fa157ce63dacb450d5df6c62a5821887f8c70cb00c9b729a1382e0542" name="a6f9f2bf1fa157ce63dacb450d5df6c62a5821887f8c70cb00c9b729a1382e0542"></a>PickupDetector&#160;</td><td class="fielddoc"><p>Pickup gesture event. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6f9f2bf1fa157ce63dacb450d5df6c62ac049919dd5791fb90ebe0667030c6b58" name="a6f9f2bf1fa157ce63dacb450d5df6c62ac049919dd5791fb90ebe0667030c6b58"></a>StabilityDetector&#160;</td><td class="fielddoc"><p>Stability detected event. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6f9f2bf1fa157ce63dacb450d5df6c62a2b4e0d3abe04221e7194c853e48ec82b" name="a6f9f2bf1fa157ce63dacb450d5df6c62a2b4e0d3abe04221e7194c853e48ec82b"></a>PersonalActivityClassifier&#160;</td><td class="fielddoc"><p>Activity classification. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6f9f2bf1fa157ce63dacb450d5df6c62a8c80d5cca9a487fc82a7375cfe802b28" name="a6f9f2bf1fa157ce63dacb450d5df6c62a8c80d5cca9a487fc82a7375cfe802b28"></a>SleepDetector&#160;</td><td class="fielddoc"><p>Sleep state. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6f9f2bf1fa157ce63dacb450d5df6c62aa05b37781bf6d88e0c9d772fe469b014" name="a6f9f2bf1fa157ce63dacb450d5df6c62aa05b37781bf6d88e0c9d772fe469b014"></a>TiltDetector&#160;</td><td class="fielddoc"><p>Tilt event. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6f9f2bf1fa157ce63dacb450d5df6c62afe8d9948c1edf85a18f8ad4aba5baad4" name="a6f9f2bf1fa157ce63dacb450d5df6c62afe8d9948c1edf85a18f8ad4aba5baad4"></a>PocketDetector&#160;</td><td class="fielddoc"><p>Device is in pocket. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6f9f2bf1fa157ce63dacb450d5df6c62a6069a5e8bc2cdb88048a7ef10abfdf9d" name="a6f9f2bf1fa157ce63dacb450d5df6c62a6069a5e8bc2cdb88048a7ef10abfdf9d"></a>CircleDetector&#160;</td><td class="fielddoc"><p>Circular motion. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6f9f2bf1fa157ce63dacb450d5df6c62a0978ef43fad0c80bfa0629706f37bc7b" name="a6f9f2bf1fa157ce63dacb450d5df6c62a0978ef43fad0c80bfa0629706f37bc7b"></a>HeartRateMonitor&#160;</td><td class="fielddoc"><p>Heart rate monitor data. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6f9f2bf1fa157ce63dacb450d5df6c62a5f78b93803f5d02a6b414b4b6e1637df" name="a6f9f2bf1fa157ce63dacb450d5df6c62a5f78b93803f5d02a6b414b4b6e1637df"></a>ARVRStabilizedRV&#160;</td><td class="fielddoc"><p>Stabilized rotation vector. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6f9f2bf1fa157ce63dacb450d5df6c62adda6de7569af6fe8301ee3807a69a988" name="a6f9f2bf1fa157ce63dacb450d5df6c62adda6de7569af6fe8301ee3807a69a988"></a>ARVRStabilizedGameRV&#160;</td><td class="fielddoc"><p>Stabilized game rotation vector. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a6f9f2bf1fa157ce63dacb450d5df6c62ac8b04cbadc40345b299a6b531f25d05c" name="a6f9f2bf1fa157ce63dacb450d5df6c62ac8b04cbadc40345b299a6b531f25d05c"></a>GyroIntegratedRV&#160;</td><td class="fielddoc"><p>Gyro integrated rotation vector. </p>
-</td></tr>
-</table>
+<p>Default compiled-in firmware image for DFU. </p>
+<p>Defined in <code><a class="el" href="firmware-bno_8c.html">firmware-bno.c</a></code>. Contains a stub by default; replace with a real BNO08x firmware binary for production DFU. Alternatively, use <a class="el" href="classMemoryFirmware.html" title="HcBin_t implementation for firmware stored in memory.">MemoryFirmware</a> for runtime-provided images. </p>
 
 </div>
 </div>

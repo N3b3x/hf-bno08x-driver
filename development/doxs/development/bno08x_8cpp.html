@@ -135,19 +135,14 @@ $(function(){initNavTree('bno08x_8cpp.html',''); initResizable(); });
 </div><!--header-->
 <div class="contents">
 
-<p>Template implementation of the BNO08x C++ driver.  
+<p>Template method implementations for the <a class="el" href="classBNO085.html" title="Unified driver for the BNO08x IMU – SH-2 mode, RVC mode, and DFU.">BNO085</a> driver class.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="bno08x_8hpp_source.html">bno08x.hpp</a>&quot;</code><br />
 <code>#include &lt;algorithm&gt;</code><br />
-<code>#include &quot;sh2.h&quot;</code><br />
-<code>#include &quot;sh2_SensorValue.h&quot;</code><br />
-<code>#include &quot;sh2_err.h&quot;</code><br />
-<code>#include &quot;<a class="el" href="HalTransport_8hpp_source.html">dfu/HalTransport.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="dfu_8h_source.html">dfu/dfu.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for bno08x.cpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="bno08x_8cpp__incl.svg" width="1436" height="403"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="bno08x_8cpp__incl.svg" width="1114" height="256"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
@@ -157,8 +152,17 @@ This graph shows which files directly or indirectly include this file:</div>
 </div>
 <p><a href="bno08x_8cpp_source.html">Go to the source code of this file.</a></p>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Template implementation of the BNO08x C++ driver. </p>
-<p>This file contains the template method implementations for BNO08x. It is included by <a class="el" href="bno08x_8hpp.html" title="High level C++ interface for the BNO08x IMU family.">bno08x.hpp</a> when BNO085_HEADER_INCLUDED is defined. </p>
+<div class="textblock"><p>Template method implementations for the <a class="el" href="classBNO085.html" title="Unified driver for the BNO08x IMU – SH-2 mode, RVC mode, and DFU.">BNO085</a> driver class. </p>
+<p>This file is <b>not</b> compiled directly. It is <code>#include</code>d from <code><a class="el" href="bno08x_8hpp.html" title="High-level C++ driver for the BNO08x 9-axis IMU family.">bno08x.hpp</a></code> with a header guard so the compiler can instantiate the template methods for any user-provided CommType.</p>
+<p>The file is organised into four sections:</p><ol type="1">
+<li><b>SH-2 Mode</b> &ndash; Sensor Hub 2 protocol (Begin, Update, sensor config)</li>
+<li><b>Pin Control</b> &ndash; HardwareReset, SetBootPin, etc.</li>
+<li><b>RVC Mode</b> &ndash; UART frame parser and callback dispatch</li>
+<li><b>DFU</b> &ndash; Device Firmware Update protocol with CRC + retry</li>
+</ol>
+<dl class="section author"><dt>Author</dt><dd>Nebiyu Tadesse </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2025 </dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>HardFOC &ndash; GNU GPL v3.0 </dd></dl>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

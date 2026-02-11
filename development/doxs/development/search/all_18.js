@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['z_0',['z',['../structVector3.html#aa8c9461eb24bd2c364258078811a3e9d',1,'Vector3::z'],['../structQuaternion.html#a625cb732d8ff3083e7852b86b736ab29',1,'Quaternion::z']]]
+  ['y_0',['y',['../structVector3.html#a86eb35a9fa2d5a49e7fad66a35fa9c13',1,'Vector3::y'],['../structQuaternion.html#a3bd3f270462944423611f44e19d2511b',1,'Quaternion::y']]],
+  ['yaw_1',['yaw',['../structRvcSensorEvent.html#a1049aef68246a59ad1e33ca12543c501',1,'RvcSensorEvent']]],
+  ['yaw_5fdeg_2',['yaw_deg',['../structRvcSensorValue.html#a2b252cc9ee306102bede2c0c26a2e90a',1,'RvcSensorValue']]]
 ];

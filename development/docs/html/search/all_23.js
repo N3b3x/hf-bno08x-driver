@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['🔌_0',['Hardware Wiring 🔌',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md#autotoc_md22',1,'']]]
+  ['🤝_20contributing_0',['🤝 Contributing',['../index.html#autotoc_md15',1,'']]]
 ];

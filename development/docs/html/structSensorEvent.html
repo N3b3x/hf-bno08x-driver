@@ -134,11 +134,11 @@ $(function(){initNavTree('structSensorEvent.html',''); initResizable(); });
   <div class="summary">
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="structSensorEvent-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">SensorEvent Struct Reference</div></div>
+  <div class="headertitle"><div class="title">SensorEvent Struct Reference<div class="ingroups"><a class="el" href="group__SensorTypes.html">Sensor Types and Data Structures</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Container for a single sensor report.  
+<p>Container for a single decoded SH-2 sensor report.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="bno08x_8hpp_source.html">bno08x.hpp</a>&gt;</code></p>
@@ -150,30 +150,31 @@ Collaboration diagram for SensorEvent:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a2a6ead14a1676d5412cf9ec6b4986d62" id="r_a2a6ead14a1676d5412cf9ec6b4986d62"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2a6ead14a1676d5412cf9ec6b4986d62">sensor</a> {<a class="el" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62ab043bc6d611582087d8bf1790d863d69">BNO085Sensor::Accelerometer</a>}</td></tr>
-<tr class="memdesc:a2a6ead14a1676d5412cf9ec6b4986d62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Source sensor ID.  <br /></td></tr>
+<tr class="memitem:a2a6ead14a1676d5412cf9ec6b4986d62" id="r_a2a6ead14a1676d5412cf9ec6b4986d62"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__SensorTypes.html#ga6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2a6ead14a1676d5412cf9ec6b4986d62">sensor</a> {<a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62ab043bc6d611582087d8bf1790d863d69">BNO085Sensor::Accelerometer</a>}</td></tr>
+<tr class="memdesc:a2a6ead14a1676d5412cf9ec6b4986d62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Which sensor produced this event.  <br /></td></tr>
 <tr class="separator:a2a6ead14a1676d5412cf9ec6b4986d62"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a29d1ebdb0142e4d6d885989af39025c7" id="r_a29d1ebdb0142e4d6d885989af39025c7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">uint64_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a29d1ebdb0142e4d6d885989af39025c7">timestamp</a> {0}</td></tr>
-<tr class="memdesc:a29d1ebdb0142e4d6d885989af39025c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time in microseconds.  <br /></td></tr>
+<tr class="memitem:a29d1ebdb0142e4d6d885989af39025c7" id="r_a29d1ebdb0142e4d6d885989af39025c7"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a29d1ebdb0142e4d6d885989af39025c7">timestamp</a> {0}</td></tr>
+<tr class="memdesc:a29d1ebdb0142e4d6d885989af39025c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Event timestamp in microseconds.  <br /></td></tr>
 <tr class="separator:a29d1ebdb0142e4d6d885989af39025c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c2354749dcfa8711c7aa27386e3fd1e" id="r_a8c2354749dcfa8711c7aa27386e3fd1e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c2354749dcfa8711c7aa27386e3fd1e">vector</a> {}</td></tr>
-<tr class="memdesc:a8c2354749dcfa8711c7aa27386e3fd1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">3‑axis data  <br /></td></tr>
+<tr class="memdesc:a8c2354749dcfa8711c7aa27386e3fd1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">3-axis data (accelerometer, gyro, mag, etc.)  <br /></td></tr>
 <tr class="separator:a8c2354749dcfa8711c7aa27386e3fd1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad454d6a66ced867d579a2af0f5a5e2f4" id="r_ad454d6a66ced867d579a2af0f5a5e2f4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structQuaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad454d6a66ced867d579a2af0f5a5e2f4">rotation</a> {}</td></tr>
-<tr class="memdesc:ad454d6a66ced867d579a2af0f5a5e2f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Orientation data.  <br /></td></tr>
+<tr class="memdesc:ad454d6a66ced867d579a2af0f5a5e2f4"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structQuaternion.html" title="Unit quaternion with sensor accuracy indicator.">Quaternion</a> data (rotation vectors)  <br /></td></tr>
 <tr class="separator:ad454d6a66ced867d579a2af0f5a5e2f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6125d2b613fa4b9e868242856d4e21de" id="r_a6125d2b613fa4b9e868242856d4e21de"><td class="memItemLeft" align="right" valign="top"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6125d2b613fa4b9e868242856d4e21de">stepCount</a> {0}</td></tr>
-<tr class="memdesc:a6125d2b613fa4b9e868242856d4e21de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Step counter value.  <br /></td></tr>
+<tr class="memitem:a6125d2b613fa4b9e868242856d4e21de" id="r_a6125d2b613fa4b9e868242856d4e21de"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6125d2b613fa4b9e868242856d4e21de">stepCount</a> {0}</td></tr>
+<tr class="memdesc:a6125d2b613fa4b9e868242856d4e21de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cumulative step count (StepCounter only)  <br /></td></tr>
 <tr class="separator:a6125d2b613fa4b9e868242856d4e21de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6cd220259938450e447985088f9d8e6d" id="r_a6cd220259938450e447985088f9d8e6d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structTapEvent.html">TapEvent</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6cd220259938450e447985088f9d8e6d">tap</a> {}</td></tr>
-<tr class="memdesc:a6cd220259938450e447985088f9d8e6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tap detector info.  <br /></td></tr>
+<tr class="memdesc:a6cd220259938450e447985088f9d8e6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tap event details (TapDetector only)  <br /></td></tr>
 <tr class="separator:a6cd220259938450e447985088f9d8e6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3092021165f76aee6ff1ad92324236a2" id="r_a3092021165f76aee6ff1ad92324236a2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3092021165f76aee6ff1ad92324236a2">detected</a> {<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">false</a>}</td></tr>
-<tr class="memdesc:a3092021165f76aee6ff1ad92324236a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic detection flag.  <br /></td></tr>
+<tr class="memitem:a3092021165f76aee6ff1ad92324236a2" id="r_a3092021165f76aee6ff1ad92324236a2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3092021165f76aee6ff1ad92324236a2">detected</a> {false}</td></tr>
+<tr class="memdesc:a3092021165f76aee6ff1ad92324236a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic detection flag (tap, shake, etc.)  <br /></td></tr>
 <tr class="separator:a3092021165f76aee6ff1ad92324236a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Container for a single sensor report. </p>
+<div class="textblock"><p>Container for a single decoded SH-2 sensor report. </p>
+<p>Which fields are populated depends on the sensor type. Quaternion-based sensors fill <code>rotation</code>; vector-based sensors fill <code>vector</code>; step counter fills <code>stepCount</code>; tap detector fills <code>tap</code> and <code>detected</code>. </p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
 <a id="a3092021165f76aee6ff1ad92324236a2" name="a3092021165f76aee6ff1ad92324236a2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3092021165f76aee6ff1ad92324236a2">&#9670;&#160;</a></span>detected</h2>
@@ -182,12 +183,12 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">bool</a> SensorEvent::detected {<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">false</a>}</td>
+          <td class="memname">bool SensorEvent::detected {false}</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Generic detection flag. </p>
+<p>Generic detection flag (tap, shake, etc.) </p>
 
 </div>
 </div>
@@ -203,7 +204,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Orientation data. </p>
+<p><a class="el" href="structQuaternion.html" title="Unit quaternion with sensor accuracy indicator.">Quaternion</a> data (rotation vectors) </p>
 
 </div>
 </div>
@@ -214,12 +215,12 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a> SensorEvent::sensor {<a class="el" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62ab043bc6d611582087d8bf1790d863d69">BNO085Sensor::Accelerometer</a>}</td>
+          <td class="memname"><a class="el" href="group__SensorTypes.html#ga6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a> SensorEvent::sensor {<a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62ab043bc6d611582087d8bf1790d863d69">BNO085Sensor::Accelerometer</a>}</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Source sensor ID. </p>
+<p>Which sensor produced this event. </p>
 
 </div>
 </div>
@@ -230,12 +231,12 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">uint32_t</a> SensorEvent::stepCount {0}</td>
+          <td class="memname">uint32_t SensorEvent::stepCount {0}</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Step counter value. </p>
+<p>Cumulative step count (StepCounter only) </p>
 
 </div>
 </div>
@@ -251,7 +252,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Tap detector info. </p>
+<p>Tap event details (TapDetector only) </p>
 
 </div>
 </div>
@@ -262,12 +263,12 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">uint64_t</a> SensorEvent::timestamp {0}</td>
+          <td class="memname">uint64_t SensorEvent::timestamp {0}</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Time in microseconds. </p>
+<p>Event timestamp in microseconds. </p>
 
 </div>
 </div>
@@ -283,7 +284,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>3‑axis data </p>
+<p>3-axis data (accelerometer, gyro, mag, etc.) </p>
 
 </div>
 </div>

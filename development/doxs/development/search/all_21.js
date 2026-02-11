@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['🚀_20quick_20start_0',['🚀 Quick Start',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md#autotoc_md13',1,'']]]
+  ['🔧_20installation_0',['🔧 Installation',['../index.html#autotoc_md10',1,'']]]
 ];

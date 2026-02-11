@@ -1,5 +1,18 @@
 var searchData=
 [
-  ['quaternion_0',['Quaternion',['../structQuaternion.html',1,'']]],
-  ['quick_20start_1',['🚀 Quick Start',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md#autotoc_md13',1,'']]]
+  ['passed_5ftests_0',['passed_tests',['../structTestResults.html#a55b5f813fe7b5863b46e03f2c7f761ea',1,'TestResults']]],
+  ['personalactivityclassifier_1',['PersonalActivityClassifier',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a2b4e0d3abe04221e7194c853e48ec82b',1,'bno08x.hpp']]],
+  ['pickupdetector_2',['PickupDetector',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a5821887f8c70cb00c9b729a1382e0542',1,'bno08x.hpp']]],
+  ['pitch_3',['pitch',['../structRvcSensorEvent.html#a6727c671847aa0fc22dd7657f410cba9',1,'RvcSensorEvent']]],
+  ['pitch_5fdeg_4',['pitch_deg',['../structRvcSensorValue.html#a7fec7ea12712e77efb5141d217a669ab',1,'RvcSensorValue']]],
+  ['pocketdetector_5',['PocketDetector',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62afe8d9948c1edf85a18f8ad4aba5baad4',1,'bno08x.hpp']]],
+  ['port_6',['port',['../structEsp32Bno08xBus_1_1I2CConfig.html#a2fbf7132273980bf1cd3573ac0a91a9f',1,'Esp32Bno08xBus::I2CConfig::port'],['../structEsp32UartRvcBus_1_1UartConfig.html#a157d63b28adfdb6d614ce9a5030eeb64',1,'Esp32UartRvcBus::UartConfig::port']]],
+  ['pressure_7',['Pressure',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62aa78578c428179b490a0461e76ba5f319',1,'bno08x.hpp']]],
+  ['print_5ftest_5fsection_5ffooter_8',['print_test_section_footer',['../TestFramework_8h.html#a5fe4d7658c49a1f3999cd09c0db952c0',1,'TestFramework.h']]],
+  ['print_5ftest_5fsection_5fheader_9',['print_test_section_header',['../TestFramework_8h.html#a5c46ab8dc59b071f0843bc287145d5f1',1,'TestFramework.h']]],
+  ['print_5ftest_5fsection_5fstatus_10',['print_test_section_status',['../TestFramework_8h.html#a200bb35a3a48c625b9cb8d2511d6bd87',1,'TestFramework.h']]],
+  ['print_5ftest_5fsummary_11',['print_test_summary',['../TestFramework_8h.html#ab7e4c076755ecdf2ad6212cb8f6578ab',1,'TestFramework.h']]],
+  ['probe_12',['Probe',['../classEsp32Bno08xBus.html#a19003baf2d0ca8ccb5abb562cb89c5b0',1,'Esp32Bno08xBus']]],
+  ['proximity_13',['Proximity',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62af8dfb524e6ddea9129cc2f955d55db19',1,'bno08x.hpp']]],
+  ['pullup_5fenable_14',['pullup_enable',['../structEsp32Bno08xBus_1_1I2CConfig.html#a9599129d209d9850b753aae9a2e9d296',1,'Esp32Bno08xBus::I2CConfig']]]
 ];

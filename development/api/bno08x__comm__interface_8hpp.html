@@ -133,12 +133,13 @@ $(function(){initNavTree('bno08x__comm__interface_8hpp.html',''); initResizable(
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a>  </div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#enum-members">Enumerations</a>  </div>
   <div class="headertitle"><div class="title">bno08x_comm_interface.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>CRTP-based communication interface for communicating with the <a class="el" href="classBNO085.html" title="High level driver for the BNO08x IMU.">BNO085</a>.  
+<p>CRTP-based communication interface for the BNO08x IMU family.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;cstdint&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -157,33 +158,121 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbno08x_1_1CommInterface.html">bno08x::CommInterface&lt; Derived &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">CRTP-based template interface for <a class="el" href="classBNO085.html" title="High level driver for the BNO08x IMU.">BNO085</a> communication.  <a href="classbno08x_1_1CommInterface.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">CRTP base class for BNO08x communication interfaces.  <a href="classbno08x_1_1CommInterface.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespacebno08x" id="r_namespacebno08x"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebno08x.html">bno08x</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a1e8d3cde9f9e6ea515f5db028614f03b" id="r_a1e8d3cde9f9e6ea515f5db028614f03b"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1e8d3cde9f9e6ea515f5db028614f03b">BNO085Interface</a> : uint8_t { <a class="el" href="#a1e8d3cde9f9e6ea515f5db028614f03bafb87bf1fc88386ca21395991f90fff95">I2C</a> = 0
+, <a class="el" href="#a1e8d3cde9f9e6ea515f5db028614f03ba0199b53c4dd041296fde19fca9713e7d">UARTRVC</a> = 1
+, <a class="el" href="#a1e8d3cde9f9e6ea515f5db028614f03bacec5769b01fb096efaf0d6186823c78f">UART</a> = 2
+, <a class="el" href="#a1e8d3cde9f9e6ea515f5db028614f03ba33dc5312b091968f5a120c2484d40df8">SPI</a> = 3
+ }</td></tr>
+<tr class="memdesc:a1e8d3cde9f9e6ea515f5db028614f03b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifies the host interface type that a CommInterface provides.  <a href="#a1e8d3cde9f9e6ea515f5db028614f03b">More...</a><br /></td></tr>
+<tr class="separator:a1e8d3cde9f9e6ea515f5db028614f03b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>CRTP-based communication interface for communicating with the <a class="el" href="classBNO085.html" title="High level driver for the BNO08x IMU.">BNO085</a>. </p>
-<p>This header defines the hardware-agnostic communication interface using the Curiously Recurring Template Pattern (CRTP) for compile-time polymorphism. Applications must implement this interface to adapt the driver to the platform specific I/O mechanism (I²C, SPI, UART...). The SH-2 library calls back into these methods whenever it needs to exchange data with the sensor.</p>
-<p>Benefits of CRTP:</p><ul>
-<li>Compile-time polymorphism (no virtual function overhead)</li>
-<li>Static dispatch instead of dynamic dispatch</li>
-<li>Better optimization opportunities for the compiler</li>
-</ul>
-<p>Example usage: </p><div class="fragment"><div class="line"><span class="keyword">class </span><a class="code hl_function" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">MyTransport</a> : <span class="keyword">public</span> <a class="code hl_class" href="classbno08x_1_1CommInterface.html">bno08x::CommInterface</a>&lt;MyTransport&gt; {</div>
+<div class="textblock"><p>CRTP-based communication interface for the BNO08x IMU family. </p>
+<p>This header defines the hardware-agnostic communication interface that all platform-specific transport implementations must provide. It uses the <b>Curiously Recurring Template Pattern (CRTP)</b> for compile-time polymorphism, giving zero virtual-call overhead on the hot path (Read/Write are called thousands of times per second during SH-2 service).</p>
+<h3><a class="anchor" id="autotoc_md3"></a>
+Supported Transport Types</h3>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Transport   </th><th class="markdownTableHeadNone">BNO085Interface   </th><th class="markdownTableHeadNone">Supported Modes    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">I2C   </td><td class="markdownTableBodyNone"><code>I2C</code>   </td><td class="markdownTableBodyNone">SH-2, DFU    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SPI   </td><td class="markdownTableBodyNone"><code>SPI</code>   </td><td class="markdownTableBodyNone">SH-2, DFU    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">UART (SH-2)   </td><td class="markdownTableBodyNone"><code>UART</code>   </td><td class="markdownTableBodyNone">SH-2, DFU    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">UART (RVC)   </td><td class="markdownTableBodyNone"><code>UARTRVC</code>   </td><td class="markdownTableBodyNone">RVC mode only   </td></tr>
+</table>
+<h3><a class="anchor" id="autotoc_md4"></a>
+How to Implement</h3>
+<p>Inherit from <code><a class="el" href="classbno08x_1_1CommInterface.html" title="CRTP base class for BNO08x communication interfaces.">bno08x::CommInterface</a>&lt;YourClass&gt;</code> and implement all required methods. The driver calls <code>GetInterfaceType()</code> to determine which mode of operation is valid for the transport.</p>
+<div class="fragment"><div class="line"><span class="keyword">class </span>MyI2CBus : <span class="keyword">public</span> <a class="code hl_class" href="classbno08x_1_1CommInterface.html">bno08x::CommInterface</a>&lt;MyI2CBus&gt; {</div>
 <div class="line"><span class="keyword">public</span>:</div>
-<div class="line">  <span class="keywordtype">bool</span> open() { ... }</div>
-<div class="line">  <span class="keywordtype">void</span> close() { ... }</div>
-<div class="line">  <span class="keywordtype">int</span> <a class="code hl_function" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">write</a>(<span class="keyword">const</span> <a class="code hl_function" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">uint8_t</a>* <a class="code hl_function" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">data</a>, <a class="code hl_function" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">uint32_t</a> <a class="code hl_function" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">length</a>) { ... }</div>
-<div class="line">  <span class="keywordtype">int</span> read(<a class="code hl_function" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">uint8_t</a>* <a class="code hl_function" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">data</a>, <a class="code hl_function" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">uint32_t</a> <a class="code hl_function" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">length</a>) { ... }</div>
-<div class="line">  <span class="comment">// ... implement other methods</span></div>
+<div class="line">  <a class="code hl_enumeration" href="#a1e8d3cde9f9e6ea515f5db028614f03b">BNO085Interface</a> <a class="code hl_function" href="classbno08x_1_1CommInterface.html#aff6d3c95e497ca8ecfa39083669c8d47">GetInterfaceType</a>() noexcept { <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="#a1e8d3cde9f9e6ea515f5db028614f03bafb87bf1fc88386ca21395991f90fff95">BNO085Interface::I2C</a>; }</div>
+<div class="line">  <span class="keywordtype">bool</span> <a class="code hl_function" href="classbno08x_1_1CommInterface.html#ac93e80de5c3505600aa5be3a76371d34">Open</a>() noexcept { ... }</div>
+<div class="line">  <span class="keywordtype">void</span> <a class="code hl_function" href="classbno08x_1_1CommInterface.html#a3ea64f832392b40084a9ff9db864fd5e">Close</a>() noexcept { ... }</div>
+<div class="line">  <span class="keywordtype">int</span>  <a class="code hl_function" href="classbno08x_1_1CommInterface.html#ac8c745260b628f2d1d837c37705eb005">Write</a>(<span class="keyword">const</span> uint8_t* data, uint32_t length) <span class="keyword">noexcept</span> { ... }</div>
+<div class="line">  <span class="keywordtype">int</span>  <a class="code hl_function" href="classbno08x_1_1CommInterface.html#af4d287ce9229169faee30b42b0144d73">Read</a>(uint8_t* data, uint32_t length) <span class="keyword">noexcept</span> { ... }</div>
+<div class="line">  <span class="keywordtype">bool</span> <a class="code hl_function" href="classbno08x_1_1CommInterface.html#a1f43f60a7145d33bb9ee523c27e39a55">DataAvailable</a>() noexcept { <span class="keywordflow">return</span> <span class="keyword">true</span>; }</div>
+<div class="line">  <span class="keywordtype">void</span> <a class="code hl_function" href="classbno08x_1_1CommInterface.html#ae6731e48bba6e83c97e870d52258cbd6">Delay</a>(uint32_t ms) <span class="keyword">noexcept</span> { ... }</div>
+<div class="line">  uint32_t <a class="code hl_function" href="classbno08x_1_1CommInterface.html#a4b3129c235d04972f6f51563d5ca35f3">GetTimeUs</a>() noexcept { ... }</div>
+<div class="line">  <span class="comment">// Pin control (no-op if not wired):</span></div>
+<div class="line">  <span class="keywordtype">void</span> <a class="code hl_function" href="classbno08x_1_1CommInterface.html#a72dad2f59aa4fc17ba583d8526b1d5b7">SetReset</a>(<span class="keywordtype">bool</span>) <span class="keyword">noexcept</span> { ... }</div>
+<div class="line">  <span class="keywordtype">void</span> <a class="code hl_function" href="classbno08x_1_1CommInterface.html#af6974b490b35d44852d618a43b9e309d">SetBoot</a>(<span class="keywordtype">bool</span>) <span class="keyword">noexcept</span> {}</div>
+<div class="line">  <span class="keywordtype">void</span> <a class="code hl_function" href="classbno08x_1_1CommInterface.html#ae99fdc9fbce3f49f03bb5227b1b6e3fd">SetWake</a>(<span class="keywordtype">bool</span>) <span class="keyword">noexcept</span> {}</div>
+<div class="line">  <span class="keywordtype">void</span> <a class="code hl_function" href="classbno08x_1_1CommInterface.html#a1c4025ff6f0a05d32a7ddf1a2f0ea7cd">SetPS0</a>(<span class="keywordtype">bool</span>) <span class="keyword">noexcept</span> {}</div>
+<div class="line">  <span class="keywordtype">void</span> <a class="code hl_function" href="classbno08x_1_1CommInterface.html#a0e2f6dd0d307d76823883cae4e590736">SetPS1</a>(<span class="keywordtype">bool</span>) <span class="keyword">noexcept</span> {}</div>
 <div class="line">};</div>
-<div class="ttc" id="aclassbno08x_1_1CommInterface_html"><div class="ttname"><a href="classbno08x_1_1CommInterface.html">bno08x::CommInterface</a></div><div class="ttdoc">CRTP-based template interface for BNO085 communication.</div><div class="ttdef"><b>Definition</b> bno08x_comm_interface.hpp:45</div></div>
-<div class="ttc" id="adfu_8h_html_ae9d4ee928e783a2424a0c8d7cfbde399"><div class="ttname"><a href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">dfu</a></div><div class="ttdeci">int dfu(TransportType &amp;transport, const HcBin_t &amp;fw)</div><div class="ttdoc">Run DFU process using the provided CRTP transport.</div><div class="ttdef"><b>Definition</b> dfu_bno.cpp:162</div></div>
-</div><!-- fragment --> </div></div><!-- contents -->
+<div class="ttc" id="abno08x__comm__interface_8hpp_html_a1e8d3cde9f9e6ea515f5db028614f03b"><div class="ttname"><a href="#a1e8d3cde9f9e6ea515f5db028614f03b">BNO085Interface</a></div><div class="ttdeci">BNO085Interface</div><div class="ttdoc">Identifies the host interface type that a CommInterface provides.</div><div class="ttdef"><b>Definition</b> bno08x_comm_interface.hpp:72</div></div>
+<div class="ttc" id="abno08x__comm__interface_8hpp_html_a1e8d3cde9f9e6ea515f5db028614f03bafb87bf1fc88386ca21395991f90fff95"><div class="ttname"><a href="#a1e8d3cde9f9e6ea515f5db028614f03bafb87bf1fc88386ca21395991f90fff95">BNO085Interface::I2C</a></div><div class="ttdeci">@ I2C</div><div class="ttdoc">I2C bus (PS1=0, PS0=0). Supports SH-2 and DFU.</div></div>
+<div class="ttc" id="aclassbno08x_1_1CommInterface_html"><div class="ttname"><a href="classbno08x_1_1CommInterface.html">bno08x::CommInterface</a></div><div class="ttdoc">CRTP base class for BNO08x communication interfaces.</div><div class="ttdef"><b>Definition</b> bno08x_comm_interface.hpp:99</div></div>
+<div class="ttc" id="aclassbno08x_1_1CommInterface_html_a0e2f6dd0d307d76823883cae4e590736"><div class="ttname"><a href="classbno08x_1_1CommInterface.html#a0e2f6dd0d307d76823883cae4e590736">bno08x::CommInterface::SetPS1</a></div><div class="ttdeci">void SetPS1(bool state) noexcept</div><div class="ttdoc">Drive the PS1 protocol-select pin.</div><div class="ttdef"><b>Definition</b> bno08x_comm_interface.hpp:278</div></div>
+<div class="ttc" id="aclassbno08x_1_1CommInterface_html_a1c4025ff6f0a05d32a7ddf1a2f0ea7cd"><div class="ttname"><a href="classbno08x_1_1CommInterface.html#a1c4025ff6f0a05d32a7ddf1a2f0ea7cd">bno08x::CommInterface::SetPS0</a></div><div class="ttdeci">void SetPS0(bool state) noexcept</div><div class="ttdoc">Drive the PS0 protocol-select pin.</div><div class="ttdef"><b>Definition</b> bno08x_comm_interface.hpp:267</div></div>
+<div class="ttc" id="aclassbno08x_1_1CommInterface_html_a1f43f60a7145d33bb9ee523c27e39a55"><div class="ttname"><a href="classbno08x_1_1CommInterface.html#a1f43f60a7145d33bb9ee523c27e39a55">bno08x::CommInterface::DataAvailable</a></div><div class="ttdeci">bool DataAvailable() noexcept</div><div class="ttdoc">Check whether the sensor has data ready.</div><div class="ttdef"><b>Definition</b> bno08x_comm_interface.hpp:185</div></div>
+<div class="ttc" id="aclassbno08x_1_1CommInterface_html_a3ea64f832392b40084a9ff9db864fd5e"><div class="ttname"><a href="classbno08x_1_1CommInterface.html#a3ea64f832392b40084a9ff9db864fd5e">bno08x::CommInterface::Close</a></div><div class="ttdeci">void Close() noexcept</div><div class="ttdoc">Close the communication bus and release resources.</div><div class="ttdef"><b>Definition</b> bno08x_comm_interface.hpp:143</div></div>
+<div class="ttc" id="aclassbno08x_1_1CommInterface_html_a4b3129c235d04972f6f51563d5ca35f3"><div class="ttname"><a href="classbno08x_1_1CommInterface.html#a4b3129c235d04972f6f51563d5ca35f3">bno08x::CommInterface::GetTimeUs</a></div><div class="ttdeci">uint32_t GetTimeUs() noexcept</div><div class="ttdoc">Return the current monotonic time in microseconds.</div><div class="ttdef"><b>Definition</b> bno08x_comm_interface.hpp:209</div></div>
+<div class="ttc" id="aclassbno08x_1_1CommInterface_html_a72dad2f59aa4fc17ba583d8526b1d5b7"><div class="ttname"><a href="classbno08x_1_1CommInterface.html#a72dad2f59aa4fc17ba583d8526b1d5b7">bno08x::CommInterface::SetReset</a></div><div class="ttdeci">void SetReset(bool state) noexcept</div><div class="ttdoc">Assert or release the hardware reset (RSTN) pin.</div><div class="ttdef"><b>Definition</b> bno08x_comm_interface.hpp:231</div></div>
+<div class="ttc" id="aclassbno08x_1_1CommInterface_html_ac8c745260b628f2d1d837c37705eb005"><div class="ttname"><a href="classbno08x_1_1CommInterface.html#ac8c745260b628f2d1d837c37705eb005">bno08x::CommInterface::Write</a></div><div class="ttdeci">int Write(const uint8_t *data, uint32_t length) noexcept</div><div class="ttdoc">Write raw bytes to the sensor.</div><div class="ttdef"><b>Definition</b> bno08x_comm_interface.hpp:157</div></div>
+<div class="ttc" id="aclassbno08x_1_1CommInterface_html_ac93e80de5c3505600aa5be3a76371d34"><div class="ttname"><a href="classbno08x_1_1CommInterface.html#ac93e80de5c3505600aa5be3a76371d34">bno08x::CommInterface::Open</a></div><div class="ttdeci">bool Open() noexcept</div><div class="ttdoc">Open and initialise the communication bus.</div><div class="ttdef"><b>Definition</b> bno08x_comm_interface.hpp:133</div></div>
+<div class="ttc" id="aclassbno08x_1_1CommInterface_html_ae6731e48bba6e83c97e870d52258cbd6"><div class="ttname"><a href="classbno08x_1_1CommInterface.html#ae6731e48bba6e83c97e870d52258cbd6">bno08x::CommInterface::Delay</a></div><div class="ttdeci">void Delay(uint32_t ms) noexcept</div><div class="ttdoc">Block for a specified duration.</div><div class="ttdef"><b>Definition</b> bno08x_comm_interface.hpp:196</div></div>
+<div class="ttc" id="aclassbno08x_1_1CommInterface_html_ae99fdc9fbce3f49f03bb5227b1b6e3fd"><div class="ttname"><a href="classbno08x_1_1CommInterface.html#ae99fdc9fbce3f49f03bb5227b1b6e3fd">bno08x::CommInterface::SetWake</a></div><div class="ttdeci">void SetWake(bool state) noexcept</div><div class="ttdoc">Control the WAKE pin (SPI mode only).</div><div class="ttdef"><b>Definition</b> bno08x_comm_interface.hpp:255</div></div>
+<div class="ttc" id="aclassbno08x_1_1CommInterface_html_af4d287ce9229169faee30b42b0144d73"><div class="ttname"><a href="classbno08x_1_1CommInterface.html#af4d287ce9229169faee30b42b0144d73">bno08x::CommInterface::Read</a></div><div class="ttdeci">int Read(uint8_t *data, uint32_t length) noexcept</div><div class="ttdoc">Read raw bytes from the sensor.</div><div class="ttdef"><b>Definition</b> bno08x_comm_interface.hpp:173</div></div>
+<div class="ttc" id="aclassbno08x_1_1CommInterface_html_af6974b490b35d44852d618a43b9e309d"><div class="ttname"><a href="classbno08x_1_1CommInterface.html#af6974b490b35d44852d618a43b9e309d">bno08x::CommInterface::SetBoot</a></div><div class="ttdeci">void SetBoot(bool state) noexcept</div><div class="ttdoc">Control the BOOTN pin for entering DFU bootloader mode.</div><div class="ttdef"><b>Definition</b> bno08x_comm_interface.hpp:243</div></div>
+<div class="ttc" id="aclassbno08x_1_1CommInterface_html_aff6d3c95e497ca8ecfa39083669c8d47"><div class="ttname"><a href="classbno08x_1_1CommInterface.html#aff6d3c95e497ca8ecfa39083669c8d47">bno08x::CommInterface::GetInterfaceType</a></div><div class="ttdeci">BNO085Interface GetInterfaceType() noexcept</div><div class="ttdoc">Report the transport type this implementation provides.</div><div class="ttdef"><b>Definition</b> bno08x_comm_interface.hpp:114</div></div>
+</div><!-- fragment --><dl class="section author"><dt>Author</dt><dd>Nebiyu Tadesse </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2025 </dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>HardFOC &ndash; GNU GPL v3.0 </dd></dl>
+</div><h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="a1e8d3cde9f9e6ea515f5db028614f03b" name="a1e8d3cde9f9e6ea515f5db028614f03b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e8d3cde9f9e6ea515f5db028614f03b">&#9670;&#160;</a></span>BNO085Interface</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#a1e8d3cde9f9e6ea515f5db028614f03b">BNO085Interface</a> : uint8_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Identifies the host interface type that a CommInterface provides. </p>
+<p>Returned by CommInterface::GetInterfaceType(). The <a class="el" href="classBNO085.html" title="Unified driver for the BNO08x IMU – SH-2 mode, RVC mode, and DFU.">BNO085</a> driver uses this value to guard which operations are valid at runtime:</p><ul>
+<li><b>SH-2 mode</b> (Begin, Update, EnableSensor, Dfu): requires <code>I2C</code>, <code>SPI</code>, or <code>UART</code>.</li>
+<li><b>RVC mode</b> (BeginRvc, ServiceRvc, CloseRvc): requires <code>UARTRVC</code>.</li>
+</ul>
+<p>The enum values also correspond to the BNO08x PS1/PS0 pin states that select the interface at boot time. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a1e8d3cde9f9e6ea515f5db028614f03bafb87bf1fc88386ca21395991f90fff95" name="a1e8d3cde9f9e6ea515f5db028614f03bafb87bf1fc88386ca21395991f90fff95"></a>I2C&#160;</td><td class="fielddoc"><p>I2C bus (PS1=0, PS0=0). Supports SH-2 and DFU. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a1e8d3cde9f9e6ea515f5db028614f03ba0199b53c4dd041296fde19fca9713e7d" name="a1e8d3cde9f9e6ea515f5db028614f03ba0199b53c4dd041296fde19fca9713e7d"></a>UARTRVC&#160;</td><td class="fielddoc"><p>UART in RVC mode (PS1=1, PS0=0). RVC frames only. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a1e8d3cde9f9e6ea515f5db028614f03bacec5769b01fb096efaf0d6186823c78f" name="a1e8d3cde9f9e6ea515f5db028614f03bacec5769b01fb096efaf0d6186823c78f"></a>UART&#160;</td><td class="fielddoc"><p>UART in SH-2 mode (PS1=0, PS0=1). Supports SH-2 and DFU. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a1e8d3cde9f9e6ea515f5db028614f03ba33dc5312b091968f5a120c2484d40df8" name="a1e8d3cde9f9e6ea515f5db028614f03ba33dc5312b091968f5a120c2484d40df8"></a>SPI&#160;</td><td class="fielddoc"><p>SPI bus (PS1=1, PS0=1). Supports SH-2 and DFU. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

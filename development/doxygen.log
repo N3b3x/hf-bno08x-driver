@@ -1,5 +1,5 @@
-warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 1768, file /tmp/doxyfile.TGuZlw
-warning: Tag 'DOT_TRANSPARENT' at line 2791 of file '/tmp/doxyfile.TGuZlw' has become obsolete.
+warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 1768, file /tmp/doxyfile.1rnxX2
+warning: Tag 'DOT_TRANSPARENT' at line 2791 of file '/tmp/doxyfile.1rnxX2' has become obsolete.
          To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
 Doxygen version used: 1.10.0 (ebc57c6dd303a980bd19dd74b8b61c8f3f5180ca)
 Searching for include files...
@@ -13,39 +13,20 @@ Searching INPUT for files to process...
 Searching for files in directory /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src
 Searching for files in directory /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu
 Searching for files in directory /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/sh2
-Searching for files in directory /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/rvc
 Searching for files in directory /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/inc
 Searching for files in directory /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main
 Reading and parsing tag files
 Parsing files
 Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp...
 Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp...
-Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/dfu.h...
-Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/dfu.h...
-Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/dfu_bno.cpp...
-Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/dfu_bno.cpp...
 Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/firmware-bno.c...
 Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/firmware-bno.c...
 Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/firmware.h...
 Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/firmware.h...
-Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/HalTransport.hpp...
-Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/HalTransport.hpp...
 Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/HcBin.h...
 Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/HcBin.h...
-Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/IDfuTransport.hpp...
-Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/IDfuTransport.hpp...
 Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/MemoryFirmware.hpp...
 Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/MemoryFirmware.hpp...
-Reading /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/README.md...
-Reading /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/rvc/README.md...
-Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/rvc/rvc.cpp...
-Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/rvc/rvc.cpp...
-Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/rvc/rvc.h...
-Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/rvc/rvc.h...
-Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/rvc/Rvc.hpp...
-Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/rvc/Rvc.hpp...
-Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/rvc/RvcHal.hpp...
-Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/rvc/RvcHal.hpp...
 Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/inc/bno08x.hpp...
 Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/inc/bno08x.hpp...
 Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/inc/bno08x_comm_interface.hpp...
@@ -53,15 +34,13 @@ Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/inc/bno08x_comm
 Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/basic_polling_example.cpp...
 Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/basic_polling_example.cpp...
 Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/dfu_example.cpp...
-Parsing file /home/runner/work/hf-bno08/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/rvc/README.md:1: warning: found more than one \mainpage comment block! (first occurrence: /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/README.md, line 1), Skipping current block!
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md:2: warning: found more than one \mainpage comment block! (first occurrence: /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/README.md, line 1), Skipping current block!
-x-driver/hf-bno08x-driver/examples/esp32/main/dfu_example.cpp...
+Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/dfu_example.cpp...
 Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/driver_integration_test.cpp...
 Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/driver_integration_test.cpp...
 Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/esp32_bno08x_bus.hpp...
 Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/esp32_bno08x_bus.hpp...
-Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/esp32_rvc_hal.hpp...
-Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/esp32_rvc_hal.hpp...
+Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/esp32_uart_rvc_bus.hpp...
+Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/esp32_uart_rvc_bus.hpp...
 Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/event_driven_callback_example.cpp...
 Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/event_driven_callback_example.cpp...
 Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/full_features_example.cpp...
@@ -70,7 +49,44 @@ Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32
 Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/rvc_mode_example.cpp...
 Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/TestFramework.h...
 Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/TestFramework.h...
-Reading /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md...
+Reading //home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:44: warning: member Begin belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:84: warning: member EnableSensor belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:97: warning: member DisableSensor belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:105: warning: member SetCallback belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:111: warning: member SetRvcCallback belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:117: warning: member HasNewData belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:129: warning: member GetLatest belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:197: warning: member Update belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:207: warning: member halOpen belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:214: warning: member halClose belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:220: warning: member halRead belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:229: warning: member halWrite belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:235: warning: member halGetTimeUs belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:243: warning: member sensorC belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:249: warning: member asyncC belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:260: warning: member handleSensorEvent belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:281: warning: member handleAsyncEvent belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:300: warning: member configure belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:328: warning: member HardwareReset belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:337: warning: member SetBootPin belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:341: warning: member SetWakePin belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:350: warning: member SelectInterface belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:386: warning: member BeginRvc belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:404: warning: member ServiceRvc belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:415: warning: member CloseRvc belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:434: warning: member rvcProcessByte belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:478: warning: member decodeRvc belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/TestFramework.h:383: warning: The following parameter of print_test_section_footer(const char *tag, const char *section_name, bool enabled=true) is not documented:
+  parameter 'tag'
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/TestFramework.h:357: warning: The following parameter of print_test_section_header(const char *tag, const char *section_name, bool enabled=true) is not documented:
+  parameter 'tag'
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/TestFramework.h:341: warning: argument 'test_results' of command @param is not found in the argument list of print_test_section_status(const char *tag, const char *test_suite_name)
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/TestFramework.h:341: warning: The following parameter of print_test_section_status(const char *tag, const char *test_suite_name) is not documented:
+  parameter 'tag'
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/TestFramework.h:321: warning: The following parameter of print_test_summary(const TestResults &test_results, const char *test_suite_name, const char *tag) is not documented:
+  parameter 'tag'
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:608: warning: argument 'fw' from the argument list of BNO085::Dfu has multiple @param documentation sections
+home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md...
 Building macro definition list...
 Building group list...
 Building directory list...
@@ -132,79 +148,64 @@ Generating search indices...
 Generating example documentation...
 Generating file sources...
 Generating code for file examples/esp32/main/esp32_bno08x_bus.hpp...
-Generating code for file examples/esp32/main/esp32_rvc_hal.hpp...
+Generating code for file examples/esp32/main/esp32_uart_rvc_bus.hpp...
 Generating code for file examples/esp32/main/TestFramework.h...
 Generating code for file inc/bno08x.hpp...
 Generating code for file inc/bno08x_comm_interface.hpp...
 Generating code for file src/bno08x.cpp...
-Generating code for file src/dfu/dfu.h...
-Generating code for file src/dfu/dfu_bno.cpp../home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/TestFramework.h:383: warning: The following parameter of print_test_section_footer(const char *tag, const char *section_name, bool enabled=true) is not documented:
-  parameter 'tag'
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/TestFramework.h:357: warning: The following parameter of print_test_section_header(const char *tag, const char *section_name, bool enabled=true) is not documented:
-  parameter 'tag'
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/TestFramework.h:341: warning: argument 'test_results' of command @param is not found in the argument list of print_test_section_status(const char *tag, const char *test_suite_name)
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/TestFramework.h:341: warning: The following parameter of print_test_section_status(const char *tag, const char *test_suite_name) is not documented:
-  parameter 'tag'
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/TestFramework.h:321: warning: The following parameter of print_test_summary(const TestResults &test_results, const char *test_suite_name, const char *tag) is not documented:
-  parameter 'tag'
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/README.md:3: warning: unable to resolve reference to '/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/docs/index.md' for \ref command
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/README.md:11: warning: unable to resolve reference to '../../docs/bno085_complete_guide.md' for \ref command
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/README.md:53: warning: unable to resolve reference to '/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/docs/index.md' for \ref command
-.
 Generating code for file src/dfu/firmware.h...
-Generating code for file src/dfu/HalTransport.hpp...
 Generating code for file src/dfu/HcBin.h...
-Generating code for file src/dfu/IDfuTransport.hpp...
 Generating code for file src/dfu/MemoryFirmware.hpp...
-Generating code for file src/rvc/rvc.h...
-Generating code for file src/rvc/Rvc.hpp...
-Generating code for file src/rvc/RvcHal.hpp...
 Generating file documentation...
 Generating docs for file examples/esp32/main/basic_polling_example.cpp...
 Generating docs for file examples/esp32/main/dfu_example.cpp...
 Generating docs for file examples/esp32/main/driver_integration_test.cpp...
 Generating docs for file examples/esp32/main/esp32_bno08x_bus.hpp...
-Generating docs for file examples/esp32/main/esp32_rvc_hal.hpp...
+Generating docs for file examples/esp32/main/esp32_uart_rvc_bus.hpp...
 Generating docs for file examples/esp32/main/event_driven_callback_example.cpp...
 Generating docs for file examples/esp32/main/full_features_example.cpp...
 Generating docs for file examples/esp32/main/rvc_mode_example.cpp...
 Generating docs for file examples/esp32/main/TestFramework.h...
 Generating docs for file inc/bno08x.hpp...
 Generating docs for file inc/bno08x_comm_interface.hpp...
+Generating docs for file README.md...
 Generating docs for file src/bno08x.cpp...
-Generating docs for file src/dfu/dfu.h...
-Generating docs for file src/dfu/dfu_bno.cpp...
 Generating docs for file src/dfu/firmware-bno.c...
 Generating docs for file src/dfu/firmware.h...
-Generating docs for file src/dfu/HalTransport.hpp...
 Generating docs for file src/dfu/HcBin.h...
-Generating docs for file src/dfu/IDfuTransport.hpp...
 Generating docs for file src/dfu/MemoryFirmware.hpp...
-Generating docs for file README.md...
-Generating docs for file src/dfu/README.md...
-Generating docs for file src/rvc/README.md...
-Generating docs for file src/rvc/rvc.cpp...
-Generating docs for file src/rvc/rvc.h...
-Generating docs for file src/rvc/Rvc.hpp...
-Generating docs for file src/rvc/RvcHal.hpp...
 Generating page documentation...
 Generating group documentation...
 Generating class documentation...
 Generating docs for compound BNO085...
-Generating docs for compound DfuTransportInterface...
 Generating docs for compound Esp32Bno08xBus...
 Generating docs for nested compound Esp32Bno08xBus::I2CConfig...
-Generating docs for compound Esp32RvcHal...
-Generating docs for compound HalTransport...
+Generating docs for compound Esp32UartRvcBus...
+Generating docs for nested compound Esp32UartRvcBus::UartConfig...
 Generating docs for compound HcBin_s...
 Generating docs for compound HcbinMetadata...
 Generating docs for compound MemoryFirmware...
-Generating docs for compound Quaternion...
-Generating docs for compound Rvc...
-Generating docs for compound rvc_SensorEvent_s...
-Generating docs for compound rvc_SensorValue_s...
-Generating docs for compound RvcHalC_s...
-Generating docs for compound RvcHalInterface...
+Generating docs for com/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md:12: warning: unable to resolve reference to '-overview' for \ref command
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md:13: warning: unable to resolve reference to '-features' for \ref command
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md:14: warning: unable to resolve reference to '-quick-start' for \ref command
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md:15: warning: unable to resolve reference to '-installation' for \ref command
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md:16: warning: unable to resolve reference to '-api-reference' for \ref command
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md:17: warning: unable to resolve reference to '-examples' for \ref command
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md:18: warning: unable to resolve reference to '-documentation' for \ref command
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md:19: warning: unable to resolve reference to '-contributing' for \ref command
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md:20: warning: unable to resolve reference to '-license' for \ref command
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md:81: warning: unable to resolve reference to '/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/docs/installation.md' for \ref command
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md:81: warning: unable to resolve reference to '/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/docs/quickstart.md' for \ref command
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md:86: warning: unable to resolve reference to '/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/docs/platform_integration.md' for \ref command
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md:93: warning: unable to resolve reference to '/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/docs/installation.md' for \ref command
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md:107: warning: unable to resolve reference to '/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/docs/api_reference.md' for \ref command
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md:113: warning: unable to resolve reference to '/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/docs/examples.md' for \ref command
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md:117: warning: unable to resolve reference to '/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/docs/index.md' for \ref command
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md:121: warning: unable to resolve reference to '/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/docs/special_feature_rvc.md' for \ref command
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md:122: warning: unable to resolve reference to '/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/docs/special_feature_dfu.md' for \ref command
+pound Quaternion...
+Generating docs for compound RvcSensorEvent...
+Generating docs for compound RvcSensorValue...
 Generating docs for compound SensorEvent...
 Generating docs for compound TapEvent...
 Generating docs for compound TestResults...
@@ -222,7 +223,6 @@ Generating dependency graph for directory examples/esp32
 Generating dependency graph for directory examples
 Generating dependency graph for directory inc
 Generating dependency graph for directory examples/esp32/main
-Generating dependency graph for directory src/rvc
 Generating dependency graph for directory src
 Generating index page...
 Generating main page...
@@ -246,150 +246,103 @@ writing tag file...
 Running plantuml with JAVA...
 Running dot...
 Generating dot graphs using 5 parallel threads...
-Running dot for graph 1/57
-Running dot for graph 2/57
-Running dot for graph 3/57
-Running dot for graph 4/57
-Running dot for graph 5/57
-Running dot for graph 6/57
-Running dot for graph 7/57
-Running dot for graph 8/57
-Running dot for graph 9/57
-Running dot for graph 10/57
-Running dot for graph 11/57
-Running dot for graph 12/57
-Running dot for graph 13/57
-Running dot for graph 14/57
-Running dot for graph 15/57
-Running dot for graph 16/57
-Running dot for graph 17/57
-Running dot for graph 18/57
-Running dot for graph 19/57
-Running dot for graph 20/57
-Running dot for graph 21/57
-Running dot for graph 22/57
-Running dot for graph 23/57
-Running dot for graph 24/57
-Running dot for graph 25/57
-Running dot for graph 26/57
-Running dot for graph 27/57
-Running dot for graph 28/57
-Running dot for graph 29/57
-Running dot for graph 30/57
-Running dot for graph 31/57
-Running dot for graph 32/57
-Running dot for graph 33/57
-Running dot for graph 34/57
-Running dot for graph 35/57
-Running dot for graph 36/57
-Running dot for graph 37/57
-Running dot for graph 38/57
-Running dot for graph 39/57
-Running dot for graph 40/57
-Running dot for graph 41/57
-Running dot for graph 42/57
-Running dot for graph 43/57
-Running dot for graph 44/57
-Running dot for graph 45/57
-Running dot for graph 46/57
-Running dot for graph 47/57
-Running dot for graph 48/57
-Running dot for graph 49/57
-Running dot for graph 50/57
-Running dot for graph 51/57
-Running dot for graph 52/57
-Running dot for graph 53/57
-Running dot for graph 54/57
-Running dot for graph 55/57
-Running dot for graph 56/57
-Running dot for graph 57/57
-Patching output file 1/87
-Patching output file 2/87
-Patching output file 3/87
-Patching output file 4/87
-Patching output file 5/87
-Patching output file 6/87
-Patching output file 7/87
-Patching output file 8/87
-Patching output file 9/87
-Patching output file 10/87
-Patching output file 11/87
-Patching output file 12/87
-Patching output file 13/87
-Patching output file 14/87
-Patching output file 15/87
-Patching output file 16/87
-Patching output file 17/87
-Patching output file 18/87
-Patching output file 19/87
-Patching output file 20/87
-Patching output file 21/87
-Patching output file 22/87
-Patching output file 23/87
-Patching output file 24/87
-Patching output file 25/87
-Patching output file 26/87
-Patching output file 27/87
-Patching output file 28/87
-Patching output file 29/87
-Patching output file 30/87
-Patching output file 31/87
-Patching output file 32/87
-Patching output file 33/87
-Patching output file 34/87
-Patching output file 35/87
-Patching output file 36/87
-Patching output file 37/87
-Patching output file 38/87
-Patching output file 39/87
-Patching output file 40/87
-Patching output file 41/87
-Patching output file 42/87
-Patching output file 43/87
-Patching output file 44/87
-Patching output file 45/87
-Patching output file 46/87
-Patching output file 47/87
-Patching output file 48/87
-Patching output file 49/87
-Patching output file 50/87
-Patching output file 51/87
-Patching output file 52/87
-Patching output file 53/87
-Patching output file 54/87
-Patching output file 55/87
-Patching output file 56/87
-Patching output file 57/87
-Patching output file 58/87
-Patching output file 59/87
-Patching output file 60/87
-Patching output file 61/87
-Patching output file 62/87
-Patching output file 63/87
-Patching output file 64/87
-Patching output file 65/87
-Patching output file 66/87
-Patching output file 67/87
-Patching output file 68/87
-Patching output file 69/87
-Patching output file 70/87
-Patching output file 71/87
-Patching output file 72/87
-Patching output file 73/87
-Patching output file 74/87
-Patching output file 75/87
-Patching output file 76/87
-Patching output file 77/87
-Patching output file 78/87
-Patching output file 79/87
-Patching output file 80/87
-Patching output file 81/87
-Patching output file 82/87
-Patching output file 83/87
-Patching output file 84/87
-Patching output file 85/87
-Patching output file 86/87
-Patching output file 87/87
-type lookup cache used 891/65536 hits=3613 misses=916
-symbol lookup cache used 1045/65536 hits=4280 misses=1045
+Running dot for graph 1/38
+Running dot for graph 2/38
+Running dot for graph 3/38
+Running dot for graph 4/38
+Running dot for graph 5/38
+Running dot for graph 6/38
+Running dot for graph 7/38
+Running dot for graph 8/38
+Running dot for graph 9/38
+Running dot for graph 10/38
+Running dot for graph 11/38
+Running dot for graph 12/38
+Running dot for graph 13/38
+Running dot for graph 14/38
+Running dot for graph 15/38
+Running dot for graph 16/38
+Running dot for graph 17/38
+Running dot for graph 18/38
+Running dot for graph 19/38
+Running dot for graph 20/38
+Running dot for graph 21/38
+Running dot for graph 22/38
+Running dot for graph 23/38
+Running dot for graph 24/38
+Running dot for graph 25/38
+Running dot for graph 26/38
+Running dot for graph 27/38
+Running dot for graph 28/38
+Running dot for graph 29/38
+Running dot for graph 30/38
+Running dot for graph 31/38
+Running dot for graph 32/38
+Running dot for graph 33/38
+Running dot for graph 34/38
+Running dot for graph 35/38
+Running dot for graph 36/38
+Running dot for graph 37/38
+Running dot for graph 38/38
+Patching output file 1/59
+Patching output file 2/59
+Patching output file 3/59
+Patching output file 4/59
+Patching output file 5/59
+Patching output file 6/59
+Patching output file 7/59
+Patching output file 8/59
+Patching output file 9/59
+Patching output file 10/59
+Patching output file 11/59
+Patching output file 12/59
+Patching output file 13/59
+Patching output file 14/59
+Patching output file 15/59
+Patching output file 16/59
+Patching output file 17/59
+Patching output file 18/59
+Patching output file 19/59
+Patching output file 20/59
+Patching output file 21/59
+Patching output file 22/59
+Patching output file 23/59
+Patching output file 24/59
+Patching output file 25/59
+Patching output file 26/59
+Patching output file 27/59
+Patching output file 28/59
+Patching output file 29/59
+Patching output file 30/59
+Patching output file 31/59
+Patching output file 32/59
+Patching output file 33/59
+Patching output file 34/59
+Patching output file 35/59
+Patching output file 36/59
+Patching output file 37/59
+Patching output file 38/59
+Patching output file 39/59
+Patching output file 40/59
+Patching output file 41/59
+Patching output file 42/59
+Patching output file 43/59
+Patching output file 44/59
+Patching output file 45/59
+Patching output file 46/59
+Patching output file 47/59
+Patching output file 48/59
+Patching output file 49/59
+Patching output file 50/59
+Patching output file 51/59
+Patching output file 52/59
+Patching output file 53/59
+Patching output file 54/59
+Patching output file 55/59
+Patching output file 56/59
+Patching output file 57/59
+Patching output file 58/59
+Patching output file 59/59
+type lookup cache used 483/65536 hits=868 misses=499
+symbol lookup cache used 559/65536 hits=2562 misses=559
 finished...

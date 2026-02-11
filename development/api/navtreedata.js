@@ -25,7 +25,8 @@
 var NAVTREE =
 [
   [ "HF-BNO08x", "index.html", [
-    [ "DFU Framework", "index.html", "index" ],
+    [ "HF-BNO08x Driver", "index.html", "index" ],
+    [ "Topics", "topics.html", "topics" ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ]
     ] ],
@@ -55,8 +56,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"HalTransport_8hpp.html",
-"firmware_8h.html"
+"HcBin_8h.html",
+"structEsp32UartRvcBus_1_1UartConfig.html#a7a77a2b1f3f3f853ab25f88850818bc6"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

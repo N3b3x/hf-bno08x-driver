@@ -1,14 +1,14 @@
 var searchData=
 [
-  ['haltransport_0',['HalTransport',['../classHalTransport.html',1,'HalTransport'],['../classHalTransport.html#a75432bf533f7f03f47f79c48c1c9ed4b',1,'HalTransport::HalTransport()']]],
-  ['haltransport_2ehpp_1',['HalTransport.hpp',['../HalTransport_8hpp.html',1,'']]],
-  ['hardwarereset_2',['HardwareReset',['../classBNO085.html#a064ca51468c9b5e5749d7bf98d82199b',1,'BNO085::HardwareReset()'],['../classEsp32Bno08xBus.html#a424776cbbda0901931a0c36be206e6d5',1,'Esp32Bno08xBus::HardwareReset()']]],
-  ['hasnewdata_3',['HasNewData',['../classBNO085.html#a0bb31740132d2f60e8baa8f3801c3e28',1,'BNO085']]],
-  ['hcbin_4',['hcbin',['../classMemoryFirmware.html#a393112ba7519f0cf68a7c9cb959cba83',1,'MemoryFirmware']]],
-  ['hcbin_2eh_5',['HcBin.h',['../HcBin_8h.html',1,'']]],
-  ['hcbin_5fs_6',['HcBin_s',['../structHcBin__s.html',1,'']]],
-  ['hcbin_5ft_7',['HcBin_t',['../HcBin_8h.html#a8b8c363f76941613f85a73d23a2a1455',1,'HcBin.h']]],
-  ['hcbinmetadata_8',['HcbinMetadata',['../structHcbinMetadata.html',1,'']]],
-  ['heartratemonitor_9',['HeartRateMonitor',['../bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a0978ef43fad0c80bfa0629706f37bc7b',1,'bno08x.hpp']]],
-  ['humidity_10',['Humidity',['../bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62addab800b54d009aa0408ebb9a4ee418d',1,'bno08x.hpp']]]
+  ['failed_5ftests_0',['failed_tests',['../structTestResults.html#a0acef46f38f27f0fbb8fa822bb218b3a',1,'TestResults']]],
+  ['features_1',['Features',['../index.html#autotoc_md8',1,'✨ Features'],['../index.html#autotoc_md14',1,'Special Features']]],
+  ['firmware_2',['firmware',['../firmware-bno_8c.html#a169e52b3509b7e23c9a7f630e9156c11',1,'firmware:&#160;firmware-bno.c'],['../firmware_8h.html#a169e52b3509b7e23c9a7f630e9156c11',1,'firmware:&#160;firmware-bno.c'],['../bno08x_8hpp.html#a169e52b3509b7e23c9a7f630e9156c11',1,'firmware:&#160;firmware-bno.c']]],
+  ['firmware_2dbno_2ec_3',['firmware-bno.c',['../firmware-bno_8c.html',1,'']]],
+  ['firmware_2eh_4',['firmware.h',['../firmware_8h.html',1,'']]],
+  ['flip_5ftest_5fprogress_5findicator_5',['flip_test_progress_indicator',['../TestFramework_8h.html#a7bb80345e5681c19686df292fa897daf',1,'TestFramework.h']]],
+  ['flipdetector_6',['FlipDetector',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a7e88095cab76d9236896e968bc5bb12f',1,'bno08x.hpp']]],
+  ['format_2019_20bytes_7',['RVC Frame Format (19 bytes)',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp#autotoc_md0',1,'']]],
+  ['frame_20format_2019_20bytes_8',['RVC Frame Format (19 bytes)',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp#autotoc_md0',1,'']]],
+  ['frequency_9',['frequency',['../structEsp32Bno08xBus_1_1I2CConfig.html#a710c95b47a645dacc0d40a01ac56d982',1,'Esp32Bno08xBus::I2CConfig']]],
+  ['full_5ffeatures_5fexample_2ecpp_10',['full_features_example.cpp',['../full__features__example_8cpp.html',1,'']]]
 ];

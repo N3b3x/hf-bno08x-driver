@@ -427,9 +427,9 @@
 <p>RVC mode is selected at boot time via hardware pins:</p>
 
 <ul>
-  <li><strong>PS0 = 1, PS1 = 0</strong>: UART RVC mode</li>
+  <li><strong>PS1 = VIN (1), PS0 = GND (0)</strong>: UART RVC mode</li>
   <li>Sensor must be reset after setting pins</li>
-  <li>Once in RVC mode, sensor continuously streams frames at 115200 bps (8N1)</li>
+  <li>Once in RVC mode, the sensor continuously streams 19-byte frames at 115200 bps (8N1)</li>
 </ul>
 <h2 id="implementation">
   
@@ -439,173 +439,25 @@
   
 </h2>
     
-<h3 id="step-1-implement-irvchal-interface">
+
+<p>RVC uses the same <strong>CommInterface</strong> as I²C/SPI/UART SH-2 mode. You implement a transport that returns <code class="language-plaintext highlighter-rouge">GetInterfaceType() == BNO085Interface::UARTRVC</code> (e.g. a UART at 115200 baud). The driver then uses that transport for <code class="language-plaintext highlighter-rouge">BeginRvc()</code>, <code class="language-plaintext highlighter-rouge">ServiceRvc()</code>, and <code class="language-plaintext highlighter-rouge">CloseRvc()</code>; no separate RVC HAL or class is required.</p>
+<h3 id="step-1-implement-a-uart-comminterface-that-reports-uartrvc">
   
   
-    <a href="#step-1-implement-irvchal-interface" class="anchor-heading" aria-labelledby="step-1-implement-irvchal-interface"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Step 1: Implement IRvcHal Interface
+    <a href="#step-1-implement-a-uart-comminterface-that-reports-uartrvc" class="anchor-heading" aria-labelledby="step-1-implement-a-uart-comminterface-that-reports-uartrvc"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Step 1: Implement a UART CommInterface that reports UARTRVC
   
   
 </h3>
     
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-</pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">"src/rvc/RvcHal.hpp"</span><span class="cp">
-</span>
-<span class="k">class</span> <span class="nc">MyRvcHal</span> <span class="o">:</span> <span class="k">public</span> <span class="n">IRvcHal</span> <span class="p">{</span>
-<span class="nl">public:</span>
-    <span class="kt">bool</span> <span class="n">open</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span>
-        <span class="c1">// Initialize UART at 115200 bps, 8N1</span>
-        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-    <span class="p">}</span>
-    
-    <span class="kt">void</span> <span class="n">close</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span>
-        <span class="c1">// Close UART</span>
-    <span class="p">}</span>
-    
-    <span class="kt">int</span> <span class="n">read</span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">length</span><span class="p">)</span> <span class="k">override</span> <span class="p">{</span>
-        <span class="c1">// Read bytes from UART</span>
-        <span class="k">return</span> <span class="n">uart_read_bytes</span><span class="p">(</span><span class="n">uart_port</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-    <span class="p">}</span>
-    
-    <span class="kt">uint32_t</span> <span class="n">getTimeUs</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span>
-        <span class="c1">// Return current time in microseconds</span>
-        <span class="k">return</span> <span class="n">esp_timer_get_time</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-</pre></td></tr></tbody></table></div></code></pre></div></div>
+<p>Your transport must implement all required <code class="language-plaintext highlighter-rouge">CommInterface</code> methods (including <code class="language-plaintext highlighter-rouge">GetInterfaceType()</code> returning <code class="language-plaintext highlighter-rouge">BNO085Interface::UARTRVC</code>), and use UART at 115200 8N1. The ESP32 examples provide <code class="language-plaintext highlighter-rouge">Esp32UartRvcBus</code> in <code class="language-plaintext highlighter-rouge">esp32_uart_rvc_bus.hpp</code> as a reference.</p>
 <h3 id="step-2-use-bno085-rvc-methods">
   
   
-    <a href="#step-2-use-bno085-rvc-methods" class="anchor-heading" aria-labelledby="step-2-use-bno085-rvc-methods"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Step 2: Use BNO085 RVC Methods
+    <a href="#step-2-use-bno085-rvc-methods" class="anchor-heading" aria-labelledby="step-2-use-bno085-rvc-methods"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Step 2: Use BNO085 RVC methods
   
   
 </h3>
-    
-
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-</pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">"bno08x.hpp"</span><span class="cp">
-</span>
-<span class="n">MyComm</span> <span class="n">comm</span><span class="p">;</span>
-<span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085</span><span class="o">&lt;</span><span class="n">MyComm</span><span class="o">&gt;</span> <span class="n">imu</span><span class="p">(</span><span class="n">comm</span><span class="p">);</span>
-
-<span class="n">MyRvcHal</span> <span class="n">rvc_hal</span><span class="p">;</span>
-
-<span class="c1">// Begin RVC mode</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">imu</span><span class="p">.</span><span class="n">BeginRvc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">rvc_hal</span><span class="p">))</span> <span class="p">{</span>
-    <span class="c1">// Set callback for decoded frames</span>
-    <span class="n">imu</span><span class="p">.</span><span class="n">SetRvcCallback</span><span class="p">([](</span><span class="k">const</span> <span class="n">rvc_SensorValue_t</span><span class="o">&amp;</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">printf</span><span class="p">(</span><span class="s">"Yaw: %.2f°, Pitch: %.2f°, Roll: %.2f°</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span>
-               <span class="n">val</span><span class="p">.</span><span class="n">yaw_deg</span><span class="p">,</span> <span class="n">val</span><span class="p">.</span><span class="n">pitch_deg</span><span class="p">,</span> <span class="n">val</span><span class="p">.</span><span class="n">roll_deg</span><span class="p">);</span>
-        <span class="n">printf</span><span class="p">(</span><span class="s">"Accel: X=%.3f, Y=%.3f, Z=%.3f g</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span>
-               <span class="n">val</span><span class="p">.</span><span class="n">acc_x_g</span><span class="p">,</span> <span class="n">val</span><span class="p">.</span><span class="n">acc_y_g</span><span class="p">,</span> <span class="n">val</span><span class="p">.</span><span class="n">acc_z_g</span><span class="p">);</span>
-    <span class="p">});</span>
-    
-    <span class="c1">// Service loop</span>
-    <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">imu</span><span class="p">.</span><span class="n">ServiceRvc</span><span class="p">();</span>  <span class="c1">// Decode incoming frames</span>
-        <span class="n">vTaskDelay</span><span class="p">(</span><span class="n">pdMS_TO_TICKS</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
-    <span class="p">}</span>
-    
-    <span class="c1">// Close when done</span>
-    <span class="n">imu</span><span class="p">.</span><span class="n">CloseRvc</span><span class="p">();</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table></div></code></pre></div></div>
-<h3 id="step-3-alternative---use-rvc-class-directly">
-  
-  
-    <a href="#step-3-alternative---use-rvc-class-directly" class="anchor-heading" aria-labelledby="step-3-alternative---use-rvc-class-directly"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Step 3: Alternative - Use Rvc Class Directly
-  
-  
-</h3>
-    
-
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-</pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">"src/rvc/Rvc.hpp"</span><span class="cp">
-</span>
-<span class="n">MyRvcHal</span> <span class="n">hal</span><span class="p">;</span>
-<span class="n">Rvc</span> <span class="nf">rvc</span><span class="p">(</span><span class="n">hal</span><span class="p">);</span>
-
-<span class="n">rvc</span><span class="p">.</span><span class="n">setCallback</span><span class="p">([](</span><span class="k">const</span> <span class="n">rvc_SensorValue_t</span><span class="o">&amp;</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">"Yaw: %.2f°</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">val</span><span class="p">.</span><span class="n">yaw_deg</span><span class="p">);</span>
-<span class="p">});</span>
-
-<span class="k">if</span> <span class="p">(</span><span class="n">rvc</span><span class="p">.</span><span class="n">open</span><span class="p">())</span> <span class="p">{</span>
-    <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">rvc</span><span class="p">.</span><span class="n">service</span><span class="p">();</span>  <span class="c1">// Decode frames</span>
-        <span class="n">vTaskDelay</span><span class="p">(</span><span class="n">pdMS_TO_TICKS</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
-    <span class="p">}</span>
-    <span class="n">rvc</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table></div></code></pre></div></div>
-<h2 id="complete-example">
-  
-  
-    <a href="#complete-example" class="anchor-heading" aria-labelledby="complete-example"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Complete Example
-  
-  
-</h2>
     
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -635,90 +487,110 @@
 25
 26
 27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
 </pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">"bno08x.hpp"</span><span class="cp">
-#include</span> <span class="cpf">"src/rvc/RvcHal.hpp"</span><span class="cp">
+#include</span> <span class="cpf">"esp32_uart_rvc_bus.hpp"</span><span class="c1">   // or your UART CommInterface</span><span class="cp">
 </span>
-<span class="k">class</span> <span class="nc">Esp32RvcHal</span> <span class="o">:</span> <span class="k">public</span> <span class="n">IRvcHal</span> <span class="p">{</span>
-<span class="nl">private:</span>
-    <span class="n">uart_port_t</span> <span class="n">uart_port_</span><span class="p">;</span>
-    
-<span class="nl">public:</span>
-    <span class="n">Esp32RvcHal</span><span class="p">(</span><span class="n">uart_port_t</span> <span class="n">port</span><span class="p">)</span> <span class="o">:</span> <span class="n">uart_port_</span><span class="p">(</span><span class="n">port</span><span class="p">)</span> <span class="p">{}</span>
-    
-    <span class="kt">bool</span> <span class="n">open</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span>
-        <span class="n">uart_config_t</span> <span class="n">config</span> <span class="o">=</span> <span class="p">{};</span>
-        <span class="n">config</span><span class="p">.</span><span class="n">baud_rate</span> <span class="o">=</span> <span class="mi">115200</span><span class="p">;</span>
-        <span class="n">config</span><span class="p">.</span><span class="n">data_bits</span> <span class="o">=</span> <span class="n">UART_DATA_8_BITS</span><span class="p">;</span>
-        <span class="n">config</span><span class="p">.</span><span class="n">parity</span> <span class="o">=</span> <span class="n">UART_PARITY_DISABLE</span><span class="p">;</span>
-        <span class="n">config</span><span class="p">.</span><span class="n">stop_bits</span> <span class="o">=</span> <span class="n">UART_STOP_BITS_1</span><span class="p">;</span>
-        <span class="n">config</span><span class="p">.</span><span class="n">flow_ctrl</span> <span class="o">=</span> <span class="n">UART_HW_FLOWCTRL_DISABLE</span><span class="p">;</span>
-        
-        <span class="n">uart_param_config</span><span class="p">(</span><span class="n">uart_port_</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">config</span><span class="p">);</span>
-        <span class="n">uart_set_pin</span><span class="p">(</span><span class="n">uart_port_</span><span class="p">,</span> <span class="n">UART_PIN_NO_CHANGE</span><span class="p">,</span> <span class="n">UART_PIN_NO_CHANGE</span><span class="p">,</span>
-                     <span class="n">UART_PIN_NO_CHANGE</span><span class="p">,</span> <span class="n">UART_PIN_NO_CHANGE</span><span class="p">);</span>
-        <span class="n">uart_driver_install</span><span class="p">(</span><span class="n">uart_port_</span><span class="p">,</span> <span class="mi">1024</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-    <span class="p">}</span>
-    
-    <span class="kt">void</span> <span class="n">close</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span>
-        <span class="n">uart_driver_delete</span><span class="p">(</span><span class="n">uart_port_</span><span class="p">);</span>
-    <span class="p">}</span>
-    
-    <span class="kt">int</span> <span class="n">read</span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">length</span><span class="p">)</span> <span class="k">override</span> <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">uart_read_bytes</span><span class="p">(</span><span class="n">uart_port_</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">pdMS_TO_TICKS</span><span class="p">(</span><span class="mi">100</span><span class="p">));</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">len</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">?</span> <span class="n">len</span> <span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="p">}</span>
-    
-    <span class="kt">uint32_t</span> <span class="n">getTimeUs</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">esp_timer_get_time</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">};</span>
+<span class="c1">// Create UART RVC transport (115200, PS1=1 PS0=0 on hardware)</span>
+<span class="n">Esp32UartRvcBus</span><span class="o">::</span><span class="n">UartConfig</span> <span class="n">uart_config</span><span class="p">;</span>
+<span class="n">uart_config</span><span class="p">.</span><span class="n">port</span> <span class="o">=</span> <span class="n">UART_NUM_1</span><span class="p">;</span>
+<span class="n">uart_config</span><span class="p">.</span><span class="n">tx_pin</span> <span class="o">=</span> <span class="n">GPIO_NUM_17</span><span class="p">;</span>
+<span class="n">uart_config</span><span class="p">.</span><span class="n">rx_pin</span> <span class="o">=</span> <span class="n">GPIO_NUM_18</span><span class="p">;</span>
+<span class="n">uart_config</span><span class="p">.</span><span class="n">baud_rate</span> <span class="o">=</span> <span class="mi">115200</span><span class="p">;</span>
+<span class="n">Esp32UartRvcBus</span> <span class="nf">transport</span><span class="p">(</span><span class="n">uart_config</span><span class="p">);</span>
+<span class="n">BNO085</span><span class="o">&lt;</span><span class="n">Esp32UartRvcBus</span><span class="o">&gt;</span> <span class="n">imu</span><span class="p">(</span><span class="n">transport</span><span class="p">);</span>
 
-<span class="kt">void</span> <span class="n">app_main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">Esp32RvcHal</span> <span class="n">hal</span><span class="p">(</span><span class="n">UART_NUM_1</span><span class="p">);</span>
-    <span class="n">Esp32Bno08xBus</span> <span class="n">comm</span><span class="p">(</span><span class="cm">/* config */</span><span class="p">);</span>
-    <span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085</span><span class="o">&lt;</span><span class="n">Esp32Bno08xBus</span><span class="o">&gt;</span> <span class="n">imu</span><span class="p">(</span><span class="n">comm</span><span class="p">);</span>
-    
-    <span class="k">if</span> <span class="p">(</span><span class="n">imu</span><span class="p">.</span><span class="n">BeginRvc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hal</span><span class="p">))</span> <span class="p">{</span>
-        <span class="n">imu</span><span class="p">.</span><span class="n">SetRvcCallback</span><span class="p">([](</span><span class="k">const</span> <span class="n">rvc_SensorValue_t</span><span class="o">&amp;</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">printf</span><span class="p">(</span><span class="s">"Yaw: %.2f°, Pitch: %.2f°, Roll: %.2f°</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span>
-                   <span class="n">val</span><span class="p">.</span><span class="n">yaw_deg</span><span class="p">,</span> <span class="n">val</span><span class="p">.</span><span class="n">pitch_deg</span><span class="p">,</span> <span class="n">val</span><span class="p">.</span><span class="n">roll_deg</span><span class="p">);</span>
-        <span class="p">});</span>
-        
-        <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">imu</span><span class="p">.</span><span class="n">ServiceRvc</span><span class="p">();</span>
-            <span class="n">vTaskDelay</span><span class="p">(</span><span class="n">pdMS_TO_TICKS</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
-        <span class="p">}</span>
+<span class="c1">// Set callback for decoded frames (RvcSensorValue)</span>
+<span class="n">imu</span><span class="p">.</span><span class="n">SetRvcCallback</span><span class="p">([](</span><span class="k">const</span> <span class="n">RvcSensorValue</span><span class="o">&amp;</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Yaw: %.2f°, Pitch: %.2f°, Roll: %.2f°</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span>
+           <span class="n">val</span><span class="p">.</span><span class="n">yaw_deg</span><span class="p">,</span> <span class="n">val</span><span class="p">.</span><span class="n">pitch_deg</span><span class="p">,</span> <span class="n">val</span><span class="p">.</span><span class="n">roll_deg</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Accel: X=%.3f Y=%.3f Z=%.3f g</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span>
+           <span class="n">val</span><span class="p">.</span><span class="n">acc_x_g</span><span class="p">,</span> <span class="n">val</span><span class="p">.</span><span class="n">acc_y_g</span><span class="p">,</span> <span class="n">val</span><span class="p">.</span><span class="n">acc_z_g</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">imu</span><span class="p">.</span><span class="n">BeginRvc</span><span class="p">())</span> <span class="p">{</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">imu</span><span class="p">.</span><span class="n">ServiceRvc</span><span class="p">();</span>   <span class="c1">// Reads UART, parses frames, invokes callback</span>
+        <span class="n">vTaskDelay</span><span class="p">(</span><span class="n">pdMS_TO_TICKS</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
     <span class="p">}</span>
+    <span class="n">imu</span><span class="p">.</span><span class="n">CloseRvc</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+<h3 id="step-3-rvcsensorvalue-fields">
+  
+  
+    <a href="#step-3-rvcsensorvalue-fields" class="anchor-heading" aria-labelledby="step-3-rvcsensorvalue-fields"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Step 3: RvcSensorValue fields
+  
+  
+</h3>
+    
+
+<p>The callback receives a <code class="language-plaintext highlighter-rouge">RvcSensorValue</code> with floating-point fields derived from the 19-byte frame:</p>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Unit</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">yaw_deg</code></td>
+      <td>degrees</td>
+      <td>Yaw angle</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">pitch_deg</code></td>
+      <td>degrees</td>
+      <td>Pitch angle</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">roll_deg</code></td>
+      <td>degrees</td>
+      <td>Roll angle</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">acc_x_g</code>, <code class="language-plaintext highlighter-rouge">acc_y_g</code>, <code class="language-plaintext highlighter-rouge">acc_z_g</code></td>
+      <td>g</td>
+      <td>Linear acceleration</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">motion_intent</code></td>
+      <td>—</td>
+      <td>Motion intent (see Motion Intent values below)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">motion_request</code></td>
+      <td>—</td>
+      <td>Motion request (see Motion Request values below)</td>
+    </tr>
+  </tbody>
+</table></div>
+<h2 id="complete-esp32-example">
+  
+  
+    <a href="#complete-esp32-example" class="anchor-heading" aria-labelledby="complete-esp32-example"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Complete ESP32 example
+  
+  
+</h2>
+    
+
+<p>See <code class="language-plaintext highlighter-rouge">examples/esp32/main/rvc_mode_example.cpp</code> for a full example using <code class="language-plaintext highlighter-rouge">Esp32UartRvcBus</code>. Summary:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="n">Esp32UartRvcBus</span> <span class="nf">transport</span><span class="p">(</span><span class="n">uart_config</span><span class="p">);</span>
+<span class="n">BNO085</span><span class="o">&lt;</span><span class="n">Esp32UartRvcBus</span><span class="o">&gt;</span> <span class="n">imu</span><span class="p">(</span><span class="n">transport</span><span class="p">);</span>
+<span class="n">imu</span><span class="p">.</span><span class="n">SetRvcCallback</span><span class="p">(</span><span class="n">on_rvc_frame</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">imu</span><span class="p">.</span><span class="n">BeginRvc</span><span class="p">())</span> <span class="p">{</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span> <span class="n">imu</span><span class="p">.</span><span class="n">ServiceRvc</span><span class="p">();</span> <span class="n">vTaskDelay</span><span class="p">(</span><span class="n">pdMS_TO_TICKS</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span> <span class="p">}</span>
+    <span class="n">imu</span><span class="p">.</span><span class="n">CloseRvc</span><span class="p">();</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 <h2 id="uart-configuration">

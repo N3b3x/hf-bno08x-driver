@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['esp32bno08xbus_0',['Esp32Bno08xBus',['../classEsp32Bno08xBus.html',1,'']]],
-  ['esp32rvchal_1',['Esp32RvcHal',['../classEsp32RvcHal.html',1,'']]]
+  ['hcbin_5fs_0',['HcBin_s',['../structHcBin__s.html',1,'']]],
+  ['hcbinmetadata_1',['HcbinMetadata',['../structHcbinMetadata.html',1,'']]]
 ];

@@ -418,6 +418,8 @@
 </h3>
     
 
+<p>Requires a transport whose <code class="language-plaintext highlighter-rouge">GetInterfaceType()</code> returns <code class="language-plaintext highlighter-rouge">BNO085Interface::UARTRVC</code> (e.g. UART at 115200 baud with PS1=1, PS0=0).</p>
+
 <div class="table-wrapper"><table>
   <thead>
     <tr>
@@ -429,18 +431,18 @@
   <tbody>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">BeginRvc()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">bool BeginRvc(IRvcHal* hal)</code></td>
-      <td><a href="../inc/bno08x.hpp#L172"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp#L172</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">bool BeginRvc() noexcept</code></td>
+      <td><a href="../inc/bno08x.hpp"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp</code></a></td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">ServiceRvc()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">void ServiceRvc()</code></td>
-      <td><a href="../inc/bno08x.hpp#L174"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp#L174</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">void ServiceRvc() noexcept</code></td>
+      <td><a href="../inc/bno08x.hpp"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp</code></a></td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">CloseRvc()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">void CloseRvc()</code></td>
-      <td><a href="../inc/bno08x.hpp#L176"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp#L176</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">void CloseRvc() noexcept</code></td>
+      <td><a href="../inc/bno08x.hpp"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp</code></a></td>
     </tr>
   </tbody>
 </table></div>
@@ -544,26 +546,28 @@
   <tbody>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">HardwareReset()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">void HardwareReset(uint32_t lowMs = 2)</code></td>
-      <td><a href="../inc/bno08x.hpp#L197"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp#L197</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">void HardwareReset(uint32_t lowMs = 2) noexcept</code></td>
+      <td><a href="../inc/bno08x.hpp"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp</code></a></td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">SetBootPin()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">void SetBootPin(bool state)</code></td>
-      <td><a href="../inc/bno08x.hpp#L200"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp#L200</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">void SetBootPin(bool state) noexcept</code></td>
+      <td><a href="../inc/bno08x.hpp"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp</code></a></td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">SetWakePin()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">void SetWakePin(bool state)</code></td>
-      <td><a href="../inc/bno08x.hpp#L202"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp#L202</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">void SetWakePin(bool state) noexcept</code></td>
+      <td><a href="../inc/bno08x.hpp"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp</code></a></td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">SelectInterface()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">void SelectInterface(BNO085Interface iface)</code></td>
-      <td><a href="../inc/bno08x.hpp#L205"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp#L205</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">void SelectInterface(BNO085Interface iface) noexcept</code></td>
+      <td><a href="../inc/bno08x.hpp"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp</code></a></td>
     </tr>
   </tbody>
 </table></div>
+
+<p><strong>Note:</strong> <code class="language-plaintext highlighter-rouge">SelectInterface()</code> only applies when PS0/PS1 pins are under software control. Some transports (e.g. ESP32) extend <code class="language-plaintext highlighter-rouge">HardwareReset()</code> with an optional second parameter for boot delay (e.g. <code class="language-plaintext highlighter-rouge">HardwareReset(2, 200)</code>).</p>
 <h3 id="firmware-update">
   
   
@@ -572,6 +576,8 @@
   
 </h3>
     
+
+<p>Not available when <code class="language-plaintext highlighter-rouge">GetInterfaceType()</code> returns <code class="language-plaintext highlighter-rouge">UARTRVC</code>. Use <code class="language-plaintext highlighter-rouge">MemoryFirmware</code> for runtime-loaded firmware images.</p>
 
 <div class="table-wrapper"><table>
   <thead>
@@ -584,8 +590,8 @@
   <tbody>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">Dfu()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">int Dfu(const HcBin_t&amp; fw = firmware)</code></td>
-      <td><a href="../inc/bno08x.hpp#L218"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp#L218</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">int Dfu(const HcBin_t&amp; fw = firmware) noexcept</code></td>
+      <td><a href="../inc/bno08x.hpp"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp</code></a></td>
     </tr>
   </tbody>
 </table></div>
@@ -623,7 +629,7 @@
     <tr>
       <td><code class="language-plaintext highlighter-rouge">BNO085Interface</code></td>
       <td><code class="language-plaintext highlighter-rouge">I2C</code>, <code class="language-plaintext highlighter-rouge">UARTRVC</code>, <code class="language-plaintext highlighter-rouge">UART</code>, <code class="language-plaintext highlighter-rouge">SPI</code></td>
-      <td><a href="../inc/bno08x.hpp#L71"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp#L71</code></a></td>
+      <td><a href="../inc/bno08x_comm_interface.hpp"><code class="language-plaintext highlighter-rouge">inc/bno08x_comm_interface.hpp</code></a> — returned by <code class="language-plaintext highlighter-rouge">CommInterface::GetInterfaceType()</code></td>
     </tr>
   </tbody>
 </table></div>
@@ -692,8 +698,13 @@
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">RvcCallback</code></td>
-      <td><code class="language-plaintext highlighter-rouge">std::function&lt;void(const rvc_SensorValue_t&amp;)&gt;</code></td>
-      <td><a href="../inc/bno08x.hpp#L128"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp#L128</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">std::function&lt;void(const RvcSensorValue&amp;)&gt;</code></td>
+      <td><a href="../inc/bno08x.hpp"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">RvcSensorValue</code></td>
+      <td>Struct with <code class="language-plaintext highlighter-rouge">yaw_deg</code>, <code class="language-plaintext highlighter-rouge">pitch_deg</code>, <code class="language-plaintext highlighter-rouge">roll_deg</code>, <code class="language-plaintext highlighter-rouge">acc_x_g</code>, <code class="language-plaintext highlighter-rouge">acc_y_g</code>, <code class="language-plaintext highlighter-rouge">acc_z_g</code>, etc.</td>
+      <td><a href="../inc/bno08x.hpp"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp</code></a></td>
     </tr>
   </tbody>
 </table></div>
@@ -726,6 +737,8 @@
 </h3>
     
 
+<p>The driver calls <code class="language-plaintext highlighter-rouge">GetInterfaceType()</code> to determine whether to allow <code class="language-plaintext highlighter-rouge">Begin()</code> (SH-2), <code class="language-plaintext highlighter-rouge">BeginRvc()</code> (RVC), or <code class="language-plaintext highlighter-rouge">Dfu()</code> (not allowed for UARTRVC).</p>
+
 <div class="table-wrapper"><table>
   <thead>
     <tr>
@@ -736,39 +749,44 @@
   </thead>
   <tbody>
     <tr>
+      <td><code class="language-plaintext highlighter-rouge">GetInterfaceType()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">BNO085Interface GetInterfaceType() noexcept</code></td>
+      <td><a href="../inc/bno08x_comm_interface.hpp"><code class="language-plaintext highlighter-rouge">inc/bno08x_comm_interface.hpp</code></a></td>
+    </tr>
+    <tr>
       <td><code class="language-plaintext highlighter-rouge">Open()</code></td>
       <td><code class="language-plaintext highlighter-rouge">bool Open() noexcept</code></td>
-      <td><a href="../inc/bno08x_comm_interface.hpp#L51"><code class="language-plaintext highlighter-rouge">inc/bno08x_comm_interface.hpp#L51</code></a></td>
+      <td><a href="../inc/bno08x_comm_interface.hpp"><code class="language-plaintext highlighter-rouge">inc/bno08x_comm_interface.hpp</code></a></td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">Close()</code></td>
       <td><code class="language-plaintext highlighter-rouge">void Close() noexcept</code></td>
-      <td><a href="../inc/bno08x_comm_interface.hpp#L58"><code class="language-plaintext highlighter-rouge">inc/bno08x_comm_interface.hpp#L58</code></a></td>
+      <td><a href="../inc/bno08x_comm_interface.hpp"><code class="language-plaintext highlighter-rouge">inc/bno08x_comm_interface.hpp</code></a></td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">Write()</code></td>
       <td><code class="language-plaintext highlighter-rouge">int Write(const uint8_t* data, uint32_t length) noexcept</code></td>
-      <td><a href="../inc/bno08x_comm_interface.hpp#L68"><code class="language-plaintext highlighter-rouge">inc/bno08x_comm_interface.hpp#L68</code></a></td>
+      <td><a href="../inc/bno08x_comm_interface.hpp"><code class="language-plaintext highlighter-rouge">inc/bno08x_comm_interface.hpp</code></a></td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">Read()</code></td>
       <td><code class="language-plaintext highlighter-rouge">int Read(uint8_t* data, uint32_t length) noexcept</code></td>
-      <td><a href="../inc/bno08x_comm_interface.hpp#L78"><code class="language-plaintext highlighter-rouge">inc/bno08x_comm_interface.hpp#L78</code></a></td>
+      <td><a href="../inc/bno08x_comm_interface.hpp"><code class="language-plaintext highlighter-rouge">inc/bno08x_comm_interface.hpp</code></a></td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">DataAvailable()</code></td>
       <td><code class="language-plaintext highlighter-rouge">bool DataAvailable() noexcept</code></td>
-      <td><a href="../inc/bno08x_comm_interface.hpp#L86"><code class="language-plaintext highlighter-rouge">inc/bno08x_comm_interface.hpp#L86</code></a></td>
+      <td><a href="../inc/bno08x_comm_interface.hpp"><code class="language-plaintext highlighter-rouge">inc/bno08x_comm_interface.hpp</code></a></td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">Delay()</code></td>
       <td><code class="language-plaintext highlighter-rouge">void Delay(uint32_t ms) noexcept</code></td>
-      <td><a href="../inc/bno08x_comm_interface.hpp#L94"><code class="language-plaintext highlighter-rouge">inc/bno08x_comm_interface.hpp#L94</code></a></td>
+      <td><a href="../inc/bno08x_comm_interface.hpp"><code class="language-plaintext highlighter-rouge">inc/bno08x_comm_interface.hpp</code></a></td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">GetTimeUs()</code></td>
       <td><code class="language-plaintext highlighter-rouge">uint32_t GetTimeUs() noexcept</code></td>
-      <td><a href="../inc/bno08x_comm_interface.hpp#L104"><code class="language-plaintext highlighter-rouge">inc/bno08x_comm_interface.hpp#L104</code></a></td>
+      <td><a href="../inc/bno08x_comm_interface.hpp"><code class="language-plaintext highlighter-rouge">inc/bno08x_comm_interface.hpp</code></a></td>
     </tr>
   </tbody>
 </table></div>

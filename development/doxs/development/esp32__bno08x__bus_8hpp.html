@@ -158,7 +158,7 @@ Include dependency graph for esp32_bno08x_bus.hpp:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="esp32__bno08x__bus_8hpp__dep__incl.svg" width="1220" height="154"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="esp32__bno08x__bus_8hpp__dep__incl.svg" width="1015" height="154"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="esp32__bno08x__bus_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -166,7 +166,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEsp32Bno08xBus.html">Esp32Bno08xBus</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">ESP32 implementation of <a class="el" href="classbno08x_1_1CommInterface.html" title="CRTP-based template interface for BNO085 communication.">bno08x::CommInterface</a> using ESP-IDF I2C master driver.  <a href="classEsp32Bno08xBus.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">ESP32 implementation of <a class="el" href="classbno08x_1_1CommInterface.html" title="CRTP base class for BNO08x communication interfaces.">bno08x::CommInterface</a> using ESP-IDF I2C master driver.  <a href="classEsp32Bno08xBus.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structEsp32Bno08xBus_1_1I2CConfig.html">Esp32Bno08xBus::I2CConfig</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C bus and device configuration structure.  <a href="structEsp32Bno08xBus_1_1I2CConfig.html#details">More...</a><br /></td></tr>
@@ -174,13 +174,13 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ac57c34cb33e345f6be4c7f61d5ee7d33" id="r_ac57c34cb33e345f6be4c7f61d5ee7d33"><td class="memItemLeft" align="right" valign="top"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">std::unique_ptr</a>&lt; <a class="el" href="classEsp32Bno08xBus.html">Esp32Bno08xBus</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac57c34cb33e345f6be4c7f61d5ee7d33">CreateEsp32Bno08xBus</a> (<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">const</a> <a class="el" href="structEsp32Bno08xBus_1_1I2CConfig.html">Esp32Bno08xBus::I2CConfig</a> &amp;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">config</a>=<a class="el" href="structEsp32Bno08xBus_1_1I2CConfig.html">Esp32Bno08xBus::I2CConfig</a>{})</td></tr>
+<tr class="memitem:ac57c34cb33e345f6be4c7f61d5ee7d33" id="r_ac57c34cb33e345f6be4c7f61d5ee7d33"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classEsp32Bno08xBus.html">Esp32Bno08xBus</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac57c34cb33e345f6be4c7f61d5ee7d33">CreateEsp32Bno08xBus</a> (const <a class="el" href="structEsp32Bno08xBus_1_1I2CConfig.html">Esp32Bno08xBus::I2CConfig</a> &amp;config=<a class="el" href="structEsp32Bno08xBus_1_1I2CConfig.html">Esp32Bno08xBus::I2CConfig</a>{})</td></tr>
 <tr class="memdesc:ac57c34cb33e345f6be4c7f61d5ee7d33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Factory function to create an ESP32 BNO08x I2C bus instance.  <br /></td></tr>
 <tr class="separator:ac57c34cb33e345f6be4c7f61d5ee7d33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>ESP32 I2C communication interface implementation for BNO08x driver. </p>
-<p>This file provides the ESP32-specific implementation of the <a class="el" href="classbno08x_1_1CommInterface.html" title="CRTP-based template interface for BNO085 communication.">bno08x::CommInterface</a> interface using ESP-IDF's I2C master driver.</p>
+<p>This file provides the ESP32-specific implementation of the <a class="el" href="classbno08x_1_1CommInterface.html" title="CRTP base class for BNO08x communication interfaces.">bno08x::CommInterface</a> interface using ESP-IDF's I2C master driver.</p>
 <dl class="section note"><dt>Note</dt><dd>This implementation mirrors the proven esp32_pca9685_bus.hpp / esp32_pcal95555_bus.hpp pattern for consistent, working I2C communication across HardFOC drivers. The BNO08x uses the SH-2 packet protocol which requires raw I2C transfers (no register addressing), so the CommInterface methods differ from the register-addressed I2cInterface used by the PCAL95555 and PCA9685 drivers, but the underlying ESP-IDF bus setup, device handle caching, and resource management are identical.</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Nebiyu Tadesse </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2025 </dd></dl>
@@ -196,9 +196,9 @@ Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">std::unique_ptr</a>&lt; <a class="el" href="classEsp32Bno08xBus.html">Esp32Bno08xBus</a> &gt; CreateEsp32Bno08xBus </td>
+          <td class="memname">std::unique_ptr&lt; <a class="el" href="classEsp32Bno08xBus.html">Esp32Bno08xBus</a> &gt; CreateEsp32Bno08xBus </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">const</a> <a class="el" href="structEsp32Bno08xBus_1_1I2CConfig.html">Esp32Bno08xBus::I2CConfig</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>config</em><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="structEsp32Bno08xBus_1_1I2CConfig.html">Esp32Bno08xBus::I2CConfig</a>{}</span></span></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="structEsp32Bno08xBus_1_1I2CConfig.html">Esp32Bno08xBus::I2CConfig</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>config</em><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="structEsp32Bno08xBus_1_1I2CConfig.html">Esp32Bno08xBus::I2CConfig</a>{}</span></span></td><td>)</td>
           <td></td>
         </tr>
       </table>

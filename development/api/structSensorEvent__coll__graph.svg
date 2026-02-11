@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Container for a single sensor report.">
+<g id="a_Node000001"><a xlink:title="Container for a single decoded SH&#45;2 sensor report.">
 <polygon fill="#999999" stroke="#666666" points="145,-19 68,-19 68,0 145,0 145,-19"/>
 <text text-anchor="middle" x="106.5" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">SensorEvent</text>
 </a>
@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="structVector3.html" target="_top" xlink:title="Simple 3‑axis vector with accuracy flag.">
+<g id="a_Node000002"><a xlink:href="structVector3.html" target="_top" xlink:title="Three&#45;axis vector with sensor accuracy indicator.">
 <polygon fill="white" stroke="#666666" points="53,-85 0,-85 0,-66 53,-66 53,-85"/>
 <text text-anchor="middle" x="26.5" y="-73" font-family="Helvetica,sans-Serif" font-size="10.00">Vector3</text>
 </a>
@@ -39,7 +39,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="structQuaternion.html" target="_top" xlink:title="Quaternion orientation with accuracy flag.">
+<g id="a_Node000003"><a xlink:href="structQuaternion.html" target="_top" xlink:title="Unit quaternion with sensor accuracy indicator.">
 <polygon fill="white" stroke="#666666" points="142,-85 71,-85 71,-66 142,-66 142,-85"/>
 <text text-anchor="middle" x="106.5" y="-73" font-family="Helvetica,sans-Serif" font-size="10.00">Quaternion</text>
 </a>
@@ -58,7 +58,7 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="structTapEvent.html" target="_top" xlink:title="Information for tap detector events.">
+<g id="a_Node000004"><a xlink:href="structTapEvent.html" target="_top" xlink:title="Tap detector event details.">
 <polygon fill="white" stroke="#666666" points="221,-85 160,-85 160,-66 221,-66 221,-85"/>
 <text text-anchor="middle" x="190.5" y="-73" font-family="Helvetica,sans-Serif" font-size="10.00">TapEvent</text>
 </a>

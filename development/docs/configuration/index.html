@@ -441,9 +441,13 @@
 2
 3
 4
-</pre></td><td class="rouge-code"><pre><span class="n">imu</span><span class="p">.</span><span class="n">SetRvcCallback</span><span class="p">([](</span><span class="k">const</span> <span class="n">rvc_SensorValue_t</span><span class="o">&amp;</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span>
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="n">imu</span><span class="p">.</span><span class="n">SetRvcCallback</span><span class="p">([](</span><span class="k">const</span> <span class="n">RvcSensorValue</span><span class="o">&amp;</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">printf</span><span class="p">(</span><span class="s">"Yaw: %.2f°, Pitch: %.2f°, Roll: %.2f°</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> 
            <span class="n">val</span><span class="p">.</span><span class="n">yaw_deg</span><span class="p">,</span> <span class="n">val</span><span class="p">.</span><span class="n">pitch_deg</span><span class="p">,</span> <span class="n">val</span><span class="p">.</span><span class="n">roll_deg</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Accel: X=%.3f Y=%.3f Z=%.3f g</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span>
+           <span class="n">val</span><span class="p">.</span><span class="n">acc_x_g</span><span class="p">,</span> <span class="n">val</span><span class="p">.</span><span class="n">acc_y_g</span><span class="p">,</span> <span class="n">val</span><span class="p">.</span><span class="n">acc_z_g</span><span class="p">);</span>
 <span class="p">});</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 <h2 id="interface-selection">
@@ -487,7 +491,7 @@
 <span class="n">imu</span><span class="p">.</span><span class="n">SelectInterface</span><span class="p">(</span><span class="n">BNO085Interface</span><span class="o">::</span><span class="n">UARTRVC</span><span class="p">);</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 
-<p><strong>Note</strong>: Interface selection is typically done via hardware pins (PS0/PS1) at boot time. This method is only useful if your hardware allows dynamic control of these pins.</p>
+<p><strong>Note</strong>: Interface selection is typically done via hardware pins (PS0/PS1) at boot time. <code class="language-plaintext highlighter-rouge">SelectInterface()</code> is only useful when those pins are connected to controllable GPIOs.</p>
 <h2 id="hardware-pin-control">
   
   
@@ -597,7 +601,7 @@
 </h2>
     
 
-<p>The <code class="language-plaintext highlighter-rouge">SensorEvent</code> structure includes an <code class="language-plaintext highlighter-rouge">accuracy</code> field (0-3) indicating calibration status:</p>
+<p>For orientation reports, calibration status is in <code class="language-plaintext highlighter-rouge">event.rotation.accuracy</code> (0-3). Other report types use their own accuracy or status fields.</p>
 
 <ul>
   <li><strong>0</strong>: Unreliable - sensor not calibrated</li>

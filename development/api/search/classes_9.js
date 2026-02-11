@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['sensorevent_0',['SensorEvent',['../structSensorEvent.html',1,'']]]
+  ['tapevent_0',['TapEvent',['../structTapEvent.html',1,'']]],
+  ['testresults_1',['TestResults',['../structTestResults.html',1,'']]],
+  ['testtaskcontext_2',['TestTaskContext',['../structTestTaskContext.html',1,'']]]
 ];

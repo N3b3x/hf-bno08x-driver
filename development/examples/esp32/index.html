@@ -548,7 +548,7 @@ idf.py monitor
     
 <p><strong>RVC Mode Example</strong></p>
 <ul>
-  <li>RVC mode initialization</li>
+  <li>RVC mode initialization (UART, <code class="language-plaintext highlighter-rouge">Esp32UartRvcBus</code>)</li>
   <li>Frame callback handling</li>
   <li>Yaw, pitch, roll reading</li>
   <li>Real hardware testing</li>
@@ -557,6 +557,27 @@ idf.py monitor
 <p><strong>Build:</strong></p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 </pre></td><td class="rouge-code"><pre>./scripts/build_app.sh rvc_mode Release
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+<h4 id="dfu_update">
+  
+  
+    <a href="#dfu_update" class="anchor-heading" aria-labelledby="dfu_update"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <code class="language-plaintext highlighter-rouge">dfu_update</code>
+  
+  
+</h4>
+    
+<p><strong>DFU (Device Firmware Update) Example</strong></p>
+<ul>
+  <li>Enter bootloader via BOOTN and reset</li>
+  <li>Firmware transfer using <code class="language-plaintext highlighter-rouge">BNO085::Dfu()</code> API</li>
+  <li><code class="language-plaintext highlighter-rouge">MemoryFirmware</code> for runtime firmware images</li>
+  <li>Post-DFU re-initialization</li>
+  <li>Real hardware testing</li>
+</ul>
+
+<p><strong>Build:</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>./scripts/build_app.sh dfu_update Release
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 <h2 id="-building-examples">
   

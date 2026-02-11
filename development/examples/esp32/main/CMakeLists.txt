@@ -124,7 +124,7 @@ endif()
 # Bus implementation is header-only (esp32_bno08x_bus.hpp), no separate .cpp needed
 idf_component_register(
     SRCS "${MAIN_SOURCE}"
-    INCLUDE_DIRS "." "${SRC_BASE_PATH}" "${SRC_BASE_PATH}/dfu" "${SRC_BASE_PATH}/sh2" "${SRC_BASE_PATH}/rvc"
+    INCLUDE_DIRS "." "${SRC_BASE_PATH}" "${SRC_BASE_PATH}/dfu" "${SRC_BASE_PATH}/sh2"
     REQUIRES ${COMPONENT_REQUIRES_LIST}
 )
 

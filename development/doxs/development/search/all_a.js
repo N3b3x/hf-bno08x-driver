@@ -1,6 +1,12 @@
 var searchData=
 [
-  ['library_0',['Using the library',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/rvc/README.md#autotoc_md7',1,'']]],
-  ['license_1',['📄 License',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md#autotoc_md20',1,'']]],
-  ['linearacceleration_2',['LinearAcceleration',['../bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62aba31d10f1d09d6cf847178cb2d7350d6',1,'bno08x.hpp']]]
+  ['i2c_0',['I2C',['../bno08x__comm__interface_8hpp.html#a1e8d3cde9f9e6ea515f5db028614f03bafb87bf1fc88386ca21395991f90fff95',1,'bno08x_comm_interface.hpp']]],
+  ['i2cconfig_1',['I2CConfig',['../structEsp32Bno08xBus_1_1I2CConfig.html',1,'Esp32Bno08xBus']]],
+  ['implement_2',['How to Implement',['../bno08x__comm__interface_8hpp.html#autotoc_md4',1,'']]],
+  ['index_3',['index',['../structRvcSensorEvent.html#a707d57da5c81ee01be13d0826fef1c93',1,'RvcSensorEvent::index'],['../structRvcSensorValue.html#a45384b190df704b246d60ae2261538e3',1,'RvcSensorValue::index']]],
+  ['init_4',['Init',['../classEsp32Bno08xBus.html#a1ae54135cb2ab11cf6cc3f90edafb80a',1,'Esp32Bno08xBus']]],
+  ['init_5ftest_5fprogress_5findicator_5',['init_test_progress_indicator',['../TestFramework_8h.html#a3967179ac699a5b02ef9787b549409fe',1,'TestFramework.h']]],
+  ['installation_6',['🔧 Installation',['../index.html#autotoc_md10',1,'']]],
+  ['int_5fpin_7',['int_pin',['../structEsp32Bno08xBus_1_1I2CConfig.html#a121a36fe188c184ec141f1b52eb9169e',1,'Esp32Bno08xBus::I2CConfig']]],
+  ['isinitialized_8',['isInitialized',['../classEsp32Bno08xBus.html#af3995ff6b63253be85376374b8e34c5b',1,'Esp32Bno08xBus']]]
 ];

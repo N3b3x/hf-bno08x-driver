@@ -22,16 +22,14 @@ message(STATUS "Source Root: ${SRC_ROOT}")
 # List all potential driver source files
 # Note: bno08x.cpp is excluded - it's a template implementation included from bno08x.hpp
 set(DRIVER_SRCS
-    # "${SRC_ROOT}/bno08x.cpp"    # Template implementation - included from header
-    # "${SRC_ROOT}/dfu/dfu_bno.cpp"  # Template implementation - included from dfu.h
-    "${SRC_ROOT}/dfu/firmware-bno.c"
-    "${SRC_ROOT}/rvc/rvc.cpp"
-    "${SRC_ROOT}/sh2/sh2.c"
-    "${SRC_ROOT}/sh2/sh2_SensorValue.c"
-    "${SRC_ROOT}/sh2/sh2_util.c"
-    "${SRC_ROOT}/sh2/shtp.c"
+    # bno08x.cpp is a template implementation included from bno08x.hpp (not compiled separately)
+    # RVC and DFU logic are integrated directly into the BNO085 class
+    "${SRC_ROOT}/dfu/firmware-bno.c"          # Compiled firmware stub image
+    "${SRC_ROOT}/sh2/sh2.c"                   # Vendor SH-2 core API
+    "${SRC_ROOT}/sh2/sh2_SensorValue.c"       # Vendor sensor value decoding
+    "${SRC_ROOT}/sh2/sh2_util.c"              # Vendor byte utilities
+    "${SRC_ROOT}/sh2/shtp.c"                  # Vendor transport protocol
     # Note: sh2/euler.c is kept in the vendor directory but not compiled.
-    # Users can include it directly if they need quaternion-to-Euler conversion.
 )
 
 # Check which source files actually exist and add them
@@ -51,10 +49,9 @@ endforeach()
 # Define include directories for the driver component
 set(DRIVER_INCLUDE_DIRS
     "${SRC_ROOT}"                       # Main driver source directory
-    "${SRC_ROOT}/dfu"                   # DFU headers
-    "${SRC_ROOT}/sh2"                   # SH2 headers
-    "${SRC_ROOT}/rvc"                   # RVC headers
-    "${INC_ROOT}"                       # Main driver headers
+    "${SRC_ROOT}/dfu"                   # DFU firmware headers (HcBin.h, firmware.h)
+    "${SRC_ROOT}/sh2"                   # Vendor SH2 headers
+    "${INC_ROOT}"                       # Main driver headers (bno08x.hpp, interfaces)
 )
 
 # =============================================================================

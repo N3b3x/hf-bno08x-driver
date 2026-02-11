@@ -137,36 +137,34 @@ $(function(){initNavTree('rvc__mode__example_8cpp.html',''); initResizable(); })
 </div><!--header-->
 <div class="contents">
 
-<p>RVC (Reduced Vector Computation) mode example.  
+<p>RVC (Rotation Vector Computation) mode example.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;esp_log.h&quot;</code><br />
 <code>#include &quot;freertos/FreeRTOS.h&quot;</code><br />
 <code>#include &quot;freertos/task.h&quot;</code><br />
-<code>#include &lt;memory&gt;</code><br />
 <code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="bno08x_8hpp_source.html">../../../inc/bno08x.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="esp32__bno08x__bus_8hpp_source.html">esp32_bno08x_bus.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="esp32__rvc__hal_8hpp_source.html">esp32_rvc_hal.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="esp32__uart__rvc__bus_8hpp_source.html">esp32_uart_rvc_bus.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for rvc_mode_example.cpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="rvc__mode__example_8cpp__incl.svg" width="2842" height="564"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="rvc__mode__example_8cpp__incl.svg" width="2227" height="271"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a630544a7f0a2cc40d8a7fefab7e2fe70" id="r_a630544a7f0a2cc40d8a7fefab7e2fe70"><td class="memItemLeft" align="right" valign="top"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a630544a7f0a2cc40d8a7fefab7e2fe70">app_main</a> (<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">void</a>)</td></tr>
+<tr class="memitem:a630544a7f0a2cc40d8a7fefab7e2fe70" id="r_a630544a7f0a2cc40d8a7fefab7e2fe70"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a630544a7f0a2cc40d8a7fefab7e2fe70">app_main</a> (void)</td></tr>
 <tr class="separator:a630544a7f0a2cc40d8a7fefab7e2fe70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>RVC (Reduced Vector Computation) mode example. </p>
+<div class="textblock"><p>RVC (Rotation Vector Computation) mode example. </p>
 <p>This example demonstrates:</p><ul>
-<li>RVC mode initialization</li>
+<li>RVC mode initialization using a UART CommInterface</li>
 <li>Frame callback handling</li>
 <li>Yaw, pitch, roll reading</li>
 </ul>
-<p>Note: RVC mode requires a platform-specific HAL implementation (<a class="el" href="classEsp32RvcHal.html" title="ESP32 implementation of RvcHalInterface using ESP-IDF UART driver.">Esp32RvcHal</a>)</p>
-<dl class="section note"><dt>Note</dt><dd>This example runs independently on an I2C bus that only communicates with the BNO08x device. The I2C bus setup (GPIO4 SDA, GPIO5 SCL) mirrors the pcal95555/pca9685 examples for pin consistency.</dd></dl>
+<p>RVC mode uses a UART transport (<a class="el" href="classEsp32UartRvcBus.html" title="ESP32 UART CommInterface for BNO08x RVC mode.">Esp32UartRvcBus</a>) instead of I2C. The driver reads raw UART bytes and parses 19-byte RVC frames internally. No separate RVC HAL is needed &ndash; just a CommInterface with GetInterfaceType() returning <a class="el" href="bno08x__comm__interface_8hpp.html#a1e8d3cde9f9e6ea515f5db028614f03ba0199b53c4dd041296fde19fca9713e7d" title="UART in RVC mode (PS1=1, PS0=0). RVC frames only.">BNO085Interface::UARTRVC</a>.</p>
+<dl class="section note"><dt>Note</dt><dd>The BNO08x must have PS0/PS1 configured for RVC mode (PS1=HIGH, PS0=LOW) at reset time. RVC mode operates at 115200 baud.</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Nebiyu Tadesse </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2025 </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>HardFOC </dd></dl>
@@ -178,9 +176,9 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">void</a> app_main </td>
+          <td class="memname">void app_main </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">void</a></td>          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
         </tr>
       </table>

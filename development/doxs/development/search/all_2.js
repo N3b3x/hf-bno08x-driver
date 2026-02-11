@@ -1,15 +1,19 @@
 var searchData=
 [
-  ['circledetector_0',['CircleDetector',['../bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a6069a5e8bc2cdb88048a7ef10abfdf9d',1,'bno08x.hpp']]],
-  ['cleanup_5ftest_5fprogress_5findicator_1',['cleanup_test_progress_indicator',['../TestFramework_8h.html#a5c86314094f10701c597cf07a95a4bae',1,'TestFramework.h']]],
-  ['close_2',['Close',['../classHalTransport.html#a62e3df6ce4948d0ac7c4b9326982fbb3',1,'HalTransport::Close()'],['../classDfuTransportInterface.html#a95c64b02b665d728bf2142063bd2a3ab',1,'DfuTransportInterface::Close()'],['../classRvc.html#a6d0eb62583cf602754904d9ba05d1ac7',1,'Rvc::Close()'],['../classRvcHalInterface.html#a63cfb17dc2eb17589c46d967a0f46232',1,'RvcHalInterface::Close()'],['../classbno08x_1_1CommInterface.html#a3ea64f832392b40084a9ff9db864fd5e',1,'bno08x::CommInterface::Close()'],['../classEsp32Bno08xBus.html#a0c440b3b6697b5a8ccd5c9009f984546',1,'Esp32Bno08xBus::Close()'],['../classEsp32RvcHal.html#a011a02f2492e26f304941d37286ea20c',1,'Esp32RvcHal::Close()']]],
-  ['close_3',['close',['../structHcBin__s.html#a60b807db69b8076b30d83a6f1201834b',1,'HcBin_s::close'],['../structRvcHalC__s.html#aa5b69e8867936b41e2e700fb37646a4c',1,'RvcHalC_s::close']]],
-  ['closervc_4',['CloseRvc',['../classBNO085.html#a406609e88789d9e20a7333123f3f6b62',1,'BNO085']]],
-  ['comminterface_5',['CommInterface',['../classbno08x_1_1CommInterface.html',1,'bno08x::CommInterface&lt; Derived &gt;'],['../classbno08x_1_1CommInterface.html#a0843c4a7c89432dd0af263edde5c2b7c',1,'bno08x::CommInterface::CommInterface()=default'],['../classbno08x_1_1CommInterface.html#a4a7da1b78bf56ed77ccca290df816f73',1,'bno08x::CommInterface::CommInterface(const CommInterface &amp;)=delete'],['../classbno08x_1_1CommInterface.html#a2550d1dcf3796a503db1b1c1891484f4',1,'bno08x::CommInterface::CommInterface(CommInterface &amp;&amp;) noexcept=default']]],
-  ['comminterface_3c_20esp32bno08xbus_20_3e_6',['CommInterface&lt; Esp32Bno08xBus &gt;',['../classbno08x_1_1CommInterface.html',1,'bno08x']]],
-  ['completion_5fsemaphore_7',['completion_semaphore',['../structTestTaskContext.html#ab82bee11b198be2f2b4d6c908573ddb6',1,'TestTaskContext']]],
-  ['contents_8',['📚 Table of Contents',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md#autotoc_md10',1,'']]],
-  ['contributing_9',['🤝 Contributing',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md#autotoc_md19',1,'']]],
-  ['createesp32bno08xbus_10',['CreateEsp32Bno08xBus',['../esp32__bno08x__bus_8hpp.html#ac57c34cb33e345f6be4c7f61d5ee7d33',1,'esp32_bno08x_bus.hpp']]],
-  ['ctx_11',['ctx',['../structRvcHalC__s.html#a062ce2030a314977a1c44dc4687a424a',1,'RvcHalC_s']]]
+  ['acc_5fx_0',['acc_x',['../structRvcSensorEvent.html#a7caf34fab0ddbd5c33fff60badc59e7f',1,'RvcSensorEvent']]],
+  ['acc_5fx_5fg_1',['acc_x_g',['../structRvcSensorValue.html#a3f215a6b99ace3f59fbd359d4f3ea116',1,'RvcSensorValue']]],
+  ['acc_5fy_2',['acc_y',['../structRvcSensorEvent.html#a16d8edc7f66d26cb124e830826d90634',1,'RvcSensorEvent']]],
+  ['acc_5fy_5fg_3',['acc_y_g',['../structRvcSensorValue.html#a716e56e9a2b12b3d7a2b418c2bb3a0a8',1,'RvcSensorValue']]],
+  ['acc_5fz_4',['acc_z',['../structRvcSensorEvent.html#ad9ea0b1e5223c97b39be80a6d5eca77e',1,'RvcSensorEvent']]],
+  ['acc_5fz_5fg_5',['acc_z_g',['../structRvcSensorValue.html#a96be56fed5bb32fa5ed5d9519e0337c7',1,'RvcSensorValue']]],
+  ['accelerometer_6',['Accelerometer',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62ab043bc6d611582087d8bf1790d863d69',1,'bno08x.hpp']]],
+  ['accuracy_7',['accuracy',['../structVector3.html#a491cb149e1ee956e6ee5ba53ebd958bd',1,'Vector3::accuracy'],['../structQuaternion.html#a9fb8e41ca4fab802dc16d5fd42188cde',1,'Quaternion::accuracy']]],
+  ['add_5fresult_8',['add_result',['../structTestResults.html#a257eba3a9005a5c19c68ae27774948f7',1,'TestResults']]],
+  ['ambientlight_9',['AmbientLight',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a9de31d14fe78730b3fd5ce633a2da711',1,'bno08x.hpp']]],
+  ['and_20data_20structures_10',['Sensor Types and Data Structures',['../group__SensorTypes.html',1,'']]],
+  ['api_20reference_11',['📖 API Reference',['../index.html#autotoc_md11',1,'']]],
+  ['app_5fmain_12',['app_main',['../basic__polling__example_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'app_main(void):&#160;basic_polling_example.cpp'],['../dfu__example_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'app_main(void):&#160;dfu_example.cpp'],['../driver__integration__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'app_main(void):&#160;driver_integration_test.cpp'],['../event__driven__callback__example_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'app_main(void):&#160;event_driven_callback_example.cpp'],['../full__features__example_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'app_main(void):&#160;full_features_example.cpp'],['../rvc__mode__example_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'app_main(void):&#160;rvc_mode_example.cpp']]],
+  ['array_5flen_13',['ARRAY_LEN',['../firmware-bno_8c.html#ab9129b977a587b50ea801daac75e178f',1,'firmware-bno.c']]],
+  ['arvrstabilizedgamerv_14',['ARVRStabilizedGameRV',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62adda6de7569af6fe8301ee3807a69a988',1,'bno08x.hpp']]],
+  ['arvrstabilizedrv_15',['ARVRStabilizedRV',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a5f78b93803f5d02a6b414b4b6e1637df',1,'bno08x.hpp']]]
 ];

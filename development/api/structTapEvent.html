@@ -134,26 +134,26 @@ $(function(){initNavTree('structTapEvent.html',''); initResizable(); });
   <div class="summary">
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="structTapEvent-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">TapEvent Struct Reference</div></div>
+  <div class="headertitle"><div class="title">TapEvent Struct Reference<div class="ingroups"><a class="el" href="group__SensorTypes.html">Sensor Types and Data Structures</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Information for tap detector events.  
+<p>Tap detector event details.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="bno08x_8hpp_source.html">bno08x.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a38a4f4ad0a4a97f9fba3d7f2175a486e" id="r_a38a4f4ad0a4a97f9fba3d7f2175a486e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a38a4f4ad0a4a97f9fba3d7f2175a486e">doubleTap</a> {<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">false</a>}</td></tr>
-<tr class="memdesc:a38a4f4ad0a4a97f9fba3d7f2175a486e"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if a double tap occurred.  <br /></td></tr>
+<tr class="memitem:a38a4f4ad0a4a97f9fba3d7f2175a486e" id="r_a38a4f4ad0a4a97f9fba3d7f2175a486e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a38a4f4ad0a4a97f9fba3d7f2175a486e">doubleTap</a> {false}</td></tr>
+<tr class="memdesc:a38a4f4ad0a4a97f9fba3d7f2175a486e"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if double-tap, false if single-tap.  <br /></td></tr>
 <tr class="separator:a38a4f4ad0a4a97f9fba3d7f2175a486e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2253a59536df9b7389266d6393f87780" id="r_a2253a59536df9b7389266d6393f87780"><td class="memItemLeft" align="right" valign="top"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">uint8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2253a59536df9b7389266d6393f87780">direction</a> {0}</td></tr>
-<tr class="memdesc:a2253a59536df9b7389266d6393f87780"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tap direction (0–5)  <br /></td></tr>
+<tr class="memitem:a2253a59536df9b7389266d6393f87780" id="r_a2253a59536df9b7389266d6393f87780"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2253a59536df9b7389266d6393f87780">direction</a> {0}</td></tr>
+<tr class="memdesc:a2253a59536df9b7389266d6393f87780"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tap direction: 0=+X, 1=-X, 2=+Y, 3=-Y, 4=+Z, 5=-Z.  <br /></td></tr>
 <tr class="separator:a2253a59536df9b7389266d6393f87780"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Information for tap detector events. </p>
+<div class="textblock"><p>Tap detector event details. </p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
 <a id="a2253a59536df9b7389266d6393f87780" name="a2253a59536df9b7389266d6393f87780"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2253a59536df9b7389266d6393f87780">&#9670;&#160;</a></span>direction</h2>
@@ -162,12 +162,12 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">uint8_t</a> TapEvent::direction {0}</td>
+          <td class="memname">uint8_t TapEvent::direction {0}</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Tap direction (0–5) </p>
+<p>Tap direction: 0=+X, 1=-X, 2=+Y, 3=-Y, 4=+Z, 5=-Z. </p>
 
 </div>
 </div>
@@ -178,12 +178,12 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">bool</a> TapEvent::doubleTap {<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">false</a>}</td>
+          <td class="memname">bool TapEvent::doubleTap {false}</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>True if a double tap occurred. </p>
+<p>True if double-tap, false if single-tap. </p>
 
 </div>
 </div>

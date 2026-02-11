@@ -9,6 +9,7 @@ var classEsp32Bno08xBus =
     [ "Deinit", "classEsp32Bno08xBus.html#a7c84fc13700a1278ffc25b86ac49899f", null ],
     [ "Delay", "classEsp32Bno08xBus.html#ab9470e0615b4e44151073ab490eef89c", null ],
     [ "getConfig", "classEsp32Bno08xBus.html#a85e1603d6eff23ff172f2a800a6afa4d", null ],
+    [ "GetInterfaceType", "classEsp32Bno08xBus.html#a93e0de20a5b96a000dde91bd780fd55f", null ],
     [ "GetTimeUs", "classEsp32Bno08xBus.html#ad9bcbae6a7b658760cf42ae2ef830777", null ],
     [ "HardwareReset", "classEsp32Bno08xBus.html#a424776cbbda0901931a0c36be206e6d5", null ],
     [ "Init", "classEsp32Bno08xBus.html#a1ae54135cb2ab11cf6cc3f90edafb80a", null ],

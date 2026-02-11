@@ -310,11 +310,13 @@ GPIO      ────── NRST  (optional, active-low reset)
 
 <p><strong>Interface Selection</strong>: PS0=GND, PS1=GND selects I²C mode</p>
 
-<p><strong>I²C Address</strong>:</p>
+<p><strong>I²C Address</strong> (7-bit):</p>
 <ul>
-  <li>ADR/SA0 = GND → 0x4A</li>
-  <li>ADR/SA0 = VIN → 0x4B</li>
+  <li><strong>ADR/SA0 = VIN (HIGH)</strong> → <strong>0x4B</strong> (typical default)</li>
+  <li>ADR/SA0 = GND (LOW) → 0x4A</li>
 </ul>
+
+<p><strong>Startup</strong>: Perform a hardware reset before the first transaction; many boards need this for reliable communication. On ESP32, the examples try 0x4B first, then 0x4A if probe fails, and use a transport <code class="language-plaintext highlighter-rouge">Probe()</code> after reset to confirm the device is present.</p>
 <h3 id="spi-interface">
   
   
@@ -376,7 +378,7 @@ GPIO      ────── INT   (optional)
 GPIO      ────── NRST  (optional)
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 
-<p><strong>Interface Selection</strong>: PS0=GND, PS1=VIN selects UART mode</p>
+<p><strong>Interface Selection</strong>: PS1=VIN, PS0=GND selects UART RVC mode (simplified streaming; see <a href="/hf-bno08x-driver/development/docs/special_feature_rvc/">RVC Mode</a>). For full SH-2 over UART use PS1=GND, PS0=VIN.</p>
 
 <p><strong>Baud Rate</strong>: 115200 bps (8N1)</p>
 <h2 id="pin-descriptions">
@@ -518,6 +520,60 @@ GPIO      ────── NRST  (optional)
 </table></div>
 
 <p><strong>Note</strong>: Interface selection is sampled at reset. Change pins before resetting the device.</p>
+<h2 id="example-pins-esp32-s3">
+  
+  
+    <a href="#example-pins-esp32-s3" class="anchor-heading" aria-labelledby="example-pins-esp32-s3"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Example Pins (ESP32-S3)
+  
+  
+</h2>
+    
+
+<p>The repository’s ESP32 examples use the following default connections:</p>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>BNO08x Pin</th>
+      <th>ESP32-S3 GPIO</th>
+      <th>Function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>SDA</td>
+      <td>GPIO 4</td>
+      <td>I²C Data</td>
+    </tr>
+    <tr>
+      <td>SCL</td>
+      <td>GPIO 5</td>
+      <td>I²C Clock</td>
+    </tr>
+    <tr>
+      <td>INT</td>
+      <td>GPIO 17</td>
+      <td>Interrupt (active-low, data ready)</td>
+    </tr>
+    <tr>
+      <td>NRST</td>
+      <td>GPIO 16</td>
+      <td>Reset (active-low)</td>
+    </tr>
+    <tr>
+      <td>VIN</td>
+      <td>3.3 V</td>
+      <td>Supply</td>
+    </tr>
+    <tr>
+      <td>GND</td>
+      <td>GND</td>
+      <td>Ground</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p>You can change pins in code via the transport configuration (e.g. <code class="language-plaintext highlighter-rouge">Esp32Bno08xBus::I2CConfig</code>). If your transport supports it, call <code class="language-plaintext highlighter-rouge">HardwareReset(2, 200)</code> (or equivalent) before probing or calling <code class="language-plaintext highlighter-rouge">Begin()</code>.</p>
 <h2 id="physical-layout-recommendations">
   
   

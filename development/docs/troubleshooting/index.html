@@ -307,12 +307,12 @@
 
 <p><strong>Solutions:</strong></p>
 <ol>
-  <li><strong>Verify Communication Interface</strong>: Ensure interface is initialized before calling <code class="language-plaintext highlighter-rouge">Begin()</code></li>
-  <li><strong>Check Connections</strong>: Verify all I²C/SPI connections (SCL, SDA, CS, etc.)</li>
-  <li><strong>Verify Power</strong>: Check power supply voltage (2.4V - 3.6V, typically 3.3V)</li>
-  <li><strong>Check I²C Address</strong>: Verify address matches hardware (0x4A or 0x4B)</li>
-  <li><strong>Check Pull-ups</strong>: Ensure I²C has proper pull-up resistors (4.7 kΩ)</li>
-  <li><strong>Verify Interface Selection</strong>: Check PS0/PS1 pins match selected interface</li>
+  <li><strong>Verify communication interface</strong>: Ensure the interface is initialized and implements <code class="language-plaintext highlighter-rouge">GetInterfaceType()</code>; perform a hardware reset before first use</li>
+  <li><strong>Check connections</strong>: Verify all I²C/SPI connections (SCL, SDA, CS, etc.)</li>
+  <li><strong>Verify power</strong>: Check power supply voltage (2.4V–3.6V, typically 3.3V)</li>
+  <li><strong>Check I²C address</strong>: Try 0x4B first (SA0=HIGH), then 0x4A (SA0=LOW); use transport <code class="language-plaintext highlighter-rouge">Probe()</code> after reset if available</li>
+  <li><strong>Check pull-ups</strong>: Ensure I²C has proper pull-up resistors (4.7 kΩ)</li>
+  <li><strong>Verify interface selection</strong>: Check PS0/PS1 pins match the intended interface</li>
 </ol><hr />
 <h3 id="error-no-sensor-data">
   
@@ -458,19 +458,19 @@
 
 <p><strong>Causes:</strong></p>
 <ul>
-  <li>Sensor not in RVC mode</li>
+  <li>Sensor not in RVC mode (wrong PS0/PS1)</li>
   <li>UART configuration incorrect</li>
   <li>Baud rate mismatch</li>
-  <li>HAL implementation issues</li>
+  <li>Transport does not return <code class="language-plaintext highlighter-rouge">UARTRVC</code> from <code class="language-plaintext highlighter-rouge">GetInterfaceType()</code></li>
 </ul>
 
 <p><strong>Solutions:</strong></p>
 <ol>
-  <li><strong>Verify RVC Mode</strong>: Check PS0/PS1 pins are set for RVC mode (PS0=1, PS1=0)</li>
-  <li><strong>Check Baud Rate</strong>: Ensure UART is configured for 115200 bps (8N1)</li>
-  <li><strong>Verify HAL</strong>: Check <code class="language-plaintext highlighter-rouge">IRvcHal</code> implementation is correct</li>
-  <li><strong>Check Wiring</strong>: Verify UART connections (TX/RX)</li>
-  <li><strong>Call ServiceRvc</strong>: Ensure <code class="language-plaintext highlighter-rouge">ServiceRvc()</code> is called frequently</li>
+  <li><strong>Verify RVC mode</strong>: Set PS1=VIN (1), PS0=GND (0) and reset the sensor</li>
+  <li><strong>Check baud rate</strong>: Use 115200 bps (8N1)</li>
+  <li><strong>Use UARTRVC transport</strong>: Implement a <code class="language-plaintext highlighter-rouge">CommInterface</code> that returns <code class="language-plaintext highlighter-rouge">BNO085Interface::UARTRVC</code> (e.g. <code class="language-plaintext highlighter-rouge">Esp32UartRvcBus</code>); there is no separate RVC HAL</li>
+  <li><strong>Check wiring</strong>: Verify UART TX/RX connections</li>
+  <li><strong>Call ServiceRvc</strong>: Call <code class="language-plaintext highlighter-rouge">ServiceRvc()</code> frequently in your loop</li>
 </ol><hr />
 <h3 id="error-dfu-update-failed">
   
@@ -493,16 +493,16 @@
   <li>Sensor not in bootloader mode</li>
   <li>Firmware image invalid</li>
   <li>Communication timeout</li>
-  <li>Transport implementation issues</li>
+  <li>Using UARTRVC transport (DFU is not supported for RVC mode)</li>
 </ul>
 
 <p><strong>Solutions:</strong></p>
 <ol>
-  <li><strong>Enter Bootloader</strong>: Hold BOOTN low while resetting sensor</li>
-  <li><strong>Verify Firmware</strong>: Check firmware image is valid <code class="language-plaintext highlighter-rouge">HcBin_t</code> object</li>
-  <li><strong>Check Transport</strong>: Verify <code class="language-plaintext highlighter-rouge">IDfuTransport</code> implementation is correct</li>
-  <li><strong>Increase Timeout</strong>: DFU may take several minutes on slow links</li>
-  <li><strong>Check Communication</strong>: Ensure communication interface works in bootloader mode</li>
+  <li><strong>Enter bootloader</strong>: Hold BOOTN low, then reset (e.g. <code class="language-plaintext highlighter-rouge">SetBootPin(true)</code>, <code class="language-plaintext highlighter-rouge">HardwareReset(10)</code>, then release BOOTN)</li>
+  <li><strong>Verify firmware</strong>: Use a valid <code class="language-plaintext highlighter-rouge">HcBin_t</code> (e.g. from <code class="language-plaintext highlighter-rouge">firmware.h</code> or <code class="language-plaintext highlighter-rouge">MemoryFirmware</code>)</li>
+  <li><strong>Use I²C/SPI/UART transport</strong>: DFU is only available when <code class="language-plaintext highlighter-rouge">GetInterfaceType()</code> is not <code class="language-plaintext highlighter-rouge">UARTRVC</code></li>
+  <li><strong>Increase timeout</strong>: DFU can take several minutes on slow links</li>
+  <li><strong>Reopen transport</strong>: After entering bootloader, close and reopen the transport if required by your platform (see <a href="/hf-bno08x-driver/development/docs/special_feature_dfu/">DFU</a>)</li>
 </ol><hr />
 <h2 id="debugging-tips">
   
@@ -578,15 +578,15 @@
 7
 8
 9
-</pre></td><td class="rouge-code"><pre><span class="c1">// Check if sensor is responding</span>
+</pre></td><td class="rouge-code"><pre><span class="c1">// Check if sensor is responding (perform hardware reset before Begin if needed)</span>
 <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">imu</span><span class="p">.</span><span class="n">Begin</span><span class="p">())</span> <span class="p">{</span>
     <span class="n">printf</span><span class="p">(</span><span class="s">"Initialization failed</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
     <span class="k">return</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="c1">// Check if sensors are enabled</span>
-<span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
-<span class="c1">// Wait a bit, then check for data</span>
+<span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+<span class="c1">// Wait a bit, then check for data; use event.rotation.accuracy for calibration (0–3)</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 <h3 id="monitor-update-frequency">
   

@@ -134,72 +134,102 @@ $(function(){initNavTree('classBNO085.html',''); initResizable(); });
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classBNO085-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">BNO085&lt; CommType &gt; Class Template Reference</div></div>
+  <div class="headertitle"><div class="title">BNO085&lt; CommType &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__BNO085Driver.html">BNO085 Driver Class</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>High level driver for the BNO08x IMU.  
+<p>Unified driver for the BNO08x IMU &ndash; SH-2 mode, RVC mode, and DFU.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="bno08x_8hpp_source.html">bno08x.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a66f2abe8f7fcf9005a37aed5cf17b104" id="r_a66f2abe8f7fcf9005a37aed5cf17b104"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a66f2abe8f7fcf9005a37aed5cf17b104">BNO085</a> (<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &amp;comm) <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">noexcept</a></td></tr>
-<tr class="memdesc:a66f2abe8f7fcf9005a37aed5cf17b104"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct the driver with a communication interface instance.  <br /></td></tr>
+<tr class="memitem:a66f2abe8f7fcf9005a37aed5cf17b104" id="r_a66f2abe8f7fcf9005a37aed5cf17b104"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a66f2abe8f7fcf9005a37aed5cf17b104">BNO085</a> (CommType &amp;comm) noexcept</td></tr>
+<tr class="memdesc:a66f2abe8f7fcf9005a37aed5cf17b104"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct the driver with a communication interface.  <br /></td></tr>
 <tr class="separator:a66f2abe8f7fcf9005a37aed5cf17b104"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9fc79a6ee018d3214897efaf254ebab3" id="r_a9fc79a6ee018d3214897efaf254ebab3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9fc79a6ee018d3214897efaf254ebab3">Begin</a> () <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">noexcept</a></td></tr>
-<tr class="memdesc:a9fc79a6ee018d3214897efaf254ebab3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise using the communication interface passed to the constructor.  <br /></td></tr>
+<tr><td colspan="2"><div class="groupHeader">SH-2 Mode API</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>These methods are valid when GetInterfaceType() returns I2C, SPI, or UART. They provide full access to the BNO08x sensor hub via the SH-2 protocol. </p>
+</div></td></tr>
+<tr class="memitem:a9fc79a6ee018d3214897efaf254ebab3" id="r_a9fc79a6ee018d3214897efaf254ebab3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9fc79a6ee018d3214897efaf254ebab3">Begin</a> () noexcept</td></tr>
+<tr class="memdesc:a9fc79a6ee018d3214897efaf254ebab3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise the sensor in SH-2 mode.  <br /></td></tr>
 <tr class="separator:a9fc79a6ee018d3214897efaf254ebab3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0969492f8a6ebc34f9344ea163b5b022" id="r_a0969492f8a6ebc34f9344ea163b5b022"><td class="memItemLeft" align="right" valign="top"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0969492f8a6ebc34f9344ea163b5b022">EnableSensor</a> (<a class="el" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a> sensor, <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">uint32_t</a> <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">intervalMs</a>, <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">float</a> <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">sensitivity</a>=0.0f) <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">noexcept</a></td></tr>
+<tr class="memitem:a0969492f8a6ebc34f9344ea163b5b022" id="r_a0969492f8a6ebc34f9344ea163b5b022"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0969492f8a6ebc34f9344ea163b5b022">EnableSensor</a> (<a class="el" href="group__SensorTypes.html#ga6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a> sensor, uint32_t intervalMs, float sensitivity=0.0f) noexcept</td></tr>
 <tr class="memdesc:a0969492f8a6ebc34f9344ea163b5b022"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable periodic reporting for a sensor.  <br /></td></tr>
 <tr class="separator:a0969492f8a6ebc34f9344ea163b5b022"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a02883eb26087462e58c95707f29a63b8" id="r_a02883eb26087462e58c95707f29a63b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a02883eb26087462e58c95707f29a63b8">DisableSensor</a> (<a class="el" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a> sensor) <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">noexcept</a></td></tr>
+<tr class="memitem:a02883eb26087462e58c95707f29a63b8" id="r_a02883eb26087462e58c95707f29a63b8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a02883eb26087462e58c95707f29a63b8">DisableSensor</a> (<a class="el" href="group__SensorTypes.html#ga6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a> sensor) noexcept</td></tr>
+<tr class="memdesc:a02883eb26087462e58c95707f29a63b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable reporting for a sensor.  <br /></td></tr>
 <tr class="separator:a02883eb26087462e58c95707f29a63b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3953f176fe778583f95f41637ddf278e" id="r_a3953f176fe778583f95f41637ddf278e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3953f176fe778583f95f41637ddf278e">SetCallback</a> (<a class="el" href="bno08x_8hpp.html#ae10cac53e8962550a2efb17043c5355e">SensorCallback</a> <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">cb</a>) <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">noexcept</a></td></tr>
+<tr class="memitem:a3953f176fe778583f95f41637ddf278e" id="r_a3953f176fe778583f95f41637ddf278e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3953f176fe778583f95f41637ddf278e">SetCallback</a> (<a class="el" href="group__SensorTypes.html#gae10cac53e8962550a2efb17043c5355e">SensorCallback</a> cb) noexcept</td></tr>
+<tr class="memdesc:a3953f176fe778583f95f41637ddf278e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register a callback for SH-2 sensor events.  <br /></td></tr>
 <tr class="separator:a3953f176fe778583f95f41637ddf278e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af733dead3ce1a525d7c13b268369023f" id="r_af733dead3ce1a525d7c13b268369023f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af733dead3ce1a525d7c13b268369023f">SetRvcCallback</a> (<a class="el" href="bno08x_8hpp.html#aa57bd22f61b6b51eb9f2585fae4e2d61">RvcCallback</a> <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">cb</a>) <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">noexcept</a></td></tr>
-<tr class="separator:af733dead3ce1a525d7c13b268369023f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f985daf2bd310476d0c5dd4c353de73" id="r_a0f985daf2bd310476d0c5dd4c353de73"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">typename</a> <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">RvcHalType</a> &gt; </td></tr>
-<tr class="memitem:a0f985daf2bd310476d0c5dd4c353de73"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">bool</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a0f985daf2bd310476d0c5dd4c353de73">BeginRvc</a> (<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">RvcHalType</a> &amp;hal) <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">noexcept</a></td></tr>
-<tr class="memdesc:a0f985daf2bd310476d0c5dd4c353de73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Begin processing in RVC mode using a CRTP-based HAL.  <br /></td></tr>
-<tr class="separator:a0f985daf2bd310476d0c5dd4c353de73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a362f9fa742b11893ecdb3a7b896102ef" id="r_a362f9fa742b11893ecdb3a7b896102ef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a362f9fa742b11893ecdb3a7b896102ef">ServiceRvc</a> () <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">noexcept</a></td></tr>
-<tr class="separator:a362f9fa742b11893ecdb3a7b896102ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a406609e88789d9e20a7333123f3f6b62" id="r_a406609e88789d9e20a7333123f3f6b62"><td class="memItemLeft" align="right" valign="top"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a406609e88789d9e20a7333123f3f6b62">CloseRvc</a> () <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">noexcept</a></td></tr>
-<tr class="separator:a406609e88789d9e20a7333123f3f6b62"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0bb31740132d2f60e8baa8f3801c3e28" id="r_a0bb31740132d2f60e8baa8f3801c3e28"><td class="memItemLeft" align="right" valign="top"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0bb31740132d2f60e8baa8f3801c3e28">HasNewData</a> (<a class="el" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a> sensor) <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">const</a></td></tr>
+<tr class="memitem:a0bb31740132d2f60e8baa8f3801c3e28" id="r_a0bb31740132d2f60e8baa8f3801c3e28"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0bb31740132d2f60e8baa8f3801c3e28">HasNewData</a> (<a class="el" href="group__SensorTypes.html#ga6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a> sensor) const</td></tr>
+<tr class="memdesc:a0bb31740132d2f60e8baa8f3801c3e28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if new data is available for a sensor.  <br /></td></tr>
 <tr class="separator:a0bb31740132d2f60e8baa8f3801c3e28"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad808f56174f2db0303525e566d328007" id="r_ad808f56174f2db0303525e566d328007"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structSensorEvent.html">SensorEvent</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad808f56174f2db0303525e566d328007">GetLatest</a> (<a class="el" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a> sensor) <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">const</a></td></tr>
+<tr class="memitem:ad808f56174f2db0303525e566d328007" id="r_ad808f56174f2db0303525e566d328007"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structSensorEvent.html">SensorEvent</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad808f56174f2db0303525e566d328007">GetLatest</a> (<a class="el" href="group__SensorTypes.html#ga6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a> sensor) const</td></tr>
+<tr class="memdesc:ad808f56174f2db0303525e566d328007"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the most recent event for a sensor.  <br /></td></tr>
 <tr class="separator:ad808f56174f2db0303525e566d328007"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a716c1a4a9a6cabbc342914247c3c886d" id="r_a716c1a4a9a6cabbc342914247c3c886d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a716c1a4a9a6cabbc342914247c3c886d">Update</a> () <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">noexcept</a></td></tr>
+<tr class="memitem:a716c1a4a9a6cabbc342914247c3c886d" id="r_a716c1a4a9a6cabbc342914247c3c886d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a716c1a4a9a6cabbc342914247c3c886d">Update</a> () noexcept</td></tr>
+<tr class="memdesc:a716c1a4a9a6cabbc342914247c3c886d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pump the SH-2 service loop.  <br /></td></tr>
 <tr class="separator:a716c1a4a9a6cabbc342914247c3c886d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6058135b615cc9e260d3de12f8e7edcf" id="r_a6058135b615cc9e260d3de12f8e7edcf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6058135b615cc9e260d3de12f8e7edcf">GetLastError</a> () <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">const</a></td></tr>
+<tr><td colspan="2"><div class="groupHeader">RVC Mode API</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>These methods are valid when GetInterfaceType() returns UARTRVC. RVC mode provides simplified yaw/pitch/roll + acceleration data via UART at 115200 baud without the overhead of the SH-2 protocol. </p>
+</div></td></tr>
+<tr class="memitem:af733dead3ce1a525d7c13b268369023f" id="r_af733dead3ce1a525d7c13b268369023f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af733dead3ce1a525d7c13b268369023f">SetRvcCallback</a> (<a class="el" href="group__SensorTypes.html#ga42c65948fe45a5845ecaf27c7ee70975">RvcCallback</a> cb) noexcept</td></tr>
+<tr class="memdesc:af733dead3ce1a525d7c13b268369023f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register a callback for decoded RVC frames.  <br /></td></tr>
+<tr class="separator:af733dead3ce1a525d7c13b268369023f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05397a0a78389c87c3dc02b984cf1bea" id="r_a05397a0a78389c87c3dc02b984cf1bea"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a05397a0a78389c87c3dc02b984cf1bea">BeginRvc</a> () noexcept</td></tr>
+<tr class="memdesc:a05397a0a78389c87c3dc02b984cf1bea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise RVC mode.  <br /></td></tr>
+<tr class="separator:a05397a0a78389c87c3dc02b984cf1bea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a362f9fa742b11893ecdb3a7b896102ef" id="r_a362f9fa742b11893ecdb3a7b896102ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a362f9fa742b11893ecdb3a7b896102ef">ServiceRvc</a> () noexcept</td></tr>
+<tr class="memdesc:a362f9fa742b11893ecdb3a7b896102ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Poll for RVC frames and dispatch callbacks.  <br /></td></tr>
+<tr class="separator:a362f9fa742b11893ecdb3a7b896102ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a406609e88789d9e20a7333123f3f6b62" id="r_a406609e88789d9e20a7333123f3f6b62"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a406609e88789d9e20a7333123f3f6b62">CloseRvc</a> () noexcept</td></tr>
+<tr class="memdesc:a406609e88789d9e20a7333123f3f6b62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop RVC processing and close the transport.  <br /></td></tr>
+<tr class="separator:a406609e88789d9e20a7333123f3f6b62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Common API</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>These methods work regardless of the interface type. </p>
+</div></td></tr>
+<tr class="memitem:a6058135b615cc9e260d3de12f8e7edcf" id="r_a6058135b615cc9e260d3de12f8e7edcf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6058135b615cc9e260d3de12f8e7edcf">GetLastError</a> () const</td></tr>
+<tr class="memdesc:a6058135b615cc9e260d3de12f8e7edcf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the last error code from the SH-2 driver.  <br /></td></tr>
 <tr class="separator:a6058135b615cc9e260d3de12f8e7edcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a064ca51468c9b5e5749d7bf98d82199b" id="r_a064ca51468c9b5e5749d7bf98d82199b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a064ca51468c9b5e5749d7bf98d82199b">HardwareReset</a> (<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">uint32_t</a> <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">lowMs</a>=2) <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">noexcept</a></td></tr>
-<tr class="memdesc:a064ca51468c9b5e5749d7bf98d82199b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toggle the sensor's hardware reset line if available.  <br /></td></tr>
+<tr class="memitem:a064ca51468c9b5e5749d7bf98d82199b" id="r_a064ca51468c9b5e5749d7bf98d82199b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a064ca51468c9b5e5749d7bf98d82199b">HardwareReset</a> (uint32_t lowMs=2) noexcept</td></tr>
+<tr class="memdesc:a064ca51468c9b5e5749d7bf98d82199b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a hardware reset via the RSTN pin.  <br /></td></tr>
 <tr class="separator:a064ca51468c9b5e5749d7bf98d82199b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2eaebd8df2ccc34046d113fd301bfdb" id="r_ab2eaebd8df2ccc34046d113fd301bfdb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab2eaebd8df2ccc34046d113fd301bfdb">SetBootPin</a> (<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">bool</a> <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">state</a>) <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">noexcept</a></td></tr>
+<tr class="memitem:ab2eaebd8df2ccc34046d113fd301bfdb" id="r_ab2eaebd8df2ccc34046d113fd301bfdb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab2eaebd8df2ccc34046d113fd301bfdb">SetBootPin</a> (bool state) noexcept</td></tr>
+<tr class="memdesc:ab2eaebd8df2ccc34046d113fd301bfdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drive the BOOTN pin to enter/exit DFU bootloader mode.  <br /></td></tr>
 <tr class="separator:ab2eaebd8df2ccc34046d113fd301bfdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61ea20fc60e1593b8a81addcee947e39" id="r_a61ea20fc60e1593b8a81addcee947e39"><td class="memItemLeft" align="right" valign="top"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a61ea20fc60e1593b8a81addcee947e39">SetWakePin</a> (<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">bool</a> <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">state</a>) <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">noexcept</a></td></tr>
+<tr class="memitem:a61ea20fc60e1593b8a81addcee947e39" id="r_a61ea20fc60e1593b8a81addcee947e39"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a61ea20fc60e1593b8a81addcee947e39">SetWakePin</a> (bool state) noexcept</td></tr>
+<tr class="memdesc:a61ea20fc60e1593b8a81addcee947e39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drive the WAKE pin (SPI mode only).  <br /></td></tr>
 <tr class="separator:a61ea20fc60e1593b8a81addcee947e39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f42063c1b13f16385744abc5595a832" id="r_a5f42063c1b13f16385744abc5595a832"><td class="memItemLeft" align="right" valign="top"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f42063c1b13f16385744abc5595a832">SelectInterface</a> (<a class="el" href="bno08x_8hpp.html#a1e8d3cde9f9e6ea515f5db028614f03b">BNO085Interface</a> <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">iface</a>) <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">noexcept</a></td></tr>
+<tr class="memitem:a5f42063c1b13f16385744abc5595a832" id="r_a5f42063c1b13f16385744abc5595a832"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f42063c1b13f16385744abc5595a832">SelectInterface</a> (<a class="el" href="bno08x__comm__interface_8hpp.html#a1e8d3cde9f9e6ea515f5db028614f03b">BNO085Interface</a> iface) noexcept</td></tr>
+<tr class="memdesc:a5f42063c1b13f16385744abc5595a832"><td class="mdescLeft">&#160;</td><td class="mdescRight">Select the host interface by driving PS0/PS1 pins.  <br /></td></tr>
 <tr class="separator:a5f42063c1b13f16385744abc5595a832"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a959705775b384e62764aa9f76aaa4dc4" id="r_a959705775b384e62764aa9f76aaa4dc4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a959705775b384e62764aa9f76aaa4dc4">Dfu</a> (<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">const</a> <a class="el" href="HcBin_8h.html#a8b8c363f76941613f85a73d23a2a1455">HcBin_t</a> &amp;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">fw</a>=<a class="el" href="firmware-bno_8c.html#a169e52b3509b7e23c9a7f630e9156c11">firmware</a>) <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">noexcept</a></td></tr>
-<tr class="memdesc:a959705775b384e62764aa9f76aaa4dc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a firmware update using this object's communication interface.  <br /></td></tr>
+<tr class="memitem:a959705775b384e62764aa9f76aaa4dc4" id="r_a959705775b384e62764aa9f76aaa4dc4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a959705775b384e62764aa9f76aaa4dc4">Dfu</a> (const <a class="el" href="HcBin_8h.html#a8b8c363f76941613f85a73d23a2a1455">HcBin_t</a> &amp;fw=<a class="el" href="bno08x_8hpp.html#a169e52b3509b7e23c9a7f630e9156c11">firmware</a>) noexcept</td></tr>
+<tr class="memdesc:a959705775b384e62764aa9f76aaa4dc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a Device Firmware Update (DFU).  <br /></td></tr>
 <tr class="separator:a959705775b384e62764aa9f76aaa4dc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">typename</a> <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a>&gt;<br />
-class BNO085&lt; CommType &gt;</div><p>High level driver for the BNO08x IMU. </p>
-<p>The driver wraps the vendor SH-2 C API and exposes a simple C++ interface. A platform specific communication interface implementing bno08x::CommInterface&lt;Derived&gt; must be supplied to actually read and write bytes on the bus.</p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename CommType&gt;<br />
+class BNO085&lt; CommType &gt;</div><p>Unified driver for the BNO08x IMU &ndash; SH-2 mode, RVC mode, and DFU. </p>
+<p>A single template class that adapts to the transport type at compile time. The CommInterface::GetInterfaceType() method determines which mode of operation is valid:</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Interface Type   </th><th class="markdownTableHeadNone">Valid Operations    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">I2C / SPI / UART   </td><td class="markdownTableBodyNone"><a class="el" href="#a9fc79a6ee018d3214897efaf254ebab3" title="Initialise the sensor in SH-2 mode.">Begin()</a>, <a class="el" href="#a716c1a4a9a6cabbc342914247c3c886d" title="Pump the SH-2 service loop.">Update()</a>, <a class="el" href="#a0969492f8a6ebc34f9344ea163b5b022" title="Enable periodic reporting for a sensor.">EnableSensor()</a>, <a class="el" href="#a959705775b384e62764aa9f76aaa4dc4" title="Perform a Device Firmware Update (DFU).">Dfu()</a>, etc.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">UARTRVC   </td><td class="markdownTableBodyNone"><a class="el" href="#a05397a0a78389c87c3dc02b984cf1bea" title="Initialise RVC mode.">BeginRvc()</a>, <a class="el" href="#a362f9fa742b11893ecdb3a7b896102ef" title="Poll for RVC frames and dispatch callbacks.">ServiceRvc()</a>, <a class="el" href="#a406609e88789d9e20a7333123f3f6b62" title="Stop RVC processing and close the transport.">CloseRvc()</a>   </td></tr>
+</table>
+<p>Calling a mode-incompatible method returns <code>false</code> or <code>SH2_ERR</code> gracefully.</p>
+<p>The driver automatically re-enables configured sensors after a sensor reset (handled internally by the async event callback).</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">CommType</td><td>The communication interface type (must inherit from bno08x::CommInterface&lt;CommType&gt;)</td></tr>
+    <tr><td class="paramname">CommType</td><td>Platform-specific transport. Must inherit from <code><a class="el" href="classbno08x_1_1CommInterface.html" title="CRTP base class for BNO08x communication interfaces.">bno08x::CommInterface</a>&lt;CommType&gt;</code>.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>The driver uses CRTP-based communication interface for zero virtual call overhead. Communication interface implementations should inherit from bno08x::CommInterface&lt;DerivedType&gt;. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>The CommType instance passed to the constructor must outlive this object. The driver stores a reference, not a copy. </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a66f2abe8f7fcf9005a37aed5cf17b104" name="a66f2abe8f7fcf9005a37aed5cf17b104"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a66f2abe8f7fcf9005a37aed5cf17b104">&#9670;&#160;</a></span>BNO085()</h2>
@@ -207,15 +237,15 @@ class BNO085&lt; CommType &gt;</div><p>High level driver for the BNO08x IMU. </p
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">typename</a> <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &gt; </div>
+template&lt;typename CommType &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classBNO085.html">BNO085</a>&lt; <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &gt;<a class="el" href="classBNO085.html">::BNO085</a> </td>
+          <td class="memname"><a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;<a class="el" href="classBNO085.html">::BNO085</a> </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>comm</em></span></td><td>)</td>
+          <td class="paramtype">CommType &amp;</td>          <td class="paramname"><span class="paramname"><em>comm</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -226,10 +256,10 @@ template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">t
 </table>
 </div><div class="memdoc">
 
-<p>Construct the driver with a communication interface instance. </p>
+<p>Construct the driver with a communication interface. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">comm</td><td>Communication interface used for communication (must outlive this object). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">comm</td><td>Reference to the transport (must outlive this object). </td></tr>
   </table>
   </dd>
 </dl>
@@ -243,13 +273,13 @@ template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">t
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">typename</a> <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &gt; </div>
+template&lt;typename CommType &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">bool</a> <a class="el" href="classBNO085.html">BNO085</a>&lt; <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &gt;::Begin </td>
+          <td class="memname">bool <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::Begin </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
@@ -262,28 +292,33 @@ template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">t
 </table>
 </div><div class="memdoc">
 
-<p>Initialise using the communication interface passed to the constructor. </p>
-<p>Initialize the sensor using the communication interface passed in the constructor. </p>
+<p>Initialise the sensor in SH-2 mode. </p>
+<p>Initialise the sensor hub in SH-2 mode.</p>
+<p>Opens the communication bus, connects to the SH-2 layer, sends the reinitialize command, and registers the internal sensor/event callbacks.</p>
+<dl class="section pre"><dt>Precondition</dt><dd>Interface type must NOT be UARTRVC. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> on success, <code>false</code> on failure or wrong interface type.</dd></dl>
+<p>Opens the communication bus, wires the SH-2 C library HAL callbacks to the CRTP CommInterface, opens the SH-2 session, sends a reinitialize command, and registers the internal sensor and async event handlers.</p>
+<dl class="section pre"><dt>Precondition</dt><dd>io_.GetInterfaceType() must NOT be <a class="el" href="bno08x__comm__interface_8hpp.html#a1e8d3cde9f9e6ea515f5db028614f03ba0199b53c4dd041296fde19fca9713e7d" title="UART in RVC mode (PS1=1, PS0=0). RVC frames only.">BNO085Interface::UARTRVC</a>. </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>initialized_ == true on success. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true on success, false on failure or incompatible transport. </dd></dl>
 
 </div>
 </div>
-<a id="a0f985daf2bd310476d0c5dd4c353de73" name="a0f985daf2bd310476d0c5dd4c353de73"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0f985daf2bd310476d0c5dd4c353de73">&#9670;&#160;</a></span>BeginRvc()</h2>
+<a id="a05397a0a78389c87c3dc02b984cf1bea" name="a05397a0a78389c87c3dc02b984cf1bea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05397a0a78389c87c3dc02b984cf1bea">&#9670;&#160;</a></span>BeginRvc()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">typename</a> <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &gt; </div>
-<div class="memtemplate">
-template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">typename</a> <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">RvcHalType</a> &gt; </div>
+template&lt;typename CommType &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">bool</a> <a class="el" href="classBNO085.html">BNO085</a>&lt; <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &gt;::BeginRvc </td>
+          <td class="memname">bool <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::BeginRvc </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">RvcHalType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>hal</em></span></td><td>)</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -294,21 +329,13 @@ template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">t
 </table>
 </div><div class="memdoc">
 
-<p>Begin processing in RVC mode using a CRTP-based HAL. </p>
-<p>The HAL type must inherit from RvcHalInterface&lt;RvcHalType&gt;. The driver internally bridges the CRTP calls into the C function-pointer API that the RVC subsystem expects, following the same pattern used for CommInterface.</p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">RvcHalType</td><td>The CRTP-derived RVC HAL type. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">hal</td><td>Reference to the RVC HAL instance (must outlive this object).</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>Begin processing RVC frames using a CRTP-based HAL. </p>
+<p>Initialise RVC mode. </p>
+<p>Open the UART transport and start the RVC frame parser.</p>
+<p>Opens the UART transport and starts the internal frame parser. The sensor must have PS0/PS1 set for RVC mode at boot time.</p>
+<dl class="section pre"><dt>Precondition</dt><dd>Interface type must be UARTRVC. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> on success, <code>false</code> on failure or wrong interface type.</dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>io_.GetInterfaceType() must be <a class="el" href="bno08x__comm__interface_8hpp.html#a1e8d3cde9f9e6ea515f5db028614f03ba0199b53c4dd041296fde19fca9713e7d" title="UART in RVC mode (PS1=1, PS0=0). RVC frames only.">BNO085Interface::UARTRVC</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true on success, false on failure or incompatible transport. </dd></dl>
 
 </div>
 </div>
@@ -318,13 +345,13 @@ template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">t
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">typename</a> <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &gt; </div>
+template&lt;typename CommType &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">void</a> <a class="el" href="classBNO085.html">BNO085</a>&lt; <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &gt;::CloseRvc </td>
+          <td class="memname">void <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::CloseRvc </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
@@ -336,8 +363,9 @@ template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">t
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Stop RVC processing.</p>
-<p>Stop RVC frame processing. </p>
+
+<p>Stop RVC processing and close the transport. </p>
+<p>Close the UART transport and deactivate the RVC parser. </p>
 
 </div>
 </div>
@@ -347,15 +375,15 @@ template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">t
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">typename</a> <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &gt; </div>
+template&lt;typename CommType &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">int</a> <a class="el" href="classBNO085.html">BNO085</a>&lt; <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &gt;::Dfu </td>
+          <td class="memname">int <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::Dfu </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">const</a> <a class="el" href="HcBin_8h.html#a8b8c363f76941613f85a73d23a2a1455">HcBin_t</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>fw</em><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="firmware-bno_8c.html#a169e52b3509b7e23c9a7f630e9156c11">firmware</a></span></span></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="HcBin_8h.html#a8b8c363f76941613f85a73d23a2a1455">HcBin_t</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>fw</em><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="bno08x_8hpp.html#a169e52b3509b7e23c9a7f630e9156c11">firmware</a></span></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -366,16 +394,27 @@ template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">t
 </table>
 </div><div class="memdoc">
 
-<p>Perform a firmware update using this object's communication interface. </p>
-<p>The sensor must already be in bootloader mode (BOOTN held low during reset). Provide the firmware as an <code>HcBin_t</code> object—use the default <code>firmware</code> from <code>src/dfu</code> or construct one at runtime with <code><a class="el" href="classMemoryFirmware.html" title="HcBin_t implementation for firmware stored in memory.">MemoryFirmware</a></code>.</p>
+<p>Perform a Device Firmware Update (DFU). </p>
+<p>Execute the full DFU firmware transfer.</p>
+<p>The sensor must already be in bootloader mode (hold BOOTN LOW during reset). The method validates the firmware image, then transfers it in packets with CRC-16 and ACK/NAK retry logic.</p>
+<dl class="section pre"><dt>Precondition</dt><dd>Interface type must NOT be UARTRVC. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">fw</td><td>Firmware image to write. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">fw</td><td>Firmware image. Defaults to the compiled-in stub from <code><a class="el" href="firmware-bno_8c.html">firmware-bno.c</a></code>. Use <a class="el" href="classMemoryFirmware.html" title="HcBin_t implementation for firmware stored in memory.">MemoryFirmware</a> for runtime images. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>SH2 status code from the DFU routine.</dd></dl>
-<p>Convenience wrapper to run DFU using this instance's communication interface. </p>
+<dl class="section return"><dt>Returns</dt><dd><code>SH2_OK</code> (0) on success, or a negative SH-2 error code.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classMemoryFirmware.html" title="HcBin_t implementation for firmware stored in memory.">MemoryFirmware</a> For loading <a class="el" href="firmware-bno_8c.html#a169e52b3509b7e23c9a7f630e9156c11" title="Default compiled-in firmware image for DFU.">firmware</a> from memory at runtime.</dd></dl>
+<p>Validates the firmware image (format, part number, length), opens the bootloader transport, sends the application size, packet size, and all firmware data packets with CRC and ACK/NAK retry, then waits for flash writes to complete.</p>
+<dl class="section pre"><dt>Precondition</dt><dd>io_.GetInterfaceType() must NOT be UARTRVC. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">fw</td><td>Firmware image (HcBin_t interface). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>SH2_OK on success, or a negative SH-2 error code. </dd></dl>
 
 </div>
 </div>
@@ -385,15 +424,15 @@ template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">t
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">typename</a> <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &gt; </div>
+template&lt;typename CommType &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">bool</a> <a class="el" href="classBNO085.html">BNO085</a>&lt; <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &gt;::DisableSensor </td>
+          <td class="memname">bool <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::DisableSensor </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a></td>          <td class="paramname"><span class="paramname"><em>sensor</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="group__SensorTypes.html#ga6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a></td>          <td class="paramname"><span class="paramname"><em>sensor</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -403,7 +442,16 @@ template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">t
   </tr>
 </table>
 </div><div class="memdoc">
+
 <p>Disable reporting for a sensor. </p>
+<p>Disable reporting for a sensor by setting its interval to zero.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">sensor</td><td>Which sensor to disable. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if successful. </dd></dl>
 
 </div>
 </div>
@@ -413,25 +461,25 @@ template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">t
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">typename</a> <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &gt; </div>
+template&lt;typename CommType &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">bool</a> <a class="el" href="classBNO085.html">BNO085</a>&lt; <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &gt;::EnableSensor </td>
+          <td class="memname">bool <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::EnableSensor </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a></td>          <td class="paramname"><span class="paramname"><em>sensor</em>, </span></td>
+          <td class="paramtype"><a class="el" href="group__SensorTypes.html#ga6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a></td>          <td class="paramname"><span class="paramname"><em>sensor</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">uint32_t</a></td>          <td class="paramname"><span class="paramname"><em>intervalMs</em>, </span></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>intervalMs</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">float</a></td>          <td class="paramname"><span class="paramname"><em>sensitivity</em><span class="paramdefsep"> = </span><span class="paramdefval">0.0f</span></span>&#160;)</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>sensitivity</em><span class="paramdefsep"> = </span><span class="paramdefval">0.0f</span></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -444,12 +492,14 @@ template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">t
 <p>Enable periodic reporting for a sensor. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">sensor</td><td>Which sensor to enable. </td></tr>
-    <tr><td class="paramname">intervalMs</td><td>Desired report interval in milliseconds. </td></tr>
-    <tr><td class="paramname">sensitivity</td><td>Change sensitivity for on-change sensors. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sensor</td><td>Which sensor to enable. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">intervalMs</td><td>Report interval in milliseconds (e.g. 10 = 100 Hz). Use 0 for on-change sensors (step counter, tap, etc.). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sensitivity</td><td>Change sensitivity threshold for on-change sensors. Set to 0.0 to disable sensitivity filtering. </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if the sensor was configured successfully.</dd></dl>
+<p>Converts the millisecond interval to microseconds and forwards to the SH-2 configuration API. The interval and sensitivity are cached so they can be automatically re-applied after a sensor reset. </p>
 
 </div>
 </div>
@@ -459,13 +509,13 @@ template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">t
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">typename</a> <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &gt; </div>
+template&lt;typename CommType &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">int</a> <a class="el" href="classBNO085.html">BNO085</a>&lt; <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &gt;::GetLastError </td>
+          <td class="memname">int <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::GetLastError </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td> const</td>
@@ -477,7 +527,9 @@ template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">t
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Retrieve the last error code returned by the SH-2 driver. </p>
+
+<p>Get the last error code from the SH-2 driver. </p>
+<dl class="section return"><dt>Returns</dt><dd>SH-2 error code (0 = no error). See <code>sh2_err.h</code> for values. </dd></dl>
 
 </div>
 </div>
@@ -487,18 +539,27 @@ template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">t
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">typename</a> <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &gt; </div>
+template&lt;typename CommType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structSensorEvent.html">SensorEvent</a> <a class="el" href="classBNO085.html">BNO085</a>&lt; <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &gt;::GetLatest </td>
+          <td class="memname"><a class="el" href="structSensorEvent.html">SensorEvent</a> <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::GetLatest </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a></td>          <td class="paramname"><span class="paramname"><em>sensor</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="group__SensorTypes.html#ga6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a></td>          <td class="paramname"><span class="paramname"><em>sensor</em></span></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Return the most recent event for a sensor.</p>
+
 <p>Retrieve the most recent event for a sensor. </p>
+<p>Returns a decoded <a class="el" href="structSensorEvent.html" title="Container for a single decoded SH-2 sensor report.">SensorEvent</a> populated with the latest values. Which fields are meaningful depends on the sensor type.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">sensor</td><td>Which sensor to query. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Copy of the latest <a class="el" href="structSensorEvent.html" title="Container for a single decoded SH-2 sensor report.">SensorEvent</a>.</dd></dl>
+<p>Constructs a <a class="el" href="structSensorEvent.html" title="Container for a single decoded SH-2 sensor report.">SensorEvent</a> from the cached sh2_SensorValue_t, mapping the SH-2 union fields to the appropriate high-level struct members based on the sensor type. </p>
 
 </div>
 </div>
@@ -508,15 +569,15 @@ template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">t
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">typename</a> <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &gt; </div>
+template&lt;typename CommType &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">void</a> <a class="el" href="classBNO085.html">BNO085</a>&lt; <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &gt;::HardwareReset </td>
+          <td class="memname">void <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::HardwareReset </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">uint32_t</a></td>          <td class="paramname"><span class="paramname"><em>lowMs</em><span class="paramdefsep"> = </span><span class="paramdefval">2</span></span></td><td>)</td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>lowMs</em><span class="paramdefsep"> = </span><span class="paramdefval">2</span></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -527,9 +588,16 @@ template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">t
 </table>
 </div><div class="memdoc">
 
-<p>Toggle the sensor's hardware reset line if available. </p>
-<p>Drives RSTN low for the specified time then releases it. Platforms not providing the pin may leave the implementation empty.</p>
-<p>Toggle the hardware reset line if implemented. </p>
+<p>Perform a hardware reset via the RSTN pin. </p>
+<p>Assert RSTN for <code>lowMs</code>, then release and wait for boot.</p>
+<p>Drives RSTN LOW for <code>lowMs</code> milliseconds, then releases it HIGH and waits 50 ms for the sensor to boot.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">lowMs</td><td>Duration to hold RSTN LOW (default 2 ms).</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The 50 ms post-release delay allows the sensor to complete its boot sequence before any I2C/SPI/UART transactions. </p>
 
 </div>
 </div>
@@ -539,17 +607,27 @@ template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">t
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">typename</a> <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &gt; </div>
+template&lt;typename CommType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">bool</a> <a class="el" href="classBNO085.html">BNO085</a>&lt; <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &gt;::HasNewData </td>
+          <td class="memname">bool <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::HasNewData </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a></td>          <td class="paramname"><span class="paramname"><em>sensor</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="group__SensorTypes.html#ga6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a></td>          <td class="paramname"><span class="paramname"><em>sensor</em></span></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
+
 <p>Check if new data is available for a sensor. </p>
+<p>Check the new-data flag for a sensor.</p>
+<p>The flag is set when a report arrives and cleared when <a class="el" href="#ad808f56174f2db0303525e566d328007" title="Retrieve the most recent event for a sensor.">GetLatest()</a> is called or when a callback consumes the event.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">sensor</td><td>Which sensor to check. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if unread data is available. </dd></dl>
 
 </div>
 </div>
@@ -559,15 +637,15 @@ template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">t
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">typename</a> <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &gt; </div>
+template&lt;typename CommType &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">void</a> <a class="el" href="classBNO085.html">BNO085</a>&lt; <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &gt;::SelectInterface </td>
+          <td class="memname">void <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::SelectInterface </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="bno08x_8hpp.html#a1e8d3cde9f9e6ea515f5db028614f03b">BNO085Interface</a></td>          <td class="paramname"><span class="paramname"><em>iface</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="bno08x__comm__interface_8hpp.html#a1e8d3cde9f9e6ea515f5db028614f03b">BNO085Interface</a></td>          <td class="paramname"><span class="paramname"><em>iface</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -577,8 +655,17 @@ template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">t
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Select the host interface by driving PS pins.</p>
-<p>Select host interface using PS0/PS1. </p>
+
+<p>Select the host interface by driving PS0/PS1 pins. </p>
+<p>Drive PS0/PS1 pins to select the host interface.</p>
+<p>This is only useful if the PS pins are connected to controllable GPIOs (rare &ndash; most boards hard-wire them).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">iface</td><td>Desired interface.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>PS pins are sampled at reset. This is only useful if the pins are connected to controllable GPIOs. </p>
 
 </div>
 </div>
@@ -588,13 +675,13 @@ template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">t
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">typename</a> <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &gt; </div>
+template&lt;typename CommType &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">void</a> <a class="el" href="classBNO085.html">BNO085</a>&lt; <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &gt;::ServiceRvc </td>
+          <td class="memname">void <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::ServiceRvc </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
@@ -606,8 +693,12 @@ template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">t
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Poll the UART and dispatch any pending RVC frames.</p>
-<p>Poll for RVC frames. </p>
+
+<p>Poll for RVC frames and dispatch callbacks. </p>
+<p>Read all available UART bytes and parse RVC frames.</p>
+<p>Reads all available UART bytes, feeds them into the frame parser, and invokes the RVC callback for each complete valid frame. Call this in your main loop or an RTOS task.</p>
+<dl class="section note"><dt>Note</dt><dd>No-op if <a class="el" href="#a05397a0a78389c87c3dc02b984cf1bea" title="Initialise RVC mode.">BeginRvc()</a> has not been called.</dd></dl>
+<p>Each byte is fed into a 19-byte sliding window. When a valid frame is detected (0xAA 0xAA header + matching checksum), the fields are extracted, decoded to floating-point, and dispatched to the RVC callback. </p>
 
 </div>
 </div>
@@ -617,15 +708,15 @@ template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">t
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">typename</a> <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &gt; </div>
+template&lt;typename CommType &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">void</a> <a class="el" href="classBNO085.html">BNO085</a>&lt; <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &gt;::SetBootPin </td>
+          <td class="memname">void <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::SetBootPin </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">bool</a></td>          <td class="paramname"><span class="paramname"><em>state</em></span></td><td>)</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>state</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -635,8 +726,15 @@ template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">t
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Set the BOOTN pin level (used to enter DFU).</p>
-<p>Drive the BOOTN pin. </p>
+
+<p>Drive the BOOTN pin to enter/exit DFU bootloader mode. </p>
+<p>Forward BOOTN control to the CommInterface.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">state</td><td><code>true</code> = drive LOW (enter bootloader), <code>false</code> = HIGH. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -646,15 +744,15 @@ template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">t
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">typename</a> <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &gt; </div>
+template&lt;typename CommType &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">void</a> <a class="el" href="classBNO085.html">BNO085</a>&lt; <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &gt;::SetCallback </td>
+          <td class="memname">void <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::SetCallback </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="bno08x_8hpp.html#ae10cac53e8962550a2efb17043c5355e">SensorCallback</a></td>          <td class="paramname"><span class="paramname"><em>cb</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="group__SensorTypes.html#gae10cac53e8962550a2efb17043c5355e">SensorCallback</a></td>          <td class="paramname"><span class="paramname"><em>cb</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -664,8 +762,16 @@ template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">t
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Register a callback invoked for every received event.</p>
-<p>Set a callback for incoming sensor events. </p>
+
+<p>Register a callback for SH-2 sensor events. </p>
+<p>Register a callback invoked for every received SH-2 sensor event.</p>
+<p>The callback is invoked from within <a class="el" href="#a716c1a4a9a6cabbc342914247c3c886d" title="Pump the SH-2 service loop.">Update()</a> whenever the SH-2 library delivers a new sensor report. Only one callback can be registered at a time; calling this again replaces the previous callback.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">cb</td><td>Callback function or lambda. Pass <code>{}</code> to clear. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -675,15 +781,15 @@ template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">t
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">typename</a> <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &gt; </div>
+template&lt;typename CommType &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">void</a> <a class="el" href="classBNO085.html">BNO085</a>&lt; <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &gt;::SetRvcCallback </td>
+          <td class="memname">void <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::SetRvcCallback </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="bno08x_8hpp.html#aa57bd22f61b6b51eb9f2585fae4e2d61">RvcCallback</a></td>          <td class="paramname"><span class="paramname"><em>cb</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="group__SensorTypes.html#ga42c65948fe45a5845ecaf27c7ee70975">RvcCallback</a></td>          <td class="paramname"><span class="paramname"><em>cb</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -693,8 +799,16 @@ template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">t
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Register a callback for decoded RVC frames.</p>
-<p>Set a callback for decoded RVC frames. </p>
+
+<p>Register a callback for decoded RVC frames. </p>
+<p>Register a callback invoked for every decoded RVC frame.</p>
+<p>The callback is invoked from within <a class="el" href="#a362f9fa742b11893ecdb3a7b896102ef" title="Poll for RVC frames and dispatch callbacks.">ServiceRvc()</a> each time a valid 19-byte RVC frame is received and decoded.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">cb</td><td>Callback function or lambda. Pass <code>{}</code> to clear. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -704,15 +818,15 @@ template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">t
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">typename</a> <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &gt; </div>
+template&lt;typename CommType &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">void</a> <a class="el" href="classBNO085.html">BNO085</a>&lt; <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &gt;::SetWakePin </td>
+          <td class="memname">void <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::SetWakePin </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">bool</a></td>          <td class="paramname"><span class="paramname"><em>state</em></span></td><td>)</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>state</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -722,8 +836,15 @@ template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">t
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Control the WAKE pin in SPI mode.</p>
-<p>Control the WAKE pin. </p>
+
+<p>Drive the WAKE pin (SPI mode only). </p>
+<p>Forward WAKE control to the CommInterface (SPI only).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">state</td><td><code>true</code> = drive LOW (wake sensor), <code>false</code> = release. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -733,13 +854,13 @@ template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">t
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">typename</a> <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &gt; </div>
+template&lt;typename CommType &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">void</a> <a class="el" href="classBNO085.html">BNO085</a>&lt; <a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">CommType</a> &gt;::Update </td>
+          <td class="memname">void <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::Update </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
@@ -751,8 +872,11 @@ template&lt;<a class="el" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">t
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Pump the SH-2 service loop. Call this as often as possible.</p>
-<p>Service the SH-2 library. Call as often as possible. </p>
+
+<p>Pump the SH-2 service loop. </p>
+<p>Service the SH-2 protocol. Invokes sensor and async callbacks.</p>
+<p>Must be called frequently (every 5-10 ms or faster) to keep data flowing between the host and the sensor hub. Sensor callbacks and async event handlers are invoked from within this method.</p>
+<dl class="section note"><dt>Note</dt><dd>No-op if <a class="el" href="#a9fc79a6ee018d3214897efaf254ebab3" title="Initialise the sensor in SH-2 mode.">Begin()</a> has not been called or if in RVC mode. </dd></dl>
 
 </div>
 </div>

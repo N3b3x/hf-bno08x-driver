@@ -443,10 +443,12 @@
 17
 18
 19
+20
 </pre></td><td class="rouge-code"><pre><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="nc">Derived</span><span class="p">&gt;</span>
 <span class="k">class</span> <span class="nc">CommInterface</span> <span class="p">{</span>
 <span class="nl">public:</span>
     <span class="c1">// Required methods (implement all of these)</span>
+    <span class="n">BNO085Interface</span> <span class="n">GetInterfaceType</span><span class="p">();</span>  <span class="c1">// I2C, SPI, UART, or UARTRVC — driver uses this to allow Begin(), BeginRvc(), or Dfu()</span>
     <span class="kt">bool</span> <span class="n">Open</span><span class="p">();</span>
     <span class="kt">void</span> <span class="n">Close</span><span class="p">();</span>
     <span class="kt">int</span> <span class="n">Write</span><span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">length</span><span class="p">);</span>

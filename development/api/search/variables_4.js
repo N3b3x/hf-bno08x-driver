@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['getappdata_0',['getAppData',['../structHcBin__s.html#ad45c43f9f25b11d2677e30540d97a536',1,'HcBin_s']]],
-  ['getapplen_1',['getAppLen',['../structHcBin__s.html#a439feec7d3cbea2a83c0f79a6063df1c',1,'HcBin_s']]],
-  ['getmeta_2',['getMeta',['../structHcBin__s.html#a10b509899819239a4655cd9a5902dc6d',1,'HcBin_s']]],
-  ['getpacketlen_3',['getPacketLen',['../structHcBin__s.html#a264c696f65faec8bb3eb994734d55527',1,'HcBin_s']]]
+  ['failed_5ftests_0',['failed_tests',['../structTestResults.html#a0acef46f38f27f0fbb8fa822bb218b3a',1,'TestResults']]],
+  ['firmware_1',['firmware',['../firmware-bno_8c.html#a169e52b3509b7e23c9a7f630e9156c11',1,'firmware:&#160;firmware-bno.c'],['../firmware_8h.html#a169e52b3509b7e23c9a7f630e9156c11',1,'firmware:&#160;firmware-bno.c'],['../bno08x_8hpp.html#a169e52b3509b7e23c9a7f630e9156c11',1,'firmware:&#160;firmware-bno.c']]],
+  ['frequency_2',['frequency',['../structEsp32Bno08xBus_1_1I2CConfig.html#a710c95b47a645dacc0d40a01ac56d982',1,'Esp32Bno08xBus::I2CConfig']]]
 ];
