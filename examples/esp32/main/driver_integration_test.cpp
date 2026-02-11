@@ -62,8 +62,8 @@ static TestResults g_test_results; // Required by TestFramework.h
  */
 static bool create_test_transport() noexcept {
   Esp32Bno08xBus::I2CConfig config;
-  config.sda_pin = GPIO_NUM_21;
-  config.scl_pin = GPIO_NUM_22;
+  config.sda_pin = GPIO_NUM_4;  // Same as pcal95555/pca9685
+  config.scl_pin = GPIO_NUM_5;
   config.frequency = 400000;
   config.device_address = 0x4A;
   config.int_pin = GPIO_NUM_NC; // Optional interrupt pin

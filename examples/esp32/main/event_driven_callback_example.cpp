@@ -60,8 +60,8 @@ extern "C" void app_main(void) {
 
   // Configure I2C transport
   Esp32Bno08xBus::I2CConfig config;
-  config.sda_pin = GPIO_NUM_21;
-  config.scl_pin = GPIO_NUM_22;
+  config.sda_pin = GPIO_NUM_4;  // Same as pcal95555/pca9685
+  config.scl_pin = GPIO_NUM_5;
   config.frequency = 400000;
   config.device_address = 0x4A;
 
