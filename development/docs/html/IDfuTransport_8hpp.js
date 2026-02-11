@@ -1,4 +1,4 @@
 var IDfuTransport_8hpp =
 [
-    [ "IDfuTransport", "classIDfuTransport.html", "classIDfuTransport" ]
+    [ "DfuTransportInterface< Derived >", "classDfuTransportInterface.html", "classDfuTransportInterface" ]
 ];

@@ -145,83 +145,72 @@ $(function(){initNavTree('Rvc_8hpp_source.html',''); initResizable(); });
 <div class="foldopen" id="foldopen00011" data-start="{" data-end="};">
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="classRvc.html">   11</a></span><span class="keyword">class </span><a class="code hl_class" href="classRvc.html">Rvc</a> {</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">public</span>:</div>
-<div class="foldopen" id="foldopen00014" data-start="{" data-end="}">
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classRvc.html#ad67acaf84dd75be5cb93a548516816f7">   14</a></span>  <span class="keyword">explicit</span> <a class="code hl_function" href="classRvc.html#ad67acaf84dd75be5cb93a548516816f7">Rvc</a>(<a class="code hl_class" href="classIRvcHal.html">IRvcHal</a>* hal = <span class="keyword">nullptr</span>) {</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <a class="code hl_function" href="rvc_8cpp.html#a31cf160a494559fac235a2e991757484">rvc_init</a>(hal);</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  }</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="classRvc.html#a12c242d7c748fe02b8ed8f0cfd9372f6">   13</a></span>  <a class="code hl_function" href="classRvc.html#a12c242d7c748fe02b8ed8f0cfd9372f6">Rvc</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="foldopen" id="foldopen00016" data-start="{" data-end="}">
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classRvc.html#a17b605afb0ada9b62c60b4ec6a307dca">   16</a></span>  <span class="keyword">explicit</span> <a class="code hl_function" href="classRvc.html#a17b605afb0ada9b62c60b4ec6a307dca">Rvc</a>(<a class="code hl_struct" href="structRvcHalC__s.html">RvcHalC_t</a>* hal) {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <a class="code hl_function" href="rvc_8cpp.html#a5e669a704543eb6835af24ba6abbdd29">rvc_init_c</a>(hal);</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  }</div>
 </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="foldopen" id="foldopen00019" data-start="{" data-end="}">
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="classRvc.html#a17b605afb0ada9b62c60b4ec6a307dca">   19</a></span>  <span class="keyword">explicit</span> <a class="code hl_function" href="classRvc.html#a17b605afb0ada9b62c60b4ec6a307dca">Rvc</a>(<a class="code hl_struct" href="structRvcHalC__s.html">RvcHalC_t</a>* hal) {</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <a class="code hl_function" href="rvc_8cpp.html#a5e669a704543eb6835af24ba6abbdd29">rvc_init_c</a>(hal);</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  }</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="foldopen" id="foldopen00021" data-start="{" data-end="}">
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="classRvc.html#a643730b58594ec33cae11f52a63947d7">   21</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classRvc.html#a643730b58594ec33cae11f52a63947d7">SetHal</a>(<a class="code hl_struct" href="structRvcHalC__s.html">RvcHalC_t</a>* hal) {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <a class="code hl_function" href="rvc_8cpp.html#a5e669a704543eb6835af24ba6abbdd29">rvc_init_c</a>(hal);</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  }</div>
 </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="foldopen" id="foldopen00024" data-start="{" data-end="}">
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="classRvc.html#ab9f1da6dcb12dcf73a19706b6a9c0ae1">   24</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classRvc.html#ab9f1da6dcb12dcf73a19706b6a9c0ae1">SetHal</a>(<a class="code hl_class" href="classIRvcHal.html">IRvcHal</a>* hal) {</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <a class="code hl_function" href="rvc_8cpp.html#a31cf160a494559fac235a2e991757484">rvc_init</a>(hal);</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  }</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="foldopen" id="foldopen00026" data-start="{" data-end="}">
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classRvc.html#a64c74dcfa5b410f9969ee4e257b74fac">   26</a></span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classRvc.html#a64c74dcfa5b410f9969ee4e257b74fac">SetCallback</a>(<a class="code hl_typedef" href="rvc_8h.html#ae438a8f9cff55cd2738a448958fe309b">rvc_Callback_t</a>* <a class="code hl_function" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">cb</a>, <span class="keywordtype">void</span>* <a class="code hl_function" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">cookie</a> = <span class="keyword">nullptr</span>) {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="rvc_8cpp.html#acf9533d6d1cd8318cbe9689a50f09d9a">rvc_setCallback</a>(<a class="code hl_function" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">cb</a>, <a class="code hl_function" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">cookie</a>);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  }</div>
 </div>
-<div class="foldopen" id="foldopen00028" data-start="{" data-end="}">
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classRvc.html#a643730b58594ec33cae11f52a63947d7">   28</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classRvc.html#a643730b58594ec33cae11f52a63947d7">SetHal</a>(<a class="code hl_struct" href="structRvcHalC__s.html">RvcHalC_t</a>* hal) {</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <a class="code hl_function" href="rvc_8cpp.html#a5e669a704543eb6835af24ba6abbdd29">rvc_init_c</a>(hal);</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  }</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="foldopen" id="foldopen00031" data-start="{" data-end="}">
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classRvc.html#a132db69643513d20b72e13e2c87413dd">   31</a></span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classRvc.html#a132db69643513d20b72e13e2c87413dd">Open</a>() {</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="rvc_8cpp.html#ada9be22655a5456e14b4def13046d910">rvc_open</a>();</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  }</div>
 </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="foldopen" id="foldopen00033" data-start="{" data-end="}">
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classRvc.html#a64c74dcfa5b410f9969ee4e257b74fac">   33</a></span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classRvc.html#a64c74dcfa5b410f9969ee4e257b74fac">SetCallback</a>(<a class="code hl_typedef" href="rvc_8h.html#ae438a8f9cff55cd2738a448958fe309b">rvc_Callback_t</a>* cb, <span class="keywordtype">void</span>* cookie = <span class="keyword">nullptr</span>) {</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="rvc_8cpp.html#acf9533d6d1cd8318cbe9689a50f09d9a">rvc_setCallback</a>(cb, cookie);</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  }</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="foldopen" id="foldopen00036" data-start="{" data-end="}">
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classRvc.html#a6d0eb62583cf602754904d9ba05d1ac7">   36</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classRvc.html#a6d0eb62583cf602754904d9ba05d1ac7">Close</a>() {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <a class="code hl_function" href="rvc_8cpp.html#a5205be5d6b614ad39f200f61f1ce17d0">rvc_close</a>();</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  }</div>
 </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="foldopen" id="foldopen00038" data-start="{" data-end="}">
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classRvc.html#a132db69643513d20b72e13e2c87413dd">   38</a></span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classRvc.html#a132db69643513d20b72e13e2c87413dd">Open</a>() {</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="rvc_8cpp.html#ada9be22655a5456e14b4def13046d910">rvc_open</a>();</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  }</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="foldopen" id="foldopen00041" data-start="{" data-end="}">
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classRvc.html#a6d10edc2bc9b48ec15477966f466d812">   41</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classRvc.html#a6d10edc2bc9b48ec15477966f466d812">Service</a>() {</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <a class="code hl_function" href="rvc_8cpp.html#ad4e8f80a148c816a2d7da1bcc31efbed">rvc_service</a>();</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  }</div>
 </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="foldopen" id="foldopen00043" data-start="{" data-end="}">
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classRvc.html#a6d0eb62583cf602754904d9ba05d1ac7">   43</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classRvc.html#a6d0eb62583cf602754904d9ba05d1ac7">Close</a>() {</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <a class="code hl_function" href="rvc_8cpp.html#a5205be5d6b614ad39f200f61f1ce17d0">rvc_close</a>();</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  }</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="foldopen" id="foldopen00046" data-start="{" data-end="}">
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classRvc.html#aae56f37e4059e2c63b6f0040a7b82bb7">   46</a></span>  <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classRvc.html#aae56f37e4059e2c63b6f0040a7b82bb7">Decode</a>(<a class="code hl_struct" href="structrvc__SensorValue__s.html">rvc_SensorValue_t</a>* <a class="code hl_function" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">val</a>, <span class="keyword">const</span> <a class="code hl_struct" href="structrvc__SensorEvent__s.html">rvc_SensorEvent_t</a>* <a class="code hl_function" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">ev</a>) {</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <a class="code hl_function" href="rvc_8cpp.html#a0e95ebfc8d66f037ba59ce2cefb80363">rvc_decode</a>(<a class="code hl_function" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">val</a>, <a class="code hl_function" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">ev</a>);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  }</div>
 </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="foldopen" id="foldopen00048" data-start="{" data-end="}">
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classRvc.html#a6d10edc2bc9b48ec15477966f466d812">   48</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classRvc.html#a6d10edc2bc9b48ec15477966f466d812">Service</a>() {</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <a class="code hl_function" href="rvc_8cpp.html#ad4e8f80a148c816a2d7da1bcc31efbed">rvc_service</a>();</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  }</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>};</div>
 </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="foldopen" id="foldopen00053" data-start="{" data-end="}">
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classRvc.html#aae56f37e4059e2c63b6f0040a7b82bb7">   53</a></span>  <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classRvc.html#aae56f37e4059e2c63b6f0040a7b82bb7">Decode</a>(<a class="code hl_struct" href="structrvc__SensorValue__s.html">rvc_SensorValue_t</a>* val, <span class="keyword">const</span> <a class="code hl_struct" href="structrvc__SensorEvent__s.html">rvc_SensorEvent_t</a>* ev) {</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <a class="code hl_function" href="rvc_8cpp.html#a0e95ebfc8d66f037ba59ce2cefb80363">rvc_decode</a>(val, ev);</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  }</div>
-</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>};</div>
-</div>
-<div class="ttc" id="aclassIRvcHal_html"><div class="ttname"><a href="classIRvcHal.html">IRvcHal</a></div><div class="ttdoc">Abstract interface for platform specific RVC hardware access.</div><div class="ttdef"><b>Definition</b> RvcHal.hpp:8</div></div>
 <div class="ttc" id="aclassRvc_html"><div class="ttname"><a href="classRvc.html">Rvc</a></div><div class="ttdoc">Convenience C++ wrapper around the C RVC API.</div><div class="ttdef"><b>Definition</b> Rvc.hpp:11</div></div>
-<div class="ttc" id="aclassRvc_html_a132db69643513d20b72e13e2c87413dd"><div class="ttname"><a href="classRvc.html#a132db69643513d20b72e13e2c87413dd">Rvc::Open</a></div><div class="ttdeci">int Open()</div><div class="ttdoc">Begin reading frames using the HAL.</div><div class="ttdef"><b>Definition</b> Rvc.hpp:38</div></div>
-<div class="ttc" id="aclassRvc_html_a17b605afb0ada9b62c60b4ec6a307dca"><div class="ttname"><a href="classRvc.html#a17b605afb0ada9b62c60b4ec6a307dca">Rvc::Rvc</a></div><div class="ttdeci">Rvc(RvcHalC_t *hal)</div><div class="ttdoc">Construct with a C style HAL.</div><div class="ttdef"><b>Definition</b> Rvc.hpp:19</div></div>
-<div class="ttc" id="aclassRvc_html_a643730b58594ec33cae11f52a63947d7"><div class="ttname"><a href="classRvc.html#a643730b58594ec33cae11f52a63947d7">Rvc::SetHal</a></div><div class="ttdeci">void SetHal(RvcHalC_t *hal)</div><div class="ttdoc">Change the HAL using a C style implementation.</div><div class="ttdef"><b>Definition</b> Rvc.hpp:28</div></div>
-<div class="ttc" id="aclassRvc_html_a64c74dcfa5b410f9969ee4e257b74fac"><div class="ttname"><a href="classRvc.html#a64c74dcfa5b410f9969ee4e257b74fac">Rvc::SetCallback</a></div><div class="ttdeci">int SetCallback(rvc_Callback_t *cb, void *cookie=nullptr)</div><div class="ttdoc">Register a callback for received frames.</div><div class="ttdef"><b>Definition</b> Rvc.hpp:33</div></div>
-<div class="ttc" id="aclassRvc_html_a6d0eb62583cf602754904d9ba05d1ac7"><div class="ttname"><a href="classRvc.html#a6d0eb62583cf602754904d9ba05d1ac7">Rvc::Close</a></div><div class="ttdeci">void Close()</div><div class="ttdoc">Stop reading frames.</div><div class="ttdef"><b>Definition</b> Rvc.hpp:43</div></div>
-<div class="ttc" id="aclassRvc_html_a6d10edc2bc9b48ec15477966f466d812"><div class="ttname"><a href="classRvc.html#a6d10edc2bc9b48ec15477966f466d812">Rvc::Service</a></div><div class="ttdeci">void Service()</div><div class="ttdoc">Poll the UART and dispatch any available frames.</div><div class="ttdef"><b>Definition</b> Rvc.hpp:48</div></div>
-<div class="ttc" id="aclassRvc_html_aae56f37e4059e2c63b6f0040a7b82bb7"><div class="ttname"><a href="classRvc.html#aae56f37e4059e2c63b6f0040a7b82bb7">Rvc::Decode</a></div><div class="ttdeci">static void Decode(rvc_SensorValue_t *val, const rvc_SensorEvent_t *ev)</div><div class="ttdoc">Helper to decode a raw event to floating point values.</div><div class="ttdef"><b>Definition</b> Rvc.hpp:53</div></div>
-<div class="ttc" id="aclassRvc_html_ab9f1da6dcb12dcf73a19706b6a9c0ae1"><div class="ttname"><a href="classRvc.html#ab9f1da6dcb12dcf73a19706b6a9c0ae1">Rvc::SetHal</a></div><div class="ttdeci">void SetHal(IRvcHal *hal)</div><div class="ttdoc">Change the HAL after construction.</div><div class="ttdef"><b>Definition</b> Rvc.hpp:24</div></div>
-<div class="ttc" id="aclassRvc_html_ad67acaf84dd75be5cb93a548516816f7"><div class="ttname"><a href="classRvc.html#ad67acaf84dd75be5cb93a548516816f7">Rvc::Rvc</a></div><div class="ttdeci">Rvc(IRvcHal *hal=nullptr)</div><div class="ttdoc">Construct the wrapper and optionally initialize with a HAL.</div><div class="ttdef"><b>Definition</b> Rvc.hpp:14</div></div>
-<div class="ttc" id="arvc_8cpp_html_a0e95ebfc8d66f037ba59ce2cefb80363"><div class="ttname"><a href="rvc_8cpp.html#a0e95ebfc8d66f037ba59ce2cefb80363">rvc_decode</a></div><div class="ttdeci">void rvc_decode(rvc_SensorValue_t *value, const rvc_SensorEvent_t *event)</div><div class="ttdef"><b>Definition</b> rvc.cpp:115</div></div>
-<div class="ttc" id="arvc_8cpp_html_a31cf160a494559fac235a2e991757484"><div class="ttname"><a href="rvc_8cpp.html#a31cf160a494559fac235a2e991757484">rvc_init</a></div><div class="ttdeci">int rvc_init(IRvcHal *hal)</div><div class="ttdef"><b>Definition</b> rvc.cpp:49</div></div>
-<div class="ttc" id="arvc_8cpp_html_a5205be5d6b614ad39f200f61f1ce17d0"><div class="ttname"><a href="rvc_8cpp.html#a5205be5d6b614ad39f200f61f1ce17d0">rvc_close</a></div><div class="ttdeci">void rvc_close()</div><div class="ttdef"><b>Definition</b> rvc.cpp:82</div></div>
-<div class="ttc" id="arvc_8cpp_html_a5e669a704543eb6835af24ba6abbdd29"><div class="ttname"><a href="rvc_8cpp.html#a5e669a704543eb6835af24ba6abbdd29">rvc_init_c</a></div><div class="ttdeci">int rvc_init_c(RvcHalC_t *hal)</div><div class="ttdef"><b>Definition</b> rvc.cpp:59</div></div>
-<div class="ttc" id="arvc_8cpp_html_acf9533d6d1cd8318cbe9689a50f09d9a"><div class="ttname"><a href="rvc_8cpp.html#acf9533d6d1cd8318cbe9689a50f09d9a">rvc_setCallback</a></div><div class="ttdeci">int rvc_setCallback(rvc_Callback_t *pCallback, void *cookie)</div><div class="ttdef"><b>Definition</b> rvc.cpp:67</div></div>
-<div class="ttc" id="arvc_8cpp_html_ad4e8f80a148c816a2d7da1bcc31efbed"><div class="ttname"><a href="rvc_8cpp.html#ad4e8f80a148c816a2d7da1bcc31efbed">rvc_service</a></div><div class="ttdeci">void rvc_service()</div><div class="ttdef"><b>Definition</b> rvc.cpp:92</div></div>
-<div class="ttc" id="arvc_8cpp_html_ada9be22655a5456e14b4def13046d910"><div class="ttname"><a href="rvc_8cpp.html#ada9be22655a5456e14b4def13046d910">rvc_open</a></div><div class="ttdeci">int rvc_open()</div><div class="ttdef"><b>Definition</b> rvc.cpp:75</div></div>
+<div class="ttc" id="aclassRvc_html_a12c242d7c748fe02b8ed8f0cfd9372f6"><div class="ttname"><a href="classRvc.html#a12c242d7c748fe02b8ed8f0cfd9372f6">Rvc::Rvc</a></div><div class="ttdeci">Rvc()=default</div></div>
+<div class="ttc" id="aclassRvc_html_a132db69643513d20b72e13e2c87413dd"><div class="ttname"><a href="classRvc.html#a132db69643513d20b72e13e2c87413dd">Rvc::Open</a></div><div class="ttdeci">int Open()</div><div class="ttdoc">Begin reading frames using the HAL.</div><div class="ttdef"><b>Definition</b> Rvc.hpp:31</div></div>
+<div class="ttc" id="aclassRvc_html_a17b605afb0ada9b62c60b4ec6a307dca"><div class="ttname"><a href="classRvc.html#a17b605afb0ada9b62c60b4ec6a307dca">Rvc::Rvc</a></div><div class="ttdeci">Rvc(RvcHalC_t *hal)</div><div class="ttdoc">Initialize with a C style HAL.</div><div class="ttdef"><b>Definition</b> Rvc.hpp:16</div></div>
+<div class="ttc" id="aclassRvc_html_a643730b58594ec33cae11f52a63947d7"><div class="ttname"><a href="classRvc.html#a643730b58594ec33cae11f52a63947d7">Rvc::SetHal</a></div><div class="ttdeci">void SetHal(RvcHalC_t *hal)</div><div class="ttdoc">Set or change the HAL using a C style implementation.</div><div class="ttdef"><b>Definition</b> Rvc.hpp:21</div></div>
+<div class="ttc" id="aclassRvc_html_a64c74dcfa5b410f9969ee4e257b74fac"><div class="ttname"><a href="classRvc.html#a64c74dcfa5b410f9969ee4e257b74fac">Rvc::SetCallback</a></div><div class="ttdeci">int SetCallback(rvc_Callback_t *cb, void *cookie=nullptr)</div><div class="ttdoc">Register a callback for received frames.</div><div class="ttdef"><b>Definition</b> Rvc.hpp:26</div></div>
+<div class="ttc" id="aclassRvc_html_a6d0eb62583cf602754904d9ba05d1ac7"><div class="ttname"><a href="classRvc.html#a6d0eb62583cf602754904d9ba05d1ac7">Rvc::Close</a></div><div class="ttdeci">void Close()</div><div class="ttdoc">Stop reading frames.</div><div class="ttdef"><b>Definition</b> Rvc.hpp:36</div></div>
+<div class="ttc" id="aclassRvc_html_a6d10edc2bc9b48ec15477966f466d812"><div class="ttname"><a href="classRvc.html#a6d10edc2bc9b48ec15477966f466d812">Rvc::Service</a></div><div class="ttdeci">void Service()</div><div class="ttdoc">Poll the UART and dispatch any available frames.</div><div class="ttdef"><b>Definition</b> Rvc.hpp:41</div></div>
+<div class="ttc" id="aclassRvc_html_aae56f37e4059e2c63b6f0040a7b82bb7"><div class="ttname"><a href="classRvc.html#aae56f37e4059e2c63b6f0040a7b82bb7">Rvc::Decode</a></div><div class="ttdeci">static void Decode(rvc_SensorValue_t *val, const rvc_SensorEvent_t *ev)</div><div class="ttdoc">Helper to decode a raw event to floating point values.</div><div class="ttdef"><b>Definition</b> Rvc.hpp:46</div></div>
+<div class="ttc" id="adfu_8h_html_ae9d4ee928e783a2424a0c8d7cfbde399"><div class="ttname"><a href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">dfu</a></div><div class="ttdeci">int dfu(TransportType &amp;transport, const HcBin_t &amp;fw)</div><div class="ttdoc">Run DFU process using the provided CRTP transport.</div><div class="ttdef"><b>Definition</b> dfu_bno.cpp:162</div></div>
+<div class="ttc" id="arvc_8cpp_html_a0e95ebfc8d66f037ba59ce2cefb80363"><div class="ttname"><a href="rvc_8cpp.html#a0e95ebfc8d66f037ba59ce2cefb80363">rvc_decode</a></div><div class="ttdeci">void rvc_decode(rvc_SensorValue_t *value, const rvc_SensorEvent_t *event)</div><div class="ttdef"><b>Definition</b> rvc.cpp:84</div></div>
+<div class="ttc" id="arvc_8cpp_html_a5205be5d6b614ad39f200f61f1ce17d0"><div class="ttname"><a href="rvc_8cpp.html#a5205be5d6b614ad39f200f61f1ce17d0">rvc_close</a></div><div class="ttdeci">void rvc_close()</div><div class="ttdef"><b>Definition</b> rvc.cpp:53</div></div>
+<div class="ttc" id="arvc_8cpp_html_a5e669a704543eb6835af24ba6abbdd29"><div class="ttname"><a href="rvc_8cpp.html#a5e669a704543eb6835af24ba6abbdd29">rvc_init_c</a></div><div class="ttdeci">int rvc_init_c(RvcHalC_t *hal)</div><div class="ttdef"><b>Definition</b> rvc.cpp:30</div></div>
+<div class="ttc" id="arvc_8cpp_html_acf9533d6d1cd8318cbe9689a50f09d9a"><div class="ttname"><a href="rvc_8cpp.html#acf9533d6d1cd8318cbe9689a50f09d9a">rvc_setCallback</a></div><div class="ttdeci">int rvc_setCallback(rvc_Callback_t *pCallback, void *cookie)</div><div class="ttdef"><b>Definition</b> rvc.cpp:39</div></div>
+<div class="ttc" id="arvc_8cpp_html_ad4e8f80a148c816a2d7da1bcc31efbed"><div class="ttname"><a href="rvc_8cpp.html#ad4e8f80a148c816a2d7da1bcc31efbed">rvc_service</a></div><div class="ttdeci">void rvc_service()</div><div class="ttdef"><b>Definition</b> rvc.cpp:61</div></div>
+<div class="ttc" id="arvc_8cpp_html_ada9be22655a5456e14b4def13046d910"><div class="ttname"><a href="rvc_8cpp.html#ada9be22655a5456e14b4def13046d910">rvc_open</a></div><div class="ttdeci">int rvc_open()</div><div class="ttdef"><b>Definition</b> rvc.cpp:46</div></div>
 <div class="ttc" id="arvc_8h_html"><div class="ttname"><a href="rvc_8h.html">rvc.h</a></div></div>
-<div class="ttc" id="arvc_8h_html_ae438a8f9cff55cd2738a448958fe309b"><div class="ttname"><a href="rvc_8h.html#ae438a8f9cff55cd2738a448958fe309b">rvc_Callback_t</a></div><div class="ttdeci">void rvc_Callback_t(void *cookie, rvc_SensorEvent_t *pEvent)</div><div class="ttdef"><b>Definition</b> rvc.h:86</div></div>
-<div class="ttc" id="astructRvcHalC__s_html"><div class="ttname"><a href="structRvcHalC__s.html">RvcHalC_s</a></div><div class="ttdef"><b>Definition</b> rvc.h:79</div></div>
-<div class="ttc" id="astructrvc__SensorEvent__s_html"><div class="ttname"><a href="structrvc__SensorEvent__s.html">rvc_SensorEvent_s</a></div><div class="ttdef"><b>Definition</b> rvc.h:52</div></div>
-<div class="ttc" id="astructrvc__SensorValue__s_html"><div class="ttname"><a href="structrvc__SensorValue__s.html">rvc_SensorValue_s</a></div><div class="ttdef"><b>Definition</b> rvc.h:65</div></div>
+<div class="ttc" id="arvc_8h_html_ae438a8f9cff55cd2738a448958fe309b"><div class="ttname"><a href="rvc_8h.html#ae438a8f9cff55cd2738a448958fe309b">rvc_Callback_t</a></div><div class="ttdeci">void rvc_Callback_t(void *cookie, rvc_SensorEvent_t *pEvent)</div><div class="ttdef"><b>Definition</b> rvc.h:83</div></div>
+<div class="ttc" id="astructRvcHalC__s_html"><div class="ttname"><a href="structRvcHalC__s.html">RvcHalC_s</a></div><div class="ttdef"><b>Definition</b> rvc.h:76</div></div>
+<div class="ttc" id="astructrvc__SensorEvent__s_html"><div class="ttname"><a href="structrvc__SensorEvent__s.html">rvc_SensorEvent_s</a></div><div class="ttdef"><b>Definition</b> rvc.h:49</div></div>
+<div class="ttc" id="astructrvc__SensorValue__s_html"><div class="ttname"><a href="structrvc__SensorValue__s.html">rvc_SensorValue_s</a></div><div class="ttdef"><b>Definition</b> rvc.h:62</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

@@ -132,74 +132,125 @@ $(function(){initNavTree('dfu_8h.html',''); initResizable(); });
 
 <div class="header">
   <div class="summary">
+<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">dfu.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="HcBin_8h_source.html">HcBin.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="IDfuTransport_8hpp_source.html">IDfuTransport.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="dfu__bno_8cpp_source.html">dfu_bno.cpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for dfu.h:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="dfu_8h__incl.svg" width="327" height="183"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="dfu_8h__incl.svg" width="540" height="330"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="dfu_8h__dep__incl.svg" width="1030" height="286"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="dfu_8h__dep__incl.svg" width="1220" height="286"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="dfu_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a00c5e7b6b4bda8a7f6385e09bb4ced38" id="r_a00c5e7b6b4bda8a7f6385e09bb4ced38"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="#ae9d4ee928e783a2424a0c8d7cfbde399">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00c5e7b6b4bda8a7f6385e09bb4ced38">DFU_BNO_HEADER_INCLUDED</a></td></tr>
+<tr class="separator:a00c5e7b6b4bda8a7f6385e09bb4ced38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a6f6ae81afbf7b6b9b446bbc9ae31e49d" id="r_a6f6ae81afbf7b6b9b446bbc9ae31e49d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6f6ae81afbf7b6b9b446bbc9ae31e49d">dfu</a> (<a class="el" href="classIDfuTransport.html">IDfuTransport</a> &amp;transport, const <a class="el" href="HcBin_8h.html#a8b8c363f76941613f85a73d23a2a1455">HcBin_t</a> &amp;<a class="el" href="firmware-bno_8c.html#a169e52b3509b7e23c9a7f630e9156c11">firmware</a>)</td></tr>
-<tr class="memdesc:a6f6ae81afbf7b6b9b446bbc9ae31e49d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run DFU process using the provided transport.  <br /></td></tr>
-<tr class="separator:a6f6ae81afbf7b6b9b446bbc9ae31e49d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa2c3d5e935b7a92ebc4662704d725b6" id="r_afa2c3d5e935b7a92ebc4662704d725b6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afa2c3d5e935b7a92ebc4662704d725b6">dfu</a> (<a class="el" href="classIDfuTransport.html">IDfuTransport</a> &amp;transport)</td></tr>
-<tr class="separator:afa2c3d5e935b7a92ebc4662704d725b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9d4ee928e783a2424a0c8d7cfbde399" id="r_ae9d4ee928e783a2424a0c8d7cfbde399"><td class="memTemplParams" colspan="2">template&lt;typename TransportType &gt; </td></tr>
+<tr class="memitem:ae9d4ee928e783a2424a0c8d7cfbde399"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ae9d4ee928e783a2424a0c8d7cfbde399">dfu</a> (TransportType &amp;transport, const <a class="el" href="HcBin_8h.html#a8b8c363f76941613f85a73d23a2a1455">HcBin_t</a> &amp;fw)</td></tr>
+<tr class="memdesc:ae9d4ee928e783a2424a0c8d7cfbde399"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run DFU process using the provided CRTP transport.  <br /></td></tr>
+<tr class="separator:ae9d4ee928e783a2424a0c8d7cfbde399"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a153f699d536f2b66027b1458d8943675" id="r_a153f699d536f2b66027b1458d8943675"><td class="memTemplParams" colspan="2">template&lt;typename TransportType &gt; </td></tr>
+<tr class="memitem:a153f699d536f2b66027b1458d8943675"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a153f699d536f2b66027b1458d8943675">dfu</a> (TransportType &amp;transport)</td></tr>
+<tr class="memdesc:a153f699d536f2b66027b1458d8943675"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run DFU using the default compiled-in firmware image.  <br /></td></tr>
+<tr class="separator:a153f699d536f2b66027b1458d8943675"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="afa2c3d5e935b7a92ebc4662704d725b6" name="afa2c3d5e935b7a92ebc4662704d725b6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afa2c3d5e935b7a92ebc4662704d725b6">&#9670;&#160;</a></span>dfu() <span class="overload">[1/2]</span></h2>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a00c5e7b6b4bda8a7f6385e09bb4ced38" name="a00c5e7b6b4bda8a7f6385e09bb4ced38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00c5e7b6b4bda8a7f6385e09bb4ced38">&#9670;&#160;</a></span>DFU_BNO_HEADER_INCLUDED</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int dfu </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classIDfuTransport.html">IDfuTransport</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>transport</em></span></td><td>)</td>
-          <td></td>
+          <td class="memname">#<a class="el" href="#ae9d4ee928e783a2424a0c8d7cfbde399">define</a> DFU_BNO_HEADER_INCLUDED</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a6f6ae81afbf7b6b9b446bbc9ae31e49d" name="a6f6ae81afbf7b6b9b446bbc9ae31e49d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6f6ae81afbf7b6b9b446bbc9ae31e49d">&#9670;&#160;</a></span>dfu() <span class="overload">[2/2]</span></h2>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a153f699d536f2b66027b1458d8943675" name="a153f699d536f2b66027b1458d8943675"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a153f699d536f2b66027b1458d8943675">&#9670;&#160;</a></span>dfu() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename TransportType &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">int dfu </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classIDfuTransport.html">IDfuTransport</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>transport</em>, </span></td>
+          <td class="paramtype">TransportType &amp;</td>          <td class="paramname"><span class="paramname"><em>transport</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Run DFU using the default compiled-in firmware image. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TransportType</td><td>DfuTransportInterface-derived type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">transport</td><td>Hardware transport implementation. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Err code from sh2_err.h indicating DFU result. </dd></dl>
+
+</div>
+</div>
+<a id="ae9d4ee928e783a2424a0c8d7cfbde399" name="ae9d4ee928e783a2424a0c8d7cfbde399"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9d4ee928e783a2424a0c8d7cfbde399">&#9670;&#160;</a></span>dfu() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TransportType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">int dfu </td>
+          <td>(</td>
+          <td class="paramtype">TransportType &amp;</td>          <td class="paramname"><span class="paramname"><em>transport</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="HcBin_8h.html#a8b8c363f76941613f85a73d23a2a1455">HcBin_t</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>firmware</em></span>&#160;)</td>
+          <td class="paramtype">const <a class="el" href="HcBin_8h.html#a8b8c363f76941613f85a73d23a2a1455">HcBin_t</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>fw</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Run DFU process using the provided transport. </p>
+<p>Run DFU process using the provided CRTP transport. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TransportType</td><td>DfuTransportInterface-derived type. </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">transport</td><td>Hardware transport implementation. </td></tr>
+    <tr><td class="paramname">fw</td><td>Firmware image to write. </td></tr>
   </table>
   </dd>
 </dl>

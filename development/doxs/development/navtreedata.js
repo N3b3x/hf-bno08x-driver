@@ -47,7 +47,6 @@ var NAVTREE =
         [ "Variables", "globals_vars.html", null ],
         [ "Typedefs", "globals_type.html", null ],
         [ "Enumerations", "globals_enum.html", null ],
-        [ "Enumerator", "globals_eval.html", null ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
@@ -57,7 +56,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "HalTransport_8hpp.html",
-"dfu__fsp200_8cpp.html#a4d41a2096eebdd5d3d865aadd0478a28a23dba505eababbfec38865304c0f3a9e"
+"firmware_8h.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

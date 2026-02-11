@@ -1,5 +1,5 @@
-warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 1768, file /tmp/doxyfile.seA46E
-warning: Tag 'DOT_TRANSPARENT' at line 2791 of file '/tmp/doxyfile.seA46E' has become obsolete.
+warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 1768, file /tmp/doxyfile.TGuZlw
+warning: Tag 'DOT_TRANSPARENT' at line 2791 of file '/tmp/doxyfile.TGuZlw' has become obsolete.
          To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
 Doxygen version used: 1.10.0 (ebc57c6dd303a980bd19dd74b8b61c8f3f5180ca)
 Searching for include files...
@@ -12,7 +12,6 @@ Searching for files to exclude
 Searching INPUT for files to process...
 Searching for files in directory /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src
 Searching for files in directory /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu
-Searching for files in directory /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/app
 Searching for files in directory /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/sh2
 Searching for files in directory /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/rvc
 Searching for files in directory /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/inc
@@ -25,12 +24,8 @@ Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/dfu.h.
 Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/dfu.h...
 Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/dfu_bno.cpp...
 Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/dfu_bno.cpp...
-Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/dfu_fsp200.cpp...
-Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/dfu_fsp200.cpp...
 Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/firmware-bno.c...
 Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/firmware-bno.c...
-Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/firmware-fsp.c...
-Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/firmware-fsp.c...
 Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/firmware.h...
 Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/firmware.h...
 Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/HalTransport.hpp...
@@ -51,22 +46,22 @@ Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/rvc/Rvc.hp
 Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/rvc/Rvc.hpp...
 Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/rvc/RvcHal.hpp...
 Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/rvc/RvcHal.hpp...
-Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/rvc/RvcHalEsp32C6.hpp...
-Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/rvc/RvcHalEsp32C6.hpp...
 Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/inc/bno08x.hpp...
-Parsi/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/rvc/README.md:1: warning: found more than one \mainpage comment block! (first occurrence: /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/README.md, line 1), Skipping current block!
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md:2: warning: found more than one \mainpage comment block! (first occurrence: /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/README.md, line 1), Skipping current block!
-ng file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/inc/bno08x.hpp...
+Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/inc/bno08x.hpp...
 Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/inc/bno08x_comm_interface.hpp...
 Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/inc/bno08x_comm_interface.hpp...
 Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/basic_polling_example.cpp...
 Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/basic_polling_example.cpp...
+Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/dfu_example.cpp...
+Parsing file /home/runner/work/hf-bno08/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/rvc/README.md:1: warning: found more than one \mainpage comment block! (first occurrence: /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/README.md, line 1), Skipping current block!
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md:2: warning: found more than one \mainpage comment block! (first occurrence: /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/README.md, line 1), Skipping current block!
+x-driver/hf-bno08x-driver/examples/esp32/main/dfu_example.cpp...
 Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/driver_integration_test.cpp...
 Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/driver_integration_test.cpp...
-Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/esp32_bno08x_bus.cpp...
-Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/esp32_bno08x_bus.cpp...
 Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/esp32_bno08x_bus.hpp...
 Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/esp32_bno08x_bus.hpp...
+Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/esp32_rvc_hal.hpp...
+Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/esp32_rvc_hal.hpp...
 Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/event_driven_callback_example.cpp...
 Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/event_driven_callback_example.cpp...
 Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/full_features_example.cpp...
@@ -135,7 +130,15 @@ Computing tooltip texts...
 Generating style sheet...
 Generating search indices...
 Generating example documentation...
-Generating fi/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/TestFramework.h:383: warning: The following parameter of print_test_section_footer(const char *tag, const char *section_name, bool enabled=true) is not documented:
+Generating file sources...
+Generating code for file examples/esp32/main/esp32_bno08x_bus.hpp...
+Generating code for file examples/esp32/main/esp32_rvc_hal.hpp...
+Generating code for file examples/esp32/main/TestFramework.h...
+Generating code for file inc/bno08x.hpp...
+Generating code for file inc/bno08x_comm_interface.hpp...
+Generating code for file src/bno08x.cpp...
+Generating code for file src/dfu/dfu.h...
+Generating code for file src/dfu/dfu_bno.cpp../home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/TestFramework.h:383: warning: The following parameter of print_test_section_footer(const char *tag, const char *section_name, bool enabled=true) is not documented:
   parameter 'tag'
 /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/TestFramework.h:357: warning: The following parameter of print_test_section_header(const char *tag, const char *section_name, bool enabled=true) is not documented:
   parameter 'tag'
@@ -144,19 +147,10 @@ Generating fi/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/
   parameter 'tag'
 /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/TestFramework.h:321: warning: The following parameter of print_test_summary(const TestResults &test_results, const char *test_suite_name, const char *tag) is not documented:
   parameter 'tag'
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/dfu.h:31: warning: The following parameter of dfu(IDfuTransport &transport, const HcBin_t &firmware) is not documented:
-  parameter 'firmware'
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/dfu.h:31: warning: The following parameter of dfu(IDfuTransport &transport, const HcBin_t &firmware) is not documented:
-  parameter 'firmware'
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/dfu.h:31: warning: The following parameter of dfu(IDfuTransport &transport, const HcBin_t &firmware) is not documented:
-  parameter 'firmware'
-le sources...
-Generating code for file examples/esp32/main/esp32_bno08x_bus.hpp...
-Generating code for file examples/esp32/main/TestFramework.h...
-Generating code for file inc/bno08x.hpp...
-Generating code for file inc/bno08x_comm_interface.hpp...
-Generating code for file src/bno08x.cpp...
-Generating code for file src/dfu/dfu.h...
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/README.md:3: warning: unable to resolve reference to '/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/docs/index.md' for \ref command
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/README.md:11: warning: unable to resolve reference to '../../docs/bno085_complete_guide.md' for \ref command
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/README.md:53: warning: unable to resolve reference to '/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/docs/index.md' for \ref command
+.
 Generating code for file src/dfu/firmware.h...
 Generating code for file src/dfu/HalTransport.hpp...
 Generating code for file src/dfu/HcBin.h...
@@ -165,12 +159,12 @@ Generating code for file src/dfu/MemoryFirmware.hpp...
 Generating code for file src/rvc/rvc.h...
 Generating code for file src/rvc/Rvc.hpp...
 Generating code for file src/rvc/RvcHal.hpp...
-Generating code for file src/rvc/RvcHalEsp32C6.hpp...
 Generating file documentation...
 Generating docs for file examples/esp32/main/basic_polling_example.cpp...
+Generating docs for file examples/esp32/main/dfu_example.cpp...
 Generating docs for file examples/esp32/main/driver_integration_test.cpp...
-Generating docs for file examples/esp32/main/esp32_bno08x_bus.cpp...
 Generating docs for file examples/esp32/main/esp32_bno08x_bus.hpp...
+Generating docs for file examples/esp32/main/esp32_rvc_hal.hpp...
 Generating docs for file examples/esp32/main/event_driven_callback_example.cpp...
 Generating docs for file examples/esp32/main/full_features_example.cpp...
 Generating docs for file examples/esp32/main/rvc_mode_example.cpp...
@@ -180,9 +174,7 @@ Generating docs for file inc/bno08x_comm_interface.hpp...
 Generating docs for file src/bno08x.cpp...
 Generating docs for file src/dfu/dfu.h...
 Generating docs for file src/dfu/dfu_bno.cpp...
-Generating docs for file src/dfu/dfu_fsp200.cpp...
 Generating docs for file src/dfu/firmware-bno.c...
-Generating docs for file src/dfu/firmware-fsp.c...
 Generating docs for file src/dfu/firmware.h...
 Generating docs for file src/dfu/HalTransport.hpp...
 Generating docs for file src/dfu/HcBin.h...
@@ -195,36 +187,29 @@ Generating docs for file src/rvc/rvc.cpp...
 Generating docs for file src/rvc/rvc.h...
 Generating docs for file src/rvc/Rvc.hpp...
 Generating docs for file src/rvc/RvcHal.hpp...
-Generating docs for file src/rvc/RvcHalEsp32C6.hpp...
 Generating page documentation...
 Generating group documentation...
 Generating class documentation...
 Generating docs for compound BNO085...
-Generating docs for compound CAdapterHal...
-Generating docs for compound Dfu_t...
-Generating docs for compound DfuTransition_t...
+Generating docs for compound DfuTransportInterface...
 Generating docs for compound Esp32Bno08xBus...
 Generating docs for nested compound Esp32Bno08xBus::I2CConfig...
-Generating docs for compound Esp32C6RvcHal...
+Generating docs for compound Esp32RvcHal...
 Generating docs for compound HalTransport...
 Generating docs for compound HcBin_s...
 Generating docs for compound HcbinMetadata...
-Generating docs for compound IDfuTransport...
-Generating docs for compound IRvcHal...
 Generating docs for compound MemoryFirmware...
-Generating docs for compound OpModeRequest_t...
-Generating docs for compound OpProdIdRequest_t...
 Generating docs for compound Quaternion...
 Generating docs for compound Rvc...
 Generating docs for compound rvc_SensorEvent_s...
 Generating docs for compound rvc_SensorValue_s...
 Generating docs for compound RvcHalC_s...
+Generating docs for compound RvcHalInterface...
 Generating docs for compound SensorEvent...
 Generating docs for compound TapEvent...
 Generating docs for compound TestResults...
 Generating docs for compound TestTaskContext...
 Generating docs for compound Vector3...
-Generating docs for compound WriteRequest_t...
 Generating concept documentation...
 Generating module documentation...
 Generating namespace documentation...
@@ -235,10 +220,7 @@ Generating directory documentation...
 Generating dependency graph for directory src/dfu
 Generating dependency graph for directory examples/esp32
 Generating dependency graph for directory examples
-Generating /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/README.md:3: warning: unable to resolve reference to '/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/docs/index.md' for \ref command
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/README.md:11: warning: unable to resolve reference to '../../docs/bno085_complete_guide.md' for \ref command
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/dfu/README.md:53: warning: unable to resolve reference to '/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/docs/index.md' for \ref command
-dependency graph for directory inc
+Generating dependency graph for directory inc
 Generating dependency graph for directory examples/esp32/main
 Generating dependency graph for directory src/rvc
 Generating dependency graph for directory src
@@ -264,219 +246,150 @@ writing tag file...
 Running plantuml with JAVA...
 Running dot...
 Generating dot graphs using 5 parallel threads...
-Running dot for graph 1/85
-Running dot for graph 2/85
-Running dot for graph 3/85
-Running dot for graph 4/85
-Running dot for graph 5/85
-Running dot for graph 6/85
-Running dot for graph 7/85
-Running dot for graph 8/85
-Running dot for graph 9/85
-Running dot for graph 10/85
-Running dot for graph 11/85
-Running dot for graph 12/85
-Running dot for graph 13/85
-Running dot for graph 14/85
-Running dot for graph 15/85
-Running dot for graph 16/85
-Running dot for graph 17/85
-Running dot for graph 18/85
-Running dot for graph 19/85
-Running dot for graph 20/85
-Running dot for graph 21/85
-Running dot for graph 22/85
-Running dot for graph 23/85
-Running dot for graph 24/85
-Running dot for graph 25/85
-Running dot for graph 26/85
-Running dot for graph 27/85
-Running dot for graph 28/85
-Running dot for graph 29/85
-Running dot for graph 30/85
-Running dot for graph 31/85
-Running dot for graph 32/85
-Running dot for graph 33/85
-Running dot for graph 34/85
-Running dot for graph 35/85
-Running dot for graph 36/85
-Running dot for graph 37/85
-Running dot for graph 38/85
-Running dot for graph 39/85
-Running dot for graph 40/85
-Running dot for graph 41/85
-Running dot for graph 42/85
-Running dot for graph 43/85
-Running dot for graph 44/85
-Running dot for graph 45/85
-Running dot for graph 46/85
-Running dot for graph 47/85
-Running dot for graph 48/85
-Running dot for graph 49/85
-Running dot for graph 50/85
-Running dot for graph 51/85
-Running dot for graph 52/85
-Running dot for graph 53/85
-Running dot for graph 54/85
-Running dot for graph 55/85
-Running dot for graph 56/85
-Running dot for graph 57/85
-Running dot for graph 58/85
-Running dot for graph 59/85
-Running dot for graph 60/85
-Running dot for graph 61/85
-Running dot for graph 62/85
-Running dot for graph 63/85
-Running dot for graph 64/85
-Running dot for graph 65/85
-Running dot for graph 66/85
-Running dot for graph 67/85
-Running dot for graph 68/85
-Running dot for graph 69/85
-Running dot for graph 70/85
-Running dot for graph 71/85
-Running dot for graph 72/85
-Running dot for graph 73/85
-Running dot for graph 74/85
-Running dot for graph 75/85
-Running dot for graph 76/85
-Running dot for graph 77/85
-Running dot for graph 78/85
-Running dot for graph 79/85
-Running dot for graph 80/85
-Running dot for graph 81/85
-Running dot for graph 82/85
-Running dot for graph 83/85
-Running dot for graph 84/85
-Running dot for graph 85/85
-Patching output file 1/128
-Patching output file 2/128
-Patching output file 3/128
-Patching output file 4/128
-Patching output file 5/128
-Patching output file 6/128
-Patching output file 7/128
-Patching output file 8/128
-Patching output file 9/128
-Patching output file 10/128
-Patching output file 11/128
-Patching output file 12/128
-Patching output file 13/128
-Patching output file 14/128
-Patching output file 15/128
-Patching output file 16/128
-Patching output file 17/128
-Patching output file 18/128
-Patching output file 19/128
-Patching output file 20/128
-Patching output file 21/128
-Patching output file 22/128
-Patching output file 23/128
-Patching output file 24/128
-Patching output file 25/128
-Patching output file 26/128
-Patching output file 27/128
-Patching output file 28/128
-Patching output file 29/128
-Patching output file 30/128
-Patching output file 31/128
-Patching output file 32/128
-Patching output file 33/128
-Patching output file 34/128
-Patching output file 35/128
-Patching output file 36/128
-Patching output file 37/128
-Patching output file 38/128
-Patching output file 39/128
-Patching output file 40/128
-Patching output file 41/128
-Patching output file 42/128
-Patching output file 43/128
-Patching output file 44/128
-Patching output file 45/128
-Patching output file 46/128
-Patching output file 47/128
-Patching output file 48/128
-Patching output file 49/128
-Patching output file 50/128
-Patching output file 51/128
-Patching output file 52/128
-Patching output file 53/128
-Patching output file 54/128
-Patching output file 55/128
-Patching output file 56/128
-Patching output file 57/128
-Patching output file 58/128
-Patching output file 59/128
-Patching output file 60/128
-Patching output file 61/128
-Patching output file 62/128
-Patching output file 63/128
-Patching output file 64/128
-Patching output file 65/128
-Patching output file 66/128
-Patching output file 67/128
-Patching output file 68/128
-Patching output file 69/128
-Patching output file 70/128
-Patching output file 71/128
-Patching output file 72/128
-Patching output file 73/128
-Patching output file 74/128
-Patching output file 75/128
-Patching output file 76/128
-Patching output file 77/128
-Patching output file 78/128
-Patching output file 79/128
-Patching output file 80/128
-Patching output file 81/128
-Patching output file 82/128
-Patching output file 83/128
-Patching output file 84/128
-Patching output file 85/128
-Patching output file 86/128
-Patching output file 87/128
-Patching output file 88/128
-Patching output file 89/128
-Patching output file 90/128
-Patching output file 91/128
-Patching output file 92/128
-Patching output file 93/128
-Patching output file 94/128
-Patching output file 95/128
-Patching output file 96/128
-Patching output file 97/128
-Patching output file 98/128
-Patching output file 99/128
-Patching output file 100/128
-Patching output file 101/128
-Patching output file 102/128
-Patching output file 103/128
-Patching output file 104/128
-Patching output file 105/128
-Patching output file 106/128
-Patching output file 107/128
-Patching output file 108/128
-Patching output file 109/128
-Patching output file 110/128
-Patching output file 111/128
-Patching output file 112/128
-Patching output file 113/128
-Patching output file 114/128
-Patching output file 115/128
-Patching output file 116/128
-Patching output file 117/128
-Patching output file 118/128
-Patching output file 119/128
-Patching output file 120/128
-Patching output file 121/128
-Patching output file 122/128
-Patching output file 123/128
-Patching output file 124/128
-Patching output file 125/128
-Patching output file 126/128
-Patching output file 127/128
-Patching output file 128/128
-type lookup cache used 707/65536 hits=1184 misses=740
-symbol lookup cache used 694/65536 hits=2258 misses=694
+Running dot for graph 1/57
+Running dot for graph 2/57
+Running dot for graph 3/57
+Running dot for graph 4/57
+Running dot for graph 5/57
+Running dot for graph 6/57
+Running dot for graph 7/57
+Running dot for graph 8/57
+Running dot for graph 9/57
+Running dot for graph 10/57
+Running dot for graph 11/57
+Running dot for graph 12/57
+Running dot for graph 13/57
+Running dot for graph 14/57
+Running dot for graph 15/57
+Running dot for graph 16/57
+Running dot for graph 17/57
+Running dot for graph 18/57
+Running dot for graph 19/57
+Running dot for graph 20/57
+Running dot for graph 21/57
+Running dot for graph 22/57
+Running dot for graph 23/57
+Running dot for graph 24/57
+Running dot for graph 25/57
+Running dot for graph 26/57
+Running dot for graph 27/57
+Running dot for graph 28/57
+Running dot for graph 29/57
+Running dot for graph 30/57
+Running dot for graph 31/57
+Running dot for graph 32/57
+Running dot for graph 33/57
+Running dot for graph 34/57
+Running dot for graph 35/57
+Running dot for graph 36/57
+Running dot for graph 37/57
+Running dot for graph 38/57
+Running dot for graph 39/57
+Running dot for graph 40/57
+Running dot for graph 41/57
+Running dot for graph 42/57
+Running dot for graph 43/57
+Running dot for graph 44/57
+Running dot for graph 45/57
+Running dot for graph 46/57
+Running dot for graph 47/57
+Running dot for graph 48/57
+Running dot for graph 49/57
+Running dot for graph 50/57
+Running dot for graph 51/57
+Running dot for graph 52/57
+Running dot for graph 53/57
+Running dot for graph 54/57
+Running dot for graph 55/57
+Running dot for graph 56/57
+Running dot for graph 57/57
+Patching output file 1/87
+Patching output file 2/87
+Patching output file 3/87
+Patching output file 4/87
+Patching output file 5/87
+Patching output file 6/87
+Patching output file 7/87
+Patching output file 8/87
+Patching output file 9/87
+Patching output file 10/87
+Patching output file 11/87
+Patching output file 12/87
+Patching output file 13/87
+Patching output file 14/87
+Patching output file 15/87
+Patching output file 16/87
+Patching output file 17/87
+Patching output file 18/87
+Patching output file 19/87
+Patching output file 20/87
+Patching output file 21/87
+Patching output file 22/87
+Patching output file 23/87
+Patching output file 24/87
+Patching output file 25/87
+Patching output file 26/87
+Patching output file 27/87
+Patching output file 28/87
+Patching output file 29/87
+Patching output file 30/87
+Patching output file 31/87
+Patching output file 32/87
+Patching output file 33/87
+Patching output file 34/87
+Patching output file 35/87
+Patching output file 36/87
+Patching output file 37/87
+Patching output file 38/87
+Patching output file 39/87
+Patching output file 40/87
+Patching output file 41/87
+Patching output file 42/87
+Patching output file 43/87
+Patching output file 44/87
+Patching output file 45/87
+Patching output file 46/87
+Patching output file 47/87
+Patching output file 48/87
+Patching output file 49/87
+Patching output file 50/87
+Patching output file 51/87
+Patching output file 52/87
+Patching output file 53/87
+Patching output file 54/87
+Patching output file 55/87
+Patching output file 56/87
+Patching output file 57/87
+Patching output file 58/87
+Patching output file 59/87
+Patching output file 60/87
+Patching output file 61/87
+Patching output file 62/87
+Patching output file 63/87
+Patching output file 64/87
+Patching output file 65/87
+Patching output file 66/87
+Patching output file 67/87
+Patching output file 68/87
+Patching output file 69/87
+Patching output file 70/87
+Patching output file 71/87
+Patching output file 72/87
+Patching output file 73/87
+Patching output file 74/87
+Patching output file 75/87
+Patching output file 76/87
+Patching output file 77/87
+Patching output file 78/87
+Patching output file 79/87
+Patching output file 80/87
+Patching output file 81/87
+Patching output file 82/87
+Patching output file 83/87
+Patching output file 84/87
+Patching output file 85/87
+Patching output file 86/87
+Patching output file 87/87
+type lookup cache used 891/65536 hits=3613 misses=916
+symbol lookup cache used 1045/65536 hits=4280 misses=1045
 finished...

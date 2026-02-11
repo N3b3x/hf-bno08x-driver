@@ -1,8 +1,11 @@
 var searchData=
 [
-  ['personalactivityclassifier_0',['PersonalActivityClassifier',['../bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a2b4e0d3abe04221e7194c853e48ec82b',1,'bno08x.hpp']]],
-  ['pickupdetector_1',['PickupDetector',['../bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a5821887f8c70cb00c9b729a1382e0542',1,'bno08x.hpp']]],
-  ['pocketdetector_2',['PocketDetector',['../bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62afe8d9948c1edf85a18f8ad4aba5baad4',1,'bno08x.hpp']]],
-  ['pressure_3',['Pressure',['../bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62aa78578c428179b490a0461e76ba5f319',1,'bno08x.hpp']]],
-  ['proximity_4',['Proximity',['../bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62af8dfb524e6ddea9129cc2f955d55db19',1,'bno08x.hpp']]]
+  ['shakedetector_0',['ShakeDetector',['../bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a4cb8f643cb530cbfba0cf2a488ab6bc4',1,'bno08x.hpp']]],
+  ['significantmotion_1',['SignificantMotion',['../bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a975bf8c0c5278ae9474fec58ba3700e2',1,'bno08x.hpp']]],
+  ['sleepdetector_2',['SleepDetector',['../bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a8c80d5cca9a487fc82a7375cfe802b28',1,'bno08x.hpp']]],
+  ['spi_3',['SPI',['../bno08x_8hpp.html#a1e8d3cde9f9e6ea515f5db028614f03ba33dc5312b091968f5a120c2484d40df8',1,'bno08x.hpp']]],
+  ['stabilityclassifier_4',['StabilityClassifier',['../bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62aad8009bd69ab44ea8de9567ea92adcf8',1,'bno08x.hpp']]],
+  ['stabilitydetector_5',['StabilityDetector',['../bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62ac049919dd5791fb90ebe0667030c6b58',1,'bno08x.hpp']]],
+  ['stepcounter_6',['StepCounter',['../bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a813bf9f9ff76be55d85361ae7f5da7de',1,'bno08x.hpp']]],
+  ['stepdetector_7',['StepDetector',['../bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a2f52ce382545c872c8a270c2c81e02f8',1,'bno08x.hpp']]]
 ];

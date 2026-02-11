@@ -176,7 +176,7 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
       </button><a href="/hf-bno08x-driver/development/" class="nav-list-link">HardFOC BNO08x Driver</a><ul class="nav-list"><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="📚 Documentation submenu" aria-expanded="false">
         <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
-      </button><a href="/hf-bno08x-driver/development/docs/" class="nav-list-link">📚 Documentation</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/installation/" class="nav-list-link">🛠️ Installation</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/quickstart/" class="nav-list-link">⚡ Quick Start</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/hardware_setup/" class="nav-list-link">🔌 Hardware Setup</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/platform_integration/" class="nav-list-link">🔧 Platform Integration</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/configuration/" class="nav-list-link">⚙️ Configuration</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/api_reference/" class="nav-list-link">📖 API Reference</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/examples/" class="nav-list-link">💡 Examples</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/special_feature_rvc/" class="nav-list-link">🧹 RVC Mode</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/special_feature_dfu/" class="nav-list-link">📦 DFU</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/troubleshooting/" class="nav-list-link">🐛 Troubleshooting</a></li></ul></li></ul></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/examples/esp32/" class="nav-list-link">BNO08x ESP32-C6 Examples</a></li></ul>
+      </button><a href="/hf-bno08x-driver/development/docs/" class="nav-list-link">📚 Documentation</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/installation/" class="nav-list-link">🛠️ Installation</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/quickstart/" class="nav-list-link">⚡ Quick Start</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/hardware_setup/" class="nav-list-link">🔌 Hardware Setup</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/platform_integration/" class="nav-list-link">🔧 Platform Integration</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/configuration/" class="nav-list-link">⚙️ Configuration</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/api_reference/" class="nav-list-link">📖 API Reference</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/examples/" class="nav-list-link">💡 Examples</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/special_feature_rvc/" class="nav-list-link">🧹 RVC Mode</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/special_feature_dfu/" class="nav-list-link">📦 DFU</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/troubleshooting/" class="nav-list-link">🐛 Troubleshooting</a></li></ul></li></ul></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/examples/esp32/" class="nav-list-link">BNO08x ESP32-S3 Examples</a></li></ul>
   
 </nav>
 
@@ -299,13 +299,13 @@
 7
 8
 </pre></td><td class="rouge-code"><pre><span class="c1">// Enable Rotation Vector at 100 Hz (10ms interval)</span>
-<span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+<span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
 
 <span class="c1">// Enable Step Counter (on-change, interval = 0)</span>
-<span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">StepCounter</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">StepCounter</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
 
 <span class="c1">// Enable Accelerometer at 50 Hz with sensitivity threshold</span>
-<span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">Accelerometer</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mf">0.1</span><span class="n">f</span><span class="p">);</span>
+<span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">Accelerometer</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mf">0.1</span><span class="n">f</span><span class="p">);</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 
 <p><strong>Interval</strong>: Report interval in milliseconds (0 = on-change only)</p>
@@ -396,7 +396,7 @@
     
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="n">imu</span><span class="p">.</span><span class="n">DisableSensor</span><span class="p">(</span><span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">);</span>
+</pre></td><td class="rouge-code"><pre><span class="n">imu</span><span class="p">.</span><span class="n">DisableSensor</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">);</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 <h2 id="callback-configuration">
   
@@ -421,10 +421,10 @@
 4
 5
 6
-</pre></td><td class="rouge-code"><pre><span class="n">imu</span><span class="p">.</span><span class="n">SetCallback</span><span class="p">([](</span><span class="k">const</span> <span class="n">bno08x</span><span class="o">::</span><span class="n">SensorEvent</span><span class="o">&amp;</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">sensor</span> <span class="o">==</span> <span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">auto</span> <span class="n">euler</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">toEuler</span><span class="p">();</span>
-        <span class="n">printf</span><span class="p">(</span><span class="s">"Yaw: %.1f°</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">euler</span><span class="p">.</span><span class="n">yaw</span><span class="p">);</span>
+</pre></td><td class="rouge-code"><pre><span class="n">imu</span><span class="p">.</span><span class="n">SetCallback</span><span class="p">([](</span><span class="k">const</span> <span class="n">SensorEvent</span><span class="o">&amp;</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">sensor</span> <span class="o">==</span> <span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Quat: w=%.3f x=%.3f y=%.3f z=%.3f</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span>
+               <span class="n">e</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">w</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">});</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
@@ -474,17 +474,17 @@
 9
 10
 11
-</pre></td><td class="rouge-code"><pre><span class="c1">// Select I²C interface (PS0=0, PS1=0)</span>
-<span class="n">imu</span><span class="p">.</span><span class="n">SelectInterface</span><span class="p">(</span><span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Interface</span><span class="o">::</span><span class="n">I2C</span><span class="p">);</span>
+</pre></td><td class="rouge-code"><pre><span class="c1">// Select I²C interface (PS1=0, PS0=0)</span>
+<span class="n">imu</span><span class="p">.</span><span class="n">SelectInterface</span><span class="p">(</span><span class="n">BNO085Interface</span><span class="o">::</span><span class="n">I2C</span><span class="p">);</span>
 
-<span class="c1">// Select SPI interface (PS0=1, PS1=1)</span>
-<span class="n">imu</span><span class="p">.</span><span class="n">SelectInterface</span><span class="p">(</span><span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Interface</span><span class="o">::</span><span class="n">SPI</span><span class="p">);</span>
+<span class="c1">// Select SPI interface (PS1=1, PS0=1)</span>
+<span class="n">imu</span><span class="p">.</span><span class="n">SelectInterface</span><span class="p">(</span><span class="n">BNO085Interface</span><span class="o">::</span><span class="n">SPI</span><span class="p">);</span>
 
-<span class="c1">// Select UART interface (PS0=0, PS1=1)</span>
-<span class="n">imu</span><span class="p">.</span><span class="n">SelectInterface</span><span class="p">(</span><span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Interface</span><span class="o">::</span><span class="n">UART</span><span class="p">);</span>
+<span class="c1">// Select UART interface (PS1=0, PS0=1)</span>
+<span class="n">imu</span><span class="p">.</span><span class="n">SelectInterface</span><span class="p">(</span><span class="n">BNO085Interface</span><span class="o">::</span><span class="n">UART</span><span class="p">);</span>
 
-<span class="c1">// Select UART RVC mode (PS0=1, PS1=0)</span>
-<span class="n">imu</span><span class="p">.</span><span class="n">SelectInterface</span><span class="p">(</span><span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Interface</span><span class="o">::</span><span class="n">UARTRVC</span><span class="p">);</span>
+<span class="c1">// Select UART RVC mode (PS1=1, PS0=0)</span>
+<span class="n">imu</span><span class="p">.</span><span class="n">SelectInterface</span><span class="p">(</span><span class="n">BNO085Interface</span><span class="o">::</span><span class="n">UARTRVC</span><span class="p">);</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 
 <p><strong>Note</strong>: Interface selection is typically done via hardware pins (PS0/PS1) at boot time. This method is only useful if your hardware allows dynamic control of these pins.</p>
@@ -561,7 +561,7 @@
 2
 3
 4
-</pre></td><td class="rouge-code"><pre><span class="n">imu</span><span class="p">.</span><span class="n">SetCallback</span><span class="p">([](</span><span class="k">const</span> <span class="n">bno08x</span><span class="o">::</span><span class="n">SensorEvent</span><span class="o">&amp;</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+</pre></td><td class="rouge-code"><pre><span class="n">imu</span><span class="p">.</span><span class="n">SetCallback</span><span class="p">([](</span><span class="k">const</span> <span class="n">SensorEvent</span><span class="o">&amp;</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// Process event immediately</span>
 <span class="p">});</span>
 <span class="n">imu</span><span class="p">.</span><span class="n">Update</span><span class="p">();</span>  <span class="c1">// Call frequently</span>
@@ -583,8 +583,8 @@
 6
 </pre></td><td class="rouge-code"><pre><span class="n">imu</span><span class="p">.</span><span class="n">Update</span><span class="p">();</span>  <span class="c1">// Must be called frequently</span>
 
-<span class="k">if</span> <span class="p">(</span><span class="n">imu</span><span class="p">.</span><span class="n">HasNewData</span><span class="p">(</span><span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">))</span> <span class="p">{</span>
-    <span class="k">auto</span> <span class="n">event</span> <span class="o">=</span> <span class="n">imu</span><span class="p">.</span><span class="n">GetLatest</span><span class="p">(</span><span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">imu</span><span class="p">.</span><span class="n">HasNewData</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">auto</span> <span class="n">event</span> <span class="o">=</span> <span class="n">imu</span><span class="p">.</span><span class="n">GetLatest</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">);</span>
     <span class="c1">// Process event</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
@@ -630,7 +630,7 @@
 2
 3
 </pre></td><td class="rouge-code"><pre><span class="c1">// Only enable what you need</span>
-<span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+<span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
 <span class="c1">// Don't enable other sensors if not needed</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 <h3 id="update-frequency">

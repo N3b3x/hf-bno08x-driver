@@ -22,17 +22,16 @@ message(STATUS "Source Root: ${SRC_ROOT}")
 # List all potential driver source files
 # Note: bno08x.cpp is excluded - it's a template implementation included from bno08x.hpp
 set(DRIVER_SRCS
-    # "${SRC_ROOT}/bno08x.cpp"  # Template implementation - included from header
-    "${SRC_ROOT}/dfu/dfu_bno.cpp"
-    "${SRC_ROOT}/dfu/dfu_fsp200.cpp"
-    "${SRC_ROOT}/rvc/rvc.cpp"
+    # "${SRC_ROOT}/bno08x.cpp"    # Template implementation - included from header
+    # "${SRC_ROOT}/dfu/dfu_bno.cpp"  # Template implementation - included from dfu.h
     "${SRC_ROOT}/dfu/firmware-bno.c"
-    "${SRC_ROOT}/dfu/firmware-fsp.c"
-    "${SRC_ROOT}/sh2/euler.c"
+    "${SRC_ROOT}/rvc/rvc.cpp"
     "${SRC_ROOT}/sh2/sh2.c"
     "${SRC_ROOT}/sh2/sh2_SensorValue.c"
     "${SRC_ROOT}/sh2/sh2_util.c"
     "${SRC_ROOT}/sh2/shtp.c"
+    # Note: sh2/euler.c is kept in the vendor directory but not compiled.
+    # Users can include it directly if they need quaternion-to-Euler conversion.
 )
 
 # Check which source files actually exist and add them

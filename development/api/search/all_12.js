@@ -14,10 +14,8 @@ var searchData=
   ['testtaskcontext_11',['TestTaskContext',['../structTestTaskContext.html',1,'']]],
   ['the_20library_12',['Using the library',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/rvc/README.md#autotoc_md7',1,'']]],
   ['tiltdetector_13',['TiltDetector',['../bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62aa05b37781bf6d88e0c9d772fe469b014',1,'bno08x.hpp']]],
-  ['timeouthdlr_14',['timeoutHdlr',['../structDfuTransition__t.html#ab641d4543d2a416f13b8e17f60ae88be',1,'DfuTransition_t']]],
-  ['timestamp_15',['timestamp',['../structSensorEvent.html#a29d1ebdb0142e4d6d885989af39025c7',1,'SensorEvent']]],
-  ['timestamp_5fus_16',['timestamp_uS',['../structrvc__SensorEvent__s.html#a157e469d1fb6fd340e5fa5cd397ac86f',1,'rvc_SensorEvent_s::timestamp_uS'],['../structrvc__SensorValue__s.html#a7beb6edb174a53f417c470777744200a',1,'rvc_SensorValue_s::timestamp_uS']]],
-  ['total_5fexecution_5ftime_5fus_17',['total_execution_time_us',['../structTestResults.html#a7eddc258a4288ac5f0a36a1008c9d014',1,'TestResults']]],
-  ['total_5ftests_18',['total_tests',['../structTestResults.html#afe20b168a13950ffca7296c0c56d4359',1,'TestResults']]],
-  ['totalretries_19',['totalRetries',['../dfu__bno_8cpp.html#a0ebb37f3ca03fb381a8dc5a917426c45',1,'dfu_bno.cpp']]]
+  ['timestamp_14',['timestamp',['../structSensorEvent.html#a29d1ebdb0142e4d6d885989af39025c7',1,'SensorEvent']]],
+  ['timestamp_5fus_15',['timestamp_uS',['../structrvc__SensorEvent__s.html#a157e469d1fb6fd340e5fa5cd397ac86f',1,'rvc_SensorEvent_s::timestamp_uS'],['../structrvc__SensorValue__s.html#a7beb6edb174a53f417c470777744200a',1,'rvc_SensorValue_s::timestamp_uS']]],
+  ['total_5fexecution_5ftime_5fus_16',['total_execution_time_us',['../structTestResults.html#a7eddc258a4288ac5f0a36a1008c9d014',1,'TestResults']]],
+  ['total_5ftests_17',['total_tests',['../structTestResults.html#afe20b168a13950ffca7296c0c56d4359',1,'TestResults']]]
 ];

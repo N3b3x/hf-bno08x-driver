@@ -1,9 +1,7 @@
 <map id="src/rvc/RvcHal.hpp" name="src/rvc/RvcHal.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="124,5,267,31"/>
-<area shape="rect" id="Node000002" href="$RvcHalEsp32C6_8hpp.html" title=" " alt="" coords="5,79,204,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="171,41,121,81,118,76,168,37"/>
-<area shape="rect" id="Node000004" href="$rvc_8cpp.html" title=" " alt="" coords="228,79,344,104"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="222,37,273,76,270,81,219,41"/>
-<area shape="rect" id="Node000003" href="$rvc__mode__example_8cpp.html" title="RVC (Reduced Vector Computation) mode example." alt="" coords="14,152,195,192"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="107,118,107,152,102,152,102,118"/>
+<area shape="rect" id="Node000001" title="CRTP&#45;based hardware abstraction interface for RVC mode." alt="" coords="25,5,167,31"/>
+<area shape="rect" id="Node000002" href="$esp32__rvc__hal_8hpp.html" title="ESP32 RVC HAL implementation for BNO08x UART&#45;based RVC mode." alt="" coords="13,79,179,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="99,44,99,79,93,79,93,44"/>
+<area shape="rect" id="Node000003" href="$rvc__mode__example_8cpp.html" title="RVC (Reduced Vector Computation) mode example." alt="" coords="5,167,187,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="99,133,99,166,93,166,93,133"/>
 </map>

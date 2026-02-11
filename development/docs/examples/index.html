@@ -176,7 +176,7 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
       </button><a href="/hf-bno08x-driver/development/" class="nav-list-link">HardFOC BNO08x Driver</a><ul class="nav-list"><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="📚 Documentation submenu" aria-expanded="false">
         <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
-      </button><a href="/hf-bno08x-driver/development/docs/" class="nav-list-link">📚 Documentation</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/installation/" class="nav-list-link">🛠️ Installation</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/quickstart/" class="nav-list-link">⚡ Quick Start</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/hardware_setup/" class="nav-list-link">🔌 Hardware Setup</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/platform_integration/" class="nav-list-link">🔧 Platform Integration</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/configuration/" class="nav-list-link">⚙️ Configuration</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/api_reference/" class="nav-list-link">📖 API Reference</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/examples/" class="nav-list-link">💡 Examples</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/special_feature_rvc/" class="nav-list-link">🧹 RVC Mode</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/special_feature_dfu/" class="nav-list-link">📦 DFU</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/troubleshooting/" class="nav-list-link">🐛 Troubleshooting</a></li></ul></li></ul></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/examples/esp32/" class="nav-list-link">BNO08x ESP32-C6 Examples</a></li></ul>
+      </button><a href="/hf-bno08x-driver/development/docs/" class="nav-list-link">📚 Documentation</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/installation/" class="nav-list-link">🛠️ Installation</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/quickstart/" class="nav-list-link">⚡ Quick Start</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/hardware_setup/" class="nav-list-link">🔌 Hardware Setup</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/platform_integration/" class="nav-list-link">🔧 Platform Integration</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/configuration/" class="nav-list-link">⚙️ Configuration</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/api_reference/" class="nav-list-link">📖 API Reference</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/examples/" class="nav-list-link">💡 Examples</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/special_feature_rvc/" class="nav-list-link">🧹 RVC Mode</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/special_feature_dfu/" class="nav-list-link">📦 DFU</a></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/docs/troubleshooting/" class="nav-list-link">🐛 Troubleshooting</a></li></ul></li></ul></li><li class="nav-list-item"><a href="/hf-bno08x-driver/development/examples/esp32/" class="nav-list-link">BNO08x ESP32-S3 Examples</a></li></ul>
   
 </nav>
 
@@ -338,45 +338,45 @@
 #include</span> <span class="cpf">"esp32_bno08x_bus.hpp"</span><span class="cp">
 </span>
 <span class="kt">void</span> <span class="nf">app_main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// 1. Configure I2C transport</span>
+    <span class="c1">// 1. Configure I2C transport (same bus pins as pcal95555/pca9685 examples)</span>
     <span class="n">Esp32Bno08xBus</span><span class="o">::</span><span class="n">I2CConfig</span> <span class="n">config</span><span class="p">;</span>
-    <span class="n">config</span><span class="p">.</span><span class="n">sda_pin</span> <span class="o">=</span> <span class="n">GPIO_NUM_21</span><span class="p">;</span>
-    <span class="n">config</span><span class="p">.</span><span class="n">scl_pin</span> <span class="o">=</span> <span class="n">GPIO_NUM_22</span><span class="p">;</span>
+    <span class="n">config</span><span class="p">.</span><span class="n">sda_pin</span> <span class="o">=</span> <span class="n">GPIO_NUM_4</span><span class="p">;</span>
+    <span class="n">config</span><span class="p">.</span><span class="n">scl_pin</span> <span class="o">=</span> <span class="n">GPIO_NUM_5</span><span class="p">;</span>
     <span class="n">config</span><span class="p">.</span><span class="n">frequency</span> <span class="o">=</span> <span class="mi">400000</span><span class="p">;</span>
-    <span class="n">config</span><span class="p">.</span><span class="n">device_address</span> <span class="o">=</span> <span class="mh">0x4A</span><span class="p">;</span>
+    <span class="n">config</span><span class="p">.</span><span class="n">device_address</span> <span class="o">=</span> <span class="mh">0x4B</span><span class="p">;</span>  <span class="c1">// Default (SA0=HIGH); use 0x4A if SA0=LOW</span>
     
-    <span class="k">auto</span> <span class="n">transport</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">Esp32Bno08xBus</span><span class="o">&gt;</span><span class="p">(</span><span class="n">config</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">transport</span><span class="o">-&gt;</span><span class="n">Open</span><span class="p">())</span> <span class="p">{</span>
-        <span class="n">printf</span><span class="p">(</span><span class="s">"Failed to open I2C transport</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="c1">// 2. Create and initialize I2C transport via factory function</span>
+    <span class="k">auto</span> <span class="n">transport</span> <span class="o">=</span> <span class="n">CreateEsp32Bno08xBus</span><span class="p">(</span><span class="n">config</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">transport</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Failed to create I2C transport</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
         <span class="k">return</span><span class="p">;</span>
     <span class="p">}</span>
     
-    <span class="c1">// 2. Create IMU instance</span>
-    <span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085</span><span class="o">&lt;</span><span class="n">Esp32Bno08xBus</span><span class="o">&gt;</span> <span class="n">imu</span><span class="p">(</span><span class="o">*</span><span class="n">transport</span><span class="p">);</span>
+    <span class="c1">// 3. Create IMU instance</span>
+    <span class="n">BNO085</span><span class="o">&lt;</span><span class="n">Esp32Bno08xBus</span><span class="o">&gt;</span> <span class="n">imu</span><span class="p">(</span><span class="o">*</span><span class="n">transport</span><span class="p">);</span>
     
-    <span class="c1">// 3. Initialize</span>
+    <span class="c1">// 4. Initialize</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">imu</span><span class="p">.</span><span class="n">Begin</span><span class="p">())</span> <span class="p">{</span>
         <span class="n">printf</span><span class="p">(</span><span class="s">"Failed to initialize BNO085</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
         <span class="k">return</span><span class="p">;</span>
     <span class="p">}</span>
     
-    <span class="c1">// 4. Enable sensors</span>
-    <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>      <span class="c1">// 50 Hz</span>
-    <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">LinearAcceleration</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span> <span class="c1">// 50 Hz</span>
+    <span class="c1">// 5. Enable sensors</span>
+    <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>      <span class="c1">// 50 Hz</span>
+    <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">LinearAcceleration</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span> <span class="c1">// 50 Hz</span>
     
-    <span class="c1">// 5. Polling loop</span>
+    <span class="c1">// 6. Polling loop</span>
     <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">imu</span><span class="p">.</span><span class="n">Update</span><span class="p">();</span>
         
-        <span class="k">if</span> <span class="p">(</span><span class="n">imu</span><span class="p">.</span><span class="n">HasNewData</span><span class="p">(</span><span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">))</span> <span class="p">{</span>
-            <span class="k">auto</span> <span class="n">rot</span> <span class="o">=</span> <span class="n">imu</span><span class="p">.</span><span class="n">getLatestData</span><span class="p">(</span><span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">);</span>
-            <span class="k">auto</span> <span class="n">euler</span> <span class="o">=</span> <span class="n">rot</span><span class="p">.</span><span class="n">toEuler</span><span class="p">();</span>
-            <span class="n">printf</span><span class="p">(</span><span class="s">"Yaw: %.1f°, Pitch: %.1f°, Roll: %.1f°</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> 
-                   <span class="n">euler</span><span class="p">.</span><span class="n">yaw</span><span class="p">,</span> <span class="n">euler</span><span class="p">.</span><span class="n">pitch</span><span class="p">,</span> <span class="n">euler</span><span class="p">.</span><span class="n">roll</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">imu</span><span class="p">.</span><span class="n">HasNewData</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">auto</span> <span class="n">rot</span> <span class="o">=</span> <span class="n">imu</span><span class="p">.</span><span class="n">GetLatest</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">);</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"Quat: w=%.3f x=%.3f y=%.3f z=%.3f</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span>
+                   <span class="n">rot</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">w</span><span class="p">,</span> <span class="n">rot</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">rot</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">rot</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
         <span class="p">}</span>
         
-        <span class="k">if</span> <span class="p">(</span><span class="n">imu</span><span class="p">.</span><span class="n">HasNewData</span><span class="p">(</span><span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">LinearAcceleration</span><span class="p">))</span> <span class="p">{</span>
-            <span class="k">auto</span> <span class="n">accel</span> <span class="o">=</span> <span class="n">imu</span><span class="p">.</span><span class="n">getLatestData</span><span class="p">(</span><span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">LinearAcceleration</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">imu</span><span class="p">.</span><span class="n">HasNewData</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">LinearAcceleration</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">auto</span> <span class="n">accel</span> <span class="o">=</span> <span class="n">imu</span><span class="p">.</span><span class="n">GetLatest</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">LinearAcceleration</span><span class="p">);</span>
             <span class="n">printf</span><span class="p">(</span><span class="s">"Linear Accel: %.2f %.2f %.2f m/s²</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> 
                    <span class="n">accel</span><span class="p">.</span><span class="n">vector</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">accel</span><span class="p">.</span><span class="n">vector</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">accel</span><span class="p">.</span><span class="n">vector</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
         <span class="p">}</span>
@@ -396,7 +396,8 @@
 
 <ol>
   <li><strong>I2C Configuration</strong>: Configure the I2C bus with appropriate pins and settings</li>
-  <li><strong>Transport Creation</strong>: Create the communication transport instance</li>
+  <li><strong>Transport Creation</strong>: Create and initialize the transport via factory function</li>
+  <li><strong>IMU Instance</strong>: Create the BNO085 driver instance with the transport</li>
   <li><strong>IMU Initialization</strong>: Initialize the BNO085 sensor</li>
   <li><strong>Sensor Enablement</strong>: Enable desired sensors with update rates (interval in milliseconds)</li>
   <li><strong>Polling Loop</strong>: Continuously call <code class="language-plaintext highlighter-rouge">Update()</code> and check for new data using <code class="language-plaintext highlighter-rouge">HasNewData()</code></li>
@@ -414,9 +415,9 @@
 2
 3
 4
-</pre></td><td class="rouge-code"><pre>Yaw: 45.2°, Pitch: -2.1°, Roll: 1.5°
+</pre></td><td class="rouge-code"><pre>Quat: w=0.924 x=0.012 y=-0.018 z=0.382
 Linear Accel: 0.12 0.05 -9.81 m/s²
-Yaw: 45.3°, Pitch: -2.0°, Roll: 1.6°
+Quat: w=0.924 x=0.012 y=-0.018 z=0.383
 Linear Accel: 0.11 0.06 -9.80 m/s²
 </pre></td></tr></tbody></table></div></code></pre></div></div><hr />
 <h2 id="example-2-event-driven-callback-mode">
@@ -493,27 +494,26 @@ Linear Accel: 0.11 0.06 -9.80 m/s²
 #include</span> <span class="cpf">"esp32_bno08x_bus.hpp"</span><span class="cp">
 </span>
 <span class="c1">// Callback function for sensor events</span>
-<span class="kt">void</span> <span class="nf">sensor_callback</span><span class="p">(</span><span class="k">const</span> <span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085</span><span class="o">&lt;</span><span class="n">Esp32Bno08xBus</span><span class="o">&gt;::</span><span class="n">SensorEvent</span><span class="o">&amp;</span> <span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+<span class="kt">void</span> <span class="nf">sensor_callback</span><span class="p">(</span><span class="k">const</span> <span class="n">SensorEvent</span><span class="o">&amp;</span> <span class="n">event</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">switch</span> <span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="n">sensor</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">case</span> <span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">:</span>
-            <span class="p">{</span>
-                <span class="k">auto</span> <span class="n">euler</span> <span class="o">=</span> <span class="n">event</span><span class="p">.</span><span class="n">toEuler</span><span class="p">();</span>
-                <span class="n">printf</span><span class="p">(</span><span class="s">"Orientation - Yaw: %.1f°, Pitch: %.1f°, Roll: %.1f°</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span>
-                       <span class="n">euler</span><span class="p">.</span><span class="n">yaw</span><span class="p">,</span> <span class="n">euler</span><span class="p">.</span><span class="n">pitch</span><span class="p">,</span> <span class="n">euler</span><span class="p">.</span><span class="n">roll</span><span class="p">);</span>
-            <span class="p">}</span>
+        <span class="k">case</span> <span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">:</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"Orientation - w=%.3f x=%.3f y=%.3f z=%.3f (accuracy=%d)</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span>
+                   <span class="n">event</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">w</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">x</span><span class="p">,</span>
+                   <span class="n">event</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">z</span><span class="p">,</span>
+                   <span class="n">event</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">accuracy</span><span class="p">);</span>
             <span class="k">break</span><span class="p">;</span>
             
-        <span class="k">case</span> <span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">StepCounter</span><span class="p">:</span>
+        <span class="k">case</span> <span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">StepCounter</span><span class="p">:</span>
             <span class="n">printf</span><span class="p">(</span><span class="s">"Step Count: %lu</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="n">stepCount</span><span class="p">);</span>
             <span class="k">break</span><span class="p">;</span>
             
-        <span class="k">case</span> <span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">TapDetector</span><span class="p">:</span>
+        <span class="k">case</span> <span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">TapDetector</span><span class="p">:</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="n">detected</span><span class="p">)</span> <span class="p">{</span>
                 <span class="n">printf</span><span class="p">(</span><span class="s">"%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="n">tap</span><span class="p">.</span><span class="n">doubleTap</span> <span class="o">?</span> <span class="s">"Double Tap!"</span> <span class="o">:</span> <span class="s">"Tap!"</span><span class="p">);</span>
             <span class="p">}</span>
             <span class="k">break</span><span class="p">;</span>
             
-        <span class="k">case</span> <span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">ShakeDetector</span><span class="p">:</span>
+        <span class="k">case</span> <span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">ShakeDetector</span><span class="p">:</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="n">detected</span><span class="p">)</span> <span class="p">{</span>
                 <span class="n">printf</span><span class="p">(</span><span class="s">"Shake Detected!</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
             <span class="p">}</span>
@@ -525,9 +525,10 @@ Linear Accel: 0.11 0.06 -9.80 m/s²
 <span class="p">}</span>
 
 <span class="kt">void</span> <span class="n">app_main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// ... I2C setup (same as Example 1)</span>
+    <span class="c1">// ... I2C setup via factory function (same as Example 1)</span>
+    <span class="k">auto</span> <span class="n">transport</span> <span class="o">=</span> <span class="n">CreateEsp32Bno08xBus</span><span class="p">(</span><span class="n">config</span><span class="p">);</span>
     
-    <span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085</span><span class="o">&lt;</span><span class="n">Esp32Bno08xBus</span><span class="o">&gt;</span> <span class="n">imu</span><span class="p">(</span><span class="o">*</span><span class="n">transport</span><span class="p">);</span>
+    <span class="n">BNO085</span><span class="o">&lt;</span><span class="n">Esp32Bno08xBus</span><span class="o">&gt;</span> <span class="n">imu</span><span class="p">(</span><span class="o">*</span><span class="n">transport</span><span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">imu</span><span class="p">.</span><span class="n">Begin</span><span class="p">())</span> <span class="p">{</span>
         <span class="n">printf</span><span class="p">(</span><span class="s">"Initialization failed</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
         <span class="k">return</span><span class="p">;</span>
@@ -537,10 +538,10 @@ Linear Accel: 0.11 0.06 -9.80 m/s²
     <span class="n">imu</span><span class="p">.</span><span class="n">SetCallback</span><span class="p">(</span><span class="n">sensor_callback</span><span class="p">);</span>
     
     <span class="c1">// Enable event-driven sensors (interval = 0 for on-change)</span>
-    <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>  <span class="c1">// 100 Hz</span>
-    <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">StepCounter</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>      <span class="c1">// on-change</span>
-    <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">TapDetector</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>      <span class="c1">// events</span>
-    <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">ShakeDetector</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>    <span class="c1">// events</span>
+    <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>  <span class="c1">// 100 Hz</span>
+    <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">StepCounter</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>      <span class="c1">// on-change</span>
+    <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">TapDetector</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>      <span class="c1">// events</span>
+    <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">ShakeDetector</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>    <span class="c1">// events</span>
     
     <span class="c1">// Main loop - just call Update() to process events</span>
     <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
@@ -579,8 +580,8 @@ Linear Accel: 0.11 0.06 -9.80 m/s²
 4
 5
 6
-</pre></td><td class="rouge-code"><pre>Orientation - Yaw: 45.2°, Pitch: -2.1°, Roll: 1.5°
-Orientation - Yaw: 45.3°, Pitch: -2.0°, Roll: 1.6°
+</pre></td><td class="rouge-code"><pre>Orientation - w=0.924 x=0.012 y=-0.018 z=0.382 (accuracy=3)
+Orientation - w=0.924 x=0.012 y=-0.018 z=0.383 (accuracy=3)
 Tap!
 Step Count: 1
 Double Tap!
@@ -665,35 +666,32 @@ Shake Detected!
 66
 67
 68
-69
 </pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">"bno08x.hpp"</span><span class="cp">
 #include</span> <span class="cpf">"esp32_bno08x_bus.hpp"</span><span class="cp">
 </span>
-<span class="kt">void</span> <span class="nf">event_callback</span><span class="p">(</span><span class="k">const</span> <span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085</span><span class="o">&lt;</span><span class="n">Esp32Bno08xBus</span><span class="o">&gt;::</span><span class="n">SensorEvent</span><span class="o">&amp;</span> <span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+<span class="kt">void</span> <span class="nf">event_callback</span><span class="p">(</span><span class="k">const</span> <span class="n">SensorEvent</span><span class="o">&amp;</span> <span class="n">event</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">switch</span> <span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="n">sensor</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">case</span> <span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">:</span>
-            <span class="p">{</span>
-                <span class="k">auto</span> <span class="n">euler</span> <span class="o">=</span> <span class="n">event</span><span class="p">.</span><span class="n">toEuler</span><span class="p">();</span>
-                <span class="n">printf</span><span class="p">(</span><span class="s">"Yaw %.1f pitch %.1f roll %.1f</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> 
-                       <span class="n">euler</span><span class="p">.</span><span class="n">yaw</span><span class="p">,</span> <span class="n">euler</span><span class="p">.</span><span class="n">pitch</span><span class="p">,</span> <span class="n">euler</span><span class="p">.</span><span class="n">roll</span><span class="p">);</span>
-            <span class="p">}</span>
+        <span class="k">case</span> <span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">:</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"Rotation w=%.3f x=%.3f y=%.3f z=%.3f</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span>
+                   <span class="n">event</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">w</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">x</span><span class="p">,</span>
+                   <span class="n">event</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
             <span class="k">break</span><span class="p">;</span>
             
-        <span class="k">case</span> <span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">LinearAcceleration</span><span class="p">:</span>
+        <span class="k">case</span> <span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">LinearAcceleration</span><span class="p">:</span>
             <span class="n">printf</span><span class="p">(</span><span class="s">"Linear accel %.2f %.2f %.2f m/s²</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> 
                    <span class="n">event</span><span class="p">.</span><span class="n">vector</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="n">vector</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="n">vector</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
             <span class="k">break</span><span class="p">;</span>
             
-        <span class="k">case</span> <span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">Gyroscope</span><span class="p">:</span>
+        <span class="k">case</span> <span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">Gyroscope</span><span class="p">:</span>
             <span class="n">printf</span><span class="p">(</span><span class="s">"Gyro %.2f %.2f %.2f rad/s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> 
                    <span class="n">event</span><span class="p">.</span><span class="n">vector</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="n">vector</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="n">vector</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
             <span class="k">break</span><span class="p">;</span>
             
-        <span class="k">case</span> <span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">StepCounter</span><span class="p">:</span>
+        <span class="k">case</span> <span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">StepCounter</span><span class="p">:</span>
             <span class="n">printf</span><span class="p">(</span><span class="s">"Steps: %lu</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="n">stepCount</span><span class="p">);</span>
             <span class="k">break</span><span class="p">;</span>
             
-        <span class="k">case</span> <span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">TapDetector</span><span class="p">:</span>
+        <span class="k">case</span> <span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">TapDetector</span><span class="p">:</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="n">detected</span><span class="p">)</span> <span class="p">{</span>
                 <span class="n">printf</span><span class="p">(</span><span class="s">"%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="n">tap</span><span class="p">.</span><span class="n">doubleTap</span> <span class="o">?</span> <span class="s">"Double tap!"</span> <span class="o">:</span> <span class="s">"Tap!"</span><span class="p">);</span>
             <span class="p">}</span>
@@ -705,9 +703,10 @@ Shake Detected!
 <span class="p">}</span>
 
 <span class="kt">void</span> <span class="n">app_main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// ... I2C setup</span>
+    <span class="c1">// ... I2C setup via factory function (same as Example 1)</span>
+    <span class="k">auto</span> <span class="n">transport</span> <span class="o">=</span> <span class="n">CreateEsp32Bno08xBus</span><span class="p">(</span><span class="n">config</span><span class="p">);</span>
     
-    <span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085</span><span class="o">&lt;</span><span class="n">Esp32Bno08xBus</span><span class="o">&gt;</span> <span class="n">imu</span><span class="p">(</span><span class="o">*</span><span class="n">transport</span><span class="p">);</span>
+    <span class="n">BNO085</span><span class="o">&lt;</span><span class="n">Esp32Bno08xBus</span><span class="o">&gt;</span> <span class="n">imu</span><span class="p">(</span><span class="o">*</span><span class="n">transport</span><span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">imu</span><span class="p">.</span><span class="n">Begin</span><span class="p">())</span> <span class="p">{</span>
         <span class="k">return</span><span class="p">;</span>
     <span class="p">}</span>
@@ -715,19 +714,19 @@ Shake Detected!
     <span class="n">imu</span><span class="p">.</span><span class="n">SetCallback</span><span class="p">(</span><span class="n">event_callback</span><span class="p">);</span>
     
     <span class="c1">// Enable multiple sensors with different rates</span>
-    <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>     <span class="c1">// 100 Hz</span>
-    <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">LinearAcceleration</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span> <span class="c1">// 50 Hz</span>
-    <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">Gyroscope</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>          <span class="c1">// 50 Hz</span>
-    <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">Gravity</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>             <span class="c1">// 20 Hz</span>
-    <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">StepCounter</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>         <span class="c1">// on-change</span>
-    <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">TapDetector</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>         <span class="c1">// events</span>
+    <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>     <span class="c1">// 100 Hz</span>
+    <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">LinearAcceleration</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span> <span class="c1">// 50 Hz</span>
+    <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">Gyroscope</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>          <span class="c1">// 50 Hz</span>
+    <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">Gravity</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>             <span class="c1">// 20 Hz</span>
+    <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">StepCounter</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>         <span class="c1">// on-change</span>
+    <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">TapDetector</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>         <span class="c1">// events</span>
     
     <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">imu</span><span class="p">.</span><span class="n">Update</span><span class="p">();</span>
         
         <span class="c1">// Poll for gravity (not using callback)</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">imu</span><span class="p">.</span><span class="n">HasNewData</span><span class="p">(</span><span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">Gravity</span><span class="p">))</span> <span class="p">{</span>
-            <span class="k">auto</span> <span class="n">g</span> <span class="o">=</span> <span class="n">imu</span><span class="p">.</span><span class="n">getLatestData</span><span class="p">(</span><span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">Gravity</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">imu</span><span class="p">.</span><span class="n">HasNewData</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">Gravity</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">auto</span> <span class="n">g</span> <span class="o">=</span> <span class="n">imu</span><span class="p">.</span><span class="n">GetLatest</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">Gravity</span><span class="p">);</span>
             <span class="n">printf</span><span class="p">(</span><span class="s">"Gravity %.2f %.2f %.2f m/s²</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> 
                    <span class="n">g</span><span class="p">.</span><span class="n">vector</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">g</span><span class="p">.</span><span class="n">vector</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">g</span><span class="p">.</span><span class="n">vector</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
         <span class="p">}</span>
@@ -813,14 +812,18 @@ Shake Detected!
 49
 50
 51
-52
 </pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">"bno08x.hpp"</span><span class="cp">
 #include</span> <span class="cpf">"esp32_bno08x_bus.hpp"</span><span class="cp">
 </span>
 <span class="kt">void</span> <span class="nf">app_main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// ... I2C setup</span>
+    <span class="c1">// ... I2C setup via factory function (same as Example 1)</span>
+    <span class="k">auto</span> <span class="n">transport</span> <span class="o">=</span> <span class="n">CreateEsp32Bno08xBus</span><span class="p">(</span><span class="n">config</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">transport</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"ERROR: Failed to create I2C transport</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
     
-    <span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085</span><span class="o">&lt;</span><span class="n">Esp32Bno08xBus</span><span class="o">&gt;</span> <span class="n">imu</span><span class="p">(</span><span class="o">*</span><span class="n">transport</span><span class="p">);</span>
+    <span class="n">BNO085</span><span class="o">&lt;</span><span class="n">Esp32Bno08xBus</span><span class="o">&gt;</span> <span class="n">imu</span><span class="p">(</span><span class="o">*</span><span class="n">transport</span><span class="p">);</span>
     
     <span class="c1">// Initialize with error checking</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">imu</span><span class="p">.</span><span class="n">Begin</span><span class="p">())</span> <span class="p">{</span>
@@ -832,35 +835,29 @@ Shake Detected!
     <span class="n">printf</span><span class="p">(</span><span class="s">"BNO085 initialized successfully</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
     
     <span class="c1">// Enable sensor with error checking</span>
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span> <span class="p">{</span>
         <span class="n">printf</span><span class="p">(</span><span class="s">"ERROR: Failed to enable Rotation Vector sensor</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
         <span class="k">return</span><span class="p">;</span>
     <span class="p">}</span>
     
     <span class="n">printf</span><span class="p">(</span><span class="s">"Rotation Vector enabled at 100 Hz</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
     
-    <span class="c1">// Main loop with error recovery</span>
-    <span class="kt">uint32_t</span> <span class="n">error_count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="c1">// Main loop with error checking</span>
+    <span class="c1">// Note: The driver automatically re-enables configured sensors after a</span>
+    <span class="c1">// sensor reset (handled internally by handleAsyncEvent). You only need</span>
+    <span class="c1">// to monitor for data and check GetLastError() for issues.</span>
     <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">imu</span><span class="p">.</span><span class="n">Update</span><span class="p">();</span>
         
-        <span class="c1">// Check for sensor reset (auto-recovery)</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">imu</span><span class="p">.</span><span class="n">WasReset</span><span class="p">())</span> <span class="p">{</span>
-            <span class="n">printf</span><span class="p">(</span><span class="s">"WARNING: Sensor reset detected, re-enabling sensors...</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
-            <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
-            <span class="n">error_count</span><span class="o">++</span><span class="p">;</span>
-            
-            <span class="k">if</span> <span class="p">(</span><span class="n">error_count</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
-                <span class="n">printf</span><span class="p">(</span><span class="s">"ERROR: Too many resets, stopping</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
-                <span class="k">break</span><span class="p">;</span>
-            <span class="p">}</span>
+        <span class="c1">// Check for driver errors</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">imu</span><span class="p">.</span><span class="n">GetLastError</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"WARNING: Driver error %d detected</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">imu</span><span class="p">.</span><span class="n">GetLastError</span><span class="p">());</span>
         <span class="p">}</span>
         
-        <span class="k">if</span> <span class="p">(</span><span class="n">imu</span><span class="p">.</span><span class="n">HasNewData</span><span class="p">(</span><span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">))</span> <span class="p">{</span>
-            <span class="k">auto</span> <span class="n">rot</span> <span class="o">=</span> <span class="n">imu</span><span class="p">.</span><span class="n">getLatestData</span><span class="p">(</span><span class="n">bno08x</span><span class="o">::</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">);</span>
-            <span class="k">auto</span> <span class="n">euler</span> <span class="o">=</span> <span class="n">rot</span><span class="p">.</span><span class="n">toEuler</span><span class="p">();</span>
-            <span class="n">printf</span><span class="p">(</span><span class="s">"Yaw: %.1f°</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">euler</span><span class="p">.</span><span class="n">yaw</span><span class="p">);</span>
-            <span class="n">error_count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// Reset error count on successful read</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">imu</span><span class="p">.</span><span class="n">HasNewData</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">auto</span> <span class="n">rot</span> <span class="o">=</span> <span class="n">imu</span><span class="p">.</span><span class="n">GetLatest</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">);</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"Quat: w=%.3f x=%.3f y=%.3f z=%.3f</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span>
+                   <span class="n">rot</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">w</span><span class="p">,</span> <span class="n">rot</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">rot</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">rot</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
         <span class="p">}</span>
         
         <span class="n">vTaskDelay</span><span class="p">(</span><span class="n">pdMS_TO_TICKS</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
@@ -879,9 +876,8 @@ Shake Detected!
 <ol>
   <li><strong>Initialization Checks</strong>: Verify <code class="language-plaintext highlighter-rouge">Begin()</code> returns success</li>
   <li><strong>Sensor Enable Checks</strong>: Verify sensor enablement succeeds</li>
-  <li><strong>Reset Detection</strong>: Use <code class="language-plaintext highlighter-rouge">WasReset()</code> to detect sensor resets</li>
-  <li><strong>Auto-Recovery</strong>: Re-enable sensors after reset</li>
-  <li><strong>Error Counting</strong>: Track errors and stop if too many occur</li>
+  <li><strong>Auto-Recovery</strong>: The driver automatically re-enables configured sensors after a sensor reset</li>
+  <li><strong>Error Monitoring</strong>: Use <code class="language-plaintext highlighter-rouge">GetLastError()</code> to check for driver errors</li>
 </ol><hr />
 <h2 id="running-the-examples">
   

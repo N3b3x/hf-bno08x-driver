@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['linearacceleration_0',['LinearAcceleration',['../bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62aba31d10f1d09d6cf847178cb2d7350d6',1,'bno08x.hpp']]]
+  ['magneticfielduncalibrated_0',['MagneticFieldUncalibrated',['../bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a0ce1faa0e7e87ad1d7355564753812c7',1,'bno08x.hpp']]],
+  ['magnetometer_1',['Magnetometer',['../bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a9e9fa52e0aa4a2b519f8287760d7c3ac',1,'bno08x.hpp']]]
 ];

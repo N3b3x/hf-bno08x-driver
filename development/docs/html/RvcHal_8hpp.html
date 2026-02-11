@@ -136,6 +136,9 @@ $(function(){initNavTree('RvcHal_8hpp.html',''); initResizable(); });
   <div class="headertitle"><div class="title">RvcHal.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>CRTP-based hardware abstraction interface for RVC mode.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="rvc_8h_source.html">rvc.h</a>&quot;</code><br />
 <code>#include &lt;cstdint&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -146,18 +149,33 @@ Include dependency graph for RvcHal.hpp:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="RvcHal_8hpp__dep__incl.svg" width="350" height="198"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="RvcHal_8hpp__dep__incl.svg" width="192" height="212"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="RvcHal_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIRvcHal.html">IRvcHal</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstract interface for platform specific RVC hardware access.  <a href="classIRvcHal.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRvcHalInterface.html">RvcHalInterface&lt; Derived &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">CRTP-based template interface for RVC hardware access.  <a href="classRvcHalInterface.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>CRTP-based hardware abstraction interface for RVC mode. </p>
+<p>Platform-specific implementations should inherit from this template with themselves as the template parameter, providing compile-time polymorphism with zero virtual call overhead.</p>
+<p>Example: </p><div class="fragment"><div class="line"><span class="keyword">class </span><a class="code hl_function" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">MyRvcHal</a> : <span class="keyword">public</span> <a class="code hl_class" href="classRvcHalInterface.html">RvcHalInterface</a>&lt;MyRvcHal&gt; {</div>
+<div class="line"><span class="keyword">public</span>:</div>
+<div class="line">  <span class="keywordtype">int</span> <a class="code hl_function" href="classRvcHalInterface.html#a150a66938237b99eb4bddfb1e52f102b">Open</a>() <a class="code hl_function" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">noexcept</a> { ... }</div>
+<div class="line">  <span class="keywordtype">void</span> <a class="code hl_function" href="classRvcHalInterface.html#a63cfb17dc2eb17589c46d967a0f46232">Close</a>() <a class="code hl_function" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">noexcept</a> { ... }</div>
+<div class="line">  <span class="keywordtype">int</span> <a class="code hl_function" href="classRvcHalInterface.html#acd1b1e6c5042cbca0f9f97d3e6e11584">Read</a>(<a class="code hl_struct" href="structrvc__SensorEvent__s.html">rvc_SensorEvent_t</a>* <a class="code hl_function" href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">event</a>) <span class="keyword">noexcept</span> { ... }</div>
+<div class="line">};</div>
+<div class="ttc" id="aclassRvcHalInterface_html"><div class="ttname"><a href="classRvcHalInterface.html">RvcHalInterface</a></div><div class="ttdoc">CRTP-based template interface for RVC hardware access.</div><div class="ttdef"><b>Definition</b> RvcHal.hpp:31</div></div>
+<div class="ttc" id="aclassRvcHalInterface_html_a150a66938237b99eb4bddfb1e52f102b"><div class="ttname"><a href="classRvcHalInterface.html#a150a66938237b99eb4bddfb1e52f102b">RvcHalInterface::Open</a></div><div class="ttdeci">int Open() noexcept</div><div class="ttdoc">Open and configure the hardware interface.</div><div class="ttdef"><b>Definition</b> RvcHal.hpp:37</div></div>
+<div class="ttc" id="aclassRvcHalInterface_html_a63cfb17dc2eb17589c46d967a0f46232"><div class="ttname"><a href="classRvcHalInterface.html#a63cfb17dc2eb17589c46d967a0f46232">RvcHalInterface::Close</a></div><div class="ttdeci">void Close() noexcept</div><div class="ttdoc">Close the interface and release resources.</div><div class="ttdef"><b>Definition</b> RvcHal.hpp:44</div></div>
+<div class="ttc" id="aclassRvcHalInterface_html_acd1b1e6c5042cbca0f9f97d3e6e11584"><div class="ttname"><a href="classRvcHalInterface.html#acd1b1e6c5042cbca0f9f97d3e6e11584">RvcHalInterface::Read</a></div><div class="ttdeci">int Read(rvc_SensorEvent_t *event) noexcept</div><div class="ttdoc">Read a sensor event from the device.</div><div class="ttdef"><b>Definition</b> RvcHal.hpp:56</div></div>
+<div class="ttc" id="adfu_8h_html_ae9d4ee928e783a2424a0c8d7cfbde399"><div class="ttname"><a href="dfu_8h.html#ae9d4ee928e783a2424a0c8d7cfbde399">dfu</a></div><div class="ttdeci">int dfu(TransportType &amp;transport, const HcBin_t &amp;fw)</div><div class="ttdoc">Run DFU process using the provided CRTP transport.</div><div class="ttdef"><b>Definition</b> dfu_bno.cpp:162</div></div>
+<div class="ttc" id="astructrvc__SensorEvent__s_html"><div class="ttname"><a href="structrvc__SensorEvent__s.html">rvc_SensorEvent_s</a></div><div class="ttdef"><b>Definition</b> rvc.h:49</div></div>
+</div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

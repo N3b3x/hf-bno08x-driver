@@ -1,37 +1,35 @@
 <map id="src/dfu/HcBin.h" name="src/dfu/HcBin.h">
-<area shape="rect" id="Node000001" title="API Definition for HcBin objects (Hillcrest Binary Files)." alt="" coords="975,5,1095,31"/>
-<area shape="rect" id="Node000002" href="$bno08x_8hpp.html" title="High level C++ interface for the BNO08x IMU family." alt="" coords="633,152,755,177"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="962,23,913,29,860,39,806,56,757,81,738,97,722,117,701,153,697,151,718,114,734,93,754,76,804,51,858,34,912,23,961,18"/>
-<area shape="rect" id="Node000009" href="$MemoryFirmware_8hpp.html" title=" " alt="" coords="1111,79,1325,104"/>
-<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="1078,33,1189,76,1187,81,1076,38"/>
-<area shape="rect" id="Node000010" href="$dfu_8h.html" title=" " alt="" coords="984,79,1087,104"/>
-<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="1038,44,1038,79,1033,79,1033,44"/>
-<area shape="rect" id="Node000012" href="$dfu__fsp200_8cpp.html" title=" " alt="" coords="779,152,948,177"/>
-<area shape="poly" id="edge14_Node000001_Node000012" title=" " alt="" coords="1013,42,879,154,875,150,1009,38"/>
-<area shape="rect" id="Node000013" href="$firmware-bno_8c.html" title=" " alt="" coords="1349,79,1517,104"/>
-<area shape="poly" id="edge15_Node000001_Node000013" title=" " alt="" coords="1110,30,1369,76,1368,81,1109,35"/>
-<area shape="rect" id="Node000014" href="$firmware-fsp_8c.html" title=" " alt="" coords="1541,79,1705,104"/>
-<area shape="poly" id="edge16_Node000001_Node000014" title=" " alt="" coords="1109,26,1542,77,1541,83,1108,31"/>
-<area shape="rect" id="Node000015" href="$firmware_8h.html" title=" " alt="" coords="768,79,908,104"/>
-<area shape="poly" id="edge17_Node000001_Node000015" title=" " alt="" coords="992,38,871,81,869,76,990,33"/>
-<area shape="rect" id="Node000003" href="$basic__polling__example_8cpp.html" title="Basic polling mode example with orientation and linear acceleration." alt="" coords="434,233,637,273"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="662,186,572,235,569,230,659,182"/>
-<area shape="rect" id="Node000004" href="$driver__integration__test_8cpp.html" title="Comprehensive Integration Test Suite for BNO08x Driver." alt="" coords="661,225,828,280"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="710,188,732,224,727,227,706,191"/>
-<area shape="rect" id="Node000005" href="$event__driven__callback__example_8cpp.html" title="Event&#45;driven callback example with step counter and tap detector." alt="" coords="852,225,1024,280"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="740,179,865,223,863,228,739,184"/>
-<area shape="rect" id="Node000006" href="$full__features__example_8cpp.html" title="Comprehensive example demonstrating all BNO08x features." alt="" coords="5,233,204,273"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="620,175,436,196,217,228,181,235,180,230,216,223,436,190,619,170"/>
-<area shape="rect" id="Node000007" href="$rvc__mode__example_8cpp.html" title="RVC (Reduced Vector Computation) mode example." alt="" coords="229,233,410,273"/>
-<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="627,183,423,228,393,235,392,230,421,223,625,178"/>
-<area shape="rect" id="Node000008" href="$bno08x_8cpp.html" title="Template implementation of the BNO08x C++ driver." alt="" coords="1049,240,1169,265"/>
-<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="769,177,1025,223,1071,237,1069,242,1024,228,768,182"/>
-<area shape="poly" id="edge8_Node000008_Node000002" title=" " alt="" coords="1078,237,1048,228,754,177,755,172,1049,223,1079,232"/>
-<area shape="poly" id="edge11_Node000010_Node000008" title=" " alt="" coords="1085,107,1114,125,1136,151,1143,175,1139,200,1119,241,1115,238,1134,199,1137,175,1132,153,1110,129,1083,112"/>
-<area shape="rect" id="Node000011" href="$dfu__bno_8cpp.html" title=" " alt="" coords="973,152,1122,177"/>
-<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="1042,117,1048,151,1043,152,1037,118"/>
-<area shape="poly" id="edge13_Node000010_Node000012" title=" " alt="" coords="996,112,892,154,890,149,994,107"/>
-<area shape="poly" id="edge18_Node000015_Node000002" title=" " alt="" coords="804,112,719,154,716,149,802,108"/>
-<area shape="poly" id="edge19_Node000015_Node000011" title=" " alt="" coords="886,106,1014,149,1013,154,884,111"/>
-<area shape="poly" id="edge20_Node000015_Node000012" title=" " alt="" coords="849,116,862,151,857,153,844,118"/>
+<area shape="rect" id="Node000001" title="API Definition for HcBin objects (Hillcrest Binary Files)." alt="" coords="771,5,891,31"/>
+<area shape="rect" id="Node000002" href="$bno08x_8hpp.html" title="High level C++ interface for the BNO08x IMU family." alt="" coords="709,152,831,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="794,39,770,57,751,80,747,98,749,117,765,151,760,153,744,119,741,98,746,78,766,53,791,35"/>
+<area shape="rect" id="Node000010" href="$MemoryFirmware_8hpp.html" title=" " alt="" coords="262,152,475,177"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="782,37,406,154,405,149,781,32"/>
+<area shape="rect" id="Node000011" href="$dfu_8h.html" title=" " alt="" coords="925,79,1028,104"/>
+<area shape="poly" id="edge12_Node000001_Node000011" title=" " alt="" coords="868,34,954,76,952,81,866,39"/>
+<area shape="rect" id="Node000013" href="$firmware-bno_8c.html" title=" " alt="" coords="1053,79,1221,104"/>
+<area shape="poly" id="edge16_Node000001_Node000013" title=" " alt="" coords="894,31,1088,76,1087,81,893,36"/>
+<area shape="rect" id="Node000014" href="$firmware_8h.html" title=" " alt="" coords="761,79,901,104"/>
+<area shape="poly" id="edge17_Node000001_Node000014" title=" " alt="" coords="834,44,834,79,829,79,829,44"/>
+<area shape="rect" id="Node000003" href="$basic__polling__example_8cpp.html" title="Basic polling mode example with orientation and linear acceleration." alt="" coords="197,233,399,273"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="696,180,412,228,377,235,376,230,411,223,695,174"/>
+<area shape="rect" id="Node000004" href="$dfu__example_8cpp.html" title="Device Firmware Update (DFU) example for BNO08x." alt="" coords="5,233,172,273"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="696,172,467,190,326,206,185,228,152,235,151,230,184,223,325,201,466,185,696,167"/>
+<area shape="rect" id="Node000005" href="$driver__integration__test_8cpp.html" title="Comprehensive Integration Test Suite for BNO08x Driver." alt="" coords="424,225,591,280"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="722,184,588,228,587,223,721,179"/>
+<area shape="rect" id="Node000006" href="$event__driven__callback__example_8cpp.html" title="Event&#45;driven callback example with step counter and tap detector." alt="" coords="615,225,787,280"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="754,190,724,227,720,224,750,186"/>
+<area shape="rect" id="Node000007" href="$full__features__example_8cpp.html" title="Comprehensive example demonstrating all BNO08x features." alt="" coords="811,233,1009,273"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="802,183,881,230,878,235,799,187"/>
+<area shape="rect" id="Node000008" href="$rvc__mode__example_8cpp.html" title="RVC (Reduced Vector Computation) mode example." alt="" coords="1034,233,1215,273"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="833,178,1023,223,1052,230,1051,235,1021,228,832,183"/>
+<area shape="rect" id="Node000009" href="$bno08x_8cpp.html" title="Template implementation of the BNO08x C++ driver." alt="" coords="1239,240,1359,265"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="844,172,1044,195,1144,209,1216,223,1262,237,1260,242,1215,228,1143,215,1044,201,844,177"/>
+<area shape="poly" id="edge9_Node000009_Node000002" title=" " alt="" coords="1269,237,1239,228,1159,213,1047,198,831,174,831,169,1048,193,1159,208,1240,223,1271,232"/>
+<area shape="poly" id="edge11_Node000010_Node000004" title=" " alt="" coords="318,184,151,235,150,230,317,179"/>
+<area shape="poly" id="edge13_Node000011_Node000009" title=" " alt="" coords="1013,108,1277,237,1275,242,1011,112"/>
+<area shape="rect" id="Node000012" href="$dfu__bno_8cpp.html" title=" " alt="" coords="902,152,1051,177"/>
+<area shape="poly" id="edge14_Node000011_Node000012" title=" " alt="" coords="971,118,972,152,967,152,965,118"/>
+<area shape="poly" id="edge15_Node000012_Node000011" title=" " alt="" coords="983,139,981,104,986,104,988,138"/>
+<area shape="poly" id="edge18_Node000014_Node000002" title=" " alt="" coords="814,116,782,154,778,150,810,113"/>
+<area shape="poly" id="edge19_Node000014_Node000012" title=" " alt="" coords="868,108,954,149,952,154,866,112"/>
 </map>

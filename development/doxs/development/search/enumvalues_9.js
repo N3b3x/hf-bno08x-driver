@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['opmode_5fapplication_0',['OPMODE_APPLICATION',['../dfu__fsp200_8cpp.html#ae889f82a6056a7c4019957a77c0a8d2ea42ce800a5b76b97b74afa8f2876d1d1f',1,'dfu_fsp200.cpp']]],
-  ['opmode_5fbootloader_1',['OPMODE_BOOTLOADER',['../dfu__fsp200_8cpp.html#ae889f82a6056a7c4019957a77c0a8d2eab7efc07ef843033dc4072813a722ce8d',1,'dfu_fsp200.cpp']]],
-  ['opmode_5fupgrade_2',['OPMODE_UPGRADE',['../dfu__fsp200_8cpp.html#ae889f82a6056a7c4019957a77c0a8d2ead9889c0ae9e2211875294c9d2cfd7b83',1,'dfu_fsp200.cpp']]],
-  ['opmode_5fvalidate_3',['OPMODE_VALIDATE',['../dfu__fsp200_8cpp.html#ae889f82a6056a7c4019957a77c0a8d2eae28295606631e613c27414d080781323',1,'dfu_fsp200.cpp']]]
+  ['rawaccelerometer_0',['RawAccelerometer',['../bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62add5c9344d03c3cc78b972ecda597492a',1,'bno08x.hpp']]],
+  ['rawgyroscope_1',['RawGyroscope',['../bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62af452cd954e81a69ff37635830efcfba7',1,'bno08x.hpp']]],
+  ['rawmagnetometer_2',['RawMagnetometer',['../bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62aa2b148a97534cb95774ba27dd0599e3a',1,'bno08x.hpp']]],
+  ['rotationvector_3',['RotationVector',['../bno08x_8hpp.html#a6f9f2bf1fa157ce63dacb450d5df6c62a93885b92407df28cbbeae6691819875a',1,'bno08x.hpp']]]
 ];
