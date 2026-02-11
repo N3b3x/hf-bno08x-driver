@@ -4,48 +4,66 @@
 
 /**
  * @file bno08x.cpp
- * @brief Template implementation of the BNO08x C++ driver.
+ * @brief Template method implementations for the BNO085 driver class.
  *
- * This file contains the template method implementations for BNO08x.
- * It is included by bno08x.hpp when BNO085_HEADER_INCLUDED is defined.
+ * @details
+ * This file is **not** compiled directly. It is `#include`d from
+ * `bno08x.hpp` with a header guard so the compiler can instantiate the
+ * template methods for any user-provided CommType.
+ *
+ * The file is organised into four sections:
+ * 1. **SH-2 Mode** -- Sensor Hub 2 protocol (Begin, Update, sensor config)
+ * 2. **Pin Control** -- HardwareReset, SetBootPin, etc.
+ * 3. **RVC Mode** -- UART frame parser and callback dispatch
+ * 4. **DFU** -- Device Firmware Update protocol with CRC + retry
+ *
+ * @author  Nebiyu Tadesse
+ * @date    2025
+ * @copyright HardFOC -- GNU GPL v3.0
  */
 
 #include <algorithm>
 
-extern "C" {
-#include "sh2.h"
-#include "sh2_SensorValue.h"
-#include "sh2_err.h"
-}
-#include "dfu/HalTransport.hpp"
-#include "dfu/dfu.h"
+// ============================================================================
+/// @name SH-2 Mode Implementation
+/// @brief Full sensor hub protocol over I2C, SPI, or UART.
+// ============================================================================
 
 /**
- * @brief Initialise using the communication interface passed to the constructor.
+ * @brief Initialise the sensor hub in SH-2 mode.
+ *
+ * Opens the communication bus, wires the SH-2 C library HAL callbacks to the
+ * CRTP CommInterface, opens the SH-2 session, sends a reinitialize command,
+ * and registers the internal sensor and async event handlers.
+ *
+ * @pre  io_.GetInterfaceType() must NOT be BNO085Interface::UARTRVC.
+ * @post initialized_ == true on success.
+ * @return true on success, false on failure or incompatible transport.
  */
 template <typename CommType>
 bool BNO085<CommType>::Begin() noexcept {
+  if (io_.GetInterfaceType() == BNO085Interface::UARTRVC)
+    return false;
+
   last_error_ = 0;
   if (!io_.Open()) {
     last_error_ = -1;
     return false;
   }
 
-  halWrapper.comm = &io_;  // Store pointer for C callbacks
-  halWrapper.hal.open = halOpen;
-  halWrapper.hal.close = halClose;
-  halWrapper.hal.read = halRead;
-  halWrapper.hal.write = halWrite;
-  halWrapper.hal.getTimeUs = halGetTimeUs;
+  halWrapper_.comm = &io_;
+  halWrapper_.hal.open = halOpen;
+  halWrapper_.hal.close = halClose;
+  halWrapper_.hal.read = halRead;
+  halWrapper_.hal.write = halWrite;
+  halWrapper_.hal.getTimeUs = halGetTimeUs;
 
-  int status = sh2_open(halWrapper.asHal(), asyncC, this);
+  int status = sh2_open(halWrapper_.asHal(), asyncC, this);
   if (status != SH2_OK) {
     last_error_ = status;
     return false;
   }
-  // Send initialize command after opening the SH-2 interface
   sh2_reinitialize();
-
   sh2_setSensorCallback(sensorC, this);
 
   new_flag_.fill(false);
@@ -57,6 +75,10 @@ bool BNO085<CommType>::Begin() noexcept {
 
 /**
  * @brief Enable periodic reporting for a sensor.
+ *
+ * Converts the millisecond interval to microseconds and forwards to the
+ * SH-2 configuration API. The interval and sensitivity are cached so they
+ * can be automatically re-applied after a sensor reset.
  */
 template <typename CommType>
 bool BNO085<CommType>::EnableSensor(BNO085Sensor sensor, uint32_t intervalMs, float sensitivity) noexcept {
@@ -70,7 +92,7 @@ bool BNO085<CommType>::EnableSensor(BNO085Sensor sensor, uint32_t intervalMs, fl
   return true;
 }
 
-/** Disable reporting for a sensor. */
+/** @brief Disable reporting for a sensor by setting its interval to zero. */
 template <typename CommType>
 bool BNO085<CommType>::DisableSensor(BNO085Sensor sensor) noexcept {
   if (!initialized_)
@@ -78,25 +100,31 @@ bool BNO085<CommType>::DisableSensor(BNO085Sensor sensor) noexcept {
   return configure(sensor, 0, 0, 0);
 }
 
-/** Set a callback for incoming sensor events. */
+/** @brief Register a callback invoked for every received SH-2 sensor event. */
 template <typename CommType>
 void BNO085<CommType>::SetCallback(SensorCallback cb) noexcept {
   callback_ = cb;
 }
 
-/** Set a callback for decoded RVC frames. */
+/** @brief Register a callback invoked for every decoded RVC frame. */
 template <typename CommType>
 void BNO085<CommType>::SetRvcCallback(RvcCallback cb) noexcept {
   rvc_cb_ = cb;
 }
 
-/** Check if new data is available for a sensor. */
+/** @brief Check the new-data flag for a sensor. */
 template <typename CommType>
 bool BNO085<CommType>::HasNewData(BNO085Sensor sensor) const {
   return new_flag_[static_cast<uint8_t>(sensor)];
 }
 
-/** Retrieve the most recent event for a sensor. */
+/**
+ * @brief Retrieve the most recent event for a sensor.
+ *
+ * Constructs a SensorEvent from the cached sh2_SensorValue_t, mapping the
+ * SH-2 union fields to the appropriate high-level struct members based on
+ * the sensor type.
+ */
 template <typename CommType>
 SensorEvent BNO085<CommType>::GetLatest(BNO085Sensor sensor) const {
   SensorEvent out{};
@@ -148,15 +176,14 @@ SensorEvent BNO085<CommType>::GetLatest(BNO085Sensor sensor) const {
     break;
   case BNO085Sensor::TapDetector:
     out.tap.doubleTap = (val.un.tapDetector.flags & TAPDET_DOUBLE);
-    if (val.un.tapDetector.flags & TAPDET_X) {
+    if (val.un.tapDetector.flags & TAPDET_X)
       out.tap.direction = (val.un.tapDetector.flags & TAPDET_X_POS) ? 0 : 1;
-    } else if (val.un.tapDetector.flags & TAPDET_Y) {
+    else if (val.un.tapDetector.flags & TAPDET_Y)
       out.tap.direction = (val.un.tapDetector.flags & TAPDET_Y_POS) ? 2 : 3;
-    } else if (val.un.tapDetector.flags & TAPDET_Z) {
+    else if (val.un.tapDetector.flags & TAPDET_Z)
       out.tap.direction = (val.un.tapDetector.flags & TAPDET_Z_POS) ? 4 : 5;
-    } else {
+    else
       out.tap.direction = 0;
-    }
     out.detected = val.un.tapDetector.flags & (TAPDET_X | TAPDET_Y | TAPDET_Z);
     break;
   default:
@@ -165,7 +192,7 @@ SensorEvent BNO085<CommType>::GetLatest(BNO085Sensor sensor) const {
   return out;
 }
 
-/** Service the SH-2 library. Call as often as possible. */
+/** @brief Service the SH-2 protocol. Invokes sensor and async callbacks. */
 template <typename CommType>
 void BNO085<CommType>::Update() noexcept {
   if (initialized_) {
@@ -173,57 +200,22 @@ void BNO085<CommType>::Update() noexcept {
   }
 }
 
-/** Begin processing RVC frames using a CRTP-based HAL. */
-template <typename CommType>
-template <typename RvcHalType>
-bool BNO085<CommType>::BeginRvc(RvcHalType& hal) noexcept {
-  // Store the HAL pointer in the RvcHalC_t adapter context
-  rvc_hal_adapter_.ctx = &hal;
+// ---- SH-2 HAL callback bridges (CRTP CommInterface -> C sh2_Hal_t) ---------
 
-  // Set up C function-pointer trampolines that call through to the CRTP HAL
-  rvc_hal_adapter_.open = [](void* ctx) -> int {
-    return static_cast<RvcHalType*>(ctx)->Open();
-  };
-  rvc_hal_adapter_.close = [](void* ctx) {
-    static_cast<RvcHalType*>(ctx)->Close();
-  };
-  rvc_hal_adapter_.read = [](void* ctx, rvc_SensorEvent_t* event) -> int {
-    return static_cast<RvcHalType*>(ctx)->Read(event);
-  };
-
-  rvc_.SetHal(&rvc_hal_adapter_);
-  if (rvc_.SetCallback(rvcC, this) != RVC_OK)
-    return false;
-  return rvc_.Open() == RVC_OK;
-}
-
-/** Poll for RVC frames. */
-template <typename CommType>
-void BNO085<CommType>::ServiceRvc() noexcept {
-  rvc_.Service();
-}
-
-/** Stop RVC frame processing. */
-template <typename CommType>
-void BNO085<CommType>::CloseRvc() noexcept {
-  rvc_.Close();
-}
-
-/// @private
+/// @private Bridge: sh2_Hal_t::open -> CommInterface::Open().
 template <typename CommType>
 int BNO085<CommType>::halOpen(sh2_Hal_t* self) {
   auto* t = reinterpret_cast<CommHal*>(self);
   return t->comm->Open() ? SH2_OK : SH2_ERR;
 }
 
-/// @private
+/// @private Bridge: sh2_Hal_t::close -> CommInterface::Close().
 template <typename CommType>
 void BNO085<CommType>::halClose(sh2_Hal_t* self) {
-  auto* t = reinterpret_cast<CommHal*>(self);
-  t->comm->Close();
+  reinterpret_cast<CommHal*>(self)->comm->Close();
 }
 
-/// @private
+/// @private Bridge: sh2_Hal_t::read -> CommInterface::Read() + GetTimeUs().
 template <typename CommType>
 int BNO085<CommType>::halRead(sh2_Hal_t* self, uint8_t* buf, unsigned len, uint32_t* t) {
   auto* th = reinterpret_cast<CommHal*>(self);
@@ -232,33 +224,38 @@ int BNO085<CommType>::halRead(sh2_Hal_t* self, uint8_t* buf, unsigned len, uint3
   return ret;
 }
 
-/// @private
+/// @private Bridge: sh2_Hal_t::write -> CommInterface::Write().
 template <typename CommType>
 int BNO085<CommType>::halWrite(sh2_Hal_t* self, uint8_t* buf, unsigned len) {
-  auto* th = reinterpret_cast<CommHal*>(self);
-  return th->comm->Write(buf, len);
+  return reinterpret_cast<CommHal*>(self)->comm->Write(buf, len);
 }
 
-/// @private
+/// @private Bridge: sh2_Hal_t::getTimeUs -> CommInterface::GetTimeUs().
 template <typename CommType>
 uint32_t BNO085<CommType>::halGetTimeUs(sh2_Hal_t* self) {
-  auto* th = reinterpret_cast<CommHal*>(self);
-  return th->comm->GetTimeUs();
+  return reinterpret_cast<CommHal*>(self)->comm->GetTimeUs();
 }
 
-/// @private
+// ---- SH-2 event callback trampolines --------------------------------------
+
+/// @private C trampoline: routes sh2_SensorEvent_t to handleSensorEvent().
 template <typename CommType>
 void BNO085<CommType>::sensorC(void* cookie, sh2_SensorEvent_t* event) {
   static_cast<BNO085<CommType>*>(cookie)->handleSensorEvent(event);
 }
 
-/// @private
+/// @private C trampoline: routes sh2_AsyncEvent_t to handleAsyncEvent().
 template <typename CommType>
 void BNO085<CommType>::asyncC(void* cookie, sh2_AsyncEvent_t* event) {
   static_cast<BNO085<CommType>*>(cookie)->handleAsyncEvent(event);
 }
 
-/** Internal handler for decoded sensor events. */
+/**
+ * @brief Decode a raw SH-2 sensor event and update the cache.
+ *
+ * Stores the decoded value in latest_[], sets the new-data flag, and
+ * optionally invokes the user callback.
+ */
 template <typename CommType>
 void BNO085<CommType>::handleSensorEvent(const sh2_SensorEvent_t* event) noexcept {
   sh2_SensorValue_t value;
@@ -274,19 +271,31 @@ void BNO085<CommType>::handleSensorEvent(const sh2_SensorEvent_t* event) noexcep
   }
 }
 
-/** React to asynchronous sensor events (e.g. reset). */
+/**
+ * @brief Handle asynchronous SH-2 events.
+ *
+ * On SH2_RESET, re-enables all previously configured sensors using the
+ * cached interval and sensitivity values.
+ */
 template <typename CommType>
 void BNO085<CommType>::handleAsyncEvent(const sh2_AsyncEvent_t* event) noexcept {
   if (event->eventId == SH2_RESET) {
     for (uint8_t id = 0; id < last_interval_.size(); ++id) {
-      if (last_interval_[id]) {
+      if (last_interval_[id])
         configure(static_cast<BNO085Sensor>(id), last_interval_[id], last_sensitivity_[id], 0);
-      }
     }
   }
 }
 
-/// @private Configure a report in the SH-2 driver
+/**
+ * @brief Send a sensor configuration command to the SH-2 library.
+ *
+ * @param[in] sensor       Sensor to configure.
+ * @param[in] intervalUs   Report interval in microseconds (0 = disable).
+ * @param[in] sensitivity  Change sensitivity threshold.
+ * @param[in] batchUs      Batch interval in microseconds (0 = no batching).
+ * @return true on success, false on failure (error stored in last_error_).
+ */
 template <typename CommType>
 bool BNO085<CommType>::configure(BNO085Sensor sensor, uint32_t intervalUs, float sensitivity,
                        uint32_t batchUs) noexcept {
@@ -304,64 +313,368 @@ bool BNO085<CommType>::configure(BNO085Sensor sensor, uint32_t intervalUs, float
   return true;
 }
 
-/** Toggle the hardware reset line if implemented. */
+// ============================================================================
+/// @name Pin Control
+/// @brief Drive BNO08x hardware control pins via the CommInterface.
+// ============================================================================
+
+/**
+ * @brief Assert RSTN for @p lowMs, then release and wait for boot.
+ *
+ * The 50 ms post-release delay allows the sensor to complete its boot
+ * sequence before any I2C/SPI/UART transactions.
+ */
 template <typename CommType>
 void BNO085<CommType>::HardwareReset(uint32_t lowMs) noexcept {
-  io_.SetReset(true);   // Assert reset (drive RSTN low)
+  io_.SetReset(true);   // Drive RSTN LOW (assert)
   io_.Delay(lowMs);
-  io_.SetReset(false);  // Release reset (drive RSTN high)
-  io_.Delay(50); // allow sensor to boot
+  io_.SetReset(false);  // Drive RSTN HIGH (release)
+  io_.Delay(50);        // Wait for sensor boot
 }
 
-/** Drive the BOOTN pin. */
+/** @brief Forward BOOTN control to the CommInterface. */
 template <typename CommType>
-void BNO085<CommType>::SetBootPin(bool state) noexcept {
-  io_.SetBoot(state);
-}
+void BNO085<CommType>::SetBootPin(bool state) noexcept { io_.SetBoot(state); }
 
-/** Control the WAKE pin. */
+/** @brief Forward WAKE control to the CommInterface (SPI only). */
 template <typename CommType>
-void BNO085<CommType>::SetWakePin(bool state) noexcept {
-  io_.SetWake(state);
-}
+void BNO085<CommType>::SetWakePin(bool state) noexcept { io_.SetWake(state); }
 
-/** Select host interface using PS0/PS1. */
+/**
+ * @brief Drive PS0/PS1 pins to select the host interface.
+ *
+ * PS pins are sampled at reset. This is only useful if the pins are
+ * connected to controllable GPIOs.
+ */
 template <typename CommType>
 void BNO085<CommType>::SelectInterface(BNO085Interface iface) noexcept {
   switch (iface) {
-  case BNO085Interface::I2C:
-    io_.SetPS1(false);
-    io_.SetPS0(false);
-    break;
-  case BNO085Interface::UARTRVC:
-    io_.SetPS1(true);
-    io_.SetPS0(false);
-    break;
-  case BNO085Interface::UART:
-    io_.SetPS1(false);
-    io_.SetPS0(true);
-    break;
-  case BNO085Interface::SPI:
-    io_.SetPS1(true);
-    io_.SetPS0(true);
-    break;
+  case BNO085Interface::I2C:     io_.SetPS1(false); io_.SetPS0(false); break;
+  case BNO085Interface::UARTRVC: io_.SetPS1(true);  io_.SetPS0(false); break;
+  case BNO085Interface::UART:    io_.SetPS1(false); io_.SetPS0(true);  break;
+  case BNO085Interface::SPI:     io_.SetPS1(true);  io_.SetPS0(true);  break;
   }
 }
 
-/** Convenience wrapper to run DFU using this instance's communication interface. */
+// ============================================================================
+/// @name RVC Mode Implementation
+/// @brief Reads raw UART bytes via io_.Read() and parses 19-byte RVC frames.
+///
+/// ### RVC Frame Format (19 bytes)
+/// | Byte(s) | Field              | Units           |
+/// |---------|--------------------|-----------------|
+/// | 0-1     | Header (0xAA 0xAA) | --              |
+/// | 2       | Sequence index     | --              |
+/// | 3-4     | Yaw (LE int16)     | 0.01 degrees    |
+/// | 5-6     | Pitch              | 0.01 degrees    |
+/// | 7-8     | Roll               | 0.01 degrees    |
+/// | 9-10    | Accel X            | 0.001 g         |
+/// | 11-12   | Accel Y            | 0.001 g         |
+/// | 13-14   | Accel Z            | 0.001 g         |
+/// | 15      | Motion intent      | enum            |
+/// | 16      | Motion request     | enum            |
+/// | 17      | Reserved           | --              |
+/// | 18      | Checksum           | sum(bytes 2..17)|
+// ============================================================================
+
+/**
+ * @brief Open the UART transport and start the RVC frame parser.
+ * @pre  io_.GetInterfaceType() must be BNO085Interface::UARTRVC.
+ * @return true on success, false on failure or incompatible transport.
+ */
 template <typename CommType>
-int BNO085<CommType>::Dfu(const HcBin_t& fw) noexcept {
-  HalTransport t(halWrapper.asHal());
-  return ::dfu<HalTransport>(t, fw);
+bool BNO085<CommType>::BeginRvc() noexcept {
+  if (io_.GetInterfaceType() != BNO085Interface::UARTRVC)
+    return false;
+  if (!io_.Open())
+    return false;
+  rvc_frame_len_ = 0;
+  rvc_active_ = true;
+  return true;
 }
 
-/// @private
+/**
+ * @brief Read all available UART bytes and parse RVC frames.
+ *
+ * Each byte is fed into a 19-byte sliding window. When a valid frame is
+ * detected (0xAA 0xAA header + matching checksum), the fields are extracted,
+ * decoded to floating-point, and dispatched to the RVC callback.
+ */
 template <typename CommType>
-void BNO085<CommType>::rvcC(void* cookie, rvc_SensorEvent_t* ev) {
-  auto* self = static_cast<BNO085<CommType>*>(cookie);
-  if (!self->rvc_cb_)
+void BNO085<CommType>::ServiceRvc() noexcept {
+  if (!rvc_active_)
     return;
-  rvc_SensorValue_t val;
-  Rvc::Decode(&val, ev);
-  self->rvc_cb_(val);
+  uint8_t c;
+  while (io_.Read(&c, 1) == 1) {
+    rvcProcessByte(c);
+  }
+}
+
+/** @brief Close the UART transport and deactivate the RVC parser. */
+template <typename CommType>
+void BNO085<CommType>::CloseRvc() noexcept {
+  if (rvc_active_) {
+    io_.Close();
+    rvc_active_ = false;
+    rvc_frame_len_ = 0;
+  }
+}
+
+/**
+ * @brief Feed one byte into the RVC frame accumulator.
+ *
+ * Uses a sliding window approach: once the buffer is full (19 bytes), each
+ * new byte shifts the window left by one. When the buffer contains a valid
+ * header (0xAA 0xAA) and the checksum matches, the frame is decoded and
+ * the callback is invoked.
+ *
+ * @param[in] c  The incoming UART byte.
+ */
+template <typename CommType>
+void BNO085<CommType>::rvcProcessByte(uint8_t c) noexcept {
+  if (rvc_frame_len_ == RVC_FRAME_LEN_) {
+    std::memmove(rvc_frame_, rvc_frame_ + 1, RVC_FRAME_LEN_ - 1);
+    rvc_frame_[RVC_FRAME_LEN_ - 1] = c;
+  } else {
+    rvc_frame_[rvc_frame_len_++] = c;
+  }
+
+  if (rvc_frame_len_ == RVC_FRAME_LEN_ &&
+      rvc_frame_[0] == 0xAA && rvc_frame_[1] == 0xAA) {
+    uint8_t check = 0;
+    for (int i = 2; i < RVC_FRAME_LEN_ - 1; ++i)
+      check += rvc_frame_[i];
+
+    if (check == rvc_frame_[RVC_FRAME_LEN_ - 1]) {
+      RvcSensorEvent event{};
+      event.timestamp_uS = io_.GetTimeUs();
+      event.index = rvc_frame_[2];
+      event.yaw   = static_cast<int16_t>((rvc_frame_[4] << 8) | rvc_frame_[3]);
+      event.pitch = static_cast<int16_t>((rvc_frame_[6] << 8) | rvc_frame_[5]);
+      event.roll  = static_cast<int16_t>((rvc_frame_[8] << 8) | rvc_frame_[7]);
+      event.acc_x = static_cast<int16_t>((rvc_frame_[10] << 8) | rvc_frame_[9]);
+      event.acc_y = static_cast<int16_t>((rvc_frame_[12] << 8) | rvc_frame_[11]);
+      event.acc_z = static_cast<int16_t>((rvc_frame_[14] << 8) | rvc_frame_[13]);
+      event.mi = rvc_frame_[15];
+      event.mr = rvc_frame_[16];
+
+      if (rvc_cb_) {
+        RvcSensorValue val;
+        decodeRvc(&val, &event);
+        rvc_cb_(val);
+      }
+      rvc_frame_len_ = 0;
+    }
+  }
+}
+
+/**
+ * @brief Convert raw RVC fixed-point values to floating-point SI units.
+ *
+ * @param[out] out  Decoded values in degrees and g.
+ * @param[in]  in   Raw frame values in 0.01-degree and 0.001-g units.
+ */
+template <typename CommType>
+void BNO085<CommType>::decodeRvc(RvcSensorValue* out, const RvcSensorEvent* in) noexcept {
+  out->index = in->index;
+  out->yaw_deg = 0.01f * in->yaw;
+  out->pitch_deg = 0.01f * in->pitch;
+  out->roll_deg = 0.01f * in->roll;
+  out->acc_x_g = 0.001f * in->acc_x;
+  out->acc_y_g = 0.001f * in->acc_y;
+  out->acc_z_g = 0.001f * in->acc_z;
+  out->mi = in->mi;
+  out->mr = in->mr;
+  out->timestamp_uS = in->timestamp_uS;
+}
+
+// ============================================================================
+/// @name DFU Implementation
+/// @brief BNO08x bootloader firmware update protocol.
+///
+/// The DFU sequence:
+/// 1. Validate firmware image (format "BNO_V1", valid part number, length).
+/// 2. Open transport (same CommInterface used for SH-2).
+/// 3. Send application size (4 bytes big-endian + CRC-16).
+/// 4. Send packet size (1 byte + CRC-16).
+/// 5. Send firmware data in packets (each with CRC-16 + ACK/NAK retry).
+/// 6. Wait for flash write completion, then close.
+///
+/// CRC-16 uses the CCITT polynomial 0x1021 with initial value 0xFFFF.
+// ============================================================================
+
+/// @name DFU Protocol Constants
+/// @{
+static constexpr uint8_t DFU_ACK = 's';           ///< Expected ACK byte from bootloader.
+static constexpr uint32_t DFU_MAX_PACKET_LEN = 64;  ///< Maximum DFU packet payload size.
+static constexpr uint32_t DFU_MAX_ATTEMPTS = 5;     ///< Retry count per packet.
+static constexpr uint32_t DFU_DELAY_POST_US = 10000; ///< Post-DFU flash write delay (us).
+static constexpr uint32_t DFU_SEND_TIMEOUT_US = 100000; ///< Per-packet I/O timeout (us).
+/// @}
+
+/** @brief Write a 32-bit value in big-endian byte order. */
+template <typename CommType>
+void BNO085<CommType>::dfuWrite32be(uint8_t* buf, uint32_t value) noexcept {
+  *buf++ = (value >> 24) & 0xFF;
+  *buf++ = (value >> 16) & 0xFF;
+  *buf++ = (value >> 8) & 0xFF;
+  *buf++ = (value >> 0) & 0xFF;
+}
+
+/** @brief Compute and append CRC-16-CCITT to a packet. */
+template <typename CommType>
+void BNO085<CommType>::dfuAppendCrc(uint8_t* packet, uint8_t len) noexcept {
+  uint16_t crc = 0xFFFF;
+  for (int n = 0; n < len; n++) {
+    uint16_t x = static_cast<uint16_t>(packet[n]) << 8;
+    for (int i = 0; i < 8; i++) {
+      if ((crc ^ x) & 0x8000) crc = (crc << 1) ^ 0x1021;
+      else crc = crc << 1;
+      x <<= 1;
+    }
+  }
+  packet[len] = (crc >> 8) & 0xFF;
+  packet[len + 1] = crc & 0xFF;
+}
+
+/**
+ * @brief Send a DFU packet with ACK/NAK retry logic.
+ *
+ * Writes @p pData, then reads back a 1-byte ACK ('s'). Retries up to
+ * DFU_MAX_ATTEMPTS times on timeout or NAK.
+ *
+ * @return SH2_OK on success, or a negative SH-2 error code.
+ */
+template <typename CommType>
+int BNO085<CommType>::dfuSend(uint8_t* dfuBuff, uint8_t* pData, uint32_t len) noexcept {
+  unsigned int retries = 0;
+  int status = SH2_OK;
+  uint8_t ack = 0;
+  bool gotAck = false;
+  uint32_t t;
+  sh2_Hal_t* hal = halWrapper_.asHal();
+
+  while (!gotAck && (retries < DFU_MAX_ATTEMPTS)) {
+    uint32_t now = hal->getTimeUs(hal);
+    uint32_t start = now;
+    status = 0;
+    while ((status == 0) && ((now - start) < DFU_SEND_TIMEOUT_US)) {
+      status = hal->write(hal, pData, len);
+      now = hal->getTimeUs(hal);
+    }
+    if (status == 0) status = SH2_ERR_TIMEOUT;
+    if (status > 0) {
+      status = 0;
+      while ((status == 0) && ((now - start) < DFU_SEND_TIMEOUT_US)) {
+        status = hal->read(hal, &ack, 1, &t);
+        now = hal->getTimeUs(hal);
+      }
+      if (status == 0) status = SH2_ERR_TIMEOUT;
+    }
+    if (status > 0) {
+      if (ack == DFU_ACK) { gotAck = true; status = SH2_OK; }
+      else { gotAck = false; status = SH2_ERR_HUB; }
+    }
+    if (!gotAck) retries++;
+  }
+  return (status >= 0) ? SH2_OK : status;
+}
+
+/** @brief Send the 4-byte application size (big-endian) + CRC. */
+template <typename CommType>
+int BNO085<CommType>::dfuSendAppSize(uint8_t* dfuBuff, uint32_t appSize) noexcept {
+  dfuWrite32be(dfuBuff, appSize);
+  dfuAppendCrc(dfuBuff, 4);
+  return dfuSend(dfuBuff, dfuBuff, 6);
+}
+
+/** @brief Send the 1-byte packet size + CRC. */
+template <typename CommType>
+int BNO085<CommType>::dfuSendPktSize(uint8_t* dfuBuff, uint8_t packetLen) noexcept {
+  dfuBuff[0] = packetLen;
+  dfuAppendCrc(dfuBuff, 1);
+  return dfuSend(dfuBuff, dfuBuff, 3);
+}
+
+/** @brief Send one firmware data packet + CRC. */
+template <typename CommType>
+int BNO085<CommType>::dfuSendPkt(uint8_t* dfuBuff, uint8_t* pData, uint32_t len) noexcept {
+  std::memcpy(dfuBuff, pData, len);
+  dfuAppendCrc(dfuBuff, len);
+  return dfuSend(dfuBuff, dfuBuff, len + 2);
+}
+
+/**
+ * @brief Execute the full DFU firmware transfer.
+ *
+ * Validates the firmware image (format, part number, length), opens the
+ * bootloader transport, sends the application size, packet size, and all
+ * firmware data packets with CRC and ACK/NAK retry, then waits for flash
+ * writes to complete.
+ *
+ * @pre  io_.GetInterfaceType() must NOT be UARTRVC.
+ * @param[in] fw  Firmware image (HcBin_t interface).
+ * @return SH2_OK on success, or a negative SH-2 error code.
+ */
+template <typename CommType>
+int BNO085<CommType>::Dfu(const HcBin_t& fw) noexcept {
+  if (io_.GetInterfaceType() == BNO085Interface::UARTRVC)
+    return SH2_ERR;
+
+  int rc, status = SH2_OK;
+  uint32_t appLen = 0;
+  uint8_t packetLen = 0;
+  uint32_t offset = 0;
+  const char* s = nullptr;
+  uint8_t dfuBuff[DFU_MAX_PACKET_LEN + 2];
+  sh2_Hal_t* hal = halWrapper_.asHal();
+
+  rc = fw.open();
+  if (rc != 0) { status = SH2_ERR; goto dfu_end; }
+
+  s = fw.getMeta("FW-Format");
+  if (!s || std::strcmp(s, "BNO_V1") != 0) { status = SH2_ERR_BAD_PARAM; goto dfu_close; }
+
+  s = fw.getMeta("SW-Part-Number");
+  if (!s) { status = SH2_ERR_BAD_PARAM; goto dfu_close; }
+  if (std::strcmp(s, "1000-3608") != 0 && std::strcmp(s, "1000-3676") != 0 &&
+      std::strcmp(s, "1000-4148") != 0 && std::strcmp(s, "1000-4563") != 0) {
+    status = SH2_ERR_BAD_PARAM; goto dfu_close;
+  }
+
+  appLen = fw.getAppLen();
+  if (appLen < 1024) { status = SH2_ERR_BAD_PARAM; goto dfu_close; }
+
+  packetLen = fw.getPacketLen();
+  if (packetLen == 0 || packetLen > DFU_MAX_PACKET_LEN) packetLen = DFU_MAX_PACKET_LEN;
+
+  status = hal->open(hal);
+  if (status != SH2_OK) goto dfu_close;
+
+  status = dfuSendAppSize(dfuBuff, appLen);
+  if (status != SH2_OK) goto dfu_close;
+  status = dfuSendPktSize(dfuBuff, packetLen);
+  if (status != SH2_OK) goto dfu_close;
+
+  offset = 0;
+  while (offset < appLen) {
+    uint32_t toSend = appLen - offset;
+    if (toSend > packetLen) toSend = packetLen;
+    status = fw.getAppData(dfuBuff, offset, toSend);
+    if (status != SH2_OK) goto dfu_close;
+    status = dfuSendPkt(dfuBuff, dfuBuff, toSend);
+    if (status != SH2_OK) goto dfu_close;
+    offset += toSend;
+  }
+
+dfu_close:
+  fw.close();
+  if (status == SH2_OK) {
+    uint32_t now = hal->getTimeUs(hal), start = now;
+    while ((now - start) < DFU_DELAY_POST_US) now = hal->getTimeUs(hal);
+  }
+  hal->close(hal);
+
+dfu_end:
+  return status;
 }

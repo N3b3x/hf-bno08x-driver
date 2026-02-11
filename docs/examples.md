@@ -20,34 +20,37 @@ This example shows the minimal setup required to read orientation and linear acc
 #include "esp32_bno08x_bus.hpp"
 
 void app_main() {
-    // 1. Configure I2C transport (same bus pins as pcal95555/pca9685 examples)
+    // 1. Configure I2C transport (INT=GPIO17, RST=GPIO16 per hardware_setup.md)
     Esp32Bno08xBus::I2CConfig config;
     config.sda_pin = GPIO_NUM_4;
     config.scl_pin = GPIO_NUM_5;
     config.frequency = 400000;
-    config.device_address = 0x4B;  // Default (SA0=HIGH); use 0x4A if SA0=LOW
+    config.device_address = 0x4B;   // Try 0x4B first (SA0=HIGH), then 0x4A if probe fails
+    config.int_pin = GPIO_NUM_17;
+    config.rst_pin = GPIO_NUM_16;
     
-    // 2. Create and initialize I2C transport via factory function
+    // 2. Create transport, reset, then probe (examples try 0x4B then 0x4A)
     auto transport = CreateEsp32Bno08xBus(config);
-    if (!transport) {
-        printf("Failed to create I2C transport\n");
-        return;
+    if (!transport) return;
+    transport->HardwareReset(2, 200);   // 2 ms reset, 200 ms boot delay
+    if (!transport->Probe()) {
+        config.device_address = 0x4A;   // Fallback to 0x4A (SA0=LOW)
+        transport = CreateEsp32Bno08xBus(config);
+        if (!transport || !transport->Probe()) { printf("No BNO08x at 0x4B or 0x4A\n"); return; }
     }
     
-    // 3. Create IMU instance
+    // 3. Create IMU instance and initialize
     BNO085<Esp32Bno08xBus> imu(*transport);
-    
-    // 4. Initialize
     if (!imu.Begin()) {
         printf("Failed to initialize BNO085\n");
         return;
     }
     
-    // 5. Enable sensors
-    imu.EnableSensor(BNO085Sensor::RotationVector, 20);      // 50 Hz
-    imu.EnableSensor(BNO085Sensor::LinearAcceleration, 20); // 50 Hz
+    // 4. Enable sensors
+    imu.EnableSensor(BNO085Sensor::RotationVector, 20);       // 50 Hz
+    imu.EnableSensor(BNO085Sensor::LinearAcceleration, 20);  // 50 Hz
     
-    // 6. Polling loop
+    // 5. Polling loop
     while (true) {
         imu.Update();
         
@@ -70,12 +73,11 @@ void app_main() {
 
 ### Explanation
 
-1. **I2C Configuration**: Configure the I2C bus with appropriate pins and settings
-2. **Transport Creation**: Create and initialize the transport via factory function
-3. **IMU Instance**: Create the BNO085 driver instance with the transport
-4. **IMU Initialization**: Initialize the BNO085 sensor
-5. **Sensor Enablement**: Enable desired sensors with update rates (interval in milliseconds)
-6. **Polling Loop**: Continuously call `Update()` and check for new data using `HasNewData()`
+1. **I2C Configuration**: Configure the I2C bus (pins, address, optional INT/RST pins).
+2. **Transport, reset, probe**: Create transport, call `HardwareReset(2, 200)`, then `Probe()`. Examples try 0x4B first, then 0x4A if probe fails.
+3. **IMU instance and init**: Create `BNO085<Esp32Bno08xBus>` and call `Begin()`.
+4. **Sensor enablement**: Enable desired sensors with report interval in milliseconds.
+5. **Polling loop**: Call `Update()` and check `HasNewData()` / `GetLatest()`.
 
 ### Expected Output
 
@@ -128,14 +130,13 @@ void sensor_callback(const SensorEvent& event) {
 }
 
 void app_main() {
-    // ... I2C setup via factory function (same as Example 1)
+    // I2C setup: config, CreateEsp32Bno08xBus, HardwareReset(2,200), Probe(); try 0x4B then 0x4A (see Example 1)
     auto transport = CreateEsp32Bno08xBus(config);
+    if (transport) transport->HardwareReset(2, 200);
+    if (!transport || !transport->Probe()) return;
     
     BNO085<Esp32Bno08xBus> imu(*transport);
-    if (!imu.Begin()) {
-        printf("Initialization failed\n");
-        return;
-    }
+    if (!imu.Begin()) { printf("Initialization failed\n"); return; }
     
     // Register callback
     imu.SetCallback(sensor_callback);
@@ -216,13 +217,13 @@ void event_callback(const SensorEvent& event) {
 }
 
 void app_main() {
-    // ... I2C setup via factory function (same as Example 1)
+    // I2C setup: config, CreateEsp32Bno08xBus, HardwareReset(2,200), Probe(); try 0x4B then 0x4A (see Example 1)
     auto transport = CreateEsp32Bno08xBus(config);
+    if (transport) transport->HardwareReset(2, 200);
+    if (!transport || !transport->Probe()) return;
     
     BNO085<Esp32Bno08xBus> imu(*transport);
-    if (!imu.Begin()) {
-        return;
-    }
+    if (!imu.Begin()) return;
     
     imu.SetCallback(event_callback);
     
@@ -267,12 +268,11 @@ This example shows proper error handling and recovery.
 #include "esp32_bno08x_bus.hpp"
 
 void app_main() {
-    // ... I2C setup via factory function (same as Example 1)
+    // I2C setup: config, CreateEsp32Bno08xBus, HardwareReset(2,200), Probe(); try 0x4B then 0x4A (see Example 1)
     auto transport = CreateEsp32Bno08xBus(config);
-    if (!transport) {
-        printf("ERROR: Failed to create I2C transport\n");
-        return;
-    }
+    if (!transport) { printf("ERROR: Failed to create I2C transport\n"); return; }
+    transport->HardwareReset(2, 200);
+    if (!transport->Probe()) { printf("ERROR: Probe failed at 0x%02X\n", config.device_address); return; }
     
     BNO085<Esp32Bno08xBus> imu(*transport);
     
@@ -325,14 +325,55 @@ void app_main() {
 
 ---
 
+## Example 5: RVC Mode
+
+For UART RVC (simplified yaw/pitch/roll streaming), use a transport whose `GetInterfaceType()` returns `BNO085Interface::UARTRVC` (e.g. `Esp32UartRvcBus`). See [RVC Mode](special_feature_rvc.md) for full details and `examples/esp32/main/rvc_mode_example.cpp`.
+
+```cpp
+// Create UART RVC transport (115200, PS1=1 PS0=0), then:
+imu.SetRvcCallback([](const RvcSensorValue& v) {
+    printf("Yaw: %.2f° Pitch: %.2f° Roll: %.2f°\n", v.yaw_deg, v.pitch_deg, v.roll_deg);
+});
+if (imu.BeginRvc()) {
+    while (true) { imu.ServiceRvc(); vTaskDelay(pdMS_TO_TICKS(10)); }
+    imu.CloseRvc();
+}
+```
+
+## Example 6: DFU (Firmware Update)
+
+Enter bootloader (hold BOOTN low, then reset), then call `Dfu()`. See [DFU](special_feature_dfu.md) and `examples/esp32/main/dfu_example.cpp`.
+
+```cpp
+imu.SetBootPin(true);   // BOOTN low
+imu.HardwareReset(10);
+// ... then imu.Dfu(firmware) or use MemoryFirmware for runtime image
+```
+
 ## Running the Examples
 
 ### ESP32
 
+From the repository root, use the build script (recommended):
+
 ```bash
 cd examples/esp32
-idf.py build flash monitor
+./scripts/build_app.sh <app_type> Release
+./scripts/flash_app.sh <app_type> Release
 ```
+
+**Available app types:**
+
+| App | Description |
+|-----|-------------|
+| `driver_integration_test` | Full driver test suite (no hardware required) |
+| `basic_polling` | Polling mode: rotation vector + linear acceleration |
+| `event_driven_callback` | Callback mode: rotation, step counter, tap/shake |
+| `full_features` | Multiple sensors, callback + polling |
+| `rvc_mode` | RVC UART streaming (yaw/pitch/roll) |
+| `dfu_update` | Device Firmware Update example |
+
+Build examples: `./scripts/build_app.sh basic_polling Release`, then flash and monitor with `idf.py flash monitor` from the build directory, or use `./scripts/flash_app.sh basic_polling Release`.
 
 ### Other Platforms
 

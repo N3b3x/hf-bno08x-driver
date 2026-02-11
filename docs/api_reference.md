@@ -58,11 +58,13 @@ explicit BNO085(CommType& comm) noexcept;
 
 ### RVC Mode
 
+Requires a transport whose `GetInterfaceType()` returns `BNO085Interface::UARTRVC` (e.g. UART at 115200 baud with PS1=1, PS0=0).
+
 | Method | Signature | Location |
 |--------|-----------|----------|
-| `BeginRvc()` | `bool BeginRvc(IRvcHal* hal)` | [`inc/bno08x.hpp#L172`](../inc/bno08x.hpp#L172) |
-| `ServiceRvc()` | `void ServiceRvc()` | [`inc/bno08x.hpp#L174`](../inc/bno08x.hpp#L174) |
-| `CloseRvc()` | `void CloseRvc()` | [`inc/bno08x.hpp#L176`](../inc/bno08x.hpp#L176) |
+| `BeginRvc()` | `bool BeginRvc() noexcept` | [`inc/bno08x.hpp`](../inc/bno08x.hpp) |
+| `ServiceRvc()` | `void ServiceRvc() noexcept` | [`inc/bno08x.hpp`](../inc/bno08x.hpp) |
+| `CloseRvc()` | `void CloseRvc() noexcept` | [`inc/bno08x.hpp`](../inc/bno08x.hpp) |
 
 ### Data Access
 
@@ -87,16 +89,20 @@ explicit BNO085(CommType& comm) noexcept;
 
 | Method | Signature | Location |
 |--------|-----------|----------|
-| `HardwareReset()` | `void HardwareReset(uint32_t lowMs = 2)` | [`inc/bno08x.hpp#L197`](../inc/bno08x.hpp#L197) |
-| `SetBootPin()` | `void SetBootPin(bool state)` | [`inc/bno08x.hpp#L200`](../inc/bno08x.hpp#L200) |
-| `SetWakePin()` | `void SetWakePin(bool state)` | [`inc/bno08x.hpp#L202`](../inc/bno08x.hpp#L202) |
-| `SelectInterface()` | `void SelectInterface(BNO085Interface iface)` | [`inc/bno08x.hpp#L205`](../inc/bno08x.hpp#L205) |
+| `HardwareReset()` | `void HardwareReset(uint32_t lowMs = 2) noexcept` | [`inc/bno08x.hpp`](../inc/bno08x.hpp) |
+| `SetBootPin()` | `void SetBootPin(bool state) noexcept` | [`inc/bno08x.hpp`](../inc/bno08x.hpp) |
+| `SetWakePin()` | `void SetWakePin(bool state) noexcept` | [`inc/bno08x.hpp`](../inc/bno08x.hpp) |
+| `SelectInterface()` | `void SelectInterface(BNO085Interface iface) noexcept` | [`inc/bno08x.hpp`](../inc/bno08x.hpp) |
+
+**Note:** `SelectInterface()` only applies when PS0/PS1 pins are under software control. Some transports (e.g. ESP32) extend `HardwareReset()` with an optional second parameter for boot delay (e.g. `HardwareReset(2, 200)`).
 
 ### Firmware Update
 
+Not available when `GetInterfaceType()` returns `UARTRVC`. Use `MemoryFirmware` for runtime-loaded firmware images.
+
 | Method | Signature | Location |
 |--------|-----------|----------|
-| `Dfu()` | `int Dfu(const HcBin_t& fw = firmware)` | [`inc/bno08x.hpp#L218`](../inc/bno08x.hpp#L218) |
+| `Dfu()` | `int Dfu(const HcBin_t& fw = firmware) noexcept` | [`inc/bno08x.hpp`](../inc/bno08x.hpp) |
 
 ## Types
 
@@ -105,7 +111,7 @@ explicit BNO085(CommType& comm) noexcept;
 | Type | Values | Location |
 |------|--------|----------|
 | `BNO085Sensor` | `Accelerometer`, `Gyroscope`, `Magnetometer`, `LinearAcceleration`, `RotationVector`, `Gravity`, `GyroUncalibrated`, `GameRotationVector`, `GeomagneticRotationVector`, `Pressure`, `AmbientLight`, `Humidity`, `Proximity`, `Temperature`, `MagneticFieldUncalibrated`, `TapDetector`, `StepCounter`, `SignificantMotion`, `StabilityClassifier`, `RawAccelerometer`, `RawGyroscope`, `RawMagnetometer`, `StepDetector`, `ShakeDetector`, `FlipDetector`, `PickupDetector`, `StabilityDetector`, `PersonalActivityClassifier`, `SleepDetector`, `TiltDetector`, `PocketDetector`, `CircleDetector`, `HeartRateMonitor`, `ARVRStabilizedRV`, `ARVRStabilizedGameRV`, `GyroIntegratedRV` | [`inc/bno08x.hpp#L29`](../inc/bno08x.hpp#L29) |
-| `BNO085Interface` | `I2C`, `UARTRVC`, `UART`, `SPI` | [`inc/bno08x.hpp#L71`](../inc/bno08x.hpp#L71) |
+| `BNO085Interface` | `I2C`, `UARTRVC`, `UART`, `SPI` | [`inc/bno08x_comm_interface.hpp`](../inc/bno08x_comm_interface.hpp) — returned by `CommInterface::GetInterfaceType()` |
 
 ### Structures
 
@@ -121,7 +127,8 @@ explicit BNO085(CommType& comm) noexcept;
 | Type | Definition | Location |
 |------|------------|----------|
 | `SensorCallback` | `std::function<void(const SensorEvent&)>` | [`inc/bno08x.hpp#L125`](../inc/bno08x.hpp#L125) |
-| `RvcCallback` | `std::function<void(const rvc_SensorValue_t&)>` | [`inc/bno08x.hpp#L128`](../inc/bno08x.hpp#L128) |
+| `RvcCallback` | `std::function<void(const RvcSensorValue&)>` | [`inc/bno08x.hpp`](../inc/bno08x.hpp) |
+| `RvcSensorValue` | Struct with `yaw_deg`, `pitch_deg`, `roll_deg`, `acc_x_g`, `acc_y_g`, `acc_z_g`, etc. | [`inc/bno08x.hpp`](../inc/bno08x.hpp) |
 
 ## Communication Interface
 
@@ -133,15 +140,18 @@ CRTP-based communication interface that must be implemented for your platform.
 
 ### Required Methods
 
+The driver calls `GetInterfaceType()` to determine whether to allow `Begin()` (SH-2), `BeginRvc()` (RVC), or `Dfu()` (not allowed for UARTRVC).
+
 | Method | Signature | Location |
 |--------|-----------|----------|
-| `Open()` | `bool Open() noexcept` | [`inc/bno08x_comm_interface.hpp#L51`](../inc/bno08x_comm_interface.hpp#L51) |
-| `Close()` | `void Close() noexcept` | [`inc/bno08x_comm_interface.hpp#L58`](../inc/bno08x_comm_interface.hpp#L58) |
-| `Write()` | `int Write(const uint8_t* data, uint32_t length) noexcept` | [`inc/bno08x_comm_interface.hpp#L68`](../inc/bno08x_comm_interface.hpp#L68) |
-| `Read()` | `int Read(uint8_t* data, uint32_t length) noexcept` | [`inc/bno08x_comm_interface.hpp#L78`](../inc/bno08x_comm_interface.hpp#L78) |
-| `DataAvailable()` | `bool DataAvailable() noexcept` | [`inc/bno08x_comm_interface.hpp#L86`](../inc/bno08x_comm_interface.hpp#L86) |
-| `Delay()` | `void Delay(uint32_t ms) noexcept` | [`inc/bno08x_comm_interface.hpp#L94`](../inc/bno08x_comm_interface.hpp#L94) |
-| `GetTimeUs()` | `uint32_t GetTimeUs() noexcept` | [`inc/bno08x_comm_interface.hpp#L104`](../inc/bno08x_comm_interface.hpp#L104) |
+| `GetInterfaceType()` | `BNO085Interface GetInterfaceType() noexcept` | [`inc/bno08x_comm_interface.hpp`](../inc/bno08x_comm_interface.hpp) |
+| `Open()` | `bool Open() noexcept` | [`inc/bno08x_comm_interface.hpp`](../inc/bno08x_comm_interface.hpp) |
+| `Close()` | `void Close() noexcept` | [`inc/bno08x_comm_interface.hpp`](../inc/bno08x_comm_interface.hpp) |
+| `Write()` | `int Write(const uint8_t* data, uint32_t length) noexcept` | [`inc/bno08x_comm_interface.hpp`](../inc/bno08x_comm_interface.hpp) |
+| `Read()` | `int Read(uint8_t* data, uint32_t length) noexcept` | [`inc/bno08x_comm_interface.hpp`](../inc/bno08x_comm_interface.hpp) |
+| `DataAvailable()` | `bool DataAvailable() noexcept` | [`inc/bno08x_comm_interface.hpp`](../inc/bno08x_comm_interface.hpp) |
+| `Delay()` | `void Delay(uint32_t ms) noexcept` | [`inc/bno08x_comm_interface.hpp`](../inc/bno08x_comm_interface.hpp) |
+| `GetTimeUs()` | `uint32_t GetTimeUs() noexcept` | [`inc/bno08x_comm_interface.hpp`](../inc/bno08x_comm_interface.hpp) |
 
 ### Optional Methods
 

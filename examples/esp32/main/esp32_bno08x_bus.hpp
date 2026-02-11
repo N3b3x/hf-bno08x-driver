@@ -99,6 +99,13 @@ public:
   // ── CommInterface required methods ─────────────────────────────────────
 
   /**
+   * @brief Identify this transport as I2C (required by CommInterface).
+   */
+  BNO085Interface GetInterfaceType() noexcept {
+    return BNO085Interface::I2C;
+  }
+
+  /**
    * @brief Open the I2C bus and initialize communication (required by CommInterface)
    *
    * Initializes the I2C master bus, GPIO pins (interrupt/reset), and creates

@@ -12,6 +12,8 @@ has_children: true
 
 Welcome! This directory contains step-by-step guides for installing, building, and using the **HF-BNO08x** library.
 
+The driver supports **I²C**, **SPI**, **UART (SH-2)**, and **UART RVC** via a single `CommInterface`. Your transport reports its type with `GetInterfaceType()` so the driver enables the right mode (`Begin()` for SH-2, `BeginRvc()` for RVC, `Dfu()` for firmware update where supported). See [Platform Integration](platform_integration.md).
+
 ## 📚 Documentation Structure
 
 ### **Getting Started**

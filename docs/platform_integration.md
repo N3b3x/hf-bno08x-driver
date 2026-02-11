@@ -81,6 +81,7 @@ template <typename Derived>
 class CommInterface {
 public:
     // Required methods (implement all of these)
+    BNO085Interface GetInterfaceType();  // I2C, SPI, UART, or UARTRVC — driver uses this to allow Begin(), BeginRvc(), or Dfu()
     bool Open();
     void Close();
     int Write(const uint8_t* data, uint32_t length);

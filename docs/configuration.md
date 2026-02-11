@@ -68,9 +68,11 @@ imu.SetCallback([](const SensorEvent& e) {
 ### RVC Mode Callback
 
 ```cpp
-imu.SetRvcCallback([](const rvc_SensorValue_t& val) {
+imu.SetRvcCallback([](const RvcSensorValue& val) {
     printf("Yaw: %.2f°, Pitch: %.2f°, Roll: %.2f°\n", 
            val.yaw_deg, val.pitch_deg, val.roll_deg);
+    printf("Accel: X=%.3f Y=%.3f Z=%.3f g\n",
+           val.acc_x_g, val.acc_y_g, val.acc_z_g);
 });
 ```
 
@@ -92,7 +94,7 @@ imu.SelectInterface(BNO085Interface::UART);
 imu.SelectInterface(BNO085Interface::UARTRVC);
 ```
 
-**Note**: Interface selection is typically done via hardware pins (PS0/PS1) at boot time. This method is only useful if your hardware allows dynamic control of these pins.
+**Note**: Interface selection is typically done via hardware pins (PS0/PS1) at boot time. `SelectInterface()` is only useful when those pins are connected to controllable GPIOs.
 
 ## Hardware Pin Control
 
@@ -142,7 +144,7 @@ if (imu.HasNewData(BNO085Sensor::RotationVector)) {
 
 ## Sensor Accuracy
 
-The `SensorEvent` structure includes an `accuracy` field (0-3) indicating calibration status:
+For orientation reports, calibration status is in `event.rotation.accuracy` (0-3). Other report types use their own accuracy or status fields.
 
 - **0**: Unreliable - sensor not calibrated
 - **1**: Low accuracy - calibration in progress

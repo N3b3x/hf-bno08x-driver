@@ -65,150 +65,74 @@ MR_TIMER_STATIONARY             5
 
 RVC mode is selected at boot time via hardware pins:
 
-- **PS0 = 1, PS1 = 0**: UART RVC mode
+- **PS1 = VIN (1), PS0 = GND (0)**: UART RVC mode
 - Sensor must be reset after setting pins
-- Once in RVC mode, sensor continuously streams frames at 115200 bps (8N1)
+- Once in RVC mode, the sensor continuously streams 19-byte frames at 115200 bps (8N1)
 
 ## Implementation
 
-### Step 1: Implement IRvcHal Interface
+RVC uses the same **CommInterface** as I²C/SPI/UART SH-2 mode. You implement a transport that returns `GetInterfaceType() == BNO085Interface::UARTRVC` (e.g. a UART at 115200 baud). The driver then uses that transport for `BeginRvc()`, `ServiceRvc()`, and `CloseRvc()`; no separate RVC HAL or class is required.
 
-```cpp
-#include "src/rvc/RvcHal.hpp"
+### Step 1: Implement a UART CommInterface that reports UARTRVC
 
-class MyRvcHal : public IRvcHal {
-public:
-    bool open() override {
-        // Initialize UART at 115200 bps, 8N1
-        return true;
-    }
-    
-    void close() override {
-        // Close UART
-    }
-    
-    int read(uint8_t* data, size_t length) override {
-        // Read bytes from UART
-        return uart_read_bytes(uart_port, data, length, 0);
-    }
-    
-    uint32_t getTimeUs() override {
-        // Return current time in microseconds
-        return esp_timer_get_time();
-    }
-};
-```
+Your transport must implement all required `CommInterface` methods (including `GetInterfaceType()` returning `BNO085Interface::UARTRVC`), and use UART at 115200 8N1. The ESP32 examples provide `Esp32UartRvcBus` in `esp32_uart_rvc_bus.hpp` as a reference.
 
-### Step 2: Use BNO085 RVC Methods
+### Step 2: Use BNO085 RVC methods
 
 ```cpp
 #include "bno08x.hpp"
+#include "esp32_uart_rvc_bus.hpp"   // or your UART CommInterface
 
-MyComm comm;
-bno08x::BNO085<MyComm> imu(comm);
+// Create UART RVC transport (115200, PS1=1 PS0=0 on hardware)
+Esp32UartRvcBus::UartConfig uart_config;
+uart_config.port = UART_NUM_1;
+uart_config.tx_pin = GPIO_NUM_17;
+uart_config.rx_pin = GPIO_NUM_18;
+uart_config.baud_rate = 115200;
+Esp32UartRvcBus transport(uart_config);
+BNO085<Esp32UartRvcBus> imu(transport);
 
-MyRvcHal rvc_hal;
+// Set callback for decoded frames (RvcSensorValue)
+imu.SetRvcCallback([](const RvcSensorValue& val) {
+    printf("Yaw: %.2f°, Pitch: %.2f°, Roll: %.2f°\n",
+           val.yaw_deg, val.pitch_deg, val.roll_deg);
+    printf("Accel: X=%.3f Y=%.3f Z=%.3f g\n",
+           val.acc_x_g, val.acc_y_g, val.acc_z_g);
+});
 
-// Begin RVC mode
-if (imu.BeginRvc(&rvc_hal)) {
-    // Set callback for decoded frames
-    imu.SetRvcCallback([](const rvc_SensorValue_t& val) {
-        printf("Yaw: %.2f°, Pitch: %.2f°, Roll: %.2f°\n",
-               val.yaw_deg, val.pitch_deg, val.roll_deg);
-        printf("Accel: X=%.3f, Y=%.3f, Z=%.3f g\n",
-               val.acc_x_g, val.acc_y_g, val.acc_z_g);
-    });
-    
-    // Service loop
+if (imu.BeginRvc()) {
     while (true) {
-        imu.ServiceRvc();  // Decode incoming frames
+        imu.ServiceRvc();   // Reads UART, parses frames, invokes callback
         vTaskDelay(pdMS_TO_TICKS(10));
     }
-    
-    // Close when done
     imu.CloseRvc();
 }
 ```
 
-### Step 3: Alternative - Use Rvc Class Directly
+### Step 3: RvcSensorValue fields
+
+The callback receives a `RvcSensorValue` with floating-point fields derived from the 19-byte frame:
+
+| Field | Unit | Description |
+|-------|------|-------------|
+| `yaw_deg` | degrees | Yaw angle |
+| `pitch_deg` | degrees | Pitch angle |
+| `roll_deg` | degrees | Roll angle |
+| `acc_x_g`, `acc_y_g`, `acc_z_g` | g | Linear acceleration |
+| `motion_intent` | — | Motion intent (see Motion Intent values below) |
+| `motion_request` | — | Motion request (see Motion Request values below) |
+
+## Complete ESP32 example
+
+See `examples/esp32/main/rvc_mode_example.cpp` for a full example using `Esp32UartRvcBus`. Summary:
 
 ```cpp
-#include "src/rvc/Rvc.hpp"
-
-MyRvcHal hal;
-Rvc rvc(hal);
-
-rvc.setCallback([](const rvc_SensorValue_t& val) {
-    printf("Yaw: %.2f°\n", val.yaw_deg);
-});
-
-if (rvc.open()) {
-    while (true) {
-        rvc.service();  // Decode frames
-        vTaskDelay(pdMS_TO_TICKS(10));
-    }
-    rvc.close();
-}
-```
-
-## Complete Example
-
-```cpp
-#include "bno08x.hpp"
-#include "src/rvc/RvcHal.hpp"
-
-class Esp32RvcHal : public IRvcHal {
-private:
-    uart_port_t uart_port_;
-    
-public:
-    Esp32RvcHal(uart_port_t port) : uart_port_(port) {}
-    
-    bool open() override {
-        uart_config_t config = {};
-        config.baud_rate = 115200;
-        config.data_bits = UART_DATA_8_BITS;
-        config.parity = UART_PARITY_DISABLE;
-        config.stop_bits = UART_STOP_BITS_1;
-        config.flow_ctrl = UART_HW_FLOWCTRL_DISABLE;
-        
-        uart_param_config(uart_port_, &config);
-        uart_set_pin(uart_port_, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE,
-                     UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
-        uart_driver_install(uart_port_, 1024, 0, 0, NULL, 0);
-        return true;
-    }
-    
-    void close() override {
-        uart_driver_delete(uart_port_);
-    }
-    
-    int read(uint8_t* data, size_t length) override {
-        int len = uart_read_bytes(uart_port_, data, length, pdMS_TO_TICKS(100));
-        return (len > 0) ? len : 0;
-    }
-    
-    uint32_t getTimeUs() override {
-        return esp_timer_get_time();
-    }
-};
-
-void app_main() {
-    Esp32RvcHal hal(UART_NUM_1);
-    Esp32Bno08xBus comm(/* config */);
-    bno08x::BNO085<Esp32Bno08xBus> imu(comm);
-    
-    if (imu.BeginRvc(&hal)) {
-        imu.SetRvcCallback([](const rvc_SensorValue_t& val) {
-            printf("Yaw: %.2f°, Pitch: %.2f°, Roll: %.2f°\n",
-                   val.yaw_deg, val.pitch_deg, val.roll_deg);
-        });
-        
-        while (true) {
-            imu.ServiceRvc();
-            vTaskDelay(pdMS_TO_TICKS(10));
-        }
-    }
+Esp32UartRvcBus transport(uart_config);
+BNO085<Esp32UartRvcBus> imu(transport);
+imu.SetRvcCallback(on_rvc_frame);
+if (imu.BeginRvc()) {
+    while (true) { imu.ServiceRvc(); vTaskDelay(pdMS_TO_TICKS(10)); }
+    imu.CloseRvc();
 }
 ```
 

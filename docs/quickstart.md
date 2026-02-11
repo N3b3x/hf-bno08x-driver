@@ -24,41 +24,20 @@ Here's a complete working example:
 ```cpp
 #include "bno08x.hpp"
 
-// 1. Implement the communication interface
+// 1. Implement the communication interface (must include GetInterfaceType — see platform_integration.md)
 class MyComm : public bno08x::CommInterface<MyComm> {
 public:
+    BNO085Interface GetInterfaceType() { return BNO085Interface::I2C; }  // or SPI, UART, UARTRVC
     bool Open() {
         // Your I²C/SPI/UART initialization
         return true;
     }
-    
-    void Close() {
-        // Your cleanup code
-    }
-    
-    int Write(const uint8_t* data, uint32_t length) {
-        // Your write implementation
-        return length;
-    }
-    
-    int Read(uint8_t* data, uint32_t length) {
-        // Your read implementation
-        return length;
-    }
-    
-    bool DataAvailable() {
-        // Check if data is available
-        return true;
-    }
-    
-    void Delay(uint32_t ms) {
-        // Your delay implementation
-    }
-    
-    uint32_t GetTimeUs() {
-        // Return current time in microseconds
-        return 0;
-    }
+    void Close() { /* cleanup */ }
+    int Write(const uint8_t* data, uint32_t length) { return length; }
+    int Read(uint8_t* data, uint32_t length) { return length; }
+    bool DataAvailable() { return true; }
+    void Delay(uint32_t ms) { /* delay */ }
+    uint32_t GetTimeUs() { return 0; }
 };
 
 // 2. Create instances
@@ -75,11 +54,11 @@ if (!imu.Begin()) {
 imu.EnableSensor(BNO085Sensor::RotationVector, 10);  // 100 Hz
 imu.EnableSensor(BNO085Sensor::Accelerometer, 50); // 20 Hz
 
-// 5. Set callback
+// 5. Set callback (use event.rotation.accuracy for calibration status 0–3)
 imu.SetCallback([](const SensorEvent& e) {
     if (e.sensor == BNO085Sensor::RotationVector) {
-        printf("Quat: w=%.3f x=%.3f y=%.3f z=%.3f\n",
-               e.rotation.w, e.rotation.x, e.rotation.y, e.rotation.z);
+        printf("Quat: w=%.3f x=%.3f y=%.3f z=%.3f (accuracy=%d)\n",
+               e.rotation.w, e.rotation.x, e.rotation.y, e.rotation.z, e.rotation.accuracy);
     }
 });
 
@@ -196,12 +175,11 @@ void app_main() {
 
 ## Expected Output
 
-When running this example, you should see:
+When running this example, you should see quaternion and optionally accuracy (0–3, 3 = fully calibrated):
 
 ```
-Yaw: 45.2°
-Yaw: 45.3°
-Yaw: 45.5°
+Quat: w=0.924 x=0.012 y=-0.018 z=0.382 (accuracy=3)
+Quat: w=0.924 x=0.012 y=-0.018 z=0.383 (accuracy=3)
 ```
 
 ## Troubleshooting

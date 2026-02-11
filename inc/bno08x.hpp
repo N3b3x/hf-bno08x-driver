@@ -2,279 +2,573 @@
 
 /**
  * @file bno08x.hpp
- * @brief High level C++ interface for the BNO08x IMU family.
+ * @brief High-level C++ driver for the BNO08x 9-axis IMU family.
  *
- * This header declares the ::BNO085 class which wraps the vendor supplied
- * SH-2 driver.  It also defines small helper structures used to represent
- * sensor values in a user friendly form.
+ * @details
+ * This header declares the BNO085 template class -- a complete, self-contained
+ * driver for the Hillcrest/CEVA BNO080, BNO085, and BNO086 sensors. It wraps
+ * the vendor-supplied SH-2 (Sensor Hub 2) C library and adds:
+ *
+ * - **SH-2 Mode** -- Full access to all 30+ sensor reports (rotation vectors,
+ *   accelerometer, gyroscope, magnetometer, step counter, gestures, etc.)
+ *   via I2C, SPI, or UART.
+ * - **RVC Mode** -- Simplified orientation data (yaw/pitch/roll + acceleration)
+ *   via UART at 115200 baud. The driver reads raw bytes and parses the 19-byte
+ *   RVC frames internally.
+ * - **DFU** -- Device Firmware Update support with CRC-16, ACK/NAK retry,
+ *   and firmware validation.
+ *
+ * The transport is provided via a CRTP-based CommInterface template parameter.
+ * Each transport reports its type via `GetInterfaceType()`, and the driver
+ * guards mode-specific operations accordingly.
+ *
+ * ### Quick Start (SH-2 Mode)
+ * @code
+ * Esp32Bno08xBus bus(config);
+ * BNO085<Esp32Bno08xBus> imu(bus);
+ * imu.Begin();
+ * imu.EnableSensor(BNO085Sensor::RotationVector, 10);
+ * imu.SetCallback([](const SensorEvent& e) { ... });
+ * while (true) { imu.Update(); }
+ * @endcode
+ *
+ * ### Quick Start (RVC Mode)
+ * @code
+ * Esp32UartRvcBus uart(config);
+ * BNO085<Esp32UartRvcBus> imu(uart);
+ * imu.SetRvcCallback([](const RvcSensorValue& v) { ... });
+ * imu.BeginRvc();
+ * while (true) { imu.ServiceRvc(); }
+ * @endcode
+ *
+ * @author  Nebiyu Tadesse
+ * @date    2025
+ * @copyright HardFOC -- GNU GPL v3.0 (C++ wrapper); CEVA Apache 2.0 (SH-2 backend)
+ *
+ * @see bno08x_comm_interface.hpp  CommInterface CRTP base class.
+ * @see dfu/MemoryFirmware.hpp     Runtime firmware image for DFU.
  */
 
 #include "bno08x_comm_interface.hpp"
 #include "dfu/HcBin.h"
-#include "dfu/firmware.h"
-#include "rvc/Rvc.hpp"
 #include <array>
 #include <cstdint>
+#include <cstring>
 #include <functional>
 
 extern "C" {
 #include "sh2/sh2.h"
 #include "sh2/sh2_SensorValue.h"
+#include "sh2/sh2_err.h"
 }
 
 /**
+ * @brief Default compiled-in firmware image for DFU.
+ *
+ * Defined in `firmware-bno.c`. Contains a stub by default; replace with a
+ * real BNO08x firmware binary for production DFU. Alternatively, use
+ * MemoryFirmware for runtime-provided images.
+ */
+extern const HcBin_t firmware;
+
+// ============================================================================
+/// @defgroup SensorTypes Sensor Types and Data Structures
+/// @brief Enumerations, value containers, and callback types.
+/// @{
+// ============================================================================
+
+/**
  * @enum BNO085Sensor
- * @brief Identifiers for all sensor reports supported by the BNO08x.
+ * @brief Identifiers for all SH-2 sensor reports supported by the BNO08x.
+ *
+ * Pass these to EnableSensor() / DisableSensor() / HasNewData() / GetLatest().
+ * Values correspond to the SH-2 sensor ID bytes defined in the CEVA datasheet.
  */
 enum class BNO085Sensor : uint8_t {
-  Accelerometer = 0x01,              ///< Calibrated acceleration vector
-  Gyroscope = 0x02,                  ///< Calibrated angular velocity
-  Magnetometer = 0x03,               ///< Calibrated magnetic field
-  LinearAcceleration = 0x04,         ///< Acceleration minus gravity
-  RotationVector = 0x05,             ///< Fused orientation quaternion
-  Gravity = 0x06,                    ///< Gravity vector
-  GyroUncalibrated = 0x07,           ///< Raw angular velocity
-  GameRotationVector = 0x08,         ///< Orientation without heading
-  GeomagneticRotationVector = 0x09,  ///< Fused orientation using magnetometer
-  Pressure = 0x0A,                   ///< Barometric pressure
-  AmbientLight = 0x0B,               ///< Ambient light level
-  Humidity = 0x0C,                   ///< Relative humidity
-  Proximity = 0x0D,                  ///< Proximity detector
-  Temperature = 0x0E,                ///< Temperature sensor
-  MagneticFieldUncalibrated = 0x0F,  ///< Raw magnetic field
+  Accelerometer = 0x01,              ///< Calibrated acceleration vector (m/s^2)
+  Gyroscope = 0x02,                  ///< Calibrated angular velocity (rad/s)
+  Magnetometer = 0x03,               ///< Calibrated magnetic field (uT)
+  LinearAcceleration = 0x04,         ///< Acceleration minus gravity (m/s^2)
+  RotationVector = 0x05,             ///< Fused absolute orientation quaternion
+  Gravity = 0x06,                    ///< Gravity vector (m/s^2)
+  GyroUncalibrated = 0x07,           ///< Raw angular velocity (rad/s)
+  GameRotationVector = 0x08,         ///< Orientation without magnetometer heading
+  GeomagneticRotationVector = 0x09,  ///< Orientation using magnetometer for heading
+  Pressure = 0x0A,                   ///< Barometric pressure (hPa)
+  AmbientLight = 0x0B,               ///< Ambient light level (lux)
+  Humidity = 0x0C,                   ///< Relative humidity (%)
+  Proximity = 0x0D,                  ///< Proximity detector (cm)
+  Temperature = 0x0E,                ///< Temperature (deg C)
+  MagneticFieldUncalibrated = 0x0F,  ///< Raw magnetic field (uT)
   TapDetector = 0x10,                ///< Single or double tap event
-  StepCounter = 0x11,                ///< Step counter
-  SignificantMotion = 0x12,          ///< Significant motion event
-  StabilityClassifier = 0x13,        ///< Device stability state
-  RawAccelerometer = 0x14,           ///< Raw accelerometer data
-  RawGyroscope = 0x15,               ///< Raw gyroscope data
-  RawMagnetometer = 0x16,            ///< Raw magnetometer data
-  StepDetector = 0x18,               ///< Step detected event
-  ShakeDetector = 0x19,              ///< Shake gesture event
-  FlipDetector = 0x1A,               ///< Flip gesture event
-  PickupDetector = 0x1B,             ///< Pickup gesture event
-  StabilityDetector = 0x1C,          ///< Stability detected event
-  PersonalActivityClassifier = 0x1E, ///< Activity classification
-  SleepDetector = 0x1F,              ///< Sleep state
-  TiltDetector = 0x20,               ///< Tilt event
-  PocketDetector = 0x21,             ///< Device is in pocket
-  CircleDetector = 0x22,             ///< Circular motion
-  HeartRateMonitor = 0x23,           ///< Heart rate monitor data
-  ARVRStabilizedRV = 0x28,           ///< Stabilized rotation vector
-  ARVRStabilizedGameRV = 0x29,       ///< Stabilized game rotation vector
-  GyroIntegratedRV = 0x2A            ///< Gyro integrated rotation vector
-};
-/**
- * @enum BNO085Interface
- * @brief Host interface selection via PS pins.
- */
-enum class BNO085Interface : uint8_t {
-  I2C,     ///< PS1=0, PS0=0
-  UARTRVC, ///< PS1=1, PS0=0
-  UART,    ///< PS1=0, PS0=1
-  SPI      ///< PS1=1, PS0=1
+  StepCounter = 0x11,                ///< Cumulative step count
+  SignificantMotion = 0x12,          ///< Significant motion detected
+  StabilityClassifier = 0x13,        ///< Device stability state (on table, in hand, etc.)
+  RawAccelerometer = 0x14,           ///< Raw accelerometer ADC counts
+  RawGyroscope = 0x15,               ///< Raw gyroscope ADC counts
+  RawMagnetometer = 0x16,            ///< Raw magnetometer ADC counts
+  StepDetector = 0x18,               ///< Individual step detected
+  ShakeDetector = 0x19,              ///< Shake gesture detected
+  FlipDetector = 0x1A,               ///< Flip gesture detected
+  PickupDetector = 0x1B,             ///< Pickup gesture detected
+  StabilityDetector = 0x1C,          ///< Stability change detected
+  PersonalActivityClassifier = 0x1E, ///< Activity classification (walking, running, etc.)
+  SleepDetector = 0x1F,              ///< Sleep state detected
+  TiltDetector = 0x20,               ///< Tilt event detected
+  PocketDetector = 0x21,             ///< Device-in-pocket detected
+  CircleDetector = 0x22,             ///< Circular motion detected
+  HeartRateMonitor = 0x23,           ///< Heart rate data
+  ARVRStabilizedRV = 0x28,           ///< AR/VR stabilised rotation vector
+  ARVRStabilizedGameRV = 0x29,       ///< AR/VR stabilised game rotation vector
+  GyroIntegratedRV = 0x2A            ///< High-rate gyro-integrated rotation vector
 };
 
 /**
  * @struct Vector3
- * @brief Simple 3‑axis vector with accuracy flag.
+ * @brief Three-axis vector with sensor accuracy indicator.
+ *
+ * Used for accelerometer, gyroscope, magnetometer, gravity, and linear
+ * acceleration reports.
  */
 struct Vector3 {
-  float x{0};          ///< X component
-  float y{0};          ///< Y component
-  float z{0};          ///< Z component
-  uint8_t accuracy{0}; ///< Sensor accuracy (0‑3)
+  float x{0};          ///< X-axis component
+  float y{0};          ///< Y-axis component
+  float z{0};          ///< Z-axis component
+  uint8_t accuracy{0}; ///< Calibration accuracy (0 = unreliable, 3 = fully calibrated)
 };
 
 /**
  * @struct Quaternion
- * @brief Quaternion orientation with accuracy flag.
+ * @brief Unit quaternion with sensor accuracy indicator.
+ *
+ * Used for rotation vector, game rotation vector, geomagnetic rotation vector,
+ * and gyro-integrated rotation vector reports.
  */
 struct Quaternion {
-  float w{1};          ///< Real component
-  float x{0};          ///< i component
-  float y{0};          ///< j component
-  float z{0};          ///< k component
-  uint8_t accuracy{0}; ///< Sensor accuracy (0‑3)
+  float w{1};          ///< Real (scalar) component
+  float x{0};          ///< Imaginary i component
+  float y{0};          ///< Imaginary j component
+  float z{0};          ///< Imaginary k component
+  uint8_t accuracy{0}; ///< Calibration accuracy (0 = unreliable, 3 = fully calibrated)
 };
 
 /**
  * @struct TapEvent
- * @brief Information for tap detector events.
+ * @brief Tap detector event details.
  */
 struct TapEvent {
-  bool doubleTap{false}; ///< True if a double tap occurred
-  uint8_t direction{0};  ///< Tap direction (0–5)
+  bool doubleTap{false}; ///< True if double-tap, false if single-tap
+  uint8_t direction{0};  ///< Tap direction: 0=+X, 1=-X, 2=+Y, 3=-Y, 4=+Z, 5=-Z
 };
 
 /**
  * @struct SensorEvent
- * @brief Container for a single sensor report.
+ * @brief Container for a single decoded SH-2 sensor report.
+ *
+ * Which fields are populated depends on the sensor type. Quaternion-based
+ * sensors fill `rotation`; vector-based sensors fill `vector`; step counter
+ * fills `stepCount`; tap detector fills `tap` and `detected`.
  */
 struct SensorEvent {
-  BNO085Sensor sensor{BNO085Sensor::Accelerometer}; ///< Source sensor ID
-  uint64_t timestamp{0};                            ///< Time in microseconds
-  Vector3 vector{};                                 ///< 3‑axis data
-  Quaternion rotation{};                            ///< Orientation data
-  uint32_t stepCount{0};                            ///< Step counter value
-  TapEvent tap{};                                   ///< Tap detector info
-  bool detected{false};                             ///< Generic detection flag
+  BNO085Sensor sensor{BNO085Sensor::Accelerometer}; ///< Which sensor produced this event
+  uint64_t timestamp{0};   ///< Event timestamp in microseconds
+  Vector3 vector{};        ///< 3-axis data (accelerometer, gyro, mag, etc.)
+  Quaternion rotation{};   ///< Quaternion data (rotation vectors)
+  uint32_t stepCount{0};   ///< Cumulative step count (StepCounter only)
+  TapEvent tap{};          ///< Tap event details (TapDetector only)
+  bool detected{false};    ///< Generic detection flag (tap, shake, etc.)
 };
 
-/** Callback type invoked when a new ::SensorEvent is received. */
+// ---- RVC Mode Data Types ---------------------------------------------------
+
+/**
+ * @struct RvcSensorEvent
+ * @brief Raw RVC frame data in integer fixed-point format.
+ *
+ * Fields are extracted directly from the 19-byte RVC UART frame.
+ * Yaw/pitch/roll are in 0.01-degree units; acceleration in 0.001 g units.
+ * Use BNO085::decodeRvc() or the RvcCallback to get floating-point values.
+ */
+struct RvcSensorEvent {
+  uint8_t index;          ///< Frame sequence index (0-255)
+  int16_t yaw;            ///< Yaw angle (units: 0.01 degrees)
+  int16_t pitch;          ///< Pitch angle (units: 0.01 degrees)
+  int16_t roll;           ///< Roll angle (units: 0.01 degrees)
+  int16_t acc_x;          ///< X linear acceleration (units: 0.001 g)
+  int16_t acc_y;          ///< Y linear acceleration (units: 0.001 g)
+  int16_t acc_z;          ///< Z linear acceleration (units: 0.001 g)
+  uint8_t mi;             ///< Motion intent (0=unknown, 1=stationary, 3=in motion)
+  uint8_t mr;             ///< Motion request (0=no constraint, 1=stay stationary)
+  uint64_t timestamp_uS;  ///< Timestamp in microseconds (set by the driver)
+};
+
+/**
+ * @struct RvcSensorValue
+ * @brief Decoded RVC frame data in floating-point natural units.
+ *
+ * Delivered to the RvcCallback registered via SetRvcCallback().
+ */
+struct RvcSensorValue {
+  uint8_t index;          ///< Frame sequence index
+  float yaw_deg;          ///< Yaw angle in degrees
+  float pitch_deg;        ///< Pitch angle in degrees
+  float roll_deg;         ///< Roll angle in degrees
+  float acc_x_g;          ///< X linear acceleration in g
+  float acc_y_g;          ///< Y linear acceleration in g
+  float acc_z_g;          ///< Z linear acceleration in g
+  uint8_t mi;             ///< Motion intent
+  uint8_t mr;             ///< Motion request
+  uint64_t timestamp_uS;  ///< Timestamp in microseconds
+};
+
+// ---- Callback Types --------------------------------------------------------
+
+/** @brief Callback invoked when a new SH-2 sensor event is received. */
 using SensorCallback = std::function<void(const SensorEvent&)>;
 
-/** Callback type for decoded RVC frames. */
-using RvcCallback = std::function<void(const rvc_SensorValue_t&)>;
+/** @brief Callback invoked when a decoded RVC frame is available. */
+using RvcCallback = std::function<void(const RvcSensorValue&)>;
+
+/// @} // end of SensorTypes group
+
+// ============================================================================
+/// @defgroup BNO085Driver BNO085 Driver Class
+/// @brief The main driver class integrating SH-2, RVC, and DFU functionality.
+/// @{
+// ============================================================================
 
 /**
  * @class BNO085
- * @brief High level driver for the BNO08x IMU.
+ * @brief Unified driver for the BNO08x IMU -- SH-2 mode, RVC mode, and DFU.
  *
- * The driver wraps the vendor SH-2 C API and exposes a simple C++ interface.
- * A platform specific communication interface implementing bno08x::CommInterface<Derived> must be
- * supplied to actually read and write bytes on the bus.
+ * @details
+ * A single template class that adapts to the transport type at compile time.
+ * The CommInterface::GetInterfaceType() method determines which mode of
+ * operation is valid:
  *
- * @tparam CommType The communication interface type (must inherit from bno08x::CommInterface<CommType>)
+ * | Interface Type | Valid Operations                                    |
+ * |----------------|-----------------------------------------------------|
+ * | I2C / SPI / UART | Begin(), Update(), EnableSensor(), Dfu(), etc.   |
+ * | UARTRVC        | BeginRvc(), ServiceRvc(), CloseRvc()               |
  *
- * @note The driver uses CRTP-based communication interface for zero virtual call overhead.
- *       Communication interface implementations should inherit from bno08x::CommInterface<DerivedType>.
+ * Calling a mode-incompatible method returns `false` or `SH2_ERR` gracefully.
+ *
+ * The driver automatically re-enables configured sensors after a sensor reset
+ * (handled internally by the async event callback).
+ *
+ * @tparam CommType  Platform-specific transport. Must inherit from
+ *                   `bno08x::CommInterface<CommType>`.
+ *
+ * @note  The CommType instance passed to the constructor must outlive this
+ *        object. The driver stores a reference, not a copy.
  */
 template <typename CommType>
 class BNO085 {
 public:
   /**
-   * @brief Construct the driver with a communication interface instance.
-   * @param comm Communication interface used for communication (must outlive this object).
+   * @brief Construct the driver with a communication interface.
+   * @param[in] comm  Reference to the transport (must outlive this object).
    */
   explicit BNO085(CommType& comm) noexcept : io_(comm) {}
 
-  /** Initialize the sensor using the communication interface passed in the constructor. */
+  // --------------------------------------------------------------------------
+  /// @name SH-2 Mode API
+  ///
+  /// These methods are valid when GetInterfaceType() returns I2C, SPI, or UART.
+  /// They provide full access to the BNO08x sensor hub via the SH-2 protocol.
+  /// @{
+
+  /**
+   * @brief Initialise the sensor in SH-2 mode.
+   *
+   * Opens the communication bus, connects to the SH-2 layer, sends the
+   * reinitialize command, and registers the internal sensor/event callbacks.
+   *
+   * @pre  Interface type must NOT be UARTRVC.
+   * @return  `true` on success, `false` on failure or wrong interface type.
+   */
   bool Begin() noexcept;
 
   /**
    * @brief Enable periodic reporting for a sensor.
-   * @param sensor     Which sensor to enable.
-   * @param intervalMs Desired report interval in milliseconds.
-   * @param sensitivity Change sensitivity for on-change sensors.
+   *
+   * @param[in] sensor       Which sensor to enable.
+   * @param[in] intervalMs   Report interval in milliseconds (e.g. 10 = 100 Hz).
+   *                         Use 0 for on-change sensors (step counter, tap, etc.).
+   * @param[in] sensitivity  Change sensitivity threshold for on-change sensors.
+   *                         Set to 0.0 to disable sensitivity filtering.
+   * @return  `true` if the sensor was configured successfully.
    */
   bool EnableSensor(BNO085Sensor sensor, uint32_t intervalMs, float sensitivity = 0.0f) noexcept;
-  /** Disable reporting for a sensor. */
+
+  /**
+   * @brief Disable reporting for a sensor.
+   * @param[in] sensor  Which sensor to disable.
+   * @return  `true` if successful.
+   */
   bool DisableSensor(BNO085Sensor sensor) noexcept;
 
-  /** Register a callback invoked for every received event. */
+  /**
+   * @brief Register a callback for SH-2 sensor events.
+   *
+   * The callback is invoked from within Update() whenever the SH-2 library
+   * delivers a new sensor report. Only one callback can be registered at a
+   * time; calling this again replaces the previous callback.
+   *
+   * @param[in] cb  Callback function or lambda. Pass `{}` to clear.
+   */
   void SetCallback(SensorCallback cb) noexcept;
 
-  /** Register a callback for decoded RVC frames. */
+  /**
+   * @brief Check if new data is available for a sensor.
+   *
+   * The flag is set when a report arrives and cleared when GetLatest() is
+   * called or when a callback consumes the event.
+   *
+   * @param[in] sensor  Which sensor to check.
+   * @return  `true` if unread data is available.
+   */
+  bool HasNewData(BNO085Sensor sensor) const;
+
+  /**
+   * @brief Retrieve the most recent event for a sensor.
+   *
+   * Returns a decoded SensorEvent populated with the latest values. Which
+   * fields are meaningful depends on the sensor type.
+   *
+   * @param[in] sensor  Which sensor to query.
+   * @return  Copy of the latest SensorEvent.
+   */
+  SensorEvent GetLatest(BNO085Sensor sensor) const;
+
+  /**
+   * @brief Pump the SH-2 service loop.
+   *
+   * Must be called frequently (every 5-10 ms or faster) to keep data flowing
+   * between the host and the sensor hub. Sensor callbacks and async event
+   * handlers are invoked from within this method.
+   *
+   * @note  No-op if Begin() has not been called or if in RVC mode.
+   */
+  void Update() noexcept;
+
+  /// @}
+
+  // --------------------------------------------------------------------------
+  /// @name RVC Mode API
+  ///
+  /// These methods are valid when GetInterfaceType() returns UARTRVC.
+  /// RVC mode provides simplified yaw/pitch/roll + acceleration data
+  /// via UART at 115200 baud without the overhead of the SH-2 protocol.
+  /// @{
+
+  /**
+   * @brief Register a callback for decoded RVC frames.
+   *
+   * The callback is invoked from within ServiceRvc() each time a valid
+   * 19-byte RVC frame is received and decoded.
+   *
+   * @param[in] cb  Callback function or lambda. Pass `{}` to clear.
+   */
   void SetRvcCallback(RvcCallback cb) noexcept;
 
   /**
-   * @brief Begin processing in RVC mode using a CRTP-based HAL.
+   * @brief Initialise RVC mode.
    *
-   * The HAL type must inherit from RvcHalInterface<RvcHalType>. The driver
-   * internally bridges the CRTP calls into the C function-pointer API that
-   * the RVC subsystem expects, following the same pattern used for CommInterface.
+   * Opens the UART transport and starts the internal frame parser. The
+   * sensor must have PS0/PS1 set for RVC mode at boot time.
    *
-   * @tparam RvcHalType The CRTP-derived RVC HAL type.
-   * @param hal Reference to the RVC HAL instance (must outlive this object).
+   * @pre  Interface type must be UARTRVC.
+   * @return  `true` on success, `false` on failure or wrong interface type.
    */
-  template <typename RvcHalType>
-  bool BeginRvc(RvcHalType& hal) noexcept;
-  /** Poll the UART and dispatch any pending RVC frames. */
-  void ServiceRvc() noexcept;
-  /** Stop RVC processing. */
-  void CloseRvc() noexcept;
-
-  /** Check if new data is available for a sensor. */
-  bool HasNewData(BNO085Sensor sensor) const;
-  /** Return the most recent event for a sensor. */
-  SensorEvent GetLatest(BNO085Sensor sensor) const;
-
-  /** Pump the SH-2 service loop. Call this as often as possible. */
-  void Update() noexcept;
-
-  /** Retrieve the last error code returned by the SH-2 driver. */
-  int GetLastError() const {
-    return last_error_;
-  }
+  bool BeginRvc() noexcept;
 
   /**
-   * @brief Toggle the sensor's hardware reset line if available.
+   * @brief Poll for RVC frames and dispatch callbacks.
    *
-   * Drives RSTN low for the specified time then releases it. Platforms not
-   * providing the pin may leave the implementation empty.
+   * Reads all available UART bytes, feeds them into the frame parser, and
+   * invokes the RVC callback for each complete valid frame. Call this in
+   * your main loop or an RTOS task.
+   *
+   * @note  No-op if BeginRvc() has not been called.
+   */
+  void ServiceRvc() noexcept;
+
+  /**
+   * @brief Stop RVC processing and close the transport.
+   */
+  void CloseRvc() noexcept;
+
+  /// @}
+
+  // --------------------------------------------------------------------------
+  /// @name Common API
+  ///
+  /// These methods work regardless of the interface type.
+  /// @{
+
+  /**
+   * @brief Get the last error code from the SH-2 driver.
+   * @return  SH-2 error code (0 = no error). See `sh2_err.h` for values.
+   */
+  int GetLastError() const { return last_error_; }
+
+  /**
+   * @brief Perform a hardware reset via the RSTN pin.
+   *
+   * Drives RSTN LOW for @p lowMs milliseconds, then releases it HIGH and
+   * waits 50 ms for the sensor to boot.
+   *
+   * @param[in] lowMs  Duration to hold RSTN LOW (default 2 ms).
    */
   void HardwareReset(uint32_t lowMs = 2) noexcept;
 
-  /** Set the BOOTN pin level (used to enter DFU). */
+  /**
+   * @brief Drive the BOOTN pin to enter/exit DFU bootloader mode.
+   * @param[in] state  `true` = drive LOW (enter bootloader), `false` = HIGH.
+   */
   void SetBootPin(bool state) noexcept;
-  /** Control the WAKE pin in SPI mode. */
+
+  /**
+   * @brief Drive the WAKE pin (SPI mode only).
+   * @param[in] state  `true` = drive LOW (wake sensor), `false` = release.
+   */
   void SetWakePin(bool state) noexcept;
 
-  /** Select the host interface by driving PS pins. */
+  /**
+   * @brief Select the host interface by driving PS0/PS1 pins.
+   *
+   * This is only useful if the PS pins are connected to controllable GPIOs
+   * (rare -- most boards hard-wire them).
+   *
+   * @param[in] iface  Desired interface.
+   */
   void SelectInterface(BNO085Interface iface) noexcept;
 
   /**
-   * @brief Perform a firmware update using this object's communication interface.
+   * @brief Perform a Device Firmware Update (DFU).
    *
-   * The sensor must already be in bootloader mode (BOOTN held low during
-   * reset). Provide the firmware as an `HcBin_t` object—use the default
-   * `firmware` from `src/dfu` or construct one at runtime with
-   * `MemoryFirmware`.
+   * The sensor must already be in bootloader mode (hold BOOTN LOW during
+   * reset). The method validates the firmware image, then transfers it
+   * in packets with CRC-16 and ACK/NAK retry logic.
    *
-   * @param fw Firmware image to write.
-   * @return SH2 status code from the DFU routine.
+   * @pre  Interface type must NOT be UARTRVC.
+   * @param[in] fw  Firmware image. Defaults to the compiled-in stub from
+   *                `firmware-bno.c`. Use MemoryFirmware for runtime images.
+   * @return  `SH2_OK` (0) on success, or a negative SH-2 error code.
+   *
+   * @see MemoryFirmware  For loading firmware from memory at runtime.
    */
   int Dfu(const HcBin_t& fw = firmware) noexcept;
 
-private:
-  /**
-   * @brief Internal wrapper converting CommInterface to the SH-2 HAL.
-   */
-  struct CommHal {
-    sh2_Hal_t* asHal() {
-      return &hal;
-    }
-    sh2_Hal_t hal;                    ///< SH-2 HAL structure
-    CommType* comm{nullptr}; ///< User provided communication interface (pointer for C callbacks) - note: this is a struct member, not a class member, so no underscore needed
-  } halWrapper{};
-
-  /// @name SH-2 HAL callbacks
-  /// @{
-  static int halOpen(sh2_Hal_t* self);
-  static void halClose(sh2_Hal_t* self);
-  static int halRead(sh2_Hal_t* self, uint8_t* buf, unsigned len, uint32_t* t);
-  static int halWrite(sh2_Hal_t* self, uint8_t* buf, unsigned len);
-  static uint32_t halGetTimeUs(sh2_Hal_t* self);
   /// @}
 
-  /// C trampoline for sensor callbacks
-  static void sensorC(void* cookie, sh2_SensorEvent_t* event);
-  /// C trampoline for async callbacks
-  static void asyncC(void* cookie, sh2_AsyncEvent_t* event);
-  /// C trampoline for RVC frames
-  static void rvcC(void* cookie, rvc_SensorEvent_t* event);
+private:
+  // --------------------------------------------------------------------------
+  /// @name SH-2 HAL Bridge
+  /// @brief Adapts the CRTP CommInterface to the vendor C `sh2_Hal_t` struct.
+  /// @{
 
+  /** @brief Wrapper pairing the C HAL struct with the typed CommInterface pointer. */
+  struct CommHal {
+    sh2_Hal_t* asHal() { return &hal; }
+    sh2_Hal_t hal;         ///< C HAL function-pointer struct
+    CommType* comm{nullptr}; ///< Typed pointer to the user's CommInterface
+  } halWrapper_{};
+
+  static int halOpen(sh2_Hal_t* self);                                ///< @private
+  static void halClose(sh2_Hal_t* self);                              ///< @private
+  static int halRead(sh2_Hal_t* self, uint8_t* buf, unsigned len, uint32_t* t); ///< @private
+  static int halWrite(sh2_Hal_t* self, uint8_t* buf, unsigned len);   ///< @private
+  static uint32_t halGetTimeUs(sh2_Hal_t* self);                      ///< @private
+
+  /// @}
+
+  // --------------------------------------------------------------------------
+  /// @name SH-2 Callback Trampolines
+  /// @{
+
+  static void sensorC(void* cookie, sh2_SensorEvent_t* event); ///< @private
+  static void asyncC(void* cookie, sh2_AsyncEvent_t* event);   ///< @private
+
+  /// @}
+
+  // --------------------------------------------------------------------------
+  /// @name Internal SH-2 Handlers
+  /// @{
+
+  /** @brief Decode a raw SH-2 event and update the latest values cache. */
   void handleSensorEvent(const sh2_SensorEvent_t* event) noexcept;
+  /** @brief Handle asynchronous events (e.g. sensor reset -> re-enable sensors). */
   void handleAsyncEvent(const sh2_AsyncEvent_t* event) noexcept;
+  /** @brief Send a sensor configuration command to the SH-2 library. */
   bool configure(BNO085Sensor sensor, uint32_t intervalUs, float sensitivity, uint32_t batchUs = 0) noexcept;
 
-  CommType& io_; ///< Communication interface reference (must outlive this object)
-  SensorCallback callback_{};
-  int last_error_{0};
-  bool initialized_{false};
+  /// @}
 
-  std::array<sh2_SensorValue_t, 0x2B> latest_{};
-  std::array<bool, 0x2B> new_flag_{};
-  std::array<uint32_t, 0x2B> last_interval_{};
-  std::array<float, 0x2B> last_sensitivity_{};
+  // --------------------------------------------------------------------------
+  /// @name RVC Frame Parser
+  ///
+  /// Reads raw UART bytes one at a time via io_.Read() and accumulates them
+  /// into a 19-byte sliding window. When a valid frame is detected (0xAA 0xAA
+  /// header + checksum match), it is decoded and dispatched to the callback.
+  /// @{
 
-  Rvc rvc_{};
-  RvcCallback rvc_cb_{};
-  RvcHalC_t rvc_hal_adapter_{}; ///< C function-pointer adapter bridging CRTP RVC HAL to C API
+  static constexpr uint8_t RVC_FRAME_LEN_ = 19; ///< RVC frame size in bytes.
+
+  /** @brief Feed one byte into the RVC frame accumulator. */
+  void rvcProcessByte(uint8_t c) noexcept;
+
+  /** @brief Convert fixed-point RvcSensorEvent to float RvcSensorValue. */
+  static void decodeRvc(RvcSensorValue* out, const RvcSensorEvent* in) noexcept;
+
+  uint8_t rvc_frame_[RVC_FRAME_LEN_]{}; ///< Sliding frame accumulation buffer.
+  uint8_t rvc_frame_len_{0};             ///< Bytes currently in the buffer.
+  bool rvc_active_{false};               ///< True after BeginRvc() succeeds.
+
+  /// @}
+
+  // --------------------------------------------------------------------------
+  /// @name DFU Protocol Helpers
+  ///
+  /// Implement the BNO08x bootloader protocol: CRC-16-CCITT, big-endian
+  /// encoding, send-with-ACK retry, and the full firmware transfer sequence.
+  /// @{
+
+  static void dfuWrite32be(uint8_t* buf, uint32_t value) noexcept;   ///< @private
+  static void dfuAppendCrc(uint8_t* packet, uint8_t len) noexcept;   ///< @private
+  int dfuSend(uint8_t* dfuBuff, uint8_t* pData, uint32_t len) noexcept;      ///< @private
+  int dfuSendAppSize(uint8_t* dfuBuff, uint32_t appSize) noexcept;           ///< @private
+  int dfuSendPktSize(uint8_t* dfuBuff, uint8_t packetLen) noexcept;          ///< @private
+  int dfuSendPkt(uint8_t* dfuBuff, uint8_t* pData, uint32_t len) noexcept;   ///< @private
+
+  /// @}
+
+  // --------------------------------------------------------------------------
+  /// @name Instance State
+  /// @{
+
+  CommType& io_;                ///< Reference to the user-provided transport.
+  SensorCallback callback_{};  ///< Registered SH-2 sensor event callback.
+  RvcCallback rvc_cb_{};       ///< Registered RVC frame callback.
+  int last_error_{0};          ///< Most recent SH-2 error code.
+  bool initialized_{false};    ///< True after Begin() succeeds.
+
+  std::array<sh2_SensorValue_t, 0x2B> latest_{};        ///< Cached latest sensor values.
+  std::array<bool, 0x2B> new_flag_{};                    ///< Per-sensor new-data flags.
+  std::array<uint32_t, 0x2B> last_interval_{};          ///< Last configured interval per sensor (for re-enable on reset).
+  std::array<float, 0x2B> last_sensitivity_{};           ///< Last configured sensitivity per sensor.
+
+  /// @}
 };
 
-// Include template implementation
+/// @} // end of BNO085Driver group
+
+// ============================================================================
+// Template Implementation
+// ============================================================================
+// The template method bodies live in bno08x.cpp and are included here so
+// that the compiler can instantiate them for any CommType.
 #define BNO085_HEADER_INCLUDED
 #include "../src/bno08x.cpp"
 #undef BNO085_HEADER_INCLUDED

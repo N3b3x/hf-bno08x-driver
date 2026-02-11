@@ -131,7 +131,7 @@ idf.py monitor
 
 #### `rvc_mode`
 **RVC Mode Example**
-- RVC mode initialization
+- RVC mode initialization (UART, `Esp32UartRvcBus`)
 - Frame callback handling
 - Yaw, pitch, roll reading
 - Real hardware testing
@@ -139,6 +139,19 @@ idf.py monitor
 **Build:**
 ```bash
 ./scripts/build_app.sh rvc_mode Release
+```
+
+#### `dfu_update`
+**DFU (Device Firmware Update) Example**
+- Enter bootloader via BOOTN and reset
+- Firmware transfer using `BNO085::Dfu()` API
+- `MemoryFirmware` for runtime firmware images
+- Post-DFU re-initialization
+- Real hardware testing
+
+**Build:**
+```bash
+./scripts/build_app.sh dfu_update Release
 ```
 
 ## 🔨 Building Examples

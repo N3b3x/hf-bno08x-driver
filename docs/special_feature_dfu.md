@@ -13,11 +13,12 @@ The BNO08x driver includes support for updating sensor firmware via the Device F
 
 ## Overview
 
-DFU mode allows you to:
+DFU is built into the BNO085 driver: use the same **CommInterface** (I²C, SPI, or UART SH-2) and call `imu.Dfu(firmware)`. The sensor must be in bootloader mode (BOOTN held low during reset). **DFU is not available when the transport reports `UARTRVC`** — use I²C, SPI, or UART SH-2.
+
+DFU allows you to:
 - Update sensor firmware in the field
 - Fix firmware bugs without hardware replacement
 - Upgrade to newer firmware versions
-- Support multiple firmware formats (BNO08x and FSP200/201)
 
 ## Entering Bootloader Mode
 
@@ -43,151 +44,83 @@ imu.SetBootPin(false);   // Release BOOTN
 
 ## Firmware Image Format
 
-Firmware must be provided as an `HcBin_t` object. The driver includes stub firmware files:
+Firmware must be provided as an `HcBin_t` object. The driver includes a compile-time stub:
 
-- **`src/dfu/firmware-bno.c`**: Stub firmware for BNO08x (compile-time image)
-- **`src/dfu/firmware-fsp.c`**: Stub firmware for FSP200/201 (compile-time image)
+- **`src/dfu/firmware-bno.c`** / **`src/dfu/firmware.h`**: Stub firmware for BNO08x (symbol `firmware`). For production, obtain firmware from the sensor vendor.
 
-**Note**: These are minimal stub images. For production, obtain firmware from the sensor vendor.
+For firmware loaded at runtime (e.g. from flash or network), use **`MemoryFirmware`** (see [Firmware Sources](#firmware-sources) below).
 
 ## Implementation
 
-### Step 1: Implement IDfuTransport Interface
+Use your existing **CommInterface** (I²C, SPI, or UART — not UARTRVC). Enter bootloader mode, then call `imu.Dfu(fw)`.
 
-```cpp
-#include "src/dfu/IDfuTransport.hpp"
+### Step 1: Enter bootloader mode
 
-class MyDfuTransport : public IDfuTransport {
-public:
-    bool open() override {
-        // Initialize communication interface for bootloader
-        return true;
-    }
-    
-    void close() override {
-        // Close communication interface
-    }
-    
-    int write(const uint8_t* data, size_t length) override {
-        // Write data to sensor
-        return /* your write implementation */;
-    }
-    
-    int read(uint8_t* data, size_t length) override {
-        // Read data from sensor
-        return /* your read implementation */;
-    }
-    
-    uint32_t getTimeUs() override {
-        // Return current time in microseconds
-        return /* your time implementation */;
-    }
-};
-```
+Hold BOOTN low, reset the sensor, then release BOOTN. If your transport implements `SetBoot()` and `SetReset()`, the driver’s `SetBootPin()` and `HardwareReset()` will use them.
 
-### Step 2: Use HalTransport Adapter (Alternative)
-
-If you already have an `sh2_Hal_t` implementation, you can use the adapter:
-
-```cpp
-#include "src/dfu/HalTransport.hpp"
-
-extern sh2_Hal_t my_hal;
-HalTransport transport(&my_hal);
-
-// Use transport with dfu()
-```
-
-### Step 3: Perform Firmware Update
+### Step 2: Perform firmware update
 
 ```cpp
 #include "bno08x.hpp"
-#include "src/dfu/firmware.h"  // Provides 'firmware' HcBin_t object
+#include "src/dfu/firmware.h"   // Provides default 'firmware' HcBin_t
 
-MyComm comm;
-bno08x::BNO085<MyComm> imu(comm);
+// Use your normal transport (e.g. Esp32Bno08xBus)
+BNO085<Esp32Bno08xBus> imu(*transport);
 
-// Enter bootloader mode first (see above)
+// Enter bootloader first: SetBootPin(true), HardwareReset(10), SetBootPin(false)
+// Then close/reopen transport if required by your platform.
 
-// Method 1: Using BNO085::Dfu() convenience method
-int result = imu.Dfu(firmware);
+int result = imu.Dfu(firmware);   // or imu.Dfu(*custom_fw.getBin())
 if (result == SH2_OK) {
     printf("Firmware update successful!\n");
 } else {
     printf("Firmware update failed: %d\n", result);
 }
-
-// Method 2: Using dfu() function directly
-MyDfuTransport transport;
-result = dfu(transport, firmware);
 ```
 
-### Step 4: Using Custom Firmware Source
+### Step 3: Runtime firmware (MemoryFirmware)
 
-If firmware is stored elsewhere (e.g., flash, network), use `MemoryFirmware`:
+If the image is in memory or flash, use `MemoryFirmware`:
 
 ```cpp
 #include "src/dfu/MemoryFirmware.hpp"
 
-// Firmware stored in memory/flash
-const uint8_t* firmware_data = /* your firmware data */;
-size_t firmware_size = /* firmware size */;
+const uint8_t* fw_data = /* pointer to firmware bytes */;
+size_t fw_size = /* size in bytes */;
+MemoryFirmware custom_fw(fw_data, fw_size);
 
-MemoryFirmware custom_fw(firmware_data, firmware_size);
-HcBin_t* fw_bin = custom_fw.getBin();
-
-int result = imu.Dfu(*fw_bin);
+int result = imu.Dfu(*custom_fw.getBin());
 ```
 
-## Complete Example
+## Complete example (ESP32)
+
+See `examples/esp32/main/dfu_example.cpp` for a full flow. Summary:
 
 ```cpp
-#include "bno08x.hpp"
-#include "src/dfu/firmware.h"
-#include "src/dfu/HalTransport.hpp"
+auto transport = CreateEsp32Bno08xBus(config);
+BNO085<Esp32Bno08xBus> imu(*transport);
 
-void update_firmware() {
-    Esp32Bno08xBus comm(/* config */);
-    bno08x::BNO085<Esp32Bno08xBus> imu(comm);
-    
-    // 1. Enter bootloader mode
-    printf("Entering bootloader mode...\n");
-    imu.SetBootPin(true);   // BOOTN low
-    vTaskDelay(pdMS_TO_TICKS(10));
-    imu.HardwareReset(10);  // Reset
-    vTaskDelay(pdMS_TO_TICKS(100));
-    imu.SetBootPin(false);  // Release BOOTN
-    
-    // 2. Reinitialize communication for bootloader
-    comm->Close();
-    vTaskDelay(pdMS_TO_TICKS(100));
-    comm->Open();
-    
-    // 3. Perform firmware update
-    printf("Starting firmware update...\n");
-    int result = imu.Dfu(firmware);
-    
-    if (result == SH2_OK) {
-        printf("Firmware update successful!\n");
-    } else {
-        printf("Firmware update failed: %d\n", result);
-        return;
-    }
-    
-    // 4. Reset sensor to normal mode
-    printf("Resetting sensor to normal mode...\n");
-    imu.HardwareReset(10);
-    vTaskDelay(pdMS_TO_TICKS(100));
-    
-    // 5. Reinitialize for normal operation
-    comm->Close();
-    vTaskDelay(pdMS_TO_TICKS(100));
-    comm->Open();
-    
-    if (imu.Begin()) {
-        printf("Sensor reinitialized successfully\n");
-    }
-}
+// 1. Enter bootloader
+imu.SetBootPin(true);
+vTaskDelay(pdMS_TO_TICKS(10));
+imu.HardwareReset(10);
+vTaskDelay(pdMS_TO_TICKS(100));
+imu.SetBootPin(false);
+
+// 2. Reopen transport for bootloader communication
+transport->Close();
+vTaskDelay(pdMS_TO_TICKS(100));
+transport->Open();
+
+// 3. Run DFU
+int result = imu.Dfu(firmware);   // or Dfu(*memory_fw.getBin())
+
+// 4. Reset and reinit for normal operation
+imu.HardwareReset(2);
+transport->Close();
+vTaskDelay(pdMS_TO_TICKS(100));
+transport->Open();
+imu.Begin();
 ```
 
 ## Timeout Handling

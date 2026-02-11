@@ -28,9 +28,11 @@ GPIO      ────── NRST  (optional, active-low reset)
 
 **Interface Selection**: PS0=GND, PS1=GND selects I²C mode
 
-**I²C Address**: 
-- ADR/SA0 = GND → 0x4A
-- ADR/SA0 = VIN → 0x4B
+**I²C Address** (7-bit):
+- **ADR/SA0 = VIN (HIGH)** → **0x4B** (typical default)
+- ADR/SA0 = GND (LOW) → 0x4A
+
+**Startup**: Perform a hardware reset before the first transaction; many boards need this for reliable communication. On ESP32, the examples try 0x4B first, then 0x4A if probe fails, and use a transport `Probe()` after reset to confirm the device is present.
 
 ### SPI Interface
 
@@ -63,7 +65,7 @@ GPIO      ────── INT   (optional)
 GPIO      ────── NRST  (optional)
 ```
 
-**Interface Selection**: PS0=GND, PS1=VIN selects UART mode
+**Interface Selection**: PS1=VIN, PS0=GND selects UART RVC mode (simplified streaming; see [RVC Mode](special_feature_rvc.md)). For full SH-2 over UART use PS1=GND, PS0=VIN.
 
 **Baud Rate**: 115200 bps (8N1)
 
@@ -100,6 +102,21 @@ The BNO08x supports multiple interfaces selected via PS0 and PS1 pins:
 | VIN | VIN | SPI |
 
 **Note**: Interface selection is sampled at reset. Change pins before resetting the device.
+
+## Example Pins (ESP32-S3)
+
+The repository’s ESP32 examples use the following default connections:
+
+| BNO08x Pin | ESP32-S3 GPIO | Function |
+|------------|---------------|----------|
+| SDA        | GPIO 4        | I²C Data |
+| SCL        | GPIO 5        | I²C Clock |
+| INT        | GPIO 17       | Interrupt (active-low, data ready) |
+| NRST       | GPIO 16       | Reset (active-low) |
+| VIN        | 3.3 V         | Supply |
+| GND        | GND           | Ground |
+
+You can change pins in code via the transport configuration (e.g. `Esp32Bno08xBus::I2CConfig`). If your transport supports it, call `HardwareReset(2, 200)` (or equivalent) before probing or calling `Begin()`.
 
 ## Physical Layout Recommendations
 

@@ -27,12 +27,12 @@ This guide helps you diagnose and resolve common issues when using the BNO08x dr
 - Wrong I²C address
 
 **Solutions:**
-1. **Verify Communication Interface**: Ensure interface is initialized before calling `Begin()`
-2. **Check Connections**: Verify all I²C/SPI connections (SCL, SDA, CS, etc.)
-3. **Verify Power**: Check power supply voltage (2.4V - 3.6V, typically 3.3V)
-4. **Check I²C Address**: Verify address matches hardware (0x4A or 0x4B)
-5. **Check Pull-ups**: Ensure I²C has proper pull-up resistors (4.7 kΩ)
-6. **Verify Interface Selection**: Check PS0/PS1 pins match selected interface
+1. **Verify communication interface**: Ensure the interface is initialized and implements `GetInterfaceType()`; perform a hardware reset before first use
+2. **Check connections**: Verify all I²C/SPI connections (SCL, SDA, CS, etc.)
+3. **Verify power**: Check power supply voltage (2.4V–3.6V, typically 3.3V)
+4. **Check I²C address**: Try 0x4B first (SA0=HIGH), then 0x4A (SA0=LOW); use transport `Probe()` after reset if available
+5. **Check pull-ups**: Ensure I²C has proper pull-up resistors (4.7 kΩ)
+6. **Verify interface selection**: Check PS0/PS1 pins match the intended interface
 
 ---
 
@@ -130,17 +130,17 @@ This guide helps you diagnose and resolve common issues when using the BNO08x dr
 - UART communication errors
 
 **Causes:**
-- Sensor not in RVC mode
+- Sensor not in RVC mode (wrong PS0/PS1)
 - UART configuration incorrect
 - Baud rate mismatch
-- HAL implementation issues
+- Transport does not return `UARTRVC` from `GetInterfaceType()`
 
 **Solutions:**
-1. **Verify RVC Mode**: Check PS0/PS1 pins are set for RVC mode (PS0=1, PS1=0)
-2. **Check Baud Rate**: Ensure UART is configured for 115200 bps (8N1)
-3. **Verify HAL**: Check `IRvcHal` implementation is correct
-4. **Check Wiring**: Verify UART connections (TX/RX)
-5. **Call ServiceRvc**: Ensure `ServiceRvc()` is called frequently
+1. **Verify RVC mode**: Set PS1=VIN (1), PS0=GND (0) and reset the sensor
+2. **Check baud rate**: Use 115200 bps (8N1)
+3. **Use UARTRVC transport**: Implement a `CommInterface` that returns `BNO085Interface::UARTRVC` (e.g. `Esp32UartRvcBus`); there is no separate RVC HAL
+4. **Check wiring**: Verify UART TX/RX connections
+5. **Call ServiceRvc**: Call `ServiceRvc()` frequently in your loop
 
 ---
 
@@ -155,14 +155,14 @@ This guide helps you diagnose and resolve common issues when using the BNO08x dr
 - Sensor not in bootloader mode
 - Firmware image invalid
 - Communication timeout
-- Transport implementation issues
+- Using UARTRVC transport (DFU is not supported for RVC mode)
 
 **Solutions:**
-1. **Enter Bootloader**: Hold BOOTN low while resetting sensor
-2. **Verify Firmware**: Check firmware image is valid `HcBin_t` object
-3. **Check Transport**: Verify `IDfuTransport` implementation is correct
-4. **Increase Timeout**: DFU may take several minutes on slow links
-5. **Check Communication**: Ensure communication interface works in bootloader mode
+1. **Enter bootloader**: Hold BOOTN low, then reset (e.g. `SetBootPin(true)`, `HardwareReset(10)`, then release BOOTN)
+2. **Verify firmware**: Use a valid `HcBin_t` (e.g. from `firmware.h` or `MemoryFirmware`)
+3. **Use I²C/SPI/UART transport**: DFU is only available when `GetInterfaceType()` is not `UARTRVC`
+4. **Increase timeout**: DFU can take several minutes on slow links
+5. **Reopen transport**: After entering bootloader, close and reopen the transport if required by your platform (see [DFU](special_feature_dfu.md))
 
 ---
 
@@ -196,15 +196,15 @@ if (error != 0) {
 ### Verify Sensor Status
 
 ```cpp
-// Check if sensor is responding
+// Check if sensor is responding (perform hardware reset before Begin if needed)
 if (!imu.Begin()) {
     printf("Initialization failed\n");
     return;
 }
 
 // Check if sensors are enabled
-imu.EnableSensor(bno08x::BNO085Sensor::RotationVector, 20);
-// Wait a bit, then check for data
+imu.EnableSensor(BNO085Sensor::RotationVector, 20);
+// Wait a bit, then check for data; use event.rotation.accuracy for calibration (0–3)
 ```
 
 ### Monitor Update Frequency

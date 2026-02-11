@@ -32,18 +32,19 @@ cd hf-bno08x-driver
 
 ### Option 2: Copy Files
 
-Copy the following files into your project:
+Copy the following layout into your project:
 
 ```
 inc/
   ├── bno08x.hpp
   └── bno08x_comm_interface.hpp
 src/
-  ├── bno08x.cpp
-  ├── sh2/          (CEVA SH-2 library - required)
-  ├── rvc/          (RVC mode support - optional)
-  └── dfu/          (DFU support - optional)
+  ├── bno08x.cpp              (driver implementation; includes RVC and DFU logic)
+  ├── sh2/                    (CEVA SH-2 library submodule — required)
+  └── dfu/                    (firmware stubs and MemoryFirmware.hpp for DFU)
 ```
+
+RVC and DFU are built into the driver; no separate RVC or DFU modules are required.
 
 ## Integration Methods
 
