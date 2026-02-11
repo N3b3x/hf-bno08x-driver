@@ -138,15 +138,17 @@ $(function(){initNavTree('esp32__bno08x__bus_8cpp.html',''); initResizable(); })
 <p>ESP32 I2C communication interface implementation for BNO08x driver.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="esp32__bno08x__bus_8hpp_source.html">esp32_bno08x_bus.hpp</a>&quot;</code><br />
+<code>#include &quot;esp_err.h&quot;</code><br />
 <code>#include &quot;freertos/FreeRTOS.h&quot;</code><br />
 <code>#include &quot;freertos/task.h&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for esp32_bno08x_bus.cpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="esp32__bno08x__bus_8cpp__incl.svg" width="766" height="286"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="esp32__bno08x__bus_8cpp__incl.svg" width="884" height="286"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>ESP32 I2C communication interface implementation for BNO08x driver. </p>
+<p>Uses ESP-IDF I2C master driver (same API as hf-pcal95555-driver / hf-pca9685-driver) so the same I2C port (GPIO4 SDA, GPIO5 SCL) can be shared across drivers. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

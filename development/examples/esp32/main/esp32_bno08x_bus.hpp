@@ -14,7 +14,7 @@
 
 #include "../../../inc/bno08x_comm_interface.hpp"
 #include "driver/gpio.h"
-#include "driver/i2c.h"
+#include "driver/i2c_master.h"
 #include "esp_log.h"
 #include "esp_timer.h"
 #include <cstdint>
@@ -33,8 +33,8 @@ public:
    */
   struct I2CConfig {
     i2c_port_t port = I2C_NUM_0;      ///< I2C port number
-    gpio_num_t sda_pin = GPIO_NUM_21; ///< SDA pin (default GPIO21)
-    gpio_num_t scl_pin = GPIO_NUM_22; ///< SCL pin (default GPIO22)
+    gpio_num_t sda_pin = GPIO_NUM_4;  ///< SDA pin (default GPIO4, same as pcal95555/pca9685)
+    gpio_num_t scl_pin = GPIO_NUM_5;  ///< SCL pin (default GPIO5, same as pcal95555/pca9685)
     uint32_t frequency = 400000;      ///< I2C frequency in Hz (default 400kHz)
     uint8_t device_address = 0x4A;    ///< I2C device address (7-bit, default 0x4A)
     gpio_num_t int_pin = GPIO_NUM_NC; ///< Interrupt pin (GPIO_NUM_NC if not used)
@@ -126,6 +126,7 @@ public:
 
 private:
   I2CConfig config_;                                   ///< I2C configuration
+  i2c_master_bus_handle_t bus_handle_ = nullptr;       ///< I2C master bus handle (new API)
   bool initialized_ = false;                           ///< Initialization state
   static constexpr const char* TAG = "Esp32Bno08xBus"; ///< Logging tag
 

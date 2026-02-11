@@ -1,9 +1,13 @@
 /**
  * @file esp32_bno08x_bus.cpp
  * @brief ESP32 I2C communication interface implementation for BNO08x driver
+ *
+ * Uses ESP-IDF I2C master driver (same API as hf-pcal95555-driver / hf-pca9685-driver)
+ * so the same I2C port (GPIO4 SDA, GPIO5 SCL) can be shared across drivers.
  */
 
 #include "esp32_bno08x_bus.hpp"
+#include "esp_err.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
@@ -39,13 +43,11 @@ void Esp32Bno08xBus::Close() noexcept {
     return;
   }
 
-  // Delete I2C driver
-  esp_err_t err = i2c_driver_delete(config_.port);
-  if (err != ESP_OK) {
-    ESP_LOGE(TAG, "Failed to delete I2C driver: %s", esp_err_to_name(err));
+  if (bus_handle_ != nullptr) {
+    i2c_del_master_bus(bus_handle_);
+    bus_handle_ = nullptr;
   }
 
-  // Reset GPIO pins
   if (config_.int_pin != GPIO_NUM_NC) {
     gpio_reset_pin(config_.int_pin);
   }
@@ -58,14 +60,28 @@ void Esp32Bno08xBus::Close() noexcept {
 }
 
 int Esp32Bno08xBus::Write(const uint8_t* data, uint32_t length) noexcept {
-  if (!initialized_) {
+  if (!initialized_ || bus_handle_ == nullptr) {
     ESP_LOGE(TAG, "I2C bus not initialized");
     return -1;
   }
 
-  esp_err_t err = i2c_master_write_to_device(config_.port, config_.device_address, data, length,
-                                             pdMS_TO_TICKS(1000) // 1 second timeout
-  );
+  i2c_master_dev_handle_t dev_handle = nullptr;
+  i2c_device_config_t dev_config = {
+      .dev_addr_length = I2C_ADDR_BIT_LEN_7,
+      .device_address = config_.device_address,
+      .scl_speed_hz = config_.frequency,
+      .scl_wait_us = 0,
+      .flags = {},
+  };
+
+  esp_err_t err = i2c_master_bus_add_device(bus_handle_, &dev_config, &dev_handle);
+  if (err != ESP_OK) {
+    ESP_LOGE(TAG, "Failed to add device 0x%02X: %s", config_.device_address, esp_err_to_name(err));
+    return -1;
+  }
+
+  err = i2c_master_transmit(dev_handle, data, length, pdMS_TO_TICKS(1000));
+  i2c_master_bus_rm_device(dev_handle);
 
   if (err != ESP_OK) {
     ESP_LOGE(TAG, "I2C write failed: %s", esp_err_to_name(err));
@@ -76,14 +92,28 @@ int Esp32Bno08xBus::Write(const uint8_t* data, uint32_t length) noexcept {
 }
 
 int Esp32Bno08xBus::Read(uint8_t* data, uint32_t length) noexcept {
-  if (!initialized_) {
+  if (!initialized_ || bus_handle_ == nullptr) {
     ESP_LOGE(TAG, "I2C bus not initialized");
     return -1;
   }
 
-  esp_err_t err = i2c_master_read_from_device(config_.port, config_.device_address, data, length,
-                                              pdMS_TO_TICKS(1000) // 1 second timeout
-  );
+  i2c_master_dev_handle_t dev_handle = nullptr;
+  i2c_device_config_t dev_config = {
+      .dev_addr_length = I2C_ADDR_BIT_LEN_7,
+      .device_address = config_.device_address,
+      .scl_speed_hz = config_.frequency,
+      .scl_wait_us = 0,
+      .flags = {},
+  };
+
+  esp_err_t err = i2c_master_bus_add_device(bus_handle_, &dev_config, &dev_handle);
+  if (err != ESP_OK) {
+    ESP_LOGE(TAG, "Failed to add device 0x%02X: %s", config_.device_address, esp_err_to_name(err));
+    return -1;
+  }
+
+  err = i2c_master_receive(dev_handle, data, length, pdMS_TO_TICKS(1000));
+  i2c_master_bus_rm_device(dev_handle);
 
   if (err != ESP_OK) {
     ESP_LOGE(TAG, "I2C read failed: %s", esp_err_to_name(err));
@@ -122,29 +152,25 @@ void Esp32Bno08xBus::SetReset(bool state) noexcept {
 }
 
 bool Esp32Bno08xBus::initializeI2C() {
-  i2c_config_t conf = {};
-  conf.mode = I2C_MODE_MASTER;
-  conf.sda_io_num = config_.sda_pin;
-  conf.scl_io_num = config_.scl_pin;
-  conf.sda_pullup_en = GPIO_PULLUP_ENABLE;
-  conf.scl_pullup_en = GPIO_PULLUP_ENABLE;
-  conf.master.clk_speed = config_.frequency;
-  conf.clk_flags = 0;
+  // Same I2C master bus pattern as hf-pcal95555-driver (GPIO4/5, same port)
+  i2c_master_bus_config_t bus_config = {};
+  bus_config.i2c_port = config_.port;
+  bus_config.sda_io_num = config_.sda_pin;
+  bus_config.scl_io_num = config_.scl_pin;
+  bus_config.clk_source = I2C_CLK_SRC_DEFAULT;
+  bus_config.glitch_ignore_cnt = 7;
+  bus_config.flags.enable_internal_pullup = true;
+  bus_config.intr_priority = 0;
+  bus_config.trans_queue_depth = 0;
 
-  esp_err_t err = i2c_param_config(config_.port, &conf);
+  esp_err_t err = i2c_new_master_bus(&bus_config, &bus_handle_);
   if (err != ESP_OK) {
-    ESP_LOGE(TAG, "I2C parameter config failed: %s", esp_err_to_name(err));
+    ESP_LOGE(TAG, "I2C master bus create failed: %s", esp_err_to_name(err));
     return false;
   }
 
-  err = i2c_driver_install(config_.port, conf.mode, 0, 0, 0);
-  if (err != ESP_OK) {
-    ESP_LOGE(TAG, "I2C driver install failed: %s", esp_err_to_name(err));
-    return false;
-  }
-
-  ESP_LOGI(TAG, "I2C bus configured: SDA=%d, SCL=%d, Freq=%lu Hz, Addr=0x%02X", config_.sda_pin,
-           config_.scl_pin, config_.frequency, config_.device_address);
+  ESP_LOGI(TAG, "I2C bus configured: SDA=GPIO%d, SCL=GPIO%d, Freq=%lu Hz, Addr=0x%02X",
+           config_.sda_pin, config_.scl_pin, config_.frequency, config_.device_address);
 
   return true;
 }

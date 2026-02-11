@@ -148,11 +148,11 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a2fbf7132273980bf1cd3573ac0a91a9f" id="r_a2fbf7132273980bf1cd3573ac0a91a9f"><td class="memItemLeft" align="right" valign="top">i2c_port_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2fbf7132273980bf1cd3573ac0a91a9f">port</a> = I2C_NUM_0</td></tr>
 <tr class="memdesc:a2fbf7132273980bf1cd3573ac0a91a9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C port number.  <br /></td></tr>
 <tr class="separator:a2fbf7132273980bf1cd3573ac0a91a9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae302f882fd6ce00ab08cb3c48435a491" id="r_ae302f882fd6ce00ab08cb3c48435a491"><td class="memItemLeft" align="right" valign="top">gpio_num_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae302f882fd6ce00ab08cb3c48435a491">sda_pin</a> = GPIO_NUM_21</td></tr>
-<tr class="memdesc:ae302f882fd6ce00ab08cb3c48435a491"><td class="mdescLeft">&#160;</td><td class="mdescRight">SDA pin (default GPIO21)  <br /></td></tr>
+<tr class="memitem:ae302f882fd6ce00ab08cb3c48435a491" id="r_ae302f882fd6ce00ab08cb3c48435a491"><td class="memItemLeft" align="right" valign="top">gpio_num_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae302f882fd6ce00ab08cb3c48435a491">sda_pin</a> = GPIO_NUM_4</td></tr>
+<tr class="memdesc:ae302f882fd6ce00ab08cb3c48435a491"><td class="mdescLeft">&#160;</td><td class="mdescRight">SDA pin (default GPIO4, same as pcal95555/pca9685)  <br /></td></tr>
 <tr class="separator:ae302f882fd6ce00ab08cb3c48435a491"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a89048b77b8b98d9f4526569438084533" id="r_a89048b77b8b98d9f4526569438084533"><td class="memItemLeft" align="right" valign="top">gpio_num_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a89048b77b8b98d9f4526569438084533">scl_pin</a> = GPIO_NUM_22</td></tr>
-<tr class="memdesc:a89048b77b8b98d9f4526569438084533"><td class="mdescLeft">&#160;</td><td class="mdescRight">SCL pin (default GPIO22)  <br /></td></tr>
+<tr class="memitem:a89048b77b8b98d9f4526569438084533" id="r_a89048b77b8b98d9f4526569438084533"><td class="memItemLeft" align="right" valign="top">gpio_num_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a89048b77b8b98d9f4526569438084533">scl_pin</a> = GPIO_NUM_5</td></tr>
+<tr class="memdesc:a89048b77b8b98d9f4526569438084533"><td class="mdescLeft">&#160;</td><td class="mdescRight">SCL pin (default GPIO5, same as pcal95555/pca9685)  <br /></td></tr>
 <tr class="separator:a89048b77b8b98d9f4526569438084533"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a710c95b47a645dacc0d40a01ac56d982" id="r_a710c95b47a645dacc0d40a01ac56d982"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a710c95b47a645dacc0d40a01ac56d982">frequency</a> = 400000</td></tr>
 <tr class="memdesc:a710c95b47a645dacc0d40a01ac56d982"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C frequency in Hz (default 400kHz)  <br /></td></tr>
@@ -257,12 +257,12 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">gpio_num_t Esp32Bno08xBus::I2CConfig::scl_pin = GPIO_NUM_22</td>
+          <td class="memname">gpio_num_t Esp32Bno08xBus::I2CConfig::scl_pin = GPIO_NUM_5</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>SCL pin (default GPIO22) </p>
+<p>SCL pin (default GPIO5, same as pcal95555/pca9685) </p>
 
 </div>
 </div>
@@ -273,12 +273,12 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">gpio_num_t Esp32Bno08xBus::I2CConfig::sda_pin = GPIO_NUM_21</td>
+          <td class="memname">gpio_num_t Esp32Bno08xBus::I2CConfig::sda_pin = GPIO_NUM_4</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>SDA pin (default GPIO21) </p>
+<p>SDA pin (default GPIO4, same as pcal95555/pca9685) </p>
 
 </div>
 </div>
