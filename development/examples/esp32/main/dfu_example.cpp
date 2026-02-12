@@ -51,8 +51,8 @@ extern "C" void app_main(void) {
   config.sda_pin = GPIO_NUM_4;
   config.scl_pin = GPIO_NUM_5;
   config.frequency = 400000;
-  config.rst_pin = GPIO_NUM_16;  // Reset pin (RSTN) on GPIO16
-  config.int_pin = GPIO_NUM_17;  // Interrupt pin (INT) on GPIO17
+  config.rst_pin = GPIO_NUM_16; // Reset pin (RSTN) on GPIO16
+  config.int_pin = GPIO_NUM_17; // Interrupt pin (INT) on GPIO17
 
   // BNO08x uses 7-bit I2C addresses: 0x4A (SA0=LOW) or 0x4B (SA0=HIGH)
   // Try both addresses automatically
@@ -63,8 +63,8 @@ extern "C" void app_main(void) {
 
   for (size_t i = 0; i < sizeof(addresses) / sizeof(addresses[0]); i++) {
     config.device_address = addresses[i];
-    ESP_LOGI(TAG, "Trying BNO08x at I2C address 0x%02X (SA0=%s)...",
-             config.device_address, (i == 0) ? "HIGH" : "LOW");
+    ESP_LOGI(TAG, "Trying BNO08x at I2C address 0x%02X (SA0=%s)...", config.device_address,
+             (i == 0) ? "HIGH" : "LOW");
 
     transport = CreateEsp32Bno08xBus(config);
     if (!transport) {
@@ -127,14 +127,14 @@ extern "C" void app_main(void) {
   ESP_LOGI(TAG, "  Step 1: Enter bootloader mode (BOOTN low + reset)");
 
   // Enter bootloader mode
-  imu->SetBootPin(true);    // Drive BOOTN low (active-low)
-  imu->HardwareReset(10);   // Reset while BOOTN is held low
-  imu->SetBootPin(false);   // Release BOOTN
+  imu->SetBootPin(true);  // Drive BOOTN low (active-low)
+  imu->HardwareReset(10); // Reset while BOOTN is held low
+  imu->SetBootPin(false); // Release BOOTN
 
   ESP_LOGI(TAG, "  Step 2: Starting DFU transfer...");
   ESP_LOGI(TAG, "  (Using default firmware stub - will fail with dummy data, this is expected)");
 
-  int status = imu->Dfu();  // Uses default `firmware` from firmware-bno.c
+  int status = imu->Dfu(); // Uses default `firmware` from firmware-bno.c
 
   if (status == 0) {
     ESP_LOGI(TAG, "  DFU completed successfully!");
@@ -176,7 +176,7 @@ extern "C" void app_main(void) {
 
   // Normal reset (without BOOTN) to boot into application mode
   imu->HardwareReset(2);
-  vTaskDelay(pdMS_TO_TICKS(500));  // Wait for sensor to boot
+  vTaskDelay(pdMS_TO_TICKS(500)); // Wait for sensor to boot
 
   // Re-initialize
   if (imu->Begin()) {
@@ -191,8 +191,8 @@ extern "C" void app_main(void) {
         imu->Update();
         if (imu->HasNewData(BNO085Sensor::RotationVector)) {
           auto rot = imu->GetLatest(BNO085Sensor::RotationVector);
-          ESP_LOGI(TAG, "  Quat: w=%.3f x=%.3f y=%.3f z=%.3f",
-                   rot.rotation.w, rot.rotation.x, rot.rotation.y, rot.rotation.z);
+          ESP_LOGI(TAG, "  Quat: w=%.3f x=%.3f y=%.3f z=%.3f", rot.rotation.w, rot.rotation.x,
+                   rot.rotation.y, rot.rotation.z);
         }
         vTaskDelay(pdMS_TO_TICKS(100));
       }

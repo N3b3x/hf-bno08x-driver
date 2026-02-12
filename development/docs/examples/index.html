@@ -349,7 +349,7 @@
     <span class="n">config</span><span class="p">.</span><span class="n">device_address</span> <span class="o">=</span> <span class="mh">0x4B</span><span class="p">;</span>   <span class="c1">// Try 0x4B first (SA0=HIGH), then 0x4A if probe fails</span>
     <span class="n">config</span><span class="p">.</span><span class="n">int_pin</span> <span class="o">=</span> <span class="n">GPIO_NUM_17</span><span class="p">;</span>
     <span class="n">config</span><span class="p">.</span><span class="n">rst_pin</span> <span class="o">=</span> <span class="n">GPIO_NUM_16</span><span class="p">;</span>
-    
+
     <span class="c1">// 2. Create transport, reset, then probe (examples try 0x4B then 0x4A)</span>
     <span class="k">auto</span> <span class="n">transport</span> <span class="o">=</span> <span class="n">CreateEsp32Bno08xBus</span><span class="p">(</span><span class="n">config</span><span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">transport</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
@@ -359,34 +359,34 @@
         <span class="n">transport</span> <span class="o">=</span> <span class="n">CreateEsp32Bno08xBus</span><span class="p">(</span><span class="n">config</span><span class="p">);</span>
         <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">transport</span> <span class="o">||</span> <span class="o">!</span><span class="n">transport</span><span class="o">-&gt;</span><span class="n">Probe</span><span class="p">())</span> <span class="p">{</span> <span class="n">printf</span><span class="p">(</span><span class="s">"No BNO08x at 0x4B or 0x4A</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span>
     <span class="p">}</span>
-    
+
     <span class="c1">// 3. Create IMU instance and initialize</span>
     <span class="n">BNO085</span><span class="o">&lt;</span><span class="n">Esp32Bno08xBus</span><span class="o">&gt;</span> <span class="n">imu</span><span class="p">(</span><span class="o">*</span><span class="n">transport</span><span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">imu</span><span class="p">.</span><span class="n">Begin</span><span class="p">())</span> <span class="p">{</span>
         <span class="n">printf</span><span class="p">(</span><span class="s">"Failed to initialize BNO085</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
         <span class="k">return</span><span class="p">;</span>
     <span class="p">}</span>
-    
+
     <span class="c1">// 4. Enable sensors</span>
     <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>       <span class="c1">// 50 Hz</span>
     <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">LinearAcceleration</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>  <span class="c1">// 50 Hz</span>
-    
+
     <span class="c1">// 5. Polling loop</span>
     <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">imu</span><span class="p">.</span><span class="n">Update</span><span class="p">();</span>
-        
+
         <span class="k">if</span> <span class="p">(</span><span class="n">imu</span><span class="p">.</span><span class="n">HasNewData</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">))</span> <span class="p">{</span>
             <span class="k">auto</span> <span class="n">rot</span> <span class="o">=</span> <span class="n">imu</span><span class="p">.</span><span class="n">GetLatest</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">);</span>
             <span class="n">printf</span><span class="p">(</span><span class="s">"Quat: w=%.3f x=%.3f y=%.3f z=%.3f</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span>
                    <span class="n">rot</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">w</span><span class="p">,</span> <span class="n">rot</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">rot</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">rot</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
         <span class="p">}</span>
-        
+
         <span class="k">if</span> <span class="p">(</span><span class="n">imu</span><span class="p">.</span><span class="n">HasNewData</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">LinearAcceleration</span><span class="p">))</span> <span class="p">{</span>
             <span class="k">auto</span> <span class="n">accel</span> <span class="o">=</span> <span class="n">imu</span><span class="p">.</span><span class="n">GetLatest</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">LinearAcceleration</span><span class="p">);</span>
-            <span class="n">printf</span><span class="p">(</span><span class="s">"Linear Accel: %.2f %.2f %.2f m/s²</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> 
+            <span class="n">printf</span><span class="p">(</span><span class="s">"Linear Accel: %.2f %.2f %.2f m/s²</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span>
                    <span class="n">accel</span><span class="p">.</span><span class="n">vector</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">accel</span><span class="p">.</span><span class="n">vector</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">accel</span><span class="p">.</span><span class="n">vector</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
         <span class="p">}</span>
-        
+
         <span class="n">vTaskDelay</span><span class="p">(</span><span class="n">pdMS_TO_TICKS</span><span class="p">(</span><span class="mi">20</span><span class="p">));</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -506,23 +506,23 @@ Linear Accel: 0.11 0.06 -9.80 m/s²
                    <span class="n">event</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">z</span><span class="p">,</span>
                    <span class="n">event</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">accuracy</span><span class="p">);</span>
             <span class="k">break</span><span class="p">;</span>
-            
+
         <span class="k">case</span> <span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">StepCounter</span><span class="p">:</span>
             <span class="n">printf</span><span class="p">(</span><span class="s">"Step Count: %lu</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="n">stepCount</span><span class="p">);</span>
             <span class="k">break</span><span class="p">;</span>
-            
+
         <span class="k">case</span> <span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">TapDetector</span><span class="p">:</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="n">detected</span><span class="p">)</span> <span class="p">{</span>
                 <span class="n">printf</span><span class="p">(</span><span class="s">"%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="n">tap</span><span class="p">.</span><span class="n">doubleTap</span> <span class="o">?</span> <span class="s">"Double Tap!"</span> <span class="o">:</span> <span class="s">"Tap!"</span><span class="p">);</span>
             <span class="p">}</span>
             <span class="k">break</span><span class="p">;</span>
-            
+
         <span class="k">case</span> <span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">ShakeDetector</span><span class="p">:</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="n">detected</span><span class="p">)</span> <span class="p">{</span>
                 <span class="n">printf</span><span class="p">(</span><span class="s">"Shake Detected!</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
             <span class="p">}</span>
             <span class="k">break</span><span class="p">;</span>
-            
+
         <span class="nl">default:</span>
             <span class="k">break</span><span class="p">;</span>
     <span class="p">}</span>
@@ -533,19 +533,19 @@ Linear Accel: 0.11 0.06 -9.80 m/s²
     <span class="k">auto</span> <span class="n">transport</span> <span class="o">=</span> <span class="n">CreateEsp32Bno08xBus</span><span class="p">(</span><span class="n">config</span><span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">transport</span><span class="p">)</span> <span class="n">transport</span><span class="o">-&gt;</span><span class="n">HardwareReset</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">transport</span> <span class="o">||</span> <span class="o">!</span><span class="n">transport</span><span class="o">-&gt;</span><span class="n">Probe</span><span class="p">())</span> <span class="k">return</span><span class="p">;</span>
-    
+
     <span class="n">BNO085</span><span class="o">&lt;</span><span class="n">Esp32Bno08xBus</span><span class="o">&gt;</span> <span class="n">imu</span><span class="p">(</span><span class="o">*</span><span class="n">transport</span><span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">imu</span><span class="p">.</span><span class="n">Begin</span><span class="p">())</span> <span class="p">{</span> <span class="n">printf</span><span class="p">(</span><span class="s">"Initialization failed</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span>
-    
+
     <span class="c1">// Register callback</span>
     <span class="n">imu</span><span class="p">.</span><span class="n">SetCallback</span><span class="p">(</span><span class="n">sensor_callback</span><span class="p">);</span>
-    
+
     <span class="c1">// Enable event-driven sensors (interval = 0 for on-change)</span>
     <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>  <span class="c1">// 100 Hz</span>
     <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">StepCounter</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>      <span class="c1">// on-change</span>
     <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">TapDetector</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>      <span class="c1">// events</span>
     <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">ShakeDetector</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>    <span class="c1">// events</span>
-    
+
     <span class="c1">// Main loop - just call Update() to process events</span>
     <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">imu</span><span class="p">.</span><span class="n">Update</span><span class="p">();</span>
@@ -679,27 +679,27 @@ Shake Detected!
                    <span class="n">event</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">w</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">x</span><span class="p">,</span>
                    <span class="n">event</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
             <span class="k">break</span><span class="p">;</span>
-            
+
         <span class="k">case</span> <span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">LinearAcceleration</span><span class="p">:</span>
-            <span class="n">printf</span><span class="p">(</span><span class="s">"Linear accel %.2f %.2f %.2f m/s²</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> 
+            <span class="n">printf</span><span class="p">(</span><span class="s">"Linear accel %.2f %.2f %.2f m/s²</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span>
                    <span class="n">event</span><span class="p">.</span><span class="n">vector</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="n">vector</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="n">vector</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
             <span class="k">break</span><span class="p">;</span>
-            
+
         <span class="k">case</span> <span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">Gyroscope</span><span class="p">:</span>
-            <span class="n">printf</span><span class="p">(</span><span class="s">"Gyro %.2f %.2f %.2f rad/s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> 
+            <span class="n">printf</span><span class="p">(</span><span class="s">"Gyro %.2f %.2f %.2f rad/s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span>
                    <span class="n">event</span><span class="p">.</span><span class="n">vector</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="n">vector</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="n">vector</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
             <span class="k">break</span><span class="p">;</span>
-            
+
         <span class="k">case</span> <span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">StepCounter</span><span class="p">:</span>
             <span class="n">printf</span><span class="p">(</span><span class="s">"Steps: %lu</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="n">stepCount</span><span class="p">);</span>
             <span class="k">break</span><span class="p">;</span>
-            
+
         <span class="k">case</span> <span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">TapDetector</span><span class="p">:</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="n">detected</span><span class="p">)</span> <span class="p">{</span>
                 <span class="n">printf</span><span class="p">(</span><span class="s">"%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="n">tap</span><span class="p">.</span><span class="n">doubleTap</span> <span class="o">?</span> <span class="s">"Double tap!"</span> <span class="o">:</span> <span class="s">"Tap!"</span><span class="p">);</span>
             <span class="p">}</span>
             <span class="k">break</span><span class="p">;</span>
-            
+
         <span class="nl">default:</span>
             <span class="k">break</span><span class="p">;</span>
     <span class="p">}</span>
@@ -710,12 +710,12 @@ Shake Detected!
     <span class="k">auto</span> <span class="n">transport</span> <span class="o">=</span> <span class="n">CreateEsp32Bno08xBus</span><span class="p">(</span><span class="n">config</span><span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">transport</span><span class="p">)</span> <span class="n">transport</span><span class="o">-&gt;</span><span class="n">HardwareReset</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">transport</span> <span class="o">||</span> <span class="o">!</span><span class="n">transport</span><span class="o">-&gt;</span><span class="n">Probe</span><span class="p">())</span> <span class="k">return</span><span class="p">;</span>
-    
+
     <span class="n">BNO085</span><span class="o">&lt;</span><span class="n">Esp32Bno08xBus</span><span class="o">&gt;</span> <span class="n">imu</span><span class="p">(</span><span class="o">*</span><span class="n">transport</span><span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">imu</span><span class="p">.</span><span class="n">Begin</span><span class="p">())</span> <span class="k">return</span><span class="p">;</span>
-    
+
     <span class="n">imu</span><span class="p">.</span><span class="n">SetCallback</span><span class="p">(</span><span class="n">event_callback</span><span class="p">);</span>
-    
+
     <span class="c1">// Enable multiple sensors with different rates</span>
     <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>     <span class="c1">// 100 Hz</span>
     <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">LinearAcceleration</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span> <span class="c1">// 50 Hz</span>
@@ -723,17 +723,17 @@ Shake Detected!
     <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">Gravity</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>             <span class="c1">// 20 Hz</span>
     <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">StepCounter</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>         <span class="c1">// on-change</span>
     <span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">TapDetector</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>         <span class="c1">// events</span>
-    
+
     <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">imu</span><span class="p">.</span><span class="n">Update</span><span class="p">();</span>
-        
+
         <span class="c1">// Poll for gravity (not using callback)</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">imu</span><span class="p">.</span><span class="n">HasNewData</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">Gravity</span><span class="p">))</span> <span class="p">{</span>
             <span class="k">auto</span> <span class="n">g</span> <span class="o">=</span> <span class="n">imu</span><span class="p">.</span><span class="n">GetLatest</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">Gravity</span><span class="p">);</span>
-            <span class="n">printf</span><span class="p">(</span><span class="s">"Gravity %.2f %.2f %.2f m/s²</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> 
+            <span class="n">printf</span><span class="p">(</span><span class="s">"Gravity %.2f %.2f %.2f m/s²</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span>
                    <span class="n">g</span><span class="p">.</span><span class="n">vector</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">g</span><span class="p">.</span><span class="n">vector</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">g</span><span class="p">.</span><span class="n">vector</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
         <span class="p">}</span>
-        
+
         <span class="n">vTaskDelay</span><span class="p">(</span><span class="n">pdMS_TO_TICKS</span><span class="p">(</span><span class="mi">5</span><span class="p">));</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -823,44 +823,44 @@ Shake Detected!
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">transport</span><span class="p">)</span> <span class="p">{</span> <span class="n">printf</span><span class="p">(</span><span class="s">"ERROR: Failed to create I2C transport</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span>
     <span class="n">transport</span><span class="o">-&gt;</span><span class="n">HardwareReset</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">transport</span><span class="o">-&gt;</span><span class="n">Probe</span><span class="p">())</span> <span class="p">{</span> <span class="n">printf</span><span class="p">(</span><span class="s">"ERROR: Probe failed at 0x%02X</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">config</span><span class="p">.</span><span class="n">device_address</span><span class="p">);</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span>
-    
+
     <span class="n">BNO085</span><span class="o">&lt;</span><span class="n">Esp32Bno08xBus</span><span class="o">&gt;</span> <span class="n">imu</span><span class="p">(</span><span class="o">*</span><span class="n">transport</span><span class="p">);</span>
-    
+
     <span class="c1">// Initialize with error checking</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">imu</span><span class="p">.</span><span class="n">Begin</span><span class="p">())</span> <span class="p">{</span>
         <span class="n">printf</span><span class="p">(</span><span class="s">"ERROR: Failed to initialize BNO085</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
         <span class="n">printf</span><span class="p">(</span><span class="s">"Check I2C connections and address (0x4A or 0x4B)</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
         <span class="k">return</span><span class="p">;</span>
     <span class="p">}</span>
-    
+
     <span class="n">printf</span><span class="p">(</span><span class="s">"BNO085 initialized successfully</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
-    
+
     <span class="c1">// Enable sensor with error checking</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span> <span class="p">{</span>
         <span class="n">printf</span><span class="p">(</span><span class="s">"ERROR: Failed to enable Rotation Vector sensor</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
         <span class="k">return</span><span class="p">;</span>
     <span class="p">}</span>
-    
+
     <span class="n">printf</span><span class="p">(</span><span class="s">"Rotation Vector enabled at 100 Hz</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
-    
+
     <span class="c1">// Main loop with error checking</span>
     <span class="c1">// Note: The driver automatically re-enables configured sensors after a</span>
     <span class="c1">// sensor reset (handled internally by handleAsyncEvent). You only need</span>
     <span class="c1">// to monitor for data and check GetLastError() for issues.</span>
     <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">imu</span><span class="p">.</span><span class="n">Update</span><span class="p">();</span>
-        
+
         <span class="c1">// Check for driver errors</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">imu</span><span class="p">.</span><span class="n">GetLastError</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
             <span class="n">printf</span><span class="p">(</span><span class="s">"WARNING: Driver error %d detected</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">imu</span><span class="p">.</span><span class="n">GetLastError</span><span class="p">());</span>
         <span class="p">}</span>
-        
+
         <span class="k">if</span> <span class="p">(</span><span class="n">imu</span><span class="p">.</span><span class="n">HasNewData</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">))</span> <span class="p">{</span>
             <span class="k">auto</span> <span class="n">rot</span> <span class="o">=</span> <span class="n">imu</span><span class="p">.</span><span class="n">GetLatest</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">);</span>
             <span class="n">printf</span><span class="p">(</span><span class="s">"Quat: w=%.3f x=%.3f y=%.3f z=%.3f</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span>
                    <span class="n">rot</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">w</span><span class="p">,</span> <span class="n">rot</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">rot</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">rot</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
         <span class="p">}</span>
-        
+
         <span class="n">vTaskDelay</span><span class="p">(</span><span class="n">pdMS_TO_TICKS</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
     <span class="p">}</span>
 <span class="p">}</span>

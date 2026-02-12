@@ -390,11 +390,11 @@
         <span class="c1">// Cast 'this' to Derived* and call the derived implementation</span>
         <span class="k">return</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="n">Derived</span><span class="o">*&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">Open</span><span class="p">();</span>
     <span class="p">}</span>
-    
+
     <span class="kt">int</span> <span class="n">Read</span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">length</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="n">Derived</span><span class="o">*&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">Read</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">length</span><span class="p">);</span>
     <span class="p">}</span>
-    
+
     <span class="c1">// ... other methods</span>
 <span class="p">};</span>
 
@@ -406,7 +406,7 @@
         <span class="c1">// Your platform-specific initialization code</span>
         <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
     <span class="p">}</span>
-    
+
     <span class="kt">int</span> <span class="n">Read</span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">length</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">// Your platform-specific read code</span>
         <span class="k">return</span> <span class="n">length</span><span class="p">;</span>
@@ -456,7 +456,7 @@
     <span class="kt">bool</span> <span class="n">DataAvailable</span><span class="p">();</span>
     <span class="kt">void</span> <span class="n">Delay</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">ms</span><span class="p">);</span>
     <span class="kt">uint32_t</span> <span class="n">GetTimeUs</span><span class="p">();</span>
-    
+
     <span class="c1">// Optional methods (implement if pins are wired)</span>
     <span class="kt">void</span> <span class="n">SetReset</span><span class="p">(</span><span class="kt">bool</span> <span class="n">state</span><span class="p">);</span>
     <span class="kt">void</span> <span class="n">SetBoot</span><span class="p">(</span><span class="kt">bool</span> <span class="n">state</span><span class="p">);</span>
@@ -533,40 +533,40 @@
 <span class="nl">private:</span>
     <span class="c1">// Your platform-specific members</span>
     <span class="n">i2c_handle_t</span> <span class="n">i2c_handle_</span><span class="p">;</span>  <span class="c1">// Example for I²C</span>
-    
+
 <span class="nl">public:</span>
     <span class="c1">// Constructor</span>
     <span class="n">MyPlatformComm</span><span class="p">(</span><span class="n">i2c_handle_t</span> <span class="n">handle</span><span class="p">)</span> <span class="o">:</span> <span class="n">i2c_handle_</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span> <span class="p">{}</span>
-    
+
     <span class="c1">// Implement required methods</span>
     <span class="kt">bool</span> <span class="n">Open</span><span class="p">()</span> <span class="p">{</span>
         <span class="c1">// Your initialization code</span>
         <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
     <span class="p">}</span>
-    
+
     <span class="kt">void</span> <span class="n">Close</span><span class="p">()</span> <span class="p">{</span>
         <span class="c1">// Your cleanup code</span>
     <span class="p">}</span>
-    
+
     <span class="kt">int</span> <span class="n">Write</span><span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">length</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">// Your write code</span>
         <span class="k">return</span> <span class="n">length</span><span class="p">;</span>
     <span class="p">}</span>
-    
+
     <span class="kt">int</span> <span class="n">Read</span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">length</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">// Your read code</span>
         <span class="k">return</span> <span class="n">length</span><span class="p">;</span>
     <span class="p">}</span>
-    
+
     <span class="kt">bool</span> <span class="n">DataAvailable</span><span class="p">()</span> <span class="p">{</span>
         <span class="c1">// Check if data is available (e.g., via interrupt pin)</span>
         <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
     <span class="p">}</span>
-    
+
     <span class="kt">void</span> <span class="n">Delay</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">ms</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">// Your delay implementation</span>
     <span class="p">}</span>
-    
+
     <span class="kt">uint32_t</span> <span class="n">GetTimeUs</span><span class="p">()</span> <span class="p">{</span>
         <span class="c1">// Return current time in microseconds</span>
         <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
@@ -662,11 +662,11 @@
 <span class="nl">private:</span>
     <span class="n">i2c_port_t</span> <span class="n">i2c_port_</span><span class="p">;</span>
     <span class="kt">uint8_t</span> <span class="n">device_addr_</span><span class="p">;</span>
-    
+
 <span class="nl">public:</span>
-    <span class="n">Esp32I2CComm</span><span class="p">(</span><span class="n">i2c_port_t</span> <span class="n">port</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">addr</span><span class="p">)</span> 
+    <span class="n">Esp32I2CComm</span><span class="p">(</span><span class="n">i2c_port_t</span> <span class="n">port</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">addr</span><span class="p">)</span>
         <span class="o">:</span> <span class="n">i2c_port_</span><span class="p">(</span><span class="n">port</span><span class="p">),</span> <span class="n">device_addr_</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span> <span class="p">{}</span>
-    
+
     <span class="kt">bool</span> <span class="n">Open</span><span class="p">()</span> <span class="p">{</span>
         <span class="n">i2c_config_t</span> <span class="n">conf</span> <span class="o">=</span> <span class="p">{};</span>
         <span class="n">conf</span><span class="p">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">I2C_MODE_MASTER</span><span class="p">;</span>
@@ -677,11 +677,11 @@
         <span class="n">i2c_driver_install</span><span class="p">(</span><span class="n">i2c_port_</span><span class="p">,</span> <span class="n">conf</span><span class="p">.</span><span class="n">mode</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
         <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
     <span class="p">}</span>
-    
+
     <span class="kt">void</span> <span class="n">Close</span><span class="p">()</span> <span class="p">{</span>
         <span class="n">i2c_driver_delete</span><span class="p">(</span><span class="n">i2c_port_</span><span class="p">);</span>
     <span class="p">}</span>
-    
+
     <span class="kt">int</span> <span class="n">Write</span><span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">length</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">i2c_cmd_handle_t</span> <span class="n">cmd</span> <span class="o">=</span> <span class="n">i2c_cmd_link_create</span><span class="p">();</span>
         <span class="n">i2c_master_start</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span>
@@ -692,7 +692,7 @@
         <span class="n">i2c_cmd_link_delete</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">ret</span> <span class="o">==</span> <span class="n">ESP_OK</span><span class="p">)</span> <span class="o">?</span> <span class="n">length</span> <span class="o">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
     <span class="p">}</span>
-    
+
     <span class="kt">int</span> <span class="n">Read</span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">length</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">i2c_cmd_handle_t</span> <span class="n">cmd</span> <span class="o">=</span> <span class="n">i2c_cmd_link_create</span><span class="p">();</span>
         <span class="n">i2c_master_start</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span>
@@ -706,16 +706,16 @@
         <span class="n">i2c_cmd_link_delete</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">ret</span> <span class="o">==</span> <span class="n">ESP_OK</span><span class="p">)</span> <span class="o">?</span> <span class="n">length</span> <span class="o">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
     <span class="p">}</span>
-    
+
     <span class="kt">bool</span> <span class="n">DataAvailable</span><span class="p">()</span> <span class="p">{</span>
         <span class="c1">// Check interrupt pin or always return true</span>
         <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
     <span class="p">}</span>
-    
+
     <span class="kt">void</span> <span class="n">Delay</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">ms</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">vTaskDelay</span><span class="p">(</span><span class="n">pdMS_TO_TICKS</span><span class="p">(</span><span class="n">ms</span><span class="p">));</span>
     <span class="p">}</span>
-    
+
     <span class="kt">uint32_t</span> <span class="n">GetTimeUs</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">return</span> <span class="n">esp_timer_get_time</span><span class="p">();</span>
     <span class="p">}</span>
@@ -783,39 +783,39 @@
 <span class="k">class</span> <span class="nc">STM32I2CComm</span> <span class="o">:</span> <span class="k">public</span> <span class="n">bno08x</span><span class="o">::</span><span class="n">CommInterface</span><span class="o">&lt;</span><span class="n">STM32I2CComm</span><span class="o">&gt;</span> <span class="p">{</span>
 <span class="nl">private:</span>
     <span class="kt">uint16_t</span> <span class="n">device_addr_</span><span class="p">;</span>
-    
+
 <span class="nl">public:</span>
     <span class="n">STM32I2CComm</span><span class="p">(</span><span class="kt">uint16_t</span> <span class="n">addr</span><span class="p">)</span> <span class="o">:</span> <span class="n">device_addr_</span><span class="p">(</span><span class="n">addr</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{}</span>
-    
+
     <span class="kt">bool</span> <span class="n">Open</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">return</span> <span class="n">HAL_I2C_IsDeviceReady</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hi2c1</span><span class="p">,</span> <span class="n">device_addr_</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="o">==</span> <span class="n">HAL_OK</span><span class="p">;</span>
     <span class="p">}</span>
-    
+
     <span class="kt">void</span> <span class="n">Close</span><span class="p">()</span> <span class="p">{</span>
         <span class="c1">// Nothing to do</span>
     <span class="p">}</span>
-    
+
     <span class="kt">int</span> <span class="n">Write</span><span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">length</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">HAL_StatusTypeDef</span> <span class="n">status</span> <span class="o">=</span> <span class="n">HAL_I2C_Master_Transmit</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hi2c1</span><span class="p">,</span> <span class="n">device_addr_</span><span class="p">,</span> 
-                                                          <span class="k">const_cast</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> 
+        <span class="n">HAL_StatusTypeDef</span> <span class="n">status</span> <span class="o">=</span> <span class="n">HAL_I2C_Master_Transmit</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hi2c1</span><span class="p">,</span> <span class="n">device_addr_</span><span class="p">,</span>
+                                                          <span class="k">const_cast</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">data</span><span class="p">),</span>
                                                           <span class="n">length</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">status</span> <span class="o">==</span> <span class="n">HAL_OK</span><span class="p">)</span> <span class="o">?</span> <span class="n">length</span> <span class="o">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
     <span class="p">}</span>
-    
+
     <span class="kt">int</span> <span class="n">Read</span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">length</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">HAL_StatusTypeDef</span> <span class="n">status</span> <span class="o">=</span> <span class="n">HAL_I2C_Master_Receive</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hi2c1</span><span class="p">,</span> <span class="n">device_addr_</span><span class="p">,</span> 
+        <span class="n">HAL_StatusTypeDef</span> <span class="n">status</span> <span class="o">=</span> <span class="n">HAL_I2C_Master_Receive</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hi2c1</span><span class="p">,</span> <span class="n">device_addr_</span><span class="p">,</span>
                                                           <span class="n">data</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">status</span> <span class="o">==</span> <span class="n">HAL_OK</span><span class="p">)</span> <span class="o">?</span> <span class="n">length</span> <span class="o">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
     <span class="p">}</span>
-    
+
     <span class="kt">bool</span> <span class="n">DataAvailable</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
     <span class="p">}</span>
-    
+
     <span class="kt">void</span> <span class="n">Delay</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">ms</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">HAL_Delay</span><span class="p">(</span><span class="n">ms</span><span class="p">);</span>
     <span class="p">}</span>
-    
+
     <span class="kt">uint32_t</span> <span class="n">GetTimeUs</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">return</span> <span class="n">HAL_GetTick</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">;</span>
     <span class="p">}</span>
@@ -884,27 +884,27 @@
 <span class="k">class</span> <span class="nc">ArduinoComm</span> <span class="o">:</span> <span class="k">public</span> <span class="n">bno08x</span><span class="o">::</span><span class="n">CommInterface</span><span class="o">&lt;</span><span class="n">ArduinoComm</span><span class="o">&gt;</span> <span class="p">{</span>
 <span class="nl">private:</span>
     <span class="kt">uint8_t</span> <span class="n">device_addr_</span><span class="p">;</span>
-    
+
 <span class="nl">public:</span>
     <span class="n">ArduinoComm</span><span class="p">(</span><span class="kt">uint8_t</span> <span class="n">addr</span><span class="p">)</span> <span class="o">:</span> <span class="n">device_addr_</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span> <span class="p">{}</span>
-    
+
     <span class="kt">bool</span> <span class="n">Open</span><span class="p">()</span> <span class="p">{</span>
         <span class="n">Wire</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
         <span class="n">Wire</span><span class="p">.</span><span class="n">setClock</span><span class="p">(</span><span class="mi">400000</span><span class="p">);</span>
         <span class="n">delay</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span>
         <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
     <span class="p">}</span>
-    
+
     <span class="kt">void</span> <span class="n">Close</span><span class="p">()</span> <span class="p">{</span>
         <span class="c1">// Nothing to do</span>
     <span class="p">}</span>
-    
+
     <span class="kt">int</span> <span class="n">Write</span><span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">length</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">Wire</span><span class="p">.</span><span class="n">beginTransmission</span><span class="p">(</span><span class="n">device_addr_</span><span class="p">);</span>
         <span class="n">Wire</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">length</span><span class="p">);</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">Wire</span><span class="p">.</span><span class="n">endTransmission</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">?</span> <span class="n">length</span> <span class="o">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
     <span class="p">}</span>
-    
+
     <span class="kt">int</span> <span class="n">Read</span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">length</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">Wire</span><span class="p">.</span><span class="n">requestFrom</span><span class="p">(</span><span class="n">device_addr_</span><span class="p">,</span> <span class="n">length</span><span class="p">);</span>
         <span class="kt">size_t</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -913,15 +913,15 @@
         <span class="p">}</span>
         <span class="k">return</span> <span class="n">count</span><span class="p">;</span>
     <span class="p">}</span>
-    
+
     <span class="kt">bool</span> <span class="n">DataAvailable</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
     <span class="p">}</span>
-    
+
     <span class="kt">void</span> <span class="n">Delay</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">ms</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">delay</span><span class="p">(</span><span class="n">ms</span><span class="p">);</span>
     <span class="p">}</span>
-    
+
     <span class="kt">uint32_t</span> <span class="n">GetTimeUs</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">return</span> <span class="n">micros</span><span class="p">();</span>
     <span class="p">}</span>

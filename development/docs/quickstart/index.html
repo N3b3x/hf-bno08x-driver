@@ -565,19 +565,19 @@
 <span class="kt">void</span> <span class="n">app_main</span><span class="p">()</span> <span class="p">{</span>
     <span class="n">MyComm</span> <span class="n">comm</span><span class="p">;</span>
     <span class="n">BNO085</span><span class="o">&lt;</span><span class="n">MyComm</span><span class="o">&gt;</span> <span class="n">imu</span><span class="p">(</span><span class="n">comm</span><span class="p">);</span>
-    
+
     <span class="c1">// Initialize</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">imu</span><span class="p">.</span><span class="n">Begin</span><span class="p">())</span> <span class="p">{</span>
         <span class="n">printf</span><span class="p">(</span><span class="s">"Initialization failed</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
         <span class="k">return</span><span class="p">;</span>
     <span class="p">}</span>
-    
+
     <span class="c1">// Enable sensors</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">imu</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span> <span class="p">{</span>
         <span class="n">printf</span><span class="p">(</span><span class="s">"Failed to enable rotation vector</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
         <span class="k">return</span><span class="p">;</span>
     <span class="p">}</span>
-    
+
     <span class="c1">// Set callback</span>
     <span class="n">imu</span><span class="p">.</span><span class="n">SetCallback</span><span class="p">([](</span><span class="k">const</span> <span class="n">SensorEvent</span><span class="o">&amp;</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">sensor</span> <span class="o">==</span> <span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">)</span> <span class="p">{</span>
@@ -585,7 +585,7 @@
                    <span class="n">e</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">w</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
         <span class="p">}</span>
     <span class="p">});</span>
-    
+
     <span class="c1">// Main loop</span>
     <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">imu</span><span class="p">.</span><span class="n">Update</span><span class="p">();</span>

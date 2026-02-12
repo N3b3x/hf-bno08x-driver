@@ -1,5 +1,5 @@
-warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 1768, file /tmp/doxyfile.Ikhz1q
-warning: Tag 'DOT_TRANSPARENT' at line 2791 of file '/tmp/doxyfile.Ikhz1q' has become obsolete.
+warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 1768, file /tmp/doxyfile.SpRRa0
+warning: Tag 'DOT_TRANSPARENT' at line 2791 of file '/tmp/doxyfile.SpRRa0' has become obsolete.
          To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
 Doxygen version used: 1.10.0 (ebc57c6dd303a980bd19dd74b8b61c8f3f5180ca)
 Searching for include files...
@@ -51,31 +51,31 @@ Preprocessing /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32
 Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/TestFramework.h...
 Reading //home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:44: warning: member Begin belongs to two different groups. The second one found here will be ignored.
 /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:84: warning: member EnableSensor belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:97: warning: member DisableSensor belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:105: warning: member SetCallback belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:111: warning: member SetRvcCallback belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:117: warning: member HasNewData belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:129: warning: member GetLatest belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:197: warning: member Update belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:207: warning: member halOpen belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:214: warning: member halClose belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:220: warning: member halRead belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:229: warning: member halWrite belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:235: warning: member halGetTimeUs belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:243: warning: member sensorCallback belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:249: warning: member asyncCallback belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:260: warning: member handleSensorEvent belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:281: warning: member handleAsyncEvent belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:300: warning: member configure belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:328: warning: member HardwareReset belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:337: warning: member SetBootPin belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:341: warning: member SetWakePin belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:350: warning: member SelectInterface belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:386: warning: member BeginRvc belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:404: warning: member ServiceRvc belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:415: warning: member CloseRvc belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:434: warning: member rvcProcessByte belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:478: warning: member decodeRvc belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:98: warning: member DisableSensor belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:106: warning: member SetCallback belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:112: warning: member SetRvcCallback belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:118: warning: member HasNewData belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:130: warning: member GetLatest belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:198: warning: member Update belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:208: warning: member halOpen belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:215: warning: member halClose belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:221: warning: member halRead belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:230: warning: member halWrite belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:236: warning: member halGetTimeUs belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:244: warning: member sensorCallback belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:250: warning: member asyncCallback belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:261: warning: member handleSensorEvent belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:282: warning: member handleAsyncEvent belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:301: warning: member configure belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:329: warning: member HardwareReset belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:338: warning: member SetBootPin belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:344: warning: member SetWakePin belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:355: warning: member SelectInterface belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:403: warning: member BeginRvc belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:421: warning: member ServiceRvc belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:432: warning: member CloseRvc belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:451: warning: member rvcProcessByte belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:494: warning: member decodeRvc belongs to two different groups. The second one found here will be ignored.
 /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/TestFramework.h:383: warning: The following parameter of print_test_section_footer(const char *tag, const char *section_name, bool enabled=true) is not documented:
   parameter 'tag'
 /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/TestFramework.h:357: warning: The following parameter of print_test_section_header(const char *tag, const char *section_name, bool enabled=true) is not documented:
@@ -85,7 +85,7 @@ Reading //home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:44: 
   parameter 'tag'
 /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/TestFramework.h:321: warning: The following parameter of print_test_summary(const TestResults &test_results, const char *test_suite_name, const char *tag) is not documented:
   parameter 'tag'
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:608: warning: argument 'fw' from the argument list of BNO085::Dfu has multiple @param documentation sections
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:634: warning: argument 'fw' from the argument list of BNO085::Dfu has multiple @param documentation sections
 home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md...
 Building macro definition list...
 Building group list...
@@ -245,7 +245,11 @@ finalizing index lists...
 writing tag file...
 Running plantuml with JAVA...
 Running dot...
-Patching output file 1/1
+Generating dot graphs using 5 parallel threads...
+Running dot for graph 1/1
+Patching output file 1/3
+Patching output file 2/3
+Patching output file 3/3
 type lookup cache used 483/65536 hits=868 misses=499
 symbol lookup cache used 559/65536 hits=2562 misses=559
 finished...

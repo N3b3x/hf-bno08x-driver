@@ -157,7 +157,7 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a710c95b47a645dacc0d40a01ac56d982" id="r_a710c95b47a645dacc0d40a01ac56d982"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a710c95b47a645dacc0d40a01ac56d982">frequency</a> = 400000</td></tr>
 <tr class="memdesc:a710c95b47a645dacc0d40a01ac56d982"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C frequency in Hz (default 400kHz)  <br /></td></tr>
 <tr class="separator:a710c95b47a645dacc0d40a01ac56d982"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af8ccd9438a8e1f3fbe8808c4d96d2d85" id="r_af8ccd9438a8e1f3fbe8808c4d96d2d85"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af8ccd9438a8e1f3fbe8808c4d96d2d85">device_address</a> = 0x4B</td></tr>
+<tr class="memitem:af8ccd9438a8e1f3fbe8808c4d96d2d85" id="r_af8ccd9438a8e1f3fbe8808c4d96d2d85"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af8ccd9438a8e1f3fbe8808c4d96d2d85">device_address</a></td></tr>
 <tr class="memdesc:af8ccd9438a8e1f3fbe8808c4d96d2d85"><td class="mdescLeft">&#160;</td><td class="mdescRight">7-bit I2C device address (default 0x4B, SA0=HIGH; 0x4A if SA0=LOW)  <br /></td></tr>
 <tr class="separator:af8ccd9438a8e1f3fbe8808c4d96d2d85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9599129d209d9850b753aae9a2e9d296" id="r_a9599129d209d9850b753aae9a2e9d296"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9599129d209d9850b753aae9a2e9d296">pullup_enable</a> = true</td></tr>
@@ -180,11 +180,13 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t Esp32Bno08xBus::I2CConfig::device_address = 0x4B</td>
+          <td class="memname">uint8_t Esp32Bno08xBus::I2CConfig::device_address</td>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
+<div class="line">        0x4B</div>
+</div><!-- fragment -->
 <p>7-bit I2C device address (default 0x4B, SA0=HIGH; 0x4A if SA0=LOW) </p>
 
 </div>

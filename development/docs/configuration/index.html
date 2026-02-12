@@ -444,7 +444,7 @@
 5
 6
 </pre></td><td class="rouge-code"><pre><span class="n">imu</span><span class="p">.</span><span class="n">SetRvcCallback</span><span class="p">([](</span><span class="k">const</span> <span class="n">RvcSensorValue</span><span class="o">&amp;</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">"Yaw: %.2f°, Pitch: %.2f°, Roll: %.2f°</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> 
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Yaw: %.2f°, Pitch: %.2f°, Roll: %.2f°</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span>
            <span class="n">val</span><span class="p">.</span><span class="n">yaw_deg</span><span class="p">,</span> <span class="n">val</span><span class="p">.</span><span class="n">pitch_deg</span><span class="p">,</span> <span class="n">val</span><span class="p">.</span><span class="n">roll_deg</span><span class="p">);</span>
     <span class="n">printf</span><span class="p">(</span><span class="s">"Accel: X=%.3f Y=%.3f Z=%.3f g</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span>
            <span class="n">val</span><span class="p">.</span><span class="n">acc_x_g</span><span class="p">,</span> <span class="n">val</span><span class="p">.</span><span class="n">acc_y_g</span><span class="p">,</span> <span class="n">val</span><span class="p">.</span><span class="n">acc_z_g</span><span class="p">);</span>
