@@ -11,16 +11,12 @@ var classEsp32Bno08xI2cBus =
     [ "getConfig", "classEsp32Bno08xI2cBus.html#a60d4d84d593874523c8c22259628ecce", null ],
     [ "GetInterfaceType", "classEsp32Bno08xI2cBus.html#a815dbd2ca63f6e6f799cb4a51fa641ed", null ],
     [ "GetTimeUs", "classEsp32Bno08xI2cBus.html#aa4dfa9e1e7b31c4ff71533795ae0685c", null ],
+    [ "GpioSet", "classEsp32Bno08xI2cBus.html#a8d12561ab1e7ca2e321999c616bb7752", null ],
     [ "HardwareReset", "classEsp32Bno08xI2cBus.html#a4ee38f9d16ec0f1e87a9d7ffaba1a3fe", null ],
     [ "Init", "classEsp32Bno08xI2cBus.html#a5206920dfe1250bb94dad9750e965ff9", null ],
     [ "isInitialized", "classEsp32Bno08xI2cBus.html#ab5e4d7cf87745cd020d293bd17978388", null ],
     [ "Open", "classEsp32Bno08xI2cBus.html#abdba2e990831da2398804b106ab75454", null ],
     [ "Probe", "classEsp32Bno08xI2cBus.html#a3c19fd0a24443969d02e65036b2a42ed", null ],
     [ "Read", "classEsp32Bno08xI2cBus.html#abc5ed2c4112f9d33cd3030e5695304c9", null ],
-    [ "SetBoot", "classEsp32Bno08xI2cBus.html#a11fbcd8f1a8312e9760228912b123a70", null ],
-    [ "SetPS0", "classEsp32Bno08xI2cBus.html#a776efe745604d38b0ea03604a688fd0d", null ],
-    [ "SetPS1", "classEsp32Bno08xI2cBus.html#af81f727bd02a4e244967baf91720c15c", null ],
-    [ "SetReset", "classEsp32Bno08xI2cBus.html#a3d65ee0178a5394260ed74578d30263b", null ],
-    [ "SetWake", "classEsp32Bno08xI2cBus.html#a80c56191c3874bd23c86d39312e25993", null ],
     [ "Write", "classEsp32Bno08xI2cBus.html#ae455a0598d9156bfc884a54218a84a3f", null ]
 ];

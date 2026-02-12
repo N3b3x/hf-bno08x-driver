@@ -1,12 +1,10 @@
 var searchData=
 [
-  ['sh2active_0',['Sh2Active',['../group__SensorTypes.html#gga1df635b937d37d6ce4c41c7471351391a5141319ae42db24ae529c48c33e7fe0f',1,'bno08x.hpp']]],
-  ['shakedetector_1',['ShakeDetector',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a4cb8f643cb530cbfba0cf2a488ab6bc4',1,'bno08x.hpp']]],
-  ['significantmotion_2',['SignificantMotion',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a975bf8c0c5278ae9474fec58ba3700e2',1,'bno08x.hpp']]],
-  ['sleepdetector_3',['SleepDetector',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a8c80d5cca9a487fc82a7375cfe802b28',1,'bno08x.hpp']]],
-  ['spi_4',['SPI',['../bno08x__comm__interface_8hpp.html#a1e8d3cde9f9e6ea515f5db028614f03ba33dc5312b091968f5a120c2484d40df8',1,'bno08x_comm_interface.hpp']]],
-  ['stabilityclassifier_5',['StabilityClassifier',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62aad8009bd69ab44ea8de9567ea92adcf8',1,'bno08x.hpp']]],
-  ['stabilitydetector_6',['StabilityDetector',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62ac049919dd5791fb90ebe0667030c6b58',1,'bno08x.hpp']]],
-  ['stepcounter_7',['StepCounter',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a813bf9f9ff76be55d85361ae7f5da7de',1,'bno08x.hpp']]],
-  ['stepdetector_8',['StepDetector',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a2f52ce382545c872c8a270c2c81e02f8',1,'bno08x.hpp']]]
+  ['rawaccelerometer_0',['RawAccelerometer',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62add5c9344d03c3cc78b972ecda597492a',1,'bno08x.hpp']]],
+  ['rawgyroscope_1',['RawGyroscope',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62af452cd954e81a69ff37635830efcfba7',1,'bno08x.hpp']]],
+  ['rawmagnetometer_2',['RawMagnetometer',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62aa2b148a97534cb95774ba27dd0599e3a',1,'bno08x.hpp']]],
+  ['rawopticalflow_3',['RawOpticalFlow',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a7893e8b9d35de663b6e69cd31815706b',1,'bno08x.hpp']]],
+  ['rotationvector_4',['RotationVector',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a93885b92407df28cbbeae6691819875a',1,'bno08x.hpp']]],
+  ['rstn_5',['RSTN',['../namespacebno08x.html#ad8c1ee9eaf9525fce5cd277dfd65bc1da8ad4e2919a54323ff3d7ce657a174197',1,'bno08x']]],
+  ['rvcactive_6',['RvcActive',['../group__SensorTypes.html#gga1df635b937d37d6ce4c41c7471351391a026428237b5dada8f2e5fd6995878b44',1,'bno08x.hpp']]]
 ];

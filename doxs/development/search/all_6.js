@@ -13,7 +13,7 @@ var searchData=
   ['frameavg_10',['frameAvg',['../structRawOpticalFlowEvent.html#a1e5fd233d3988d1f79241e44f868d3a0',1,'RawOpticalFlowEvent']]],
   ['framemax_11',['frameMax',['../structRawOpticalFlowEvent.html#a54d3ea4dd29f69b4e561ad752ec3125c',1,'RawOpticalFlowEvent']]],
   ['framemin_12',['frameMin',['../structRawOpticalFlowEvent.html#ace1d4b1c09216e27c4a24a47ac98a554',1,'RawOpticalFlowEvent']]],
-  ['frequency_13',['frequency',['../structEsp32Bno08xI2cBus_1_1I2CConfig.html#a2d79607da465079ec34c5e0f732d55bf',1,'Esp32Bno08xI2cBus::I2CConfig']]],
-  ['frequency_14',['FREQUENCY',['../structBNO08x__TestConfig_1_1I2CParams.html#a8e997f8001a916c32240f91185ce0f5c',1,'BNO08x_TestConfig::I2CParams']]],
+  ['frequency_13',['FREQUENCY',['../structBNO08x__TestConfig_1_1I2CParams.html#a8e997f8001a916c32240f91185ce0f5c',1,'BNO08x_TestConfig::I2CParams']]],
+  ['frequency_14',['frequency',['../structEsp32Bno08xI2cBus_1_1I2CConfig.html#a2d79607da465079ec34c5e0f732d55bf',1,'Esp32Bno08xI2cBus::I2CConfig']]],
   ['full_5ffeatures_5fexample_2ecpp_15',['full_features_example.cpp',['../full__features__example_8cpp.html',1,'']]]
 ];
