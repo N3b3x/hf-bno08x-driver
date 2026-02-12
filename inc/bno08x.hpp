@@ -333,6 +333,43 @@ enum class BNO085DriverState : uint8_t {
   DfuInProgress
 };
 
+/**
+ * @struct DfuProgress
+ * @brief Progress sample emitted during DFU transfers.
+ */
+struct DfuProgress {
+  uint32_t bytesSent{0};  ///< Number of firmware bytes sent so far.
+  uint32_t totalBytes{0}; ///< Total firmware bytes to send.
+};
+
+/** @brief Callback for DFU progress updates. */
+using DfuProgressCallback = std::function<void(const DfuProgress&)>;
+
+/**
+ * @struct DfuOptions
+ * @brief Controls DFU validation and transfer behavior.
+ */
+struct DfuOptions {
+  bool requireFormatMatch{true};      ///< Validate FW-Format metadata.
+  bool requirePartNumber{true};       ///< Validate SW-Part-Number metadata.
+  const char* requiredFormat{"BNO_V1"}; ///< Required format when format check is enabled.
+  const char* requiredPartNumber{nullptr}; ///< Optional exact part number match.
+  uint8_t packetLenOverride{0};          ///< Optional DFU packet size override (1..64).
+  DfuProgressCallback progress{};        ///< Optional per-transfer progress callback.
+};
+
+/**
+ * @struct DfuMemoryImage
+ * @brief Firmware image descriptor for class-aware memory DFU.
+ */
+struct DfuMemoryImage {
+  const uint8_t* data{nullptr};      ///< Pointer to firmware bytes.
+  uint32_t length{0};                ///< Firmware length in bytes.
+  const char* format{"BNO_V1"};      ///< FW-Format metadata value.
+  const char* partNumber{"1000-3608"}; ///< SW-Part-Number metadata value.
+  uint32_t preferredPacketLen{0};    ///< Optional preferred DFU packet size.
+};
+
 /// @} // end of SensorTypes group
 
 // ============================================================================
@@ -617,6 +654,53 @@ public:
    */
   int Dfu(const HcBin_t& fw = firmware) noexcept;
 
+  /**
+   * @brief Perform DFU with explicit validation and transfer options.
+   *
+   * Uses the same HcBin image interface as Dfu(), but allows metadata policy,
+   * packet-size override, and progress reporting customization.
+   */
+  int DfuWithOptions(const HcBin_t& fw, const DfuOptions& options) noexcept;
+
+  /**
+   * @brief Perform DFU from an in-memory firmware image.
+   *
+   * Wraps @p image in a MemoryFirmware adapter internally and executes the
+   * same DFU protocol as DfuWithOptions().
+   */
+  int DfuFromMemory(const DfuMemoryImage& image, const DfuOptions& options = {}) noexcept;
+
+  /**
+   * @brief Convenience overload for in-memory DFU.
+   */
+  int DfuFromMemory(const uint8_t* data, uint32_t len, const char* partNumber = "1000-3608",
+                    const DfuOptions& options = {}) noexcept;
+
+  /**
+   * @brief Enter bootloader mode using BOOTN + reset pin sequence.
+   *
+   * Holds BOOTN low, pulses reset, then releases BOOTN. Requires a transport
+   * with BOOTN/RSTN wiring support.
+   *
+   * @return true on success, false if interface/state is incompatible.
+   */
+  bool EnterBootloader(uint32_t resetLowMs = 10, uint32_t settleMs = 50) noexcept;
+
+  /**
+   * @brief Exit bootloader mode and reboot into application firmware.
+   *
+   * Ensures BOOTN is released high, pulses reset, then waits for boot.
+   */
+  bool ExitBootloaderAndReboot(uint32_t resetLowMs = 2, uint32_t settleMs = 100) noexcept;
+
+  /**
+   * @brief Full class-aware DFU workflow:
+   *        enter bootloader -> transfer firmware -> reboot to app.
+   */
+  int RunDfuFromMemory(const DfuMemoryImage& image, const DfuOptions& options = {},
+                       uint32_t enterResetLowMs = 10, uint32_t enterSettleMs = 50,
+                       uint32_t exitResetLowMs = 2, uint32_t exitSettleMs = 100) noexcept;
+
   /// @}
 
 private:
@@ -700,6 +784,7 @@ private:
   /// @{
 
   static void dfuWrite32be(uint8_t* buf, uint32_t value) noexcept;           ///< @private
+  static bool dfuIsKnownPartNumber(const char* part) noexcept;               ///< @private
   static void dfuAppendCrc(uint8_t* packet, uint8_t len) noexcept;           ///< @private
   int dfuSend(uint8_t* dfu_buff, uint8_t* p_data, uint32_t len) noexcept;    ///< @private
   int dfuSendAppSize(uint8_t* dfu_buff, uint32_t app_size) noexcept;         ///< @private

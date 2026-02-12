@@ -23,6 +23,7 @@
  */
 
 #include <algorithm>
+#include "dfu/MemoryFirmware.hpp"
 
 // ============================================================================
 /// @name SH-2 Mode Implementation
@@ -609,6 +610,63 @@ void BNO085<CommType>::SetBootPin(bool state) noexcept {
   io_.SetBoot(state);
 }
 
+/** @brief Enter bootloader mode via BOOTN+reset sequence. */
+template <typename CommType>
+bool BNO085<CommType>::EnterBootloader(uint32_t resetLowMs, uint32_t settleMs) noexcept {
+  if (io_.GetInterfaceType() == BNO085Interface::UARTRVC) {
+    last_error_ = SH2_ERR_BAD_PARAM;
+    return false;
+  }
+  if (state_ == BNO085DriverState::DfuInProgress) {
+    last_error_ = SH2_ERR_OP_IN_PROGRESS;
+    return false;
+  }
+  if (state_ != BNO085DriverState::Closed) {
+    Close();
+  }
+  if (state_ != BNO085DriverState::Closed) {
+    last_error_ = SH2_ERR_OP_IN_PROGRESS;
+    return false;
+  }
+
+  io_.SetBoot(true); // BOOTN active-low: true drives pin low.
+  HardwareReset(resetLowMs);
+  io_.SetBoot(false); // Release BOOTN high after reset.
+  if (settleMs) {
+    io_.Delay(settleMs);
+  }
+  last_error_ = SH2_OK;
+  return true;
+}
+
+/** @brief Exit bootloader mode and reboot application firmware. */
+template <typename CommType>
+bool BNO085<CommType>::ExitBootloaderAndReboot(uint32_t resetLowMs, uint32_t settleMs) noexcept {
+  if (io_.GetInterfaceType() == BNO085Interface::UARTRVC) {
+    last_error_ = SH2_ERR_BAD_PARAM;
+    return false;
+  }
+  if (state_ == BNO085DriverState::DfuInProgress) {
+    last_error_ = SH2_ERR_OP_IN_PROGRESS;
+    return false;
+  }
+  if (state_ != BNO085DriverState::Closed) {
+    Close();
+  }
+  if (state_ != BNO085DriverState::Closed) {
+    last_error_ = SH2_ERR_OP_IN_PROGRESS;
+    return false;
+  }
+
+  io_.SetBoot(false); // Ensure normal application boot path.
+  HardwareReset(resetLowMs);
+  if (settleMs) {
+    io_.Delay(settleMs);
+  }
+  last_error_ = SH2_OK;
+  return true;
+}
+
 /** @brief Forward WAKE control to the CommInterface (SPI only). */
 template <typename CommType>
 void BNO085<CommType>::SetWakePin(bool state) noexcept {
@@ -809,6 +867,14 @@ static constexpr uint32_t DFU_DELAY_POST_US = 10000;    ///< Post-DFU flash writ
 static constexpr uint32_t DFU_SEND_TIMEOUT_US = 100000; ///< Per-packet I/O timeout (us).
 /// @}
 
+template <typename CommType>
+bool BNO085<CommType>::dfuIsKnownPartNumber(const char* part) noexcept {
+  if (!part)
+    return false;
+  return std::strcmp(part, "1000-3608") == 0 || std::strcmp(part, "1000-3676") == 0 ||
+         std::strcmp(part, "1000-4148") == 0 || std::strcmp(part, "1000-4563") == 0;
+}
+
 /** @brief Write a 32-bit value in big-endian byte order. */
 template <typename CommType>
 void BNO085<CommType>::dfuWrite32be(uint8_t* buf, uint32_t value) noexcept {
@@ -911,20 +977,67 @@ int BNO085<CommType>::dfuSendPkt(uint8_t* dfu_buff, uint8_t* p_data, uint32_t le
   return dfuSend(dfu_buff, dfu_buff, len + 2);
 }
 
-/**
- * @brief Execute the full DFU firmware transfer.
- *
- * Validates the firmware image (format, part number, length), opens the
- * bootloader transport, sends the application size, packet size, and all
- * firmware data packets with CRC and ACK/NAK retry, then waits for flash
- * writes to complete.
- *
- * @pre  io_.GetInterfaceType() must NOT be UARTRVC.
- * @param[in] fw  Firmware image (HcBin_t interface).
- * @return SH2_OK on success, or a negative SH-2 error code.
- */
+/** @brief Execute DFU with default validation options. */
 template <typename CommType>
 int BNO085<CommType>::Dfu(const HcBin_t& fw) noexcept {
+  DfuOptions options{};
+  return DfuWithOptions(fw, options);
+}
+
+/** @brief Execute DFU from an in-memory image descriptor. */
+template <typename CommType>
+int BNO085<CommType>::DfuFromMemory(const DfuMemoryImage& image,
+                                    const DfuOptions& options) noexcept {
+  if (!image.data || image.length == 0) {
+    last_error_ = SH2_ERR_BAD_PARAM;
+    return SH2_ERR_BAD_PARAM;
+  }
+  MemoryFirmware memfw(image.data, image.length, image.format ? image.format : "BNO_V1",
+                       image.partNumber ? image.partNumber : "unknown", image.preferredPacketLen);
+  return DfuWithOptions(memfw.hcbin(), options);
+}
+
+/** @brief Convenience overload for memory DFU from raw pointers. */
+template <typename CommType>
+int BNO085<CommType>::DfuFromMemory(const uint8_t* data, uint32_t len, const char* partNumber,
+                                    const DfuOptions& options) noexcept {
+  DfuMemoryImage image{};
+  image.data = data;
+  image.length = len;
+  image.partNumber = partNumber ? partNumber : "unknown";
+  return DfuFromMemory(image, options);
+}
+
+/** @brief Full workflow: enter bootloader, transfer memory image, reboot app. */
+template <typename CommType>
+int BNO085<CommType>::RunDfuFromMemory(const DfuMemoryImage& image, const DfuOptions& options,
+                                       uint32_t enterResetLowMs, uint32_t enterSettleMs,
+                                       uint32_t exitResetLowMs, uint32_t exitSettleMs) noexcept {
+  if (!EnterBootloader(enterResetLowMs, enterSettleMs))
+    return last_error_;
+
+  int status = DfuFromMemory(image, options);
+  const int dfu_status = status;
+  if (!ExitBootloaderAndReboot(exitResetLowMs, exitSettleMs) && status == SH2_OK) {
+    // Reboot failure becomes the workflow result only if DFU transfer succeeded.
+    status = last_error_;
+  }
+
+  if (dfu_status != SH2_OK) {
+    return dfu_status;
+  }
+  return status;
+}
+
+/**
+ * @brief Execute the full DFU firmware transfer with configurable policy.
+ *
+ * Validates firmware metadata/length, opens the bootloader transport, sends
+ * app size + packet size, streams firmware data with CRC+ACK retry, and
+ * optionally reports progress.
+ */
+template <typename CommType>
+int BNO085<CommType>::DfuWithOptions(const HcBin_t& fw, const DfuOptions& options) noexcept {
   if (io_.GetInterfaceType() == BNO085Interface::UARTRVC) {
     last_error_ = SH2_ERR_BAD_PARAM;
     return SH2_ERR;
@@ -948,7 +1061,7 @@ int BNO085<CommType>::Dfu(const HcBin_t& fw) noexcept {
   uint32_t app_len = 0;
   uint8_t packet_len = 0;
   uint32_t offset = 0;
-  const char* s = nullptr;
+  const char* meta = nullptr;
   bool fw_opened = false;
   bool hal_opened = false;
   uint8_t dfu_buff[DFU_MAX_PACKET_LEN + 2];
@@ -961,21 +1074,30 @@ int BNO085<CommType>::Dfu(const HcBin_t& fw) noexcept {
   }
   fw_opened = true;
 
-  s = fw.getMeta("FW-Format");
-  if (!s || std::strcmp(s, "BNO_V1") != 0) {
-    status = SH2_ERR_BAD_PARAM;
-    goto dfu_close;
+  if (options.requireFormatMatch) {
+    const char* expected_format = options.requiredFormat ? options.requiredFormat : "BNO_V1";
+    meta = fw.getMeta("FW-Format");
+    if (!meta || std::strcmp(meta, expected_format) != 0) {
+      status = SH2_ERR_BAD_PARAM;
+      goto dfu_close;
+    }
   }
 
-  s = fw.getMeta("SW-Part-Number");
-  if (!s) {
-    status = SH2_ERR_BAD_PARAM;
-    goto dfu_close;
-  }
-  if (std::strcmp(s, "1000-3608") != 0 && std::strcmp(s, "1000-3676") != 0 &&
-      std::strcmp(s, "1000-4148") != 0 && std::strcmp(s, "1000-4563") != 0) {
-    status = SH2_ERR_BAD_PARAM;
-    goto dfu_close;
+  if (options.requirePartNumber) {
+    meta = fw.getMeta("SW-Part-Number");
+    if (!meta) {
+      status = SH2_ERR_BAD_PARAM;
+      goto dfu_close;
+    }
+    if (options.requiredPartNumber) {
+      if (std::strcmp(meta, options.requiredPartNumber) != 0) {
+        status = SH2_ERR_BAD_PARAM;
+        goto dfu_close;
+      }
+    } else if (!dfuIsKnownPartNumber(meta)) {
+      status = SH2_ERR_BAD_PARAM;
+      goto dfu_close;
+    }
   }
 
   app_len = fw.getAppLen();
@@ -985,6 +1107,9 @@ int BNO085<CommType>::Dfu(const HcBin_t& fw) noexcept {
   }
 
   packet_len = fw.getPacketLen();
+  if (options.packetLenOverride != 0) {
+    packet_len = options.packetLenOverride;
+  }
   if (packet_len == 0 || packet_len > DFU_MAX_PACKET_LEN)
     packet_len = DFU_MAX_PACKET_LEN;
 
@@ -1000,18 +1125,27 @@ int BNO085<CommType>::Dfu(const HcBin_t& fw) noexcept {
   if (status != SH2_OK)
     goto dfu_close;
 
+  if (options.progress) {
+    options.progress(DfuProgress{0, app_len});
+  }
+
   offset = 0;
   while (offset < app_len) {
     uint32_t to_send = app_len - offset;
     if (to_send > packet_len)
       to_send = packet_len;
     status = fw.getAppData(dfu_buff, offset, to_send);
-    if (status != SH2_OK)
+    if (status != SH2_OK) {
+      status = SH2_ERR;
       goto dfu_close;
+    }
     status = dfuSendPkt(dfu_buff, dfu_buff, to_send);
     if (status != SH2_OK)
       goto dfu_close;
     offset += to_send;
+    if (options.progress) {
+      options.progress(DfuProgress{offset, app_len});
+    }
   }
 
 dfu_close:

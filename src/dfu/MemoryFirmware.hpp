@@ -16,8 +16,8 @@
 class MemoryFirmware {
 public:
   MemoryFirmware(const uint8_t* data, uint32_t len, const char* format = "BNO_V1",
-                 const char* part = "unknown")
-      : data_(data), len_(len), format_(format), part_(part) {}
+                 const char* part = "unknown", uint32_t packet_len = 0)
+      : data_(data), len_(len), format_(format), part_(part), packet_len_(packet_len) {}
 
   /** Obtain an HcBin handle for the DFU helpers. */
   const HcBin_t& hcbin() const {
@@ -41,6 +41,7 @@ private:
   uint32_t len_;
   const char* format_;
   const char* part_;
+  uint32_t packet_len_;
 };
 
 // --- Implementation ---------------------------------------------------------
@@ -74,7 +75,7 @@ inline uint32_t MemoryFirmware::getAppLen() {
   return active_ ? active_->len_ : 0;
 }
 inline uint32_t MemoryFirmware::getPacketLen() {
-  return 0;
+  return active_ ? active_->packet_len_ : 0;
 }
 inline int MemoryFirmware::getAppData(uint8_t* packet, uint32_t offset, uint32_t len) {
   if (!active_ || offset > active_->len_ || len > (active_->len_ - offset))

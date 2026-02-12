@@ -13,7 +13,7 @@ The BNO08x driver includes support for updating sensor firmware via the Device F
 
 ## Overview
 
-DFU is built into the BNO085 driver: use the same **CommInterface** (I²C, SPI, or UART SH-2) and call `imu.Dfu(firmware)`. The sensor must be in bootloader mode (BOOTN held low during reset). **DFU is not available when the transport reports `UARTRVC`** — use I²C, SPI, or UART SH-2.
+DFU is built into the BNO085 driver: use the same **CommInterface** (I²C, SPI, or UART SH-2) and call `imu.Dfu(...)` / `imu.DfuFromMemory(...)`. The sensor must be in bootloader mode (BOOTN held low during reset). **DFU is not available when the transport reports `UARTRVC`** — use I²C, SPI, or UART SH-2.
 
 DFU allows you to:
 - Update sensor firmware in the field
@@ -29,12 +29,19 @@ The sensor must be in bootloader mode to perform a firmware update:
 3. **Release BOOTN** after reset completes
 4. Sensor is now in bootloader mode
 
-**Hardware Method:**
+**Hardware Method (manual):**
 ```cpp
 // If you have BOOTN and RSTN pins wired
 imu.SetBootPin(true);   // BOOTN low
 imu.HardwareReset(10);   // Reset for 10ms
 imu.SetBootPin(false);   // Release BOOTN
+```
+
+**Class-aware helper method:**
+```cpp
+if (!imu.EnterBootloader(10, 50)) {
+    printf("Failed to enter bootloader: %d\n", imu.GetLastError());
+}
 ```
 
 **Manual Method:**
@@ -70,7 +77,7 @@ BNO085<Esp32Bno08xBus> imu(*transport);
 // Enter bootloader first: SetBootPin(true), HardwareReset(10), SetBootPin(false)
 // Then close/reopen transport if required by your platform.
 
-int result = imu.Dfu(firmware);   // or imu.Dfu(*custom_fw.getBin())
+int result = imu.Dfu(firmware);
 if (result == SH2_OK) {
     printf("Firmware update successful!\n");
 } else {
@@ -78,18 +85,28 @@ if (result == SH2_OK) {
 }
 ```
 
-### Step 3: Runtime firmware (MemoryFirmware)
+### Step 3: Runtime firmware (class-aware memory DFU)
 
-If the image is in memory or flash, use `MemoryFirmware`:
+If the image is already in memory or flash, use `DfuFromMemory`:
 
 ```cpp
-#include "src/dfu/MemoryFirmware.hpp"
+#include "bno08x.hpp"
 
 const uint8_t* fw_data = /* pointer to firmware bytes */;
-size_t fw_size = /* size in bytes */;
-MemoryFirmware custom_fw(fw_data, fw_size);
+uint32_t fw_size = /* size in bytes */;
 
-int result = imu.Dfu(*custom_fw.getBin());
+DfuMemoryImage image{};
+image.data = fw_data;
+image.length = fw_size;
+image.format = "BNO_V1";
+image.partNumber = "1000-3608";
+
+DfuOptions opts{};
+opts.progress = [](const DfuProgress& p) {
+    printf("DFU %lu/%lu\n", (unsigned long)p.bytesSent, (unsigned long)p.totalBytes);
+};
+
+int result = imu.DfuFromMemory(image, opts);
 ```
 
 ## Complete example (ESP32)
@@ -100,26 +117,16 @@ See `examples/esp32/main/dfu_example.cpp` for a full flow. Summary:
 auto transport = CreateEsp32Bno08xBus(config);
 BNO085<Esp32Bno08xBus> imu(*transport);
 
-// 1. Enter bootloader
-imu.SetBootPin(true);
-vTaskDelay(pdMS_TO_TICKS(10));
-imu.HardwareReset(10);
-vTaskDelay(pdMS_TO_TICKS(100));
-imu.SetBootPin(false);
+// 1) Enter bootloader (helper)
+imu.EnterBootloader(10, 50);
 
-// 2. Reopen transport for bootloader communication
-transport->Close();
-vTaskDelay(pdMS_TO_TICKS(100));
-transport->Open();
+// 2) Run DFU
+int result = imu.Dfu(firmware);   // or imu.DfuFromMemory(image, opts)
 
-// 3. Run DFU
-int result = imu.Dfu(firmware);   // or Dfu(*memory_fw.getBin())
+// 3) Reboot into application firmware
+imu.ExitBootloaderAndReboot(2, 100);
 
-// 4. Reset and reinit for normal operation
-imu.HardwareReset(2);
-transport->Close();
-vTaskDelay(pdMS_TO_TICKS(100));
-transport->Open();
+// 4) Start normal SH-2 mode
 imu.Begin();
 ```
 
@@ -153,26 +160,23 @@ Common error causes:
 imu.Dfu(firmware);
 ```
 
-### Runtime Firmware
+### Runtime Firmware (class-aware)
 
 ```cpp
-#include "src/dfu/MemoryFirmware.hpp"
-
-// Load from flash/memory
 const uint8_t* fw_data = load_from_flash();
 size_t fw_size = get_firmware_size();
 
-MemoryFirmware fw(fw_data, fw_size);
-imu.Dfu(*fw.getBin());
+DfuMemoryImage image{fw_data, static_cast<uint32_t>(fw_size), "BNO_V1", "1000-3608", 0};
+imu.DfuFromMemory(image);
 ```
 
 ### Network/File Firmware
 
 ```cpp
-// Load firmware from file or network
 std::vector<uint8_t> fw_data = load_firmware_file("firmware.bin");
-MemoryFirmware fw(fw_data.data(), fw_data.size());
-imu.Dfu(*fw.getBin());
+DfuOptions opts{};
+opts.requirePartNumber = false; // if metadata handling is done externally
+imu.DfuFromMemory(fw_data.data(), static_cast<uint32_t>(fw_data.size()), "1000-3608", opts);
 ```
 
 ## Best Practices
