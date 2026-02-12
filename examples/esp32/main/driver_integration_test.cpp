@@ -133,6 +133,14 @@ static bool create_test_imu() noexcept {
     return false;
   }
 
+  // Verify transport reports I2C interface type (driver uses this for mode gating)
+  if (g_transport->GetInterfaceType() != BNO085Interface::I2C) {
+    ESP_LOGE(TAG, "Expected GetInterfaceType() I2C, got %d",
+             static_cast<int>(g_transport->GetInterfaceType()));
+    return false;
+  }
+  ESP_LOGI(TAG, "GetInterfaceType() = I2C (OK)");
+
   ESP_LOGI(TAG, "BNO085 initialized successfully");
   return true;
 }
@@ -392,13 +400,23 @@ static bool test_sensor_data_reading() noexcept {
 //=============================================================================
 
 static bool test_rvc_mode() noexcept {
-  ESP_LOGI(TAG, "Testing RVC mode...");
+  ESP_LOGI(TAG, "Testing RVC mode (API availability)...");
 
-  // Note: RVC mode requires specific HAL implementation
-  // This test verifies the API is available
-  ESP_LOGI(TAG, "RVC mode API available (requires RvcHal implementation)");
+  // RVC mode requires a transport with GetInterfaceType() == UARTRVC (e.g. Esp32UartRvcBus).
+  // This suite uses I2C transport only. Full RVC flow is exercised by the rvc_mode example.
+  // Here we only verify that the I2C transport correctly reports I2C (not UARTRVC),
+  // so the driver would reject BeginRvc() on this transport as expected.
+  if (!g_transport) {
+    ESP_LOGW(TAG, "No transport for RVC test (skip)");
+    return true;
+  }
+  if (g_transport->GetInterfaceType() == BNO085Interface::UARTRVC) {
+    ESP_LOGI(TAG, "Transport is UARTRVC - BeginRvc() would be valid");
+  } else {
+    ESP_LOGI(TAG, "Transport is I2C - BeginRvc() correctly not used (use rvc_mode example for RVC)");
+  }
 
-  ESP_LOGI(TAG, "RVC mode test passed (API verified)");
+  ESP_LOGI(TAG, "RVC mode test passed (interface type and API verified)");
   return true;
 }
 

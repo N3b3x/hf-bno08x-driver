@@ -293,13 +293,13 @@ public:
    * @brief Enable periodic reporting for a sensor.
    *
    * @param[in] sensor       Which sensor to enable.
-   * @param[in] intervalMs   Report interval in milliseconds (e.g. 10 = 100 Hz).
+   * @param[in] interval_ms  Report interval in milliseconds (e.g. 10 = 100 Hz).
    *                         Use 0 for on-change sensors (step counter, tap, etc.).
    * @param[in] sensitivity  Change sensitivity threshold for on-change sensors.
    *                         Set to 0.0 to disable sensitivity filtering.
    * @return  `true` if the sensor was configured successfully.
    */
-  bool EnableSensor(BNO085Sensor sensor, uint32_t intervalMs, float sensitivity = 0.0f) noexcept;
+  bool EnableSensor(BNO085Sensor sensor, uint32_t interval_ms, float sensitivity = 0.0f) noexcept;
 
   /**
    * @brief Disable reporting for a sensor.
@@ -488,8 +488,8 @@ private:
   /// @name SH-2 Callback Trampolines
   /// @{
 
-  static void sensorC(void* cookie, sh2_SensorEvent_t* event); ///< @private
-  static void asyncC(void* cookie, sh2_AsyncEvent_t* event);   ///< @private
+  static void sensorCallback(void* cookie, sh2_SensorEvent_t* event); ///< @private
+  static void asyncCallback(void* cookie, sh2_AsyncEvent_t* event);   ///< @private
 
   /// @}
 
@@ -502,7 +502,7 @@ private:
   /** @brief Handle asynchronous events (e.g. sensor reset -> re-enable sensors). */
   void handleAsyncEvent(const sh2_AsyncEvent_t* event) noexcept;
   /** @brief Send a sensor configuration command to the SH-2 library. */
-  bool configure(BNO085Sensor sensor, uint32_t intervalUs, float sensitivity, uint32_t batchUs = 0) noexcept;
+  bool configure(BNO085Sensor sensor, uint32_t interval_us, float sensitivity, uint32_t batch_us = 0) noexcept;
 
   /// @}
 
@@ -537,10 +537,10 @@ private:
 
   static void dfuWrite32be(uint8_t* buf, uint32_t value) noexcept;   ///< @private
   static void dfuAppendCrc(uint8_t* packet, uint8_t len) noexcept;   ///< @private
-  int dfuSend(uint8_t* dfuBuff, uint8_t* pData, uint32_t len) noexcept;      ///< @private
-  int dfuSendAppSize(uint8_t* dfuBuff, uint32_t appSize) noexcept;           ///< @private
-  int dfuSendPktSize(uint8_t* dfuBuff, uint8_t packetLen) noexcept;          ///< @private
-  int dfuSendPkt(uint8_t* dfuBuff, uint8_t* pData, uint32_t len) noexcept;   ///< @private
+  int dfuSend(uint8_t* dfu_buff, uint8_t* p_data, uint32_t len) noexcept;      ///< @private
+  int dfuSendAppSize(uint8_t* dfu_buff, uint32_t app_size) noexcept;           ///< @private
+  int dfuSendPktSize(uint8_t* dfu_buff, uint8_t packet_len) noexcept;          ///< @private
+  int dfuSendPkt(uint8_t* dfu_buff, uint8_t* p_data, uint32_t len) noexcept;   ///< @private
 
   /// @}
 

@@ -58,13 +58,13 @@ bool BNO085<CommType>::Begin() noexcept {
   halWrapper_.hal.write = halWrite;
   halWrapper_.hal.getTimeUs = halGetTimeUs;
 
-  int status = sh2_open(halWrapper_.asHal(), asyncC, this);
+  int status = sh2_open(halWrapper_.asHal(), asyncCallback, this);
   if (status != SH2_OK) {
     last_error_ = status;
     return false;
   }
   sh2_reinitialize();
-  sh2_setSensorCallback(sensorC, this);
+  sh2_setSensorCallback(sensorCallback, this);
 
   new_flag_.fill(false);
   last_interval_.fill(0);
@@ -81,10 +81,10 @@ bool BNO085<CommType>::Begin() noexcept {
  * can be automatically re-applied after a sensor reset.
  */
 template <typename CommType>
-bool BNO085<CommType>::EnableSensor(BNO085Sensor sensor, uint32_t intervalMs, float sensitivity) noexcept {
+bool BNO085<CommType>::EnableSensor(BNO085Sensor sensor, uint32_t interval_ms, float sensitivity) noexcept {
   if (!initialized_)
     return false;
-  uint32_t interval_us = intervalMs * 1000;
+  uint32_t interval_us = interval_ms * 1000;
   if (!configure(sensor, interval_us, sensitivity, 0))
     return false;
   last_interval_[static_cast<uint8_t>(sensor)] = interval_us;
@@ -240,13 +240,13 @@ uint32_t BNO085<CommType>::halGetTimeUs(sh2_Hal_t* self) {
 
 /// @private C trampoline: routes sh2_SensorEvent_t to handleSensorEvent().
 template <typename CommType>
-void BNO085<CommType>::sensorC(void* cookie, sh2_SensorEvent_t* event) {
+void BNO085<CommType>::sensorCallback(void* cookie, sh2_SensorEvent_t* event) {
   static_cast<BNO085<CommType>*>(cookie)->handleSensorEvent(event);
 }
 
 /// @private C trampoline: routes sh2_AsyncEvent_t to handleAsyncEvent().
 template <typename CommType>
-void BNO085<CommType>::asyncC(void* cookie, sh2_AsyncEvent_t* event) {
+void BNO085<CommType>::asyncCallback(void* cookie, sh2_AsyncEvent_t* event) {
   static_cast<BNO085<CommType>*>(cookie)->handleAsyncEvent(event);
 }
 
@@ -291,17 +291,17 @@ void BNO085<CommType>::handleAsyncEvent(const sh2_AsyncEvent_t* event) noexcept 
  * @brief Send a sensor configuration command to the SH-2 library.
  *
  * @param[in] sensor       Sensor to configure.
- * @param[in] intervalUs   Report interval in microseconds (0 = disable).
+ * @param[in] interval_us Report interval in microseconds (0 = disable).
  * @param[in] sensitivity  Change sensitivity threshold.
- * @param[in] batchUs      Batch interval in microseconds (0 = no batching).
+ * @param[in] batch_us    Batch interval in microseconds (0 = no batching).
  * @return true on success, false on failure (error stored in last_error_).
  */
 template <typename CommType>
-bool BNO085<CommType>::configure(BNO085Sensor sensor, uint32_t intervalUs, float sensitivity,
-                       uint32_t batchUs) noexcept {
+bool BNO085<CommType>::configure(BNO085Sensor sensor, uint32_t interval_us, float sensitivity,
+                       uint32_t batch_us) noexcept {
   sh2_SensorConfig_t cfg{};
-  cfg.reportInterval_us = intervalUs;
-  cfg.batchInterval_us = batchUs;
+  cfg.reportInterval_us = interval_us;
+  cfg.batchInterval_us = batch_us;
   cfg.sensorSpecific = 0;
   cfg.changeSensitivity = static_cast<uint16_t>(sensitivity);
   cfg.changeSensitivityEnabled = sensitivity > 0;
@@ -540,26 +540,26 @@ void BNO085<CommType>::dfuAppendCrc(uint8_t* packet, uint8_t len) noexcept {
 /**
  * @brief Send a DFU packet with ACK/NAK retry logic.
  *
- * Writes @p pData, then reads back a 1-byte ACK ('s'). Retries up to
+ * Writes @p p_data, then reads back a 1-byte ACK ('s'). Retries up to
  * DFU_MAX_ATTEMPTS times on timeout or NAK.
  *
  * @return SH2_OK on success, or a negative SH-2 error code.
  */
 template <typename CommType>
-int BNO085<CommType>::dfuSend(uint8_t* dfuBuff, uint8_t* pData, uint32_t len) noexcept {
+int BNO085<CommType>::dfuSend(uint8_t* dfu_buff, uint8_t* p_data, uint32_t len) noexcept {
   unsigned int retries = 0;
   int status = SH2_OK;
   uint8_t ack = 0;
-  bool gotAck = false;
+  bool got_ack = false;
   uint32_t t;
   sh2_Hal_t* hal = halWrapper_.asHal();
 
-  while (!gotAck && (retries < DFU_MAX_ATTEMPTS)) {
+  while (!got_ack && (retries < DFU_MAX_ATTEMPTS)) {
     uint32_t now = hal->getTimeUs(hal);
     uint32_t start = now;
     status = 0;
     while ((status == 0) && ((now - start) < DFU_SEND_TIMEOUT_US)) {
-      status = hal->write(hal, pData, len);
+      status = hal->write(hal, p_data, len);
       now = hal->getTimeUs(hal);
     }
     if (status == 0) status = SH2_ERR_TIMEOUT;
@@ -572,36 +572,36 @@ int BNO085<CommType>::dfuSend(uint8_t* dfuBuff, uint8_t* pData, uint32_t len) no
       if (status == 0) status = SH2_ERR_TIMEOUT;
     }
     if (status > 0) {
-      if (ack == DFU_ACK) { gotAck = true; status = SH2_OK; }
-      else { gotAck = false; status = SH2_ERR_HUB; }
+      if (ack == DFU_ACK) { got_ack = true; status = SH2_OK; }
+      else { got_ack = false; status = SH2_ERR_HUB; }
     }
-    if (!gotAck) retries++;
+    if (!got_ack) retries++;
   }
   return (status >= 0) ? SH2_OK : status;
 }
 
 /** @brief Send the 4-byte application size (big-endian) + CRC. */
 template <typename CommType>
-int BNO085<CommType>::dfuSendAppSize(uint8_t* dfuBuff, uint32_t appSize) noexcept {
-  dfuWrite32be(dfuBuff, appSize);
-  dfuAppendCrc(dfuBuff, 4);
-  return dfuSend(dfuBuff, dfuBuff, 6);
+int BNO085<CommType>::dfuSendAppSize(uint8_t* dfu_buff, uint32_t app_size) noexcept {
+  dfuWrite32be(dfu_buff, app_size);
+  dfuAppendCrc(dfu_buff, 4);
+  return dfuSend(dfu_buff, dfu_buff, 6);
 }
 
 /** @brief Send the 1-byte packet size + CRC. */
 template <typename CommType>
-int BNO085<CommType>::dfuSendPktSize(uint8_t* dfuBuff, uint8_t packetLen) noexcept {
-  dfuBuff[0] = packetLen;
-  dfuAppendCrc(dfuBuff, 1);
-  return dfuSend(dfuBuff, dfuBuff, 3);
+int BNO085<CommType>::dfuSendPktSize(uint8_t* dfu_buff, uint8_t packet_len) noexcept {
+  dfu_buff[0] = packet_len;
+  dfuAppendCrc(dfu_buff, 1);
+  return dfuSend(dfu_buff, dfu_buff, 3);
 }
 
 /** @brief Send one firmware data packet + CRC. */
 template <typename CommType>
-int BNO085<CommType>::dfuSendPkt(uint8_t* dfuBuff, uint8_t* pData, uint32_t len) noexcept {
-  std::memcpy(dfuBuff, pData, len);
-  dfuAppendCrc(dfuBuff, len);
-  return dfuSend(dfuBuff, dfuBuff, len + 2);
+int BNO085<CommType>::dfuSendPkt(uint8_t* dfu_buff, uint8_t* p_data, uint32_t len) noexcept {
+  std::memcpy(dfu_buff, p_data, len);
+  dfuAppendCrc(dfu_buff, len);
+  return dfuSend(dfu_buff, dfu_buff, len + 2);
 }
 
 /**
@@ -622,11 +622,11 @@ int BNO085<CommType>::Dfu(const HcBin_t& fw) noexcept {
     return SH2_ERR;
 
   int rc, status = SH2_OK;
-  uint32_t appLen = 0;
-  uint8_t packetLen = 0;
+  uint32_t app_len = 0;
+  uint8_t packet_len = 0;
   uint32_t offset = 0;
   const char* s = nullptr;
-  uint8_t dfuBuff[DFU_MAX_PACKET_LEN + 2];
+  uint8_t dfu_buff[DFU_MAX_PACKET_LEN + 2];
   sh2_Hal_t* hal = halWrapper_.asHal();
 
   rc = fw.open();
@@ -642,29 +642,29 @@ int BNO085<CommType>::Dfu(const HcBin_t& fw) noexcept {
     status = SH2_ERR_BAD_PARAM; goto dfu_close;
   }
 
-  appLen = fw.getAppLen();
-  if (appLen < 1024) { status = SH2_ERR_BAD_PARAM; goto dfu_close; }
+  app_len = fw.getAppLen();
+  if (app_len < 1024) { status = SH2_ERR_BAD_PARAM; goto dfu_close; }
 
-  packetLen = fw.getPacketLen();
-  if (packetLen == 0 || packetLen > DFU_MAX_PACKET_LEN) packetLen = DFU_MAX_PACKET_LEN;
+  packet_len = fw.getPacketLen();
+  if (packet_len == 0 || packet_len > DFU_MAX_PACKET_LEN) packet_len = DFU_MAX_PACKET_LEN;
 
   status = hal->open(hal);
   if (status != SH2_OK) goto dfu_close;
 
-  status = dfuSendAppSize(dfuBuff, appLen);
+  status = dfuSendAppSize(dfu_buff, app_len);
   if (status != SH2_OK) goto dfu_close;
-  status = dfuSendPktSize(dfuBuff, packetLen);
+  status = dfuSendPktSize(dfu_buff, packet_len);
   if (status != SH2_OK) goto dfu_close;
 
   offset = 0;
-  while (offset < appLen) {
-    uint32_t toSend = appLen - offset;
-    if (toSend > packetLen) toSend = packetLen;
-    status = fw.getAppData(dfuBuff, offset, toSend);
+  while (offset < app_len) {
+    uint32_t to_send = app_len - offset;
+    if (to_send > packet_len) to_send = packet_len;
+    status = fw.getAppData(dfu_buff, offset, to_send);
     if (status != SH2_OK) goto dfu_close;
-    status = dfuSendPkt(dfuBuff, dfuBuff, toSend);
+    status = dfuSendPkt(dfu_buff, dfu_buff, to_send);
     if (status != SH2_OK) goto dfu_close;
-    offset += toSend;
+    offset += to_send;
   }
 
 dfu_close:

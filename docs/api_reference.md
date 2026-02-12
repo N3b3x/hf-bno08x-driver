@@ -46,7 +46,7 @@ explicit BNO085(CommType& comm) noexcept;
 
 | Method | Signature | Location |
 |--------|-----------|----------|
-| `EnableSensor()` | `bool EnableSensor(BNO085Sensor sensor, uint32_t intervalMs, float sensitivity = 0.0f)` | [`inc/bno08x.hpp#L161`](../inc/bno08x.hpp#L161) |
+| `EnableSensor()` | `bool EnableSensor(BNO085Sensor sensor, uint32_t interval_ms, float sensitivity = 0.0f)` | [`inc/bno08x.hpp`](../inc/bno08x.hpp) |
 | `DisableSensor()` | `bool DisableSensor(BNO085Sensor sensor)` | [`inc/bno08x.hpp#L163`](../inc/bno08x.hpp#L163) |
 
 ### Callbacks
