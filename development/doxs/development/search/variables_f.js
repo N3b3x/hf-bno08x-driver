@@ -1,14 +1,18 @@
 var searchData=
 [
-  ['tag_0',['tag',['../structTestTaskContext.html#ae51f49c33ea802bc7f8bdde560a27304',1,'TestTaskContext']]],
-  ['tap_1',['tap',['../structSensorEvent.html#a6cd220259938450e447985088f9d8e6d',1,'SensorEvent']]],
-  ['temperature_2',['temperature',['../structRawVector3.html#a790b3a37217813900873cc7fe52bfeb0',1,'RawVector3']]],
-  ['test_5ffunc_3',['test_func',['../structTestTaskContext.html#aa72faa223fd0ff992772b12458f62ec8',1,'TestTaskContext']]],
-  ['test_5fname_4',['test_name',['../structTestTaskContext.html#abcf19d2762ab98990c3fdc1eacf86130',1,'TestTaskContext']]],
-  ['timestamp_5',['timestamp',['../structRawOpticalFlowEvent.html#abc9b313b9da9b99c1747f3cd0b1f8139',1,'RawOpticalFlowEvent::timestamp'],['../structDeadReckoningPoseEvent.html#a6c2fe9280f23e02e84645264d747d8be',1,'DeadReckoningPoseEvent::timestamp'],['../structWheelEncoderEvent.html#a4d8dcb9c1d0d1dad01740402ced53a80',1,'WheelEncoderEvent::timestamp'],['../structSensorEvent.html#a29d1ebdb0142e4d6d885989af39025c7',1,'SensorEvent::timestamp']]],
-  ['timestamp_5fus_6',['timestamp_uS',['../structRvcSensorEvent.html#a3cb27e4410083e40ff0398381c72fa65',1,'RvcSensorEvent::timestamp_uS'],['../structRvcSensorValue.html#a665c3c27e20742ef2152ae5bf2309f8b',1,'RvcSensorValue::timestamp_uS']]],
-  ['total_5fexecution_5ftime_5fus_7',['total_execution_time_us',['../structTestResults.html#a7eddc258a4288ac5f0a36a1008c9d014',1,'TestResults']]],
-  ['total_5ftests_8',['total_tests',['../structTestResults.html#afe20b168a13950ffca7296c0c56d4359',1,'TestResults']]],
-  ['totalbytes_9',['totalBytes',['../structDfuProgress.html#a40241cf270d2fa9a5bb1386fb16c4742',1,'DfuProgress']]],
-  ['tx_5fpin_10',['tx_pin',['../structEsp32UartRvcBus_1_1UartConfig.html#af1edb4ada360b8934adc23137663c678',1,'Esp32UartRvcBus::UartConfig']]]
+  ['sample_5finterval_5fms_0',['SAMPLE_INTERVAL_MS',['../structBNO08x__TestConfig_1_1TestConfig.html#ab311afca7fc5c59a98f162ca772ef09c',1,'BNO08x_TestConfig::TestConfig']]],
+  ['scalar_1',['scalar',['../structSensorEvent.html#ade06fe5e89cd46761782ea887497a1f3',1,'SensorEvent']]],
+  ['scl_2',['SCL',['../structBNO08x__TestConfig_1_1I2CPins.html#a548abf3f9847e06362877d33edbf2e2d',1,'BNO08x_TestConfig::I2CPins']]],
+  ['scl_5fpin_3',['scl_pin',['../structEsp32Bno08xI2cBus_1_1I2CConfig.html#a5f84478563a6aa7e3cde69edc1a1e980',1,'Esp32Bno08xI2cBus::I2CConfig']]],
+  ['scl_5fwait_5fus_4',['SCL_WAIT_US',['../structBNO08x__TestConfig_1_1I2CParams.html#a1c3e9b3b4fc1259fd7debd06119f80bb',1,'BNO08x_TestConfig::I2CParams']]],
+  ['sda_5',['SDA',['../structBNO08x__TestConfig_1_1I2CPins.html#a599af7b60af9e86ded55e21d811081e5',1,'BNO08x_TestConfig::I2CPins']]],
+  ['sda_5fpin_6',['sda_pin',['../structEsp32Bno08xI2cBus_1_1I2CConfig.html#a21d9b50901742e714912d990e9c14b04',1,'Esp32Bno08xI2cBus::I2CConfig']]],
+  ['sensor_7',['sensor',['../structSensorEvent.html#a2a6ead14a1676d5412cf9ec6b4986d62',1,'SensorEvent']]],
+  ['sensor_5freset_5flimit_8',['SENSOR_RESET_LIMIT',['../structBNO08x__TestConfig_1_1Diagnostics.html#afa5200104ca118f7e5bf6171d7befd89',1,'BNO08x_TestConfig::Diagnostics']]],
+  ['sensortimeus_9',['sensorTimeUs',['../structRawVector3.html#ac70b2a3d08043f6c934f74417b737c9f',1,'RawVector3']]],
+  ['shtp_5fheader_5ftimeout_5fms_10',['SHTP_HEADER_TIMEOUT_MS',['../structBNO08x__TestConfig_1_1Timing.html#a63ff39d69923392fa09d6c5a8071ef4f',1,'BNO08x_TestConfig::Timing']]],
+  ['shutter_11',['shutter',['../structRawOpticalFlowEvent.html#a5af6719685508ee99cca79b8216629b0',1,'RawOpticalFlowEvent']]],
+  ['sleepstate_12',['sleepState',['../structSensorEvent.html#a9355a02b7c3835d624eff7df29b376a2',1,'SensorEvent']]],
+  ['stats_5freport_5finterval_5fms_13',['STATS_REPORT_INTERVAL_MS',['../structBNO08x__TestConfig_1_1AppConfig.html#ab7b09bf817a72b9f098dbfd92f4779c5',1,'BNO08x_TestConfig::AppConfig']]],
+  ['stepcount_14',['stepCount',['../structSensorEvent.html#a6125d2b613fa4b9e868242856d4e21de',1,'SensorEvent']]]
 ];

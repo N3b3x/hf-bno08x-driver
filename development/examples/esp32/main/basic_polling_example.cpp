@@ -34,7 +34,7 @@ extern "C" void app_main(void) {
   ESP_LOGI(TAG, "============================");
 
   // Configure I2C transport (same bus pins as pcal95555/pca9685 examples)
-  Esp32Bno08xBus::I2CConfig config;
+  Esp32Bno08xI2cBus::I2CConfig config;
   config.sda_pin = GPIO_NUM_4;
   config.scl_pin = GPIO_NUM_5;
   config.frequency = 400000;
@@ -45,8 +45,8 @@ extern "C" void app_main(void) {
   // Try both addresses automatically per datasheet specification
   // Try 0x4B first (SA0=HIGH) as it's the default on this board
   const uint8_t addresses[] = {0x4B, 0x4A};
-  std::unique_ptr<Esp32Bno08xBus> transport;
-  BNO085<Esp32Bno08xBus>* imu = nullptr;
+  std::unique_ptr<Esp32Bno08xI2cBus> transport;
+  BNO085<Esp32Bno08xI2cBus>* imu = nullptr;
   bool initialized = false;
 
   for (size_t i = 0; i < sizeof(addresses) / sizeof(addresses[0]); i++) {
@@ -55,7 +55,7 @@ extern "C" void app_main(void) {
              (i == 0) ? "HIGH" : "LOW");
 
     // Create and initialize I2C transport
-    transport = CreateEsp32Bno08xBus(config);
+    transport = CreateEsp32Bno08xI2cBus(config);
     if (!transport) {
       ESP_LOGW(TAG, "Failed to create I2C transport for address 0x%02X", config.device_address);
       continue;
@@ -76,7 +76,7 @@ extern "C" void app_main(void) {
     ESP_LOGI(TAG, "I2C probe successful at address 0x%02X", config.device_address);
 
     // Create IMU instance
-    imu = new BNO085<Esp32Bno08xBus>(*transport);
+    imu = new BNO085<Esp32Bno08xI2cBus>(*transport);
 
     // Try to initialize
     ESP_LOGI(TAG, "Initializing BNO085 at address 0x%02X...", config.device_address);

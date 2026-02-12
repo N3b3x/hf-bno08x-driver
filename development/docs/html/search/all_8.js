@@ -1,21 +1,13 @@
 var searchData=
 [
-  ['gamerotationvector_0',['GameRotationVector',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62aca24a6438653bfeb8c3dc5380a3513ec',1,'bno08x.hpp']]],
-  ['geomagneticrotationvector_1',['GeomagneticRotationVector',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a7ced3a0bfca67cdc57bd3c16fc06284e',1,'bno08x.hpp']]],
-  ['get_5fsuccess_5fpercentage_2',['get_success_percentage',['../structTestResults.html#ab98f9ad5f994aa31bd7c0cd8ae551fb8',1,'TestResults']]],
-  ['get_5ftotal_5ftime_5fms_3',['get_total_time_ms',['../structTestResults.html#a6d2e718d81a8b4a4dcca515ee858de57',1,'TestResults']]],
-  ['getappdata_4',['getAppData',['../structHcBin__s.html#ad45c43f9f25b11d2677e30540d97a536',1,'HcBin_s']]],
-  ['getapplen_5',['getAppLen',['../structHcBin__s.html#a439feec7d3cbea2a83c0f79a6063df1c',1,'HcBin_s']]],
-  ['getconfig_6',['getConfig',['../classEsp32Bno08xBus.html#a85e1603d6eff23ff172f2a800a6afa4d',1,'Esp32Bno08xBus']]],
-  ['getinterfacetype_7',['GetInterfaceType',['../classbno08x_1_1CommInterface.html#aff6d3c95e497ca8ecfa39083669c8d47',1,'bno08x::CommInterface::GetInterfaceType()'],['../classEsp32Bno08xBus.html#a93e0de20a5b96a000dde91bd780fd55f',1,'Esp32Bno08xBus::GetInterfaceType()'],['../classEsp32UartRvcBus.html#a02f0d03d1cbe629f12c99a7a903aa914',1,'Esp32UartRvcBus::GetInterfaceType()']]],
-  ['getlasterror_8',['GetLastError',['../classBNO085.html#a6058135b615cc9e260d3de12f8e7edcf',1,'BNO085']]],
-  ['getlatest_9',['GetLatest',['../classBNO085.html#a0c152e4ec12c31255085cc49cc398155',1,'BNO085']]],
-  ['getmeta_10',['getMeta',['../structHcBin__s.html#a10b509899819239a4655cd9a5902dc6d',1,'HcBin_s']]],
-  ['getpacketlen_11',['getPacketLen',['../structHcBin__s.html#a264c696f65faec8bb3eb994734d55527',1,'HcBin_s']]],
-  ['getstate_12',['GetState',['../classBNO085.html#a69d7d9d9570452a4587dca7135f21009',1,'BNO085']]],
-  ['gettimeus_13',['GetTimeUs',['../classbno08x_1_1CommInterface.html#a4b3129c235d04972f6f51563d5ca35f3',1,'bno08x::CommInterface::GetTimeUs()'],['../classEsp32Bno08xBus.html#ad9bcbae6a7b658760cf42ae2ef830777',1,'Esp32Bno08xBus::GetTimeUs()'],['../classEsp32UartRvcBus.html#a3adc7b1fc8d59a12b1de0b3dbc83673e',1,'Esp32UartRvcBus::GetTimeUs()']]],
-  ['gravity_14',['Gravity',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a8a88c39cef668fb55f188af09665bd40',1,'bno08x.hpp']]],
-  ['gyrointegratedrv_15',['GyroIntegratedRV',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62ac8b04cbadc40345b299a6b531f25d05c',1,'bno08x.hpp']]],
-  ['gyroscope_16',['Gyroscope',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62abed99e5db57749f375e738c1c0258047',1,'bno08x.hpp']]],
-  ['gyrouncalibrated_17',['GyroUncalibrated',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a21dfaf4e5263130288d52ac111a7d405',1,'bno08x.hpp']]]
+  ['hardwarereset_0',['HardwareReset',['../classBNO085.html#a064ca51468c9b5e5749d7bf98d82199b',1,'BNO085::HardwareReset()'],['../classEsp32Bno08xI2cBus.html#a4ee38f9d16ec0f1e87a9d7ffaba1a3fe',1,'Esp32Bno08xI2cBus::HardwareReset()']]],
+  ['hasnewdata_1',['HasNewData',['../classBNO085.html#a0bb31740132d2f60e8baa8f3801c3e28',1,'BNO085']]],
+  ['hcbin_2',['hcbin',['../classMemoryFirmware.html#a393112ba7519f0cf68a7c9cb959cba83',1,'MemoryFirmware']]],
+  ['hcbin_2eh_3',['HcBin.h',['../HcBin_8h.html',1,'']]],
+  ['hcbin_5fs_4',['HcBin_s',['../structHcBin__s.html',1,'']]],
+  ['hcbin_5ft_5',['HcBin_t',['../HcBin_8h.html#a8b8c363f76941613f85a73d23a2a1455',1,'HcBin.h']]],
+  ['hcbinmetadata_6',['HcbinMetadata',['../structHcbinMetadata.html',1,'']]],
+  ['heartratemonitor_7',['HeartRateMonitor',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a0978ef43fad0c80bfa0629706f37bc7b',1,'bno08x.hpp']]],
+  ['hf_20bno08x_20driver_8',['HF-BNO08x Driver',['../index.html',1,'']]],
+  ['humidity_9',['Humidity',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62addab800b54d009aa0408ebb9a4ee418d',1,'bno08x.hpp']]]
 ];

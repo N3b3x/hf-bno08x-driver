@@ -1,13 +1,11 @@
 var searchData=
 [
-  ['magneticfielduncalibrated_0',['MagneticFieldUncalibrated',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a0ce1faa0e7e87ad1d7355564753812c7',1,'bno08x.hpp']]],
-  ['magnetometer_1',['Magnetometer',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a9e9fa52e0aa4a2b519f8287760d7c3ac',1,'bno08x.hpp']]],
-  ['memoryfirmware_2',['MemoryFirmware',['../classMemoryFirmware.html',1,'MemoryFirmware'],['../classMemoryFirmware.html#ab00d68ca91c3a4612568db16fd018cf5',1,'MemoryFirmware::MemoryFirmware()']]],
-  ['memoryfirmware_2ehpp_3',['MemoryFirmware.hpp',['../MemoryFirmware_8hpp.html',1,'']]],
-  ['mi_4',['mi',['../structRvcSensorEvent.html#ae8ba4ff003a287b6cad72e599f723e1d',1,'RvcSensorEvent::mi'],['../structRvcSensorValue.html#a120cea672042614ea97ebd4330536b06',1,'RvcSensorValue::mi']]],
-  ['mode_5',['Mode',['../bno08x_8hpp.html#autotoc_md2',1,'Quick Start (RVC Mode)'],['../bno08x_8hpp.html#autotoc_md1',1,'Quick Start (SH-2 Mode)']]],
-  ['mostlikelystate_6',['mostLikelyState',['../structActivityClassifierEvent.html#a65ad6c9c83076deb1a729f3ddde5c90d',1,'ActivityClassifierEvent']]],
-  ['motionintent_7',['motionIntent',['../structSensorEvent.html#a4046a0b11737e284c3767cee11715f10',1,'SensorEvent']]],
-  ['motionrequest_8',['motionRequest',['../structSensorEvent.html#a77ec6c867a1389265ba3d44cd712e2f9',1,'SensorEvent']]],
-  ['mr_9',['mr',['../structRvcSensorEvent.html#a5b6109b5b9e0fec53b4c5bd2679fcd7c',1,'RvcSensorEvent::mr'],['../structRvcSensorValue.html#a8ec81429253ce81182811338ad6c9b06',1,'RvcSensorValue::mr']]]
+  ['of_20contents_0',['📚 Table of Contents',['../index.html#autotoc_md2',1,'']]],
+  ['open_1',['open',['../structHcBin__s.html#a843c8a137ae9c05d6bce4ae460bb7a1b',1,'HcBin_s']]],
+  ['open_2',['Open',['../classbno08x_1_1CommInterface.html#ac93e80de5c3505600aa5be3a76371d34',1,'bno08x::CommInterface::Open()'],['../classEsp32Bno08xI2cBus.html#abdba2e990831da2398804b106ab75454',1,'Esp32Bno08xI2cBus::Open()'],['../classEsp32UartRvcBus.html#aad4bcb34d4f4c1304aac8abe6ecd1789',1,'Esp32UartRvcBus::Open()']]],
+  ['operating_5fmax_3',['OPERATING_MAX',['../structBNO08x__TestConfig_1_1Temperature.html#a5c3475fd2014007903270a04b6847709',1,'BNO08x_TestConfig::Temperature']]],
+  ['operating_5fmin_4',['OPERATING_MIN',['../structBNO08x__TestConfig_1_1Temperature.html#ab65cee58a4daf1be1497b8fa07421dae',1,'BNO08x_TestConfig::Temperature']]],
+  ['operator_3d_5',['operator=',['../classbno08x_1_1CommInterface.html#a2647f91b7243a22d34fc83c2678abb1e',1,'bno08x::CommInterface::operator=(const CommInterface &amp;)=delete'],['../classbno08x_1_1CommInterface.html#a4047ec04e24673879f3245cc7c30612b',1,'bno08x::CommInterface::operator=(CommInterface &amp;&amp;) noexcept=default']]],
+  ['output_5fsection_5findicator_6',['output_section_indicator',['../TestFramework_8h.html#a0b263a245b65a247ab95a28992b8cc4c',1,'TestFramework.h']]],
+  ['overview_7',['📦 Overview',['../index.html#autotoc_md3',1,'']]]
 ];

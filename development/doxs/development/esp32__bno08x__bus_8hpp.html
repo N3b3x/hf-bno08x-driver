@@ -165,18 +165,18 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEsp32Bno08xBus.html">Esp32Bno08xBus</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">ESP32 implementation of <a class="el" href="classbno08x_1_1CommInterface.html" title="CRTP base class for BNO08x communication interfaces.">bno08x::CommInterface</a> using ESP-IDF I2C master driver.  <a href="classEsp32Bno08xBus.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEsp32Bno08xI2cBus.html">Esp32Bno08xI2cBus</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">ESP32 implementation of <a class="el" href="classbno08x_1_1CommInterface.html" title="CRTP base class for BNO08x communication interfaces.">bno08x::CommInterface</a> using ESP-IDF I2C master driver.  <a href="classEsp32Bno08xI2cBus.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structEsp32Bno08xBus_1_1I2CConfig.html">Esp32Bno08xBus::I2CConfig</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C bus and device configuration structure.  <a href="structEsp32Bno08xBus_1_1I2CConfig.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structEsp32Bno08xI2cBus_1_1I2CConfig.html">Esp32Bno08xI2cBus::I2CConfig</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C bus and device configuration structure.  <a href="structEsp32Bno08xI2cBus_1_1I2CConfig.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ac57c34cb33e345f6be4c7f61d5ee7d33" id="r_ac57c34cb33e345f6be4c7f61d5ee7d33"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classEsp32Bno08xBus.html">Esp32Bno08xBus</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac57c34cb33e345f6be4c7f61d5ee7d33">CreateEsp32Bno08xBus</a> (const <a class="el" href="structEsp32Bno08xBus_1_1I2CConfig.html">Esp32Bno08xBus::I2CConfig</a> &amp;config=<a class="el" href="structEsp32Bno08xBus_1_1I2CConfig.html">Esp32Bno08xBus::I2CConfig</a>{})</td></tr>
-<tr class="memdesc:ac57c34cb33e345f6be4c7f61d5ee7d33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Factory function to create an ESP32 BNO08x I2C bus instance.  <br /></td></tr>
-<tr class="separator:ac57c34cb33e345f6be4c7f61d5ee7d33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb0e4ac528d0f7f251ea2e55aa4446a3" id="r_adb0e4ac528d0f7f251ea2e55aa4446a3"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classEsp32Bno08xI2cBus.html">Esp32Bno08xI2cBus</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb0e4ac528d0f7f251ea2e55aa4446a3">CreateEsp32Bno08xI2cBus</a> (const <a class="el" href="structEsp32Bno08xI2cBus_1_1I2CConfig.html">Esp32Bno08xI2cBus::I2CConfig</a> &amp;config=<a class="el" href="structEsp32Bno08xI2cBus_1_1I2CConfig.html">Esp32Bno08xI2cBus::I2CConfig</a>{})</td></tr>
+<tr class="memdesc:adb0e4ac528d0f7f251ea2e55aa4446a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Factory function to create an ESP32 BNO08x I2C bus instance.  <br /></td></tr>
+<tr class="separator:adb0e4ac528d0f7f251ea2e55aa4446a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>ESP32 I2C communication interface implementation for BNO08x driver. </p>
@@ -186,8 +186,8 @@ Functions</h2></td></tr>
 <dl class="section date"><dt>Date</dt><dd>2025 </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>HardFOC </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="ac57c34cb33e345f6be4c7f61d5ee7d33" name="ac57c34cb33e345f6be4c7f61d5ee7d33"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac57c34cb33e345f6be4c7f61d5ee7d33">&#9670;&#160;</a></span>CreateEsp32Bno08xBus()</h2>
+<a id="adb0e4ac528d0f7f251ea2e55aa4446a3" name="adb0e4ac528d0f7f251ea2e55aa4446a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb0e4ac528d0f7f251ea2e55aa4446a3">&#9670;&#160;</a></span>CreateEsp32Bno08xI2cBus()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -196,9 +196,9 @@ Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::unique_ptr&lt; <a class="el" href="classEsp32Bno08xBus.html">Esp32Bno08xBus</a> &gt; CreateEsp32Bno08xBus </td>
+          <td class="memname">std::unique_ptr&lt; <a class="el" href="classEsp32Bno08xI2cBus.html">Esp32Bno08xI2cBus</a> &gt; CreateEsp32Bno08xI2cBus </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="structEsp32Bno08xBus_1_1I2CConfig.html">Esp32Bno08xBus::I2CConfig</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>config</em><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="structEsp32Bno08xBus_1_1I2CConfig.html">Esp32Bno08xBus::I2CConfig</a>{}</span></span></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="structEsp32Bno08xI2cBus_1_1I2CConfig.html">Esp32Bno08xI2cBus::I2CConfig</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>config</em><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="structEsp32Bno08xI2cBus_1_1I2CConfig.html">Esp32Bno08xI2cBus::I2CConfig</a>{}</span></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -217,7 +217,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Unique pointer to <a class="el" href="classEsp32Bno08xBus.html" title="ESP32 implementation of bno08x::CommInterface using ESP-IDF I2C master driver.">Esp32Bno08xBus</a> instance, or nullptr on failure </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Unique pointer to <a class="el" href="classEsp32Bno08xI2cBus.html" title="ESP32 implementation of bno08x::CommInterface using ESP-IDF I2C master driver.">Esp32Bno08xI2cBus</a> instance, or nullptr on failure </dd></dl>
 
 </div>
 </div>

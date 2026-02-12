@@ -7,12 +7,5 @@ var searchData=
   ['run_5ftest_5fsection_5fif_5fenabled_4',['RUN_TEST_SECTION_IF_ENABLED',['../TestFramework_8h.html#a742c0e25111e9ee95def05464cab957b',1,'TestFramework.h']]],
   ['run_5ftest_5fsection_5fif_5fenabled_5fauto_5fprogress_5',['RUN_TEST_SECTION_IF_ENABLED_AUTO_PROGRESS',['../TestFramework_8h.html#a42013656a31f033788afe39c84e96bec',1,'TestFramework.h']]],
   ['run_5ftest_5fsection_5fif_5fenabled_5fwith_5fpattern_6',['RUN_TEST_SECTION_IF_ENABLED_WITH_PATTERN',['../TestFramework_8h.html#ab72cc2ae0fb724218e81479185ab38c6',1,'TestFramework.h']]],
-  ['run_5ftest_5fsection_5fif_5fenabled_5fwith_5fprogress_7',['RUN_TEST_SECTION_IF_ENABLED_WITH_PROGRESS',['../TestFramework_8h.html#a75c45174f9dde97eb43339fcd0ac79c8',1,'TestFramework.h']]],
-  ['rvc_5ferr_8',['RVC_ERR',['../rvc_8h.html#a52110cc23632bcfda6771eb9303d5d0b',1,'rvc.h']]],
-  ['rvc_5ferr_5fbad_5fparam_9',['RVC_ERR_BAD_PARAM',['../rvc_8h.html#af738f629f53c4f9f5dd7e2eae5c49cd2',1,'rvc.h']]],
-  ['rvc_5ferr_5fhub_10',['RVC_ERR_HUB',['../rvc_8h.html#aa38f5ca6dd7fd383ce29b764c2834d80',1,'rvc.h']]],
-  ['rvc_5ferr_5fio_11',['RVC_ERR_IO',['../rvc_8h.html#a9929d22cb1678741e6c466272b43f20a',1,'rvc.h']]],
-  ['rvc_5ferr_5fop_5fin_5fprogress_12',['RVC_ERR_OP_IN_PROGRESS',['../rvc_8h.html#a77eec1bab94211a014f2f46586ce1ac6',1,'rvc.h']]],
-  ['rvc_5ferr_5ftimeout_13',['RVC_ERR_TIMEOUT',['../rvc_8h.html#ae5f12dfc5bf8f4100c18367d97db9fc1',1,'rvc.h']]],
-  ['rvc_5fok_14',['RVC_OK',['../rvc_8h.html#ad6be817a868f925c41787869abf2e63f',1,'rvc.h']]]
+  ['run_5ftest_5fsection_5fif_5fenabled_5fwith_5fprogress_7',['RUN_TEST_SECTION_IF_ENABLED_WITH_PROGRESS',['../TestFramework_8h.html#a75c45174f9dde97eb43339fcd0ac79c8',1,'TestFramework.h']]]
 ];

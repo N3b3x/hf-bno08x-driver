@@ -54,8 +54,8 @@ static constexpr bool ENABLE_ERROR_HANDLING_TESTS = true;
 // SHARED TEST RESOURCES
 //=============================================================================
 
-static std::unique_ptr<Esp32Bno08xBus> g_transport;
-static std::unique_ptr<BNO085<Esp32Bno08xBus>> g_imu;
+static std::unique_ptr<Esp32Bno08xI2cBus> g_transport;
+static std::unique_ptr<BNO085<Esp32Bno08xI2cBus>> g_imu;
 static TestResults g_test_results; // Required by TestFramework.h
 
 //=============================================================================
@@ -67,7 +67,7 @@ static TestResults g_test_results; // Required by TestFramework.h
  * Tries both I2C addresses (0x4B first, then 0x4A) automatically
  */
 static bool create_test_transport() noexcept {
-  Esp32Bno08xBus::I2CConfig config;
+  Esp32Bno08xI2cBus::I2CConfig config;
   config.sda_pin = GPIO_NUM_4; // Same as pcal95555/pca9685
   config.scl_pin = GPIO_NUM_5;
   config.frequency = 400000;
@@ -83,7 +83,7 @@ static bool create_test_transport() noexcept {
     ESP_LOGI(TAG, "Trying BNO08x at I2C address 0x%02X (SA0=%s)...", config.device_address,
              (i == 0) ? "HIGH" : "LOW");
 
-    g_transport = CreateEsp32Bno08xBus(config);
+    g_transport = CreateEsp32Bno08xI2cBus(config);
     if (!g_transport) {
       ESP_LOGW(TAG, "Failed to create I2C transport for address 0x%02X", config.device_address);
       continue;
@@ -119,7 +119,7 @@ static bool create_test_imu() noexcept {
     return false;
   }
 
-  g_imu = std::make_unique<BNO085<Esp32Bno08xBus>>(*g_transport);
+  g_imu = std::make_unique<BNO085<Esp32Bno08xI2cBus>>(*g_transport);
 
   if (!g_imu->Begin()) {
     ESP_LOGE(TAG, "Failed to initialize BNO085 (error: %d)", g_imu->GetLastError());
