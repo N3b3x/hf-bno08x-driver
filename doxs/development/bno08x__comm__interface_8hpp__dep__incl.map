@@ -2,8 +2,8 @@
 <area shape="rect" id="Node000001" title="CRTP&#45;based communication interface for the BNO08x IMU family." alt="" coords="779,5,1013,31"/>
 <area shape="rect" id="Node000002" href="$esp32__bno08x__bus_8hpp.html" title="ESP32 I2C communication interface implementation for BNO08x driver." alt="" coords="613,79,792,119"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="856,38,750,81,748,76,854,33"/>
-<area shape="rect" id="Node000009" href="$esp32__uart__rvc__bus_8hpp.html" title="ESP32 UART CommInterface implementation for BNO08x RVC mode." alt="" coords="1177,79,1359,119"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="964,31,1179,76,1178,81,963,36"/>
+<area shape="rect" id="Node000009" href="$esp32__uart__rvc__bus_8hpp.html" title="ESP32 UART CommInterface implementation for BNO08x RVC mode." alt="" coords="1174,79,1357,119"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="963,31,1177,76,1176,81,962,36"/>
 <area shape="rect" id="Node000011" href="$bno08x_8hpp.html" title="High&#45;level C++ driver for the BNO08x 9&#45;axis IMU family." alt="" coords="835,86,957,111"/>
 <area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="899,44,899,86,893,86,893,44"/>
 <area shape="rect" id="Node000003" href="$basic__polling__example_8cpp.html" title="Basic polling mode example with orientation and linear acceleration." alt="" coords="5,174,208,214"/>
@@ -18,16 +18,16 @@
 <area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="755,122,843,164,840,169,753,127"/>
 <area shape="rect" id="Node000008" href="$full__features__example_8cpp.html" title="Comprehensive example demonstrating all BNO08x features." alt="" coords="1006,174,1205,214"/>
 <area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="799,119,994,164,1025,171,1024,176,993,169,797,124"/>
-<area shape="rect" id="Node000010" href="$rvc__mode__example_8cpp.html" title="RVC (Rotation Vector Computation) mode example." alt="" coords="1373,174,1555,214"/>
-<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="1321,122,1426,172,1423,176,1319,127"/>
+<area shape="rect" id="Node000010" href="$rvc__mode__example_8cpp.html" title="RVC (Rotation Vector Computation) mode example." alt="" coords="1369,174,1551,214"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="1318,122,1422,172,1420,176,1316,127"/>
 <area shape="poly" id="edge11_Node000011_Node000003" title=" " alt="" coords="832,117,804,121,640,139,512,144,384,150,220,169,182,177,181,171,220,164,383,145,512,139,640,133,804,116,832,111"/>
 <area shape="poly" id="edge12_Node000011_Node000004" title=" " alt="" coords="830,117,804,121,694,136,607,143,521,151,411,169,380,176,379,171,410,164,520,146,607,138,693,131,804,116,830,111"/>
 <area shape="poly" id="edge13_Node000011_Node000005" title=" " alt="" coords="832,117,607,169,579,176,578,171,606,164,830,112"/>
 <area shape="poly" id="edge14_Node000011_Node000006" title=" " alt="" coords="861,120,758,169,756,164,859,115"/>
 <area shape="poly" id="edge15_Node000011_Node000007" title=" " alt="" coords="899,125,899,166,893,166,893,125"/>
 <area shape="poly" id="edge16_Node000011_Node000008" title=" " alt="" coords="935,114,1064,172,1062,176,933,119"/>
-<area shape="poly" id="edge17_Node000011_Node000010" title=" " alt="" coords="971,106,1150,129,1362,164,1395,171,1394,177,1361,169,1149,134,970,111"/>
-<area shape="rect" id="Node000012" href="$bno08x_8cpp.html" title="Template method implementations for the BNO085 driver class." alt="" coords="1229,181,1349,207"/>
-<area shape="poly" id="edge18_Node000011_Node000012" title=" " alt="" coords="969,111,1080,134,1205,164,1250,179,1248,184,1203,169,1079,139,968,117"/>
-<area shape="poly" id="edge19_Node000012_Node000011" title=" " alt="" coords="1257,179,1227,169,1082,135,957,111,958,106,1084,129,1229,164,1258,174"/>
+<area shape="poly" id="edge17_Node000011_Node000010" title=" " alt="" coords="971,106,1148,129,1358,164,1391,171,1390,177,1357,169,1147,134,970,111"/>
+<area shape="rect" id="Node000012" href="$bno08x_8ipp.html" title="Template method implementations for the BNO085 driver class." alt="" coords="1228,181,1345,207"/>
+<area shape="poly" id="edge18_Node000011_Node000012" title=" " alt="" coords="970,111,1081,134,1205,164,1249,179,1247,184,1203,169,1080,139,969,116"/>
+<area shape="poly" id="edge19_Node000012_Node000011" title=" " alt="" coords="1256,179,1227,169,1083,134,957,111,958,106,1084,129,1229,164,1258,174"/>
 </map>

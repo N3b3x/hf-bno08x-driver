@@ -1,0 +1,5 @@
+<map id="examples/esp32/main/esp32_bno08x_test_config.hpp" name="examples/esp32/main/esp32_bno08x_test_config.hpp">
+<area shape="rect" id="Node000001" title="Hardware configuration for BNO08x driver on ESP32&#45;S3." alt="" coords="5,5,232,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="85,93,152,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="121,46,121,79,116,79,116,46"/>
+</map>
