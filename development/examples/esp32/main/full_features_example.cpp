@@ -32,8 +32,10 @@ static const char* TAG = "BNO08x_FullFeatures";
 static void event_callback(const SensorEvent& event) {
   switch (event.sensor) {
   case BNO085Sensor::RotationVector:
-    ESP_LOGI(TAG, "Yaw %.1f pitch %.1f roll %.1f", event.rotation.z, event.rotation.y,
-             event.rotation.x);
+    // Log quaternion (w,x,y,z); convert to Euler if needed for yaw/pitch/roll
+    ESP_LOGI(TAG, "Quat w=%.2f x=%.2f y=%.2f z=%.2f (accuracy=%u)",
+             event.rotation.w, event.rotation.x, event.rotation.y, event.rotation.z,
+             static_cast<unsigned>(event.rotation.accuracy));
     break;
 
   case BNO085Sensor::LinearAcceleration:

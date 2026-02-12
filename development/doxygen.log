@@ -1,5 +1,5 @@
-warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 1768, file /tmp/doxyfile.1rnxX2
-warning: Tag 'DOT_TRANSPARENT' at line 2791 of file '/tmp/doxyfile.1rnxX2' has become obsolete.
+warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 1768, file /tmp/doxyfile.Ikhz1q
+warning: Tag 'DOT_TRANSPARENT' at line 2791 of file '/tmp/doxyfile.Ikhz1q' has become obsolete.
          To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
 Doxygen version used: 1.10.0 (ebc57c6dd303a980bd19dd74b8b61c8f3f5180ca)
 Searching for include files...
@@ -62,8 +62,8 @@ Reading //home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:44: 
 /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:220: warning: member halRead belongs to two different groups. The second one found here will be ignored.
 /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:229: warning: member halWrite belongs to two different groups. The second one found here will be ignored.
 /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:235: warning: member halGetTimeUs belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:243: warning: member sensorC belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:249: warning: member asyncC belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:243: warning: member sensorCallback belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:249: warning: member asyncCallback belongs to two different groups. The second one found here will be ignored.
 /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:260: warning: member handleSensorEvent belongs to two different groups. The second one found here will be ignored.
 /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:281: warning: member handleAsyncEvent belongs to two different groups. The second one found here will be ignored.
 /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.cpp:300: warning: member configure belongs to two different groups. The second one found here will be ignored.
@@ -245,104 +245,7 @@ finalizing index lists...
 writing tag file...
 Running plantuml with JAVA...
 Running dot...
-Generating dot graphs using 5 parallel threads...
-Running dot for graph 1/38
-Running dot for graph 2/38
-Running dot for graph 3/38
-Running dot for graph 4/38
-Running dot for graph 5/38
-Running dot for graph 6/38
-Running dot for graph 7/38
-Running dot for graph 8/38
-Running dot for graph 9/38
-Running dot for graph 10/38
-Running dot for graph 11/38
-Running dot for graph 12/38
-Running dot for graph 13/38
-Running dot for graph 14/38
-Running dot for graph 15/38
-Running dot for graph 16/38
-Running dot for graph 17/38
-Running dot for graph 18/38
-Running dot for graph 19/38
-Running dot for graph 20/38
-Running dot for graph 21/38
-Running dot for graph 22/38
-Running dot for graph 23/38
-Running dot for graph 24/38
-Running dot for graph 25/38
-Running dot for graph 26/38
-Running dot for graph 27/38
-Running dot for graph 28/38
-Running dot for graph 29/38
-Running dot for graph 30/38
-Running dot for graph 31/38
-Running dot for graph 32/38
-Running dot for graph 33/38
-Running dot for graph 34/38
-Running dot for graph 35/38
-Running dot for graph 36/38
-Running dot for graph 37/38
-Running dot for graph 38/38
-Patching output file 1/59
-Patching output file 2/59
-Patching output file 3/59
-Patching output file 4/59
-Patching output file 5/59
-Patching output file 6/59
-Patching output file 7/59
-Patching output file 8/59
-Patching output file 9/59
-Patching output file 10/59
-Patching output file 11/59
-Patching output file 12/59
-Patching output file 13/59
-Patching output file 14/59
-Patching output file 15/59
-Patching output file 16/59
-Patching output file 17/59
-Patching output file 18/59
-Patching output file 19/59
-Patching output file 20/59
-Patching output file 21/59
-Patching output file 22/59
-Patching output file 23/59
-Patching output file 24/59
-Patching output file 25/59
-Patching output file 26/59
-Patching output file 27/59
-Patching output file 28/59
-Patching output file 29/59
-Patching output file 30/59
-Patching output file 31/59
-Patching output file 32/59
-Patching output file 33/59
-Patching output file 34/59
-Patching output file 35/59
-Patching output file 36/59
-Patching output file 37/59
-Patching output file 38/59
-Patching output file 39/59
-Patching output file 40/59
-Patching output file 41/59
-Patching output file 42/59
-Patching output file 43/59
-Patching output file 44/59
-Patching output file 45/59
-Patching output file 46/59
-Patching output file 47/59
-Patching output file 48/59
-Patching output file 49/59
-Patching output file 50/59
-Patching output file 51/59
-Patching output file 52/59
-Patching output file 53/59
-Patching output file 54/59
-Patching output file 55/59
-Patching output file 56/59
-Patching output file 57/59
-Patching output file 58/59
-Patching output file 59/59
+Patching output file 1/1
 type lookup cache used 483/65536 hits=868 misses=499
 symbol lookup cache used 559/65536 hits=2562 misses=559
 finished...

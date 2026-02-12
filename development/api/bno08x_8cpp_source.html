@@ -167,13 +167,13 @@ $(function(){initNavTree('bno08x_8cpp_source.html',''); initResizable(); });
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  halWrapper_.hal.write = halWrite;</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  halWrapper_.hal.getTimeUs = halGetTimeUs;</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  <span class="keywordtype">int</span> status = sh2_open(halWrapper_.asHal(), asyncC, <span class="keyword">this</span>);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  <span class="keywordtype">int</span> status = sh2_open(halWrapper_.asHal(), asyncCallback, <span class="keyword">this</span>);</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  <span class="keywordflow">if</span> (status != SH2_OK) {</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    last_error_ = status;</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  }</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  sh2_reinitialize();</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  sh2_setSensorCallback(sensorC, <span class="keyword">this</span>);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  sh2_setSensorCallback(sensorCallback, <span class="keyword">this</span>);</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  new_flag_.fill(<span class="keyword">false</span>);</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  last_interval_.fill(0);</div>
@@ -185,10 +185,10 @@ $(function(){initNavTree('bno08x_8cpp_source.html',''); initResizable(); });
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> CommType&gt;</div>
 <div class="foldopen" id="foldopen00084" data-start="{" data-end="}">
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="classBNO085.html#a0969492f8a6ebc34f9344ea163b5b022">   84</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classBNO085.html#a0969492f8a6ebc34f9344ea163b5b022">BNO085&lt;CommType&gt;::EnableSensor</a>(<a class="code hl_enumeration" href="group__SensorTypes.html#ga6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a> sensor, uint32_t intervalMs, <span class="keywordtype">float</span> sensitivity) <span class="keyword">noexcept</span> {</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="classBNO085.html#a25a62540ed18dbd9be40abe117591576">   84</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classBNO085.html#a25a62540ed18dbd9be40abe117591576">BNO085&lt;CommType&gt;::EnableSensor</a>(<a class="code hl_enumeration" href="group__SensorTypes.html#ga6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a> sensor, uint32_t interval_ms, <span class="keywordtype">float</span> sensitivity) <span class="keyword">noexcept</span> {</div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  <span class="keywordflow">if</span> (!initialized_)</div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  uint32_t interval_us = intervalMs * 1000;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  uint32_t interval_us = interval_ms * 1000;</div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  <span class="keywordflow">if</span> (!configure(sensor, interval_us, sensitivity, 0))</div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>  last_interval_[<span class="keyword">static_cast&lt;</span>uint8_t<span class="keyword">&gt;</span>(sensor)] = interval_us;</div>
@@ -339,12 +339,12 @@ $(function(){initNavTree('bno08x_8cpp_source.html',''); initResizable(); });
 <div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span><span class="comment">// ---- SH-2 event callback trampolines --------------------------------------</span></div>
 <div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
 <div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> CommType&gt;</div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span><span class="keywordtype">void</span> <a class="code hl_class" href="classBNO085.html">BNO085&lt;CommType&gt;::sensorC</a>(<span class="keywordtype">void</span>* cookie, sh2_SensorEvent_t* event) {</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span><span class="keywordtype">void</span> <a class="code hl_class" href="classBNO085.html">BNO085&lt;CommType&gt;::sensorCallback</a>(<span class="keywordtype">void</span>* cookie, sh2_SensorEvent_t* event) {</div>
 <div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>  <span class="keyword">static_cast&lt;</span><a class="code hl_class" href="classBNO085.html">BNO085&lt;CommType&gt;</a>*<span class="keyword">&gt;</span>(cookie)-&gt;handleSensorEvent(event);</div>
 <div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>}</div>
 <div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span> </div>
 <div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> CommType&gt;</div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span><span class="keywordtype">void</span> <a class="code hl_class" href="classBNO085.html">BNO085&lt;CommType&gt;::asyncC</a>(<span class="keywordtype">void</span>* cookie, sh2_AsyncEvent_t* event) {</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span><span class="keywordtype">void</span> <a class="code hl_class" href="classBNO085.html">BNO085&lt;CommType&gt;::asyncCallback</a>(<span class="keywordtype">void</span>* cookie, sh2_AsyncEvent_t* event) {</div>
 <div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>  <span class="keyword">static_cast&lt;</span><a class="code hl_class" href="classBNO085.html">BNO085&lt;CommType&gt;</a>*<span class="keyword">&gt;</span>(cookie)-&gt;handleAsyncEvent(event);</div>
 <div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>}</div>
 <div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span> </div>
@@ -374,11 +374,11 @@ $(function(){initNavTree('bno08x_8cpp_source.html',''); initResizable(); });
 <div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>}</div>
 <div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span> </div>
 <div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> CommType&gt;</div>
-<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span><span class="keywordtype">bool</span> <a class="code hl_class" href="classBNO085.html">BNO085&lt;CommType&gt;::configure</a>(<a class="code hl_enumeration" href="group__SensorTypes.html#ga6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a> sensor, uint32_t intervalUs, <span class="keywordtype">float</span> sensitivity,</div>
-<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>                       uint32_t batchUs) <span class="keyword">noexcept</span> {</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span><span class="keywordtype">bool</span> <a class="code hl_class" href="classBNO085.html">BNO085&lt;CommType&gt;::configure</a>(<a class="code hl_enumeration" href="group__SensorTypes.html#ga6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a> sensor, uint32_t interval_us, <span class="keywordtype">float</span> sensitivity,</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>                       uint32_t batch_us) <span class="keyword">noexcept</span> {</div>
 <div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>  sh2_SensorConfig_t cfg{};</div>
-<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>  cfg.reportInterval_us = intervalUs;</div>
-<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>  cfg.batchInterval_us = batchUs;</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>  cfg.reportInterval_us = interval_us;</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>  cfg.batchInterval_us = batch_us;</div>
 <div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>  cfg.sensorSpecific = 0;</div>
 <div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>  cfg.changeSensitivity = <span class="keyword">static_cast&lt;</span>uint16_t<span class="keyword">&gt;</span>(sensitivity);</div>
 <div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>  cfg.changeSensitivityEnabled = sensitivity &gt; 0;</div>
@@ -545,20 +545,20 @@ $(function(){initNavTree('bno08x_8cpp_source.html',''); initResizable(); });
 <div class="line"><a id="l00538" name="l00538"></a><span class="lineno">  538</span>}</div>
 <div class="line"><a id="l00539" name="l00539"></a><span class="lineno">  539</span> </div>
 <div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> CommType&gt;</div>
-<div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span><span class="keywordtype">int</span> <a class="code hl_class" href="classBNO085.html">BNO085&lt;CommType&gt;::dfuSend</a>(uint8_t* dfuBuff, uint8_t* pData, uint32_t len) <span class="keyword">noexcept</span> {</div>
+<div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span><span class="keywordtype">int</span> <a class="code hl_class" href="classBNO085.html">BNO085&lt;CommType&gt;::dfuSend</a>(uint8_t* dfu_buff, uint8_t* p_data, uint32_t len) <span class="keyword">noexcept</span> {</div>
 <div class="line"><a id="l00550" name="l00550"></a><span class="lineno">  550</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> retries = 0;</div>
 <div class="line"><a id="l00551" name="l00551"></a><span class="lineno">  551</span>  <span class="keywordtype">int</span> status = SH2_OK;</div>
 <div class="line"><a id="l00552" name="l00552"></a><span class="lineno">  552</span>  uint8_t ack = 0;</div>
-<div class="line"><a id="l00553" name="l00553"></a><span class="lineno">  553</span>  <span class="keywordtype">bool</span> gotAck = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00553" name="l00553"></a><span class="lineno">  553</span>  <span class="keywordtype">bool</span> got_ack = <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00554" name="l00554"></a><span class="lineno">  554</span>  uint32_t t;</div>
 <div class="line"><a id="l00555" name="l00555"></a><span class="lineno">  555</span>  sh2_Hal_t* hal = halWrapper_.asHal();</div>
 <div class="line"><a id="l00556" name="l00556"></a><span class="lineno">  556</span> </div>
-<div class="line"><a id="l00557" name="l00557"></a><span class="lineno">  557</span>  <span class="keywordflow">while</span> (!gotAck &amp;&amp; (retries &lt; DFU_MAX_ATTEMPTS)) {</div>
+<div class="line"><a id="l00557" name="l00557"></a><span class="lineno">  557</span>  <span class="keywordflow">while</span> (!got_ack &amp;&amp; (retries &lt; DFU_MAX_ATTEMPTS)) {</div>
 <div class="line"><a id="l00558" name="l00558"></a><span class="lineno">  558</span>    uint32_t now = hal-&gt;getTimeUs(hal);</div>
 <div class="line"><a id="l00559" name="l00559"></a><span class="lineno">  559</span>    uint32_t start = now;</div>
 <div class="line"><a id="l00560" name="l00560"></a><span class="lineno">  560</span>    status = 0;</div>
 <div class="line"><a id="l00561" name="l00561"></a><span class="lineno">  561</span>    <span class="keywordflow">while</span> ((status == 0) &amp;&amp; ((now - start) &lt; DFU_SEND_TIMEOUT_US)) {</div>
-<div class="line"><a id="l00562" name="l00562"></a><span class="lineno">  562</span>      status = hal-&gt;write(hal, pData, len);</div>
+<div class="line"><a id="l00562" name="l00562"></a><span class="lineno">  562</span>      status = hal-&gt;write(hal, p_data, len);</div>
 <div class="line"><a id="l00563" name="l00563"></a><span class="lineno">  563</span>      now = hal-&gt;getTimeUs(hal);</div>
 <div class="line"><a id="l00564" name="l00564"></a><span class="lineno">  564</span>    }</div>
 <div class="line"><a id="l00565" name="l00565"></a><span class="lineno">  565</span>    <span class="keywordflow">if</span> (status == 0) status = SH2_ERR_TIMEOUT;</div>
@@ -571,33 +571,33 @@ $(function(){initNavTree('bno08x_8cpp_source.html',''); initResizable(); });
 <div class="line"><a id="l00572" name="l00572"></a><span class="lineno">  572</span>      <span class="keywordflow">if</span> (status == 0) status = SH2_ERR_TIMEOUT;</div>
 <div class="line"><a id="l00573" name="l00573"></a><span class="lineno">  573</span>    }</div>
 <div class="line"><a id="l00574" name="l00574"></a><span class="lineno">  574</span>    <span class="keywordflow">if</span> (status &gt; 0) {</div>
-<div class="line"><a id="l00575" name="l00575"></a><span class="lineno">  575</span>      <span class="keywordflow">if</span> (ack == DFU_ACK) { gotAck = <span class="keyword">true</span>; status = SH2_OK; }</div>
-<div class="line"><a id="l00576" name="l00576"></a><span class="lineno">  576</span>      <span class="keywordflow">else</span> { gotAck = <span class="keyword">false</span>; status = SH2_ERR_HUB; }</div>
+<div class="line"><a id="l00575" name="l00575"></a><span class="lineno">  575</span>      <span class="keywordflow">if</span> (ack == DFU_ACK) { got_ack = <span class="keyword">true</span>; status = SH2_OK; }</div>
+<div class="line"><a id="l00576" name="l00576"></a><span class="lineno">  576</span>      <span class="keywordflow">else</span> { got_ack = <span class="keyword">false</span>; status = SH2_ERR_HUB; }</div>
 <div class="line"><a id="l00577" name="l00577"></a><span class="lineno">  577</span>    }</div>
-<div class="line"><a id="l00578" name="l00578"></a><span class="lineno">  578</span>    <span class="keywordflow">if</span> (!gotAck) retries++;</div>
+<div class="line"><a id="l00578" name="l00578"></a><span class="lineno">  578</span>    <span class="keywordflow">if</span> (!got_ack) retries++;</div>
 <div class="line"><a id="l00579" name="l00579"></a><span class="lineno">  579</span>  }</div>
 <div class="line"><a id="l00580" name="l00580"></a><span class="lineno">  580</span>  <span class="keywordflow">return</span> (status &gt;= 0) ? SH2_OK : status;</div>
 <div class="line"><a id="l00581" name="l00581"></a><span class="lineno">  581</span>}</div>
 <div class="line"><a id="l00582" name="l00582"></a><span class="lineno">  582</span> </div>
 <div class="line"><a id="l00584" name="l00584"></a><span class="lineno">  584</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> CommType&gt;</div>
-<div class="line"><a id="l00585" name="l00585"></a><span class="lineno">  585</span><span class="keywordtype">int</span> <a class="code hl_class" href="classBNO085.html">BNO085&lt;CommType&gt;::dfuSendAppSize</a>(uint8_t* dfuBuff, uint32_t appSize) <span class="keyword">noexcept</span> {</div>
-<div class="line"><a id="l00586" name="l00586"></a><span class="lineno">  586</span>  dfuWrite32be(dfuBuff, appSize);</div>
-<div class="line"><a id="l00587" name="l00587"></a><span class="lineno">  587</span>  dfuAppendCrc(dfuBuff, 4);</div>
-<div class="line"><a id="l00588" name="l00588"></a><span class="lineno">  588</span>  <span class="keywordflow">return</span> dfuSend(dfuBuff, dfuBuff, 6);</div>
+<div class="line"><a id="l00585" name="l00585"></a><span class="lineno">  585</span><span class="keywordtype">int</span> <a class="code hl_class" href="classBNO085.html">BNO085&lt;CommType&gt;::dfuSendAppSize</a>(uint8_t* dfu_buff, uint32_t app_size) <span class="keyword">noexcept</span> {</div>
+<div class="line"><a id="l00586" name="l00586"></a><span class="lineno">  586</span>  dfuWrite32be(dfu_buff, app_size);</div>
+<div class="line"><a id="l00587" name="l00587"></a><span class="lineno">  587</span>  dfuAppendCrc(dfu_buff, 4);</div>
+<div class="line"><a id="l00588" name="l00588"></a><span class="lineno">  588</span>  <span class="keywordflow">return</span> dfuSend(dfu_buff, dfu_buff, 6);</div>
 <div class="line"><a id="l00589" name="l00589"></a><span class="lineno">  589</span>}</div>
 <div class="line"><a id="l00590" name="l00590"></a><span class="lineno">  590</span> </div>
 <div class="line"><a id="l00592" name="l00592"></a><span class="lineno">  592</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> CommType&gt;</div>
-<div class="line"><a id="l00593" name="l00593"></a><span class="lineno">  593</span><span class="keywordtype">int</span> <a class="code hl_class" href="classBNO085.html">BNO085&lt;CommType&gt;::dfuSendPktSize</a>(uint8_t* dfuBuff, uint8_t packetLen) <span class="keyword">noexcept</span> {</div>
-<div class="line"><a id="l00594" name="l00594"></a><span class="lineno">  594</span>  dfuBuff[0] = packetLen;</div>
-<div class="line"><a id="l00595" name="l00595"></a><span class="lineno">  595</span>  dfuAppendCrc(dfuBuff, 1);</div>
-<div class="line"><a id="l00596" name="l00596"></a><span class="lineno">  596</span>  <span class="keywordflow">return</span> dfuSend(dfuBuff, dfuBuff, 3);</div>
+<div class="line"><a id="l00593" name="l00593"></a><span class="lineno">  593</span><span class="keywordtype">int</span> <a class="code hl_class" href="classBNO085.html">BNO085&lt;CommType&gt;::dfuSendPktSize</a>(uint8_t* dfu_buff, uint8_t packet_len) <span class="keyword">noexcept</span> {</div>
+<div class="line"><a id="l00594" name="l00594"></a><span class="lineno">  594</span>  dfu_buff[0] = packet_len;</div>
+<div class="line"><a id="l00595" name="l00595"></a><span class="lineno">  595</span>  dfuAppendCrc(dfu_buff, 1);</div>
+<div class="line"><a id="l00596" name="l00596"></a><span class="lineno">  596</span>  <span class="keywordflow">return</span> dfuSend(dfu_buff, dfu_buff, 3);</div>
 <div class="line"><a id="l00597" name="l00597"></a><span class="lineno">  597</span>}</div>
 <div class="line"><a id="l00598" name="l00598"></a><span class="lineno">  598</span> </div>
 <div class="line"><a id="l00600" name="l00600"></a><span class="lineno">  600</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> CommType&gt;</div>
-<div class="line"><a id="l00601" name="l00601"></a><span class="lineno">  601</span><span class="keywordtype">int</span> <a class="code hl_class" href="classBNO085.html">BNO085&lt;CommType&gt;::dfuSendPkt</a>(uint8_t* dfuBuff, uint8_t* pData, uint32_t len) <span class="keyword">noexcept</span> {</div>
-<div class="line"><a id="l00602" name="l00602"></a><span class="lineno">  602</span>  std::memcpy(dfuBuff, pData, len);</div>
-<div class="line"><a id="l00603" name="l00603"></a><span class="lineno">  603</span>  dfuAppendCrc(dfuBuff, len);</div>
-<div class="line"><a id="l00604" name="l00604"></a><span class="lineno">  604</span>  <span class="keywordflow">return</span> dfuSend(dfuBuff, dfuBuff, len + 2);</div>
+<div class="line"><a id="l00601" name="l00601"></a><span class="lineno">  601</span><span class="keywordtype">int</span> <a class="code hl_class" href="classBNO085.html">BNO085&lt;CommType&gt;::dfuSendPkt</a>(uint8_t* dfu_buff, uint8_t* p_data, uint32_t len) <span class="keyword">noexcept</span> {</div>
+<div class="line"><a id="l00602" name="l00602"></a><span class="lineno">  602</span>  std::memcpy(dfu_buff, p_data, len);</div>
+<div class="line"><a id="l00603" name="l00603"></a><span class="lineno">  603</span>  dfuAppendCrc(dfu_buff, len);</div>
+<div class="line"><a id="l00604" name="l00604"></a><span class="lineno">  604</span>  <span class="keywordflow">return</span> dfuSend(dfu_buff, dfu_buff, len + 2);</div>
 <div class="line"><a id="l00605" name="l00605"></a><span class="lineno">  605</span>}</div>
 <div class="line"><a id="l00606" name="l00606"></a><span class="lineno">  606</span> </div>
 <div class="line"><a id="l00619" name="l00619"></a><span class="lineno">  619</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> CommType&gt;</div>
@@ -607,11 +607,11 @@ $(function(){initNavTree('bno08x_8cpp_source.html',''); initResizable(); });
 <div class="line"><a id="l00622" name="l00622"></a><span class="lineno">  622</span>    <span class="keywordflow">return</span> SH2_ERR;</div>
 <div class="line"><a id="l00623" name="l00623"></a><span class="lineno">  623</span> </div>
 <div class="line"><a id="l00624" name="l00624"></a><span class="lineno">  624</span>  <span class="keywordtype">int</span> rc, status = SH2_OK;</div>
-<div class="line"><a id="l00625" name="l00625"></a><span class="lineno">  625</span>  uint32_t appLen = 0;</div>
-<div class="line"><a id="l00626" name="l00626"></a><span class="lineno">  626</span>  uint8_t packetLen = 0;</div>
+<div class="line"><a id="l00625" name="l00625"></a><span class="lineno">  625</span>  uint32_t app_len = 0;</div>
+<div class="line"><a id="l00626" name="l00626"></a><span class="lineno">  626</span>  uint8_t packet_len = 0;</div>
 <div class="line"><a id="l00627" name="l00627"></a><span class="lineno">  627</span>  uint32_t offset = 0;</div>
 <div class="line"><a id="l00628" name="l00628"></a><span class="lineno">  628</span>  <span class="keyword">const</span> <span class="keywordtype">char</span>* s = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00629" name="l00629"></a><span class="lineno">  629</span>  uint8_t dfuBuff[DFU_MAX_PACKET_LEN + 2];</div>
+<div class="line"><a id="l00629" name="l00629"></a><span class="lineno">  629</span>  uint8_t dfu_buff[DFU_MAX_PACKET_LEN + 2];</div>
 <div class="line"><a id="l00630" name="l00630"></a><span class="lineno">  630</span>  sh2_Hal_t* hal = halWrapper_.asHal();</div>
 <div class="line"><a id="l00631" name="l00631"></a><span class="lineno">  631</span> </div>
 <div class="line"><a id="l00632" name="l00632"></a><span class="lineno">  632</span>  rc = fw.open();</div>
@@ -627,29 +627,29 @@ $(function(){initNavTree('bno08x_8cpp_source.html',''); initResizable(); });
 <div class="line"><a id="l00642" name="l00642"></a><span class="lineno">  642</span>    status = SH2_ERR_BAD_PARAM; <span class="keywordflow">goto</span> dfu_close;</div>
 <div class="line"><a id="l00643" name="l00643"></a><span class="lineno">  643</span>  }</div>
 <div class="line"><a id="l00644" name="l00644"></a><span class="lineno">  644</span> </div>
-<div class="line"><a id="l00645" name="l00645"></a><span class="lineno">  645</span>  appLen = fw.getAppLen();</div>
-<div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span>  <span class="keywordflow">if</span> (appLen &lt; 1024) { status = SH2_ERR_BAD_PARAM; <span class="keywordflow">goto</span> dfu_close; }</div>
+<div class="line"><a id="l00645" name="l00645"></a><span class="lineno">  645</span>  app_len = fw.getAppLen();</div>
+<div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span>  <span class="keywordflow">if</span> (app_len &lt; 1024) { status = SH2_ERR_BAD_PARAM; <span class="keywordflow">goto</span> dfu_close; }</div>
 <div class="line"><a id="l00647" name="l00647"></a><span class="lineno">  647</span> </div>
-<div class="line"><a id="l00648" name="l00648"></a><span class="lineno">  648</span>  packetLen = fw.getPacketLen();</div>
-<div class="line"><a id="l00649" name="l00649"></a><span class="lineno">  649</span>  <span class="keywordflow">if</span> (packetLen == 0 || packetLen &gt; DFU_MAX_PACKET_LEN) packetLen = DFU_MAX_PACKET_LEN;</div>
+<div class="line"><a id="l00648" name="l00648"></a><span class="lineno">  648</span>  packet_len = fw.getPacketLen();</div>
+<div class="line"><a id="l00649" name="l00649"></a><span class="lineno">  649</span>  <span class="keywordflow">if</span> (packet_len == 0 || packet_len &gt; DFU_MAX_PACKET_LEN) packet_len = DFU_MAX_PACKET_LEN;</div>
 <div class="line"><a id="l00650" name="l00650"></a><span class="lineno">  650</span> </div>
 <div class="line"><a id="l00651" name="l00651"></a><span class="lineno">  651</span>  status = hal-&gt;open(hal);</div>
 <div class="line"><a id="l00652" name="l00652"></a><span class="lineno">  652</span>  <span class="keywordflow">if</span> (status != SH2_OK) <span class="keywordflow">goto</span> dfu_close;</div>
 <div class="line"><a id="l00653" name="l00653"></a><span class="lineno">  653</span> </div>
-<div class="line"><a id="l00654" name="l00654"></a><span class="lineno">  654</span>  status = dfuSendAppSize(dfuBuff, appLen);</div>
+<div class="line"><a id="l00654" name="l00654"></a><span class="lineno">  654</span>  status = dfuSendAppSize(dfu_buff, app_len);</div>
 <div class="line"><a id="l00655" name="l00655"></a><span class="lineno">  655</span>  <span class="keywordflow">if</span> (status != SH2_OK) <span class="keywordflow">goto</span> dfu_close;</div>
-<div class="line"><a id="l00656" name="l00656"></a><span class="lineno">  656</span>  status = dfuSendPktSize(dfuBuff, packetLen);</div>
+<div class="line"><a id="l00656" name="l00656"></a><span class="lineno">  656</span>  status = dfuSendPktSize(dfu_buff, packet_len);</div>
 <div class="line"><a id="l00657" name="l00657"></a><span class="lineno">  657</span>  <span class="keywordflow">if</span> (status != SH2_OK) <span class="keywordflow">goto</span> dfu_close;</div>
 <div class="line"><a id="l00658" name="l00658"></a><span class="lineno">  658</span> </div>
 <div class="line"><a id="l00659" name="l00659"></a><span class="lineno">  659</span>  offset = 0;</div>
-<div class="line"><a id="l00660" name="l00660"></a><span class="lineno">  660</span>  <span class="keywordflow">while</span> (offset &lt; appLen) {</div>
-<div class="line"><a id="l00661" name="l00661"></a><span class="lineno">  661</span>    uint32_t toSend = appLen - offset;</div>
-<div class="line"><a id="l00662" name="l00662"></a><span class="lineno">  662</span>    <span class="keywordflow">if</span> (toSend &gt; packetLen) toSend = packetLen;</div>
-<div class="line"><a id="l00663" name="l00663"></a><span class="lineno">  663</span>    status = fw.getAppData(dfuBuff, offset, toSend);</div>
+<div class="line"><a id="l00660" name="l00660"></a><span class="lineno">  660</span>  <span class="keywordflow">while</span> (offset &lt; app_len) {</div>
+<div class="line"><a id="l00661" name="l00661"></a><span class="lineno">  661</span>    uint32_t to_send = app_len - offset;</div>
+<div class="line"><a id="l00662" name="l00662"></a><span class="lineno">  662</span>    <span class="keywordflow">if</span> (to_send &gt; packet_len) to_send = packet_len;</div>
+<div class="line"><a id="l00663" name="l00663"></a><span class="lineno">  663</span>    status = fw.getAppData(dfu_buff, offset, to_send);</div>
 <div class="line"><a id="l00664" name="l00664"></a><span class="lineno">  664</span>    <span class="keywordflow">if</span> (status != SH2_OK) <span class="keywordflow">goto</span> dfu_close;</div>
-<div class="line"><a id="l00665" name="l00665"></a><span class="lineno">  665</span>    status = dfuSendPkt(dfuBuff, dfuBuff, toSend);</div>
+<div class="line"><a id="l00665" name="l00665"></a><span class="lineno">  665</span>    status = dfuSendPkt(dfu_buff, dfu_buff, to_send);</div>
 <div class="line"><a id="l00666" name="l00666"></a><span class="lineno">  666</span>    <span class="keywordflow">if</span> (status != SH2_OK) <span class="keywordflow">goto</span> dfu_close;</div>
-<div class="line"><a id="l00667" name="l00667"></a><span class="lineno">  667</span>    offset += toSend;</div>
+<div class="line"><a id="l00667" name="l00667"></a><span class="lineno">  667</span>    offset += to_send;</div>
 <div class="line"><a id="l00668" name="l00668"></a><span class="lineno">  668</span>  }</div>
 <div class="line"><a id="l00669" name="l00669"></a><span class="lineno">  669</span> </div>
 <div class="line"><a id="l00670" name="l00670"></a><span class="lineno">  670</span>dfu_close:</div>
@@ -674,8 +674,8 @@ $(function(){initNavTree('bno08x_8cpp_source.html',''); initResizable(); });
 <div class="ttc" id="aclassBNO085_html_a02883eb26087462e58c95707f29a63b8"><div class="ttname"><a href="classBNO085.html#a02883eb26087462e58c95707f29a63b8">BNO085::DisableSensor</a></div><div class="ttdeci">bool DisableSensor(BNO085Sensor sensor) noexcept</div><div class="ttdoc">Disable reporting for a sensor.</div><div class="ttdef"><b>Definition</b> bno08x.cpp:97</div></div>
 <div class="ttc" id="aclassBNO085_html_a05397a0a78389c87c3dc02b984cf1bea"><div class="ttname"><a href="classBNO085.html#a05397a0a78389c87c3dc02b984cf1bea">BNO085::BeginRvc</a></div><div class="ttdeci">bool BeginRvc() noexcept</div><div class="ttdoc">Initialise RVC mode.</div><div class="ttdef"><b>Definition</b> bno08x.cpp:386</div></div>
 <div class="ttc" id="aclassBNO085_html_a064ca51468c9b5e5749d7bf98d82199b"><div class="ttname"><a href="classBNO085.html#a064ca51468c9b5e5749d7bf98d82199b">BNO085::HardwareReset</a></div><div class="ttdeci">void HardwareReset(uint32_t lowMs=2) noexcept</div><div class="ttdoc">Perform a hardware reset via the RSTN pin.</div><div class="ttdef"><b>Definition</b> bno08x.cpp:328</div></div>
-<div class="ttc" id="aclassBNO085_html_a0969492f8a6ebc34f9344ea163b5b022"><div class="ttname"><a href="classBNO085.html#a0969492f8a6ebc34f9344ea163b5b022">BNO085::EnableSensor</a></div><div class="ttdeci">bool EnableSensor(BNO085Sensor sensor, uint32_t intervalMs, float sensitivity=0.0f) noexcept</div><div class="ttdoc">Enable periodic reporting for a sensor.</div><div class="ttdef"><b>Definition</b> bno08x.cpp:84</div></div>
 <div class="ttc" id="aclassBNO085_html_a0bb31740132d2f60e8baa8f3801c3e28"><div class="ttname"><a href="classBNO085.html#a0bb31740132d2f60e8baa8f3801c3e28">BNO085::HasNewData</a></div><div class="ttdeci">bool HasNewData(BNO085Sensor sensor) const</div><div class="ttdoc">Check if new data is available for a sensor.</div><div class="ttdef"><b>Definition</b> bno08x.cpp:117</div></div>
+<div class="ttc" id="aclassBNO085_html_a25a62540ed18dbd9be40abe117591576"><div class="ttname"><a href="classBNO085.html#a25a62540ed18dbd9be40abe117591576">BNO085::EnableSensor</a></div><div class="ttdeci">bool EnableSensor(BNO085Sensor sensor, uint32_t interval_ms, float sensitivity=0.0f) noexcept</div><div class="ttdoc">Enable periodic reporting for a sensor.</div><div class="ttdef"><b>Definition</b> bno08x.cpp:84</div></div>
 <div class="ttc" id="aclassBNO085_html_a362f9fa742b11893ecdb3a7b896102ef"><div class="ttname"><a href="classBNO085.html#a362f9fa742b11893ecdb3a7b896102ef">BNO085::ServiceRvc</a></div><div class="ttdeci">void ServiceRvc() noexcept</div><div class="ttdoc">Poll for RVC frames and dispatch callbacks.</div><div class="ttdef"><b>Definition</b> bno08x.cpp:404</div></div>
 <div class="ttc" id="aclassBNO085_html_a3953f176fe778583f95f41637ddf278e"><div class="ttname"><a href="classBNO085.html#a3953f176fe778583f95f41637ddf278e">BNO085::SetCallback</a></div><div class="ttdeci">void SetCallback(SensorCallback cb) noexcept</div><div class="ttdoc">Register a callback for SH-2 sensor events.</div><div class="ttdef"><b>Definition</b> bno08x.cpp:105</div></div>
 <div class="ttc" id="aclassBNO085_html_a406609e88789d9e20a7333123f3f6b62"><div class="ttname"><a href="classBNO085.html#a406609e88789d9e20a7333123f3f6b62">BNO085::CloseRvc</a></div><div class="ttdeci">void CloseRvc() noexcept</div><div class="ttdoc">Stop RVC processing and close the transport.</div><div class="ttdef"><b>Definition</b> bno08x.cpp:415</div></div>

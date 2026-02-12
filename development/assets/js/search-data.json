@@ -134,7 +134,7 @@
   },"19": {
     "doc": "📖 API Reference",
     "title": "Sensor Control",
-    "content": "| Method | Signature | Location | . | EnableSensor() | bool EnableSensor(BNO085Sensor sensor, uint32_t intervalMs, float sensitivity = 0.0f) | inc/bno08x.hpp#L161 | . | DisableSensor() | bool DisableSensor(BNO085Sensor sensor) | inc/bno08x.hpp#L163 | . ",
+    "content": "| Method | Signature | Location | . | EnableSensor() | bool EnableSensor(BNO085Sensor sensor, uint32_t interval_ms, float sensitivity = 0.0f) | inc/bno08x.hpp | . | DisableSensor() | bool DisableSensor(BNO085Sensor sensor) | inc/bno08x.hpp#L163 | . ",
     "url": "/hf-bno08x-driver/development/docs/api_reference/#sensor-control",
     
     "relUrl": "/docs/api_reference/#sensor-control"

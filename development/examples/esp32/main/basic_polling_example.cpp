@@ -123,8 +123,15 @@ extern "C" void app_main(void) {
   ESP_LOGI(TAG, "Sensors enabled. Starting polling loop...");
 
   // Main polling loop
+  uint32_t loop_count = 0;
   while (true) {
-    imu->Update(); // Poll for new sensor data (handles clock stretching automatically)
+    imu->Update();  // Poll for new sensor data (handles clock stretching automatically)
+    loop_count++;
+
+    // Periodically check for driver errors (e.g. I2C NAK, timeout)
+    if ((loop_count % 100 == 0) && imu->GetLastError() != 0) {
+      ESP_LOGW(TAG, "Driver error: %d (last error)", imu->GetLastError());
+    }
 
     // Check for rotation vector data
     if (imu->HasNewData(BNO085Sensor::RotationVector)) {

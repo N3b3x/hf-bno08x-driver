@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['enablesensor_0',['EnableSensor',['../classBNO085.html#a0969492f8a6ebc34f9344ea163b5b022',1,'BNO085']]],
+  ['enablesensor_0',['EnableSensor',['../classBNO085.html#a25a62540ed18dbd9be40abe117591576',1,'BNO085']]],
   ['ensure_5fgpio14_5finitialized_1',['ensure_gpio14_initialized',['../TestFramework_8h.html#a57a48f91a141d98e45f82937581e1a97',1,'TestFramework.h']]],
   ['esp32_5fbno08x_5fbus_2ehpp_2',['esp32_bno08x_bus.hpp',['../esp32__bno08x__bus_8hpp.html',1,'']]],
   ['esp32_5fuart_5frvc_5fbus_2ehpp_3',['esp32_uart_rvc_bus.hpp',['../esp32__uart__rvc__bus_8hpp.html',1,'']]],

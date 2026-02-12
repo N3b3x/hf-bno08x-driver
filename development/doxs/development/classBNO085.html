@@ -154,9 +154,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9fc79a6ee018d3214897efaf254ebab3" id="r_a9fc79a6ee018d3214897efaf254ebab3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9fc79a6ee018d3214897efaf254ebab3">Begin</a> () noexcept</td></tr>
 <tr class="memdesc:a9fc79a6ee018d3214897efaf254ebab3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise the sensor in SH-2 mode.  <br /></td></tr>
 <tr class="separator:a9fc79a6ee018d3214897efaf254ebab3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0969492f8a6ebc34f9344ea163b5b022" id="r_a0969492f8a6ebc34f9344ea163b5b022"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0969492f8a6ebc34f9344ea163b5b022">EnableSensor</a> (<a class="el" href="group__SensorTypes.html#ga6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a> sensor, uint32_t intervalMs, float sensitivity=0.0f) noexcept</td></tr>
-<tr class="memdesc:a0969492f8a6ebc34f9344ea163b5b022"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable periodic reporting for a sensor.  <br /></td></tr>
-<tr class="separator:a0969492f8a6ebc34f9344ea163b5b022"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25a62540ed18dbd9be40abe117591576" id="r_a25a62540ed18dbd9be40abe117591576"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a25a62540ed18dbd9be40abe117591576">EnableSensor</a> (<a class="el" href="group__SensorTypes.html#ga6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a> sensor, uint32_t interval_ms, float sensitivity=0.0f) noexcept</td></tr>
+<tr class="memdesc:a25a62540ed18dbd9be40abe117591576"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable periodic reporting for a sensor.  <br /></td></tr>
+<tr class="separator:a25a62540ed18dbd9be40abe117591576"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02883eb26087462e58c95707f29a63b8" id="r_a02883eb26087462e58c95707f29a63b8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a02883eb26087462e58c95707f29a63b8">DisableSensor</a> (<a class="el" href="group__SensorTypes.html#ga6f9f2bf1fa157ce63dacb450d5df6c62">BNO085Sensor</a> sensor) noexcept</td></tr>
 <tr class="memdesc:a02883eb26087462e58c95707f29a63b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable reporting for a sensor.  <br /></td></tr>
 <tr class="separator:a02883eb26087462e58c95707f29a63b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -217,7 +217,7 @@ class BNO085&lt; CommType &gt;</div><p>Unified driver for the BNO08x IMU &ndash;
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Interface Type   </th><th class="markdownTableHeadNone">Valid Operations    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">I2C / SPI / UART   </td><td class="markdownTableBodyNone"><a class="el" href="#a9fc79a6ee018d3214897efaf254ebab3" title="Initialise the sensor in SH-2 mode.">Begin()</a>, <a class="el" href="#a716c1a4a9a6cabbc342914247c3c886d" title="Pump the SH-2 service loop.">Update()</a>, <a class="el" href="#a0969492f8a6ebc34f9344ea163b5b022" title="Enable periodic reporting for a sensor.">EnableSensor()</a>, <a class="el" href="#a959705775b384e62764aa9f76aaa4dc4" title="Perform a Device Firmware Update (DFU).">Dfu()</a>, etc.    </td></tr>
+<td class="markdownTableBodyNone">I2C / SPI / UART   </td><td class="markdownTableBodyNone"><a class="el" href="#a9fc79a6ee018d3214897efaf254ebab3" title="Initialise the sensor in SH-2 mode.">Begin()</a>, <a class="el" href="#a716c1a4a9a6cabbc342914247c3c886d" title="Pump the SH-2 service loop.">Update()</a>, <a class="el" href="#a25a62540ed18dbd9be40abe117591576" title="Enable periodic reporting for a sensor.">EnableSensor()</a>, <a class="el" href="#a959705775b384e62764aa9f76aaa4dc4" title="Perform a Device Firmware Update (DFU).">Dfu()</a>, etc.    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">UARTRVC   </td><td class="markdownTableBodyNone"><a class="el" href="#a05397a0a78389c87c3dc02b984cf1bea" title="Initialise RVC mode.">BeginRvc()</a>, <a class="el" href="#a362f9fa742b11893ecdb3a7b896102ef" title="Poll for RVC frames and dispatch callbacks.">ServiceRvc()</a>, <a class="el" href="#a406609e88789d9e20a7333123f3f6b62" title="Stop RVC processing and close the transport.">CloseRvc()</a>   </td></tr>
 </table>
@@ -455,8 +455,8 @@ template&lt;typename CommType &gt; </div>
 
 </div>
 </div>
-<a id="a0969492f8a6ebc34f9344ea163b5b022" name="a0969492f8a6ebc34f9344ea163b5b022"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0969492f8a6ebc34f9344ea163b5b022">&#9670;&#160;</a></span>EnableSensor()</h2>
+<a id="a25a62540ed18dbd9be40abe117591576" name="a25a62540ed18dbd9be40abe117591576"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25a62540ed18dbd9be40abe117591576">&#9670;&#160;</a></span>EnableSensor()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -474,7 +474,7 @@ template&lt;typename CommType &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>intervalMs</em>, </span></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>interval_ms</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -493,7 +493,7 @@ template&lt;typename CommType &gt; </div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">sensor</td><td>Which sensor to enable. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">intervalMs</td><td>Report interval in milliseconds (e.g. 10 = 100 Hz). Use 0 for on-change sensors (step counter, tap, etc.). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">interval_ms</td><td>Report interval in milliseconds (e.g. 10 = 100 Hz). Use 0 for on-change sensors (step counter, tap, etc.). </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">sensitivity</td><td>Change sensitivity threshold for on-change sensors. Set to 0.0 to disable sensitivity filtering. </td></tr>
   </table>
   </dd>
