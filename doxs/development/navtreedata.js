@@ -35,7 +35,7 @@ var NAVTREE =
       [ "Class Index", "classes.html", null ],
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
-        [ "All", "functions.html", null ],
+        [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", null ],
         [ "Variables", "functions_vars.html", null ]
       ] ]
@@ -57,7 +57,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "HcBin_8h.html",
-"structEsp32UartRvcBus_1_1UartConfig.html#a7a77a2b1f3f3f853ab25f88850818bc6"
+"group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62aa78578c428179b490a0461e76ba5f319"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

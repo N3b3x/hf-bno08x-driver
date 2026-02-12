@@ -1,8 +1,15 @@
 var bno08x_8hpp =
 [
     [ "BNO085_HEADER_INCLUDED", "bno08x_8hpp.html#a960dacf85103d71ad3fb2dc7cde80617", null ],
+    [ "DfuProgressCallback", "group__SensorTypes.html#ga1097c7a9cb23abb755293d302eacb5f5", null ],
     [ "RvcCallback", "group__SensorTypes.html#ga42c65948fe45a5845ecaf27c7ee70975", null ],
     [ "SensorCallback", "group__SensorTypes.html#gae10cac53e8962550a2efb17043c5355e", null ],
+    [ "BNO085DriverState", "group__SensorTypes.html#ga1df635b937d37d6ce4c41c7471351391", [
+      [ "Closed", "group__SensorTypes.html#gga1df635b937d37d6ce4c41c7471351391a03f4a47830f97377a35321051685071e", null ],
+      [ "Sh2Active", "group__SensorTypes.html#gga1df635b937d37d6ce4c41c7471351391a5141319ae42db24ae529c48c33e7fe0f", null ],
+      [ "RvcActive", "group__SensorTypes.html#gga1df635b937d37d6ce4c41c7471351391a026428237b5dada8f2e5fd6995878b44", null ],
+      [ "DfuInProgress", "group__SensorTypes.html#gga1df635b937d37d6ce4c41c7471351391afac3061eedc7d86a66d2f4d1431780d5", null ]
+    ] ],
     [ "BNO085Sensor", "group__SensorTypes.html#ga6f9f2bf1fa157ce63dacb450d5df6c62", [
       [ "Accelerometer", "group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62ab043bc6d611582087d8bf1790d863d69", null ],
       [ "Gyroscope", "group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62abed99e5db57749f375e738c1c0258047", null ],
@@ -39,7 +46,11 @@ var bno08x_8hpp =
       [ "HeartRateMonitor", "group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a0978ef43fad0c80bfa0629706f37bc7b", null ],
       [ "ARVRStabilizedRV", "group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a5f78b93803f5d02a6b414b4b6e1637df", null ],
       [ "ARVRStabilizedGameRV", "group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62adda6de7569af6fe8301ee3807a69a988", null ],
-      [ "GyroIntegratedRV", "group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62ac8b04cbadc40345b299a6b531f25d05c", null ]
+      [ "GyroIntegratedRV", "group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62ac8b04cbadc40345b299a6b531f25d05c", null ],
+      [ "IZroMotionRequest", "group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a63d8d30cec7a334d030591fa3bae2d17", null ],
+      [ "RawOpticalFlow", "group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a7893e8b9d35de663b6e69cd31815706b", null ],
+      [ "DeadReckoningPose", "group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62ae35bc0fbb35ff3bfbe666a19a182b488", null ],
+      [ "WheelEncoder", "group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a920ada106cf96daa9129258ad35e92e5", null ]
     ] ],
     [ "firmware", "bno08x_8hpp.html#a169e52b3509b7e23c9a7f630e9156c11", null ]
 ];

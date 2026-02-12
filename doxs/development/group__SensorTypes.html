@@ -153,6 +153,21 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTapEvent.html">TapEvent</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tap detector event details.  <a href="structTapEvent.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRawVector3.html">RawVector3</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Raw integer 3-axis sample (ADC counts) with optional metadata.  <a href="structRawVector3.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structActivityClassifierEvent.html">ActivityClassifierEvent</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Personal activity classifier payload.  <a href="structActivityClassifierEvent.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRawOpticalFlowEvent.html">RawOpticalFlowEvent</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Raw optical flow payload from SH2_RAW_OPTICAL_FLOW.  <a href="structRawOpticalFlowEvent.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structDeadReckoningPoseEvent.html">DeadReckoningPoseEvent</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dead reckoning position/orientation/velocity payload.  <a href="structDeadReckoningPoseEvent.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structWheelEncoderEvent.html">WheelEncoderEvent</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wheel encoder payload.  <a href="structWheelEncoderEvent.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSensorEvent.html">SensorEvent</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for a single decoded SH-2 sensor report.  <a href="structSensorEvent.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -161,6 +176,15 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRvcSensorValue.html">RvcSensorValue</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decoded RVC frame data in floating-point natural units.  <a href="structRvcSensorValue.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structDfuProgress.html">DfuProgress</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Progress sample emitted during DFU transfers.  <a href="structDfuProgress.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structDfuOptions.html">DfuOptions</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Controls DFU validation and transfer behavior.  <a href="structDfuOptions.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structDfuMemoryImage.html">DfuMemoryImage</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Firmware image descriptor for class-aware memory DFU.  <a href="structDfuMemoryImage.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
@@ -171,6 +195,9 @@ Typedefs</h2></td></tr>
 <tr class="memitem:ga42c65948fe45a5845ecaf27c7ee70975" id="r_ga42c65948fe45a5845ecaf27c7ee70975"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga42c65948fe45a5845ecaf27c7ee70975">RvcCallback</a> = std::function&lt;void(const <a class="el" href="structRvcSensorValue.html">RvcSensorValue</a>&amp;)&gt;</td></tr>
 <tr class="memdesc:ga42c65948fe45a5845ecaf27c7ee70975"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback invoked when a decoded RVC frame is available.  <br /></td></tr>
 <tr class="separator:ga42c65948fe45a5845ecaf27c7ee70975"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1097c7a9cb23abb755293d302eacb5f5" id="r_ga1097c7a9cb23abb755293d302eacb5f5"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga1097c7a9cb23abb755293d302eacb5f5">DfuProgressCallback</a> = std::function&lt;void(const <a class="el" href="structDfuProgress.html">DfuProgress</a>&amp;)&gt;</td></tr>
+<tr class="memdesc:ga1097c7a9cb23abb755293d302eacb5f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback for DFU progress updates.  <br /></td></tr>
+<tr class="separator:ga1097c7a9cb23abb755293d302eacb5f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -219,14 +246,42 @@ Enumerations</h2></td></tr>
 , <a class="el" href="#gga6f9f2bf1fa157ce63dacb450d5df6c62a5f78b93803f5d02a6b414b4b6e1637df">BNO085Sensor::ARVRStabilizedRV</a> = 0x28
 , <a class="el" href="#gga6f9f2bf1fa157ce63dacb450d5df6c62adda6de7569af6fe8301ee3807a69a988">BNO085Sensor::ARVRStabilizedGameRV</a> = 0x29
 , <a class="el" href="#gga6f9f2bf1fa157ce63dacb450d5df6c62ac8b04cbadc40345b299a6b531f25d05c">BNO085Sensor::GyroIntegratedRV</a> = 0x2A
+, <br />
+&#160;&#160;<a class="el" href="#gga6f9f2bf1fa157ce63dacb450d5df6c62a63d8d30cec7a334d030591fa3bae2d17">BNO085Sensor::IZroMotionRequest</a> = 0x2B
+, <a class="el" href="#gga6f9f2bf1fa157ce63dacb450d5df6c62a7893e8b9d35de663b6e69cd31815706b">BNO085Sensor::RawOpticalFlow</a> = 0x2C
+, <a class="el" href="#gga6f9f2bf1fa157ce63dacb450d5df6c62ae35bc0fbb35ff3bfbe666a19a182b488">BNO085Sensor::DeadReckoningPose</a> = 0x2D
+, <a class="el" href="#gga6f9f2bf1fa157ce63dacb450d5df6c62a920ada106cf96daa9129258ad35e92e5">BNO085Sensor::WheelEncoder</a> = 0x2E
 <br />
  }</td></tr>
 <tr class="memdesc:ga6f9f2bf1fa157ce63dacb450d5df6c62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifiers for all SH-2 sensor reports supported by the BNO08x.  <a href="#ga6f9f2bf1fa157ce63dacb450d5df6c62">More...</a><br /></td></tr>
 <tr class="separator:ga6f9f2bf1fa157ce63dacb450d5df6c62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1df635b937d37d6ce4c41c7471351391" id="r_ga1df635b937d37d6ce4c41c7471351391"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga1df635b937d37d6ce4c41c7471351391">BNO085DriverState</a> : uint8_t { <a class="el" href="#gga1df635b937d37d6ce4c41c7471351391a03f4a47830f97377a35321051685071e">BNO085DriverState::Closed</a> = 0
+, <a class="el" href="#gga1df635b937d37d6ce4c41c7471351391a5141319ae42db24ae529c48c33e7fe0f">BNO085DriverState::Sh2Active</a>
+, <a class="el" href="#gga1df635b937d37d6ce4c41c7471351391a026428237b5dada8f2e5fd6995878b44">BNO085DriverState::RvcActive</a>
+, <a class="el" href="#gga1df635b937d37d6ce4c41c7471351391afac3061eedc7d86a66d2f4d1431780d5">BNO085DriverState::DfuInProgress</a>
+ }</td></tr>
+<tr class="memdesc:ga1df635b937d37d6ce4c41c7471351391"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current top-level operating state of the driver.  <a href="#ga1df635b937d37d6ce4c41c7471351391">More...</a><br /></td></tr>
+<tr class="separator:ga1df635b937d37d6ce4c41c7471351391"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Enumerations, value containers, and callback types. </p>
 <h2 class="groupheader">Typedef Documentation</h2>
+<a id="ga1097c7a9cb23abb755293d302eacb5f5" name="ga1097c7a9cb23abb755293d302eacb5f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1097c7a9cb23abb755293d302eacb5f5">&#9670;&#160;</a></span>DfuProgressCallback</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#ga1097c7a9cb23abb755293d302eacb5f5">DfuProgressCallback</a> = std::function&lt;void(const <a class="el" href="structDfuProgress.html">DfuProgress</a>&amp;)&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Callback for DFU progress updates. </p>
+
+</div>
+</div>
 <a id="ga42c65948fe45a5845ecaf27c7ee70975" name="ga42c65948fe45a5845ecaf27c7ee70975"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga42c65948fe45a5845ecaf27c7ee70975">&#9670;&#160;</a></span>RvcCallback</h2>
 
@@ -260,6 +315,42 @@ Enumerations</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="ga1df635b937d37d6ce4c41c7471351391" name="ga1df635b937d37d6ce4c41c7471351391"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1df635b937d37d6ce4c41c7471351391">&#9670;&#160;</a></span>BNO085DriverState</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#ga1df635b937d37d6ce4c41c7471351391">BNO085DriverState</a> : uint8_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Current top-level operating state of the driver. </p>
+<p>The class is a monolith but enforces mode-safe operations via this state:</p><ul>
+<li><code>Closed</code> : no active session.</li>
+<li><code>Sh2Active</code> : SH-2 protocol session is open.</li>
+<li><code>RvcActive</code> : RVC UART parser is active.</li>
+<li><code>DfuInProgress</code> : DFU transfer is running. </li>
+</ul>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga1df635b937d37d6ce4c41c7471351391a03f4a47830f97377a35321051685071e" name="gga1df635b937d37d6ce4c41c7471351391a03f4a47830f97377a35321051685071e"></a>Closed&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="gga1df635b937d37d6ce4c41c7471351391a5141319ae42db24ae529c48c33e7fe0f" name="gga1df635b937d37d6ce4c41c7471351391a5141319ae42db24ae529c48c33e7fe0f"></a>Sh2Active&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="gga1df635b937d37d6ce4c41c7471351391a026428237b5dada8f2e5fd6995878b44" name="gga1df635b937d37d6ce4c41c7471351391a026428237b5dada8f2e5fd6995878b44"></a>RvcActive&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="gga1df635b937d37d6ce4c41c7471351391afac3061eedc7d86a66d2f4d1431780d5" name="gga1df635b937d37d6ce4c41c7471351391afac3061eedc7d86a66d2f4d1431780d5"></a>DfuInProgress&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
 <a id="ga6f9f2bf1fa157ce63dacb450d5df6c62" name="ga6f9f2bf1fa157ce63dacb450d5df6c62"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga6f9f2bf1fa157ce63dacb450d5df6c62">&#9670;&#160;</a></span>BNO085Sensor</h2>
 
@@ -354,6 +445,14 @@ Enumerations</h2></td></tr>
 <tr><td class="fieldname"><a id="gga6f9f2bf1fa157ce63dacb450d5df6c62adda6de7569af6fe8301ee3807a69a988" name="gga6f9f2bf1fa157ce63dacb450d5df6c62adda6de7569af6fe8301ee3807a69a988"></a>ARVRStabilizedGameRV&#160;</td><td class="fielddoc"><p>AR/VR stabilised game rotation vector. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gga6f9f2bf1fa157ce63dacb450d5df6c62ac8b04cbadc40345b299a6b531f25d05c" name="gga6f9f2bf1fa157ce63dacb450d5df6c62ac8b04cbadc40345b299a6b531f25d05c"></a>GyroIntegratedRV&#160;</td><td class="fielddoc"><p>High-rate gyro-integrated rotation vector. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6f9f2bf1fa157ce63dacb450d5df6c62a63d8d30cec7a334d030591fa3bae2d17" name="gga6f9f2bf1fa157ce63dacb450d5df6c62a63d8d30cec7a334d030591fa3bae2d17"></a>IZroMotionRequest&#160;</td><td class="fielddoc"><p>Interactive ZRO motion intent/request. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6f9f2bf1fa157ce63dacb450d5df6c62a7893e8b9d35de663b6e69cd31815706b" name="gga6f9f2bf1fa157ce63dacb450d5df6c62a7893e8b9d35de663b6e69cd31815706b"></a>RawOpticalFlow&#160;</td><td class="fielddoc"><p>Raw optical flow report. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6f9f2bf1fa157ce63dacb450d5df6c62ae35bc0fbb35ff3bfbe666a19a182b488" name="gga6f9f2bf1fa157ce63dacb450d5df6c62ae35bc0fbb35ff3bfbe666a19a182b488"></a>DeadReckoningPose&#160;</td><td class="fielddoc"><p>Dead reckoning pose estimate. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6f9f2bf1fa157ce63dacb450d5df6c62a920ada106cf96daa9129258ad35e92e5" name="gga6f9f2bf1fa157ce63dacb450d5df6c62a920ada106cf96daa9129258ad35e92e5"></a>WheelEncoder&#160;</td><td class="fielddoc"><p>Wheel encoder report. </p>
 </td></tr>
 </table>
 

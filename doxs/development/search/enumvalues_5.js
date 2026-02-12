@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['i2c_0',['I2C',['../bno08x__comm__interface_8hpp.html#a1e8d3cde9f9e6ea515f5db028614f03bafb87bf1fc88386ca21395991f90fff95',1,'bno08x_comm_interface.hpp']]]
+  ['heartratemonitor_0',['HeartRateMonitor',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a0978ef43fad0c80bfa0629706f37bc7b',1,'bno08x.hpp']]],
+  ['humidity_1',['Humidity',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62addab800b54d009aa0408ebb9a4ee418d',1,'bno08x.hpp']]]
 ];
