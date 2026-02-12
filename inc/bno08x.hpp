@@ -316,6 +316,23 @@ using SensorCallback = std::function<void(const SensorEvent&)>;
 /** @brief Callback invoked when a decoded RVC frame is available. */
 using RvcCallback = std::function<void(const RvcSensorValue&)>;
 
+/**
+ * @enum BNO085DriverState
+ * @brief Current top-level operating state of the driver.
+ *
+ * The class is a monolith but enforces mode-safe operations via this state:
+ * - `Closed`         : no active session.
+ * - `Sh2Active`      : SH-2 protocol session is open.
+ * - `RvcActive`      : RVC UART parser is active.
+ * - `DfuInProgress`  : DFU transfer is running.
+ */
+enum class BNO085DriverState : uint8_t {
+  Closed = 0,
+  Sh2Active,
+  RvcActive,
+  DfuInProgress
+};
+
 /// @} // end of SensorTypes group
 
 // ============================================================================
@@ -339,6 +356,9 @@ using RvcCallback = std::function<void(const RvcSensorValue&)>;
  * | UARTRVC        | BeginRvc(), ServiceRvc(), CloseRvc()               |
  *
  * Calling a mode-incompatible method returns `false` or `SH2_ERR` gracefully.
+ * The active mode is tracked by an internal state machine exposed via
+ * GetState(). Illegal transitions are rejected with `SH2_ERR_OP_IN_PROGRESS`
+ * or `SH2_ERR_BAD_PARAM`.
  *
  * The driver automatically re-enables configured sensors after a sensor reset
  * (handled internally by the async event callback).
@@ -387,8 +407,10 @@ public:
   bool Begin() noexcept;
 
   /**
-   * @brief Close an active SH-2 session and release transport resources.
+   * @brief Close the currently active session and release transport resources.
    *
+   * If SH-2 is active, calls `sh2_close()` and closes the transport.
+   * If RVC is active, closes the UART transport and stops the parser.
    * Safe to call multiple times.
    */
   void Close() noexcept;
@@ -523,6 +545,13 @@ public:
   }
 
   /**
+   * @brief Get the current high-level driver state.
+   */
+  BNO085DriverState GetState() const noexcept {
+    return state_;
+  }
+
+  /**
    * @brief Perform a hardware reset via the RSTN pin.
    *
    * Drives RSTN LOW for @p lowMs milliseconds, then releases it HIGH and
@@ -642,7 +671,6 @@ private:
 
   uint8_t rvc_frame_[RVC_FRAME_LEN_]{}; ///< Sliding frame accumulation buffer.
   uint8_t rvc_frame_len_{0};            ///< Bytes currently in the buffer.
-  bool rvc_active_{false};              ///< True after BeginRvc() succeeds.
 
   /// @}
 
@@ -670,7 +698,7 @@ private:
   SensorCallback callback_{}; ///< Registered SH-2 sensor event callback.
   RvcCallback rvc_cb_{};      ///< Registered RVC frame callback.
   int last_error_{0};         ///< Most recent SH-2 error code.
-  bool initialized_{false};   ///< True after Begin() succeeds.
+  BNO085DriverState state_{BNO085DriverState::Closed}; ///< Current operating state.
 
   static constexpr std::size_t SENSOR_CACHE_SIZE_ = 0x2F; ///< Supports IDs 0x00..0x2E.
   std::array<sh2_SensorValue_t, SENSOR_CACHE_SIZE_> latest_{}; ///< Cached latest sensor values.

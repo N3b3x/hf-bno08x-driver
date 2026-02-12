@@ -37,7 +37,7 @@
  * and registers the internal sensor and async event handlers.
  *
  * @pre  io_.GetInterfaceType() must NOT be BNO085Interface::UARTRVC.
- * @post initialized_ == true on success.
+ * @post state_ == BNO085DriverState::Sh2Active on success.
  * @return true on success, false on failure or incompatible transport.
  */
 template <typename CommType>
@@ -52,9 +52,9 @@ void BNO085<CommType>::prepareHalWrapper() noexcept {
 
 template <typename CommType>
 bool BNO085<CommType>::Begin() noexcept {
-  if (initialized_)
+  if (state_ == BNO085DriverState::Sh2Active)
     return true;
-  if (rvc_active_) {
+  if (state_ != BNO085DriverState::Closed) {
     last_error_ = SH2_ERR_OP_IN_PROGRESS;
     return false;
   }
@@ -90,7 +90,7 @@ bool BNO085<CommType>::Begin() noexcept {
   new_flag_.fill(false);
   last_interval_.fill(0);
   last_sensitivity_.fill(0);
-  initialized_ = true;
+  state_ = BNO085DriverState::Sh2Active;
   return true;
 }
 
@@ -104,8 +104,10 @@ bool BNO085<CommType>::Begin() noexcept {
 template <typename CommType>
 bool BNO085<CommType>::EnableSensor(BNO085Sensor sensor, uint32_t interval_ms,
                                     float sensitivity) noexcept {
-  if (!initialized_)
+  if (state_ != BNO085DriverState::Sh2Active) {
+    last_error_ = SH2_ERR_OP_IN_PROGRESS;
     return false;
+  }
   auto id = static_cast<uint8_t>(sensor);
   if (id >= last_interval_.size())
     return false;
@@ -120,8 +122,10 @@ bool BNO085<CommType>::EnableSensor(BNO085Sensor sensor, uint32_t interval_ms,
 /** @brief Disable reporting for a sensor by setting its interval to zero. */
 template <typename CommType>
 bool BNO085<CommType>::DisableSensor(BNO085Sensor sensor) noexcept {
-  if (!initialized_)
+  if (state_ != BNO085DriverState::Sh2Active) {
+    last_error_ = SH2_ERR_OP_IN_PROGRESS;
     return false;
+  }
   auto id = static_cast<uint8_t>(sensor);
   if (id >= last_interval_.size())
     return false;
@@ -431,19 +435,25 @@ SensorEvent BNO085<CommType>::GetLatest(BNO085Sensor sensor) noexcept {
 /** @brief Service the SH-2 protocol. Invokes sensor and async callbacks. */
 template <typename CommType>
 void BNO085<CommType>::Update() noexcept {
-  if (initialized_) {
+  if (state_ == BNO085DriverState::Sh2Active) {
     sh2_service();
   }
 }
 
-/** @brief Close SH-2 session and release transport resources. */
+/** @brief Close the currently active session and release transport resources. */
 template <typename CommType>
 void BNO085<CommType>::Close() noexcept {
-  if (!initialized_)
+  if (state_ == BNO085DriverState::RvcActive) {
+    io_.Close();
+    state_ = BNO085DriverState::Closed;
+    rvc_frame_len_ = 0;
+    return;
+  }
+  if (state_ != BNO085DriverState::Sh2Active)
     return;
   sh2_close();
   io_.Close();
-  initialized_ = false;
+  state_ = BNO085DriverState::Closed;
   new_flag_.fill(false);
   last_interval_.fill(0);
   last_sensitivity_.fill(0.0f);
@@ -653,12 +663,14 @@ void BNO085<CommType>::SelectInterface(BNO085Interface iface) noexcept {
  */
 template <typename CommType>
 bool BNO085<CommType>::BeginRvc() noexcept {
-  if (io_.GetInterfaceType() != BNO085Interface::UARTRVC) {
-    last_error_ = SH2_ERR_BAD_PARAM;
+  if (state_ == BNO085DriverState::RvcActive)
+    return true;
+  if (state_ != BNO085DriverState::Closed) {
+    last_error_ = SH2_ERR_OP_IN_PROGRESS;
     return false;
   }
-  if (initialized_) {
-    last_error_ = SH2_ERR_OP_IN_PROGRESS;
+  if (io_.GetInterfaceType() != BNO085Interface::UARTRVC) {
+    last_error_ = SH2_ERR_BAD_PARAM;
     return false;
   }
   if (!io_.Open()) {
@@ -667,7 +679,7 @@ bool BNO085<CommType>::BeginRvc() noexcept {
   }
   last_error_ = SH2_OK;
   rvc_frame_len_ = 0;
-  rvc_active_ = true;
+  state_ = BNO085DriverState::RvcActive;
   return true;
 }
 
@@ -680,7 +692,7 @@ bool BNO085<CommType>::BeginRvc() noexcept {
  */
 template <typename CommType>
 void BNO085<CommType>::ServiceRvc() noexcept {
-  if (!rvc_active_)
+  if (state_ != BNO085DriverState::RvcActive)
     return;
   uint8_t c;
   while (io_.Read(&c, 1) == 1) {
@@ -691,9 +703,9 @@ void BNO085<CommType>::ServiceRvc() noexcept {
 /** @brief Close the UART transport and deactivate the RVC parser. */
 template <typename CommType>
 void BNO085<CommType>::CloseRvc() noexcept {
-  if (rvc_active_) {
+  if (state_ == BNO085DriverState::RvcActive) {
     io_.Close();
-    rvc_active_ = false;
+    state_ = BNO085DriverState::Closed;
     rvc_frame_len_ = 0;
   }
 }
@@ -909,14 +921,19 @@ int BNO085<CommType>::Dfu(const HcBin_t& fw) noexcept {
     last_error_ = SH2_ERR_BAD_PARAM;
     return SH2_ERR;
   }
-  if (rvc_active_) {
+  if (state_ == BNO085DriverState::RvcActive || state_ == BNO085DriverState::DfuInProgress) {
     last_error_ = SH2_ERR_OP_IN_PROGRESS;
     return SH2_ERR_OP_IN_PROGRESS;
   }
-  if (initialized_) {
+  if (state_ == BNO085DriverState::Sh2Active) {
     // DFU uses the same transport HAL and must not race an active SH-2 session.
     Close();
   }
+  if (state_ != BNO085DriverState::Closed) {
+    last_error_ = SH2_ERR_OP_IN_PROGRESS;
+    return SH2_ERR_OP_IN_PROGRESS;
+  }
+  state_ = BNO085DriverState::DfuInProgress;
   prepareHalWrapper();
 
   int rc, status = SH2_OK;
@@ -1001,6 +1018,7 @@ dfu_close:
     hal->close(hal);
 
 dfu_end:
+  state_ = BNO085DriverState::Closed;
   last_error_ = status;
   return status;
 }

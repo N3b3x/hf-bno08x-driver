@@ -87,6 +87,7 @@ Requires a transport whose `GetInterfaceType()` returns `BNO085Interface::UARTRV
 | Method | Signature | Location |
 |--------|-----------|----------|
 | `GetLastError()` | `int GetLastError() const` | [`inc/bno08x.hpp#L187`](../inc/bno08x.hpp#L187) |
+| `GetState()` | `BNO085DriverState GetState() const noexcept` | [`inc/bno08x.hpp`](../inc/bno08x.hpp) |
 
 ### Hardware Control
 
@@ -114,6 +115,7 @@ Not available when `GetInterfaceType()` returns `UARTRVC`. Use `MemoryFirmware` 
 | Type | Values | Location |
 |------|--------|----------|
 | `BNO085Sensor` | `Accelerometer`, `Gyroscope`, `Magnetometer`, `LinearAcceleration`, `RotationVector`, `Gravity`, `GyroUncalibrated`, `GameRotationVector`, `GeomagneticRotationVector`, `Pressure`, `AmbientLight`, `Humidity`, `Proximity`, `Temperature`, `MagneticFieldUncalibrated`, `TapDetector`, `StepCounter`, `SignificantMotion`, `StabilityClassifier`, `RawAccelerometer`, `RawGyroscope`, `RawMagnetometer`, `StepDetector`, `ShakeDetector`, `FlipDetector`, `PickupDetector`, `StabilityDetector`, `PersonalActivityClassifier`, `SleepDetector`, `TiltDetector`, `PocketDetector`, `CircleDetector`, `HeartRateMonitor`, `ARVRStabilizedRV`, `ARVRStabilizedGameRV`, `GyroIntegratedRV`, `IZroMotionRequest`, `RawOpticalFlow`, `DeadReckoningPose`, `WheelEncoder` | [`inc/bno08x.hpp#L29`](../inc/bno08x.hpp#L29) |
+| `BNO085DriverState` | `Closed`, `Sh2Active`, `RvcActive`, `DfuInProgress` | [`inc/bno08x.hpp`](../inc/bno08x.hpp) |
 | `BNO085Interface` | `I2C`, `UARTRVC`, `UART`, `SPI` | [`inc/bno08x_comm_interface.hpp`](../inc/bno08x_comm_interface.hpp) — returned by `CommInterface::GetInterfaceType()` |
 
 ### Structures
