@@ -1,26 +1,11 @@
+/**
+ * @file bno08x.ipp
+ * @brief Template method implementations for the BNO085 driver class
+ * @copyright Copyright (c) 2024-2025 HardFOC. All rights reserved.
+ */
 #ifndef BNO085_HEADER_INCLUDED
 #include "bno08x.hpp"
 #endif
-
-/**
- * @file bno08x.cpp
- * @brief Template method implementations for the BNO085 driver class.
- *
- * @details
- * This file is **not** compiled directly. It is `#include`d from
- * `bno08x.hpp` with a header guard so the compiler can instantiate the
- * template methods for any user-provided CommType.
- *
- * The file is organised into four sections:
- * 1. **SH-2 Mode** -- Sensor Hub 2 protocol (Begin, Update, sensor config)
- * 2. **Pin Control** -- HardwareReset, SetBootPin, etc.
- * 3. **RVC Mode** -- UART frame parser and callback dispatch
- * 4. **DFU** -- Device Firmware Update protocol with CRC + retry
- *
- * @author  Nebiyu Tadesse
- * @date    2025
- * @copyright HardFOC -- GNU GPL v3.0
- */
 
 #include <algorithm>
 #include "dfu/MemoryFirmware.hpp"

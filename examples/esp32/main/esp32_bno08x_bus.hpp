@@ -45,7 +45,7 @@ extern "C" {
 static constexpr const char* TAG_I2C = "BNO08x_I2C";
 
 /**
- * @class Esp32Bno08xBus
+ * @class Esp32Bno08xI2cBus
  * @brief ESP32 implementation of bno08x::CommInterface using ESP-IDF I2C master driver.
  *
  * This class mirrors the proven Esp32Pca9685Bus / Esp32Pcal9555Bus implementations
@@ -60,7 +60,7 @@ static constexpr const char* TAG_I2C = "BNO08x_I2C";
  * - Proper resource cleanup via Init()/Deinit() pattern
  * - Factory function for convenient instantiation
  */
-class Esp32Bno08xBus : public bno08x::CommInterface<Esp32Bno08xBus> {
+class Esp32Bno08xI2cBus : public bno08x::CommInterface<Esp32Bno08xI2cBus> {
 public:
   /**
    * @brief I2C bus and device configuration structure
@@ -80,19 +80,19 @@ public:
   /**
    * @brief Constructor with default configuration
    */
-  Esp32Bno08xBus() : Esp32Bno08xBus(I2CConfig{}) {}
+  Esp32Bno08xI2cBus() : Esp32Bno08xI2cBus(I2CConfig{}) {}
 
   /**
    * @brief Constructor with custom I2C configuration
    * @param config I2C bus and device configuration
    */
-  explicit Esp32Bno08xBus(const I2CConfig& config)
+  explicit Esp32Bno08xI2cBus(const I2CConfig& config)
       : config_(config), bus_handle_(nullptr), dev_handle_(nullptr), initialized_(false) {}
 
   /**
    * @brief Destructor - cleans up I2C resources
    */
-  ~Esp32Bno08xBus() {
+  ~Esp32Bno08xI2cBus() {
     Deinit();
   }
 
@@ -529,11 +529,11 @@ private:
  * Creates and initializes the bus. Returns nullptr on failure.
  *
  * @param config I2C configuration (optional, uses defaults if not provided)
- * @return Unique pointer to Esp32Bno08xBus instance, or nullptr on failure
+ * @return Unique pointer to Esp32Bno08xI2cBus instance, or nullptr on failure
  */
-inline std::unique_ptr<Esp32Bno08xBus> CreateEsp32Bno08xBus(
-    const Esp32Bno08xBus::I2CConfig& config = Esp32Bno08xBus::I2CConfig{}) {
-  auto bus = std::make_unique<Esp32Bno08xBus>(config);
+inline std::unique_ptr<Esp32Bno08xI2cBus> CreateEsp32Bno08xI2cBus(
+    const Esp32Bno08xI2cBus::I2CConfig& config = Esp32Bno08xI2cBus::I2CConfig{}) {
+  auto bus = std::make_unique<Esp32Bno08xI2cBus>(config);
   if (!bus->Init()) {
     ESP_LOGE(TAG_I2C, "Failed to initialize I2C bus");
     return nullptr;

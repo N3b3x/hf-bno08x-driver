@@ -27,8 +27,8 @@
 
 static const char* TAG = "BNO08x_DfuWorkflowTest";
 
-static std::unique_ptr<Esp32Bno08xBus> g_transport;
-static std::unique_ptr<BNO085<Esp32Bno08xBus>> g_imu;
+static std::unique_ptr<Esp32Bno08xI2cBus> g_transport;
+static std::unique_ptr<BNO085<Esp32Bno08xI2cBus>> g_imu;
 static TestResults g_test_results;
 
 static constexpr bool ENABLE_INITIALIZATION_TESTS = true;
@@ -46,7 +46,7 @@ static constexpr bool ENABLE_DFU_WORKFLOW_TESTS = true;
   } while (0)
 
 static bool create_test_transport() noexcept {
-  Esp32Bno08xBus::I2CConfig config;
+  Esp32Bno08xI2cBus::I2CConfig config;
   config.sda_pin = GPIO_NUM_4;
   config.scl_pin = GPIO_NUM_5;
   config.frequency = 400000;
@@ -59,7 +59,7 @@ static bool create_test_transport() noexcept {
     ESP_LOGI(TAG, "Trying BNO08x at I2C address 0x%02X (SA0=%s)...", config.device_address,
              (i == 0) ? "HIGH" : "LOW");
 
-    g_transport = CreateEsp32Bno08xBus(config);
+    g_transport = CreateEsp32Bno08xI2cBus(config);
     if (!g_transport) {
       ESP_LOGW(TAG, "Failed to create I2C transport for 0x%02X", config.device_address);
       continue;
@@ -83,7 +83,7 @@ static bool create_test_transport() noexcept {
 static bool create_test_imu() noexcept {
   CHECK_OR_RETURN(g_transport != nullptr, "Transport not initialized");
 
-  g_imu = std::make_unique<BNO085<Esp32Bno08xBus>>(*g_transport);
+  g_imu = std::make_unique<BNO085<Esp32Bno08xI2cBus>>(*g_transport);
   CHECK_OR_RETURN(g_imu != nullptr, "Failed to allocate IMU object");
 
   CHECK_OR_RETURN(g_imu->Begin(), "Begin() failed: %d", g_imu->GetLastError());

@@ -1,56 +1,9 @@
 #pragma once
-
 /**
  * @file bno08x_comm_interface.hpp
- * @brief CRTP-based communication interface for the BNO08x IMU family.
- *
- * @details
- * This header defines the hardware-agnostic communication interface that all
- * platform-specific transport implementations must provide. It uses the
- * **Curiously Recurring Template Pattern (CRTP)** for compile-time
- * polymorphism, giving zero virtual-call overhead on the hot path
- * (Read/Write are called thousands of times per second during SH-2 service).
- *
- * ### Supported Transport Types
- *
- * | Transport     | BNO085Interface | Supported Modes          |
- * |---------------|-----------------|--------------------------|
- * | I2C           | `I2C`           | SH-2, DFU                |
- * | SPI           | `SPI`           | SH-2, DFU                |
- * | UART (SH-2)   | `UART`          | SH-2, DFU                |
- * | UART (RVC)    | `UARTRVC`       | RVC mode only            |
- *
- * ### How to Implement
- *
- * Inherit from `bno08x::CommInterface<YourClass>` and implement all required
- * methods. The driver calls `GetInterfaceType()` to determine which mode
- * of operation is valid for the transport.
- *
- * @code
- * class MyI2CBus : public bno08x::CommInterface<MyI2CBus> {
- * public:
- *   BNO085Interface GetInterfaceType() noexcept { return BNO085Interface::I2C; }
- *   bool Open() noexcept { ... }
- *   void Close() noexcept { ... }
- *   int  Write(const uint8_t* data, uint32_t length) noexcept { ... }
- *   int  Read(uint8_t* data, uint32_t length) noexcept { ... }
- *   bool DataAvailable() noexcept { return true; }
- *   void Delay(uint32_t ms) noexcept { ... }
- *   uint32_t GetTimeUs() noexcept { ... }
- *   // Pin control (no-op if not wired):
- *   void SetReset(bool) noexcept { ... }
- *   void SetBoot(bool) noexcept {}
- *   void SetWake(bool) noexcept {}
- *   void SetPS0(bool) noexcept {}
- *   void SetPS1(bool) noexcept {}
- * };
- * @endcode
- *
- * @author  Nebiyu Tadesse
- * @date    2025
- * @copyright HardFOC -- GNU GPL v3.0
+ * @brief CRTP-based communication interface for the BNO08x IMU family
+ * @copyright Copyright (c) 2024-2025 HardFOC. All rights reserved.
  */
-
 #include <cstdint>
 
 // ============================================================================

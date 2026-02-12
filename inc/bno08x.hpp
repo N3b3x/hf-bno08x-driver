@@ -1,54 +1,9 @@
 #pragma once
-
 /**
  * @file bno08x.hpp
- * @brief High-level C++ driver for the BNO08x 9-axis IMU family.
- *
- * @details
- * This header declares the BNO085 template class -- a complete, self-contained
- * driver for the Hillcrest/CEVA BNO080, BNO085, and BNO086 sensors. It wraps
- * the vendor-supplied SH-2 (Sensor Hub 2) C library and adds:
- *
- * - **SH-2 Mode** -- Full access to all 30+ sensor reports (rotation vectors,
- *   accelerometer, gyroscope, magnetometer, step counter, gestures, etc.)
- *   via I2C, SPI, or UART.
- * - **RVC Mode** -- Simplified orientation data (yaw/pitch/roll + acceleration)
- *   via UART at 115200 baud. The driver reads raw bytes and parses the 19-byte
- *   RVC frames internally.
- * - **DFU** -- Device Firmware Update support with CRC-16, ACK/NAK retry,
- *   and firmware validation.
- *
- * The transport is provided via a CRTP-based CommInterface template parameter.
- * Each transport reports its type via `GetInterfaceType()`, and the driver
- * guards mode-specific operations accordingly.
- *
- * ### Quick Start (SH-2 Mode)
- * @code
- * Esp32Bno08xBus bus(config);
- * BNO085<Esp32Bno08xBus> imu(bus);
- * imu.Begin();
- * imu.EnableSensor(BNO085Sensor::RotationVector, 10);
- * imu.SetCallback([](const SensorEvent& e) { ... });
- * while (true) { imu.Update(); }
- * @endcode
- *
- * ### Quick Start (RVC Mode)
- * @code
- * Esp32UartRvcBus uart(config);
- * BNO085<Esp32UartRvcBus> imu(uart);
- * imu.SetRvcCallback([](const RvcSensorValue& v) { ... });
- * imu.BeginRvc();
- * while (true) { imu.ServiceRvc(); }
- * @endcode
- *
- * @author  Nebiyu Tadesse
- * @date    2025
- * @copyright HardFOC -- GNU GPL v3.0 (C++ wrapper); CEVA Apache 2.0 (SH-2 backend)
- *
- * @see bno08x_comm_interface.hpp  CommInterface CRTP base class.
- * @see dfu/MemoryFirmware.hpp     Runtime firmware image for DFU.
+ * @brief High-level C++ driver for the BNO08x 9-axis IMU family
+ * @copyright Copyright (c) 2024-2025 HardFOC. All rights reserved.
  */
-
 #include "bno08x_comm_interface.hpp"
 #include "dfu/HcBin.h"
 #include <array>
@@ -821,5 +776,6 @@ private:
 // The template method bodies live in bno08x.cpp and are included here so
 // that the compiler can instantiate them for any CommType.
 #define BNO085_HEADER_INCLUDED
-#include "../src/bno08x.cpp"
+// NOLINTNEXTLINE(bugprone-suspicious-include) - Intentional: template implementation file
+#include "../src/bno08x.ipp"
 #undef BNO085_HEADER_INCLUDED
