@@ -124,6 +124,25 @@ apps:
       - "Real hardware testing"
 
   # --------------------------------------------------------------------------
+  # DFU Workflow Integration Test
+  # --------------------------------------------------------------------------
+  dfu_workflow_test:
+    description: "Comprehensive DFU workflow integration test (state + helpers + in-memory DFU)"
+    source_file: "dfu_workflow_test.cpp"
+    category: "test"
+    idf_versions: ["release/v5.5"]
+    build_types: ["Debug", "Release"]
+    ci_enabled: false
+    featured: true
+    hardware_required: true
+    features:
+      - "State-machine contract checks for DFU APIs"
+      - "EnterBootloader / ExitBootloaderAndReboot helper coverage"
+      - "DfuFromMemory and DfuOptions behavior validation"
+      - "Transfer-attempt and RunDfuFromMemory workflow checks"
+      - "Real hardware testing"
+
+  # --------------------------------------------------------------------------
   # RVC Mode Example
   # --------------------------------------------------------------------------
   rvc_mode:

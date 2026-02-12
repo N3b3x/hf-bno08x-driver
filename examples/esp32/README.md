@@ -90,6 +90,20 @@ idf.py monitor
 ./scripts/build_app.sh driver_integration_test Release
 ```
 
+#### `dfu_workflow_test`
+**Comprehensive DFU Workflow Integration Test**
+- Validates DFU state-machine transitions on real transport
+- Exercises `EnterBootloader()` / `ExitBootloaderAndReboot()`
+- Tests `DfuFromMemory()` and `DfuOptions` validation paths
+- Attempts transfer workflow via `RunDfuFromMemory()`
+- Uses standardized TestFramework and GPIO14 progress indicator
+- Real hardware testing (BNO08x + I2C; BOOTN optional)
+
+**Build:**
+```bash
+./scripts/build_app.sh dfu_workflow_test Release
+```
+
 ### 🟡 Basic Examples
 
 #### `basic_polling`
