@@ -70,10 +70,10 @@
  * select the interface at boot time.
  */
 enum class BNO085Interface : uint8_t {
-  I2C     = 0, ///< I2C bus (PS1=0, PS0=0). Supports SH-2 and DFU.
+  I2C = 0,     ///< I2C bus (PS1=0, PS0=0). Supports SH-2 and DFU.
   UARTRVC = 1, ///< UART in RVC mode (PS1=1, PS0=0). RVC frames only.
-  UART    = 2, ///< UART in SH-2 mode (PS1=0, PS0=1). Supports SH-2 and DFU.
-  SPI     = 3  ///< SPI bus (PS1=1, PS0=1). Supports SH-2 and DFU.
+  UART = 2,    ///< UART in SH-2 mode (PS1=0, PS0=1). Supports SH-2 and DFU.
+  SPI = 3      ///< SPI bus (PS1=1, PS0=1). Supports SH-2 and DFU.
 };
 
 // ============================================================================
@@ -98,7 +98,6 @@ namespace bno08x {
 template <typename Derived>
 class CommInterface {
 public:
-
   // --------------------------------------------------------------------------
   /// @name Interface Identification
   /// @{
@@ -287,9 +286,9 @@ protected:
   /// @brief Protected destructor -- prevent polymorphic deletion through base.
   ~CommInterface() = default;
 
-  CommInterface(const CommInterface&) = delete;            ///< Non-copyable.
-  CommInterface& operator=(const CommInterface&) = delete; ///< Non-copyable.
-  CommInterface(CommInterface&&) noexcept = default;       ///< Movable.
+  CommInterface(const CommInterface&) = delete;                 ///< Non-copyable.
+  CommInterface& operator=(const CommInterface&) = delete;      ///< Non-copyable.
+  CommInterface(CommInterface&&) noexcept = default;            ///< Movable.
   CommInterface& operator=(CommInterface&&) noexcept = default; ///< Movable.
 };
 

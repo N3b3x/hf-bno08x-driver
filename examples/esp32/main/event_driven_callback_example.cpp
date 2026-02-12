@@ -82,9 +82,9 @@ extern "C" void app_main(void) {
   config.sda_pin = GPIO_NUM_4;
   config.scl_pin = GPIO_NUM_5;
   config.frequency = 400000;
-  config.rst_pin = GPIO_NUM_16;  // Reset pin (RSTN) on GPIO16
-  config.int_pin = GPIO_NUM_17;  // Interrupt pin (INT) on GPIO17
-  
+  config.rst_pin = GPIO_NUM_16; // Reset pin (RSTN) on GPIO16
+  config.int_pin = GPIO_NUM_17; // Interrupt pin (INT) on GPIO17
+
   // BNO08x uses 7-bit I2C addresses: 0x4A (SA0=LOW) or 0x4B (SA0=HIGH)
   // Try both addresses automatically - try 0x4B first (SA0=HIGH) as it's the default on this board
   const uint8_t addresses[] = {0x4B, 0x4A};
@@ -94,8 +94,8 @@ extern "C" void app_main(void) {
 
   for (size_t i = 0; i < sizeof(addresses) / sizeof(addresses[0]); i++) {
     config.device_address = addresses[i];
-    ESP_LOGI(TAG, "Trying BNO08x at I2C address 0x%02X (SA0=%s)...", 
-             config.device_address, (i == 0) ? "HIGH" : "LOW");
+    ESP_LOGI(TAG, "Trying BNO08x at I2C address 0x%02X (SA0=%s)...", config.device_address,
+             (i == 0) ? "HIGH" : "LOW");
 
     // Create and initialize I2C transport
     transport = CreateEsp32Bno08xBus(config);
@@ -106,12 +106,13 @@ extern "C" void app_main(void) {
 
     // Perform hardware reset BEFORE probing (BNO08x needs reset before communication)
     ESP_LOGI(TAG, "Performing hardware reset before probing...");
-    transport->HardwareReset(2, 200);  // 2ms reset pulse, 200ms boot delay
+    transport->HardwareReset(2, 200); // 2ms reset pulse, 200ms boot delay
 
     // Probe I2C device to verify it's responding
     ESP_LOGI(TAG, "Probing I2C device at address 0x%02X...", config.device_address);
     if (!transport->Probe()) {
-      ESP_LOGW(TAG, "I2C probe failed at address 0x%02X (device not responding)", config.device_address);
+      ESP_LOGW(TAG, "I2C probe failed at address 0x%02X (device not responding)",
+               config.device_address);
       transport.reset();
       continue;
     }
@@ -124,18 +125,19 @@ extern "C" void app_main(void) {
     ESP_LOGI(TAG, "Initializing BNO085 at address 0x%02X...", config.device_address);
     if (imu->Begin()) {
       // Verify initialization by checking if we can communicate
-      vTaskDelay(pdMS_TO_TICKS(50));  // Give sensor time to send reset notification
-      
+      vTaskDelay(pdMS_TO_TICKS(50)); // Give sensor time to send reset notification
+
       if (transport->Probe()) {
         ESP_LOGI(TAG, "BNO085 initialized successfully at address 0x%02X", config.device_address);
         initialized = true;
         break;
       } else {
-        ESP_LOGW(TAG, "Begin() returned success but device not responding at 0x%02X", config.device_address);
+        ESP_LOGW(TAG, "Begin() returned success but device not responding at 0x%02X",
+                 config.device_address);
       }
     }
-    
-    ESP_LOGW(TAG, "Failed to initialize BNO085 at address 0x%02X (error: %d)", 
+
+    ESP_LOGW(TAG, "Failed to initialize BNO085 at address 0x%02X (error: %d)",
              config.device_address, imu->GetLastError());
     delete imu;
     imu = nullptr;
@@ -159,7 +161,7 @@ extern "C" void app_main(void) {
 
   // Enable a periodic sensor to verify callbacks are working
   // This will fire continuously, so we can see the callback is being called
-  imu->EnableSensor(BNO085Sensor::RotationVector, 50);  // 20 Hz (50ms interval)
+  imu->EnableSensor(BNO085Sensor::RotationVector, 50); // 20 Hz (50ms interval)
 
   // Enable step counter (on-change events)
   imu->EnableSensor(BNO085Sensor::StepCounter, 0);
@@ -184,15 +186,15 @@ extern "C" void app_main(void) {
   // Main loop - call update() to process events
   uint32_t update_count = 0;
   while (true) {
-    imu->Update();                  // Process incoming events and call callbacks
+    imu->Update(); // Process incoming events and call callbacks
     update_count++;
-    
+
     // Log every 100 updates (every ~1 second) to show the loop is running
     if (update_count % 100 == 0) {
-      ESP_LOGD(TAG, "Update() called %lu times (loop running)", 
+      ESP_LOGD(TAG, "Update() called %lu times (loop running)",
                static_cast<unsigned long>(update_count));
     }
-    
+
     vTaskDelay(pdMS_TO_TICKS(10)); // 10ms delay
   }
 }

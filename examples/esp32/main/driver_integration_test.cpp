@@ -32,8 +32,8 @@
 #include <stdio.h>
 
 #include "../../../inc/bno08x.hpp"
-#include "esp32_bno08x_bus.hpp"
 #include "TestFramework.h"
+#include "esp32_bno08x_bus.hpp"
 
 static const char* TAG = "BNO08x_Test";
 
@@ -68,11 +68,11 @@ static TestResults g_test_results; // Required by TestFramework.h
  */
 static bool create_test_transport() noexcept {
   Esp32Bno08xBus::I2CConfig config;
-  config.sda_pin = GPIO_NUM_4;  // Same as pcal95555/pca9685
+  config.sda_pin = GPIO_NUM_4; // Same as pcal95555/pca9685
   config.scl_pin = GPIO_NUM_5;
   config.frequency = 400000;
-  config.rst_pin = GPIO_NUM_16;  // Reset pin (RSTN) on GPIO16
-  config.int_pin = GPIO_NUM_17;  // Interrupt pin (INT) on GPIO17
+  config.rst_pin = GPIO_NUM_16; // Reset pin (RSTN) on GPIO16
+  config.int_pin = GPIO_NUM_17; // Interrupt pin (INT) on GPIO17
 
   // BNO08x uses 7-bit I2C addresses: 0x4A (SA0=LOW) or 0x4B (SA0=HIGH)
   // Try both addresses automatically - try 0x4B first (SA0=HIGH) as it's the default on this board
@@ -80,8 +80,8 @@ static bool create_test_transport() noexcept {
 
   for (size_t i = 0; i < sizeof(addresses) / sizeof(addresses[0]); i++) {
     config.device_address = addresses[i];
-    ESP_LOGI(TAG, "Trying BNO08x at I2C address 0x%02X (SA0=%s)...", 
-             config.device_address, (i == 0) ? "HIGH" : "LOW");
+    ESP_LOGI(TAG, "Trying BNO08x at I2C address 0x%02X (SA0=%s)...", config.device_address,
+             (i == 0) ? "HIGH" : "LOW");
 
     g_transport = CreateEsp32Bno08xBus(config);
     if (!g_transport) {
@@ -91,12 +91,13 @@ static bool create_test_transport() noexcept {
 
     // Perform hardware reset BEFORE probing (BNO08x needs reset before communication)
     ESP_LOGI(TAG, "Performing hardware reset before probing...");
-    g_transport->HardwareReset(2, 200);  // 2ms reset pulse, 200ms boot delay
+    g_transport->HardwareReset(2, 200); // 2ms reset pulse, 200ms boot delay
 
     // Probe I2C device to verify it's responding
     ESP_LOGI(TAG, "Probing I2C device at address 0x%02X...", config.device_address);
     if (!g_transport->Probe()) {
-      ESP_LOGW(TAG, "I2C probe failed at address 0x%02X (device not responding)", config.device_address);
+      ESP_LOGW(TAG, "I2C probe failed at address 0x%02X (device not responding)",
+               config.device_address);
       g_transport.reset();
       continue;
     }
@@ -126,8 +127,8 @@ static bool create_test_imu() noexcept {
   }
 
   // Verify initialization by checking if we can communicate
-  vTaskDelay(pdMS_TO_TICKS(50));  // Give sensor time to send reset notification
-  
+  vTaskDelay(pdMS_TO_TICKS(50)); // Give sensor time to send reset notification
+
   if (!g_transport->Probe()) {
     ESP_LOGE(TAG, "Begin() returned success but device not responding");
     return false;
@@ -413,7 +414,8 @@ static bool test_rvc_mode() noexcept {
   if (g_transport->GetInterfaceType() == BNO085Interface::UARTRVC) {
     ESP_LOGI(TAG, "Transport is UARTRVC - BeginRvc() would be valid");
   } else {
-    ESP_LOGI(TAG, "Transport is I2C - BeginRvc() correctly not used (use rvc_mode example for RVC)");
+    ESP_LOGI(TAG,
+             "Transport is I2C - BeginRvc() correctly not used (use rvc_mode example for RVC)");
   }
 
   ESP_LOGI(TAG, "RVC mode test passed (interface type and API verified)");
@@ -479,8 +481,9 @@ extern "C" void app_main(void) {
       RUN_TEST_IN_TASK("test_polling_linear_acceleration", test_polling_linear_acceleration, 16384,
                        5););
 
-  RUN_TEST_SECTION_IF_ENABLED(ENABLE_CALLBACK_MODE_TESTS, "CALLBACK MODE TESTS",
-                              RUN_TEST_IN_TASK("test_callback_mode", test_callback_mode, 16384, 5););
+  RUN_TEST_SECTION_IF_ENABLED(
+      ENABLE_CALLBACK_MODE_TESTS, "CALLBACK MODE TESTS",
+      RUN_TEST_IN_TASK("test_callback_mode", test_callback_mode, 16384, 5););
 
   RUN_TEST_SECTION_IF_ENABLED(
       ENABLE_SENSOR_DATA_TESTS, "SENSOR DATA TESTS",

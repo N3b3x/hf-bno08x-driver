@@ -28,7 +28,7 @@ permalink: /
 
 ## 📦 Overview
 
-> **📖 [📚🌐 Live Complete Documentation](https://n3b3x.github.io/hf-bno08x-driver/)** - 
+> **📖 [📚🌐 Live Complete Documentation](https://n3b3x.github.io/hf-bno08x-driver/)** -
 > Interactive guides, examples, and step-by-step tutorials
 
 **HF-BNO08x** is a hardware-agnostic C++ library for the **Hillcrest / CEVA BNO08x** family of 9-axis IMU sensors (BNO080, BNO085, BNO086). The BNO08x sensors provide fused orientation data, calibrated IMU measurements, activity detection, step counting, and gesture recognition through the SH-2 (Sensor Hub 2) protocol.

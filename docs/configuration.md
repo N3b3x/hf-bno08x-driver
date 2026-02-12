@@ -69,7 +69,7 @@ imu.SetCallback([](const SensorEvent& e) {
 
 ```cpp
 imu.SetRvcCallback([](const RvcSensorValue& val) {
-    printf("Yaw: %.2f°, Pitch: %.2f°, Roll: %.2f°\n", 
+    printf("Yaw: %.2f°, Pitch: %.2f°, Roll: %.2f°\n",
            val.yaw_deg, val.pitch_deg, val.roll_deg);
     printf("Accel: X=%.3f Y=%.3f Z=%.3f g\n",
            val.acc_x_g, val.acc_y_g, val.acc_z_g);

@@ -66,14 +66,15 @@ public:
    * @brief I2C bus and device configuration structure
    */
   struct I2CConfig {
-    i2c_port_t port = I2C_NUM_0;      ///< I2C port number
-    gpio_num_t sda_pin = GPIO_NUM_4;   ///< SDA pin (default GPIO4, same as pcal95555/pca9685)
-    gpio_num_t scl_pin = GPIO_NUM_5;   ///< SCL pin (default GPIO5, same as pcal95555/pca9685)
-    uint32_t frequency = 400000;       ///< I2C frequency in Hz (default 400kHz)
-    uint8_t device_address = 0x4B;     ///< 7-bit I2C device address (default 0x4B, SA0=HIGH; 0x4A if SA0=LOW)
-    bool pullup_enable = true;         ///< Enable internal pullups
-    gpio_num_t int_pin = GPIO_NUM_17;  ///< Interrupt pin (default GPIO17, GPIO_NUM_NC if not used)
-    gpio_num_t rst_pin = GPIO_NUM_16;  ///< Reset pin (default GPIO16, GPIO_NUM_NC if not used)
+    i2c_port_t port = I2C_NUM_0;     ///< I2C port number
+    gpio_num_t sda_pin = GPIO_NUM_4; ///< SDA pin (default GPIO4, same as pcal95555/pca9685)
+    gpio_num_t scl_pin = GPIO_NUM_5; ///< SCL pin (default GPIO5, same as pcal95555/pca9685)
+    uint32_t frequency = 400000;     ///< I2C frequency in Hz (default 400kHz)
+    uint8_t device_address =
+        0x4B; ///< 7-bit I2C device address (default 0x4B, SA0=HIGH; 0x4A if SA0=LOW)
+    bool pullup_enable = true;        ///< Enable internal pullups
+    gpio_num_t int_pin = GPIO_NUM_17; ///< Interrupt pin (default GPIO17, GPIO_NUM_NC if not used)
+    gpio_num_t rst_pin = GPIO_NUM_16; ///< Reset pin (default GPIO16, GPIO_NUM_NC if not used)
   };
 
   /**
@@ -86,8 +87,7 @@ public:
    * @param config I2C bus and device configuration
    */
   explicit Esp32Bno08xBus(const I2CConfig& config)
-      : config_(config), bus_handle_(nullptr), dev_handle_(nullptr), initialized_(false) {
-  }
+      : config_(config), bus_handle_(nullptr), dev_handle_(nullptr), initialized_(false) {}
 
   /**
    * @brief Destructor - cleans up I2C resources
@@ -143,9 +143,8 @@ public:
 
     esp_err_t ret = i2c_master_transmit(dev_handle_, data, length, pdMS_TO_TICKS(1000));
     if (ret != ESP_OK) {
-      ESP_LOGE(TAG_I2C, "I2C write failed: %s (addr=0x%02X, len=%lu)",
-               esp_err_to_name(ret), config_.device_address,
-               static_cast<unsigned long>(length));
+      ESP_LOGE(TAG_I2C, "I2C write failed: %s (addr=0x%02X, len=%lu)", esp_err_to_name(ret),
+               config_.device_address, static_cast<unsigned long>(length));
       return -1;
     }
 
@@ -179,7 +178,7 @@ public:
     // If interrupt pin is configured, check it first to avoid unnecessary I2C transactions
     if (config_.int_pin != GPIO_NUM_NC && !DataAvailable()) {
       // Interrupt pin indicates no data available (pin is high, active low)
-      return 0;  // Return 0 to indicate no data (SH-2 library expects this)
+      return 0; // Return 0 to indicate no data (SH-2 library expects this)
     }
 
     esp_err_t ret = i2c_master_receive(dev_handle_, data, length, pdMS_TO_TICKS(1000));
@@ -189,9 +188,8 @@ public:
       if (ret == ESP_ERR_TIMEOUT) {
         return 0;
       }
-      ESP_LOGE(TAG_I2C, "I2C read failed: %s (addr=0x%02X, len=%lu)",
-               esp_err_to_name(ret), config_.device_address,
-               static_cast<unsigned long>(length));
+      ESP_LOGE(TAG_I2C, "I2C read failed: %s (addr=0x%02X, len=%lu)", esp_err_to_name(ret),
+               config_.device_address, static_cast<unsigned long>(length));
       return -1;
     }
 
@@ -200,51 +198,51 @@ public:
 
   /**
    * @brief Probe the I2C device to verify it's responding
-   * 
+   *
    * Performs a simple I2C read to check if the device acknowledges.
    * For BNO08x using SHTP protocol:
    * - ACK on address = device present
    * - Clock stretching (timeout) = device present but no data (OK)
    * - NAK = device not present or not responding
-   * 
+   *
    * @return true if device ACKs (responds), false if NAK
    */
   bool Probe() noexcept {
     if (!initialized_ || dev_handle_ == nullptr) {
       return false;
     }
-    
+
     // Try to read 1 byte with longer timeout to allow for clock stretching
     // BNO08x will stretch clock if no data (timeout is OK - means device is present)
     // NAK means device not present
     uint8_t dummy;
     esp_err_t ret = i2c_master_receive(dev_handle_, &dummy, 1, pdMS_TO_TICKS(100));
-    
+
     // Log the actual error for debugging
     if (ret != ESP_OK && ret != ESP_ERR_TIMEOUT) {
-      ESP_LOGW(TAG_I2C, "Probe at 0x%02X returned: %s (0x%x)", 
-               config_.device_address, esp_err_to_name(ret), ret);
+      ESP_LOGW(TAG_I2C, "Probe at 0x%02X returned: %s (0x%x)", config_.device_address,
+               esp_err_to_name(ret), ret);
     }
-    
+
     // ESP_OK = data received (ACK + data) - device present and responding
-    // ESP_ERR_TIMEOUT = clock stretching exceeded timeout (device present, no data yet - OK for BNO08x)
-    // ESP_ERR_INVALID_RESPONSE = NAK during data phase (but ACK on address means device is present!)
-    // For BNO08x, if we get ACK on address (which we see on logic analyzer),
-    // the device IS present, even if it NAKs during data phase (no data ready)
-    // So we accept timeout and also check if it's a response error (which might indicate ACK then NAK)
+    // ESP_ERR_TIMEOUT = clock stretching exceeded timeout (device present, no data yet - OK for
+    // BNO08x) ESP_ERR_INVALID_RESPONSE = NAK during data phase (but ACK on address means device is
+    // present!) For BNO08x, if we get ACK on address (which we see on logic analyzer), the device
+    // IS present, even if it NAKs during data phase (no data ready) So we accept timeout and also
+    // check if it's a response error (which might indicate ACK then NAK)
     if (ret == ESP_OK || ret == ESP_ERR_TIMEOUT) {
       return true;
     }
-    
+
     // ESP_ERR_INVALID_RESPONSE typically means NAK during data transfer
     // But if address was ACKed (seen on logic analyzer), device is present
     // BNO08x might NAK if it has no data ready, so we should still consider it present
     if (ret == ESP_ERR_INVALID_RESPONSE) {
       ESP_LOGI(TAG_I2C, "Probe got NAK during data phase, but address was ACKed - device present");
-      return true;  // Device ACKed address, so it's present
+      return true; // Device ACKed address, so it's present
     }
-    
-    return false;  // Other errors indicate real problems
+
+    return false; // Other errors indicate real problems
   }
 
   /**
@@ -257,7 +255,7 @@ public:
    */
   bool DataAvailable() noexcept {
     if (config_.int_pin == GPIO_NUM_NC) {
-      return true;  // No interrupt pin configured, always return true
+      return true; // No interrupt pin configured, always return true
     }
     // BNO08x INT pin is active low
     return (gpio_get_level(config_.int_pin) == 0);
@@ -285,7 +283,7 @@ public:
    */
   void SetReset(bool state) noexcept {
     if (config_.rst_pin == GPIO_NUM_NC) {
-      return;  // Reset pin not configured
+      return; // Reset pin not configured
     }
     // RSTN is active low
     gpio_set_level(config_.rst_pin, state ? 0 : 1);
@@ -340,7 +338,8 @@ public:
       return true;
     }
 
-    ESP_LOGI(TAG_I2C, "Initializing I2C bus on port %d (SDA:GPIO%d, SCL:GPIO%d, "
+    ESP_LOGI(TAG_I2C,
+             "Initializing I2C bus on port %d (SDA:GPIO%d, SCL:GPIO%d, "
              "Freq:%lu Hz, Addr:0x%02X)",
              config_.port, config_.sda_pin, config_.scl_pin,
              static_cast<unsigned long>(config_.frequency), config_.device_address);
@@ -376,14 +375,14 @@ public:
         .dev_addr_length = I2C_ADDR_BIT_LEN_7,
         .device_address = config_.device_address,
         .scl_speed_hz = config_.frequency,
-        .scl_wait_us = 50000,  // 50ms max clock stretching per byte (BNO08x datasheet requirement)
+        .scl_wait_us = 50000, // 50ms max clock stretching per byte (BNO08x datasheet requirement)
         .flags = {},
     };
 
     ret = i2c_master_bus_add_device(bus_handle_, &dev_config, &dev_handle_);
     if (ret != ESP_OK) {
-      ESP_LOGE(TAG_I2C, "Failed to add device 0x%02X: %s",
-               config_.device_address, esp_err_to_name(ret));
+      ESP_LOGE(TAG_I2C, "Failed to add device 0x%02X: %s", config_.device_address,
+               esp_err_to_name(ret));
       i2c_del_master_bus(bus_handle_);
       bus_handle_ = nullptr;
       return false;
@@ -445,10 +444,10 @@ public:
 
   /**
    * @brief Perform hardware reset pulse on the BNO08x
-   * 
+   *
    * Asserts reset (drives RSTN low) for the specified duration, then releases it.
    * This should be called before attempting to communicate with the device.
-   * 
+   *
    * @param lowMs Duration to hold reset low in milliseconds (default 2ms)
    * @param bootDelayMs Delay after releasing reset to allow sensor boot (default 200ms)
    */
@@ -457,17 +456,17 @@ public:
       ESP_LOGW(TAG_I2C, "Reset pin not configured, skipping hardware reset");
       return;
     }
-    
-    ESP_LOGI(TAG_I2C, "Performing hardware reset: asserting RSTN for %lu ms", 
+
+    ESP_LOGI(TAG_I2C, "Performing hardware reset: asserting RSTN for %lu ms",
              static_cast<unsigned long>(lowMs));
-    
+
     // Assert reset (drive LOW)
     SetReset(true);
     Delay(lowMs);
-    
+
     // Release reset (drive HIGH)
     SetReset(false);
-    ESP_LOGI(TAG_I2C, "Reset released, waiting %lu ms for sensor boot", 
+    ESP_LOGI(TAG_I2C, "Reset released, waiting %lu ms for sensor boot",
              static_cast<unsigned long>(bootDelayMs));
     Delay(bootDelayMs);
   }
@@ -475,7 +474,7 @@ public:
 private:
   I2CConfig config_;
   i2c_master_bus_handle_t bus_handle_;
-  i2c_master_dev_handle_t dev_handle_;  ///< Cached device handle (avoids add/rm per transaction)
+  i2c_master_dev_handle_t dev_handle_; ///< Cached device handle (avoids add/rm per transaction)
   bool initialized_;
 
   /**

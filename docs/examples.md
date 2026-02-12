@@ -28,7 +28,7 @@ void app_main() {
     config.device_address = 0x4B;   // Try 0x4B first (SA0=HIGH), then 0x4A if probe fails
     config.int_pin = GPIO_NUM_17;
     config.rst_pin = GPIO_NUM_16;
-    
+
     // 2. Create transport, reset, then probe (examples try 0x4B then 0x4A)
     auto transport = CreateEsp32Bno08xBus(config);
     if (!transport) return;
@@ -38,34 +38,34 @@ void app_main() {
         transport = CreateEsp32Bno08xBus(config);
         if (!transport || !transport->Probe()) { printf("No BNO08x at 0x4B or 0x4A\n"); return; }
     }
-    
+
     // 3. Create IMU instance and initialize
     BNO085<Esp32Bno08xBus> imu(*transport);
     if (!imu.Begin()) {
         printf("Failed to initialize BNO085\n");
         return;
     }
-    
+
     // 4. Enable sensors
     imu.EnableSensor(BNO085Sensor::RotationVector, 20);       // 50 Hz
     imu.EnableSensor(BNO085Sensor::LinearAcceleration, 20);  // 50 Hz
-    
+
     // 5. Polling loop
     while (true) {
         imu.Update();
-        
+
         if (imu.HasNewData(BNO085Sensor::RotationVector)) {
             auto rot = imu.GetLatest(BNO085Sensor::RotationVector);
             printf("Quat: w=%.3f x=%.3f y=%.3f z=%.3f\n",
                    rot.rotation.w, rot.rotation.x, rot.rotation.y, rot.rotation.z);
         }
-        
+
         if (imu.HasNewData(BNO085Sensor::LinearAcceleration)) {
             auto accel = imu.GetLatest(BNO085Sensor::LinearAcceleration);
-            printf("Linear Accel: %.2f %.2f %.2f m/s²\n", 
+            printf("Linear Accel: %.2f %.2f %.2f m/s²\n",
                    accel.vector.x, accel.vector.y, accel.vector.z);
         }
-        
+
         vTaskDelay(pdMS_TO_TICKS(20));
     }
 }
@@ -107,23 +107,23 @@ void sensor_callback(const SensorEvent& event) {
                    event.rotation.y, event.rotation.z,
                    event.rotation.accuracy);
             break;
-            
+
         case BNO085Sensor::StepCounter:
             printf("Step Count: %lu\n", event.stepCount);
             break;
-            
+
         case BNO085Sensor::TapDetector:
             if (event.detected) {
                 printf("%s\n", event.tap.doubleTap ? "Double Tap!" : "Tap!");
             }
             break;
-            
+
         case BNO085Sensor::ShakeDetector:
             if (event.detected) {
                 printf("Shake Detected!\n");
             }
             break;
-            
+
         default:
             break;
     }
@@ -134,19 +134,19 @@ void app_main() {
     auto transport = CreateEsp32Bno08xBus(config);
     if (transport) transport->HardwareReset(2, 200);
     if (!transport || !transport->Probe()) return;
-    
+
     BNO085<Esp32Bno08xBus> imu(*transport);
     if (!imu.Begin()) { printf("Initialization failed\n"); return; }
-    
+
     // Register callback
     imu.SetCallback(sensor_callback);
-    
+
     // Enable event-driven sensors (interval = 0 for on-change)
     imu.EnableSensor(BNO085Sensor::RotationVector, 10);  // 100 Hz
     imu.EnableSensor(BNO085Sensor::StepCounter, 0);      // on-change
     imu.EnableSensor(BNO085Sensor::TapDetector, 0);      // events
     imu.EnableSensor(BNO085Sensor::ShakeDetector, 0);    // events
-    
+
     // Main loop - just call Update() to process events
     while (true) {
         imu.Update();
@@ -190,27 +190,27 @@ void event_callback(const SensorEvent& event) {
                    event.rotation.w, event.rotation.x,
                    event.rotation.y, event.rotation.z);
             break;
-            
+
         case BNO085Sensor::LinearAcceleration:
-            printf("Linear accel %.2f %.2f %.2f m/s²\n", 
+            printf("Linear accel %.2f %.2f %.2f m/s²\n",
                    event.vector.x, event.vector.y, event.vector.z);
             break;
-            
+
         case BNO085Sensor::Gyroscope:
-            printf("Gyro %.2f %.2f %.2f rad/s\n", 
+            printf("Gyro %.2f %.2f %.2f rad/s\n",
                    event.vector.x, event.vector.y, event.vector.z);
             break;
-            
+
         case BNO085Sensor::StepCounter:
             printf("Steps: %lu\n", event.stepCount);
             break;
-            
+
         case BNO085Sensor::TapDetector:
             if (event.detected) {
                 printf("%s\n", event.tap.doubleTap ? "Double tap!" : "Tap!");
             }
             break;
-            
+
         default:
             break;
     }
@@ -221,12 +221,12 @@ void app_main() {
     auto transport = CreateEsp32Bno08xBus(config);
     if (transport) transport->HardwareReset(2, 200);
     if (!transport || !transport->Probe()) return;
-    
+
     BNO085<Esp32Bno08xBus> imu(*transport);
     if (!imu.Begin()) return;
-    
+
     imu.SetCallback(event_callback);
-    
+
     // Enable multiple sensors with different rates
     imu.EnableSensor(BNO085Sensor::RotationVector, 10);     // 100 Hz
     imu.EnableSensor(BNO085Sensor::LinearAcceleration, 20); // 50 Hz
@@ -234,17 +234,17 @@ void app_main() {
     imu.EnableSensor(BNO085Sensor::Gravity, 50);             // 20 Hz
     imu.EnableSensor(BNO085Sensor::StepCounter, 0);         // on-change
     imu.EnableSensor(BNO085Sensor::TapDetector, 0);         // events
-    
+
     while (true) {
         imu.Update();
-        
+
         // Poll for gravity (not using callback)
         if (imu.HasNewData(BNO085Sensor::Gravity)) {
             auto g = imu.GetLatest(BNO085Sensor::Gravity);
-            printf("Gravity %.2f %.2f %.2f m/s²\n", 
+            printf("Gravity %.2f %.2f %.2f m/s²\n",
                    g.vector.x, g.vector.y, g.vector.z);
         }
-        
+
         vTaskDelay(pdMS_TO_TICKS(5));
     }
 }
@@ -273,44 +273,44 @@ void app_main() {
     if (!transport) { printf("ERROR: Failed to create I2C transport\n"); return; }
     transport->HardwareReset(2, 200);
     if (!transport->Probe()) { printf("ERROR: Probe failed at 0x%02X\n", config.device_address); return; }
-    
+
     BNO085<Esp32Bno08xBus> imu(*transport);
-    
+
     // Initialize with error checking
     if (!imu.Begin()) {
         printf("ERROR: Failed to initialize BNO085\n");
         printf("Check I2C connections and address (0x4A or 0x4B)\n");
         return;
     }
-    
+
     printf("BNO085 initialized successfully\n");
-    
+
     // Enable sensor with error checking
     if (!imu.EnableSensor(BNO085Sensor::RotationVector, 10)) {
         printf("ERROR: Failed to enable Rotation Vector sensor\n");
         return;
     }
-    
+
     printf("Rotation Vector enabled at 100 Hz\n");
-    
+
     // Main loop with error checking
     // Note: The driver automatically re-enables configured sensors after a
     // sensor reset (handled internally by handleAsyncEvent). You only need
     // to monitor for data and check GetLastError() for issues.
     while (true) {
         imu.Update();
-        
+
         // Check for driver errors
         if (imu.GetLastError() != 0) {
             printf("WARNING: Driver error %d detected\n", imu.GetLastError());
         }
-        
+
         if (imu.HasNewData(BNO085Sensor::RotationVector)) {
             auto rot = imu.GetLatest(BNO085Sensor::RotationVector);
             printf("Quat: w=%.3f x=%.3f y=%.3f z=%.3f\n",
                    rot.rotation.w, rot.rotation.x, rot.rotation.y, rot.rotation.z);
         }
-        
+
         vTaskDelay(pdMS_TO_TICKS(10));
     }
 }

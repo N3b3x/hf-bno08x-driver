@@ -48,11 +48,11 @@ public:
         // Cast 'this' to Derived* and call the derived implementation
         return static_cast<Derived*>(this)->Open();
     }
-    
+
     int Read(uint8_t* data, uint32_t length) {
         return static_cast<Derived*>(this)->Read(data, length);
     }
-    
+
     // ... other methods
 };
 
@@ -64,7 +64,7 @@ public:
         // Your platform-specific initialization code
         return true;
     }
-    
+
     int Read(uint8_t* data, uint32_t length) {
         // Your platform-specific read code
         return length;
@@ -89,7 +89,7 @@ public:
     bool DataAvailable();
     void Delay(uint32_t ms);
     uint32_t GetTimeUs();
-    
+
     // Optional methods (implement if pins are wired)
     void SetReset(bool state);
     void SetBoot(bool state);
@@ -110,40 +110,40 @@ class MyPlatformComm : public bno08x::CommInterface<MyPlatformComm> {
 private:
     // Your platform-specific members
     i2c_handle_t i2c_handle_;  // Example for I²C
-    
+
 public:
     // Constructor
     MyPlatformComm(i2c_handle_t handle) : i2c_handle_(handle) {}
-    
+
     // Implement required methods
     bool Open() {
         // Your initialization code
         return true;
     }
-    
+
     void Close() {
         // Your cleanup code
     }
-    
+
     int Write(const uint8_t* data, uint32_t length) {
         // Your write code
         return length;
     }
-    
+
     int Read(uint8_t* data, uint32_t length) {
         // Your read code
         return length;
     }
-    
+
     bool DataAvailable() {
         // Check if data is available (e.g., via interrupt pin)
         return true;
     }
-    
+
     void Delay(uint32_t ms) {
         // Your delay implementation
     }
-    
+
     uint32_t GetTimeUs() {
         // Return current time in microseconds
         return 0;
@@ -163,11 +163,11 @@ class Esp32I2CComm : public bno08x::CommInterface<Esp32I2CComm> {
 private:
     i2c_port_t i2c_port_;
     uint8_t device_addr_;
-    
+
 public:
-    Esp32I2CComm(i2c_port_t port, uint8_t addr) 
+    Esp32I2CComm(i2c_port_t port, uint8_t addr)
         : i2c_port_(port), device_addr_(addr) {}
-    
+
     bool Open() {
         i2c_config_t conf = {};
         conf.mode = I2C_MODE_MASTER;
@@ -178,11 +178,11 @@ public:
         i2c_driver_install(i2c_port_, conf.mode, 0, 0, 0);
         return true;
     }
-    
+
     void Close() {
         i2c_driver_delete(i2c_port_);
     }
-    
+
     int Write(const uint8_t* data, uint32_t length) {
         i2c_cmd_handle_t cmd = i2c_cmd_link_create();
         i2c_master_start(cmd);
@@ -193,7 +193,7 @@ public:
         i2c_cmd_link_delete(cmd);
         return (ret == ESP_OK) ? length : -1;
     }
-    
+
     int Read(uint8_t* data, uint32_t length) {
         i2c_cmd_handle_t cmd = i2c_cmd_link_create();
         i2c_master_start(cmd);
@@ -207,16 +207,16 @@ public:
         i2c_cmd_link_delete(cmd);
         return (ret == ESP_OK) ? length : -1;
     }
-    
+
     bool DataAvailable() {
         // Check interrupt pin or always return true
         return true;
     }
-    
+
     void Delay(uint32_t ms) {
         vTaskDelay(pdMS_TO_TICKS(ms));
     }
-    
+
     uint32_t GetTimeUs() {
         return esp_timer_get_time();
     }
@@ -234,39 +234,39 @@ extern I2C_HandleTypeDef hi2c1;
 class STM32I2CComm : public bno08x::CommInterface<STM32I2CComm> {
 private:
     uint16_t device_addr_;
-    
+
 public:
     STM32I2CComm(uint16_t addr) : device_addr_(addr << 1) {}
-    
+
     bool Open() {
         return HAL_I2C_IsDeviceReady(&hi2c1, device_addr_, 3, 100) == HAL_OK;
     }
-    
+
     void Close() {
         // Nothing to do
     }
-    
+
     int Write(const uint8_t* data, uint32_t length) {
-        HAL_StatusTypeDef status = HAL_I2C_Master_Transmit(&hi2c1, device_addr_, 
-                                                          const_cast<uint8_t*>(data), 
+        HAL_StatusTypeDef status = HAL_I2C_Master_Transmit(&hi2c1, device_addr_,
+                                                          const_cast<uint8_t*>(data),
                                                           length, 100);
         return (status == HAL_OK) ? length : -1;
     }
-    
+
     int Read(uint8_t* data, uint32_t length) {
-        HAL_StatusTypeDef status = HAL_I2C_Master_Receive(&hi2c1, device_addr_, 
+        HAL_StatusTypeDef status = HAL_I2C_Master_Receive(&hi2c1, device_addr_,
                                                           data, length, 100);
         return (status == HAL_OK) ? length : -1;
     }
-    
+
     bool DataAvailable() {
         return true;
     }
-    
+
     void Delay(uint32_t ms) {
         HAL_Delay(ms);
     }
-    
+
     uint32_t GetTimeUs() {
         return HAL_GetTick() * 1000;
     }
@@ -282,27 +282,27 @@ public:
 class ArduinoComm : public bno08x::CommInterface<ArduinoComm> {
 private:
     uint8_t device_addr_;
-    
+
 public:
     ArduinoComm(uint8_t addr) : device_addr_(addr) {}
-    
+
     bool Open() {
         Wire.begin();
         Wire.setClock(400000);
         delay(50);
         return true;
     }
-    
+
     void Close() {
         // Nothing to do
     }
-    
+
     int Write(const uint8_t* data, uint32_t length) {
         Wire.beginTransmission(device_addr_);
         Wire.write(data, length);
         return (Wire.endTransmission() == 0) ? length : -1;
     }
-    
+
     int Read(uint8_t* data, uint32_t length) {
         Wire.requestFrom(device_addr_, length);
         size_t count = 0;
@@ -311,15 +311,15 @@ public:
         }
         return count;
     }
-    
+
     bool DataAvailable() {
         return true;
     }
-    
+
     void Delay(uint32_t ms) {
         delay(ms);
     }
-    
+
     uint32_t GetTimeUs() {
         return micros();
     }

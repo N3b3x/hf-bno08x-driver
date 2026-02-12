@@ -33,8 +33,8 @@ static const char* TAG = "BNO08x_RvcMode";
 // RVC frame callback
 static void on_rvc_frame(const RvcSensorValue& value) {
   ESP_LOGI(TAG, "RVC Frame: Yaw=%.2f, Pitch=%.2f, Roll=%.2f (ax=%.3fg ay=%.3fg az=%.3fg)",
-           value.yaw_deg, value.pitch_deg, value.roll_deg,
-           value.acc_x_g, value.acc_y_g, value.acc_z_g);
+           value.yaw_deg, value.pitch_deg, value.roll_deg, value.acc_x_g, value.acc_y_g,
+           value.acc_z_g);
 }
 
 extern "C" void app_main(void) {
@@ -50,7 +50,7 @@ extern "C" void app_main(void) {
   uart_config.port = UART_NUM_1;
   uart_config.tx_pin = GPIO_NUM_21;
   uart_config.rx_pin = GPIO_NUM_20;
-  uart_config.rst_pin = GPIO_NUM_16;   // Reset pin (RSTN)
+  uart_config.rst_pin = GPIO_NUM_16; // Reset pin (RSTN)
   uart_config.baud_rate = 115200;
 
   Esp32UartRvcBus uart_bus(uart_config);

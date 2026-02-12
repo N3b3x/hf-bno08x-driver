@@ -144,19 +144,19 @@ class MyComm : public bno08x::CommInterface<MyComm> {
 void app_main() {
     MyComm comm;
     BNO085<MyComm> imu(comm);
-    
+
     // Initialize
     if (!imu.Begin()) {
         printf("Initialization failed\n");
         return;
     }
-    
+
     // Enable sensors
     if (!imu.EnableSensor(BNO085Sensor::RotationVector, 10)) {
         printf("Failed to enable rotation vector\n");
         return;
     }
-    
+
     // Set callback
     imu.SetCallback([](const SensorEvent& e) {
         if (e.sensor == BNO085Sensor::RotationVector) {
@@ -164,7 +164,7 @@ void app_main() {
                    e.rotation.w, e.rotation.x, e.rotation.y, e.rotation.z);
         }
     });
-    
+
     // Main loop
     while (true) {
         imu.Update();

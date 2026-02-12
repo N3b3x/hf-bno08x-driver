@@ -55,7 +55,7 @@ Add the driver as a subdirectory in your `CMakeLists.txt`:
 ```cmake
 add_subdirectory(external/hf-bno08x-driver)
 target_link_libraries(your_target PRIVATE hf_bno08x)
-target_include_directories(your_target PRIVATE 
+target_include_directories(your_target PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/external/hf-bno08x-driver/inc
 )
 ```

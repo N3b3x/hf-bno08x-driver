@@ -53,19 +53,20 @@ public:
    * @brief UART configuration for RVC mode.
    */
   struct UartConfig {
-    uart_port_t port = UART_NUM_1;       ///< UART port number
-    gpio_num_t tx_pin = GPIO_NUM_21;     ///< UART TX pin
-    gpio_num_t rx_pin = GPIO_NUM_20;     ///< UART RX pin
-    uint32_t baud_rate = 115200;         ///< Baud rate (BNO08x RVC is always 115200)
-    gpio_num_t rst_pin = GPIO_NUM_16;    ///< Reset pin (RSTN, active-low, GPIO_NUM_NC if not used)
-    gpio_num_t boot_pin = GPIO_NUM_NC;   ///< Boot pin (BOOTN, GPIO_NUM_NC if not used)
+    uart_port_t port = UART_NUM_1;     ///< UART port number
+    gpio_num_t tx_pin = GPIO_NUM_21;   ///< UART TX pin
+    gpio_num_t rx_pin = GPIO_NUM_20;   ///< UART RX pin
+    uint32_t baud_rate = 115200;       ///< Baud rate (BNO08x RVC is always 115200)
+    gpio_num_t rst_pin = GPIO_NUM_16;  ///< Reset pin (RSTN, active-low, GPIO_NUM_NC if not used)
+    gpio_num_t boot_pin = GPIO_NUM_NC; ///< Boot pin (BOOTN, GPIO_NUM_NC if not used)
   };
 
   Esp32UartRvcBus() : Esp32UartRvcBus(UartConfig{}) {}
   explicit Esp32UartRvcBus(const UartConfig& config) : config_(config) {}
 
   ~Esp32UartRvcBus() {
-    if (initialized_) Close();
+    if (initialized_)
+      Close();
   }
 
   // ── CommInterface required methods ─────────────────────────────────────
@@ -75,7 +76,8 @@ public:
   }
 
   bool Open() noexcept {
-    if (initialized_) return true;
+    if (initialized_)
+      return true;
 
     uart_config_t cfg{};
     cfg.baud_rate = static_cast<int>(config_.baud_rate);
@@ -90,8 +92,8 @@ public:
       return false;
     }
 
-    err = uart_set_pin(config_.port, config_.tx_pin, config_.rx_pin,
-                       UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
+    err = uart_set_pin(config_.port, config_.tx_pin, config_.rx_pin, UART_PIN_NO_CHANGE,
+                       UART_PIN_NO_CHANGE);
     if (err != ESP_OK) {
       ESP_LOGE(TAG_UART_RVC, "uart_set_pin failed: %s", esp_err_to_name(err));
       return false;
@@ -114,16 +116,15 @@ public:
       gpio_config(&io_conf);
 
       // Reset the sensor into RVC mode
-      gpio_set_level(config_.rst_pin, 0);  // Assert reset
+      gpio_set_level(config_.rst_pin, 0); // Assert reset
       vTaskDelay(pdMS_TO_TICKS(2));
-      gpio_set_level(config_.rst_pin, 1);  // Release reset
-      vTaskDelay(pdMS_TO_TICKS(200));       // Wait for sensor boot
+      gpio_set_level(config_.rst_pin, 1); // Release reset
+      vTaskDelay(pdMS_TO_TICKS(200));     // Wait for sensor boot
     }
 
     initialized_ = true;
-    ESP_LOGI(TAG_UART_RVC, "UART RVC bus opened on port %d (TX:%d, RX:%d, %lu baud)",
-             config_.port, config_.tx_pin, config_.rx_pin,
-             static_cast<unsigned long>(config_.baud_rate));
+    ESP_LOGI(TAG_UART_RVC, "UART RVC bus opened on port %d (TX:%d, RX:%d, %lu baud)", config_.port,
+             config_.tx_pin, config_.rx_pin, static_cast<unsigned long>(config_.baud_rate));
     return true;
   }
 
@@ -141,17 +142,18 @@ public:
    * parser. Non-blocking: returns 0 immediately if no data available.
    */
   int Read(uint8_t* data, uint32_t length) noexcept {
-    if (!initialized_) return -1;
+    if (!initialized_)
+      return -1;
     int ret = uart_read_bytes(config_.port, data, length, 0);
     return (ret >= 0) ? ret : -1;
   }
 
   int Write(const uint8_t* /*data*/, uint32_t /*length*/) noexcept {
-    return -1;  // RVC mode is read-only (sensor outputs data, host doesn't write)
+    return -1; // RVC mode is read-only (sensor outputs data, host doesn't write)
   }
 
   bool DataAvailable() noexcept {
-    return true;  // UART is polled via Read()
+    return true; // UART is polled via Read()
   }
 
   void Delay(uint32_t ms) noexcept {

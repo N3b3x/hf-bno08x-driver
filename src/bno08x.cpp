@@ -81,7 +81,8 @@ bool BNO085<CommType>::Begin() noexcept {
  * can be automatically re-applied after a sensor reset.
  */
 template <typename CommType>
-bool BNO085<CommType>::EnableSensor(BNO085Sensor sensor, uint32_t interval_ms, float sensitivity) noexcept {
+bool BNO085<CommType>::EnableSensor(BNO085Sensor sensor, uint32_t interval_ms,
+                                    float sensitivity) noexcept {
   if (!initialized_)
     return false;
   uint32_t interval_us = interval_ms * 1000;
@@ -298,7 +299,7 @@ void BNO085<CommType>::handleAsyncEvent(const sh2_AsyncEvent_t* event) noexcept 
  */
 template <typename CommType>
 bool BNO085<CommType>::configure(BNO085Sensor sensor, uint32_t interval_us, float sensitivity,
-                       uint32_t batch_us) noexcept {
+                                 uint32_t batch_us) noexcept {
   sh2_SensorConfig_t cfg{};
   cfg.reportInterval_us = interval_us;
   cfg.batchInterval_us = batch_us;
@@ -326,19 +327,23 @@ bool BNO085<CommType>::configure(BNO085Sensor sensor, uint32_t interval_us, floa
  */
 template <typename CommType>
 void BNO085<CommType>::HardwareReset(uint32_t lowMs) noexcept {
-  io_.SetReset(true);   // Drive RSTN LOW (assert)
+  io_.SetReset(true); // Drive RSTN LOW (assert)
   io_.Delay(lowMs);
-  io_.SetReset(false);  // Drive RSTN HIGH (release)
-  io_.Delay(50);        // Wait for sensor boot
+  io_.SetReset(false); // Drive RSTN HIGH (release)
+  io_.Delay(50);       // Wait for sensor boot
 }
 
 /** @brief Forward BOOTN control to the CommInterface. */
 template <typename CommType>
-void BNO085<CommType>::SetBootPin(bool state) noexcept { io_.SetBoot(state); }
+void BNO085<CommType>::SetBootPin(bool state) noexcept {
+  io_.SetBoot(state);
+}
 
 /** @brief Forward WAKE control to the CommInterface (SPI only). */
 template <typename CommType>
-void BNO085<CommType>::SetWakePin(bool state) noexcept { io_.SetWake(state); }
+void BNO085<CommType>::SetWakePin(bool state) noexcept {
+  io_.SetWake(state);
+}
 
 /**
  * @brief Drive PS0/PS1 pins to select the host interface.
@@ -349,10 +354,22 @@ void BNO085<CommType>::SetWakePin(bool state) noexcept { io_.SetWake(state); }
 template <typename CommType>
 void BNO085<CommType>::SelectInterface(BNO085Interface iface) noexcept {
   switch (iface) {
-  case BNO085Interface::I2C:     io_.SetPS1(false); io_.SetPS0(false); break;
-  case BNO085Interface::UARTRVC: io_.SetPS1(true);  io_.SetPS0(false); break;
-  case BNO085Interface::UART:    io_.SetPS1(false); io_.SetPS0(true);  break;
-  case BNO085Interface::SPI:     io_.SetPS1(true);  io_.SetPS0(true);  break;
+  case BNO085Interface::I2C:
+    io_.SetPS1(false);
+    io_.SetPS0(false);
+    break;
+  case BNO085Interface::UARTRVC:
+    io_.SetPS1(true);
+    io_.SetPS0(false);
+    break;
+  case BNO085Interface::UART:
+    io_.SetPS1(false);
+    io_.SetPS0(true);
+    break;
+  case BNO085Interface::SPI:
+    io_.SetPS1(true);
+    io_.SetPS0(true);
+    break;
   }
 }
 
@@ -439,8 +456,7 @@ void BNO085<CommType>::rvcProcessByte(uint8_t c) noexcept {
     rvc_frame_[rvc_frame_len_++] = c;
   }
 
-  if (rvc_frame_len_ == RVC_FRAME_LEN_ &&
-      rvc_frame_[0] == 0xAA && rvc_frame_[1] == 0xAA) {
+  if (rvc_frame_len_ == RVC_FRAME_LEN_ && rvc_frame_[0] == 0xAA && rvc_frame_[1] == 0xAA) {
     uint8_t check = 0;
     for (int i = 2; i < RVC_FRAME_LEN_ - 1; ++i)
       check += rvc_frame_[i];
@@ -449,9 +465,9 @@ void BNO085<CommType>::rvcProcessByte(uint8_t c) noexcept {
       RvcSensorEvent event{};
       event.timestamp_uS = io_.GetTimeUs();
       event.index = rvc_frame_[2];
-      event.yaw   = static_cast<int16_t>((rvc_frame_[4] << 8) | rvc_frame_[3]);
+      event.yaw = static_cast<int16_t>((rvc_frame_[4] << 8) | rvc_frame_[3]);
       event.pitch = static_cast<int16_t>((rvc_frame_[6] << 8) | rvc_frame_[5]);
-      event.roll  = static_cast<int16_t>((rvc_frame_[8] << 8) | rvc_frame_[7]);
+      event.roll = static_cast<int16_t>((rvc_frame_[8] << 8) | rvc_frame_[7]);
       event.acc_x = static_cast<int16_t>((rvc_frame_[10] << 8) | rvc_frame_[9]);
       event.acc_y = static_cast<int16_t>((rvc_frame_[12] << 8) | rvc_frame_[11]);
       event.acc_z = static_cast<int16_t>((rvc_frame_[14] << 8) | rvc_frame_[13]);
@@ -505,10 +521,10 @@ void BNO085<CommType>::decodeRvc(RvcSensorValue* out, const RvcSensorEvent* in) 
 
 /// @name DFU Protocol Constants
 /// @{
-static constexpr uint8_t DFU_ACK = 's';           ///< Expected ACK byte from bootloader.
-static constexpr uint32_t DFU_MAX_PACKET_LEN = 64;  ///< Maximum DFU packet payload size.
-static constexpr uint32_t DFU_MAX_ATTEMPTS = 5;     ///< Retry count per packet.
-static constexpr uint32_t DFU_DELAY_POST_US = 10000; ///< Post-DFU flash write delay (us).
+static constexpr uint8_t DFU_ACK = 's';                 ///< Expected ACK byte from bootloader.
+static constexpr uint32_t DFU_MAX_PACKET_LEN = 64;      ///< Maximum DFU packet payload size.
+static constexpr uint32_t DFU_MAX_ATTEMPTS = 5;         ///< Retry count per packet.
+static constexpr uint32_t DFU_DELAY_POST_US = 10000;    ///< Post-DFU flash write delay (us).
 static constexpr uint32_t DFU_SEND_TIMEOUT_US = 100000; ///< Per-packet I/O timeout (us).
 /// @}
 
@@ -528,8 +544,10 @@ void BNO085<CommType>::dfuAppendCrc(uint8_t* packet, uint8_t len) noexcept {
   for (int n = 0; n < len; n++) {
     uint16_t x = static_cast<uint16_t>(packet[n]) << 8;
     for (int i = 0; i < 8; i++) {
-      if ((crc ^ x) & 0x8000) crc = (crc << 1) ^ 0x1021;
-      else crc = crc << 1;
+      if ((crc ^ x) & 0x8000)
+        crc = (crc << 1) ^ 0x1021;
+      else
+        crc = crc << 1;
       x <<= 1;
     }
   }
@@ -562,20 +580,28 @@ int BNO085<CommType>::dfuSend(uint8_t* dfu_buff, uint8_t* p_data, uint32_t len) 
       status = hal->write(hal, p_data, len);
       now = hal->getTimeUs(hal);
     }
-    if (status == 0) status = SH2_ERR_TIMEOUT;
+    if (status == 0)
+      status = SH2_ERR_TIMEOUT;
     if (status > 0) {
       status = 0;
       while ((status == 0) && ((now - start) < DFU_SEND_TIMEOUT_US)) {
         status = hal->read(hal, &ack, 1, &t);
         now = hal->getTimeUs(hal);
       }
-      if (status == 0) status = SH2_ERR_TIMEOUT;
+      if (status == 0)
+        status = SH2_ERR_TIMEOUT;
     }
     if (status > 0) {
-      if (ack == DFU_ACK) { got_ack = true; status = SH2_OK; }
-      else { got_ack = false; status = SH2_ERR_HUB; }
+      if (ack == DFU_ACK) {
+        got_ack = true;
+        status = SH2_OK;
+      } else {
+        got_ack = false;
+        status = SH2_ERR_HUB;
+      }
     }
-    if (!got_ack) retries++;
+    if (!got_ack)
+      retries++;
   }
   return (status >= 0) ? SH2_OK : status;
 }
@@ -630,40 +656,60 @@ int BNO085<CommType>::Dfu(const HcBin_t& fw) noexcept {
   sh2_Hal_t* hal = halWrapper_.asHal();
 
   rc = fw.open();
-  if (rc != 0) { status = SH2_ERR; goto dfu_end; }
+  if (rc != 0) {
+    status = SH2_ERR;
+    goto dfu_end;
+  }
 
   s = fw.getMeta("FW-Format");
-  if (!s || std::strcmp(s, "BNO_V1") != 0) { status = SH2_ERR_BAD_PARAM; goto dfu_close; }
+  if (!s || std::strcmp(s, "BNO_V1") != 0) {
+    status = SH2_ERR_BAD_PARAM;
+    goto dfu_close;
+  }
 
   s = fw.getMeta("SW-Part-Number");
-  if (!s) { status = SH2_ERR_BAD_PARAM; goto dfu_close; }
+  if (!s) {
+    status = SH2_ERR_BAD_PARAM;
+    goto dfu_close;
+  }
   if (std::strcmp(s, "1000-3608") != 0 && std::strcmp(s, "1000-3676") != 0 &&
       std::strcmp(s, "1000-4148") != 0 && std::strcmp(s, "1000-4563") != 0) {
-    status = SH2_ERR_BAD_PARAM; goto dfu_close;
+    status = SH2_ERR_BAD_PARAM;
+    goto dfu_close;
   }
 
   app_len = fw.getAppLen();
-  if (app_len < 1024) { status = SH2_ERR_BAD_PARAM; goto dfu_close; }
+  if (app_len < 1024) {
+    status = SH2_ERR_BAD_PARAM;
+    goto dfu_close;
+  }
 
   packet_len = fw.getPacketLen();
-  if (packet_len == 0 || packet_len > DFU_MAX_PACKET_LEN) packet_len = DFU_MAX_PACKET_LEN;
+  if (packet_len == 0 || packet_len > DFU_MAX_PACKET_LEN)
+    packet_len = DFU_MAX_PACKET_LEN;
 
   status = hal->open(hal);
-  if (status != SH2_OK) goto dfu_close;
+  if (status != SH2_OK)
+    goto dfu_close;
 
   status = dfuSendAppSize(dfu_buff, app_len);
-  if (status != SH2_OK) goto dfu_close;
+  if (status != SH2_OK)
+    goto dfu_close;
   status = dfuSendPktSize(dfu_buff, packet_len);
-  if (status != SH2_OK) goto dfu_close;
+  if (status != SH2_OK)
+    goto dfu_close;
 
   offset = 0;
   while (offset < app_len) {
     uint32_t to_send = app_len - offset;
-    if (to_send > packet_len) to_send = packet_len;
+    if (to_send > packet_len)
+      to_send = packet_len;
     status = fw.getAppData(dfu_buff, offset, to_send);
-    if (status != SH2_OK) goto dfu_close;
+    if (status != SH2_OK)
+      goto dfu_close;
     status = dfuSendPkt(dfu_buff, dfu_buff, to_send);
-    if (status != SH2_OK) goto dfu_close;
+    if (status != SH2_OK)
+      goto dfu_close;
     offset += to_send;
   }
 
@@ -671,7 +717,8 @@ dfu_close:
   fw.close();
   if (status == SH2_OK) {
     uint32_t now = hal->getTimeUs(hal), start = now;
-    while ((now - start) < DFU_DELAY_POST_US) now = hal->getTimeUs(hal);
+    while ((now - start) < DFU_DELAY_POST_US)
+      now = hal->getTimeUs(hal);
   }
   hal->close(hal);
 

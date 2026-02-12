@@ -171,12 +171,12 @@ struct TapEvent {
  */
 struct SensorEvent {
   BNO085Sensor sensor{BNO085Sensor::Accelerometer}; ///< Which sensor produced this event
-  uint64_t timestamp{0};   ///< Event timestamp in microseconds
-  Vector3 vector{};        ///< 3-axis data (accelerometer, gyro, mag, etc.)
-  Quaternion rotation{};   ///< Quaternion data (rotation vectors)
-  uint32_t stepCount{0};   ///< Cumulative step count (StepCounter only)
-  TapEvent tap{};          ///< Tap event details (TapDetector only)
-  bool detected{false};    ///< Generic detection flag (tap, shake, etc.)
+  uint64_t timestamp{0};                            ///< Event timestamp in microseconds
+  Vector3 vector{};      ///< 3-axis data (accelerometer, gyro, mag, etc.)
+  Quaternion rotation{}; ///< Quaternion data (rotation vectors)
+  uint32_t stepCount{0}; ///< Cumulative step count (StepCounter only)
+  TapEvent tap{};        ///< Tap event details (TapDetector only)
+  bool detected{false};  ///< Generic detection flag (tap, shake, etc.)
 };
 
 // ---- RVC Mode Data Types ---------------------------------------------------
@@ -190,16 +190,16 @@ struct SensorEvent {
  * Use BNO085::decodeRvc() or the RvcCallback to get floating-point values.
  */
 struct RvcSensorEvent {
-  uint8_t index;          ///< Frame sequence index (0-255)
-  int16_t yaw;            ///< Yaw angle (units: 0.01 degrees)
-  int16_t pitch;          ///< Pitch angle (units: 0.01 degrees)
-  int16_t roll;           ///< Roll angle (units: 0.01 degrees)
-  int16_t acc_x;          ///< X linear acceleration (units: 0.001 g)
-  int16_t acc_y;          ///< Y linear acceleration (units: 0.001 g)
-  int16_t acc_z;          ///< Z linear acceleration (units: 0.001 g)
-  uint8_t mi;             ///< Motion intent (0=unknown, 1=stationary, 3=in motion)
-  uint8_t mr;             ///< Motion request (0=no constraint, 1=stay stationary)
-  uint64_t timestamp_uS;  ///< Timestamp in microseconds (set by the driver)
+  uint8_t index;         ///< Frame sequence index (0-255)
+  int16_t yaw;           ///< Yaw angle (units: 0.01 degrees)
+  int16_t pitch;         ///< Pitch angle (units: 0.01 degrees)
+  int16_t roll;          ///< Roll angle (units: 0.01 degrees)
+  int16_t acc_x;         ///< X linear acceleration (units: 0.001 g)
+  int16_t acc_y;         ///< Y linear acceleration (units: 0.001 g)
+  int16_t acc_z;         ///< Z linear acceleration (units: 0.001 g)
+  uint8_t mi;            ///< Motion intent (0=unknown, 1=stationary, 3=in motion)
+  uint8_t mr;            ///< Motion request (0=no constraint, 1=stay stationary)
+  uint64_t timestamp_uS; ///< Timestamp in microseconds (set by the driver)
 };
 
 /**
@@ -209,16 +209,16 @@ struct RvcSensorEvent {
  * Delivered to the RvcCallback registered via SetRvcCallback().
  */
 struct RvcSensorValue {
-  uint8_t index;          ///< Frame sequence index
-  float yaw_deg;          ///< Yaw angle in degrees
-  float pitch_deg;        ///< Pitch angle in degrees
-  float roll_deg;         ///< Roll angle in degrees
-  float acc_x_g;          ///< X linear acceleration in g
-  float acc_y_g;          ///< Y linear acceleration in g
-  float acc_z_g;          ///< Z linear acceleration in g
-  uint8_t mi;             ///< Motion intent
-  uint8_t mr;             ///< Motion request
-  uint64_t timestamp_uS;  ///< Timestamp in microseconds
+  uint8_t index;         ///< Frame sequence index
+  float yaw_deg;         ///< Yaw angle in degrees
+  float pitch_deg;       ///< Pitch angle in degrees
+  float roll_deg;        ///< Roll angle in degrees
+  float acc_x_g;         ///< X linear acceleration in g
+  float acc_y_g;         ///< Y linear acceleration in g
+  float acc_z_g;         ///< Z linear acceleration in g
+  uint8_t mi;            ///< Motion intent
+  uint8_t mr;            ///< Motion request
+  uint64_t timestamp_uS; ///< Timestamp in microseconds
 };
 
 // ---- Callback Types --------------------------------------------------------
@@ -411,7 +411,9 @@ public:
    * @brief Get the last error code from the SH-2 driver.
    * @return  SH-2 error code (0 = no error). See `sh2_err.h` for values.
    */
-  int GetLastError() const { return last_error_; }
+  int GetLastError() const {
+    return last_error_;
+  }
 
   /**
    * @brief Perform a hardware reset via the RSTN pin.
@@ -471,16 +473,18 @@ private:
 
   /** @brief Wrapper pairing the C HAL struct with the typed CommInterface pointer. */
   struct CommHal {
-    sh2_Hal_t* asHal() { return &hal; }
-    sh2_Hal_t hal;         ///< C HAL function-pointer struct
+    sh2_Hal_t* asHal() {
+      return &hal;
+    }
+    sh2_Hal_t hal;           ///< C HAL function-pointer struct
     CommType* comm{nullptr}; ///< Typed pointer to the user's CommInterface
   } halWrapper_{};
 
-  static int halOpen(sh2_Hal_t* self);                                ///< @private
-  static void halClose(sh2_Hal_t* self);                              ///< @private
+  static int halOpen(sh2_Hal_t* self);                                          ///< @private
+  static void halClose(sh2_Hal_t* self);                                        ///< @private
   static int halRead(sh2_Hal_t* self, uint8_t* buf, unsigned len, uint32_t* t); ///< @private
-  static int halWrite(sh2_Hal_t* self, uint8_t* buf, unsigned len);   ///< @private
-  static uint32_t halGetTimeUs(sh2_Hal_t* self);                      ///< @private
+  static int halWrite(sh2_Hal_t* self, uint8_t* buf, unsigned len);             ///< @private
+  static uint32_t halGetTimeUs(sh2_Hal_t* self);                                ///< @private
 
   /// @}
 
@@ -502,7 +506,8 @@ private:
   /** @brief Handle asynchronous events (e.g. sensor reset -> re-enable sensors). */
   void handleAsyncEvent(const sh2_AsyncEvent_t* event) noexcept;
   /** @brief Send a sensor configuration command to the SH-2 library. */
-  bool configure(BNO085Sensor sensor, uint32_t interval_us, float sensitivity, uint32_t batch_us = 0) noexcept;
+  bool configure(BNO085Sensor sensor, uint32_t interval_us, float sensitivity,
+                 uint32_t batch_us = 0) noexcept;
 
   /// @}
 
@@ -523,8 +528,8 @@ private:
   static void decodeRvc(RvcSensorValue* out, const RvcSensorEvent* in) noexcept;
 
   uint8_t rvc_frame_[RVC_FRAME_LEN_]{}; ///< Sliding frame accumulation buffer.
-  uint8_t rvc_frame_len_{0};             ///< Bytes currently in the buffer.
-  bool rvc_active_{false};               ///< True after BeginRvc() succeeds.
+  uint8_t rvc_frame_len_{0};            ///< Bytes currently in the buffer.
+  bool rvc_active_{false};              ///< True after BeginRvc() succeeds.
 
   /// @}
 
@@ -535,12 +540,12 @@ private:
   /// encoding, send-with-ACK retry, and the full firmware transfer sequence.
   /// @{
 
-  static void dfuWrite32be(uint8_t* buf, uint32_t value) noexcept;   ///< @private
-  static void dfuAppendCrc(uint8_t* packet, uint8_t len) noexcept;   ///< @private
-  int dfuSend(uint8_t* dfu_buff, uint8_t* p_data, uint32_t len) noexcept;      ///< @private
-  int dfuSendAppSize(uint8_t* dfu_buff, uint32_t app_size) noexcept;           ///< @private
-  int dfuSendPktSize(uint8_t* dfu_buff, uint8_t packet_len) noexcept;          ///< @private
-  int dfuSendPkt(uint8_t* dfu_buff, uint8_t* p_data, uint32_t len) noexcept;   ///< @private
+  static void dfuWrite32be(uint8_t* buf, uint32_t value) noexcept;           ///< @private
+  static void dfuAppendCrc(uint8_t* packet, uint8_t len) noexcept;           ///< @private
+  int dfuSend(uint8_t* dfu_buff, uint8_t* p_data, uint32_t len) noexcept;    ///< @private
+  int dfuSendAppSize(uint8_t* dfu_buff, uint32_t app_size) noexcept;         ///< @private
+  int dfuSendPktSize(uint8_t* dfu_buff, uint8_t packet_len) noexcept;        ///< @private
+  int dfuSendPkt(uint8_t* dfu_buff, uint8_t* p_data, uint32_t len) noexcept; ///< @private
 
   /// @}
 
@@ -548,16 +553,17 @@ private:
   /// @name Instance State
   /// @{
 
-  CommType& io_;                ///< Reference to the user-provided transport.
-  SensorCallback callback_{};  ///< Registered SH-2 sensor event callback.
-  RvcCallback rvc_cb_{};       ///< Registered RVC frame callback.
-  int last_error_{0};          ///< Most recent SH-2 error code.
-  bool initialized_{false};    ///< True after Begin() succeeds.
+  CommType& io_;              ///< Reference to the user-provided transport.
+  SensorCallback callback_{}; ///< Registered SH-2 sensor event callback.
+  RvcCallback rvc_cb_{};      ///< Registered RVC frame callback.
+  int last_error_{0};         ///< Most recent SH-2 error code.
+  bool initialized_{false};   ///< True after Begin() succeeds.
 
-  std::array<sh2_SensorValue_t, 0x2B> latest_{};        ///< Cached latest sensor values.
-  std::array<bool, 0x2B> new_flag_{};                    ///< Per-sensor new-data flags.
-  std::array<uint32_t, 0x2B> last_interval_{};          ///< Last configured interval per sensor (for re-enable on reset).
-  std::array<float, 0x2B> last_sensitivity_{};           ///< Last configured sensitivity per sensor.
+  std::array<sh2_SensorValue_t, 0x2B> latest_{}; ///< Cached latest sensor values.
+  std::array<bool, 0x2B> new_flag_{};            ///< Per-sensor new-data flags.
+  std::array<uint32_t, 0x2B>
+      last_interval_{}; ///< Last configured interval per sensor (for re-enable on reset).
+  std::array<float, 0x2B> last_sensitivity_{}; ///< Last configured sensitivity per sensor.
 
   /// @}
 };
