@@ -583,16 +583,19 @@ bool BNO085<CommType>::configure(BNO085Sensor sensor, uint32_t interval_us, floa
  */
 template <typename CommType>
 void BNO085<CommType>::HardwareReset(uint32_t lowMs) noexcept {
-  io_.SetReset(true); // Drive RSTN LOW (assert)
+  using bno08x::CtrlPin;
+  io_.GpioSetActive(CtrlPin::RSTN);   // Assert reset
   io_.Delay(lowMs);
-  io_.SetReset(false); // Drive RSTN HIGH (release)
-  io_.Delay(50);       // Wait for sensor boot
+  io_.GpioSetInactive(CtrlPin::RSTN); // Release reset
+  io_.Delay(50);                      // Wait for sensor boot
 }
 
 /** @brief Forward BOOTN control to the CommInterface. */
 template <typename CommType>
 void BNO085<CommType>::SetBootPin(bool state) noexcept {
-  io_.SetBoot(state);
+  using bno08x::CtrlPin;
+  using bno08x::GpioSignal;
+  io_.GpioSet(CtrlPin::BOOTN, state ? GpioSignal::ACTIVE : GpioSignal::INACTIVE);
 }
 
 /** @brief Enter bootloader mode via BOOTN+reset sequence. */
@@ -614,9 +617,9 @@ bool BNO085<CommType>::EnterBootloader(uint32_t resetLowMs, uint32_t settleMs) n
     return false;
   }
 
-  io_.SetBoot(true); // BOOTN active-low: true drives pin low.
+  io_.GpioSetActive(bno08x::CtrlPin::BOOTN);   // Assert BOOTN (enter bootloader)
   HardwareReset(resetLowMs);
-  io_.SetBoot(false); // Release BOOTN high after reset.
+  io_.GpioSetInactive(bno08x::CtrlPin::BOOTN); // Release BOOTN after reset
   if (settleMs) {
     io_.Delay(settleMs);
   }
@@ -643,7 +646,7 @@ bool BNO085<CommType>::ExitBootloaderAndReboot(uint32_t resetLowMs, uint32_t set
     return false;
   }
 
-  io_.SetBoot(false); // Ensure normal application boot path.
+  io_.GpioSetInactive(bno08x::CtrlPin::BOOTN); // Ensure normal application boot path
   HardwareReset(resetLowMs);
   if (settleMs) {
     io_.Delay(settleMs);
@@ -655,7 +658,9 @@ bool BNO085<CommType>::ExitBootloaderAndReboot(uint32_t resetLowMs, uint32_t set
 /** @brief Forward WAKE control to the CommInterface (SPI only). */
 template <typename CommType>
 void BNO085<CommType>::SetWakePin(bool state) noexcept {
-  io_.SetWake(state);
+  using bno08x::CtrlPin;
+  using bno08x::GpioSignal;
+  io_.GpioSet(CtrlPin::WAKE, state ? GpioSignal::ACTIVE : GpioSignal::INACTIVE);
 }
 
 /**
@@ -666,22 +671,24 @@ void BNO085<CommType>::SetWakePin(bool state) noexcept {
  */
 template <typename CommType>
 void BNO085<CommType>::SelectInterface(BNO085Interface iface) noexcept {
+  using bno08x::CtrlPin;
+  using bno08x::GpioSignal;
   switch (iface) {
   case BNO085Interface::I2C:
-    io_.SetPS1(false);
-    io_.SetPS0(false);
+    io_.GpioSetInactive(CtrlPin::PS1);
+    io_.GpioSetInactive(CtrlPin::PS0);
     break;
   case BNO085Interface::UARTRVC:
-    io_.SetPS1(true);
-    io_.SetPS0(false);
+    io_.GpioSetActive(CtrlPin::PS1);
+    io_.GpioSetInactive(CtrlPin::PS0);
     break;
   case BNO085Interface::UART:
-    io_.SetPS1(false);
-    io_.SetPS0(true);
+    io_.GpioSetInactive(CtrlPin::PS1);
+    io_.GpioSetActive(CtrlPin::PS0);
     break;
   case BNO085Interface::SPI:
-    io_.SetPS1(true);
-    io_.SetPS0(true);
+    io_.GpioSetActive(CtrlPin::PS1);
+    io_.GpioSetActive(CtrlPin::PS0);
     break;
   }
 }

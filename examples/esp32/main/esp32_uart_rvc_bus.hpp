@@ -164,21 +164,37 @@ public:
     return static_cast<uint32_t>(esp_timer_get_time());
   }
 
-  // ── Optional pin control ─────────────────────────────────────────────
+  // ── GPIO pin control ──────────────────────────────────────────────────
 
-  void SetReset(bool state) noexcept {
-    if (config_.rst_pin != GPIO_NUM_NC)
-      gpio_set_level(config_.rst_pin, state ? 0 : 1);
+  /**
+   * @brief Set a control pin to the specified signal state (required by CommInterface)
+   *
+   * Maps GpioSignal to physical level based on pin polarity:
+   * - RSTN:  active-low (ACTIVE → GPIO 0, INACTIVE → GPIO 1)
+   * - BOOTN: active-low (ACTIVE → GPIO 0, INACTIVE → GPIO 1)
+   * - WAKE/PS0/PS1: not wired in this implementation (no-op)
+   *
+   * @param pin   Which control pin to drive
+   * @param signal ACTIVE to assert, INACTIVE to deassert
+   */
+  void GpioSet(bno08x::CtrlPin pin, bno08x::GpioSignal signal) noexcept {
+    switch (pin) {
+      case bno08x::CtrlPin::RSTN:
+        if (config_.rst_pin != GPIO_NUM_NC)
+          gpio_set_level(config_.rst_pin,
+                         signal == bno08x::GpioSignal::ACTIVE ? 0 : 1);
+        break;
+      case bno08x::CtrlPin::BOOTN:
+        if (config_.boot_pin != GPIO_NUM_NC)
+          gpio_set_level(config_.boot_pin,
+                         signal == bno08x::GpioSignal::ACTIVE ? 0 : 1);
+        break;
+      case bno08x::CtrlPin::WAKE:
+      case bno08x::CtrlPin::PS0:
+      case bno08x::CtrlPin::PS1:
+        break; // Not wired in this implementation
+    }
   }
-
-  void SetBoot(bool state) noexcept {
-    if (config_.boot_pin != GPIO_NUM_NC)
-      gpio_set_level(config_.boot_pin, state ? 0 : 1);
-  }
-
-  void SetWake(bool /*state*/) noexcept {}
-  void SetPS0(bool /*state*/) noexcept {}
-  void SetPS1(bool /*state*/) noexcept {}
 
 private:
   static constexpr int RX_BUF_SIZE = 256;

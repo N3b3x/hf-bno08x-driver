@@ -278,47 +278,30 @@ public:
   }
 
   /**
-   * @brief Control the hardware reset (RSTN) pin (required by CommInterface)
-   * @param state true to assert reset (drive low), false to release (drive high)
+   * @brief Set a control pin to the specified signal state (required by CommInterface)
+   *
+   * Maps GpioSignal to physical level based on pin polarity:
+   * - RSTN: active-low (ACTIVE → GPIO 0, INACTIVE → GPIO 1)
+   * - BOOTN/WAKE/PS0/PS1: not wired in this I2C implementation (no-op)
+   *
+   * @param pin   Which control pin to drive
+   * @param signal ACTIVE to assert, INACTIVE to deassert
    */
-  void SetReset(bool state) noexcept {
-    if (config_.rst_pin == GPIO_NUM_NC) {
-      return; // Reset pin not configured
+  void GpioSet(bno08x::CtrlPin pin, bno08x::GpioSignal signal) noexcept {
+    switch (pin) {
+      case bno08x::CtrlPin::RSTN:
+        if (config_.rst_pin != GPIO_NUM_NC) {
+          // RSTN is active-low: ACTIVE → drive LOW (assert reset)
+          gpio_set_level(config_.rst_pin,
+                         signal == bno08x::GpioSignal::ACTIVE ? 0 : 1);
+        }
+        break;
+      case bno08x::CtrlPin::BOOTN:
+      case bno08x::CtrlPin::WAKE:
+      case bno08x::CtrlPin::PS0:
+      case bno08x::CtrlPin::PS1:
+        break; // Not wired in this I2C implementation
     }
-    // RSTN is active low
-    gpio_set_level(config_.rst_pin, state ? 0 : 1);
-  }
-
-  /**
-   * @brief Control the BOOTN pin (required by CommInterface)
-   * @note No-op when BOOTN pin is not wired. Override if needed.
-   */
-  void SetBoot(bool /*state*/) noexcept {
-    // BOOTN pin not wired in this implementation
-  }
-
-  /**
-   * @brief Control the WAKE pin (required by CommInterface, SPI mode only)
-   * @note No-op for I2C transport.
-   */
-  void SetWake(bool /*state*/) noexcept {
-    // WAKE pin not applicable for I2C transport
-  }
-
-  /**
-   * @brief Drive protocol-select pin PS0 (required by CommInterface)
-   * @note No-op when PS pins are hard-wired.
-   */
-  void SetPS0(bool /*state*/) noexcept {
-    // PS0 hard-wired in this implementation
-  }
-
-  /**
-   * @brief Drive protocol-select pin PS1 (required by CommInterface)
-   * @note No-op when PS pins are hard-wired.
-   */
-  void SetPS1(bool /*state*/) noexcept {
-    // PS1 hard-wired in this implementation
   }
 
   // ── Lifecycle management ───────────────────────────────────────────────
@@ -461,11 +444,11 @@ public:
              static_cast<unsigned long>(lowMs));
 
     // Assert reset (drive LOW)
-    SetReset(true);
+    GpioSet(bno08x::CtrlPin::RSTN, bno08x::GpioSignal::ACTIVE);
     Delay(lowMs);
 
     // Release reset (drive HIGH)
-    SetReset(false);
+    GpioSet(bno08x::CtrlPin::RSTN, bno08x::GpioSignal::INACTIVE);
     ESP_LOGI(TAG_I2C, "Reset released, waiting %lu ms for sensor boot",
              static_cast<unsigned long>(bootDelayMs));
     Delay(bootDelayMs);

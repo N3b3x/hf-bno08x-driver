@@ -35,6 +35,47 @@ enum class BNO085Interface : uint8_t {
 
 namespace bno08x {
 
+// ============================================================================
+// GPIO Enums -- Standardised Control Pin Model
+// ============================================================================
+
+/**
+ * @enum CtrlPin
+ * @brief Identifies the hardware control pins of the BNO08x.
+ *
+ * Used with `GpioSet()` / `GpioSetActive()` / `GpioSetInactive()` to
+ * control the sensor's dedicated GPIO pins through the CommInterface.
+ *
+ * The mapping from `GpioSignal::ACTIVE` / `INACTIVE` to physical HIGH / LOW
+ * is determined by the platform bus implementation, based on the board's
+ * active-level design:
+ * - **RSTN**:  Active-low (ACTIVE → physical LOW, asserts reset)
+ * - **BOOTN**: Active-low (ACTIVE → physical LOW, enters bootloader)
+ * - **WAKE**:  Active-low (ACTIVE → physical LOW, wakes sensor from suspend)
+ * - **PS0**:   Active-high (ACTIVE → physical HIGH, PS0 = 1)
+ * - **PS1**:   Active-high (ACTIVE → physical HIGH, PS1 = 1)
+ */
+enum class CtrlPin : uint8_t {
+  RSTN = 0, ///< Hardware reset (active-low on the physical pin)
+  BOOTN,    ///< Bootloader entry (active-low on the physical pin)
+  WAKE,     ///< Wake from suspend, SPI mode only (active-low on the physical pin)
+  PS0,      ///< Protocol select bit 0 (active-high on the physical pin)
+  PS1       ///< Protocol select bit 1 (active-high on the physical pin)
+};
+
+/**
+ * @enum GpioSignal
+ * @brief Abstract signal level for control pins.
+ *
+ * Decouples the driver's intent from the physical pin polarity. The platform
+ * bus implementation translates `ACTIVE` / `INACTIVE` to the correct
+ * electrical level for each pin.
+ */
+enum class GpioSignal : uint8_t {
+  INACTIVE = 0, ///< Pin function is deasserted
+  ACTIVE   = 1  ///< Pin function is asserted
+};
+
 /**
  * @brief CRTP base class for BNO08x communication interfaces.
  *
@@ -44,9 +85,8 @@ namespace bno08x {
  *
  * @tparam Derived  The concrete implementation class (CRTP pattern).
  *
- * @note  Implementations must provide **all** listed methods. Pin control
- *        methods (SetReset, SetBoot, SetWake, SetPS0, SetPS1) may be empty
- *        no-ops if the corresponding hardware pin is not wired.
+ * @note  Implementations must provide **all** listed methods. The `GpioSet()`
+ *        method may be a no-op for pins that are not wired on the board.
  */
 template <typename Derived>
 class CommInterface {
@@ -165,70 +205,46 @@ public:
   /// @}
 
   // --------------------------------------------------------------------------
-  /// @name Optional Pin Control
+  /// @name GPIO Pin Control
   ///
-  /// These methods control dedicated GPIO pins on the BNO08x. Implementations
-  /// should provide real GPIO logic if the pin is wired, or a no-op body if
-  /// the pin is not connected on the board.
+  /// Unified interface for controlling BNO08x hardware control pins. The
+  /// platform bus implementation maps GpioSignal::ACTIVE/INACTIVE to the
+  /// correct physical level for each pin based on its polarity.
   /// @{
 
   /**
-   * @brief Assert or release the hardware reset (RSTN) pin.
+   * @brief Set a control pin to the specified signal state.
    *
-   * RSTN is **active-low**. Pass `true` to drive the pin LOW (assert reset),
-   * `false` to drive it HIGH (release reset).
+   * The bus implementation is responsible for mapping ACTIVE/INACTIVE to
+   * the correct physical level based on the pin's active-level design.
    *
-   * @param[in] state  `true` = assert reset (LOW), `false` = release (HIGH).
+   * @param[in] pin     Which control pin to drive.
+   * @param[in] signal  ACTIVE to assert the pin function, INACTIVE to deassert.
    */
-  void SetReset(bool state) noexcept {
-    static_cast<Derived*>(this)->SetReset(state);
+  void GpioSet(CtrlPin pin, GpioSignal signal) noexcept {
+    static_cast<Derived*>(this)->GpioSet(pin, signal);
   }
 
   /**
-   * @brief Control the BOOTN pin for entering DFU bootloader mode.
+   * @brief Assert a control pin (set to ACTIVE).
    *
-   * BOOTN is **active-low**. Hold it LOW during a reset pulse to enter the
-   * bootloader. Not needed for normal operation.
+   * Convenience wrapper for `GpioSet(pin, GpioSignal::ACTIVE)`.
    *
-   * @param[in] state  `true` = drive LOW (enter bootloader), `false` = HIGH.
+   * @param[in] pin  Which control pin to assert.
    */
-  void SetBoot(bool state) noexcept {
-    static_cast<Derived*>(this)->SetBoot(state);
+  void GpioSetActive(CtrlPin pin) noexcept {
+    GpioSet(pin, GpioSignal::ACTIVE);
   }
 
   /**
-   * @brief Control the WAKE pin (SPI mode only).
+   * @brief Deassert a control pin (set to INACTIVE).
    *
-   * Pulling WAKE LOW brings the sensor out of suspend. Only relevant for
-   * SPI transport. No-op for I2C and UART implementations.
+   * Convenience wrapper for `GpioSet(pin, GpioSignal::INACTIVE)`.
    *
-   * @param[in] state  `true` = drive LOW (wake), `false` = release.
+   * @param[in] pin  Which control pin to deassert.
    */
-  void SetWake(bool state) noexcept {
-    static_cast<Derived*>(this)->SetWake(state);
-  }
-
-  /**
-   * @brief Drive the PS0 protocol-select pin.
-   *
-   * PS0 is sampled at reset to select the host interface. Most boards
-   * hard-wire this pin, making this method a no-op.
-   *
-   * @param[in] state  Desired logic level for PS0.
-   */
-  void SetPS0(bool state) noexcept {
-    static_cast<Derived*>(this)->SetPS0(state);
-  }
-
-  /**
-   * @brief Drive the PS1 protocol-select pin.
-   *
-   * Together with PS0, PS1 determines the active interface at boot.
-   *
-   * @param[in] state  Desired logic level for PS1.
-   */
-  void SetPS1(bool state) noexcept {
-    static_cast<Derived*>(this)->SetPS1(state);
+  void GpioSetInactive(CtrlPin pin) noexcept {
+    GpioSet(pin, GpioSignal::INACTIVE);
   }
 
   /// @}
