@@ -1,5 +1,5 @@
-warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 1768, file /tmp/doxyfile.wTESTg
-warning: Tag 'DOT_TRANSPARENT' at line 2791 of file '/tmp/doxyfile.wTESTg' has become obsolete.
+warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 1768, file /tmp/doxyfile.yPIPgn
+warning: Tag 'DOT_TRANSPARENT' at line 2791 of file '/tmp/doxyfile.yPIPgn' has become obsolete.
          To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
 Doxygen version used: 1.10.0 (ebc57c6dd303a980bd19dd74b8b61c8f3f5180ca)
 Searching for include files...
@@ -258,123 +258,7 @@ finalizing index lists...
 writing tag file...
 Running plantuml with JAVA...
 Running dot...
-Generating dot graphs using 5 parallel threads...
-Running dot for graph 1/47
-Running dot for graph 2/47
-Running dot for graph 3/47
-Running dot for graph 4/47
-Running dot for graph 5/47
-Running dot for graph 6/47
-Running dot for graph 7/47
-Running dot for graph 8/47
-Running dot for graph 9/47
-Running dot for graph 10/47
-Running dot for graph 11/47
-Running dot for graph 12/47
-Running dot for graph 13/47
-Running dot for graph 14/47
-Running dot for graph 15/47
-Running dot for graph 16/47
-Running dot for graph 17/47
-Running dot for graph 18/47
-Running dot for graph 19/47
-Running dot for graph 20/47
-Running dot for graph 21/47
-Running dot for graph 22/47
-Running dot for graph 23/47
-Running dot for graph 24/47
-Running dot for graph 25/47
-Running dot for graph 26/47
-Running dot for graph 27/47
-Running dot for graph 28/47
-Running dot for graph 29/47
-Running dot for graph 30/47
-Running dot for graph 31/47
-Running dot for graph 32/47
-Running dot for graph 33/47
-Running dot for graph 34/47
-Running dot for graph 35/47
-Running dot for graph 36/47
-Running dot for graph 37/47
-Running dot for graph 38/47
-Running dot for graph 39/47
-Running dot for graph 40/47
-Running dot for graph 41/47
-Running dot for graph 42/47
-Running dot for graph 43/47
-Running dot for graph 44/47
-Running dot for graph 45/47
-Running dot for graph 46/47
-Running dot for graph 47/47
-Patching output file 1/69
-Patching output file 2/69
-Patching output file 3/69
-Patching output file 4/69
-Patching output file 5/69
-Patching output file 6/69
-Patching output file 7/69
-Patching output file 8/69
-Patching output file 9/69
-Patching output file 10/69
-Patching output file 11/69
-Patching output file 12/69
-Patching output file 13/69
-Patching output file 14/69
-Patching output file 15/69
-Patching output file 16/69
-Patching output file 17/69
-Patching output file 18/69
-Patching output file 19/69
-Patching output file 20/69
-Patching output file 21/69
-Patching output file 22/69
-Patching output file 23/69
-Patching output file 24/69
-Patching output file 25/69
-Patching output file 26/69
-Patching output file 27/69
-Patching output file 28/69
-Patching output file 29/69
-Patching output file 30/69
-Patching output file 31/69
-Patching output file 32/69
-Patching output file 33/69
-Patching output file 34/69
-Patching output file 35/69
-Patching output file 36/69
-Patching output file 37/69
-Patching output file 38/69
-Patching output file 39/69
-Patching output file 40/69
-Patching output file 41/69
-Patching output file 42/69
-Patching output file 43/69
-Patching output file 44/69
-Patching output file 45/69
-Patching output file 46/69
-Patching output file 47/69
-Patching output file 48/69
-Patching output file 49/69
-Patching output file 50/69
-Patching output file 51/69
-Patching output file 52/69
-Patching output file 53/69
-Patching output file 54/69
-Patching output file 55/69
-Patching output file 56/69
-Patching output file 57/69
-Patching output file 58/69
-Patching output file 59/69
-Patching output file 60/69
-Patching output file 61/69
-Patching output file 62/69
-Patching output file 63/69
-Patching output file 64/69
-Patching output file 65/69
-Patching output file 66/69
-Patching output file 67/69
-Patching output file 68/69
-Patching output file 69/69
+Patching output file 1/1
 type lookup cache used 682/65536 hits=1253 misses=706
 symbol lookup cache used 786/65536 hits=3244 misses=786
 finished...
