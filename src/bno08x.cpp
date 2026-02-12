@@ -1040,7 +1040,7 @@ template <typename CommType>
 int BNO085<CommType>::DfuWithOptions(const HcBin_t& fw, const DfuOptions& options) noexcept {
   if (io_.GetInterfaceType() == BNO085Interface::UARTRVC) {
     last_error_ = SH2_ERR_BAD_PARAM;
-    return SH2_ERR;
+    return SH2_ERR_BAD_PARAM;
   }
   if (state_ == BNO085DriverState::RvcActive || state_ == BNO085DriverState::DfuInProgress) {
     last_error_ = SH2_ERR_OP_IN_PROGRESS;
