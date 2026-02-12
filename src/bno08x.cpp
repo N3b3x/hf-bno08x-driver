@@ -41,30 +41,51 @@
  * @return true on success, false on failure or incompatible transport.
  */
 template <typename CommType>
-bool BNO085<CommType>::Begin() noexcept {
-  if (io_.GetInterfaceType() == BNO085Interface::UARTRVC)
-    return false;
-
-  last_error_ = 0;
-  if (!io_.Open()) {
-    last_error_ = -1;
-    return false;
-  }
-
+void BNO085<CommType>::prepareHalWrapper() noexcept {
   halWrapper_.comm = &io_;
   halWrapper_.hal.open = halOpen;
   halWrapper_.hal.close = halClose;
   halWrapper_.hal.read = halRead;
   halWrapper_.hal.write = halWrite;
   halWrapper_.hal.getTimeUs = halGetTimeUs;
+}
+
+template <typename CommType>
+bool BNO085<CommType>::Begin() noexcept {
+  if (initialized_)
+    return true;
+  if (rvc_active_) {
+    last_error_ = SH2_ERR_OP_IN_PROGRESS;
+    return false;
+  }
+  if (io_.GetInterfaceType() == BNO085Interface::UARTRVC) {
+    last_error_ = SH2_ERR_BAD_PARAM;
+    return false;
+  }
+
+  last_error_ = 0;
+  prepareHalWrapper();
 
   int status = sh2_open(halWrapper_.asHal(), asyncCallback, this);
   if (status != SH2_OK) {
     last_error_ = status;
+    io_.Close();
     return false;
   }
-  sh2_reinitialize();
-  sh2_setSensorCallback(sensorCallback, this);
+  status = sh2_reinitialize();
+  if (status != SH2_OK) {
+    last_error_ = status;
+    sh2_close();
+    io_.Close();
+    return false;
+  }
+  status = sh2_setSensorCallback(sensorCallback, this);
+  if (status != SH2_OK) {
+    last_error_ = status;
+    sh2_close();
+    io_.Close();
+    return false;
+  }
 
   new_flag_.fill(false);
   last_interval_.fill(0);
@@ -85,11 +106,14 @@ bool BNO085<CommType>::EnableSensor(BNO085Sensor sensor, uint32_t interval_ms,
                                     float sensitivity) noexcept {
   if (!initialized_)
     return false;
+  auto id = static_cast<uint8_t>(sensor);
+  if (id >= last_interval_.size())
+    return false;
   uint32_t interval_us = interval_ms * 1000;
   if (!configure(sensor, interval_us, sensitivity, 0))
     return false;
-  last_interval_[static_cast<uint8_t>(sensor)] = interval_us;
-  last_sensitivity_[static_cast<uint8_t>(sensor)] = sensitivity;
+  last_interval_[id] = interval_us;
+  last_sensitivity_[id] = sensitivity;
   return true;
 }
 
@@ -98,7 +122,15 @@ template <typename CommType>
 bool BNO085<CommType>::DisableSensor(BNO085Sensor sensor) noexcept {
   if (!initialized_)
     return false;
-  return configure(sensor, 0, 0, 0);
+  auto id = static_cast<uint8_t>(sensor);
+  if (id >= last_interval_.size())
+    return false;
+  if (!configure(sensor, 0, 0, 0))
+    return false;
+  last_interval_[id] = 0;
+  last_sensitivity_[id] = 0.0f;
+  new_flag_[id] = false;
+  return true;
 }
 
 /** @brief Register a callback invoked for every received SH-2 sensor event. */
@@ -116,32 +148,55 @@ void BNO085<CommType>::SetRvcCallback(RvcCallback cb) noexcept {
 /** @brief Check the new-data flag for a sensor. */
 template <typename CommType>
 bool BNO085<CommType>::HasNewData(BNO085Sensor sensor) const {
-  return new_flag_[static_cast<uint8_t>(sensor)];
+  auto id = static_cast<uint8_t>(sensor);
+  if (id >= new_flag_.size())
+    return false;
+  return new_flag_[id];
 }
 
 /**
- * @brief Retrieve the most recent event for a sensor.
- *
- * Constructs a SensorEvent from the cached sh2_SensorValue_t, mapping the
- * SH-2 union fields to the appropriate high-level struct members based on
- * the sensor type.
+ * @brief Convert a decoded SH-2 value into a high-level SensorEvent.
  */
 template <typename CommType>
-SensorEvent BNO085<CommType>::GetLatest(BNO085Sensor sensor) const {
+SensorEvent BNO085<CommType>::toSensorEvent(BNO085Sensor sensor,
+                                            const sh2_SensorValue_t& val) const noexcept {
   SensorEvent out{};
   out.sensor = sensor;
-  auto id = static_cast<uint8_t>(sensor);
-  const auto& val = latest_[id];
   out.timestamp = val.timestamp;
-  uint8_t accuracy = val.status & 0x03;
+  out.detected = false;
+  const uint8_t accuracy = val.status & 0x03;
+
   switch (sensor) {
+  case BNO085Sensor::RawAccelerometer:
+    out.raw.x = val.un.rawAccelerometer.x;
+    out.raw.y = val.un.rawAccelerometer.y;
+    out.raw.z = val.un.rawAccelerometer.z;
+    out.raw.sensorTimeUs = val.un.rawAccelerometer.timestamp;
+    break;
   case BNO085Sensor::Accelerometer:
-  case BNO085Sensor::LinearAcceleration:
-  case BNO085Sensor::Gravity:
     out.vector.x = val.un.accelerometer.x;
     out.vector.y = val.un.accelerometer.y;
     out.vector.z = val.un.accelerometer.z;
     out.vector.accuracy = accuracy;
+    break;
+  case BNO085Sensor::LinearAcceleration:
+    out.vector.x = val.un.linearAcceleration.x;
+    out.vector.y = val.un.linearAcceleration.y;
+    out.vector.z = val.un.linearAcceleration.z;
+    out.vector.accuracy = accuracy;
+    break;
+  case BNO085Sensor::Gravity:
+    out.vector.x = val.un.gravity.x;
+    out.vector.y = val.un.gravity.y;
+    out.vector.z = val.un.gravity.z;
+    out.vector.accuracy = accuracy;
+    break;
+  case BNO085Sensor::RawGyroscope:
+    out.raw.x = val.un.rawGyroscope.x;
+    out.raw.y = val.un.rawGyroscope.y;
+    out.raw.z = val.un.rawGyroscope.z;
+    out.raw.temperature = val.un.rawGyroscope.temperature;
+    out.raw.sensorTimeUs = val.un.rawGyroscope.timestamp;
     break;
   case BNO085Sensor::Gyroscope:
     out.vector.x = val.un.gyroscope.x;
@@ -149,21 +204,69 @@ SensorEvent BNO085<CommType>::GetLatest(BNO085Sensor sensor) const {
     out.vector.z = val.un.gyroscope.z;
     out.vector.accuracy = accuracy;
     break;
+  case BNO085Sensor::GyroUncalibrated:
+    out.vector.x = val.un.gyroscopeUncal.x;
+    out.vector.y = val.un.gyroscopeUncal.y;
+    out.vector.z = val.un.gyroscopeUncal.z;
+    out.vector.accuracy = accuracy;
+    out.bias.x = val.un.gyroscopeUncal.biasX;
+    out.bias.y = val.un.gyroscopeUncal.biasY;
+    out.bias.z = val.un.gyroscopeUncal.biasZ;
+    break;
+  case BNO085Sensor::RawMagnetometer:
+    out.raw.x = val.un.rawMagnetometer.x;
+    out.raw.y = val.un.rawMagnetometer.y;
+    out.raw.z = val.un.rawMagnetometer.z;
+    out.raw.sensorTimeUs = val.un.rawMagnetometer.timestamp;
+    break;
   case BNO085Sensor::Magnetometer:
     out.vector.x = val.un.magneticField.x;
     out.vector.y = val.un.magneticField.y;
     out.vector.z = val.un.magneticField.z;
     out.vector.accuracy = accuracy;
     break;
+  case BNO085Sensor::MagneticFieldUncalibrated:
+    out.vector.x = val.un.magneticFieldUncal.x;
+    out.vector.y = val.un.magneticFieldUncal.y;
+    out.vector.z = val.un.magneticFieldUncal.z;
+    out.vector.accuracy = accuracy;
+    out.bias.x = val.un.magneticFieldUncal.biasX;
+    out.bias.y = val.un.magneticFieldUncal.biasY;
+    out.bias.z = val.un.magneticFieldUncal.biasZ;
+    break;
   case BNO085Sensor::RotationVector:
-  case BNO085Sensor::GameRotationVector:
-  case BNO085Sensor::GeomagneticRotationVector:
-  case BNO085Sensor::ARVRStabilizedRV:
-  case BNO085Sensor::ARVRStabilizedGameRV:
     out.rotation.w = val.un.rotationVector.real;
     out.rotation.x = val.un.rotationVector.i;
     out.rotation.y = val.un.rotationVector.j;
     out.rotation.z = val.un.rotationVector.k;
+    out.rotation.accuracy = accuracy;
+    break;
+  case BNO085Sensor::GameRotationVector:
+    out.rotation.w = val.un.gameRotationVector.real;
+    out.rotation.x = val.un.gameRotationVector.i;
+    out.rotation.y = val.un.gameRotationVector.j;
+    out.rotation.z = val.un.gameRotationVector.k;
+    out.rotation.accuracy = accuracy;
+    break;
+  case BNO085Sensor::GeomagneticRotationVector:
+    out.rotation.w = val.un.geoMagRotationVector.real;
+    out.rotation.x = val.un.geoMagRotationVector.i;
+    out.rotation.y = val.un.geoMagRotationVector.j;
+    out.rotation.z = val.un.geoMagRotationVector.k;
+    out.rotation.accuracy = accuracy;
+    break;
+  case BNO085Sensor::ARVRStabilizedRV:
+    out.rotation.w = val.un.arvrStabilizedRV.real;
+    out.rotation.x = val.un.arvrStabilizedRV.i;
+    out.rotation.y = val.un.arvrStabilizedRV.j;
+    out.rotation.z = val.un.arvrStabilizedRV.k;
+    out.rotation.accuracy = accuracy;
+    break;
+  case BNO085Sensor::ARVRStabilizedGameRV:
+    out.rotation.w = val.un.arvrStabilizedGRV.real;
+    out.rotation.x = val.un.arvrStabilizedGRV.i;
+    out.rotation.y = val.un.arvrStabilizedGRV.j;
+    out.rotation.z = val.un.arvrStabilizedGRV.k;
     out.rotation.accuracy = accuracy;
     break;
   case BNO085Sensor::GyroIntegratedRV:
@@ -171,11 +274,44 @@ SensorEvent BNO085<CommType>::GetLatest(BNO085Sensor sensor) const {
     out.rotation.x = val.un.gyroIntegratedRV.i;
     out.rotation.y = val.un.gyroIntegratedRV.j;
     out.rotation.z = val.un.gyroIntegratedRV.k;
+    out.rotation.accuracy = accuracy;
+    out.angularVelocity.x = val.un.gyroIntegratedRV.angVelX;
+    out.angularVelocity.y = val.un.gyroIntegratedRV.angVelY;
+    out.angularVelocity.z = val.un.gyroIntegratedRV.angVelZ;
+    break;
+  case BNO085Sensor::Pressure:
+    out.scalar = val.un.pressure.value;
+    break;
+  case BNO085Sensor::AmbientLight:
+    out.scalar = val.un.ambientLight.value;
+    break;
+  case BNO085Sensor::Humidity:
+    out.scalar = val.un.humidity.value;
+    break;
+  case BNO085Sensor::Proximity:
+    out.scalar = val.un.proximity.value;
+    break;
+  case BNO085Sensor::Temperature:
+    out.scalar = val.un.temperature.value;
+    break;
+  case BNO085Sensor::StepDetector:
+    out.latencyUs = val.un.stepDetector.latency;
+    out.detected = true;
+    out.eventFlags = 1;
     break;
   case BNO085Sensor::StepCounter:
+    out.latencyUs = val.un.stepCounter.latency;
     out.stepCount = val.un.stepCounter.steps;
     break;
+  case BNO085Sensor::SignificantMotion:
+    out.eventFlags = val.un.sigMotion.motion;
+    out.detected = out.eventFlags != 0;
+    break;
+  case BNO085Sensor::StabilityClassifier:
+    out.classification = val.un.stabilityClassifier.classification;
+    break;
   case BNO085Sensor::TapDetector:
+    out.eventFlags = val.un.tapDetector.flags;
     out.tap.doubleTap = (val.un.tapDetector.flags & TAPDET_DOUBLE);
     if (val.un.tapDetector.flags & TAPDET_X)
       out.tap.direction = (val.un.tapDetector.flags & TAPDET_X_POS) ? 0 : 1;
@@ -187,9 +323,108 @@ SensorEvent BNO085<CommType>::GetLatest(BNO085Sensor sensor) const {
       out.tap.direction = 0;
     out.detected = val.un.tapDetector.flags & (TAPDET_X | TAPDET_Y | TAPDET_Z);
     break;
+  case BNO085Sensor::ShakeDetector:
+    out.eventFlags = val.un.shakeDetector.shake;
+    out.detected = out.eventFlags != 0;
+    break;
+  case BNO085Sensor::FlipDetector:
+    out.eventFlags = val.un.flipDetector.flip;
+    out.detected = out.eventFlags != 0;
+    break;
+  case BNO085Sensor::PickupDetector:
+    out.eventFlags = val.un.pickupDetector.pickup;
+    out.detected = out.eventFlags != 0;
+    break;
+  case BNO085Sensor::StabilityDetector:
+    out.eventFlags = val.un.stabilityDetector.stability;
+    out.detected = out.eventFlags != 0;
+    break;
+  case BNO085Sensor::PersonalActivityClassifier:
+    out.activity.page = val.un.personalActivityClassifier.page;
+    out.activity.lastPage = val.un.personalActivityClassifier.lastPage;
+    out.activity.mostLikelyState = val.un.personalActivityClassifier.mostLikelyState;
+    for (std::size_t i = 0; i < out.activity.confidence.size(); ++i) {
+      out.activity.confidence[i] = val.un.personalActivityClassifier.confidence[i];
+    }
+    out.classification = out.activity.mostLikelyState;
+    break;
+  case BNO085Sensor::SleepDetector:
+    out.sleepState = val.un.sleepDetector.sleepState;
+    out.detected = out.sleepState != 0;
+    break;
+  case BNO085Sensor::TiltDetector:
+    out.eventFlags = val.un.tiltDetector.tilt;
+    out.detected = out.eventFlags != 0;
+    break;
+  case BNO085Sensor::PocketDetector:
+    out.eventFlags = val.un.pocketDetector.pocket;
+    out.detected = out.eventFlags != 0;
+    break;
+  case BNO085Sensor::CircleDetector:
+    out.eventFlags = val.un.circleDetector.circle;
+    out.detected = out.eventFlags != 0;
+    break;
+  case BNO085Sensor::HeartRateMonitor:
+    out.scalar = static_cast<float>(val.un.heartRateMonitor.heartRate);
+    break;
+  case BNO085Sensor::IZroMotionRequest:
+    out.motionIntent = static_cast<uint8_t>(val.un.izroRequest.intent);
+    out.motionRequest = static_cast<uint8_t>(val.un.izroRequest.request);
+    break;
+  case BNO085Sensor::RawOpticalFlow:
+    out.rawOpticalFlow.timestamp = val.un.rawOptFlow.timestamp;
+    out.rawOpticalFlow.dt = val.un.rawOptFlow.dt;
+    out.rawOpticalFlow.dx = val.un.rawOptFlow.dx;
+    out.rawOpticalFlow.dy = val.un.rawOptFlow.dy;
+    out.rawOpticalFlow.iq = val.un.rawOptFlow.iq;
+    out.rawOpticalFlow.resX = val.un.rawOptFlow.resX;
+    out.rawOpticalFlow.resY = val.un.rawOptFlow.resY;
+    out.rawOpticalFlow.shutter = val.un.rawOptFlow.shutter;
+    out.rawOpticalFlow.frameMax = val.un.rawOptFlow.frameMax;
+    out.rawOpticalFlow.frameAvg = val.un.rawOptFlow.frameAvg;
+    out.rawOpticalFlow.frameMin = val.un.rawOptFlow.frameMin;
+    out.rawOpticalFlow.laserOn = val.un.rawOptFlow.laserOn;
+    break;
+  case BNO085Sensor::DeadReckoningPose:
+    out.deadReckoningPose.timestamp = val.un.deadReckoningPose.timestamp;
+    out.deadReckoningPose.linearPosition.x = val.un.deadReckoningPose.linPosX;
+    out.deadReckoningPose.linearPosition.y = val.un.deadReckoningPose.linPosY;
+    out.deadReckoningPose.linearPosition.z = val.un.deadReckoningPose.linPosZ;
+    out.deadReckoningPose.rotation.w = val.un.deadReckoningPose.real;
+    out.deadReckoningPose.rotation.x = val.un.deadReckoningPose.i;
+    out.deadReckoningPose.rotation.y = val.un.deadReckoningPose.j;
+    out.deadReckoningPose.rotation.z = val.un.deadReckoningPose.k;
+    out.deadReckoningPose.linearVelocity.x = val.un.deadReckoningPose.linVelX;
+    out.deadReckoningPose.linearVelocity.y = val.un.deadReckoningPose.linVelY;
+    out.deadReckoningPose.linearVelocity.z = val.un.deadReckoningPose.linVelZ;
+    out.deadReckoningPose.angularVelocity.x = val.un.deadReckoningPose.angVelX;
+    out.deadReckoningPose.angularVelocity.y = val.un.deadReckoningPose.angVelY;
+    out.deadReckoningPose.angularVelocity.z = val.un.deadReckoningPose.angVelZ;
+    break;
+  case BNO085Sensor::WheelEncoder:
+    out.wheelEncoder.timestamp = val.un.wheelEncoder.timestamp;
+    out.wheelEncoder.wheelIndex = val.un.wheelEncoder.wheelIndex;
+    out.wheelEncoder.dataType = val.un.wheelEncoder.dataType;
+    out.wheelEncoder.data = val.un.wheelEncoder.data;
+    break;
   default:
     break;
   }
+  return out;
+}
+
+/**
+ * @brief Retrieve the most recent event for a sensor and clear unread flag.
+ */
+template <typename CommType>
+SensorEvent BNO085<CommType>::GetLatest(BNO085Sensor sensor) noexcept {
+  SensorEvent out{};
+  out.sensor = sensor;
+  const auto id = static_cast<uint8_t>(sensor);
+  if (id >= latest_.size())
+    return out;
+  out = toSensorEvent(sensor, latest_[id]);
+  new_flag_[id] = false;
   return out;
 }
 
@@ -199,6 +434,19 @@ void BNO085<CommType>::Update() noexcept {
   if (initialized_) {
     sh2_service();
   }
+}
+
+/** @brief Close SH-2 session and release transport resources. */
+template <typename CommType>
+void BNO085<CommType>::Close() noexcept {
+  if (!initialized_)
+    return;
+  sh2_close();
+  io_.Close();
+  initialized_ = false;
+  new_flag_.fill(false);
+  last_interval_.fill(0);
+  last_sensitivity_.fill(0.0f);
 }
 
 // ---- SH-2 HAL callback bridges (CRTP CommInterface -> C sh2_Hal_t) ---------
@@ -260,15 +508,18 @@ void BNO085<CommType>::asyncCallback(void* cookie, sh2_AsyncEvent_t* event) {
 template <typename CommType>
 void BNO085<CommType>::handleSensorEvent(const sh2_SensorEvent_t* event) noexcept {
   sh2_SensorValue_t value;
-  sh2_decodeSensorEvent(&value, event);
+  int decode_status = sh2_decodeSensorEvent(&value, event);
+  if (decode_status != SH2_OK) {
+    last_error_ = decode_status;
+    return;
+  }
   uint8_t id = value.sensorId;
   if (id >= latest_.size())
     return;
   latest_[id] = value;
   new_flag_[id] = true;
   if (callback_) {
-    callback_(GetLatest(static_cast<BNO085Sensor>(id)));
-    new_flag_[id] = false;
+    callback_(toSensorEvent(static_cast<BNO085Sensor>(id), value));
   }
 }
 
@@ -304,8 +555,9 @@ bool BNO085<CommType>::configure(BNO085Sensor sensor, uint32_t interval_us, floa
   cfg.reportInterval_us = interval_us;
   cfg.batchInterval_us = batch_us;
   cfg.sensorSpecific = 0;
-  cfg.changeSensitivity = static_cast<uint16_t>(sensitivity);
-  cfg.changeSensitivityEnabled = sensitivity > 0;
+  const float clamped_sensitivity = std::clamp(sensitivity, 0.0f, 65535.0f);
+  cfg.changeSensitivity = static_cast<uint16_t>(clamped_sensitivity + 0.5f);
+  cfg.changeSensitivityEnabled = clamped_sensitivity > 0.0f;
   int status = sh2_setSensorConfig(static_cast<sh2_SensorId_t>(sensor), &cfg);
   if (status != SH2_OK) {
     last_error_ = status;
@@ -401,10 +653,19 @@ void BNO085<CommType>::SelectInterface(BNO085Interface iface) noexcept {
  */
 template <typename CommType>
 bool BNO085<CommType>::BeginRvc() noexcept {
-  if (io_.GetInterfaceType() != BNO085Interface::UARTRVC)
+  if (io_.GetInterfaceType() != BNO085Interface::UARTRVC) {
+    last_error_ = SH2_ERR_BAD_PARAM;
     return false;
-  if (!io_.Open())
+  }
+  if (initialized_) {
+    last_error_ = SH2_ERR_OP_IN_PROGRESS;
     return false;
+  }
+  if (!io_.Open()) {
+    last_error_ = SH2_ERR;
+    return false;
+  }
+  last_error_ = SH2_OK;
   rvc_frame_len_ = 0;
   rvc_active_ = true;
   return true;
@@ -644,14 +905,27 @@ int BNO085<CommType>::dfuSendPkt(uint8_t* dfu_buff, uint8_t* p_data, uint32_t le
  */
 template <typename CommType>
 int BNO085<CommType>::Dfu(const HcBin_t& fw) noexcept {
-  if (io_.GetInterfaceType() == BNO085Interface::UARTRVC)
+  if (io_.GetInterfaceType() == BNO085Interface::UARTRVC) {
+    last_error_ = SH2_ERR_BAD_PARAM;
     return SH2_ERR;
+  }
+  if (rvc_active_) {
+    last_error_ = SH2_ERR_OP_IN_PROGRESS;
+    return SH2_ERR_OP_IN_PROGRESS;
+  }
+  if (initialized_) {
+    // DFU uses the same transport HAL and must not race an active SH-2 session.
+    Close();
+  }
+  prepareHalWrapper();
 
   int rc, status = SH2_OK;
   uint32_t app_len = 0;
   uint8_t packet_len = 0;
   uint32_t offset = 0;
   const char* s = nullptr;
+  bool fw_opened = false;
+  bool hal_opened = false;
   uint8_t dfu_buff[DFU_MAX_PACKET_LEN + 2];
   sh2_Hal_t* hal = halWrapper_.asHal();
 
@@ -660,6 +934,7 @@ int BNO085<CommType>::Dfu(const HcBin_t& fw) noexcept {
     status = SH2_ERR;
     goto dfu_end;
   }
+  fw_opened = true;
 
   s = fw.getMeta("FW-Format");
   if (!s || std::strcmp(s, "BNO_V1") != 0) {
@@ -691,6 +966,7 @@ int BNO085<CommType>::Dfu(const HcBin_t& fw) noexcept {
   status = hal->open(hal);
   if (status != SH2_OK)
     goto dfu_close;
+  hal_opened = true;
 
   status = dfuSendAppSize(dfu_buff, app_len);
   if (status != SH2_OK)
@@ -714,14 +990,17 @@ int BNO085<CommType>::Dfu(const HcBin_t& fw) noexcept {
   }
 
 dfu_close:
-  fw.close();
-  if (status == SH2_OK) {
+  if (fw_opened)
+    fw.close();
+  if (status == SH2_OK && hal_opened) {
     uint32_t now = hal->getTimeUs(hal), start = now;
     while ((now - start) < DFU_DELAY_POST_US)
       now = hal->getTimeUs(hal);
   }
-  hal->close(hal);
+  if (hal_opened)
+    hal->close(hal);
 
 dfu_end:
+  last_error_ = status;
   return status;
 }
