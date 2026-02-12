@@ -6,7 +6,7 @@ var classBNO085 =
     [ "CloseRvc", "classBNO085.html#a406609e88789d9e20a7333123f3f6b62", null ],
     [ "Dfu", "classBNO085.html#a959705775b384e62764aa9f76aaa4dc4", null ],
     [ "DisableSensor", "classBNO085.html#a02883eb26087462e58c95707f29a63b8", null ],
-    [ "EnableSensor", "classBNO085.html#a0969492f8a6ebc34f9344ea163b5b022", null ],
+    [ "EnableSensor", "classBNO085.html#a25a62540ed18dbd9be40abe117591576", null ],
     [ "GetLastError", "classBNO085.html#a6058135b615cc9e260d3de12f8e7edcf", null ],
     [ "GetLatest", "classBNO085.html#ad808f56174f2db0303525e566d328007", null ],
     [ "HardwareReset", "classBNO085.html#a064ca51468c9b5e5749d7bf98d82199b", null ],
