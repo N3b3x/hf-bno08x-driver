@@ -112,7 +112,9 @@ set(COMPONENT_REQUIRES_LIST
 if(APP_TYPE STREQUAL "driver_integration_test" OR 
    APP_TYPE STREQUAL "basic_polling" OR
    APP_TYPE STREQUAL "event_driven_callback" OR
-   APP_TYPE STREQUAL "full_features")
+   APP_TYPE STREQUAL "full_features" OR
+   APP_TYPE STREQUAL "dfu_update" OR
+   APP_TYPE STREQUAL "dfu_workflow_test")
     list(APPEND COMPONENT_REQUIRES_LIST esp_driver_i2c)
 endif()
 

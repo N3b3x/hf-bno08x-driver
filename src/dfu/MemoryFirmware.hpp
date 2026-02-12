@@ -9,16 +9,19 @@
  * Construct with a pointer to the binary image and its length. Optional
  * strings describe the format and part number. Pass the returned handle
  * to dfu() to stream the image to the device.
+ *
+ * This adapter is single-session per thread: `open()` binds the most recently
+ * selected MemoryFirmware instance for that thread and rejects nested opens.
  */
 class MemoryFirmware {
 public:
   MemoryFirmware(const uint8_t* data, uint32_t len, const char* format = "BNO_V1",
-                 const char* part = "unknown")
-      : data_(data), len_(len), format_(format), part_(part) {}
+                 const char* part = "unknown", uint32_t packet_len = 0)
+      : data_(data), len_(len), format_(format), part_(part), packet_len_(packet_len) {}
 
   /** Obtain an HcBin handle for the DFU helpers. */
   const HcBin_t& hcbin() const {
-    active_ = this;
+    pending_ = this;
     return impl_;
   }
 
@@ -31,20 +34,32 @@ private:
   static int getAppData(uint8_t* packet, uint32_t offset, uint32_t len);
 
   static const HcBin_t impl_;
-  static const MemoryFirmware* active_;
+  static thread_local const MemoryFirmware* pending_;
+  static thread_local const MemoryFirmware* active_;
 
   const uint8_t* data_;
   uint32_t len_;
   const char* format_;
   const char* part_;
+  uint32_t packet_len_;
 };
 
 // --- Implementation ---------------------------------------------------------
 
 inline int MemoryFirmware::open() {
+  if (active_ != nullptr) {
+    return -1;
+  }
+  if (pending_ == nullptr) {
+    return -1;
+  }
+  active_ = pending_;
+  pending_ = nullptr;
   return 0;
 }
 inline int MemoryFirmware::close() {
+  active_ = nullptr;
+  pending_ = nullptr;
   return 0;
 }
 inline const char* MemoryFirmware::getMeta(const char* key) {
@@ -60,10 +75,10 @@ inline uint32_t MemoryFirmware::getAppLen() {
   return active_ ? active_->len_ : 0;
 }
 inline uint32_t MemoryFirmware::getPacketLen() {
-  return 0;
+  return active_ ? active_->packet_len_ : 0;
 }
 inline int MemoryFirmware::getAppData(uint8_t* packet, uint32_t offset, uint32_t len) {
-  if (!active_ || offset + len > active_->len_)
+  if (!active_ || offset > active_->len_ || len > (active_->len_ - offset))
     return -1;
   std::memcpy(packet, active_->data_ + offset, len);
   return 0;
@@ -72,4 +87,5 @@ inline int MemoryFirmware::getAppData(uint8_t* packet, uint32_t offset, uint32_t
 inline const HcBin_t MemoryFirmware::impl_ = {
     MemoryFirmware::open,      MemoryFirmware::close,        MemoryFirmware::getMeta,
     MemoryFirmware::getAppLen, MemoryFirmware::getPacketLen, MemoryFirmware::getAppData};
-inline const MemoryFirmware* MemoryFirmware::active_ = nullptr;
+inline thread_local const MemoryFirmware* MemoryFirmware::pending_ = nullptr;
+inline thread_local const MemoryFirmware* MemoryFirmware::active_ = nullptr;

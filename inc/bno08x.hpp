@@ -52,6 +52,7 @@
 #include "bno08x_comm_interface.hpp"
 #include "dfu/HcBin.h"
 #include <array>
+#include <cstddef>
 #include <cstdint>
 #include <cstring>
 #include <functional>
@@ -120,7 +121,11 @@ enum class BNO085Sensor : uint8_t {
   HeartRateMonitor = 0x23,           ///< Heart rate data
   ARVRStabilizedRV = 0x28,           ///< AR/VR stabilised rotation vector
   ARVRStabilizedGameRV = 0x29,       ///< AR/VR stabilised game rotation vector
-  GyroIntegratedRV = 0x2A            ///< High-rate gyro-integrated rotation vector
+  GyroIntegratedRV = 0x2A,           ///< High-rate gyro-integrated rotation vector
+  IZroMotionRequest = 0x2B,          ///< Interactive ZRO motion intent/request
+  RawOpticalFlow = 0x2C,             ///< Raw optical flow report
+  DeadReckoningPose = 0x2D,          ///< Dead reckoning pose estimate
+  WheelEncoder = 0x2E                ///< Wheel encoder report
 };
 
 /**
@@ -162,21 +167,103 @@ struct TapEvent {
 };
 
 /**
+ * @struct RawVector3
+ * @brief Raw integer 3-axis sample (ADC counts) with optional metadata.
+ */
+struct RawVector3 {
+  int16_t x{0};
+  int16_t y{0};
+  int16_t z{0};
+  int16_t temperature{0};   ///< Used by RawGyroscope only.
+  uint32_t sensorTimeUs{0}; ///< Sensor-provided timestamp where available.
+};
+
+/**
+ * @struct ActivityClassifierEvent
+ * @brief Personal activity classifier payload.
+ */
+struct ActivityClassifierEvent {
+  uint8_t page{0};
+  bool lastPage{false};
+  uint8_t mostLikelyState{0};
+  std::array<uint8_t, 10> confidence{};
+};
+
+/**
+ * @struct RawOpticalFlowEvent
+ * @brief Raw optical flow payload from SH2_RAW_OPTICAL_FLOW.
+ */
+struct RawOpticalFlowEvent {
+  uint32_t timestamp{0};
+  int16_t dt{0};
+  int16_t dx{0};
+  int16_t dy{0};
+  int16_t iq{0};
+  uint8_t resX{0};
+  uint8_t resY{0};
+  uint8_t shutter{0};
+  uint8_t frameMax{0};
+  uint8_t frameAvg{0};
+  uint8_t frameMin{0};
+  uint8_t laserOn{0};
+};
+
+/**
+ * @struct DeadReckoningPoseEvent
+ * @brief Dead reckoning position/orientation/velocity payload.
+ */
+struct DeadReckoningPoseEvent {
+  uint32_t timestamp{0};
+  Vector3 linearPosition{};
+  Quaternion rotation{};
+  Vector3 linearVelocity{};
+  Vector3 angularVelocity{};
+};
+
+/**
+ * @struct WheelEncoderEvent
+ * @brief Wheel encoder payload.
+ */
+struct WheelEncoderEvent {
+  uint32_t timestamp{0};
+  uint8_t wheelIndex{0};
+  uint8_t dataType{0};
+  uint16_t data{0};
+};
+
+/**
  * @struct SensorEvent
  * @brief Container for a single decoded SH-2 sensor report.
  *
- * Which fields are populated depends on the sensor type. Quaternion-based
- * sensors fill `rotation`; vector-based sensors fill `vector`; step counter
- * fills `stepCount`; tap detector fills `tap` and `detected`.
+ * Which fields are populated depends on the sensor type:
+ * - vector sensors fill `vector` (and `bias` for uncalibrated reports)
+ * - quaternion sensors fill `rotation`
+ * - scalar sensors fill `scalar`
+ * - detector/classifier sensors use `detected`, `eventFlags`, and related fields
+ * - advanced reports fill `rawOpticalFlow`, `deadReckoningPose`, etc.
  */
 struct SensorEvent {
   BNO085Sensor sensor{BNO085Sensor::Accelerometer}; ///< Which sensor produced this event
   uint64_t timestamp{0};                            ///< Event timestamp in microseconds
-  Vector3 vector{};      ///< 3-axis data (accelerometer, gyro, mag, etc.)
-  Quaternion rotation{}; ///< Quaternion data (rotation vectors)
-  uint32_t stepCount{0}; ///< Cumulative step count (StepCounter only)
-  TapEvent tap{};        ///< Tap event details (TapDetector only)
-  bool detected{false};  ///< Generic detection flag (tap, shake, etc.)
+  Vector3 vector{};          ///< 3-axis data (accel/gyro/mag/gravity/etc.)
+  Vector3 bias{};            ///< Bias for uncalibrated gyro/mag reports.
+  Vector3 angularVelocity{}; ///< Angular velocity for GyroIntegratedRV.
+  Quaternion rotation{};     ///< Quaternion data (rotation vector reports)
+  float scalar{0};           ///< Scalar payload (pressure/light/humidity/temp/etc.)
+  RawVector3 raw{};          ///< Raw integer payload for raw IMU reports.
+  uint32_t latencyUs{0};     ///< Latency for step detector/counter reports.
+  uint32_t stepCount{0};     ///< Cumulative step count (StepCounter)
+  uint16_t eventFlags{0};    ///< Bitfield payload for gesture detector reports.
+  uint8_t classification{0}; ///< Classifier result (stability/activity, etc.).
+  uint8_t sleepState{0};     ///< Sleep detector state.
+  TapEvent tap{};            ///< Tap event details (TapDetector)
+  ActivityClassifierEvent activity{}; ///< Personal activity classifier payload.
+  uint8_t motionIntent{0};            ///< Interactive ZRO motion intent.
+  uint8_t motionRequest{0};           ///< Interactive ZRO motion request.
+  RawOpticalFlowEvent rawOpticalFlow{};
+  DeadReckoningPoseEvent deadReckoningPose{};
+  WheelEncoderEvent wheelEncoder{};
+  bool detected{false}; ///< Generic detection flag for event-like reports.
 };
 
 // ---- RVC Mode Data Types ---------------------------------------------------
@@ -229,6 +316,60 @@ using SensorCallback = std::function<void(const SensorEvent&)>;
 /** @brief Callback invoked when a decoded RVC frame is available. */
 using RvcCallback = std::function<void(const RvcSensorValue&)>;
 
+/**
+ * @enum BNO085DriverState
+ * @brief Current top-level operating state of the driver.
+ *
+ * The class is a monolith but enforces mode-safe operations via this state:
+ * - `Closed`         : no active session.
+ * - `Sh2Active`      : SH-2 protocol session is open.
+ * - `RvcActive`      : RVC UART parser is active.
+ * - `DfuInProgress`  : DFU transfer is running.
+ */
+enum class BNO085DriverState : uint8_t {
+  Closed = 0,
+  Sh2Active,
+  RvcActive,
+  DfuInProgress
+};
+
+/**
+ * @struct DfuProgress
+ * @brief Progress sample emitted during DFU transfers.
+ */
+struct DfuProgress {
+  uint32_t bytesSent{0};  ///< Number of firmware bytes sent so far.
+  uint32_t totalBytes{0}; ///< Total firmware bytes to send.
+};
+
+/** @brief Callback for DFU progress updates. */
+using DfuProgressCallback = std::function<void(const DfuProgress&)>;
+
+/**
+ * @struct DfuOptions
+ * @brief Controls DFU validation and transfer behavior.
+ */
+struct DfuOptions {
+  bool requireFormatMatch{true};      ///< Validate FW-Format metadata.
+  bool requirePartNumber{true};       ///< Validate SW-Part-Number metadata.
+  const char* requiredFormat{"BNO_V1"}; ///< Required format when format check is enabled.
+  const char* requiredPartNumber{nullptr}; ///< Optional exact part number match.
+  uint8_t packetLenOverride{0};          ///< Optional DFU packet size override (1..64).
+  DfuProgressCallback progress{};        ///< Optional per-transfer progress callback.
+};
+
+/**
+ * @struct DfuMemoryImage
+ * @brief Firmware image descriptor for class-aware memory DFU.
+ */
+struct DfuMemoryImage {
+  const uint8_t* data{nullptr};      ///< Pointer to firmware bytes.
+  uint32_t length{0};                ///< Firmware length in bytes.
+  const char* format{"BNO_V1"};      ///< FW-Format metadata value.
+  const char* partNumber{"1000-3608"}; ///< SW-Part-Number metadata value.
+  uint32_t preferredPacketLen{0};    ///< Optional preferred DFU packet size.
+};
+
 /// @} // end of SensorTypes group
 
 // ============================================================================
@@ -252,6 +393,16 @@ using RvcCallback = std::function<void(const RvcSensorValue&)>;
  * | UARTRVC        | BeginRvc(), ServiceRvc(), CloseRvc()               |
  *
  * Calling a mode-incompatible method returns `false` or `SH2_ERR` gracefully.
+ * The active mode is tracked by an internal state machine exposed via
+ * GetState(). Illegal transitions are rejected with `SH2_ERR_OP_IN_PROGRESS`
+ * or `SH2_ERR_BAD_PARAM`.
+ *
+ * Error policy:
+ * - Interface/mode mismatch (e.g. SH-2 call on UARTRVC transport): `SH2_ERR_BAD_PARAM`
+ * - Runtime state mismatch (e.g. enabling SH-2 sensors while not in SH-2 state):
+ *   `SH2_ERR_OP_IN_PROGRESS`
+ * - Query methods (`GetState`, `HasNewData`, `GetLatest`) are side-effect free
+ *   with respect to `last_error_`.
  *
  * The driver automatically re-enables configured sensors after a sensor reset
  * (handled internally by the async event callback).
@@ -261,6 +412,8 @@ using RvcCallback = std::function<void(const RvcSensorValue&)>;
  *
  * @note  The CommType instance passed to the constructor must outlive this
  *        object. The driver stores a reference, not a copy.
+ * @note  This class is not thread-safe. Callers must serialize access
+ *        externally if used from multiple tasks/threads.
  */
 template <typename CommType>
 class BNO085 {
@@ -269,7 +422,17 @@ public:
    * @brief Construct the driver with a communication interface.
    * @param[in] comm  Reference to the transport (must outlive this object).
    */
-  explicit BNO085(CommType& comm) noexcept : io_(comm) {}
+  explicit BNO085(CommType& comm) noexcept : io_(comm) {
+    prepareHalWrapper();
+  }
+
+  /**
+   * @brief Destructor. Closes active SH-2/RVC sessions.
+   */
+  ~BNO085() noexcept {
+    Close();
+    CloseRvc();
+  }
 
   // --------------------------------------------------------------------------
   /// @name SH-2 Mode API
@@ -288,6 +451,17 @@ public:
    * @return  `true` on success, `false` on failure or wrong interface type.
    */
   bool Begin() noexcept;
+
+  /**
+   * @brief Close the currently active session and release transport resources.
+   *
+   * If SH-2 is active, calls `sh2_close()` and closes the transport.
+   * If RVC is active, closes the UART transport and stops the parser.
+   * If DFU is in progress, the call is rejected and `last_error_` is set to
+   * `SH2_ERR_OP_IN_PROGRESS`.
+   * Safe to call multiple times.
+   */
+  void Close() noexcept;
 
   /**
    * @brief Enable periodic reporting for a sensor.
@@ -323,7 +497,10 @@ public:
    * @brief Check if new data is available for a sensor.
    *
    * The flag is set when a report arrives and cleared when GetLatest() is
-   * called or when a callback consumes the event.
+   * called. Callback dispatch does not clear this flag, which allows mixed
+   * callback + polling usage.
+   *
+   * Returns `false` unless the driver is currently in `Sh2Active` state.
    *
    * @param[in] sensor  Which sensor to check.
    * @return  `true` if unread data is available.
@@ -337,9 +514,13 @@ public:
    * fields are meaningful depends on the sensor type.
    *
    * @param[in] sensor  Which sensor to query.
+   * Calling this method clears the unread-data flag for @p sensor.
+   * If the driver is not in `Sh2Active` state, returns a default event
+   * and leaves cached SH-2 flags unchanged.
+   *
    * @return  Copy of the latest SensorEvent.
    */
-  SensorEvent GetLatest(BNO085Sensor sensor) const;
+  SensorEvent GetLatest(BNO085Sensor sensor) noexcept;
 
   /**
    * @brief Pump the SH-2 service loop.
@@ -396,6 +577,9 @@ public:
 
   /**
    * @brief Stop RVC processing and close the transport.
+   *
+   * Convenience API for explicit RVC teardown. `Close()` can also be used
+   * to close whichever mode is currently active.
    */
   void CloseRvc() noexcept;
 
@@ -413,6 +597,13 @@ public:
    */
   int GetLastError() const {
     return last_error_;
+  }
+
+  /**
+   * @brief Get the current high-level driver state.
+   */
+  BNO085DriverState GetState() const noexcept {
+    return state_;
   }
 
   /**
@@ -463,9 +654,62 @@ public:
    */
   int Dfu(const HcBin_t& fw = firmware) noexcept;
 
+  /**
+   * @brief Perform DFU with explicit validation and transfer options.
+   *
+   * Uses the same HcBin image interface as Dfu(), but allows metadata policy,
+   * packet-size override, and progress reporting customization.
+   */
+  int DfuWithOptions(const HcBin_t& fw, const DfuOptions& options) noexcept;
+
+  /**
+   * @brief Perform DFU from an in-memory firmware image.
+   *
+   * Wraps @p image in a MemoryFirmware adapter internally and executes the
+   * same DFU protocol as DfuWithOptions().
+   */
+  int DfuFromMemory(const DfuMemoryImage& image, const DfuOptions& options = {}) noexcept;
+
+  /**
+   * @brief Convenience overload for in-memory DFU.
+   */
+  int DfuFromMemory(const uint8_t* data, uint32_t len, const char* partNumber = "1000-3608",
+                    const DfuOptions& options = {}) noexcept;
+
+  /**
+   * @brief Enter bootloader mode using BOOTN + reset pin sequence.
+   *
+   * Holds BOOTN low, pulses reset, then releases BOOTN. Requires a transport
+   * with BOOTN/RSTN wiring support.
+   *
+   * @return true on success, false if interface/state is incompatible.
+   */
+  bool EnterBootloader(uint32_t resetLowMs = 10, uint32_t settleMs = 50) noexcept;
+
+  /**
+   * @brief Exit bootloader mode and reboot into application firmware.
+   *
+   * Ensures BOOTN is released high, pulses reset, then waits for boot.
+   */
+  bool ExitBootloaderAndReboot(uint32_t resetLowMs = 2, uint32_t settleMs = 100) noexcept;
+
+  /**
+   * @brief Full class-aware DFU workflow:
+   *        enter bootloader -> transfer firmware -> reboot to app.
+   */
+  int RunDfuFromMemory(const DfuMemoryImage& image, const DfuOptions& options = {},
+                       uint32_t enterResetLowMs = 10, uint32_t enterSettleMs = 50,
+                       uint32_t exitResetLowMs = 2, uint32_t exitSettleMs = 100) noexcept;
+
   /// @}
 
 private:
+  /** @brief Initialize HAL wrapper function pointers and comm binding. */
+  void prepareHalWrapper() noexcept;
+
+  /** @brief Convert a cached SH-2 value to the high-level SensorEvent type. */
+  SensorEvent toSensorEvent(BNO085Sensor sensor, const sh2_SensorValue_t& val) const noexcept;
+
   // --------------------------------------------------------------------------
   /// @name SH-2 HAL Bridge
   /// @brief Adapts the CRTP CommInterface to the vendor C `sh2_Hal_t` struct.
@@ -529,7 +773,6 @@ private:
 
   uint8_t rvc_frame_[RVC_FRAME_LEN_]{}; ///< Sliding frame accumulation buffer.
   uint8_t rvc_frame_len_{0};            ///< Bytes currently in the buffer.
-  bool rvc_active_{false};              ///< True after BeginRvc() succeeds.
 
   /// @}
 
@@ -541,6 +784,7 @@ private:
   /// @{
 
   static void dfuWrite32be(uint8_t* buf, uint32_t value) noexcept;           ///< @private
+  static bool dfuIsKnownPartNumber(const char* part) noexcept;               ///< @private
   static void dfuAppendCrc(uint8_t* packet, uint8_t len) noexcept;           ///< @private
   int dfuSend(uint8_t* dfu_buff, uint8_t* p_data, uint32_t len) noexcept;    ///< @private
   int dfuSendAppSize(uint8_t* dfu_buff, uint32_t app_size) noexcept;         ///< @private
@@ -557,13 +801,14 @@ private:
   SensorCallback callback_{}; ///< Registered SH-2 sensor event callback.
   RvcCallback rvc_cb_{};      ///< Registered RVC frame callback.
   int last_error_{0};         ///< Most recent SH-2 error code.
-  bool initialized_{false};   ///< True after Begin() succeeds.
+  BNO085DriverState state_{BNO085DriverState::Closed}; ///< Current operating state.
 
-  std::array<sh2_SensorValue_t, 0x2B> latest_{}; ///< Cached latest sensor values.
-  std::array<bool, 0x2B> new_flag_{};            ///< Per-sensor new-data flags.
-  std::array<uint32_t, 0x2B>
+  static constexpr std::size_t SENSOR_CACHE_SIZE_ = 0x2F; ///< Supports IDs 0x00..0x2E.
+  std::array<sh2_SensorValue_t, SENSOR_CACHE_SIZE_> latest_{}; ///< Cached latest sensor values.
+  std::array<bool, SENSOR_CACHE_SIZE_> new_flag_{};            ///< Per-sensor new-data flags.
+  std::array<uint32_t, SENSOR_CACHE_SIZE_>
       last_interval_{}; ///< Last configured interval per sensor (for re-enable on reset).
-  std::array<float, 0x2B> last_sensitivity_{}; ///< Last configured sensitivity per sensor.
+  std::array<float, SENSOR_CACHE_SIZE_> last_sensitivity_{}; ///< Last configured sensitivity.
 
   /// @}
 };

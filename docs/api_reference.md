@@ -41,6 +41,11 @@ explicit BNO085(CommType& comm) noexcept;
 | Method | Signature | Location |
 |--------|-----------|----------|
 | `Begin()` | `bool Begin() noexcept` | [`inc/bno08x.hpp#L153`](../inc/bno08x.hpp#L153) |
+| `Close()` | `void Close() noexcept` | [`inc/bno08x.hpp`](../inc/bno08x.hpp) |
+| `EnterBootloader()` | `bool EnterBootloader(uint32_t resetLowMs = 10, uint32_t settleMs = 50) noexcept` | [`inc/bno08x.hpp`](../inc/bno08x.hpp) |
+| `ExitBootloaderAndReboot()` | `bool ExitBootloaderAndReboot(uint32_t resetLowMs = 2, uint32_t settleMs = 100) noexcept` | [`inc/bno08x.hpp`](../inc/bno08x.hpp) |
+
+`Close()` closes whichever mode is currently active (SH-2 or RVC). If DFU is in progress, it is rejected with `SH2_ERR_OP_IN_PROGRESS`.
 
 ### Sensor Control
 
@@ -66,12 +71,17 @@ Requires a transport whose `GetInterfaceType()` returns `BNO085Interface::UARTRV
 | `ServiceRvc()` | `void ServiceRvc() noexcept` | [`inc/bno08x.hpp`](../inc/bno08x.hpp) |
 | `CloseRvc()` | `void CloseRvc() noexcept` | [`inc/bno08x.hpp`](../inc/bno08x.hpp) |
 
+`CloseRvc()` is an explicit RVC teardown convenience; `Close()` can also be used for generic mode shutdown.
+
 ### Data Access
 
 | Method | Signature | Location |
 |--------|-----------|----------|
 | `HasNewData()` | `bool HasNewData(BNO085Sensor sensor) const` | [`inc/bno08x.hpp#L179`](../inc/bno08x.hpp#L179) |
-| `GetLatest()` | `SensorEvent GetLatest(BNO085Sensor sensor) const` | [`inc/bno08x.hpp#L181`](../inc/bno08x.hpp#L181) |
+| `GetLatest()` | `SensorEvent GetLatest(BNO085Sensor sensor) noexcept` | [`inc/bno08x.hpp#L181`](../inc/bno08x.hpp#L181) |
+
+`HasNewData()` is cleared by `GetLatest()`. Callback dispatch does not clear it, which supports mixed callback + polling workflows.
+Both calls return default/false unless the driver is in `Sh2Active` state.
 
 ### Main Loop
 
@@ -84,6 +94,14 @@ Requires a transport whose `GetInterfaceType()` returns `BNO085Interface::UARTRV
 | Method | Signature | Location |
 |--------|-----------|----------|
 | `GetLastError()` | `int GetLastError() const` | [`inc/bno08x.hpp#L187`](../inc/bno08x.hpp#L187) |
+| `GetState()` | `BNO085DriverState GetState() const noexcept` | [`inc/bno08x.hpp`](../inc/bno08x.hpp) |
+
+Error policy:
+- Interface/mode mismatch: `SH2_ERR_BAD_PARAM`
+- Runtime state mismatch: `SH2_ERR_OP_IN_PROGRESS`
+- Query calls (`GetState`, `HasNewData`, `GetLatest`) do not update `GetLastError()`
+
+Thread safety: the driver object is not internally synchronized. Use one task/thread or external locking.
 
 ### Hardware Control
 
@@ -103,6 +121,10 @@ Not available when `GetInterfaceType()` returns `UARTRVC`. Use `MemoryFirmware` 
 | Method | Signature | Location |
 |--------|-----------|----------|
 | `Dfu()` | `int Dfu(const HcBin_t& fw = firmware) noexcept` | [`inc/bno08x.hpp`](../inc/bno08x.hpp) |
+| `DfuWithOptions()` | `int DfuWithOptions(const HcBin_t& fw, const DfuOptions& options) noexcept` | [`inc/bno08x.hpp`](../inc/bno08x.hpp) |
+| `DfuFromMemory()` | `int DfuFromMemory(const DfuMemoryImage& image, const DfuOptions& options = {}) noexcept` | [`inc/bno08x.hpp`](../inc/bno08x.hpp) |
+| `DfuFromMemory()` | `int DfuFromMemory(const uint8_t* data, uint32_t len, const char* partNumber = "1000-3608", const DfuOptions& options = {}) noexcept` | [`inc/bno08x.hpp`](../inc/bno08x.hpp) |
+| `RunDfuFromMemory()` | `int RunDfuFromMemory(const DfuMemoryImage& image, const DfuOptions& options = {}, uint32_t enterResetLowMs = 10, uint32_t enterSettleMs = 50, uint32_t exitResetLowMs = 2, uint32_t exitSettleMs = 100) noexcept` | [`inc/bno08x.hpp`](../inc/bno08x.hpp) |
 
 ## Types
 
@@ -110,8 +132,18 @@ Not available when `GetInterfaceType()` returns `UARTRVC`. Use `MemoryFirmware` 
 
 | Type | Values | Location |
 |------|--------|----------|
-| `BNO085Sensor` | `Accelerometer`, `Gyroscope`, `Magnetometer`, `LinearAcceleration`, `RotationVector`, `Gravity`, `GyroUncalibrated`, `GameRotationVector`, `GeomagneticRotationVector`, `Pressure`, `AmbientLight`, `Humidity`, `Proximity`, `Temperature`, `MagneticFieldUncalibrated`, `TapDetector`, `StepCounter`, `SignificantMotion`, `StabilityClassifier`, `RawAccelerometer`, `RawGyroscope`, `RawMagnetometer`, `StepDetector`, `ShakeDetector`, `FlipDetector`, `PickupDetector`, `StabilityDetector`, `PersonalActivityClassifier`, `SleepDetector`, `TiltDetector`, `PocketDetector`, `CircleDetector`, `HeartRateMonitor`, `ARVRStabilizedRV`, `ARVRStabilizedGameRV`, `GyroIntegratedRV` | [`inc/bno08x.hpp#L29`](../inc/bno08x.hpp#L29) |
+| `BNO085Sensor` | `Accelerometer`, `Gyroscope`, `Magnetometer`, `LinearAcceleration`, `RotationVector`, `Gravity`, `GyroUncalibrated`, `GameRotationVector`, `GeomagneticRotationVector`, `Pressure`, `AmbientLight`, `Humidity`, `Proximity`, `Temperature`, `MagneticFieldUncalibrated`, `TapDetector`, `StepCounter`, `SignificantMotion`, `StabilityClassifier`, `RawAccelerometer`, `RawGyroscope`, `RawMagnetometer`, `StepDetector`, `ShakeDetector`, `FlipDetector`, `PickupDetector`, `StabilityDetector`, `PersonalActivityClassifier`, `SleepDetector`, `TiltDetector`, `PocketDetector`, `CircleDetector`, `HeartRateMonitor`, `ARVRStabilizedRV`, `ARVRStabilizedGameRV`, `GyroIntegratedRV`, `IZroMotionRequest`, `RawOpticalFlow`, `DeadReckoningPose`, `WheelEncoder` | [`inc/bno08x.hpp#L29`](../inc/bno08x.hpp#L29) |
+| `BNO085DriverState` | `Closed`, `Sh2Active`, `RvcActive`, `DfuInProgress` | [`inc/bno08x.hpp`](../inc/bno08x.hpp) |
 | `BNO085Interface` | `I2C`, `UARTRVC`, `UART`, `SPI` | [`inc/bno08x_comm_interface.hpp`](../inc/bno08x_comm_interface.hpp) — returned by `CommInterface::GetInterfaceType()` |
+
+### DFU Types
+
+| Type | Description | Location |
+|------|-------------|----------|
+| `DfuProgress` | Byte counters emitted during transfer | [`inc/bno08x.hpp`](../inc/bno08x.hpp) |
+| `DfuOptions` | Metadata policy, packet override, progress callback | [`inc/bno08x.hpp`](../inc/bno08x.hpp) |
+| `DfuMemoryImage` | In-memory firmware descriptor (`data`, `length`, metadata) | [`inc/bno08x.hpp`](../inc/bno08x.hpp) |
+| `DfuProgressCallback` | `std::function<void(const DfuProgress&)>` | [`inc/bno08x.hpp`](../inc/bno08x.hpp) |
 
 ### Structures
 
