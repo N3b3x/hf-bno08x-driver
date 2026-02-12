@@ -9,12 +9,13 @@ var searchData=
   ['getconfig_6',['getConfig',['../classEsp32Bno08xBus.html#a85e1603d6eff23ff172f2a800a6afa4d',1,'Esp32Bno08xBus']]],
   ['getinterfacetype_7',['GetInterfaceType',['../classbno08x_1_1CommInterface.html#aff6d3c95e497ca8ecfa39083669c8d47',1,'bno08x::CommInterface::GetInterfaceType()'],['../classEsp32Bno08xBus.html#a93e0de20a5b96a000dde91bd780fd55f',1,'Esp32Bno08xBus::GetInterfaceType()'],['../classEsp32UartRvcBus.html#a02f0d03d1cbe629f12c99a7a903aa914',1,'Esp32UartRvcBus::GetInterfaceType()']]],
   ['getlasterror_8',['GetLastError',['../classBNO085.html#a6058135b615cc9e260d3de12f8e7edcf',1,'BNO085']]],
-  ['getlatest_9',['GetLatest',['../classBNO085.html#ad808f56174f2db0303525e566d328007',1,'BNO085']]],
+  ['getlatest_9',['GetLatest',['../classBNO085.html#a0c152e4ec12c31255085cc49cc398155',1,'BNO085']]],
   ['getmeta_10',['getMeta',['../structHcBin__s.html#a10b509899819239a4655cd9a5902dc6d',1,'HcBin_s']]],
   ['getpacketlen_11',['getPacketLen',['../structHcBin__s.html#a264c696f65faec8bb3eb994734d55527',1,'HcBin_s']]],
-  ['gettimeus_12',['GetTimeUs',['../classbno08x_1_1CommInterface.html#a4b3129c235d04972f6f51563d5ca35f3',1,'bno08x::CommInterface::GetTimeUs()'],['../classEsp32Bno08xBus.html#ad9bcbae6a7b658760cf42ae2ef830777',1,'Esp32Bno08xBus::GetTimeUs()'],['../classEsp32UartRvcBus.html#a3adc7b1fc8d59a12b1de0b3dbc83673e',1,'Esp32UartRvcBus::GetTimeUs()']]],
-  ['gravity_13',['Gravity',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a8a88c39cef668fb55f188af09665bd40',1,'bno08x.hpp']]],
-  ['gyrointegratedrv_14',['GyroIntegratedRV',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62ac8b04cbadc40345b299a6b531f25d05c',1,'bno08x.hpp']]],
-  ['gyroscope_15',['Gyroscope',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62abed99e5db57749f375e738c1c0258047',1,'bno08x.hpp']]],
-  ['gyrouncalibrated_16',['GyroUncalibrated',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a21dfaf4e5263130288d52ac111a7d405',1,'bno08x.hpp']]]
+  ['getstate_12',['GetState',['../classBNO085.html#a69d7d9d9570452a4587dca7135f21009',1,'BNO085']]],
+  ['gettimeus_13',['GetTimeUs',['../classbno08x_1_1CommInterface.html#a4b3129c235d04972f6f51563d5ca35f3',1,'bno08x::CommInterface::GetTimeUs()'],['../classEsp32Bno08xBus.html#ad9bcbae6a7b658760cf42ae2ef830777',1,'Esp32Bno08xBus::GetTimeUs()'],['../classEsp32UartRvcBus.html#a3adc7b1fc8d59a12b1de0b3dbc83673e',1,'Esp32UartRvcBus::GetTimeUs()']]],
+  ['gravity_14',['Gravity',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a8a88c39cef668fb55f188af09665bd40',1,'bno08x.hpp']]],
+  ['gyrointegratedrv_15',['GyroIntegratedRV',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62ac8b04cbadc40345b299a6b531f25d05c',1,'bno08x.hpp']]],
+  ['gyroscope_16',['Gyroscope',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62abed99e5db57749f375e738c1c0258047',1,'bno08x.hpp']]],
+  ['gyrouncalibrated_17',['GyroUncalibrated',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a21dfaf4e5263130288d52ac111a7d405',1,'bno08x.hpp']]]
 ];

@@ -8,12 +8,15 @@ var searchData=
   ['acc_5fz_5fg_5',['acc_z_g',['../structRvcSensorValue.html#a96be56fed5bb32fa5ed5d9519e0337c7',1,'RvcSensorValue']]],
   ['accelerometer_6',['Accelerometer',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62ab043bc6d611582087d8bf1790d863d69',1,'bno08x.hpp']]],
   ['accuracy_7',['accuracy',['../structVector3.html#a491cb149e1ee956e6ee5ba53ebd958bd',1,'Vector3::accuracy'],['../structQuaternion.html#a9fb8e41ca4fab802dc16d5fd42188cde',1,'Quaternion::accuracy']]],
-  ['add_5fresult_8',['add_result',['../structTestResults.html#a257eba3a9005a5c19c68ae27774948f7',1,'TestResults']]],
-  ['ambientlight_9',['AmbientLight',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a9de31d14fe78730b3fd5ce633a2da711',1,'bno08x.hpp']]],
-  ['and_20data_20structures_10',['Sensor Types and Data Structures',['../group__SensorTypes.html',1,'']]],
-  ['api_20reference_11',['📖 API Reference',['../index.html#autotoc_md11',1,'']]],
-  ['app_5fmain_12',['app_main',['../basic__polling__example_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'app_main(void):&#160;basic_polling_example.cpp'],['../dfu__example_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'app_main(void):&#160;dfu_example.cpp'],['../driver__integration__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'app_main(void):&#160;driver_integration_test.cpp'],['../event__driven__callback__example_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'app_main(void):&#160;event_driven_callback_example.cpp'],['../full__features__example_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'app_main(void):&#160;full_features_example.cpp'],['../rvc__mode__example_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'app_main(void):&#160;rvc_mode_example.cpp']]],
-  ['array_5flen_13',['ARRAY_LEN',['../firmware-bno_8c.html#ab9129b977a587b50ea801daac75e178f',1,'firmware-bno.c']]],
-  ['arvrstabilizedgamerv_14',['ARVRStabilizedGameRV',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62adda6de7569af6fe8301ee3807a69a988',1,'bno08x.hpp']]],
-  ['arvrstabilizedrv_15',['ARVRStabilizedRV',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a5f78b93803f5d02a6b414b4b6e1637df',1,'bno08x.hpp']]]
+  ['activity_8',['activity',['../structSensorEvent.html#a453be63efa357c44b67b60a11857bf9c',1,'SensorEvent']]],
+  ['activityclassifierevent_9',['ActivityClassifierEvent',['../structActivityClassifierEvent.html',1,'']]],
+  ['add_5fresult_10',['add_result',['../structTestResults.html#a257eba3a9005a5c19c68ae27774948f7',1,'TestResults']]],
+  ['ambientlight_11',['AmbientLight',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a9de31d14fe78730b3fd5ce633a2da711',1,'bno08x.hpp']]],
+  ['and_20data_20structures_12',['Sensor Types and Data Structures',['../group__SensorTypes.html',1,'']]],
+  ['angularvelocity_13',['angularVelocity',['../structDeadReckoningPoseEvent.html#af90d83aa209ab1719fa82346e682723b',1,'DeadReckoningPoseEvent::angularVelocity'],['../structSensorEvent.html#adc50a0427744fa32ddbae48fb07ce3ae',1,'SensorEvent::angularVelocity']]],
+  ['api_20reference_14',['📖 API Reference',['../index.html#autotoc_md11',1,'']]],
+  ['app_5fmain_15',['app_main',['../basic__polling__example_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'app_main(void):&#160;basic_polling_example.cpp'],['../dfu__example_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'app_main(void):&#160;dfu_example.cpp'],['../dfu__workflow__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'app_main(void):&#160;dfu_workflow_test.cpp'],['../driver__integration__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'app_main(void):&#160;driver_integration_test.cpp'],['../event__driven__callback__example_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'app_main(void):&#160;event_driven_callback_example.cpp'],['../full__features__example_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'app_main(void):&#160;full_features_example.cpp'],['../rvc__mode__example_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'app_main(void):&#160;rvc_mode_example.cpp']]],
+  ['array_5flen_16',['ARRAY_LEN',['../firmware-bno_8c.html#ab9129b977a587b50ea801daac75e178f',1,'firmware-bno.c']]],
+  ['arvrstabilizedgamerv_17',['ARVRStabilizedGameRV',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62adda6de7569af6fe8301ee3807a69a988',1,'bno08x.hpp']]],
+  ['arvrstabilizedrv_18',['ARVRStabilizedRV',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a5f78b93803f5d02a6b414b4b6e1637df',1,'bno08x.hpp']]]
 ];

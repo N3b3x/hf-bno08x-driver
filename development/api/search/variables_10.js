@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['x_0',['x',['../structVector3.html#a7e2d3237b29a2f29d7b3d8b2934e35f2',1,'Vector3::x'],['../structQuaternion.html#a8b80f191a3155cc0158d2b4f4d50b2cb',1,'Quaternion::x']]]
+  ['value_0',['value',['../structHcbinMetadata.html#add1363f7f996f55a9f0ba6e1da0e41a8',1,'HcbinMetadata']]],
+  ['vector_1',['vector',['../structSensorEvent.html#a8c2354749dcfa8711c7aa27386e3fd1e',1,'SensorEvent']]]
 ];

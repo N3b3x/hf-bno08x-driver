@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['hcbin_5ft_0',['HcBin_t',['../HcBin_8h.html#a8b8c363f76941613f85a73d23a2a1455',1,'HcBin.h']]]
+  ['dfuprogresscallback_0',['DfuProgressCallback',['../group__SensorTypes.html#ga1097c7a9cb23abb755293d302eacb5f5',1,'bno08x.hpp']]]
 ];

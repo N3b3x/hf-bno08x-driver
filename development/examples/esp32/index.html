@@ -469,6 +469,28 @@ idf.py monitor
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 </pre></td><td class="rouge-code"><pre>./scripts/build_app.sh driver_integration_test Release
 </pre></td></tr></tbody></table></div></code></pre></div></div>
+<h4 id="dfu_workflow_test">
+  
+  
+    <a href="#dfu_workflow_test" class="anchor-heading" aria-labelledby="dfu_workflow_test"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <code class="language-plaintext highlighter-rouge">dfu_workflow_test</code>
+  
+  
+</h4>
+    
+<p><strong>Comprehensive DFU Workflow Integration Test</strong></p>
+<ul>
+  <li>Validates DFU state-machine transitions on real transport</li>
+  <li>Exercises <code class="language-plaintext highlighter-rouge">EnterBootloader()</code> / <code class="language-plaintext highlighter-rouge">ExitBootloaderAndReboot()</code></li>
+  <li>Tests <code class="language-plaintext highlighter-rouge">DfuFromMemory()</code> and <code class="language-plaintext highlighter-rouge">DfuOptions</code> validation paths</li>
+  <li>Attempts transfer workflow via <code class="language-plaintext highlighter-rouge">RunDfuFromMemory()</code></li>
+  <li>Uses standardized TestFramework and GPIO14 progress indicator</li>
+  <li>Real hardware testing (BNO08x + I2C; BOOTN optional)</li>
+</ul>
+
+<p><strong>Build:</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>./scripts/build_app.sh dfu_workflow_test Release
+</pre></td></tr></tbody></table></div></code></pre></div></div>
 <h3 id="-basic-examples">
   
   

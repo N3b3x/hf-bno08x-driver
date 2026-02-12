@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['rvccallback_0',['RvcCallback',['../group__SensorTypes.html#ga42c65948fe45a5845ecaf27c7ee70975',1,'bno08x.hpp']]]
+  ['hcbin_5ft_0',['HcBin_t',['../HcBin_8h.html#a8b8c363f76941613f85a73d23a2a1455',1,'HcBin.h']]]
 ];

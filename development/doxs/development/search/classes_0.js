@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['bno085_0',['BNO085',['../classBNO085.html',1,'']]]
+  ['activityclassifierevent_0',['ActivityClassifierEvent',['../structActivityClassifierEvent.html',1,'']]]
 ];

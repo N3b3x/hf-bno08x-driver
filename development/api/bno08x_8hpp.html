@@ -146,6 +146,7 @@ $(function(){initNavTree('bno08x_8hpp.html',''); initResizable(); });
 <div class="textblock"><code>#include &quot;<a class="el" href="bno08x__comm__interface_8hpp_source.html">bno08x_comm_interface.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="HcBin_8h_source.html">dfu/HcBin.h</a>&quot;</code><br />
 <code>#include &lt;array&gt;</code><br />
+<code>#include &lt;cstddef&gt;</code><br />
 <code>#include &lt;cstdint&gt;</code><br />
 <code>#include &lt;cstring&gt;</code><br />
 <code>#include &lt;functional&gt;</code><br />
@@ -156,12 +157,12 @@ $(function(){initNavTree('bno08x_8hpp.html',''); initResizable(); });
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for bno08x.hpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="bno08x_8hpp__incl.svg" width="1270" height="183"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="bno08x_8hpp__incl.svg" width="1390" height="330"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="bno08x_8hpp__dep__incl.svg" width="1364" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="bno08x_8hpp__dep__incl.svg" width="1560" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="bno08x_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -177,6 +178,21 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTapEvent.html">TapEvent</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tap detector event details.  <a href="structTapEvent.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRawVector3.html">RawVector3</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Raw integer 3-axis sample (ADC counts) with optional metadata.  <a href="structRawVector3.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structActivityClassifierEvent.html">ActivityClassifierEvent</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Personal activity classifier payload.  <a href="structActivityClassifierEvent.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRawOpticalFlowEvent.html">RawOpticalFlowEvent</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Raw optical flow payload from SH2_RAW_OPTICAL_FLOW.  <a href="structRawOpticalFlowEvent.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structDeadReckoningPoseEvent.html">DeadReckoningPoseEvent</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dead reckoning position/orientation/velocity payload.  <a href="structDeadReckoningPoseEvent.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structWheelEncoderEvent.html">WheelEncoderEvent</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wheel encoder payload.  <a href="structWheelEncoderEvent.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSensorEvent.html">SensorEvent</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for a single decoded SH-2 sensor report.  <a href="structSensorEvent.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -185,6 +201,15 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRvcSensorValue.html">RvcSensorValue</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decoded RVC frame data in floating-point natural units.  <a href="structRvcSensorValue.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structDfuProgress.html">DfuProgress</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Progress sample emitted during DFU transfers.  <a href="structDfuProgress.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structDfuOptions.html">DfuOptions</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Controls DFU validation and transfer behavior.  <a href="structDfuOptions.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structDfuMemoryImage.html">DfuMemoryImage</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Firmware image descriptor for class-aware memory DFU.  <a href="structDfuMemoryImage.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBNO085.html">BNO085&lt; CommType &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unified driver for the BNO08x IMU &ndash; SH-2 mode, RVC mode, and DFU.  <a href="classBNO085.html#details">More...</a><br /></td></tr>
@@ -203,6 +228,9 @@ Typedefs</h2></td></tr>
 <tr class="memitem:ga42c65948fe45a5845ecaf27c7ee70975" id="r_ga42c65948fe45a5845ecaf27c7ee70975"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SensorTypes.html#ga42c65948fe45a5845ecaf27c7ee70975">RvcCallback</a> = std::function&lt;void(const <a class="el" href="structRvcSensorValue.html">RvcSensorValue</a>&amp;)&gt;</td></tr>
 <tr class="memdesc:ga42c65948fe45a5845ecaf27c7ee70975"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback invoked when a decoded RVC frame is available.  <br /></td></tr>
 <tr class="separator:ga42c65948fe45a5845ecaf27c7ee70975"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1097c7a9cb23abb755293d302eacb5f5" id="r_ga1097c7a9cb23abb755293d302eacb5f5"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SensorTypes.html#ga1097c7a9cb23abb755293d302eacb5f5">DfuProgressCallback</a> = std::function&lt;void(const <a class="el" href="structDfuProgress.html">DfuProgress</a>&amp;)&gt;</td></tr>
+<tr class="memdesc:ga1097c7a9cb23abb755293d302eacb5f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback for DFU progress updates.  <br /></td></tr>
+<tr class="separator:ga1097c7a9cb23abb755293d302eacb5f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -251,10 +279,22 @@ Enumerations</h2></td></tr>
 , <a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a5f78b93803f5d02a6b414b4b6e1637df">BNO085Sensor::ARVRStabilizedRV</a> = 0x28
 , <a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62adda6de7569af6fe8301ee3807a69a988">BNO085Sensor::ARVRStabilizedGameRV</a> = 0x29
 , <a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62ac8b04cbadc40345b299a6b531f25d05c">BNO085Sensor::GyroIntegratedRV</a> = 0x2A
+, <br />
+&#160;&#160;<a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a63d8d30cec7a334d030591fa3bae2d17">BNO085Sensor::IZroMotionRequest</a> = 0x2B
+, <a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a7893e8b9d35de663b6e69cd31815706b">BNO085Sensor::RawOpticalFlow</a> = 0x2C
+, <a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62ae35bc0fbb35ff3bfbe666a19a182b488">BNO085Sensor::DeadReckoningPose</a> = 0x2D
+, <a class="el" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a920ada106cf96daa9129258ad35e92e5">BNO085Sensor::WheelEncoder</a> = 0x2E
 <br />
  }</td></tr>
 <tr class="memdesc:ga6f9f2bf1fa157ce63dacb450d5df6c62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifiers for all SH-2 sensor reports supported by the BNO08x.  <a href="group__SensorTypes.html#ga6f9f2bf1fa157ce63dacb450d5df6c62">More...</a><br /></td></tr>
 <tr class="separator:ga6f9f2bf1fa157ce63dacb450d5df6c62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1df635b937d37d6ce4c41c7471351391" id="r_ga1df635b937d37d6ce4c41c7471351391"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SensorTypes.html#ga1df635b937d37d6ce4c41c7471351391">BNO085DriverState</a> : uint8_t { <a class="el" href="group__SensorTypes.html#gga1df635b937d37d6ce4c41c7471351391a03f4a47830f97377a35321051685071e">BNO085DriverState::Closed</a> = 0
+, <a class="el" href="group__SensorTypes.html#gga1df635b937d37d6ce4c41c7471351391a5141319ae42db24ae529c48c33e7fe0f">BNO085DriverState::Sh2Active</a>
+, <a class="el" href="group__SensorTypes.html#gga1df635b937d37d6ce4c41c7471351391a026428237b5dada8f2e5fd6995878b44">BNO085DriverState::RvcActive</a>
+, <a class="el" href="group__SensorTypes.html#gga1df635b937d37d6ce4c41c7471351391afac3061eedc7d86a66d2f4d1431780d5">BNO085DriverState::DfuInProgress</a>
+ }</td></tr>
+<tr class="memdesc:ga1df635b937d37d6ce4c41c7471351391"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current top-level operating state of the driver.  <a href="group__SensorTypes.html#ga1df635b937d37d6ce4c41c7471351391">More...</a><br /></td></tr>
+<tr class="separator:ga1df635b937d37d6ce4c41c7471351391"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -279,10 +319,10 @@ Quick Start (SH-2 Mode)</h3>
 <div class="line">imu.EnableSensor(<a class="code hl_enumvalue" href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a93885b92407df28cbbeae6691819875a">BNO085Sensor::RotationVector</a>, 10);</div>
 <div class="line">imu.SetCallback([](<span class="keyword">const</span> <a class="code hl_struct" href="structSensorEvent.html">SensorEvent</a>&amp; e) { ... });</div>
 <div class="line"><span class="keywordflow">while</span> (<span class="keyword">true</span>) { imu.Update(); }</div>
-<div class="ttc" id="aclassBNO085_html"><div class="ttname"><a href="classBNO085.html">BNO085</a></div><div class="ttdoc">Unified driver for the BNO08x IMU – SH-2 mode, RVC mode, and DFU.</div><div class="ttdef"><b>Definition</b> bno08x.hpp:266</div></div>
+<div class="ttc" id="aclassBNO085_html"><div class="ttname"><a href="classBNO085.html">BNO085</a></div><div class="ttdoc">Unified driver for the BNO08x IMU – SH-2 mode, RVC mode, and DFU.</div><div class="ttdef"><b>Definition</b> bno08x.hpp:419</div></div>
 <div class="ttc" id="aclassEsp32Bno08xBus_html"><div class="ttname"><a href="classEsp32Bno08xBus.html">Esp32Bno08xBus</a></div><div class="ttdoc">ESP32 implementation of bno08x::CommInterface using ESP-IDF I2C master driver.</div><div class="ttdef"><b>Definition</b> esp32_bno08x_bus.hpp:63</div></div>
 <div class="ttc" id="agroup__SensorTypes_html_gga6f9f2bf1fa157ce63dacb450d5df6c62a93885b92407df28cbbeae6691819875a"><div class="ttname"><a href="group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a93885b92407df28cbbeae6691819875a">BNO085Sensor::RotationVector</a></div><div class="ttdeci">@ RotationVector</div><div class="ttdoc">Fused absolute orientation quaternion.</div></div>
-<div class="ttc" id="astructSensorEvent_html"><div class="ttname"><a href="structSensorEvent.html">SensorEvent</a></div><div class="ttdoc">Container for a single decoded SH-2 sensor report.</div><div class="ttdef"><b>Definition</b> bno08x.hpp:172</div></div>
+<div class="ttc" id="astructSensorEvent_html"><div class="ttname"><a href="structSensorEvent.html">SensorEvent</a></div><div class="ttdoc">Container for a single decoded SH-2 sensor report.</div><div class="ttdef"><b>Definition</b> bno08x.hpp:245</div></div>
 </div><!-- fragment --><h3><a class="anchor" id="autotoc_md2"></a>
 Quick Start (RVC Mode)</h3>
 <div class="fragment"><div class="line"><a class="code hl_class" href="classEsp32UartRvcBus.html">Esp32UartRvcBus</a> uart(config);</div>
@@ -291,7 +331,7 @@ Quick Start (RVC Mode)</h3>
 <div class="line">imu.BeginRvc();</div>
 <div class="line"><span class="keywordflow">while</span> (<span class="keyword">true</span>) { imu.ServiceRvc(); }</div>
 <div class="ttc" id="aclassEsp32UartRvcBus_html"><div class="ttname"><a href="classEsp32UartRvcBus.html">Esp32UartRvcBus</a></div><div class="ttdoc">ESP32 UART CommInterface for BNO08x RVC mode.</div><div class="ttdef"><b>Definition</b> esp32_uart_rvc_bus.hpp:50</div></div>
-<div class="ttc" id="astructRvcSensorValue_html"><div class="ttname"><a href="structRvcSensorValue.html">RvcSensorValue</a></div><div class="ttdoc">Decoded RVC frame data in floating-point natural units.</div><div class="ttdef"><b>Definition</b> bno08x.hpp:211</div></div>
+<div class="ttc" id="astructRvcSensorValue_html"><div class="ttname"><a href="structRvcSensorValue.html">RvcSensorValue</a></div><div class="ttdoc">Decoded RVC frame data in floating-point natural units.</div><div class="ttdef"><b>Definition</b> bno08x.hpp:298</div></div>
 </div><!-- fragment --><dl class="section author"><dt>Author</dt><dd>Nebiyu Tadesse </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2025 </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>HardFOC &ndash; GNU GPL v3.0 (C++ wrapper); CEVA Apache 2.0 (SH-2 backend)</dd></dl>

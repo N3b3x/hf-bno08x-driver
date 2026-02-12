@@ -1,14 +1,43 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
 <title>HF-BNO08x: Class Members</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
@@ -16,20 +45,34 @@
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/jothepro/doxygen-awesome-css" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
 <div id="titlearea">
 <table cellspacing="0" cellpadding="0">
  <tbody>
- <tr id="projectrow">
-  <td id="projectalign">
-   <div id="projectname">HF-BNO08x<span id="projectnumber">&#160;0.1.0-dev</span>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">HF-BNO08x
+   &#160;<span id="projectnumber">0.1.0-dev</span>
    </div>
   </td>
  </tr>
  </tbody>
 </table>
+<div id="theme-selection">
+ <label for="theme-select">Theme:</label>
+ <select id="theme-select">
+  <option value="theme-default">Default</option>
+  <option value="theme-round">Round</option>
+  <option value="theme-robot">Robot</option>
+ </select>
+</div>
 </div>
 <!-- end header part -->
 <!-- Generated by Doxygen 1.10.0 -->
@@ -50,6 +93,22 @@ $(function() {
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('functions_s.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -75,67 +134,33 @@ $(function() {
 <div class="textblock">Here is a list of all class members with links to the classes they belong to:</div>
 
 <h3><a id="index_s" name="index_s"></a>- s -</h3><ul>
+<li>scalar&#160;:&#160;<a class="el" href="structSensorEvent.html#ade06fe5e89cd46761782ea887497a1f3">SensorEvent</a></li>
 <li>scl_pin&#160;:&#160;<a class="el" href="structEsp32Bno08xBus_1_1I2CConfig.html#a89048b77b8b98d9f4526569438084533">Esp32Bno08xBus::I2CConfig</a></li>
 <li>sda_pin&#160;:&#160;<a class="el" href="structEsp32Bno08xBus_1_1I2CConfig.html#ae302f882fd6ce00ab08cb3c48435a491">Esp32Bno08xBus::I2CConfig</a></li>
-<li>selectInterface()&#160;:&#160;<a class="el" href="classBNO085.html#abb4c75c94d3e8d0995cf95f83da13ae9">BNO085</a></li>
-<li>sendCmd&#160;:&#160;<a class="el" href="unionsh2__OpData__t.html#ae7cbddea3776e9ebfdd4826889523a44">sh2_OpData_t</a></li>
+<li>SelectInterface()&#160;:&#160;<a class="el" href="classBNO085.html#a5f42063c1b13f16385744abc5595a832">BNO085&lt; CommType &gt;</a></li>
 <li>sensor&#160;:&#160;<a class="el" href="structSensorEvent.html#a2a6ead14a1676d5412cf9ec6b4986d62">SensorEvent</a></li>
-<li>sensorCallback&#160;:&#160;<a class="el" href="structsh2__s.html#a88b7da3bca9f91e1a6cd5c18dd7ac408">sh2_s</a></li>
-<li>sensorConfig&#160;:&#160;<a class="el" href="structsh2__SensorConfigResp__e.html#a718f249e2301e54e84e91fe8e8f83cb3">sh2_SensorConfigResp_e</a></li>
-<li>sensorCookie&#160;:&#160;<a class="el" href="structsh2__s.html#a4dd4effc09ffd48374773de4e86e925d">sh2_s</a></li>
-<li>sensorId&#160;:&#160;<a class="el" href="unionsh2__OpData__t.html#abe1bd80e3eee9d55060b5515612d55f0">sh2_OpData_t</a>, <a class="el" href="structsh2__SensorConfigResp__e.html#a0896c42c9530d7b8ed587b9f105826e0">sh2_SensorConfigResp_e</a>, <a class="el" href="structsh2__SensorValue.html#ad1891bcdfb5ed6741c4a6e1008cd898b">sh2_SensorValue</a></li>
-<li>sensors&#160;:&#160;<a class="el" href="unionsh2__OpData__t.html#a0b1cfee8a98a85b15344a3ffd44deddd">sh2_OpData_t</a></li>
-<li>sensorSpecific&#160;:&#160;<a class="el" href="structsh2__SensorConfig.html#a273b4d307d3e2d740b2d084b7c1fde68">sh2_SensorConfig</a>, <a class="el" href="structsh2__SensorMetadata.html#a2d2b96da773ea9d13e45d340a9d06695">sh2_SensorMetadata</a></li>
-<li>sensorSpecificLen&#160;:&#160;<a class="el" href="structsh2__SensorMetadata.html#a174dc9c159a75b0d788511546b733f2e">sh2_SensorMetadata</a></li>
-<li>sequence&#160;:&#160;<a class="el" href="structsh2__ErrorRecord.html#a507817991d418a6a339723cd61eb2c96">sh2_ErrorRecord</a>, <a class="el" href="structsh2__SensorValue.html#a10b38ebed7d0956aaeaa58d8393064dd">sh2_SensorValue</a></li>
-<li>service()&#160;:&#160;<a class="el" href="classRvc.html#a71dd179c83d890b1ef9e2a34ba051567">Rvc</a></li>
-<li>serviceRvc()&#160;:&#160;<a class="el" href="classBNO085.html#a7ed2c69b25418210c8a904024b9249fd">BNO085</a></li>
-<li>setBoot()&#160;:&#160;<a class="el" href="classIBNO085Transport.html#af0f0d2956ee0b8a7487afd955117d612">IBNO085Transport</a></li>
-<li>setBootPin()&#160;:&#160;<a class="el" href="classBNO085.html#ae0dc52bd052ddf8be7cfe8b065a00b74">BNO085</a></li>
-<li>setCallback()&#160;:&#160;<a class="el" href="classBNO085.html#a96c54d50e4ee31f072f8da22f3e70478">BNO085</a>, <a class="el" href="classRvc.html#a87d96c211b8853af4967da742d0e884c">Rvc</a></li>
-<li>setFrs&#160;:&#160;<a class="el" href="unionsh2__OpData__t.html#acd82029849394929e0b7f97cf11088b1">sh2_OpData_t</a></li>
-<li>setHal()&#160;:&#160;<a class="el" href="classRvc.html#a97e4a482fb0088517330db0c64077fe1">Rvc</a></li>
-<li>setPS0()&#160;:&#160;<a class="el" href="classIBNO085Transport.html#a0ddd032d84cbe7a5124b5fc19a21efee">IBNO085Transport</a></li>
-<li>setPS1()&#160;:&#160;<a class="el" href="classIBNO085Transport.html#a1ad51728e11dc07219489684c1f08440">IBNO085Transport</a></li>
-<li>setReset()&#160;:&#160;<a class="el" href="classEsp32Bno08xBus.html#aceaea11e68ba17cb30d52f8d55daf093">Esp32Bno08xBus</a>, <a class="el" href="classIBNO085Transport.html#a0d324813a865bcadd596906d13eb0679">IBNO085Transport</a></li>
-<li>setRvcCallback()&#160;:&#160;<a class="el" href="classBNO085.html#a60a1cc63919db82a3eac678ed48db75a">BNO085</a></li>
-<li>setSensorConfig&#160;:&#160;<a class="el" href="unionsh2__OpData__t.html#a7792a7f38eff21120e1328836e962bac">sh2_OpData_t</a></li>
-<li>setWake()&#160;:&#160;<a class="el" href="classIBNO085Transport.html#a2cfd62f7f4f526d6e18ef3d8d85c5d05">IBNO085Transport</a></li>
-<li>setWakePin()&#160;:&#160;<a class="el" href="classBNO085.html#ac143524d2296fc1ecd7379e45bddde48">BNO085</a></li>
-<li>severity&#160;:&#160;<a class="el" href="structsh2__ErrorRecord.html#aa2d9d1b700af1bc2b3a2da6b5c99945e">sh2_ErrorRecord</a>, <a class="el" href="unionsh2__OpData__t.html#a8f35284522e6763e305107fe152d7556">sh2_OpData_t</a></li>
-<li>sh2_hal&#160;:&#160;<a class="el" href="structi2c__hal__s.html#af73085d4207b86f13333206c7c222c7f">i2c_hal_s</a>, <a class="el" href="structuart__hal__s.html#a996c4869560e703ecd6d209f67c95186">uart_hal_s</a></li>
-<li>sh2SensorConfigResp&#160;:&#160;<a class="el" href="structsh2__AsyncEvent.html#aa39bf9b9cda25fecd14b0607fbaf3f49">sh2_AsyncEvent</a></li>
-<li>shake&#160;:&#160;<a class="el" href="structsh2__ShakeDetector.html#ab3a02d65a239c7c1c28c15e212aa70a3">sh2_ShakeDetector</a></li>
-<li>shakeDetector&#160;:&#160;<a class="el" href="structsh2__SensorValue.html#a19def7c7e16fcb3dc27c278ccb31887f">sh2_SensorValue</a></li>
-<li>shtpEvent&#160;:&#160;<a class="el" href="structsh2__AsyncEvent.html#af2abfae9dc31ddd0d8597f746466226f">sh2_AsyncEvent</a></li>
-<li>shutter&#160;:&#160;<a class="el" href="structsh2__RawOptFlow.html#aaf797610c4727523525462949d82ae7b">sh2_RawOptFlow</a></li>
-<li>shVersion&#160;:&#160;<a class="el" href="structsh2__SensorMetadata.html#a6718adf68655c148e58b8452b11c98bf">sh2_SensorMetadata</a></li>
-<li>sigMotion&#160;:&#160;<a class="el" href="structsh2__SensorValue.html#ab5c4b5a1ba45e320f6bf1c956cdbac39">sh2_SensorValue</a></li>
-<li>sleepDetector&#160;:&#160;<a class="el" href="structsh2__SensorValue.html#a16be0c4c567e04e6c9010fd600bed3cd">sh2_SensorValue</a></li>
-<li>sleepState&#160;:&#160;<a class="el" href="structsh2__SleepDetector.html#ada27050a248af234f9918624275f4d0c">sh2_SleepDetector</a></li>
-<li>sniffEnabled&#160;:&#160;<a class="el" href="structsh2__SensorConfig.html#a3c0737b633c63da984a4a22b9085a6ec">sh2_SensorConfig</a></li>
-<li>source&#160;:&#160;<a class="el" href="structsh2__ErrorRecord.html#adef4c4ec2b09288408a49ac7cf60e64b">sh2_ErrorRecord</a></li>
-<li>stability&#160;:&#160;<a class="el" href="structsh2__StabilityDetector.html#a7ee9e6ea69d7c732f38773c2c44987e8">sh2_StabilityDetector</a></li>
-<li>stabilityClassifier&#160;:&#160;<a class="el" href="structsh2__SensorValue.html#a7750276341a3df69ca8c8d9beec7894c">sh2_SensorValue</a></li>
-<li>stabilityDetector&#160;:&#160;<a class="el" href="structsh2__SensorValue.html#a29f9f4a928067a36adcddca922052504">sh2_SensorValue</a></li>
-<li>start&#160;:&#160;<a class="el" href="structsh2__Op__s.html#a15c10e14555e830c923bf510faa03b44">sh2_Op_s</a></li>
-<li>startCal&#160;:&#160;<a class="el" href="unionsh2__OpData__t.html#aef366474aef7e5f0bbe17a3dd93aa2ac">sh2_OpData_t</a></li>
-<li>state&#160;:&#160;<a class="el" href="structDfu__t.html#a44dd3f56847a880b59890e442d7184ca">Dfu_t</a></li>
-<li>status&#160;:&#160;<a class="el" href="structDfu__t.html#ac6f92a1e3eb3708f66ab7b5badbcd464">Dfu_t</a>, <a class="el" href="unionsh2__OpData__t.html#a4034cf8aed71f87987eca689175e4ca3">sh2_OpData_t</a>, <a class="el" href="structsh2__SensorValue.html#a135fc0f40b094fb72020f97e16f8065f">sh2_SensorValue</a></li>
+<li>sensorTimeUs&#160;:&#160;<a class="el" href="structRawVector3.html#ac70b2a3d08043f6c934f74417b737c9f">RawVector3</a></li>
+<li>ServiceRvc()&#160;:&#160;<a class="el" href="classBNO085.html#a362f9fa742b11893ecdb3a7b896102ef">BNO085&lt; CommType &gt;</a></li>
+<li>SetBoot()&#160;:&#160;<a class="el" href="classbno08x_1_1CommInterface.html#af6974b490b35d44852d618a43b9e309d">bno08x::CommInterface&lt; Derived &gt;</a>, <a class="el" href="classEsp32Bno08xBus.html#a665e11ccb1e4f41f935ea7e6a23b495d">Esp32Bno08xBus</a>, <a class="el" href="classEsp32UartRvcBus.html#a6e5816811c465b7e1872288957c955c6">Esp32UartRvcBus</a></li>
+<li>SetBootPin()&#160;:&#160;<a class="el" href="classBNO085.html#ab2eaebd8df2ccc34046d113fd301bfdb">BNO085&lt; CommType &gt;</a></li>
+<li>SetCallback()&#160;:&#160;<a class="el" href="classBNO085.html#a3953f176fe778583f95f41637ddf278e">BNO085&lt; CommType &gt;</a></li>
+<li>SetPS0()&#160;:&#160;<a class="el" href="classbno08x_1_1CommInterface.html#a1c4025ff6f0a05d32a7ddf1a2f0ea7cd">bno08x::CommInterface&lt; Derived &gt;</a>, <a class="el" href="classEsp32Bno08xBus.html#a48c2d1fae57b8d7094c992df14be554e">Esp32Bno08xBus</a>, <a class="el" href="classEsp32UartRvcBus.html#a3413b2ca59127ffea3dc5504479a6aea">Esp32UartRvcBus</a></li>
+<li>SetPS1()&#160;:&#160;<a class="el" href="classbno08x_1_1CommInterface.html#a0e2f6dd0d307d76823883cae4e590736">bno08x::CommInterface&lt; Derived &gt;</a>, <a class="el" href="classEsp32Bno08xBus.html#a14e66158e6c01596477f0fbb7a2e20fc">Esp32Bno08xBus</a>, <a class="el" href="classEsp32UartRvcBus.html#a56e0aaa636de9b638e93224e634dc3b1">Esp32UartRvcBus</a></li>
+<li>SetReset()&#160;:&#160;<a class="el" href="classbno08x_1_1CommInterface.html#a72dad2f59aa4fc17ba583d8526b1d5b7">bno08x::CommInterface&lt; Derived &gt;</a>, <a class="el" href="classEsp32Bno08xBus.html#a0d565cdc3ee13c72ebec1d3f2d69f314">Esp32Bno08xBus</a>, <a class="el" href="classEsp32UartRvcBus.html#af0ac2779c4472bd1dcfd2e83f710c31c">Esp32UartRvcBus</a></li>
+<li>SetRvcCallback()&#160;:&#160;<a class="el" href="classBNO085.html#af733dead3ce1a525d7c13b268369023f">BNO085&lt; CommType &gt;</a></li>
+<li>SetWake()&#160;:&#160;<a class="el" href="classbno08x_1_1CommInterface.html#ae99fdc9fbce3f49f03bb5227b1b6e3fd">bno08x::CommInterface&lt; Derived &gt;</a>, <a class="el" href="classEsp32Bno08xBus.html#aad1f514dea1d4c49fe391edd75059dc5">Esp32Bno08xBus</a>, <a class="el" href="classEsp32UartRvcBus.html#aed8bf261729ffce14a39a519e565b742">Esp32UartRvcBus</a></li>
+<li>SetWakePin()&#160;:&#160;<a class="el" href="classBNO085.html#a61ea20fc60e1593b8a81addcee947e39">BNO085&lt; CommType &gt;</a></li>
+<li>shutter&#160;:&#160;<a class="el" href="structRawOpticalFlowEvent.html#a5af6719685508ee99cca79b8216629b0">RawOpticalFlowEvent</a></li>
+<li>sleepState&#160;:&#160;<a class="el" href="structSensorEvent.html#a9355a02b7c3835d624eff7df29b376a2">SensorEvent</a></li>
 <li>stepCount&#160;:&#160;<a class="el" href="structSensorEvent.html#a6125d2b613fa4b9e868242856d4e21de">SensorEvent</a></li>
-<li>stepCounter&#160;:&#160;<a class="el" href="structsh2__SensorValue.html#ab63fbabd891e3b3659425d381ef93e5e">sh2_SensorValue</a></li>
-<li>stepDetector&#160;:&#160;<a class="el" href="structsh2__SensorValue.html#af00bbf71665a8e9e32b34d64d26c66be">sh2_SensorValue</a></li>
-<li>steps&#160;:&#160;<a class="el" href="structsh2__StepCounter.html#af102c21f9b57b8f6a9af3d9621fb88c8">sh2_StepCounter</a></li>
-<li>swBuildNumber&#160;:&#160;<a class="el" href="structsh2__ProductId__s.html#ac7c10d7702c0e672299a421248c57963">sh2_ProductId_s</a></li>
-<li>swPartNumber&#160;:&#160;<a class="el" href="structsh2__ProductId__s.html#ad95d605affe618be02fdcf7d5efaad42">sh2_ProductId_s</a></li>
-<li>swVersionMajor&#160;:&#160;<a class="el" href="structsh2__ProductId__s.html#a0dd2f6d3f95b81203f0bc58e0bc6138c">sh2_ProductId_s</a></li>
-<li>swVersionMinor&#160;:&#160;<a class="el" href="structsh2__ProductId__s.html#ace00fc6714035d80db76e11a578c2f2c">sh2_ProductId_s</a></li>
-<li>swVersionPatch&#160;:&#160;<a class="el" href="structsh2__ProductId__s.html#a038f47c58e32a3d12a1626d8294157cb">sh2_ProductId_s</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
 </body>
 </html>

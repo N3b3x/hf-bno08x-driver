@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['sensorevent_0',['SensorEvent',['../structSensorEvent.html',1,'']]]
+  ['quaternion_0',['Quaternion',['../structQuaternion.html',1,'']]]
 ];

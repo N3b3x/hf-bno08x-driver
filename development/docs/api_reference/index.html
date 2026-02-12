@@ -347,8 +347,25 @@
       <td><code class="language-plaintext highlighter-rouge">bool Begin() noexcept</code></td>
       <td><a href="../inc/bno08x.hpp#L153"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp#L153</code></a></td>
     </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Close()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">void Close() noexcept</code></td>
+      <td><a href="../inc/bno08x.hpp"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">EnterBootloader()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">bool EnterBootloader(uint32_t resetLowMs = 10, uint32_t settleMs = 50) noexcept</code></td>
+      <td><a href="../inc/bno08x.hpp"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ExitBootloaderAndReboot()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">bool ExitBootloaderAndReboot(uint32_t resetLowMs = 2, uint32_t settleMs = 100) noexcept</code></td>
+      <td><a href="../inc/bno08x.hpp"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp</code></a></td>
+    </tr>
   </tbody>
 </table></div>
+
+<p><code class="language-plaintext highlighter-rouge">Close()</code> closes whichever mode is currently active (SH-2 or RVC). If DFU is in progress, it is rejected with <code class="language-plaintext highlighter-rouge">SH2_ERR_OP_IN_PROGRESS</code>.</p>
 <h3 id="sensor-control">
   
   
@@ -446,6 +463,8 @@
     </tr>
   </tbody>
 </table></div>
+
+<p><code class="language-plaintext highlighter-rouge">CloseRvc()</code> is an explicit RVC teardown convenience; <code class="language-plaintext highlighter-rouge">Close()</code> can also be used for generic mode shutdown.</p>
 <h3 id="data-access">
   
   
@@ -471,11 +490,14 @@
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">GetLatest()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">SensorEvent GetLatest(BNO085Sensor sensor) const</code></td>
+      <td><code class="language-plaintext highlighter-rouge">SensorEvent GetLatest(BNO085Sensor sensor) noexcept</code></td>
       <td><a href="../inc/bno08x.hpp#L181"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp#L181</code></a></td>
     </tr>
   </tbody>
 </table></div>
+
+<p><code class="language-plaintext highlighter-rouge">HasNewData()</code> is cleared by <code class="language-plaintext highlighter-rouge">GetLatest()</code>. Callback dispatch does not clear it, which supports mixed callback + polling workflows.
+Both calls return default/false unless the driver is in <code class="language-plaintext highlighter-rouge">Sh2Active</code> state.</p>
 <h3 id="main-loop">
   
   
@@ -524,8 +546,22 @@
       <td><code class="language-plaintext highlighter-rouge">int GetLastError() const</code></td>
       <td><a href="../inc/bno08x.hpp#L187"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp#L187</code></a></td>
     </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">GetState()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">BNO085DriverState GetState() const noexcept</code></td>
+      <td><a href="../inc/bno08x.hpp"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp</code></a></td>
+    </tr>
   </tbody>
 </table></div>
+
+<p>Error policy:</p>
+<ul>
+  <li>Interface/mode mismatch: <code class="language-plaintext highlighter-rouge">SH2_ERR_BAD_PARAM</code></li>
+  <li>Runtime state mismatch: <code class="language-plaintext highlighter-rouge">SH2_ERR_OP_IN_PROGRESS</code></li>
+  <li>Query calls (<code class="language-plaintext highlighter-rouge">GetState</code>, <code class="language-plaintext highlighter-rouge">HasNewData</code>, <code class="language-plaintext highlighter-rouge">GetLatest</code>) do not update <code class="language-plaintext highlighter-rouge">GetLastError()</code></li>
+</ul>
+
+<p>Thread safety: the driver object is not internally synchronized. Use one task/thread or external locking.</p>
 <h3 id="hardware-control">
   
   
@@ -593,6 +629,26 @@
       <td><code class="language-plaintext highlighter-rouge">int Dfu(const HcBin_t&amp; fw = firmware) noexcept</code></td>
       <td><a href="../inc/bno08x.hpp"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp</code></a></td>
     </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DfuWithOptions()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">int DfuWithOptions(const HcBin_t&amp; fw, const DfuOptions&amp; options) noexcept</code></td>
+      <td><a href="../inc/bno08x.hpp"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DfuFromMemory()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">int DfuFromMemory(const DfuMemoryImage&amp; image, const DfuOptions&amp; options = {}) noexcept</code></td>
+      <td><a href="../inc/bno08x.hpp"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DfuFromMemory()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">int DfuFromMemory(const uint8_t* data, uint32_t len, const char* partNumber = "1000-3608", const DfuOptions&amp; options = {}) noexcept</code></td>
+      <td><a href="../inc/bno08x.hpp"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">RunDfuFromMemory()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">int RunDfuFromMemory(const DfuMemoryImage&amp; image, const DfuOptions&amp; options = {}, uint32_t enterResetLowMs = 10, uint32_t enterSettleMs = 50, uint32_t exitResetLowMs = 2, uint32_t exitSettleMs = 100) noexcept</code></td>
+      <td><a href="../inc/bno08x.hpp"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp</code></a></td>
+    </tr>
   </tbody>
 </table></div>
 <h2 id="types">
@@ -623,13 +679,58 @@
   <tbody>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">BNO085Sensor</code></td>
-      <td><code class="language-plaintext highlighter-rouge">Accelerometer</code>, <code class="language-plaintext highlighter-rouge">Gyroscope</code>, <code class="language-plaintext highlighter-rouge">Magnetometer</code>, <code class="language-plaintext highlighter-rouge">LinearAcceleration</code>, <code class="language-plaintext highlighter-rouge">RotationVector</code>, <code class="language-plaintext highlighter-rouge">Gravity</code>, <code class="language-plaintext highlighter-rouge">GyroUncalibrated</code>, <code class="language-plaintext highlighter-rouge">GameRotationVector</code>, <code class="language-plaintext highlighter-rouge">GeomagneticRotationVector</code>, <code class="language-plaintext highlighter-rouge">Pressure</code>, <code class="language-plaintext highlighter-rouge">AmbientLight</code>, <code class="language-plaintext highlighter-rouge">Humidity</code>, <code class="language-plaintext highlighter-rouge">Proximity</code>, <code class="language-plaintext highlighter-rouge">Temperature</code>, <code class="language-plaintext highlighter-rouge">MagneticFieldUncalibrated</code>, <code class="language-plaintext highlighter-rouge">TapDetector</code>, <code class="language-plaintext highlighter-rouge">StepCounter</code>, <code class="language-plaintext highlighter-rouge">SignificantMotion</code>, <code class="language-plaintext highlighter-rouge">StabilityClassifier</code>, <code class="language-plaintext highlighter-rouge">RawAccelerometer</code>, <code class="language-plaintext highlighter-rouge">RawGyroscope</code>, <code class="language-plaintext highlighter-rouge">RawMagnetometer</code>, <code class="language-plaintext highlighter-rouge">StepDetector</code>, <code class="language-plaintext highlighter-rouge">ShakeDetector</code>, <code class="language-plaintext highlighter-rouge">FlipDetector</code>, <code class="language-plaintext highlighter-rouge">PickupDetector</code>, <code class="language-plaintext highlighter-rouge">StabilityDetector</code>, <code class="language-plaintext highlighter-rouge">PersonalActivityClassifier</code>, <code class="language-plaintext highlighter-rouge">SleepDetector</code>, <code class="language-plaintext highlighter-rouge">TiltDetector</code>, <code class="language-plaintext highlighter-rouge">PocketDetector</code>, <code class="language-plaintext highlighter-rouge">CircleDetector</code>, <code class="language-plaintext highlighter-rouge">HeartRateMonitor</code>, <code class="language-plaintext highlighter-rouge">ARVRStabilizedRV</code>, <code class="language-plaintext highlighter-rouge">ARVRStabilizedGameRV</code>, <code class="language-plaintext highlighter-rouge">GyroIntegratedRV</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Accelerometer</code>, <code class="language-plaintext highlighter-rouge">Gyroscope</code>, <code class="language-plaintext highlighter-rouge">Magnetometer</code>, <code class="language-plaintext highlighter-rouge">LinearAcceleration</code>, <code class="language-plaintext highlighter-rouge">RotationVector</code>, <code class="language-plaintext highlighter-rouge">Gravity</code>, <code class="language-plaintext highlighter-rouge">GyroUncalibrated</code>, <code class="language-plaintext highlighter-rouge">GameRotationVector</code>, <code class="language-plaintext highlighter-rouge">GeomagneticRotationVector</code>, <code class="language-plaintext highlighter-rouge">Pressure</code>, <code class="language-plaintext highlighter-rouge">AmbientLight</code>, <code class="language-plaintext highlighter-rouge">Humidity</code>, <code class="language-plaintext highlighter-rouge">Proximity</code>, <code class="language-plaintext highlighter-rouge">Temperature</code>, <code class="language-plaintext highlighter-rouge">MagneticFieldUncalibrated</code>, <code class="language-plaintext highlighter-rouge">TapDetector</code>, <code class="language-plaintext highlighter-rouge">StepCounter</code>, <code class="language-plaintext highlighter-rouge">SignificantMotion</code>, <code class="language-plaintext highlighter-rouge">StabilityClassifier</code>, <code class="language-plaintext highlighter-rouge">RawAccelerometer</code>, <code class="language-plaintext highlighter-rouge">RawGyroscope</code>, <code class="language-plaintext highlighter-rouge">RawMagnetometer</code>, <code class="language-plaintext highlighter-rouge">StepDetector</code>, <code class="language-plaintext highlighter-rouge">ShakeDetector</code>, <code class="language-plaintext highlighter-rouge">FlipDetector</code>, <code class="language-plaintext highlighter-rouge">PickupDetector</code>, <code class="language-plaintext highlighter-rouge">StabilityDetector</code>, <code class="language-plaintext highlighter-rouge">PersonalActivityClassifier</code>, <code class="language-plaintext highlighter-rouge">SleepDetector</code>, <code class="language-plaintext highlighter-rouge">TiltDetector</code>, <code class="language-plaintext highlighter-rouge">PocketDetector</code>, <code class="language-plaintext highlighter-rouge">CircleDetector</code>, <code class="language-plaintext highlighter-rouge">HeartRateMonitor</code>, <code class="language-plaintext highlighter-rouge">ARVRStabilizedRV</code>, <code class="language-plaintext highlighter-rouge">ARVRStabilizedGameRV</code>, <code class="language-plaintext highlighter-rouge">GyroIntegratedRV</code>, <code class="language-plaintext highlighter-rouge">IZroMotionRequest</code>, <code class="language-plaintext highlighter-rouge">RawOpticalFlow</code>, <code class="language-plaintext highlighter-rouge">DeadReckoningPose</code>, <code class="language-plaintext highlighter-rouge">WheelEncoder</code></td>
       <td><a href="../inc/bno08x.hpp#L29"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp#L29</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">BNO085DriverState</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Closed</code>, <code class="language-plaintext highlighter-rouge">Sh2Active</code>, <code class="language-plaintext highlighter-rouge">RvcActive</code>, <code class="language-plaintext highlighter-rouge">DfuInProgress</code></td>
+      <td><a href="../inc/bno08x.hpp"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp</code></a></td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">BNO085Interface</code></td>
       <td><code class="language-plaintext highlighter-rouge">I2C</code>, <code class="language-plaintext highlighter-rouge">UARTRVC</code>, <code class="language-plaintext highlighter-rouge">UART</code>, <code class="language-plaintext highlighter-rouge">SPI</code></td>
       <td><a href="../inc/bno08x_comm_interface.hpp"><code class="language-plaintext highlighter-rouge">inc/bno08x_comm_interface.hpp</code></a> — returned by <code class="language-plaintext highlighter-rouge">CommInterface::GetInterfaceType()</code></td>
+    </tr>
+  </tbody>
+</table></div>
+<h3 id="dfu-types">
+  
+  
+    <a href="#dfu-types" class="anchor-heading" aria-labelledby="dfu-types"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> DFU Types
+  
+  
+</h3>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DfuProgress</code></td>
+      <td>Byte counters emitted during transfer</td>
+      <td><a href="../inc/bno08x.hpp"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DfuOptions</code></td>
+      <td>Metadata policy, packet override, progress callback</td>
+      <td><a href="../inc/bno08x.hpp"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DfuMemoryImage</code></td>
+      <td>In-memory firmware descriptor (<code class="language-plaintext highlighter-rouge">data</code>, <code class="language-plaintext highlighter-rouge">length</code>, metadata)</td>
+      <td><a href="../inc/bno08x.hpp"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DfuProgressCallback</code></td>
+      <td><code class="language-plaintext highlighter-rouge">std::function&lt;void(const DfuProgress&amp;)&gt;</code></td>
+      <td><a href="../inc/bno08x.hpp"><code class="language-plaintext highlighter-rouge">inc/bno08x.hpp</code></a></td>
     </tr>
   </tbody>
 </table></div>

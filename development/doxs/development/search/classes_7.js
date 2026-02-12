@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['rvcsensorevent_0',['RvcSensorEvent',['../structRvcSensorEvent.html',1,'']]],
-  ['rvcsensorvalue_1',['RvcSensorValue',['../structRvcSensorValue.html',1,'']]]
+  ['memoryfirmware_0',['MemoryFirmware',['../classMemoryFirmware.html',1,'']]]
 ];

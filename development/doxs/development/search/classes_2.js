@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['esp32bno08xbus_0',['Esp32Bno08xBus',['../classEsp32Bno08xBus.html',1,'']]],
-  ['esp32uartrvcbus_1',['Esp32UartRvcBus',['../classEsp32UartRvcBus.html',1,'']]]
+  ['comminterface_0',['CommInterface',['../classbno08x_1_1CommInterface.html',1,'bno08x']]],
+  ['comminterface_3c_20esp32bno08xbus_20_3e_1',['CommInterface&lt; Esp32Bno08xBus &gt;',['../classbno08x_1_1CommInterface.html',1,'bno08x']]],
+  ['comminterface_3c_20esp32uartrvcbus_20_3e_2',['CommInterface&lt; Esp32UartRvcBus &gt;',['../classbno08x_1_1CommInterface.html',1,'bno08x']]]
 ];

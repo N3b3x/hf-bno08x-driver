@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['z_0',['z',['../structVector3.html#aa8c9461eb24bd2c364258078811a3e9d',1,'Vector3::z'],['../structQuaternion.html#a625cb732d8ff3083e7852b86b736ab29',1,'Quaternion::z']]]
+  ['x_0',['x',['../structVector3.html#a7e2d3237b29a2f29d7b3d8b2934e35f2',1,'Vector3::x'],['../structQuaternion.html#a8b80f191a3155cc0158d2b4f4d50b2cb',1,'Quaternion::x'],['../structRawVector3.html#a229fa965c0549da5cd8e0658bfdec656',1,'RawVector3::x']]]
 ];
