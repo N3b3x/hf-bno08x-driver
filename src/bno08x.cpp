@@ -152,6 +152,8 @@ void BNO085<CommType>::SetRvcCallback(RvcCallback cb) noexcept {
 /** @brief Check the new-data flag for a sensor. */
 template <typename CommType>
 bool BNO085<CommType>::HasNewData(BNO085Sensor sensor) const {
+  if (state_ != BNO085DriverState::Sh2Active)
+    return false;
   auto id = static_cast<uint8_t>(sensor);
   if (id >= new_flag_.size())
     return false;
@@ -424,6 +426,8 @@ template <typename CommType>
 SensorEvent BNO085<CommType>::GetLatest(BNO085Sensor sensor) noexcept {
   SensorEvent out{};
   out.sensor = sensor;
+  if (state_ != BNO085DriverState::Sh2Active)
+    return out;
   const auto id = static_cast<uint8_t>(sensor);
   if (id >= latest_.size())
     return out;
@@ -443,6 +447,10 @@ void BNO085<CommType>::Update() noexcept {
 /** @brief Close the currently active session and release transport resources. */
 template <typename CommType>
 void BNO085<CommType>::Close() noexcept {
+  if (state_ == BNO085DriverState::DfuInProgress) {
+    last_error_ = SH2_ERR_OP_IN_PROGRESS;
+    return;
+  }
   if (state_ == BNO085DriverState::RvcActive) {
     io_.Close();
     state_ = BNO085DriverState::Closed;

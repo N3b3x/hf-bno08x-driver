@@ -43,6 +43,8 @@ explicit BNO085(CommType& comm) noexcept;
 | `Begin()` | `bool Begin() noexcept` | [`inc/bno08x.hpp#L153`](../inc/bno08x.hpp#L153) |
 | `Close()` | `void Close() noexcept` | [`inc/bno08x.hpp`](../inc/bno08x.hpp) |
 
+`Close()` closes whichever mode is currently active (SH-2 or RVC). If DFU is in progress, it is rejected with `SH2_ERR_OP_IN_PROGRESS`.
+
 ### Sensor Control
 
 | Method | Signature | Location |
@@ -67,6 +69,8 @@ Requires a transport whose `GetInterfaceType()` returns `BNO085Interface::UARTRV
 | `ServiceRvc()` | `void ServiceRvc() noexcept` | [`inc/bno08x.hpp`](../inc/bno08x.hpp) |
 | `CloseRvc()` | `void CloseRvc() noexcept` | [`inc/bno08x.hpp`](../inc/bno08x.hpp) |
 
+`CloseRvc()` is an explicit RVC teardown convenience; `Close()` can also be used for generic mode shutdown.
+
 ### Data Access
 
 | Method | Signature | Location |
@@ -75,6 +79,7 @@ Requires a transport whose `GetInterfaceType()` returns `BNO085Interface::UARTRV
 | `GetLatest()` | `SensorEvent GetLatest(BNO085Sensor sensor) noexcept` | [`inc/bno08x.hpp#L181`](../inc/bno08x.hpp#L181) |
 
 `HasNewData()` is cleared by `GetLatest()`. Callback dispatch does not clear it, which supports mixed callback + polling workflows.
+Both calls return default/false unless the driver is in `Sh2Active` state.
 
 ### Main Loop
 
@@ -88,6 +93,13 @@ Requires a transport whose `GetInterfaceType()` returns `BNO085Interface::UARTRV
 |--------|-----------|----------|
 | `GetLastError()` | `int GetLastError() const` | [`inc/bno08x.hpp#L187`](../inc/bno08x.hpp#L187) |
 | `GetState()` | `BNO085DriverState GetState() const noexcept` | [`inc/bno08x.hpp`](../inc/bno08x.hpp) |
+
+Error policy:
+- Interface/mode mismatch: `SH2_ERR_BAD_PARAM`
+- Runtime state mismatch: `SH2_ERR_OP_IN_PROGRESS`
+- Query calls (`GetState`, `HasNewData`, `GetLatest`) do not update `GetLastError()`
+
+Thread safety: the driver object is not internally synchronized. Use one task/thread or external locking.
 
 ### Hardware Control
 

@@ -360,6 +360,13 @@ enum class BNO085DriverState : uint8_t {
  * GetState(). Illegal transitions are rejected with `SH2_ERR_OP_IN_PROGRESS`
  * or `SH2_ERR_BAD_PARAM`.
  *
+ * Error policy:
+ * - Interface/mode mismatch (e.g. SH-2 call on UARTRVC transport): `SH2_ERR_BAD_PARAM`
+ * - Runtime state mismatch (e.g. enabling SH-2 sensors while not in SH-2 state):
+ *   `SH2_ERR_OP_IN_PROGRESS`
+ * - Query methods (`GetState`, `HasNewData`, `GetLatest`) are side-effect free
+ *   with respect to `last_error_`.
+ *
  * The driver automatically re-enables configured sensors after a sensor reset
  * (handled internally by the async event callback).
  *
@@ -368,6 +375,8 @@ enum class BNO085DriverState : uint8_t {
  *
  * @note  The CommType instance passed to the constructor must outlive this
  *        object. The driver stores a reference, not a copy.
+ * @note  This class is not thread-safe. Callers must serialize access
+ *        externally if used from multiple tasks/threads.
  */
 template <typename CommType>
 class BNO085 {
@@ -411,6 +420,8 @@ public:
    *
    * If SH-2 is active, calls `sh2_close()` and closes the transport.
    * If RVC is active, closes the UART transport and stops the parser.
+   * If DFU is in progress, the call is rejected and `last_error_` is set to
+   * `SH2_ERR_OP_IN_PROGRESS`.
    * Safe to call multiple times.
    */
   void Close() noexcept;
@@ -452,6 +463,8 @@ public:
    * called. Callback dispatch does not clear this flag, which allows mixed
    * callback + polling usage.
    *
+   * Returns `false` unless the driver is currently in `Sh2Active` state.
+   *
    * @param[in] sensor  Which sensor to check.
    * @return  `true` if unread data is available.
    */
@@ -465,6 +478,8 @@ public:
    *
    * @param[in] sensor  Which sensor to query.
    * Calling this method clears the unread-data flag for @p sensor.
+   * If the driver is not in `Sh2Active` state, returns a default event
+   * and leaves cached SH-2 flags unchanged.
    *
    * @return  Copy of the latest SensorEvent.
    */
@@ -525,6 +540,9 @@ public:
 
   /**
    * @brief Stop RVC processing and close the transport.
+   *
+   * Convenience API for explicit RVC teardown. `Close()` can also be used
+   * to close whichever mode is currently active.
    */
   void CloseRvc() noexcept;
 
