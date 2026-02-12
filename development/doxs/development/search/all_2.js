@@ -21,6 +21,7 @@ var searchData=
   ['boot_18',['BOOT',['../structBNO08x__TestConfig_1_1ControlPins.html#a8eb7fe4ca50c877c9daabe9e716d5e97',1,'BNO08x_TestConfig::ControlPins']]],
   ['boot_5fdelay_5fms_19',['BOOT_DELAY_MS',['../structBNO08x__TestConfig_1_1Timing.html#a62fa1f3a68f810fb8248fe346a7d76b9',1,'BNO08x_TestConfig::Timing']]],
   ['boot_5fpin_20',['boot_pin',['../structEsp32UartRvcBus_1_1UartConfig.html#a7a77a2b1f3f3f853ab25f88850818bc6',1,'Esp32UartRvcBus::UartConfig']]],
-  ['bytes_21',['RVC Frame Format (19 bytes)',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.ipp#autotoc_md0',1,'']]],
-  ['bytessent_22',['bytesSent',['../structDfuProgress.html#ad0d112314c5864d9f96daec373e00bf9',1,'DfuProgress']]]
+  ['bootn_21',['BOOTN',['../namespacebno08x.html#ad8c1ee9eaf9525fce5cd277dfd65bc1da70f4dad1af238fa7f9bcbeac76a6ad00',1,'bno08x']]],
+  ['bytes_22',['RVC Frame Format (19 bytes)',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.ipp#autotoc_md0',1,'']]],
+  ['bytessent_23',['bytesSent',['../structDfuProgress.html#ad0d112314c5864d9f96daec373e00bf9',1,'DfuProgress']]]
 ];

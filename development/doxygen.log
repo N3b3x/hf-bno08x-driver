@@ -1,5 +1,5 @@
-warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 1768, file /tmp/doxyfile.toIlxI
-warning: Tag 'DOT_TRANSPARENT' at line 2791 of file '/tmp/doxyfile.toIlxI' has become obsolete.
+warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 1768, file /tmp/doxyfile.h3XVCA
+warning: Tag 'DOT_TRANSPARENT' at line 2791 of file '/tmp/doxyfile.h3XVCA' has become obsolete.
          To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
 Doxygen version used: 1.10.0 (ebc57c6dd303a980bd19dd74b8b61c8f3f5180ca)
 Searching for include files...
@@ -68,16 +68,16 @@ Parsing file /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/
 /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.ipp:537: warning: member handleAsyncEvent belongs to two different groups. The second one found here will be ignored.
 /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.ipp:556: warning: member configure belongs to two different groups. The second one found here will be ignored.
 /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.ipp:585: warning: member HardwareReset belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.ipp:594: warning: member SetBootPin belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.ipp:600: warning: member EnterBootloader belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.ipp:629: warning: member ExitBootloaderAndReboot belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.ipp:657: warning: member SetWakePin belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.ipp:668: warning: member SelectInterface belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.ipp:716: warning: member BeginRvc belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.ipp:745: warning: member ServiceRvc belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.ipp:756: warning: member CloseRvc belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.ipp:775: warning: member rvcProcessByte belongs to two different groups. The second one found here will be ignored.
-/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.ipp:818: warning: member decodeRvc belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.ipp:595: warning: member SetBootPin belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.ipp:603: warning: member EnterBootloader belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.ipp:632: warning: member ExitBootloaderAndReboot belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.ipp:660: warning: member SetWakePin belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.ipp:673: warning: member SelectInterface belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.ipp:723: warning: member BeginRvc belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.ipp:752: warning: member ServiceRvc belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.ipp:763: warning: member CloseRvc belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.ipp:782: warning: member rvcProcessByte belongs to two different groups. The second one found here will be ignored.
+/home/runner/work/hf-bno08x-driver/hf-bno08x-driver/src/bno08x.ipp:825: warning: member decodeRvc belongs to two different groups. The second one found here will be ignored.
 /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/TestFramework.h:383: warning: The following parameter of print_test_section_footer(const char *tag, const char *section_name, bool enabled=true) is not documented:
   parameter 'tag'
 /home/runner/work/hf-bno08x-driver/hf-bno08x-driver/examples/esp32/main/TestFramework.h:357: warning: The following parameter of print_test_section_header(const char *tag, const char *section_name, bool enabled=true) is not documented:
@@ -273,122 +273,7 @@ finalizing index lists...
 writing tag file...
 Running plantuml with JAVA...
 Running dot...
-Generating dot graphs using 5 parallel threads...
-Running dot for graph 1/49
-Running dot for graph 2/49
-Running dot for graph 3/49
-Running dot for graph 4/49
-Running dot for graph 5/49
-Running dot for graph 6/49
-Running dot for graph 7/49
-Running dot for graph 8/49
-Running dot for graph 9/49
-Running dot for graph 10/49
-Running dot for graph 11/49
-Running dot for graph 12/49
-Running dot for graph 13/49
-Running dot for graph 14/49
-Running dot for graph 15/49
-Running dot for graph 16/49
-Running dot for graph 17/49
-Running dot for graph 18/49
-Running dot for graph 19/49
-Running dot for graph 20/49
-Running dot for graph 21/49
-Running dot for graph 22/49
-Running dot for graph 23/49
-Running dot for graph 24/49
-Running dot for graph 25/49
-Running dot for graph 26/49
-Running dot for graph 27/49
-Running dot for graph 28/49
-Running dot for graph 29/49
-Running dot for graph 30/49
-Running dot for graph 31/49
-Running dot for graph 32/49
-Running dot for graph 33/49
-Running dot for graph 34/49
-Running dot for graph 35/49
-Running dot for graph 36/49
-Running dot for graph 37/49
-Running dot for graph 38/49
-Running dot for graph 39/49
-Running dot for graph 40/49
-Running dot for graph 41/49
-Running dot for graph 42/49
-Running dot for graph 43/49
-Running dot for graph 44/49
-Running dot for graph 45/49
-Running dot for graph 46/49
-Running dot for graph 47/49
-Running dot for graph 48/49
-Running dot for graph 49/49
-Patching output file 1/66
-Patching output file 2/66
-Patching output file 3/66
-Patching output file 4/66
-Patching output file 5/66
-Patching output file 6/66
-Patching output file 7/66
-Patching output file 8/66
-Patching output file 9/66
-Patching output file 10/66
-Patching output file 11/66
-Patching output file 12/66
-Patching output file 13/66
-Patching output file 14/66
-Patching output file 15/66
-Patching output file 16/66
-Patching output file 17/66
-Patching output file 18/66
-Patching output file 19/66
-Patching output file 20/66
-Patching output file 21/66
-Patching output file 22/66
-Patching output file 23/66
-Patching output file 24/66
-Patching output file 25/66
-Patching output file 26/66
-Patching output file 27/66
-Patching output file 28/66
-Patching output file 29/66
-Patching output file 30/66
-Patching output file 31/66
-Patching output file 32/66
-Patching output file 33/66
-Patching output file 34/66
-Patching output file 35/66
-Patching output file 36/66
-Patching output file 37/66
-Patching output file 38/66
-Patching output file 39/66
-Patching output file 40/66
-Patching output file 41/66
-Patching output file 42/66
-Patching output file 43/66
-Patching output file 44/66
-Patching output file 45/66
-Patching output file 46/66
-Patching output file 47/66
-Patching output file 48/66
-Patching output file 49/66
-Patching output file 50/66
-Patching output file 51/66
-Patching output file 52/66
-Patching output file 53/66
-Patching output file 54/66
-Patching output file 55/66
-Patching output file 56/66
-Patching output file 57/66
-Patching output file 58/66
-Patching output file 59/66
-Patching output file 60/66
-Patching output file 61/66
-Patching output file 62/66
-Patching output file 63/66
-Patching output file 64/66
-Patching output file 65/66
-Patching output file 66/66
-type lookup cache used 770/65536 hits=1246 misses=794
-symbol lookup cache used 869/65536 hits=3517 misses=869
+Patching output file 1/1
+type lookup cache used 793/65536 hits=1304 misses=817
+symbol lookup cache used 899/65536 hits=3479 misses=899
 finished...

@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['uart_0',['UART',['../bno08x__comm__interface_8hpp.html#a1e8d3cde9f9e6ea515f5db028614f03bacec5769b01fb096efaf0d6186823c78f',1,'bno08x_comm_interface.hpp']]],
-  ['uartrvc_1',['UARTRVC',['../bno08x__comm__interface_8hpp.html#a1e8d3cde9f9e6ea515f5db028614f03ba0199b53c4dd041296fde19fca9713e7d',1,'bno08x_comm_interface.hpp']]]
+  ['tapdetector_0',['TapDetector',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62aa4481d296202d542e1d64326d139b105',1,'bno08x.hpp']]],
+  ['temperature_1',['Temperature',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62aee7a8e262285ed49ea1b4e4ae11525bd',1,'bno08x.hpp']]],
+  ['tiltdetector_2',['TiltDetector',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62aa05b37781bf6d88e0c9d772fe469b014',1,'bno08x.hpp']]]
 ];

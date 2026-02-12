@@ -9,12 +9,8 @@ var classEsp32UartRvcBus =
     [ "Delay", "classEsp32UartRvcBus.html#ab8bdf9acfbc583d265a1efc5b2cb9904", null ],
     [ "GetInterfaceType", "classEsp32UartRvcBus.html#a02f0d03d1cbe629f12c99a7a903aa914", null ],
     [ "GetTimeUs", "classEsp32UartRvcBus.html#a3adc7b1fc8d59a12b1de0b3dbc83673e", null ],
+    [ "GpioSet", "classEsp32UartRvcBus.html#a7e83d70815899282ae7f72f7b84d352a", null ],
     [ "Open", "classEsp32UartRvcBus.html#aad4bcb34d4f4c1304aac8abe6ecd1789", null ],
     [ "Read", "classEsp32UartRvcBus.html#a264a4f5b4f4830b0732480b9fb9f961e", null ],
-    [ "SetBoot", "classEsp32UartRvcBus.html#a6e5816811c465b7e1872288957c955c6", null ],
-    [ "SetPS0", "classEsp32UartRvcBus.html#a3413b2ca59127ffea3dc5504479a6aea", null ],
-    [ "SetPS1", "classEsp32UartRvcBus.html#a56e0aaa636de9b638e93224e634dc3b1", null ],
-    [ "SetReset", "classEsp32UartRvcBus.html#af0ac2779c4472bd1dcfd2e83f710c31c", null ],
-    [ "SetWake", "classEsp32UartRvcBus.html#aed8bf261729ffce14a39a519e565b742", null ],
     [ "Write", "classEsp32UartRvcBus.html#acbe6fffaa91005fa98a990ff686a4f5e", null ]
 ];

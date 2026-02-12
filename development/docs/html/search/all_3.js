@@ -17,5 +17,6 @@ var searchData=
   ['contents_14',['📚 Table of Contents',['../index.html#autotoc_md2',1,'']]],
   ['contributing_15',['🤝 Contributing',['../index.html#autotoc_md11',1,'']]],
   ['controlpins_16',['ControlPins',['../structBNO08x__TestConfig_1_1ControlPins.html',1,'BNO08x_TestConfig']]],
-  ['createesp32bno08xi2cbus_17',['CreateEsp32Bno08xI2cBus',['../esp32__bno08x__bus_8hpp.html#adb0e4ac528d0f7f251ea2e55aa4446a3',1,'esp32_bno08x_bus.hpp']]]
+  ['createesp32bno08xi2cbus_17',['CreateEsp32Bno08xI2cBus',['../esp32__bno08x__bus_8hpp.html#adb0e4ac528d0f7f251ea2e55aa4446a3',1,'esp32_bno08x_bus.hpp']]],
+  ['ctrlpin_18',['CtrlPin',['../namespacebno08x.html#ad8c1ee9eaf9525fce5cd277dfd65bc1d',1,'bno08x']]]
 ];

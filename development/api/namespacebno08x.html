@@ -132,7 +132,8 @@ $(function(){initNavTree('namespacebno08x.html',''); initResizable(); });
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#enum-members">Enumerations</a>  </div>
   <div class="headertitle"><div class="title">bno08x Namespace Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -142,7 +143,102 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbno08x_1_1CommInterface.html">CommInterface</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">CRTP base class for BNO08x communication interfaces.  <a href="classbno08x_1_1CommInterface.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ad8c1ee9eaf9525fce5cd277dfd65bc1d" id="r_ad8c1ee9eaf9525fce5cd277dfd65bc1d"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad8c1ee9eaf9525fce5cd277dfd65bc1d">CtrlPin</a> : uint8_t { <br />
+&#160;&#160;<a class="el" href="#ad8c1ee9eaf9525fce5cd277dfd65bc1da8ad4e2919a54323ff3d7ce657a174197">RSTN</a> = 0
+, <a class="el" href="#ad8c1ee9eaf9525fce5cd277dfd65bc1da70f4dad1af238fa7f9bcbeac76a6ad00">BOOTN</a>
+, <a class="el" href="#ad8c1ee9eaf9525fce5cd277dfd65bc1dab275d6bfcd179f9ffb5011008e30cb48">WAKE</a>
+, <a class="el" href="#ad8c1ee9eaf9525fce5cd277dfd65bc1da0c4b854db11cc29d267d379216728edc">PS0</a>
+, <br />
+&#160;&#160;<a class="el" href="#ad8c1ee9eaf9525fce5cd277dfd65bc1daa14e3082c98ccfb4defdbba9d92e8006">PS1</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:ad8c1ee9eaf9525fce5cd277dfd65bc1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifies the hardware control pins of the BNO08x.  <a href="#ad8c1ee9eaf9525fce5cd277dfd65bc1d">More...</a><br /></td></tr>
+<tr class="separator:ad8c1ee9eaf9525fce5cd277dfd65bc1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc95a5d46ccff334b3887210b70a7733" id="r_afc95a5d46ccff334b3887210b70a7733"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afc95a5d46ccff334b3887210b70a7733">GpioSignal</a> : uint8_t { <a class="el" href="#afc95a5d46ccff334b3887210b70a7733a6b273343c454f9c53dcfc9c4ccf171d2">INACTIVE</a> = 0
+, <a class="el" href="#afc95a5d46ccff334b3887210b70a7733a18ff74f43da410c5529f7d6fca84f115">ACTIVE</a> = 1
+ }</td></tr>
+<tr class="memdesc:afc95a5d46ccff334b3887210b70a7733"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstract signal level for control pins.  <a href="#afc95a5d46ccff334b3887210b70a7733">More...</a><br /></td></tr>
+<tr class="separator:afc95a5d46ccff334b3887210b70a7733"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="ad8c1ee9eaf9525fce5cd277dfd65bc1d" name="ad8c1ee9eaf9525fce5cd277dfd65bc1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8c1ee9eaf9525fce5cd277dfd65bc1d">&#9670;&#160;</a></span>CtrlPin</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#ad8c1ee9eaf9525fce5cd277dfd65bc1d">bno08x::CtrlPin</a> : uint8_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Identifies the hardware control pins of the BNO08x. </p>
+<p>Used with <code>GpioSet()</code> / <code>GpioSetActive()</code> / <code>GpioSetInactive()</code> to control the sensor's dedicated GPIO pins through the <a class="el" href="classbno08x_1_1CommInterface.html" title="CRTP base class for BNO08x communication interfaces.">CommInterface</a>.</p>
+<p>The mapping from <code><a class="el" href="#afc95a5d46ccff334b3887210b70a7733a18ff74f43da410c5529f7d6fca84f115" title="Pin function is asserted.">GpioSignal::ACTIVE</a></code> / <code>INACTIVE</code> to physical HIGH / LOW is determined by the platform bus implementation, based on the board's active-level design:</p><ul>
+<li><b>RSTN</b>: Active-low (ACTIVE → physical LOW, asserts reset)</li>
+<li><b>BOOTN</b>: Active-low (ACTIVE → physical LOW, enters bootloader)</li>
+<li><b>WAKE</b>: Active-low (ACTIVE → physical LOW, wakes sensor from suspend)</li>
+<li><b>PS0</b>: Active-high (ACTIVE → physical HIGH, PS0 = 1)</li>
+<li><b>PS1</b>: Active-high (ACTIVE → physical HIGH, PS1 = 1) </li>
+</ul>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ad8c1ee9eaf9525fce5cd277dfd65bc1da8ad4e2919a54323ff3d7ce657a174197" name="ad8c1ee9eaf9525fce5cd277dfd65bc1da8ad4e2919a54323ff3d7ce657a174197"></a>RSTN&#160;</td><td class="fielddoc"><p>Hardware reset (active-low on the physical pin) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ad8c1ee9eaf9525fce5cd277dfd65bc1da70f4dad1af238fa7f9bcbeac76a6ad00" name="ad8c1ee9eaf9525fce5cd277dfd65bc1da70f4dad1af238fa7f9bcbeac76a6ad00"></a>BOOTN&#160;</td><td class="fielddoc"><p>Bootloader entry (active-low on the physical pin) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ad8c1ee9eaf9525fce5cd277dfd65bc1dab275d6bfcd179f9ffb5011008e30cb48" name="ad8c1ee9eaf9525fce5cd277dfd65bc1dab275d6bfcd179f9ffb5011008e30cb48"></a>WAKE&#160;</td><td class="fielddoc"><p>Wake from suspend, SPI mode only (active-low on the physical pin) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ad8c1ee9eaf9525fce5cd277dfd65bc1da0c4b854db11cc29d267d379216728edc" name="ad8c1ee9eaf9525fce5cd277dfd65bc1da0c4b854db11cc29d267d379216728edc"></a>PS0&#160;</td><td class="fielddoc"><p>Protocol select bit 0 (active-high on the physical pin) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ad8c1ee9eaf9525fce5cd277dfd65bc1daa14e3082c98ccfb4defdbba9d92e8006" name="ad8c1ee9eaf9525fce5cd277dfd65bc1daa14e3082c98ccfb4defdbba9d92e8006"></a>PS1&#160;</td><td class="fielddoc"><p>Protocol select bit 1 (active-high on the physical pin) </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="afc95a5d46ccff334b3887210b70a7733" name="afc95a5d46ccff334b3887210b70a7733"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc95a5d46ccff334b3887210b70a7733">&#9670;&#160;</a></span>GpioSignal</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#afc95a5d46ccff334b3887210b70a7733">bno08x::GpioSignal</a> : uint8_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Abstract signal level for control pins. </p>
+<p>Decouples the driver's intent from the physical pin polarity. The platform bus implementation translates <code>ACTIVE</code> / <code>INACTIVE</code> to the correct electrical level for each pin. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="afc95a5d46ccff334b3887210b70a7733a6b273343c454f9c53dcfc9c4ccf171d2" name="afc95a5d46ccff334b3887210b70a7733a6b273343c454f9c53dcfc9c4ccf171d2"></a>INACTIVE&#160;</td><td class="fielddoc"><p>Pin function is deasserted. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="afc95a5d46ccff334b3887210b70a7733a18ff74f43da410c5529f7d6fca84f115" name="afc95a5d46ccff334b3887210b70a7733a18ff74f43da410c5529f7d6fca84f115"></a>ACTIVE&#160;</td><td class="fielddoc"><p>Pin function is asserted. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

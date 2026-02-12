@@ -1,7 +1,7 @@
 var searchData=
 [
   ['w_0',['w',['../structQuaternion.html#aa44a65ab99e36f6ab8771030eed8a7ad',1,'Quaternion']]],
-  ['wake_1',['WAKE',['../structBNO08x__TestConfig_1_1ControlPins.html#a8b9158c6e906340a50dc622891045faf',1,'BNO08x_TestConfig::ControlPins']]],
+  ['wake_1',['WAKE',['../structBNO08x__TestConfig_1_1ControlPins.html#a8b9158c6e906340a50dc622891045faf',1,'BNO08x_TestConfig::ControlPins::WAKE'],['../namespacebno08x.html#ad8c1ee9eaf9525fce5cd277dfd65bc1dab275d6bfcd179f9ffb5011008e30cb48',1,'bno08x::WAKE']]],
   ['warning_5fthreshold_2',['WARNING_THRESHOLD',['../structBNO08x__TestConfig_1_1Temperature.html#a3f3ea7c8a2aff08765e1b3a6359b1bd0',1,'BNO08x_TestConfig::Temperature']]],
   ['wheelencoder_3',['wheelEncoder',['../structSensorEvent.html#aa3a013d9bedeca60e486ab6480d664f4',1,'SensorEvent']]],
   ['wheelencoder_4',['WheelEncoder',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a920ada106cf96daa9129258ad35e92e5',1,'bno08x.hpp']]],

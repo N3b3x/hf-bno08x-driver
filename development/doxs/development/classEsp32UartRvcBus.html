@@ -185,16 +185,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ab8bdf9acfbc583d265a1efc5b2cb9904"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3adc7b1fc8d59a12b1de0b3dbc83673e" id="r_a3adc7b1fc8d59a12b1de0b3dbc83673e"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3adc7b1fc8d59a12b1de0b3dbc83673e">GetTimeUs</a> () noexcept</td></tr>
 <tr class="separator:a3adc7b1fc8d59a12b1de0b3dbc83673e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0ac2779c4472bd1dcfd2e83f710c31c" id="r_af0ac2779c4472bd1dcfd2e83f710c31c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af0ac2779c4472bd1dcfd2e83f710c31c">SetReset</a> (bool state) noexcept</td></tr>
-<tr class="separator:af0ac2779c4472bd1dcfd2e83f710c31c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e5816811c465b7e1872288957c955c6" id="r_a6e5816811c465b7e1872288957c955c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6e5816811c465b7e1872288957c955c6">SetBoot</a> (bool state) noexcept</td></tr>
-<tr class="separator:a6e5816811c465b7e1872288957c955c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed8bf261729ffce14a39a519e565b742" id="r_aed8bf261729ffce14a39a519e565b742"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aed8bf261729ffce14a39a519e565b742">SetWake</a> (bool) noexcept</td></tr>
-<tr class="separator:aed8bf261729ffce14a39a519e565b742"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3413b2ca59127ffea3dc5504479a6aea" id="r_a3413b2ca59127ffea3dc5504479a6aea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3413b2ca59127ffea3dc5504479a6aea">SetPS0</a> (bool) noexcept</td></tr>
-<tr class="separator:a3413b2ca59127ffea3dc5504479a6aea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56e0aaa636de9b638e93224e634dc3b1" id="r_a56e0aaa636de9b638e93224e634dc3b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a56e0aaa636de9b638e93224e634dc3b1">SetPS1</a> (bool) noexcept</td></tr>
-<tr class="separator:a56e0aaa636de9b638e93224e634dc3b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e83d70815899282ae7f72f7b84d352a" id="r_a7e83d70815899282ae7f72f7b84d352a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7e83d70815899282ae7f72f7b84d352a">GpioSet</a> (<a class="el" href="namespacebno08x.html#ad8c1ee9eaf9525fce5cd277dfd65bc1d">bno08x::CtrlPin</a> pin, <a class="el" href="namespacebno08x.html#afc95a5d46ccff334b3887210b70a7733">bno08x::GpioSignal</a> signal) noexcept</td></tr>
+<tr class="memdesc:a7e83d70815899282ae7f72f7b84d352a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a control pin to the specified signal state (required by CommInterface)  <br /></td></tr>
+<tr class="separator:a7e83d70815899282ae7f72f7b84d352a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classbno08x_1_1CommInterface"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classbno08x_1_1CommInterface')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classbno08x_1_1CommInterface.html">bno08x::CommInterface&lt; Esp32UartRvcBus &gt;</a></td></tr>
 <tr class="memitem:aff6d3c95e497ca8ecfa39083669c8d47 inherit pub_methods_classbno08x_1_1CommInterface" id="r_aff6d3c95e497ca8ecfa39083669c8d47"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bno08x__comm__interface_8hpp.html#a1e8d3cde9f9e6ea515f5db028614f03b">BNO085Interface</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbno08x_1_1CommInterface.html#aff6d3c95e497ca8ecfa39083669c8d47">GetInterfaceType</a> () noexcept</td></tr>
 <tr class="memdesc:aff6d3c95e497ca8ecfa39083669c8d47 inherit pub_methods_classbno08x_1_1CommInterface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Report the transport type this implementation provides.  <br /></td></tr>
@@ -220,21 +213,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4b3129c235d04972f6f51563d5ca35f3 inherit pub_methods_classbno08x_1_1CommInterface" id="r_a4b3129c235d04972f6f51563d5ca35f3"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbno08x_1_1CommInterface.html#a4b3129c235d04972f6f51563d5ca35f3">GetTimeUs</a> () noexcept</td></tr>
 <tr class="memdesc:a4b3129c235d04972f6f51563d5ca35f3 inherit pub_methods_classbno08x_1_1CommInterface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the current monotonic time in microseconds.  <br /></td></tr>
 <tr class="separator:a4b3129c235d04972f6f51563d5ca35f3 inherit pub_methods_classbno08x_1_1CommInterface"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72dad2f59aa4fc17ba583d8526b1d5b7 inherit pub_methods_classbno08x_1_1CommInterface" id="r_a72dad2f59aa4fc17ba583d8526b1d5b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbno08x_1_1CommInterface.html#a72dad2f59aa4fc17ba583d8526b1d5b7">SetReset</a> (bool state) noexcept</td></tr>
-<tr class="memdesc:a72dad2f59aa4fc17ba583d8526b1d5b7 inherit pub_methods_classbno08x_1_1CommInterface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assert or release the hardware reset (RSTN) pin.  <br /></td></tr>
-<tr class="separator:a72dad2f59aa4fc17ba583d8526b1d5b7 inherit pub_methods_classbno08x_1_1CommInterface"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6974b490b35d44852d618a43b9e309d inherit pub_methods_classbno08x_1_1CommInterface" id="r_af6974b490b35d44852d618a43b9e309d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbno08x_1_1CommInterface.html#af6974b490b35d44852d618a43b9e309d">SetBoot</a> (bool state) noexcept</td></tr>
-<tr class="memdesc:af6974b490b35d44852d618a43b9e309d inherit pub_methods_classbno08x_1_1CommInterface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Control the BOOTN pin for entering DFU bootloader mode.  <br /></td></tr>
-<tr class="separator:af6974b490b35d44852d618a43b9e309d inherit pub_methods_classbno08x_1_1CommInterface"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae99fdc9fbce3f49f03bb5227b1b6e3fd inherit pub_methods_classbno08x_1_1CommInterface" id="r_ae99fdc9fbce3f49f03bb5227b1b6e3fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbno08x_1_1CommInterface.html#ae99fdc9fbce3f49f03bb5227b1b6e3fd">SetWake</a> (bool state) noexcept</td></tr>
-<tr class="memdesc:ae99fdc9fbce3f49f03bb5227b1b6e3fd inherit pub_methods_classbno08x_1_1CommInterface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Control the WAKE pin (SPI mode only).  <br /></td></tr>
-<tr class="separator:ae99fdc9fbce3f49f03bb5227b1b6e3fd inherit pub_methods_classbno08x_1_1CommInterface"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c4025ff6f0a05d32a7ddf1a2f0ea7cd inherit pub_methods_classbno08x_1_1CommInterface" id="r_a1c4025ff6f0a05d32a7ddf1a2f0ea7cd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbno08x_1_1CommInterface.html#a1c4025ff6f0a05d32a7ddf1a2f0ea7cd">SetPS0</a> (bool state) noexcept</td></tr>
-<tr class="memdesc:a1c4025ff6f0a05d32a7ddf1a2f0ea7cd inherit pub_methods_classbno08x_1_1CommInterface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drive the PS0 protocol-select pin.  <br /></td></tr>
-<tr class="separator:a1c4025ff6f0a05d32a7ddf1a2f0ea7cd inherit pub_methods_classbno08x_1_1CommInterface"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e2f6dd0d307d76823883cae4e590736 inherit pub_methods_classbno08x_1_1CommInterface" id="r_a0e2f6dd0d307d76823883cae4e590736"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbno08x_1_1CommInterface.html#a0e2f6dd0d307d76823883cae4e590736">SetPS1</a> (bool state) noexcept</td></tr>
-<tr class="memdesc:a0e2f6dd0d307d76823883cae4e590736 inherit pub_methods_classbno08x_1_1CommInterface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drive the PS1 protocol-select pin.  <br /></td></tr>
-<tr class="separator:a0e2f6dd0d307d76823883cae4e590736 inherit pub_methods_classbno08x_1_1CommInterface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04ececc2e0734abf0621cb989bf81bf2 inherit pub_methods_classbno08x_1_1CommInterface" id="r_a04ececc2e0734abf0621cb989bf81bf2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbno08x_1_1CommInterface.html#a04ececc2e0734abf0621cb989bf81bf2">GpioSet</a> (<a class="el" href="namespacebno08x.html#ad8c1ee9eaf9525fce5cd277dfd65bc1d">CtrlPin</a> pin, <a class="el" href="namespacebno08x.html#afc95a5d46ccff334b3887210b70a7733">GpioSignal</a> signal) noexcept</td></tr>
+<tr class="memdesc:a04ececc2e0734abf0621cb989bf81bf2 inherit pub_methods_classbno08x_1_1CommInterface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a control pin to the specified signal state.  <br /></td></tr>
+<tr class="separator:a04ececc2e0734abf0621cb989bf81bf2 inherit pub_methods_classbno08x_1_1CommInterface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0a7028055d5472a90b1d4ca5701f675 inherit pub_methods_classbno08x_1_1CommInterface" id="r_ab0a7028055d5472a90b1d4ca5701f675"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbno08x_1_1CommInterface.html#ab0a7028055d5472a90b1d4ca5701f675">GpioSetActive</a> (<a class="el" href="namespacebno08x.html#ad8c1ee9eaf9525fce5cd277dfd65bc1d">CtrlPin</a> pin) noexcept</td></tr>
+<tr class="memdesc:ab0a7028055d5472a90b1d4ca5701f675 inherit pub_methods_classbno08x_1_1CommInterface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assert a control pin (set to ACTIVE).  <br /></td></tr>
+<tr class="separator:ab0a7028055d5472a90b1d4ca5701f675 inherit pub_methods_classbno08x_1_1CommInterface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2f39209190809c1a601c25c70e3c2bb inherit pub_methods_classbno08x_1_1CommInterface" id="r_ad2f39209190809c1a601c25c70e3c2bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbno08x_1_1CommInterface.html#ad2f39209190809c1a601c25c70e3c2bb">GpioSetInactive</a> (<a class="el" href="namespacebno08x.html#ad8c1ee9eaf9525fce5cd277dfd65bc1d">CtrlPin</a> pin) noexcept</td></tr>
+<tr class="memdesc:ad2f39209190809c1a601c25c70e3c2bb inherit pub_methods_classbno08x_1_1CommInterface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deassert a control pin (set to INACTIVE).  <br /></td></tr>
+<tr class="separator:ad2f39209190809c1a601c25c70e3c2bb inherit pub_methods_classbno08x_1_1CommInterface"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -463,6 +450,49 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a7e83d70815899282ae7f72f7b84d352a" name="a7e83d70815899282ae7f72f7b84d352a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e83d70815899282ae7f72f7b84d352a">&#9670;&#160;</a></span>GpioSet()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Esp32UartRvcBus::GpioSet </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespacebno08x.html#ad8c1ee9eaf9525fce5cd277dfd65bc1d">bno08x::CtrlPin</a></td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespacebno08x.html#afc95a5d46ccff334b3887210b70a7733">bno08x::GpioSignal</a></td>          <td class="paramname"><span class="paramname"><em>signal</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set a control pin to the specified signal state (required by CommInterface) </p>
+<p>Maps GpioSignal to physical level based on pin polarity:</p><ul>
+<li>RSTN: active-low (ACTIVE → GPIO 0, INACTIVE → GPIO 1)</li>
+<li>BOOTN: active-low (ACTIVE → GPIO 0, INACTIVE → GPIO 1)</li>
+<li>WAKE/PS0/PS1: not wired in this implementation (no-op)</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pin</td><td>Which control pin to drive </td></tr>
+    <tr><td class="paramname">signal</td><td>ACTIVE to assert, INACTIVE to deassert </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="aad4bcb34d4f4c1304aac8abe6ecd1789" name="aad4bcb34d4f4c1304aac8abe6ecd1789"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aad4bcb34d4f4c1304aac8abe6ecd1789">&#9670;&#160;</a></span>Open()</h2>
 
@@ -517,131 +547,6 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Read raw bytes from UART. </p>
 <p>The <a class="el" href="classBNO085.html" title="Unified driver for the BNO08x IMU – SH-2 mode, RVC mode, and DFU.">BNO085</a> driver calls this one byte at a time to feed the RVC frame parser. Non-blocking: returns 0 immediately if no data available. </p>
-
-</div>
-</div>
-<a id="a6e5816811c465b7e1872288957c955c6" name="a6e5816811c465b7e1872288957c955c6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6e5816811c465b7e1872288957c955c6">&#9670;&#160;</a></span>SetBoot()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Esp32UartRvcBus::SetBoot </td>
-          <td>(</td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>state</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a3413b2ca59127ffea3dc5504479a6aea" name="a3413b2ca59127ffea3dc5504479a6aea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3413b2ca59127ffea3dc5504479a6aea">&#9670;&#160;</a></span>SetPS0()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Esp32UartRvcBus::SetPS0 </td>
-          <td>(</td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a56e0aaa636de9b638e93224e634dc3b1" name="a56e0aaa636de9b638e93224e634dc3b1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a56e0aaa636de9b638e93224e634dc3b1">&#9670;&#160;</a></span>SetPS1()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Esp32UartRvcBus::SetPS1 </td>
-          <td>(</td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="af0ac2779c4472bd1dcfd2e83f710c31c" name="af0ac2779c4472bd1dcfd2e83f710c31c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af0ac2779c4472bd1dcfd2e83f710c31c">&#9670;&#160;</a></span>SetReset()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Esp32UartRvcBus::SetReset </td>
-          <td>(</td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>state</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="aed8bf261729ffce14a39a519e565b742" name="aed8bf261729ffce14a39a519e565b742"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aed8bf261729ffce14a39a519e565b742">&#9670;&#160;</a></span>SetWake()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Esp32UartRvcBus::SetWake </td>
-          <td>(</td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
 
 </div>
 </div>

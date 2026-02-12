@@ -28,7 +28,11 @@ var NAVTREE =
     [ "HF-BNO08x Driver", "index.html", "index" ],
     [ "Topics", "topics.html", "topics" ],
     [ "Namespaces", "namespaces.html", [
-      [ "Namespace List", "namespaces.html", "namespaces_dup" ]
+      [ "Namespace List", "namespaces.html", "namespaces_dup" ],
+      [ "Namespace Members", "namespacemembers.html", [
+        [ "All", "namespacemembers.html", null ],
+        [ "Enumerations", "namespacemembers_enum.html", null ]
+      ] ]
     ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
@@ -57,7 +61,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "HcBin_8h.html",
-"group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a9de31d14fe78730b3fd5ce633a2da711"
+"group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62aa2b148a97534cb95774ba27dd0599e3a"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
