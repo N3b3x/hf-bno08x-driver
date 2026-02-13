@@ -99,7 +99,7 @@
   },"14": {
     "doc": "📖 API Reference",
     "title": "Source Code",
-    "content": ". | Main Header: inc/bno08x.hpp | Communication Interface: inc/bno08x_comm_interface.hpp | Implementation: src/bno08x.cpp | . ",
+    "content": ". | Main Header: inc/bno08x.hpp | Communication Interface: inc/bno08x_comm_interface.hpp | Implementation: src/bno08x.ipp | . ",
     "url": "/hf-bno08x-driver/development/docs/api_reference/#source-code",
     
     "relUrl": "/docs/api_reference/#source-code"
