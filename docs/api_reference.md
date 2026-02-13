@@ -15,7 +15,7 @@ Complete reference documentation for all public methods and types in the BNO08x 
 
 - **Main Header**: [`inc/bno08x.hpp`](../inc/bno08x.hpp)
 - **Communication Interface**: [`inc/bno08x_comm_interface.hpp`](../inc/bno08x_comm_interface.hpp)
-- **Implementation**: [`src/bno08x.cpp`](../src/bno08x.cpp)
+- **Implementation**: [`src/bno08x.ipp`](../src/bno08x.ipp)
 
 ## Core Class
 
