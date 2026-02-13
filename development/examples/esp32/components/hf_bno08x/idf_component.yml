@@ -5,7 +5,7 @@ description: "Hardware-agnostic BNO08x 9-DOF IMU driver with SH-2 protocol"
 
 maintainers:
   - "HardFOC"
-license: "MIT"
+license: "GPL-3.0"
 
 url: https://www.ceva-ip.com/wp-content/uploads/BNO080_085-Datasheet.pdf
 repository: https://github.com/N3b3x/hf-bno08x-driver
