@@ -77,7 +77,7 @@ idf_component_register(
 # Compiler Configuration
 # =============================================================================
 # Set C++ standard
-target_compile_features(${COMPONENT_LIB} PRIVATE cxx_std_17)
+target_compile_features(${COMPONENT_LIB} PRIVATE cxx_std_20)
 
 # =============================================================================
 # Compiler Flags
