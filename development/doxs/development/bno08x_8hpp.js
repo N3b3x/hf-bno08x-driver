@@ -52,5 +52,6 @@ var bno08x_8hpp =
       [ "DeadReckoningPose", "group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62ae35bc0fbb35ff3bfbe666a19a182b488", null ],
       [ "WheelEncoder", "group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62a920ada106cf96daa9129258ad35e92e5", null ]
     ] ],
+    [ "GetBNO08xDriverVersion", "bno08x_8hpp.html#aab1c6449c72b4af8de9b69ece95edb91", null ],
     [ "firmware", "bno08x_8hpp.html#a169e52b3509b7e23c9a7f630e9156c11", null ]
 ];

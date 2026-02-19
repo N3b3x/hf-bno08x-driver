@@ -1,61 +1,63 @@
 <map id="examples/esp32/main/rvc_mode_example.cpp" name="examples/esp32/main/rvc_mode_example.cpp">
-<area shape="rect" id="Node000001" title="RVC (Rotation Vector Computation) mode example." alt="" coords="355,5,537,45"/>
+<area shape="rect" id="Node000001" title="RVC (Rotation Vector Computation) mode example." alt="" coords="403,5,585,45"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,167,89,192"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="398,48,91,164,89,159,396,43"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="440,48,95,165,94,160,438,43"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="113,167,264,192"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="415,48,222,161,219,157,413,43"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="457,48,225,163,223,158,455,43"/>
 <area shape="rect" id="Node000004" title=" " alt="" coords="289,167,406,192"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="436,47,365,156,360,154,431,44"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="1757,93,1823,119"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="537,26,1138,48,1482,67,1628,78,1743,91,1743,96,1627,83,1481,72,1137,53,537,32"/>
-<area shape="rect" id="Node000006" href="$bno08x_8hpp.html" title="High&#45;level C++ driver for the BNO08x 9&#45;axis IMU family." alt="" coords="1575,93,1733,119"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="537,30,1562,96,1561,101,537,35"/>
-<area shape="rect" id="Node000021" href="$esp32__uart__rvc__bus_8hpp.html" title="ESP32 UART CommInterface implementation for BNO08x RVC mode." alt="" coords="450,93,629,119"/>
-<area shape="poly" id="edge25_Node000001_Node000021" title=" " alt="" coords="470,44,516,82,513,86,467,48"/>
-<area shape="rect" id="Node000007" href="$bno08x__comm__interface_8hpp.html" title="CRTP&#45;based communication interface for the BNO08x IMU family." alt="" coords="965,167,1175,192"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="1576,120,1178,168,1177,162,1575,114"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="1154,313,1221,339"/>
-<area shape="poly" id="edge12_Node000006_Node000008" title=" " alt="" coords="1575,112,1485,116,1386,126,1297,143,1263,155,1240,169,1216,198,1201,233,1193,269,1190,300,1185,299,1188,268,1196,232,1211,195,1236,165,1261,150,1296,138,1385,121,1484,111,1575,106"/>
-<area shape="rect" id="Node000009" href="$HcBin_8h.html" title="API Definition for HcBin objects (Hillcrest Binary Files)." alt="" coords="1580,313,1677,339"/>
-<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="1665,118,1681,152,1683,173,1678,193,1668,206,1656,213,1631,219,1607,224,1597,230,1588,241,1584,256,1588,272,1608,302,1603,305,1583,274,1579,256,1584,239,1594,226,1605,219,1630,213,1654,208,1664,202,1673,191,1678,173,1676,154,1660,120"/>
-<area shape="rect" id="Node000011" title=" " alt="" coords="1959,167,2015,192"/>
-<area shape="poly" id="edge10_Node000006_Node000011" title=" " alt="" coords="1712,116,1941,164,1946,165,1945,170,1940,169,1711,121"/>
-<area shape="rect" id="Node000012" title=" " alt="" coords="2040,167,2111,192"/>
-<area shape="poly" id="edge11_Node000006_Node000012" title=" " alt="" coords="1733,116,1866,136,2027,164,2026,169,1866,141,1733,121"/>
-<area shape="rect" id="Node000013" title=" " alt="" coords="1837,313,1903,339"/>
-<area shape="poly" id="edge13_Node000006_Node000013" title=" " alt="" coords="1725,116,1816,136,1856,150,1882,165,1904,187,1917,210,1920,236,1914,266,1904,287,1892,304,1888,301,1900,284,1909,265,1915,236,1912,212,1900,190,1879,169,1853,155,1815,142,1724,121"/>
-<area shape="rect" id="Node000014" title=" " alt="" coords="2135,167,2221,192"/>
-<area shape="poly" id="edge14_Node000006_Node000014" title=" " alt="" coords="1733,115,2121,164,2121,169,1732,120"/>
-<area shape="rect" id="Node000015" title=" " alt="" coords="1251,167,1335,192"/>
-<area shape="poly" id="edge15_Node000006_Node000015" title=" " alt="" coords="1595,121,1349,169,1348,164,1594,116"/>
-<area shape="rect" id="Node000016" title=" " alt="" coords="1359,167,1530,192"/>
-<area shape="poly" id="edge16_Node000006_Node000016" title=" " alt="" coords="1621,121,1493,165,1491,160,1620,116"/>
-<area shape="rect" id="Node000017" title=" " alt="" coords="1555,167,1663,192"/>
-<area shape="poly" id="edge17_Node000006_Node000017" title=" " alt="" coords="1649,120,1626,157,1621,154,1644,118"/>
-<area shape="rect" id="Node000018" href="$bno08x_8ipp.html" title="Template method implementations for the BNO085 driver class." alt="" coords="1739,167,1868,192"/>
-<area shape="poly" id="edge18_Node000006_Node000018" title=" " alt="" coords="1672,116,1761,159,1758,163,1670,121"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="1082,191,1171,301,1167,304,1078,194"/>
-<area shape="rect" id="Node000010" title=" " alt="" coords="1593,387,1664,412"/>
-<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="1631,339,1631,373,1626,373,1626,339"/>
-<area shape="poly" id="edge19_Node000018_Node000006" title=" " alt="" coords="1785,169,1696,127,1698,122,1787,164"/>
-<area shape="rect" id="Node000019" title=" " alt="" coords="1598,240,1683,265"/>
-<area shape="poly" id="edge20_Node000018_Node000019" title=" " alt="" coords="1778,194,1681,237,1679,232,1776,190"/>
-<area shape="rect" id="Node000020" href="$MemoryFirmware_8hpp.html" title=" " alt="" coords="1708,240,1899,265"/>
-<area shape="poly" id="edge21_Node000018_Node000020" title=" " alt="" coords="1806,192,1806,226,1801,226,1801,192"/>
-<area shape="poly" id="edge23_Node000020_Node000008" title=" " alt="" coords="1708,268,1235,322,1234,317,1707,262"/>
-<area shape="poly" id="edge22_Node000020_Node000009" title=" " alt="" coords="1776,268,1671,310,1669,306,1774,263"/>
-<area shape="poly" id="edge24_Node000020_Node000013" title=" " alt="" coords="1816,264,1852,301,1848,305,1812,267"/>
-<area shape="poly" id="edge30_Node000021_Node000002" title=" " alt="" coords="450,120,293,140,104,169,103,164,292,135,450,115"/>
-<area shape="poly" id="edge32_Node000021_Node000003" title=" " alt="" coords="484,121,259,167,258,161,482,116"/>
-<area shape="poly" id="edge33_Node000021_Node000004" title=" " alt="" coords="509,121,393,164,391,159,508,116"/>
-<area shape="poly" id="edge34_Node000021_Node000007" title=" " alt="" coords="625,116,971,162,970,167,624,121"/>
-<area shape="poly" id="edge26_Node000021_Node000008" title=" " alt="" coords="629,111,760,128,833,144,903,164,1157,304,1154,309,901,169,831,149,759,134,629,116"/>
-<area shape="rect" id="Node000022" title=" " alt="" coords="786,167,890,192"/>
-<area shape="poly" id="edge27_Node000021_Node000022" title=" " alt="" coords="588,116,777,161,776,166,587,121"/>
-<area shape="rect" id="Node000023" title=" " alt="" coords="431,167,533,192"/>
-<area shape="poly" id="edge28_Node000021_Node000023" title=" " alt="" coords="532,121,502,158,498,154,528,117"/>
-<area shape="rect" id="Node000024" title=" " alt="" coords="557,167,639,192"/>
-<area shape="poly" id="edge29_Node000021_Node000024" title=" " alt="" coords="551,117,582,155,578,158,547,121"/>
-<area shape="rect" id="Node000025" title=" " alt="" coords="663,167,762,192"/>
-<area shape="poly" id="edge31_Node000021_Node000025" title=" " alt="" coords="568,116,673,159,671,164,566,121"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="477,48,431,95,370,158,366,155,427,91,473,44"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="1682,93,1749,119"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="585,23,779,25,1047,34,1354,54,1513,70,1669,91,1668,96,1512,76,1354,60,1046,39,779,31,585,29"/>
+<area shape="rect" id="Node000006" href="$bno08x_8hpp.html" title="High&#45;level C++ driver for the BNO08x 9&#45;axis IMU family." alt="" coords="1501,93,1658,119"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="585,31,1487,95,1487,101,584,36"/>
+<area shape="rect" id="Node000022" href="$esp32__uart__rvc__bus_8hpp.html" title="ESP32 UART CommInterface implementation for BNO08x RVC mode." alt="" coords="441,93,619,119"/>
+<area shape="poly" id="edge26_Node000001_Node000022" title=" " alt="" coords="505,44,521,79,516,82,500,47"/>
+<area shape="rect" id="Node000007" href="$bno08x__comm__interface_8hpp.html" title="CRTP&#45;based communication interface for the BNO08x IMU family." alt="" coords="966,167,1177,192"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="1501,121,1166,167,1166,162,1500,116"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="1155,313,1222,339"/>
+<area shape="poly" id="edge13_Node000006_Node000008" title=" " alt="" coords="1501,114,1428,121,1352,132,1285,148,1259,157,1241,169,1218,198,1203,233,1195,269,1192,300,1186,299,1190,268,1198,232,1213,195,1238,165,1257,153,1283,142,1351,127,1428,116,1500,109"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="2025,167,2163,192"/>
+<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="1658,116,2012,164,2012,169,1658,121"/>
+<area shape="rect" id="Node000010" href="$HcBin_8h.html" title="API Definition for HcBin objects (Hillcrest Binary Files)." alt="" coords="1952,313,2049,339"/>
+<area shape="poly" id="edge9_Node000006_Node000010" title=" " alt="" coords="1659,115,1847,141,1926,154,1964,164,1986,196,1999,232,2004,268,2005,299,2000,299,1999,269,1994,233,1982,198,1960,169,1925,159,1846,146,1658,120"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="1251,167,1307,192"/>
+<area shape="poly" id="edge11_Node000006_Node000012" title=" " alt="" coords="1527,121,1321,169,1321,169,1320,164,1320,164,1526,116"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="1332,167,1403,192"/>
+<area shape="poly" id="edge12_Node000006_Node000013" title=" " alt="" coords="1546,121,1415,165,1414,160,1544,116"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="2209,313,2275,339"/>
+<area shape="poly" id="edge14_Node000006_Node000014" title=" " alt="" coords="1659,115,1670,116,1796,119,2007,124,2116,129,2214,136,2289,148,2314,155,2330,165,2349,188,2356,213,2353,239,2340,267,2318,293,2289,310,2286,306,2314,289,2336,264,2348,237,2351,213,2344,191,2327,169,2312,160,2287,153,2213,142,2116,134,2007,129,1796,125,1670,121,1658,120"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="1427,167,1513,192"/>
+<area shape="poly" id="edge15_Node000006_Node000015" title=" " alt="" coords="1563,121,1501,161,1498,157,1560,116"/>
+<area shape="rect" id="Node000016" title=" " alt="" coords="1537,167,1621,192"/>
+<area shape="poly" id="edge16_Node000006_Node000016" title=" " alt="" coords="1582,119,1582,153,1577,153,1577,119"/>
+<area shape="rect" id="Node000017" title=" " alt="" coords="1646,167,1817,192"/>
+<area shape="poly" id="edge17_Node000006_Node000017" title=" " alt="" coords="1605,116,1695,158,1693,163,1603,121"/>
+<area shape="rect" id="Node000018" title=" " alt="" coords="1841,167,1949,192"/>
+<area shape="poly" id="edge18_Node000006_Node000018" title=" " alt="" coords="1631,116,1831,161,1830,166,1630,121"/>
+<area shape="rect" id="Node000019" href="$bno08x_8ipp.html" title="Template method implementations for the BNO085 driver class." alt="" coords="2187,167,2316,192"/>
+<area shape="poly" id="edge19_Node000006_Node000019" title=" " alt="" coords="1659,116,1911,139,2164,164,2173,165,2173,171,2163,169,1911,144,1658,121"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="1083,191,1173,301,1169,304,1079,194"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="1965,387,2036,412"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="2003,339,2003,373,1998,373,1998,339"/>
+<area shape="poly" id="edge20_Node000019_Node000006" title=" " alt="" coords="2186,169,1934,144,1682,121,1671,120,1672,115,1682,116,1935,139,2187,164"/>
+<area shape="rect" id="Node000020" title=" " alt="" coords="2241,240,2326,265"/>
+<area shape="poly" id="edge21_Node000019_Node000020" title=" " alt="" coords="2259,191,2275,227,2270,229,2254,193"/>
+<area shape="rect" id="Node000021" href="$MemoryFirmware_8hpp.html" title=" " alt="" coords="2025,240,2216,265"/>
+<area shape="poly" id="edge22_Node000019_Node000021" title=" " alt="" coords="2232,194,2155,236,2153,231,2229,190"/>
+<area shape="poly" id="edge24_Node000021_Node000008" title=" " alt="" coords="2026,264,1236,324,1236,318,2025,259"/>
+<area shape="poly" id="edge23_Node000021_Node000010" title=" " alt="" coords="2103,268,2034,308,2031,304,2100,263"/>
+<area shape="poly" id="edge25_Node000021_Node000014" title=" " alt="" coords="2142,263,2212,304,2209,309,2139,268"/>
+<area shape="poly" id="edge31_Node000022_Node000002" title=" " alt="" coords="441,120,287,141,104,169,103,164,286,135,440,115"/>
+<area shape="poly" id="edge33_Node000022_Node000003" title=" " alt="" coords="476,121,258,166,257,161,475,116"/>
+<area shape="poly" id="edge34_Node000022_Node000004" title=" " alt="" coords="502,121,391,164,389,159,500,116"/>
+<area shape="poly" id="edge35_Node000022_Node000007" title=" " alt="" coords="617,116,971,162,970,168,617,121"/>
+<area shape="poly" id="edge27_Node000022_Node000008" title=" " alt="" coords="620,110,755,128,830,143,903,164,1015,223,1158,304,1156,309,1012,227,901,169,829,148,754,133,619,116"/>
+<area shape="rect" id="Node000023" title=" " alt="" coords="659,167,763,192"/>
+<area shape="poly" id="edge28_Node000022_Node000023" title=" " alt="" coords="560,116,670,159,668,164,558,121"/>
+<area shape="rect" id="Node000024" title=" " alt="" coords="788,167,891,192"/>
+<area shape="poly" id="edge29_Node000022_Node000024" title=" " alt="" coords="580,116,777,161,776,166,579,121"/>
+<area shape="rect" id="Node000025" title=" " alt="" coords="431,167,512,192"/>
+<area shape="poly" id="edge30_Node000022_Node000025" title=" " alt="" coords="522,121,491,158,487,155,518,117"/>
+<area shape="rect" id="Node000026" title=" " alt="" coords="537,167,635,192"/>
+<area shape="poly" id="edge32_Node000022_Node000026" title=" " alt="" coords="541,117,571,154,566,157,537,121"/>
 </map>

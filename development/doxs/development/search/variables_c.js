@@ -11,6 +11,6 @@ var searchData=
   ['power_5fon_5fdelay_5fms_8',['POWER_ON_DELAY_MS',['../structBNO08x__TestConfig_1_1Timing.html#abf62ea041775c4f6ff2f915be57586ed',1,'BNO08x_TestConfig::Timing']]],
   ['preferredpacketlen_9',['preferredPacketLen',['../structDfuMemoryImage.html#a1e87b3f055baedd833be9a0eccf60c29',1,'DfuMemoryImage']]],
   ['progress_10',['progress',['../structDfuOptions.html#a2ecebbf9e50c6a6b7f01f0b2f9590840',1,'DfuOptions']]],
-  ['pullup_5fenable_11',['PULLUP_ENABLE',['../structBNO08x__TestConfig_1_1I2CParams.html#a2316c2fa67419cb49a736b5ebc60dc9f',1,'BNO08x_TestConfig::I2CParams']]],
-  ['pullup_5fenable_12',['pullup_enable',['../structEsp32Bno08xI2cBus_1_1I2CConfig.html#a387bcfcd4c9b7225fc9075055ec5bbf8',1,'Esp32Bno08xI2cBus::I2CConfig']]]
+  ['pullup_5fenable_11',['pullup_enable',['../structEsp32Bno08xI2cBus_1_1I2CConfig.html#a387bcfcd4c9b7225fc9075055ec5bbf8',1,'Esp32Bno08xI2cBus::I2CConfig']]],
+  ['pullup_5fenable_12',['PULLUP_ENABLE',['../structBNO08x__TestConfig_1_1I2CParams.html#a2316c2fa67419cb49a736b5ebc60dc9f',1,'BNO08x_TestConfig::I2CParams']]]
 ];

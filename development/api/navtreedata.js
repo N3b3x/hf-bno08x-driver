@@ -61,7 +61,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "HcBin_8h.html",
-"group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62aa2b148a97534cb95774ba27dd0599e3a"
+"group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62aa05b37781bf6d88e0c9d772fe469b014"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -23,6 +23,6 @@ var searchData=
   ['proximity_20',['Proximity',['../group__SensorTypes.html#gga6f9f2bf1fa157ce63dacb450d5df6c62af8dfb524e6ddea9129cc2f955d55db19',1,'bno08x.hpp']]],
   ['ps0_21',['PS0',['../namespacebno08x.html#ad8c1ee9eaf9525fce5cd277dfd65bc1da0c4b854db11cc29d267d379216728edc',1,'bno08x']]],
   ['ps1_22',['PS1',['../namespacebno08x.html#ad8c1ee9eaf9525fce5cd277dfd65bc1daa14e3082c98ccfb4defdbba9d92e8006',1,'bno08x']]],
-  ['pullup_5fenable_23',['PULLUP_ENABLE',['../structBNO08x__TestConfig_1_1I2CParams.html#a2316c2fa67419cb49a736b5ebc60dc9f',1,'BNO08x_TestConfig::I2CParams']]],
-  ['pullup_5fenable_24',['pullup_enable',['../structEsp32Bno08xI2cBus_1_1I2CConfig.html#a387bcfcd4c9b7225fc9075055ec5bbf8',1,'Esp32Bno08xI2cBus::I2CConfig']]]
+  ['pullup_5fenable_23',['pullup_enable',['../structEsp32Bno08xI2cBus_1_1I2CConfig.html#a387bcfcd4c9b7225fc9075055ec5bbf8',1,'Esp32Bno08xI2cBus::I2CConfig']]],
+  ['pullup_5fenable_24',['PULLUP_ENABLE',['../structBNO08x__TestConfig_1_1I2CParams.html#a2316c2fa67419cb49a736b5ebc60dc9f',1,'BNO08x_TestConfig::I2CParams']]]
 ];

@@ -40,6 +40,7 @@ static void on_rvc_frame(const RvcSensorValue& value) {
 extern "C" void app_main(void) {
   ESP_LOGI(TAG, "BNO08x RVC Mode Example");
   ESP_LOGI(TAG, "========================");
+  ESP_LOGI(TAG, "Driver version: %s", GetBNO08xDriverVersion());
   ESP_LOGI(TAG, "");
   ESP_LOGI(TAG, "RVC mode uses UART at 115200 baud.");
   ESP_LOGI(TAG, "Ensure BNO08x PS0/PS1 are set for RVC mode (PS1=HIGH, PS0=LOW).");

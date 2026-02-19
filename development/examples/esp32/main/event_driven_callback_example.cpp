@@ -76,6 +76,7 @@ static void sensor_callback(const SensorEvent& event) {
 extern "C" void app_main(void) {
   ESP_LOGI(TAG, "BNO08x Event-Driven Callback Example");
   ESP_LOGI(TAG, "====================================");
+  ESP_LOGI(TAG, "Driver version: %s", GetBNO08xDriverVersion());
 
   // Configure I2C transport (same bus pins as pcal95555/pca9685 examples)
   Esp32Bno08xI2cBus::I2CConfig config;

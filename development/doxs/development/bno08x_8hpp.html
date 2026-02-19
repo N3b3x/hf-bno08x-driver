@@ -136,6 +136,7 @@ $(function(){initNavTree('bno08x_8hpp.html',''); initResizable(); });
 <a href="#define-members">Macros</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">bno08x.hpp File Reference</div></div>
 </div><!--header-->
@@ -144,6 +145,7 @@ $(function(){initNavTree('bno08x_8hpp.html',''); initResizable(); });
 <p>High-level C++ driver for the BNO08x 9-axis IMU family.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="bno08x__comm__interface_8hpp_source.html">bno08x_comm_interface.hpp</a>&quot;</code><br />
+<code>#include &quot;bno08x_version.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="HcBin_8h_source.html">dfu/HcBin.h</a>&quot;</code><br />
 <code>#include &lt;array&gt;</code><br />
 <code>#include &lt;cstddef&gt;</code><br />
@@ -157,7 +159,7 @@ $(function(){initNavTree('bno08x_8hpp.html',''); initResizable(); });
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for bno08x.hpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="bno08x_8hpp__incl.svg" width="1390" height="330"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="bno08x_8hpp__incl.svg" width="1552" height="330"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
@@ -296,6 +298,12 @@ Enumerations</h2></td></tr>
 <tr class="memdesc:ga1df635b937d37d6ce4c41c7471351391"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current top-level operating state of the driver.  <a href="group__SensorTypes.html#ga1df635b937d37d6ce4c41c7471351391">More...</a><br /></td></tr>
 <tr class="separator:ga1df635b937d37d6ce4c41c7471351391"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:aab1c6449c72b4af8de9b69ece95edb91" id="r_aab1c6449c72b4af8de9b69ece95edb91"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab1c6449c72b4af8de9b69ece95edb91">GetBNO08xDriverVersion</a> () noexcept</td></tr>
+<tr class="memdesc:aab1c6449c72b4af8de9b69ece95edb91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the BNO08x driver version string (free function).  <br /></td></tr>
+<tr class="separator:aab1c6449c72b4af8de9b69ece95edb91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a169e52b3509b7e23c9a7f630e9156c11" id="r_a169e52b3509b7e23c9a7f630e9156c11"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="HcBin_8h.html#a8b8c363f76941613f85a73d23a2a1455">HcBin_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a169e52b3509b7e23c9a7f630e9156c11">firmware</a></td></tr>
@@ -317,6 +325,34 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="aab1c6449c72b4af8de9b69ece95edb91" name="aab1c6449c72b4af8de9b69ece95edb91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab1c6449c72b4af8de9b69ece95edb91">&#9670;&#160;</a></span>GetBNO08xDriverVersion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * GetBNO08xDriverVersion </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the BNO08x driver version string (free function). </p>
 
 </div>
 </div>

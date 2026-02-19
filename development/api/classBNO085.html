@@ -133,6 +133,7 @@ $(function(){initNavTree('classBNO085.html',''); initResizable(); });
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="classBNO085-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">BNO085&lt; CommType &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__BNO085Driver.html">BNO085 Driver Class</a></div></div></div>
 </div><!--header-->
@@ -235,6 +236,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7e4ab7c6888ce6ae73fdb325905137d0" id="r_a7e4ab7c6888ce6ae73fdb325905137d0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7e4ab7c6888ce6ae73fdb325905137d0">RunDfuFromMemory</a> (const <a class="el" href="structDfuMemoryImage.html">DfuMemoryImage</a> &amp;image, const <a class="el" href="structDfuOptions.html">DfuOptions</a> &amp;options={}, uint32_t enterResetLowMs=10, uint32_t enterSettleMs=50, uint32_t exitResetLowMs=2, uint32_t exitSettleMs=100) noexcept</td></tr>
 <tr class="memdesc:a7e4ab7c6888ce6ae73fdb325905137d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Full class-aware DFU workflow: enter bootloader -&gt; transfer firmware -&gt; reboot to app.  <br /></td></tr>
 <tr class="separator:a7e4ab7c6888ce6ae73fdb325905137d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a767ce7045e0ce7a637cafa5dc8a7c611" id="r_a767ce7045e0ce7a637cafa5dc8a7c611"><td class="memItemLeft" align="right" valign="top">static constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a767ce7045e0ce7a637cafa5dc8a7c611">GetDriverVersion</a> () noexcept</td></tr>
+<tr class="memdesc:a767ce7045e0ce7a637cafa5dc8a7c611"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the compiled driver version string.  <br /></td></tr>
+<tr class="separator:a767ce7045e0ce7a637cafa5dc8a7c611"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb95135e9bef884104970da357fda7b6" id="r_acb95135e9bef884104970da357fda7b6"><td class="memItemLeft" align="right" valign="top">static constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb95135e9bef884104970da357fda7b6">GetDriverVersionMajor</a> () noexcept</td></tr>
+<tr class="memdesc:acb95135e9bef884104970da357fda7b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the compiled driver major version number.  <br /></td></tr>
+<tr class="separator:acb95135e9bef884104970da357fda7b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c777c82e050d5e918ad6f6fbc0d799b" id="r_a3c777c82e050d5e918ad6f6fbc0d799b"><td class="memItemLeft" align="right" valign="top">static constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3c777c82e050d5e918ad6f6fbc0d799b">GetDriverVersionMinor</a> () noexcept</td></tr>
+<tr class="memdesc:a3c777c82e050d5e918ad6f6fbc0d799b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the compiled driver minor version number.  <br /></td></tr>
+<tr class="separator:a3c777c82e050d5e918ad6f6fbc0d799b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2a5bdb2fa35824501ffdccc236e37f6" id="r_ad2a5bdb2fa35824501ffdccc236e37f6"><td class="memItemLeft" align="right" valign="top">static constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad2a5bdb2fa35824501ffdccc236e37f6">GetDriverVersionPatch</a> () noexcept</td></tr>
+<tr class="memdesc:ad2a5bdb2fa35824501ffdccc236e37f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the compiled driver patch version number.  <br /></td></tr>
+<tr class="separator:ad2a5bdb2fa35824501ffdccc236e37f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename CommType&gt;<br />
@@ -766,6 +782,122 @@ template&lt;typename CommType &gt; </div>
 <p>Exit bootloader mode and reboot into application firmware. </p>
 <p>Exit bootloader mode and reboot application firmware.</p>
 <p>Ensures BOOTN is released high, pulses reset, then waits for boot. </p>
+
+</div>
+</div>
+<a id="a767ce7045e0ce7a637cafa5dc8a7c611" name="a767ce7045e0ce7a637cafa5dc8a7c611"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a767ce7045e0ce7a637cafa5dc8a7c611">&#9670;&#160;</a></span>GetDriverVersion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename CommType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static constexpr const char * <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::GetDriverVersion </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the compiled driver version string. </p>
+
+</div>
+</div>
+<a id="acb95135e9bef884104970da357fda7b6" name="acb95135e9bef884104970da357fda7b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb95135e9bef884104970da357fda7b6">&#9670;&#160;</a></span>GetDriverVersionMajor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename CommType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static constexpr uint8_t <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::GetDriverVersionMajor </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the compiled driver major version number. </p>
+
+</div>
+</div>
+<a id="a3c777c82e050d5e918ad6f6fbc0d799b" name="a3c777c82e050d5e918ad6f6fbc0d799b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c777c82e050d5e918ad6f6fbc0d799b">&#9670;&#160;</a></span>GetDriverVersionMinor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename CommType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static constexpr uint8_t <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::GetDriverVersionMinor </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the compiled driver minor version number. </p>
+
+</div>
+</div>
+<a id="ad2a5bdb2fa35824501ffdccc236e37f6" name="ad2a5bdb2fa35824501ffdccc236e37f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2a5bdb2fa35824501ffdccc236e37f6">&#9670;&#160;</a></span>GetDriverVersionPatch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename CommType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static constexpr uint8_t <a class="el" href="classBNO085.html">BNO085</a>&lt; CommType &gt;::GetDriverVersionPatch </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the compiled driver patch version number. </p>
 
 </div>
 </div>
