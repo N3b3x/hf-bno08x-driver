@@ -5,6 +5,7 @@
  * @copyright Copyright (c) 2024-2025 HardFOC. All rights reserved.
  */
 #include "bno08x_comm_interface.hpp"
+#include "bno08x_version.h"
 #include "dfu/HcBin.h"
 #include <array>
 #include <cstddef>
@@ -658,6 +659,30 @@ public:
 
   /// @}
 
+  // ===========================================================================
+  // Driver Version
+  // ===========================================================================
+
+  /** @brief Get the compiled driver version string. */
+  static constexpr const char* GetDriverVersion() noexcept {
+    return HF_BNO08X_VERSION_STRING;
+  }
+
+  /** @brief Get the compiled driver major version number. */
+  static constexpr uint8_t GetDriverVersionMajor() noexcept {
+    return HF_BNO08X_VERSION_MAJOR;
+  }
+
+  /** @brief Get the compiled driver minor version number. */
+  static constexpr uint8_t GetDriverVersionMinor() noexcept {
+    return HF_BNO08X_VERSION_MINOR;
+  }
+
+  /** @brief Get the compiled driver patch version number. */
+  static constexpr uint8_t GetDriverVersionPatch() noexcept {
+    return HF_BNO08X_VERSION_PATCH;
+  }
+
 private:
   /** @brief Initialize HAL wrapper function pointers and comm binding. */
   void prepareHalWrapper() noexcept;
@@ -769,6 +794,15 @@ private:
 };
 
 /// @} // end of BNO085Driver group
+
+// =============================================================================
+// Free-function version accessor (no namespace — class is at global scope)
+// =============================================================================
+
+/** @brief Get the BNO08x driver version string (free function). */
+inline const char* GetBNO08xDriverVersion() noexcept {
+  return HF_BNO08X_VERSION_STRING;
+}
 
 // ============================================================================
 // Template Implementation
