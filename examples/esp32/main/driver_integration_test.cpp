@@ -456,6 +456,7 @@ extern "C" void app_main(void) {
   ESP_LOGI(TAG, "╔══════════════════════════════════════════════════════════════════════════════╗");
   ESP_LOGI(TAG, "║                    BNO08x Driver Integration Test Suite                      ║");
   ESP_LOGI(TAG, "╚══════════════════════════════════════════════════════════════════════════════╝");
+  ESP_LOGI(TAG, "Driver version: %s", GetBNO08xDriverVersion());
   ESP_LOGI(TAG, "");
 
   print_test_section_status(TAG, "BNO08x");
