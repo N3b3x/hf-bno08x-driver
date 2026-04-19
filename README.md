@@ -23,8 +23,9 @@ permalink: /
 5. [API Reference](#-api-reference)
 6. [Examples](#-examples)
 7. [Documentation](#-documentation)
-8. [Contributing](#-contributing)
-9. [License](#-license)
+8. [References](#-references)
+9. [Contributing](#-contributing)
+10. [License](#-license)
 
 ## 📦 Overview
 
@@ -34,6 +35,24 @@ permalink: /
 **HF-BNO08x** is a hardware-agnostic C++ library for the **Hillcrest / CEVA BNO08x** family of 9-axis IMU sensors (BNO080, BNO085, BNO086). The BNO08x sensors provide fused orientation data, calibrated IMU measurements, activity detection, step counting, and gesture recognition through the SH-2 (Sensor Hub 2) protocol.
 
 The driver uses a CRTP-based communication interface design, allowing it to run on any platform (ESP32, STM32, Arduino, etc.) with zero runtime overhead. It provides access to all SH-2 sensor reports including rotation vectors, accelerometer, gyroscope, magnetometer, step counter, tap detector, and more. The driver also supports RVC (Robot Vacuum Cleaner) mode for simplified UART streaming and DFU (Device Firmware Update) for firmware updates.
+
+### 🔀 Chip Compatibility
+
+The BNO080, BNO085, and BNO086 are pin-compatible siblings sharing the same SH-2
+firmware interface. The driver targets all three with a single class — feature
+availability follows the SH-2 firmware revision shipped on each part.
+
+| Feature                                  | BNO080 | BNO085 | BNO086 |
+|------------------------------------------|--------|--------|--------|
+| 9-axis sensor fusion (rotation vectors)  | ✅     | ✅     | ✅     |
+| Calibrated IMU (accel / gyro / mag)      | ✅     | ✅     | ✅     |
+| Activity classifier / step counter / tap | ✅     | ✅     | ✅     |
+| RVC UART streaming mode                  | ✅     | ✅     | ✅     |
+| DFU (Device Firmware Update)             | ✅     | ✅     | ✅     |
+| ARVR-stabilized rotation vector          | —      | ✅     | ✅     |
+| Improved magnetic calibration            | —      | ✅     | ✅     |
+| AEC-Q100 automotive qualification        | —      | —      | ✅     |
+| Communication interfaces                 | I²C / SPI / UART | I²C / SPI / UART | I²C / SPI / UART |
 
 ## ✨ Features
 
@@ -127,6 +146,18 @@ For complete documentation, see the [docs directory](docs/index.md).
 
 - **[RVC Mode](docs/special_feature_rvc.md)** - Simplified UART streaming mode
 - **[DFU (Firmware Update)](docs/special_feature_dfu.md)** - Device firmware update guide
+
+## 🔗 References
+
+| Resource | Link |
+|----------|------|
+| CEVA BNO080 product page | <https://www.ceva-ip.com/product/bno080-9-axis-system-in-package/> |
+| CEVA BNO085 product page | <https://www.ceva-ip.com/product/bno085/> |
+| CEVA BNO086 product page (automotive) | <https://www.ceva-ip.com/product/bno086/> |
+| SH-2 Reference Manual (CEVA) | <https://www.ceva-ip.com/wp-content/uploads/2019/10/SH-2-Reference-Manual.pdf> |
+| Sensor Hub Transport Protocol (SHTP) | <https://www.ceva-ip.com/wp-content/uploads/2019/10/Sensor-Hub-Transport-Protocol.pdf> |
+| ESP-IDF I²C / SPI / UART | <https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/peripherals/index.html> |
+| C++11 language reference | <https://en.cppreference.com/w/cpp/11> |
 
 ## 🤝 Contributing
 
