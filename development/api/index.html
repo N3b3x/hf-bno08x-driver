@@ -146,6 +146,7 @@ $(function(){initNavTree('index.html',''); initResizable(); });
 <li>API Reference</li>
 <li>Examples</li>
 <li>Documentation</li>
+<li>References</li>
 <li>Contributing</li>
 <li>License</li>
 </ol>
@@ -156,7 +157,32 @@ $(function(){initNavTree('index.html',''); initResizable(); });
 </blockquote>
 <p><b>HF-BNO08x</b> is a hardware-agnostic C++ library for the <b>Hillcrest / CEVA BNO08x</b> family of 9-axis IMU sensors (BNO080, <a class="el" href="classBNO085.html" title="Unified driver for the BNO08x IMU – SH-2 mode, RVC mode, and DFU.">BNO085</a>, BNO086). The BNO08x sensors provide fused orientation data, calibrated IMU measurements, activity detection, step counting, and gesture recognition through the SH-2 (Sensor Hub 2) protocol.</p>
 <p>The driver uses a CRTP-based communication interface design, allowing it to run on any platform (ESP32, STM32, Arduino, etc.) with zero runtime overhead. It provides access to all SH-2 sensor reports including rotation vectors, accelerometer, gyroscope, magnetometer, step counter, tap detector, and more. The driver also supports RVC (Robot Vacuum Cleaner) mode for simplified UART streaming and DFU (Device Firmware Update) for firmware updates.</p>
-<h1><a class="anchor" id="autotoc_md4"></a>
+<h2><a class="anchor" id="autotoc_md4"></a>
+🔀 Chip Compatibility</h2>
+<p>The BNO080, <a class="el" href="classBNO085.html" title="Unified driver for the BNO08x IMU – SH-2 mode, RVC mode, and DFU.">BNO085</a>, and BNO086 are pin-compatible siblings sharing the same SH-2 firmware interface. The driver targets all three with a single class — feature availability follows the SH-2 firmware revision shipped on each part.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Feature   </th><th class="markdownTableHeadNone">BNO080   </th><th class="markdownTableHeadNone"><a class="el" href="classBNO085.html" title="Unified driver for the BNO08x IMU – SH-2 mode, RVC mode, and DFU.">BNO085</a>   </th><th class="markdownTableHeadNone">BNO086    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">9-axis sensor fusion (rotation vectors)   </td><td class="markdownTableBodyNone">✅   </td><td class="markdownTableBodyNone">✅   </td><td class="markdownTableBodyNone">✅    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Calibrated IMU (accel / gyro / mag)   </td><td class="markdownTableBodyNone">✅   </td><td class="markdownTableBodyNone">✅   </td><td class="markdownTableBodyNone">✅    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Activity classifier / step counter / tap   </td><td class="markdownTableBodyNone">✅   </td><td class="markdownTableBodyNone">✅   </td><td class="markdownTableBodyNone">✅    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">RVC UART streaming mode   </td><td class="markdownTableBodyNone">✅   </td><td class="markdownTableBodyNone">✅   </td><td class="markdownTableBodyNone">✅    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">DFU (Device Firmware Update)   </td><td class="markdownTableBodyNone">✅   </td><td class="markdownTableBodyNone">✅   </td><td class="markdownTableBodyNone">✅    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">ARVR-stabilized rotation vector   </td><td class="markdownTableBodyNone">—   </td><td class="markdownTableBodyNone">✅   </td><td class="markdownTableBodyNone">✅    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Improved magnetic calibration   </td><td class="markdownTableBodyNone">—   </td><td class="markdownTableBodyNone">✅   </td><td class="markdownTableBodyNone">✅    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">AEC-Q100 automotive qualification   </td><td class="markdownTableBodyNone">—   </td><td class="markdownTableBodyNone">—   </td><td class="markdownTableBodyNone">✅    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Communication interfaces   </td><td class="markdownTableBodyNone">I²C / SPI / UART   </td><td class="markdownTableBodyNone">I²C / SPI / UART   </td><td class="markdownTableBodyNone">I²C / SPI / UART   </td></tr>
+</table>
+<h1><a class="anchor" id="autotoc_md5"></a>
 ✨ Features</h1>
 <ul>
 <li>✅ <b>Complete SH-2 Coverage</b>: Access every <a class="el" href="classBNO085.html" title="Unified driver for the BNO08x IMU – SH-2 mode, RVC mode, and DFU.">BNO085</a> SH-2 report (raw &amp; calibrated IMU, rotation vectors, activity, tap/shake, step counter, etc.)</li>
@@ -168,7 +194,7 @@ $(function(){initNavTree('index.html',''); initResizable(); });
 <li>✅ <b>DFU Support</b>: Firmware update capability via Device Firmware Update protocol</li>
 <li>✅ <b>Pin Control API</b>: Optional helpers to drive RSTN/BOOTN/WAKE and select I²C, UART, or SPI via PS pins</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md5"></a>
+<h1><a class="anchor" id="autotoc_md6"></a>
 🚀 Quick Start</h1>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="bno08x_8hpp.html">inc/bno08x.hpp</a>&quot;</span></div>
 <div class="line"> </div>
@@ -212,7 +238,7 @@ $(function(){initNavTree('index.html',''); initResizable(); });
 <div class="ttc" id="astructSensorEvent_html"><div class="ttname"><a href="structSensorEvent.html">SensorEvent</a></div><div class="ttdoc">Container for a single decoded SH-2 sensor report.</div><div class="ttdef"><b>Definition</b> bno08x.hpp:201</div></div>
 <div class="ttc" id="astructSensorEvent_html_a2a6ead14a1676d5412cf9ec6b4986d62"><div class="ttname"><a href="structSensorEvent.html#a2a6ead14a1676d5412cf9ec6b4986d62">SensorEvent::sensor</a></div><div class="ttdeci">BNO085Sensor sensor</div><div class="ttdoc">Which sensor produced this event.</div><div class="ttdef"><b>Definition</b> bno08x.hpp:202</div></div>
 </div><!-- fragment --><p>For detailed setup, see Installation and Quick Start Guide.</p>
-<h1><a class="anchor" id="autotoc_md6"></a>
+<h1><a class="anchor" id="autotoc_md7"></a>
 🔧 Installation</h1>
 <ol type="1">
 <li><b>Clone or copy</b> the driver files into your project</li>
@@ -222,7 +248,7 @@ $(function(){initNavTree('index.html',''); initResizable(); });
 <li>Compile with a <b>C++11</b> or newer compiler</li>
 </ol>
 <p>For detailed installation instructions, see docs/installation.md.</p>
-<h1><a class="anchor" id="autotoc_md7"></a>
+<h1><a class="anchor" id="autotoc_md8"></a>
 📖 API Reference</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -243,23 +269,43 @@ $(function(){initNavTree('index.html',''); initResizable(); });
 <td class="markdownTableBodyNone"><code>HasNewData()</code>   </td><td class="markdownTableBodyNone">Check if new data is available   </td></tr>
 </table>
 <p>For complete API documentation, see docs/api_reference.md.</p>
-<h1><a class="anchor" id="autotoc_md8"></a>
+<h1><a class="anchor" id="autotoc_md9"></a>
 📊 Examples</h1>
 <p>For ESP32 examples, see the <a href="examples/esp32/">examples/esp32</a> directory.</p>
 <p>Detailed example walkthroughs are available in docs/examples.md.</p>
-<h1><a class="anchor" id="autotoc_md9"></a>
+<h1><a class="anchor" id="autotoc_md10"></a>
 📚 Documentation</h1>
 <p>For complete documentation, see the docs directory.</p>
-<h2><a class="anchor" id="autotoc_md10"></a>
+<h2><a class="anchor" id="autotoc_md11"></a>
 Special Features</h2>
 <ul>
 <li><b>RVC Mode</b> - Simplified UART streaming mode</li>
 <li><b>DFU (Firmware Update)</b> - Device firmware update guide</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md11"></a>
+<h1><a class="anchor" id="autotoc_md12"></a>
+🔗 References</h1>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Resource   </th><th class="markdownTableHeadNone">Link    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">CEVA BNO080 product page   </td><td class="markdownTableBodyNone"><a href="https://www.ceva-ip.com/product/bno080-9-axis-system-in-package/">https://www.ceva-ip.com/product/bno080-9-axis-system-in-package/</a>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">CEVA <a class="el" href="classBNO085.html" title="Unified driver for the BNO08x IMU – SH-2 mode, RVC mode, and DFU.">BNO085</a> product page   </td><td class="markdownTableBodyNone"><a href="https://www.ceva-ip.com/product/bno085/">https://www.ceva-ip.com/product/bno085/</a>    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">CEVA BNO086 product page (automotive)   </td><td class="markdownTableBodyNone"><a href="https://www.ceva-ip.com/product/bno086/">https://www.ceva-ip.com/product/bno086/</a>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SH-2 Reference Manual (CEVA)   </td><td class="markdownTableBodyNone"><a href="https://www.ceva-ip.com/wp-content/uploads/2019/10/SH-2-Reference-Manual.pdf">https://www.ceva-ip.com/wp-content/uploads/2019/10/SH-2-Reference-Manual.pdf</a>    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Sensor Hub Transport Protocol (SHTP)   </td><td class="markdownTableBodyNone"><a href="https://www.ceva-ip.com/wp-content/uploads/2019/10/Sensor-Hub-Transport-Protocol.pdf">https://www.ceva-ip.com/wp-content/uploads/2019/10/Sensor-Hub-Transport-Protocol.pdf</a>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">ESP-IDF I²C / SPI / UART   </td><td class="markdownTableBodyNone"><a href="https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/peripherals/index.html">https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/peripherals/index.html</a>    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">C++11 language reference   </td><td class="markdownTableBodyNone"><a href="https://en.cppreference.com/w/cpp/11">https://en.cppreference.com/w/cpp/11</a>   </td></tr>
+</table>
+<h1><a class="anchor" id="autotoc_md13"></a>
 🤝 Contributing</h1>
 <p>Pull requests and suggestions are welcome! Please follow the existing code style and include tests for new features.</p>
-<h1><a class="anchor" id="autotoc_md12"></a>
+<h1><a class="anchor" id="autotoc_md14"></a>
 📄 License</h1>
 <ul>
 <li><b>C++ wrapper code</b>: [GNU GPL v3.0](LICENSE)</li>

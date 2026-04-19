@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['🔬_0',['Advanced Notes 🔬',['..//home/runner/work/hf-bno08x-driver/hf-bno08x-driver/README.md#autotoc_md32',1,'']]]
+  ['🤝_20contributing_0',['🤝 Contributing',['../index.html#autotoc_md13',1,'']]]
 ];

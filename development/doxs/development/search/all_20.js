@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['🔧_20installation_0',['🔧 Installation',['../index.html#autotoc_md6',1,'']]]
+  ['🔀_20chip_20compatibility_0',['🔀 Chip Compatibility',['../index.html#autotoc_md4',1,'']]]
 ];

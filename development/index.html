@@ -280,6 +280,7 @@
   <li><a href="#-api-reference">API Reference</a></li>
   <li><a href="#-examples">Examples</a></li>
   <li><a href="#-documentation">Documentation</a></li>
+  <li><a href="#-references">References</a></li>
   <li><a href="#-contributing">Contributing</a></li>
   <li><a href="#-license">License</a></li>
 </ol>
@@ -300,6 +301,85 @@ Interactive guides, examples, and step-by-step tutorials</p>
 <p><strong>HF-BNO08x</strong> is a hardware-agnostic C++ library for the <strong>Hillcrest / CEVA BNO08x</strong> family of 9-axis IMU sensors (BNO080, BNO085, BNO086). The BNO08x sensors provide fused orientation data, calibrated IMU measurements, activity detection, step counting, and gesture recognition through the SH-2 (Sensor Hub 2) protocol.</p>
 
 <p>The driver uses a CRTP-based communication interface design, allowing it to run on any platform (ESP32, STM32, Arduino, etc.) with zero runtime overhead. It provides access to all SH-2 sensor reports including rotation vectors, accelerometer, gyroscope, magnetometer, step counter, tap detector, and more. The driver also supports RVC (Robot Vacuum Cleaner) mode for simplified UART streaming and DFU (Device Firmware Update) for firmware updates.</p>
+<h3 id="-chip-compatibility">
+  
+  
+    <a href="#-chip-compatibility" class="anchor-heading" aria-labelledby="-chip-compatibility"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 🔀 Chip Compatibility
+  
+  
+</h3>
+    
+
+<p>The BNO080, BNO085, and BNO086 are pin-compatible siblings sharing the same SH-2
+firmware interface. The driver targets all three with a single class — feature
+availability follows the SH-2 firmware revision shipped on each part.</p>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>BNO080</th>
+      <th>BNO085</th>
+      <th>BNO086</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>9-axis sensor fusion (rotation vectors)</td>
+      <td>✅</td>
+      <td>✅</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Calibrated IMU (accel / gyro / mag)</td>
+      <td>✅</td>
+      <td>✅</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Activity classifier / step counter / tap</td>
+      <td>✅</td>
+      <td>✅</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>RVC UART streaming mode</td>
+      <td>✅</td>
+      <td>✅</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>DFU (Device Firmware Update)</td>
+      <td>✅</td>
+      <td>✅</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>ARVR-stabilized rotation vector</td>
+      <td>—</td>
+      <td>✅</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Improved magnetic calibration</td>
+      <td>—</td>
+      <td>✅</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>AEC-Q100 automotive qualification</td>
+      <td>—</td>
+      <td>—</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Communication interfaces</td>
+      <td>I²C / SPI / UART</td>
+      <td>I²C / SPI / UART</td>
+      <td>I²C / SPI / UART</td>
+    </tr>
+  </tbody>
+</table></div>
 <h2 id="-features">
   
   
@@ -504,6 +584,53 @@ Interactive guides, examples, and step-by-step tutorials</p>
   <li><strong><a href="/hf-bno08x-driver/development/docs/special_feature_rvc/">RVC Mode</a></strong> - Simplified UART streaming mode</li>
   <li><strong><a href="/hf-bno08x-driver/development/docs/special_feature_dfu/">DFU (Firmware Update)</a></strong> - Device firmware update guide</li>
 </ul>
+<h2 id="-references">
+  
+  
+    <a href="#-references" class="anchor-heading" aria-labelledby="-references"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 🔗 References
+  
+  
+</h2>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Resource</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>CEVA BNO080 product page</td>
+      <td><a href="https://www.ceva-ip.com/product/bno080-9-axis-system-in-package/">https://www.ceva-ip.com/product/bno080-9-axis-system-in-package/</a></td>
+    </tr>
+    <tr>
+      <td>CEVA BNO085 product page</td>
+      <td><a href="https://www.ceva-ip.com/product/bno085/">https://www.ceva-ip.com/product/bno085/</a></td>
+    </tr>
+    <tr>
+      <td>CEVA BNO086 product page (automotive)</td>
+      <td><a href="https://www.ceva-ip.com/product/bno086/">https://www.ceva-ip.com/product/bno086/</a></td>
+    </tr>
+    <tr>
+      <td>SH-2 Reference Manual (CEVA)</td>
+      <td><a href="https://www.ceva-ip.com/wp-content/uploads/2019/10/SH-2-Reference-Manual.pdf">https://www.ceva-ip.com/wp-content/uploads/2019/10/SH-2-Reference-Manual.pdf</a></td>
+    </tr>
+    <tr>
+      <td>Sensor Hub Transport Protocol (SHTP)</td>
+      <td><a href="https://www.ceva-ip.com/wp-content/uploads/2019/10/Sensor-Hub-Transport-Protocol.pdf">https://www.ceva-ip.com/wp-content/uploads/2019/10/Sensor-Hub-Transport-Protocol.pdf</a></td>
+    </tr>
+    <tr>
+      <td>ESP-IDF I²C / SPI / UART</td>
+      <td><a href="https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/peripherals/index.html">https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/peripherals/index.html</a></td>
+    </tr>
+    <tr>
+      <td>C++11 language reference</td>
+      <td><a href="https://en.cppreference.com/w/cpp/11">https://en.cppreference.com/w/cpp/11</a></td>
+    </tr>
+  </tbody>
+</table></div>
 <h2 id="-contributing">
   
   

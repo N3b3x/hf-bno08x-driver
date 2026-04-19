@@ -1,7 +1,7 @@
 var searchData=
 [
   ['failed_5ftests_0',['failed_tests',['../structTestResults.html#a0acef46f38f27f0fbb8fa822bb218b3a',1,'TestResults']]],
-  ['features_1',['Features',['../index.html#autotoc_md4',1,'✨ Features'],['../index.html#autotoc_md10',1,'Special Features']]],
+  ['features_1',['Features',['../index.html#autotoc_md5',1,'✨ Features'],['../index.html#autotoc_md11',1,'Special Features']]],
   ['firmware_2',['firmware',['../firmware-bno_8c.html#a169e52b3509b7e23c9a7f630e9156c11',1,'firmware:&#160;firmware-bno.c'],['../firmware_8h.html#a169e52b3509b7e23c9a7f630e9156c11',1,'firmware:&#160;firmware-bno.c'],['../bno08x_8hpp.html#a169e52b3509b7e23c9a7f630e9156c11',1,'firmware:&#160;firmware-bno.c']]],
   ['firmware_2dbno_2ec_3',['firmware-bno.c',['../firmware-bno_8c.html',1,'']]],
   ['firmware_2eh_4',['firmware.h',['../firmware_8h.html',1,'']]],
