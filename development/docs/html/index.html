@@ -157,6 +157,7 @@ $(function(){initNavTree('index.html',''); initResizable(); });
 </blockquote>
 <p><b>HF-BNO08x</b> is a hardware-agnostic C++ library for the <b>Hillcrest / CEVA BNO08x</b> family of 9-axis IMU sensors (BNO080, <a class="el" href="classBNO085.html" title="Unified driver for the BNO08x IMU – SH-2 mode, RVC mode, and DFU.">BNO085</a>, BNO086). The BNO08x sensors provide fused orientation data, calibrated IMU measurements, activity detection, step counting, and gesture recognition through the SH-2 (Sensor Hub 2) protocol.</p>
 <p>The driver uses a CRTP-based communication interface design, allowing it to run on any platform (ESP32, STM32, Arduino, etc.) with zero runtime overhead. It provides access to all SH-2 sensor reports including rotation vectors, accelerometer, gyroscope, magnetometer, step counter, tap detector, and more. The driver also supports RVC (Robot Vacuum Cleaner) mode for simplified UART streaming and DFU (Device Firmware Update) for firmware updates.</p>
+<p><img src="docs/assets/bno08x-stack.svg" alt="BNO08x SH-2 sensor stack and host integration" style="pointer-events: none;" class="inline"/></p>
 <h2><a class="anchor" id="autotoc_md4"></a>
 🔀 Chip Compatibility</h2>
 <p>The BNO080, <a class="el" href="classBNO085.html" title="Unified driver for the BNO08x IMU – SH-2 mode, RVC mode, and DFU.">BNO085</a>, and BNO086 are pin-compatible siblings sharing the same SH-2 firmware interface. The driver targets all three with a single class — feature availability follows the SH-2 firmware revision shipped on each part.</p>

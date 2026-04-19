@@ -582,7 +582,7 @@
   },"83": {
     "doc": "🔌 Hardware Setup",
     "title": "Hardware Setup",
-    "content": "This guide covers the physical connections and hardware requirements for the BNO08x sensor. ",
+    "content": ". This guide covers the physical connections and hardware requirements for the BNO08x sensor. ",
     "url": "/hf-bno08x-driver/development/docs/hardware_setup/#hardware-setup",
     
     "relUrl": "/docs/hardware_setup/#hardware-setup"

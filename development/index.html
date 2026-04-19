@@ -301,6 +301,8 @@ Interactive guides, examples, and step-by-step tutorials</p>
 <p><strong>HF-BNO08x</strong> is a hardware-agnostic C++ library for the <strong>Hillcrest / CEVA BNO08x</strong> family of 9-axis IMU sensors (BNO080, BNO085, BNO086). The BNO08x sensors provide fused orientation data, calibrated IMU measurements, activity detection, step counting, and gesture recognition through the SH-2 (Sensor Hub 2) protocol.</p>
 
 <p>The driver uses a CRTP-based communication interface design, allowing it to run on any platform (ESP32, STM32, Arduino, etc.) with zero runtime overhead. It provides access to all SH-2 sensor reports including rotation vectors, accelerometer, gyroscope, magnetometer, step counter, tap detector, and more. The driver also supports RVC (Robot Vacuum Cleaner) mode for simplified UART streaming and DFU (Device Firmware Update) for firmware updates.</p>
+
+<p><img src="/hf-bno08x-driver/development/docs/assets/bno08x-stack.svg" alt="BNO08x SH-2 sensor stack and host integration" /></p>
 <h3 id="-chip-compatibility">
   
   
