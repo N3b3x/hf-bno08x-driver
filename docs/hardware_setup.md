@@ -9,6 +9,8 @@ permalink: /docs/hardware_setup/
 
 # Hardware Setup
 
+![BNO08x SH-2 sensor stack and host integration](assets/bno08x-stack.svg)
+
 This guide covers the physical connections and hardware requirements for the BNO08x sensor.
 
 ## Pin Connections

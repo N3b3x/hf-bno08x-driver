@@ -36,6 +36,8 @@ permalink: /
 
 The driver uses a CRTP-based communication interface design, allowing it to run on any platform (ESP32, STM32, Arduino, etc.) with zero runtime overhead. It provides access to all SH-2 sensor reports including rotation vectors, accelerometer, gyroscope, magnetometer, step counter, tap detector, and more. The driver also supports RVC (Robot Vacuum Cleaner) mode for simplified UART streaming and DFU (Device Firmware Update) for firmware updates.
 
+![BNO08x SH-2 sensor stack and host integration](docs/assets/bno08x-stack.svg)
+
 ### 🔀 Chip Compatibility
 
 The BNO080, BNO085, and BNO086 are pin-compatible siblings sharing the same SH-2
