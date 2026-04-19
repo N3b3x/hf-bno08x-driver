@@ -25,7 +25,7 @@ var searchData=
   ['diagnostics_22',['Diagnostics',['../structBNO08x__TestConfig_1_1Diagnostics.html',1,'BNO08x_TestConfig']]],
   ['direction_23',['direction',['../structTapEvent.html#a2253a59536df9b7389266d6393f87780',1,'TapEvent']]],
   ['disablesensor_24',['DisableSensor',['../classBNO085.html#a02883eb26087462e58c95707f29a63b8',1,'BNO085']]],
-  ['documentation_25',['📚 Documentation',['../index.html#autotoc_md9',1,'']]],
+  ['documentation_25',['📚 Documentation',['../index.html#autotoc_md10',1,'']]],
   ['doubletap_26',['doubleTap',['../structTapEvent.html#a38a4f4ad0a4a97f9fba3d7f2175a486e',1,'TapEvent']]],
   ['driver_27',['HF-BNO08x Driver',['../index.html',1,'']]],
   ['driver_20class_28',['BNO085 Driver Class',['../group__BNO085Driver.html',1,'']]],

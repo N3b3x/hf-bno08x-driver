@@ -8,7 +8,7 @@ var searchData=
   ['index_5',['index',['../structRvcSensorEvent.html#a707d57da5c81ee01be13d0826fef1c93',1,'RvcSensorEvent::index'],['../structRvcSensorValue.html#a45384b190df704b246d60ae2261538e3',1,'RvcSensorValue::index']]],
   ['init_6',['Init',['../classEsp32Bno08xI2cBus.html#a5206920dfe1250bb94dad9750e965ff9',1,'Esp32Bno08xI2cBus']]],
   ['init_5ftest_5fprogress_5findicator_7',['init_test_progress_indicator',['../TestFramework_8h.html#a3967179ac699a5b02ef9787b549409fe',1,'TestFramework.h']]],
-  ['installation_8',['🔧 Installation',['../index.html#autotoc_md6',1,'']]],
+  ['installation_8',['🔧 Installation',['../index.html#autotoc_md7',1,'']]],
   ['int_9',['INT',['../structBNO08x__TestConfig_1_1ControlPins.html#a2ec116bb4485a2da53a00e7c6c9e9abd',1,'BNO08x_TestConfig::ControlPins']]],
   ['int_5fpin_10',['int_pin',['../structEsp32Bno08xI2cBus_1_1I2CConfig.html#a65d042e6c7863face9f30a5701205315',1,'Esp32Bno08xI2cBus::I2CConfig']]],
   ['iq_11',['iq',['../structRawOpticalFlowEvent.html#ad528e0435c0d22b7d44c81d6f08bc731',1,'RawOpticalFlowEvent']]],

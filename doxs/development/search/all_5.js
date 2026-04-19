@@ -15,6 +15,6 @@ var searchData=
   ['esp32uartrvcbus_12',['Esp32UartRvcBus',['../classEsp32UartRvcBus.html',1,'Esp32UartRvcBus'],['../classEsp32UartRvcBus.html#a8cc49026194d32a01d4a086501ee7504',1,'Esp32UartRvcBus::Esp32UartRvcBus()'],['../classEsp32UartRvcBus.html#adce35632b05bf2bd9c2de4fd76551480',1,'Esp32UartRvcBus::Esp32UartRvcBus(const UartConfig &amp;config)']]],
   ['event_5fdriven_5fcallback_5fexample_2ecpp_13',['event_driven_callback_example.cpp',['../event__driven__callback__example_8cpp.html',1,'']]],
   ['eventflags_14',['eventFlags',['../structSensorEvent.html#ad3a1b5dd69d0a48a274a1592808b436c',1,'SensorEvent']]],
-  ['examples_15',['📊 Examples',['../index.html#autotoc_md8',1,'']]],
+  ['examples_15',['📊 Examples',['../index.html#autotoc_md9',1,'']]],
   ['exitbootloaderandreboot_16',['ExitBootloaderAndReboot',['../classBNO085.html#ab4e79083259fdcaf5ad21bc5fcefd7bd',1,'BNO085']]]
 ];
