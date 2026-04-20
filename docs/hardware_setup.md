@@ -131,6 +131,8 @@ You can change pins in code via the transport configuration (e.g. `Esp32Bno08xBu
 
 ## Example Wiring Diagram (I²C)
 
+![BNO08x I2C wiring](assets/bno08x-wiring.svg)
+
 ```
                     BNO08x
                     ┌─────────┐
