@@ -617,6 +617,10 @@ bool BNO085<CommType>::EnterBootloader(uint32_t resetLowMs, uint32_t settleMs) n
     return false;
   }
 
+  if (!io_.Open()) {
+    last_error_ = SH2_ERR;
+    return false;
+  }
   io_.GpioSetActive(bno08x::CtrlPin::BOOTN);   // Assert BOOTN (enter bootloader)
   HardwareReset(resetLowMs);
   io_.GpioSetInactive(bno08x::CtrlPin::BOOTN); // Release BOOTN after reset
@@ -646,6 +650,10 @@ bool BNO085<CommType>::ExitBootloaderAndReboot(uint32_t resetLowMs, uint32_t set
     return false;
   }
 
+  if (!io_.Open()) {
+    last_error_ = SH2_ERR;
+    return false;
+  }
   io_.GpioSetInactive(bno08x::CtrlPin::BOOTN); // Ensure normal application boot path
   HardwareReset(resetLowMs);
   if (settleMs) {
